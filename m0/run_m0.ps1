@@ -1,21 +1,41 @@
+# Runs the M0 probes on the lab machine (M0-A: DESKTOP-K93N3P8; M0-B: Win11 machine).
+# Collects data: run only after the ticket's gate is LOCKED and APPROVED.
+#   powershell -ExecutionPolicy Bypass -File m0\run_m0.ps1 -DemoExe <...\MotionSoftDemo.exe> -DemoProj <project dir> [-Inject] [-Sessions 3] [-PresentMon <...\PresentMon.exe>] [-ArtDir <dir>]
 param(
     [Parameter(Mandatory = $true)][string]$DemoExe,
     [switch]$Inject,
     [int]$Sessions = 3,
     [string]$PresentMon = "",
     [string]$ArtDir = "C:\Users\admin\motion_framework\artifacts",
+    [string]$DemoProj = "C:\Users\admin\motion_framework\MotionSoftDemo",
+    [int]$TearFramesPerArm = 30000,   # ~5 s per arm at the M0-A present rate, long enough for PresentMon
     [int]$SessionTimeoutSec = 300
 )
 $ErrorActionPreference = "Stop"
 $M0 = $PSScriptRoot
 $Out = Join-Path $M0 "out"
 $Log = Join-Path $ArtDir "m0_run.log"
-$demoProj = "C:\Users\admin\motion_framework\MotionSoftDemo"
+$demoProj = $DemoProj
 New-Item -ItemType Directory -Force $ArtDir | Out-Null
 function Say($m) { $l = "[{0:yyyy-MM-dd HH:mm:ss}] {1}" -f (Get-Date), $m; Write-Host $l; Add-Content $Log $l }
 Add-Type -AssemblyName System.Drawing, System.Windows.Forms
-function Shot($path) {
+Add-Type -Namespace M0 -Name Win -MemberDefinition @'
+[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
+public struct RECT { public int Left, Top, Right, Bottom; }
+[System.Runtime.InteropServices.DllImport("user32.dll")] public static extern bool GetWindowRect(System.IntPtr h, out RECT r);
+[System.Runtime.InteropServices.DllImport("user32.dll")] public static extern bool SetForegroundWindow(System.IntPtr h);
+'@
+# Captures only the app window (M0-A captured the whole desktop, which put browser
+# tabs and account names into the repo). Falls back to the primary screen only if
+# the window handle is unavailable, and says so in the log.
+function Shot($path, $proc) {
     $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+    $h = if ($proc) { $proc.Refresh(); $proc.MainWindowHandle } else { [IntPtr]::Zero }
+    $r = New-Object M0.Win+RECT
+    if ($h -ne [IntPtr]::Zero -and [M0.Win]::GetWindowRect($h, [ref]$r) -and $r.Right -gt $r.Left) {
+        [M0.Win]::SetForegroundWindow($h) | Out-Null; Start-Sleep -Milliseconds 300
+        $b = New-Object System.Drawing.Rectangle $r.Left, $r.Top, ($r.Right - $r.Left), ($r.Bottom - $r.Top)
+    } else { Say "WARN screenshot: no window handle, capturing primary screen" }
     $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
     $g = [System.Drawing.Graphics]::FromImage($bmp)
     $g.CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
@@ -41,7 +61,8 @@ function Write-LaunchSettings([int]$sess, [bool]$inj) {
       "environmentVariables": {
         "MF_M0_PROBE": "1",
         "MF_M0_SESSION": "$sess",
-        "MF_M0_INJECT": "$injV"
+        "MF_M0_INJECT": "$injV",
+        "MF_M0_ARTDIR": "$($ArtDir.Replace('\','\\'))"
       }
     }
   }
@@ -64,6 +85,11 @@ function Stage-NativeDll {
 Say "M0 run: host=$env:COMPUTERNAME sessions=$Sessions inject=$($Inject.IsPresent)"
 $uuid = (Get-CimInstance Win32_ComputerSystemProduct).UUID
 Say "machineId(SMBIOS UUID)=$uuid"
+$os = Get-CimInstance Win32_OperatingSystem
+Say "os=$($os.Caption) build=$($os.BuildNumber)"
+$admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+Say "elevated=$admin (PresentMon needs an elevated shell or Performance Log Users membership)"
+Get-CimInstance Win32_VideoController | ForEach-Object { Say "gpu=$($_.Name) refresh=$($_.CurrentRefreshRate)Hz mode=$($_.CurrentHorizontalResolution)x$($_.CurrentVerticalResolution)" }
 $composition = Join-Path (Split-Path $M0 -Parent) "code\composition.h"
 if (Test-Path $composition) { Say ("composition.h sha256 PRE=" + (Get-FileHash $composition -Algorithm SHA256).Hash.ToLower()) }
 
@@ -77,11 +103,11 @@ if ($PresentMon -and (Test-Path $PresentMon)) {
     Start-Sleep 2
     Say "PresentMon pid=$($pm.Id)"
 } else { Say "PresentMon not given: PresentMode (independent flip) will not be recorded" }
-& (Join-Path $Out "m0_tear_probe.exe") $tearDir 1200 | Out-File (Join-Path $tearDir "stdout.txt")
+& (Join-Path $Out "m0_tear_probe.exe") $tearDir $TearFramesPerArm | Out-File (Join-Path $tearDir "stdout.txt")
 Say "tear probe exit=$LASTEXITCODE"
 if ($pm) { Stop-Process -Id $pm.Id -ErrorAction SilentlyContinue }
 
-$matrix = @("session,pid,verdict,m0_1a_frames,m0_1a_cpu_p95_ms,m0_1a_gpu_p95_ms,expr_latency_p50_ms,ui_latency_p50_ms,misalign_px")
+$matrix = @("session,pid,verdict,refresh_hz,m0_1a_frames,m0_1a_cpu_p95_ms,m0_1a_gpu_p95_ms,m0_1b_frames,expr_latency_p50_ms,ui_latency_p50_ms,misalign_ms,misalign_px")
 for ($s = 1; $s -le $Sessions; $s++) {
     $sum = Join-Path $ArtDir "m0_s${s}_summary.txt"
     Remove-Item $sum -ErrorAction SilentlyContinue
@@ -92,7 +118,7 @@ for ($s = 1; $s -le $Sessions; $s++) {
     else { Remove-Item (Join-Path $ArtDir "m0_inject.flag") -ErrorAction SilentlyContinue }
     Write-LaunchSettings $s $Inject.IsPresent
     Stage-NativeDll
-    $env:MF_M0_PROBE = "1"; $env:MF_M0_SESSION = "$s"; $env:MF_M0_INJECT = $(if ($Inject) { "1" } else { "0" })
+    $env:MF_M0_PROBE = "1"; $env:MF_M0_SESSION = "$s"; $env:MF_M0_INJECT = $(if ($Inject) { "1" } else { "0" }); $env:MF_M0_ARTDIR = $ArtDir
     $env:WINAPP_CLI_TELEMETRY_OPTOUT = "1"
     $dotnetArgs = @('run','-c','Debug','-p:Platform=x64','--no-build','--launch-profile','MotionSoftDemo (Package)','--','--m0-probe')
     if ($Inject) { $dotnetArgs += '--m0-inject' }
@@ -105,7 +131,7 @@ for ($s = 1; $s -le $Sessions; $s++) {
     }
     if ($app) { Say "session $s appPid=$($app.Id)" } else { Say "session $s WARN no MotionSoftDemo after 90s" }
     Start-Sleep 12
-    Shot (Join-Path $ArtDir "m0_s${s}_screen_m0_1a.png")
+    Shot (Join-Path $ArtDir "m0_s${s}_screen_m0_1a.png") $app
     $deadline = (Get-Date).AddSeconds($SessionTimeoutSec)
     $ok = $false
     while ((Get-Date) -lt $deadline) {
@@ -127,10 +153,10 @@ for ($s = 1; $s -le $Sessions; $s++) {
     $v = if ($kv.ContainsKey("verdict")) { $kv["verdict"] } else { "INVALID_NO_SUMMARY" }
     if ($kv.ContainsKey("session") -and $kv["session"] -ne "$s") { $v = "INVALID_SESSION_MISMATCH"; Say "session $s INVALID_SESSION_MISMATCH got=$($kv['session'])" }
     $appPid = if ($app) { $app.Id } else { $p.Id }
-    $matrix += "$s,$appPid,$v,$($kv['m0_1a.frames']),$($kv['m0_1a.cpu_p95_ms']),$($kv['m0_1a.gpu_p95_ms']),$($kv['m0_35.expr.latency_p50_ms']),$($kv['m0_35.ui.latency_p50_ms']),$($kv['m0_2.misalign_px_at_drag_speed'])"
+    $matrix += "$s,$appPid,$v,$($kv['refresh_hz']),$($kv['m0_1a.frames']),$($kv['m0_1a.cpu_p95_ms']),$($kv['m0_1a.gpu_p95_ms']),$($kv['m0_1b.frames']),$($kv['m0_35.expr.latency_p50_ms']),$($kv['m0_35.ui.latency_p50_ms']),$($kv['m0_2.misalign_ms']),$($kv['m0_2.misalign_px_at_drag_speed'])"
     Say "session $s verdict=$v frames=$($kv['m0_1a.frames'])"
 }
-Remove-Item env:MF_M0_PROBE, env:MF_M0_SESSION, env:MF_M0_INJECT -ErrorAction SilentlyContinue
+Remove-Item env:MF_M0_PROBE, env:MF_M0_SESSION, env:MF_M0_INJECT, env:MF_M0_ARTDIR -ErrorAction SilentlyContinue
 Remove-Item (Join-Path $ArtDir "m0_session.flag") -ErrorAction SilentlyContinue
 $matrix | Out-File (Join-Path $ArtDir "m0_session_matrix.txt") -Encoding utf8
 if (Test-Path $composition) { Say ("composition.h sha256 POST=" + (Get-FileHash $composition -Algorithm SHA256).Hash.ToLower()) }

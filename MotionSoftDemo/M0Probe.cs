@@ -48,6 +48,7 @@ internal static class M0Native
     [DllImport(Dll)] internal static extern int m0r_stop();
     [DllImport(Dll)] internal static extern int m0r_get_stats(out Stats s);
     [DllImport(Dll, CharSet = CharSet.Unicode)] internal static extern int m0r_write_reference(string path, double tSec);
+    [DllImport(Dll)] internal static extern int m0r_reset_stats();
     [DllImport(Dll)] internal static extern void m0r_destroy();
 
     // SendInput (x64 layout: 4-byte type, 4 padding, 32-byte MOUSEINPUT union arm).
@@ -113,7 +114,7 @@ public sealed partial class MainPage
         _suiteRunning = true;
         try { MeasureButton.IsEnabled = false; } catch { }
 
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = Environment.GetEnvironmentVariable("MF_M0_ARTDIR") ?? @"C:\Users\admin\motion_framework\artifacts";
         Directory.CreateDirectory(artDir);
         string sess = Environment.GetEnvironmentVariable("MF_M0_SESSION") ?? "1";
         string rivPath = Environment.GetEnvironmentVariable("MF_M0_RIV") ?? Path.Combine(artDir, "m0_assets", "Knight_square_2.riv");
@@ -134,7 +135,7 @@ public sealed partial class MainPage
             double scale = XamlRoot?.RasterizationScale ?? 1.0;
             double refreshHz = 0;
             try { MfProbe.mf_dwm_timing(out _, out _, out _, out _, out var rn, out var rd, out _); if (rd > 0) refreshHz = (double)rn / rd; } catch { }
-            Kv("probe", "M0 v1");
+            Kv("probe", "M0 v2");
             Kv("session", sess);
             Kv("pid", Environment.ProcessId);
             Kv("host", Environment.MachineName);
@@ -208,10 +209,11 @@ public sealed partial class MainPage
                     var cs = MarshalInterface<ICompositionSurface>.FromAbi(csPtr);
                     Marshal.Release(csPtr);
                     sprite.Brush = _comp.CreateSurfaceBrush(cs);
+                    M0Native.m0r_reset_stats();  // M0-B: report the swapchain phase on its own
                     Kv("m0_1b.start_hr", Hx(M0Native.m0r_start()));
                     await Task.Delay(M0PhaseMs);
-                    M0Native.m0r_get_stats(out var st2);  // cumulative: subtract m0_1a counts
-                    M0ReportStats(Kv, "m0_1b_cumulative", st2, refreshHz);
+                    M0Native.m0r_get_stats(out var st2);
+                    M0ReportStats(Kv, "m0_1b", st2, refreshHz);
                 }
             }
             Kv("verdict", "RECORDED");

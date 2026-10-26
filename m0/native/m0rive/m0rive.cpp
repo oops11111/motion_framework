@@ -353,6 +353,17 @@ M0R_API int32_t m0r_get_stats(m0r_stats* out) {
     return S_OK;
 }
 
+M0R_API int32_t m0r_reset_stats(void) {
+    if (!g) return E_NOT_VALID_STATE;
+    std::lock_guard<std::mutex> lk(g->statsMu);
+    g->cpuMs.clear();
+    g->gpuMs.clear();
+    g->intervalMs.clear();
+    g->frames = 0;
+    g->drawFailures = 0;
+    return S_OK;
+}
+
 M0R_API int32_t m0r_write_reference(const wchar_t* path, double t_sec) {
     if (!g || !path) return E_INVALIDARG;
     if (g->running.load()) return E_NOT_VALID_STATE;  // the immediate context is single-threaded here
