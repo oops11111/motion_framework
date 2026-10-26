@@ -1,5 +1,10 @@
 # M0-B Win11 复核门槛闸门（m0b_win11_gate_DRAFT.md）
 
+> **SUPERSEDED_BY_LOCKED**：`docs/m0b_win11_gate_LOCKED.md`
+> GATE_BODY_SHA256=`5e1bbb6d517babf6f04a94ee9af93cc17f208f5ea9e5bdcf7ac47c8cd49df203`
+> LOCKED_AT=2026-10-27 00:19:21 AWST
+> 本 DRAFT 保留不删；以 LOCKED 为准。
+
 STATUS=DRAFT（**NOT LOCKED**；本文件**不授权采数**）
 LOCKED_AT: （LOCK 时填）
 GATE_BODY_SHA256: （LOCK 时算；约定：对落盘全文做 SHA-256，**排除**以 GATE_BODY_SHA256 开头的那一行；LOCKED_AT 计入哈希）
