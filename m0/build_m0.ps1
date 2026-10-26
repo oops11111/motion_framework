@@ -51,7 +51,24 @@ if ($head -ne $RiveCommit) { throw "rive-runtime HEAD $head != pinned $RiveCommi
 
 $RiveOut = Join-Path $Rive "tests\out\release"
 if (-not (Test-Path (Join-Path $RiveOut "rive.lib"))) {
+
+    # Rive docs: put build/ on PATH, prefer Git bash over WSL; need make+python3 for build_rive.
+    $gitBin = "C:\Program Files\Git\bin"
+    $riveBuild = Join-Path $Rive "build"
+    $makeBin = "C:\Program Files (x86)\GnuWin32\bin"; $pyTools = Join-Path $M0 "tools"; $env:Path = "$gitBin;$riveBuild;$makeBin;$pyTools;" + $env:Path
     Say "building rive (tests\, --toolset=msc release); first run downloads premake"
+    # MSVC on CP936 (zh-CN) treats UTF-8 sources as C4819; Rive builds with /WX so they become C2220.
+    # -utf-8 locale fix; -I DirectX-Headers before WindowsSDK so vendored d3d12.h wins __d3d12_h__ guard (SDK 18362 too old for v1.615.0).
+    $dxInc = Join-Path $Rive "tests\dependencies\microsoft_DirectX-Headers_v1.615.0\include\directx"
+    $env:MSYS2_ARG_CONV_EXCL = "*"
+    if (Test-Path $dxInc) {
+        $env:CL = "-utf-8 -I`"$dxInc`""
+        $env:INCLUDE = "$dxInc;" + $env:INCLUDE
+        Say "DXHEADERS_PREPEND: $dxInc"
+    } else {
+        $env:CL = "-utf-8"
+        Say "DXHEADERS_PREPEND: missing $dxInc (externalincludedirs only)"
+    }
     Push-Location (Join-Path $Rive "tests")
     try { & ..\build\build_rive.ps1 --toolset=msc release 2>&1 | Tee-Object -Append $Log } finally { Pop-Location }
     if (-not (Test-Path (Join-Path $RiveOut "rive.lib"))) { throw "rive build produced no rive.lib (see $Log)" }
@@ -69,13 +86,13 @@ $inc = "/I`"$Rive\include`" /I`"$Rive\renderer\include`""
 $src = Join-Path $M0 "native\m0rive\m0rive.cpp"
 $libArgs = ($libs | ForEach-Object { "`"$_`"" }) -join " "
 Say "building m0rive.dll"
-cmd /c "cl /nologo /std:c++latest /EHsc /O2 /MT /LD $defs $inc `"$src`" /Fe`"$Out\m0rive.dll`" /Fo`"$Out\\`" /link $libArgs d3d11.lib dxgi.lib dwmapi.lib d3dcompiler.lib user32.lib 2>&1" | Tee-Object -Append $Log
+cmd /c "cl /nologo /std:c++latest /EHsc /O2 /MT /LD $defs $inc `"$src`" /Fe`"$Out\m0rive.dll`" /Fo`"$Out\\`" /link $libArgs d3d11.lib dxgi.lib dxguid.lib dwmapi.lib d3dcompiler.lib user32.lib 2>&1" | Tee-Object -Append $Log
 if ($LASTEXITCODE -ne 0) { throw "m0rive.dll link failed (see $Log)" }
 
 # --- 3. m0_tear_probe.exe -------------------------------------------------------------
 Say "building m0_tear_probe.exe"
 $tsrc = Join-Path $M0 "native\m0_tear_probe.cpp"
-cmd /c "cl /nologo /std:c++17 /EHsc /O2 `"$tsrc`" /Fe`"$Out\m0_tear_probe.exe`" /Fo`"$Out\\`" /link d3d11.lib dxgi.lib dcomp.lib user32.lib 2>&1" | Tee-Object -Append $Log
+cmd /c "cl /nologo /std:c++17 /EHsc /O2 /DNOMINMAX /DWIN32_LEAN_AND_MEAN `"$tsrc`" /Fe`"$Out\m0_tear_probe.exe`" /Fo`"$Out\\`" /link d3d11.lib dxgi.lib dxguid.lib dcomp.lib user32.lib 2>&1" | Tee-Object -Append $Log
 if ($LASTEXITCODE -ne 0) { throw "m0_tear_probe.exe build failed (see $Log)" }
 
 # --- 4. stage asset and DLL ----------------------------------------------------------
@@ -90,3 +107,6 @@ foreach ($f in "m0rive.dll", "m0_tear_probe.exe") {
     Say ("{0} sha256={1}" -f $f, (Get-FileHash (Join-Path $Out $f) -Algorithm SHA256).Hash.ToLower())
 }
 Say "BUILD_OK"
+
+
+
