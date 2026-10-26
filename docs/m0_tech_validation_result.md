@@ -1,7 +1,8 @@
 # M0-A 结题结果（m0_tech_validation_result.md）
 
 STATUS: CLOSED
-TICKET: M0-A-PASS（M0-1a PASS 3/3；其余各项 RECORDED；G2-M0-1 第④条有偏离，见下文，须协调确认）
+TICKET: M0-A-PASS（M0-1a PASS 3/3；其余各项 RECORDED；G2-M0-1 第④条以截图确认）
+DEVIATION_ACK: pidan 于 2026-10-26 23:59:30 AWST 指示「M0-B开新分支在win11上跑，开pr合并」，据此视为接受第④条改以截图确认
 WRITTEN_AT: 2026-10-26 23:50:32 AWST（Australia/Perth）
 GATE: `docs/m0_tech_validation_gate_LOCKED.md`，GATE_BODY_SHA256=`942d6965dae1aa41f3b853923d08a11aac9714d60018888a5c486bfde5809768`（结题时复算：MATCH）
 APPROVED: `docs/m0_tech_validation_approved.md`，pidan @ 2026-10-26 21:43:10 AWST
