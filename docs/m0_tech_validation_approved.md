@@ -10,7 +10,7 @@
 - 哈希约定：对落盘全文做 SHA-256，**排除**以 GATE_BODY_SHA256 开头的那一行；LOCKED_AT 计入哈希。
 
 ## APPROVED 留证
-- APPROVED_BY=session_user（本会话用户，即项目协调；如应记为 pidan，请直接改名，hash 不受影响）
+- APPROVED_BY=pidan
 - APPROVED_AT=2026-10-26 21:43:10 AWST（Australia/Perth）
 - APPROVED_NOTE=会话回复「APPROVED M0-A」，在 LOCK 942d6965…9768 之后；此前回复「D1-D7按建议」
 
