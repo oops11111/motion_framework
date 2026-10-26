@@ -288,6 +288,17 @@ public sealed partial class MainPage
         try
         {
             var pps = ElementCompositionPreview.GetPointerPositionPropertySet(RootGrid);
+            // M0-A found the computed x0 off by ~70 px (expression rest cx 30 vs 100), so
+            // the pointer set's origin is not RootGrid's TransformToVisual origin. Park the
+            // cursor at rest and take x0 from the set itself when it reports a value.
+            M0Native.MoveCursor(sx - 2, sy); await Task.Delay(100);
+            M0Native.MoveCursor(sx, sy); await Task.Delay(300);
+            double xUiDip = x0Dip;  // the UI path reads GetCurrentPoint(RootGrid); computed x0 was right there
+            var ppsStatus = pps.TryGetVector3("Position", out var ppsRest);
+            Kv("m0_ptr.x0_computed_dip", F(x0Dip, 2));
+            Kv("m0_ptr.pps_rest", $"{ppsStatus}:{F(ppsRest.X, 2)},{F(ppsRest.Y, 2)}");
+            if (ppsStatus == CompositionGetValueStatus.Succeeded && ppsRest.X != 0) x0Dip = ppsRest.X;
+            Kv("m0_ptr.x0_used_dip", F(x0Dip, 2));
             ExpressionAnimation Follow()
             {
                 var e = _comp!.CreateExpressionAnimation($"pps.Position.X - {x0Dip.ToString("R", CultureInfo.InvariantCulture)}");
@@ -296,7 +307,7 @@ public sealed partial class MainPage
             }
 
             // Path list: (name, setup, teardown). Every path runs the same injected steps.
-            double uiX0 = x0Dip;
+            double uiX0 = xUiDip;
             PointerEventHandler onMove = (s, e) =>
             {
                 var p = e.GetCurrentPoint(RootGrid).Position;
@@ -373,8 +384,12 @@ public sealed partial class MainPage
             double half = (target + from) / 2, hit = double.NaN;
             for (int i = seen; i < n2; i++)
             {
-                if (MfProbe.mf_cap_get(i, out var srt, out var qArr, out _, out _, out _, out _, out _, out _, out var cnt, out var cx) != 1 || cnt <= 50) continue;
+                if (MfProbe.mf_cap_get(i, out var srt, out var qArr, out _, out _, out var minx, out var maxx, out _, out _, out var cnt, out var cx) != 1) continue;
                 double srtMs = srt / 1e4, rel = srtMs - qpcMs(tInj);
+                // Per-frame trace (M0-A: backward steps of the expression path were never
+                // detected; this shows whether the box returned, was clipped, or vanished).
+                Raw($"M0F {name} step={k} rel_ms={F(rel, 2)} cx={F(cx, 2)} minx={minx} maxx={maxx} n={cnt}");
+                if (cnt <= 50) continue;
                 if (qArr != 0) offsetMin = Math.Min(offsetMin, qpcMs(qArr) - srtMs);
                 if (double.IsNaN(hit) && rel > 0 && (fwd ? cx >= half : cx <= half)) hit = rel;
             }

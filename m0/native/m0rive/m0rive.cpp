@@ -356,7 +356,6 @@ M0R_API int32_t m0r_get_stats(m0r_stats* out) {
 M0R_API int32_t m0r_write_reference(const wchar_t* path, double t_sec) {
     if (!g || !path) return E_INVALIDARG;
     if (g->running.load()) return E_NOT_VALID_STATE;  // the immediate context is single-threaded here
-    RenderRive(*g, static_cast<float>(t_sec));
     D3D11_TEXTURE2D_DESC d{};
     g->offscreen->GetDesc(&d);
     d.Usage = D3D11_USAGE_STAGING;
@@ -365,10 +364,26 @@ M0R_API int32_t m0r_write_reference(const wchar_t* path, double t_sec) {
     ComPtr<ID3D11Texture2D> staging;
     HRESULT hr = g->dev->CreateTexture2D(&d, nullptr, &staging);
     if (FAILED(hr)) return hr;
-    g->ctx->CopyResource(staging.Get(), g->offscreen.Get());
+    // Rive compiles shaders asynchronously by default and skips draws whose
+    // pipeline is not ready, so the first frames can come out empty (M0-A: all
+    // three references were blank). Render at t_sec, then re-render the same
+    // instant (dt = 0) until some pixel is non-transparent, for up to ~2 s.
     D3D11_MAPPED_SUBRESOURCE m{};
-    hr = g->ctx->Map(staging.Get(), 0, D3D11_MAP_READ, 0, &m);
-    if (FAILED(hr)) return hr;
+    bool drawn = false;
+    for (int attempt = 0; attempt < 120 && !drawn; ++attempt) {
+        if (attempt > 0) Sleep(16);
+        RenderRive(*g, attempt == 0 ? static_cast<float>(t_sec) : 0.f);
+        g->ctx->CopyResource(staging.Get(), g->offscreen.Get());
+        hr = g->ctx->Map(staging.Get(), 0, D3D11_MAP_READ, 0, &m);
+        if (FAILED(hr)) return hr;
+        for (uint32_t y = 0; y < g->h && !drawn; ++y) {
+            const uint8_t* row = static_cast<uint8_t*>(m.pData) + y * m.RowPitch;
+            for (uint32_t x = 0; x < g->w; ++x)
+                if (row[4 * x + 3]) { drawn = true; break; }
+        }
+        if (!drawn) g->ctx->Unmap(staging.Get(), 0);
+    }
+    if (!drawn) return S_FALSE;  // nothing drawn after the retries; no file written
     FILE* f = _wfopen(path, L"wb");
     if (f) {
         const uint32_t hdr[2] = {g->w, g->h};

@@ -55,7 +55,8 @@ M0R_API int32_t m0r_get_stats(m0r_stats* out);
 
 // Renders one frame headless at `t_sec` and writes raw BGRA (premultiplied) to
 // `path`: 8-byte header (uint32 width, uint32 height) then rows top to bottom.
-// Used as the reference image for comparing against the WGC capture.
+// Used as the reference image for comparing against the WGC capture. Retries for
+// up to ~2 s while Rive's shaders compile; S_FALSE (no file) if nothing was drawn.
 M0R_API int32_t m0r_write_reference(const wchar_t* path, double t_sec);
 
 M0R_API void m0r_destroy(void);
