@@ -1,0 +1,43 @@
+# m2_h5_seed_s1_raw.txt — M2-H5-SEED WGC seed probe (programmatic only, NO synthetic input)
+# wall=2026-10-25 00:25:47 AWST; composition.h UNCHANGED; calib=1
+# B1 spring P=0.32 ζ=0.78 0→240 IV=0 IVel=0; trip≈156ms; B2 Final=0 InitialValue NOT set
+# path A: InitialVelocity=(float)(calib*v_wgc); path B fallback/control: IV unset + InitialVelocity=0
+# v_screen = last-two WGC Translation.X frames before interrupt, (x2-x1)/(t2-t1) QPC→s DIP/s; same instant as seed
+# ε=5 DIP/s; need n_valid_A>=12; r_i=|v_seed/v_screen|; med_r session median
+# FORBIDDEN: mf_spring_at / spring.h closed-form v as compositor InitialVelocity (log-only ok)
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal cx0=100.480 cx37=137.480 pxPerDip=1.0000 calib=1.000000
+TRIAL armWanted=A k=0 path=A tIntMs=170.82 shX=229.952 shV=475.41(log-only) v_wgc=182.634 v_screen=182.634 v_seed=182.634 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=1 path=A tIntMs=169.96 shX=229.540 shV=484.64(log-only) v_wgc=180.547 v_screen=180.547 v_seed=180.547 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=2 path=A tIntMs=157.40 shX=222.556 shV=631.79(log-only) v_wgc=178.505 v_screen=178.505 v_seed=178.505 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=3 path=A tIntMs=157.96 shX=222.906 shV=624.78(log-only) v_wgc=174.737 v_screen=174.737 v_seed=174.737 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=4 path=A tIntMs=157.05 shX=222.329 shV=636.31(log-only) v_wgc=186.545 v_screen=186.545 v_seed=186.545 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=5 path=A tIntMs=156.63 shX=222.065 shV=641.57(log-only) v_wgc=185.155 v_screen=185.155 v_seed=185.155 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=6 path=A tIntMs=157.71 shX=222.749 shV=627.93(log-only) v_wgc=180.270 v_screen=180.270 v_seed=180.270 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=7 path=A tIntMs=171.57 shX=230.308 shV=467.38(log-only) v_wgc=182.512 v_screen=182.512 v_seed=182.512 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=8 path=A tIntMs=157.45 shX=222.586 shV=631.19(log-only) v_wgc=185.673 v_screen=185.673 v_seed=185.673 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=9 path=A tIntMs=156.74 shX=222.137 shV=640.14(log-only) v_wgc=180.002 v_screen=180.002 v_seed=180.002 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=10 path=A tIntMs=157.74 shX=222.770 shV=627.49(log-only) v_wgc=179.812 v_screen=179.812 v_seed=179.812 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=A k=11 path=A tIntMs=171.05 shX=230.064 shV=472.89(log-only) v_wgc=234.940 v_screen=234.940 v_seed=234.940 r_i=1.0000 validA=True validBctrl=False
+TRIAL armWanted=B k=0 path=B tIntMs=168.78 shX=228.961 shV=497.50(log-only) v_wgc=181.665 v_screen=181.665 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=1 path=B tIntMs=156.28 shX=221.840 shV=646.02(log-only) v_wgc=175.187 v_screen=175.187 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=2 path=B tIntMs=158.20 shX=223.056 shV=621.77(log-only) v_wgc=184.372 v_screen=184.372 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=3 path=B tIntMs=169.34 shX=229.240 shV=491.31(log-only) v_wgc=187.335 v_screen=187.335 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=4 path=B tIntMs=156.17 shX=221.768 shV=647.45(log-only) v_wgc=180.581 v_screen=180.581 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=5 path=B tIntMs=158.98 shX=223.538 shV=612.02(log-only) v_wgc=181.922 v_screen=181.922 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=6 path=B tIntMs=171.49 shX=230.270 shV=468.24(log-only) v_wgc=178.489 v_screen=178.489 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=7 path=B tIntMs=171.66 shX=230.351 shV=466.42(log-only) v_wgc=174.521 v_screen=174.521 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=8 path=B tIntMs=156.88 shX=222.222 shV=638.45(log-only) v_wgc=182.504 v_screen=182.504 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=9 path=B tIntMs=156.83 shX=222.194 shV=639.00(log-only) v_wgc=179.127 v_screen=179.127 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=10 path=B tIntMs=158.53 shX=223.263 shV=617.60(log-only) v_wgc=173.996 v_screen=173.996 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+TRIAL armWanted=B k=11 path=B tIntMs=159.34 shX=223.753 shV=607.65(log-only) v_wgc=180.639 v_screen=180.639 v_seed=0.000 r_i=0.0000 validA=False validBctrl=True
+# m2_h5_seed_s1_summary.txt
+session=1 pid=62560 calib=1.000000 eps=5.0
+armA n_valid=12 med_r=1.0000 max_r=1.0000 any_r_ge_2=False attempts=12
+armB_control n_valid=12 med_r=0.0000 (expected≈0; not counted in 3/3)
+shadow_eliminated=yes (A seed from WGC*calib, NOT mf_spring_at)
+SESSION_PASS_CANDIDATE
+PASS_WINDOW=[0.8,1.2] STRONG_NO_SAMPLE_GE_2=yes
+===== M2-H5-SEED PROBE DONE =====
+===== M2-H5-SEED PROBE DONE =====

@@ -1,0 +1,310 @@
+# 派题 #6 — M1b compositor single-property pilot (MotionSoftDemo), DESKTOP-K93N3P8, 2026-10-19 19:25-19:45 Asia/Taipei
+# Build: dotnet build -c Debug -p:Platform=x64 --no-incremental -> 0 warnings, 0 errors (WASDK 2.5.1, Debug x64)
+# CAVEAT: monitor asleep (user idle >2 h, display-off timeout 900 s): Rendering ~32 Hz; frame timing numbers are not representative.
+#
+# Compositor path: ElementCompositionPreview.GetElementVisual(AnimBox) + SetIsTranslationEnabled(AnimBox,true); property "Translation.X"
+#   spring  -> SpringScalarNaturalMotionAnimation  FinalValue=target, Period=0.32 s (=response, S1), DampingRatio=0.78 (=damping, S2), InitialValue/Velocity unset
+#   bezier  -> ScalarKeyFrameAnimation  key0 "this.StartingValue", key1 target + CubicBezierEasingFunction((0.1,0.9),(0.2,1.0)) (K1), Duration 220 ms
+#   readback-> CompositionPropertySet "x" driven by ExpressionAnimation "v.Translation.X" (v = visual), TryGetScalar each Rendering; also Visual.Properties.TryGetVector3("Translation")
+#
+# RESULTS (final run, full log below; earlier runs identical):
+#  SOFTWARE path: selftest go 240 / interrupt at 150 ms: before value=192.3645 vel=1143.77 -> rendered 192.36 -> 211.11 -> 173.98 -> 119.09 (smooth);
+#                 0->240 from rest settled 628 ms after retarget at exactly 240.0000; switch-back go 120 settled at 120.0000.
+#  COMPOSITOR path: NOT verifiable in this environment:
+#   1) expression readback never moves: probe=0 for all 135 samples, even after a STATIC Translation.X:=37 write (Visual.Properties getter shows 37, probe stays 0)
+#      -> TryGetScalar on an expression-animated PropertySet value returns the static value, not the compositor-evaluated value.
+#   2) control: PropertySet scalar animated DIRECTLY by a 1000 ms linear keyframe: ScopedBatch Completed after 13.6 ms and TryGetScalar=100 (final) —
+#      no intermediate value ever observed; a 1000 ms animation "finishing" in 13.6 ms means the compositor animation clock is not advancing in real time here.
+#   3) spring batches (gen1..3) did not complete on their own; all were Completed together at the moment the 220 ms bezier batch completed (after 29.9 ms).
+#   4) pixel ground truth unavailable: PrintWindow(PW_RENDERFULLCONTENT) returns an all-white client area; CopyFromScreen of one row never finds the box (display off).
+#   => startup latency, interruption smoothness and final-value consistency in compositor mode: UNMEASURED (blocker). Mode switching itself works (no exception,
+#      BoxTranslate.X zeroed in compositor mode, Translation reset to 0 on return, software resumes from the hand-off value).
+#
+# ===== final run full log (app: MotionSoftDemo\comp_pilot_log.txt) =====
+13.389ms wallclock at Loaded = 19:40:22.801
+13.834ms M1b pilot: spring Period=0.32s DampingRatio=0.78 (S1/S2 identity mapping); path=Translation.X
+18.857ms load_tokens ok
+24.925ms SW Rendering SUBSCRIBE
+44.909ms SW tick 1 dt=start value=-73.6128 vel=490.9379 X=-73.6128 running=True
+57.067ms SW tick 2 dt=13.2839 value=-65.3709 vel=627.9286 X=-65.3709 running=True
+86.716ms SW tick 3 dt=29.6660 value=-45.6486 vel=659.5339 X=-45.6486 running=True
+119.236ms SW tick 4 dt=32.5226 value=-26.3145 vel=513.4709 X=-26.3145 running=True
+150.819ms SW tick 5 dt=31.5766 value=-12.9246 vel=336.4054 X=-12.9246 running=True
+181.209ms SW tick 6 dt=30.3939 value=-4.9725 vel=193.4615 X=-4.9725 running=True
+211.287ms SW tick 7 dt=30.0773 value=-0.7502 vel=94.4278 X=-0.7502 running=True
+241.345ms SW tick 8 dt=30.0586 value=1.0963 vel=34.1177 X=1.0963 running=True
+272.292ms SW tick 9 dt=30.9399 value=1.5910 vel=1.9640 X=1.5910 running=True
+302.556ms SW tick 10 dt=30.2642 value=1.4222 vel=-10.8195 X=1.4222 running=True
+333.257ms SW tick 11 dt=30.7085 value=1.0313 vel=-13.4525 X=1.0313 running=True
+365.191ms SW tick 12 dt=31.9364 value=0.6290 vel=-11.2774 X=0.6290 running=True
+395.951ms SW tick 13 dt=30.7423 value=0.3343 vel=-7.8539 X=0.3343 running=True
+427.467ms SW tick 14 dt=31.5281 value=0.1391 vel=-4.6505 X=0.1391 running=True
+458.837ms SW tick 15 dt=31.3743 value=0.0320 vel=-2.3317 X=0.0320 running=True
+489.250ms SW tick 16 dt=30.4147 value=-0.0156 vel=-0.9268 X=-0.0156 running=True
+519.788ms SW tick 17 dt=30.5374 value=-0.0309 vel=-0.1624 X=-0.0309 running=True
+551.757ms SW tick 18 dt=31.9695 value=-0.0296 vel=0.1830 X=-0.0296 running=True
+581.709ms SW tick 19 dt=29.9500 value=-0.0225 vel=0.2674 X=-0.0225 running=True
+613.819ms SW Rendering UNSUBSCRIBE
+613.834ms SW tick 20 dt=start value=0.0000 vel=0.0000 X=0.0000 running=False
+613.838ms SW settled value=0.0000 X=0.0000
+1049.633ms SW Rendering SUBSCRIBE
+1049.685ms retarget[SW selftest-go] -> 240.0000 ok=True before(value=0.0000 vel=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000
+1077.141ms SW tick 21 dt=start value=26.3565 vel=1639.0760 X=26.3565 running=True
+1108.467ms SW tick 22 dt=31.3277 value=86.5781 vel=2023.2623 X=86.5781 running=True
+1140.445ms SW tick 23 dt=31.9772 value=146.9250 vel=1683.0202 X=146.9250 running=True
+1172.540ms SW tick 24 dt=32.0954 value=192.3645 vel=1143.7693 X=192.3645 running=True
+1188.320ms retarget[SW selftest-interrupt] -> 0.0000 ok=True before(value=192.3645 vel=1143.7693) after(value=208.3829 vel=892.0007) |dv|=1.602E+001
+1203.559ms SW tick 25 dt=31.0182 value=211.1054 vel=-434.4224 X=211.1054 running=True
+1234.920ms SW tick 26 dt=31.3614 value=173.9801 vel=-1663.1865 X=173.9801 running=True
+1266.039ms SW tick 27 dt=31.1204 value=119.0931 vel=-1742.4344 X=119.0931 running=True
+1297.565ms SW tick 28 dt=31.5235 value=69.5934 vel=-1360.3194 X=69.5934 running=True
+1328.213ms SW tick 29 dt=30.6504 value=34.9577 vel=-903.2998 X=34.9577 running=True
+1359.837ms SW tick 30 dt=31.6240 value=12.9429 vel=-508.2638 X=12.9429 running=True
+1391.705ms SW tick 31 dt=31.8688 value=1.4337 vel=-235.1317 X=1.4337 running=True
+1422.232ms SW tick 32 dt=30.5218 value=-3.1454 vel=-80.1821 X=-3.1454 running=True
+1452.593ms SW tick 33 dt=30.3671 value=-4.2314 vel=-1.3916 X=-4.2314 running=True
+1483.623ms SW tick 34 dt=31.0263 value=-3.6884 vel=30.3121 X=-3.6884 running=True
+1513.758ms SW tick 35 dt=30.1388 value=-2.6531 vel=35.5907 X=-2.6531 running=True
+1544.873ms SW tick 36 dt=31.1093 value=-1.6238 vel=29.5140 X=-1.6238 running=True
+1576.228ms SW tick 37 dt=31.3087 value=-0.8439 vel=20.2259 X=-0.8439 running=True
+1606.827ms SW tick 38 dt=30.4909 value=-0.3560 vel=12.0910 X=-0.3560 running=True
+1637.513ms SW tick 39 dt=30.8486 value=-0.0816 vel=6.1034 X=-0.0816 running=True
+1668.782ms SW tick 40 dt=31.2687 value=0.0449 vel=2.3333 X=0.0449 running=True
+1699.991ms SW tick 41 dt=31.2068 value=0.0828 vel=0.3406 X=0.0828 running=True
+1731.865ms SW tick 42 dt=31.8774 value=0.0777 vel=-0.5153 X=0.0777 running=True
+1763.254ms SW tick 43 dt=31.3778 value=0.0573 vel=-0.7127 X=0.0573 running=True
+1794.895ms SW tick 44 dt=31.6514 value=0.0358 vel=-0.6183 X=0.0358 running=True
+1825.971ms SW Rendering UNSUBSCRIBE
+1825.985ms SW tick 45 dt=start value=0.0000 vel=0.0000 X=0.0000 running=False
+1825.986ms SW settled value=0.0000 X=0.0000
+2540.880ms SW Rendering SUBSCRIBE
+2540.893ms retarget[SW settle-go(0->240 from rest)] -> 240.0000 ok=True before(value=0.0000 vel=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000
+2541.047ms SW tick 46 dt=start value=0.0017 vel=17.7499 X=0.0017 running=True
+2572.236ms SW tick 47 dt=31.1873 value=32.9044 vel=1751.4706 X=32.9044 running=True
+2603.724ms SW tick 48 dt=31.4899 value=94.6781 vel=2006.5501 X=94.6781 running=True
+2635.722ms SW tick 49 dt=31.9988 value=153.5880 vel=1618.5295 X=153.5880 running=True
+2667.808ms SW tick 50 dt=32.0854 value=196.8328 vel=1077.3024 X=196.8328 running=True
+2699.361ms SW tick 51 dt=31.5518 value=223.2456 vel=617.9392 X=223.2456 running=True
+2730.525ms SW tick 52 dt=31.1621 value=237.1733 vel=298.9964 X=237.1733 running=True
+2761.986ms SW tick 53 dt=31.4610 value=243.2290 vel=104.9141 X=243.2290 running=True
+2794.238ms SW tick 54 dt=32.2502 value=244.7768 vel=4.4068 X=244.7768 running=True
+2825.056ms SW tick 55 dt=30.8244 value=244.2234 vel=-33.2869 X=244.2234 running=True
+2855.962ms SW tick 56 dt=30.9056 value=243.0334 vel=-40.2767 X=243.0334 running=True
+2887.498ms SW tick 57 dt=31.5364 value=241.8499 vel=-33.4906 X=241.8499 running=True
+2919.454ms SW tick 58 dt=31.9565 value=240.9492 vel=-22.7901 X=240.9492 running=True
+2950.811ms SW tick 59 dt=31.3526 value=240.3882 vel=-13.3892 X=240.3882 running=True
+2982.488ms SW tick 60 dt=31.6789 value=240.0795 vel=-6.5718 X=240.0795 running=True
+3012.911ms SW tick 61 dt=30.4237 value=239.9466 vel=-2.5337 X=239.9466 running=True
+3044.415ms SW tick 62 dt=31.5017 value=239.9059 vel=-0.3221 X=239.9059 running=True
+3076.119ms SW tick 63 dt=31.7054 value=239.9129 vel=0.6002 X=239.9129 running=True
+3107.011ms SW tick 64 dt=30.8894 value=239.9358 vel=0.8054 X=239.9358 running=True
+3137.811ms SW tick 65 dt=30.8021 value=239.9595 vel=0.6997 X=239.9595 running=True
+3169.060ms SW Rendering UNSUBSCRIBE
+3169.067ms SW tick 66 dt=start value=240.0000 vel=0.0000 X=240.0000 running=False
+3169.070ms SW settled value=240.0000 X=240.0000
+4041.635ms SW Rendering SUBSCRIBE
+4041.646ms retarget[SW back-to-0] -> 0.0000 ok=True before(value=240.0000 vel=0.0000) after(value=240.0000 vel=0.0000) |dv|=0.000E+000
+4041.826ms SW tick 67 dt=start value=239.9974 vel=-21.8404 X=239.9974 running=True
+4073.333ms SW tick 68 dt=31.5079 value=206.4438 vel=-1761.0896 X=206.4438 running=True
+4104.317ms SW tick 69 dt=30.9832 value=145.6057 vel=-2007.3126 X=145.6057 running=True
+4134.618ms SW tick 70 dt=30.3017 value=89.4143 vel=-1648.1972 X=89.4143 running=True
+4165.836ms SW tick 71 dt=31.2183 value=46.1384 vel=-1121.8016 X=46.1384 running=True
+4196.437ms SW tick 72 dt=30.6012 value=19.0931 vel=-664.3816 X=19.0931 running=True
+4227.025ms SW tick 73 dt=30.5885 value=4.1615 vel=-334.2178 X=4.1615 running=True
+4257.441ms SW tick 74 dt=30.4132 value=-2.6105 vel=-129.8225 X=-2.6105 running=True
+4288.001ms SW tick 75 dt=30.5625 value=-4.6950 vel=-19.6242 X=-4.6950 running=True
+4318.575ms SW tick 76 dt=30.5712 value=-4.4460 vel=28.0203 X=-4.4460 running=True
+4349.793ms SW tick 77 dt=31.2204 value=-3.3123 vel=40.3719 X=-3.3123 running=True
+4381.143ms SW tick 78 dt=31.3499 value=-2.0951 vel=35.6100 X=-2.0951 running=True
+4412.231ms SW tick 79 dt=31.0862 value=-1.1415 vel=25.4740 X=-1.1415 running=True
+4443.298ms SW tick 80 dt=31.0673 value=-0.5076 vel=15.6294 X=-0.5076 running=True
+4474.391ms SW tick 81 dt=31.0923 value=-0.1445 vel=8.1846 X=-0.1445 running=True
+4505.612ms SW tick 82 dt=31.2218 value=0.0297 vel=3.3902 X=0.0297 running=True
+4535.972ms SW tick 83 dt=30.3602 value=0.0890 vel=0.8024 X=0.0890 running=True
+4567.576ms SW tick 84 dt=31.5964 value=0.0919 vel=-0.4271 X=0.0919 running=True
+4598.330ms SW tick 85 dt=30.7551 value=0.0717 vel=-0.7894 X=0.0717 running=True
+4629.635ms SW tick 86 dt=31.3057 value=0.0470 vel=-0.7471 X=0.0470 running=True
+4660.059ms SW tick 87 dt=30.4300 value=0.0269 vel=-0.5609 X=0.0269 running=True
+4689.993ms SW Rendering UNSUBSCRIBE
+4689.997ms SW tick 88 dt=start value=0.0000 vel=0.0000 X=0.0000 running=False
+4689.998ms SW settled value=0.0000 X=0.0000
+5049.440ms COMP sampler Rendering SUBSCRIBE
+5049.444ms MODE -> 合成器路径 (selftest): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0, sw running=False
+5053.364ms COMP sample 1 diagK=n/a gen=0 t_since_start=NaNms rtDelta=start probe=0.0000 propTranslationX=0.0000 vel_est=NaN
+5080.282ms COMP sample 2 diagK=n/a gen=0 t_since_start=NaNms rtDelta=6.4052 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5110.506ms COMP sample 3 diagK=n/a gen=0 t_since_start=NaNms rtDelta=24.4924 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5141.622ms DIAG static Translation.X := 37 (expression-probe readback check)
+5141.700ms COMP sample 4 diagK=n/a gen=0 t_since_start=NaNms rtDelta=30.1932 probe=0.0000 propTranslationX=37.0000 vel_est=0.0000
+5172.847ms COMP sample 5 diagK=n/a gen=0 t_since_start=NaNms rtDelta=31.1908 probe=0.0000 propTranslationX=37.0000 vel_est=0.0000
+5204.082ms COMP sample 6 diagK=n/a gen=0 t_since_start=NaNms rtDelta=31.1732 probe=0.0000 propTranslationX=37.0000 vel_est=0.0000
+5219.914ms DIAG static Translation.X := 0
+5234.516ms COMP sample 7 diagK=n/a gen=0 t_since_start=NaNms rtDelta=31.1960 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5257.547ms DIAG PropertySet keyframe 0->100 / 1000 ms started
+5266.711ms COMP sample 8 diagK=0.0000 gen=0 t_since_start=NaNms rtDelta=30.4812 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5269.163ms DIAG PropertySet keyframe (1000 ms) batch completed after 13.6037ms, TryGetScalar(k)=100.0000
+5297.399ms COMP sample 9 diagK=100.0000 gen=0 t_since_start=NaNms rtDelta=32.1968 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5328.791ms COMP sample 10 diagK=100.0000 gen=0 t_since_start=NaNms rtDelta=30.6796 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5359.277ms COMP sample 11 diagK=100.0000 gen=0 t_since_start=NaNms rtDelta=31.3504 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5390.340ms COMP sample 12 diagK=100.0000 gen=0 t_since_start=NaNms rtDelta=30.4996 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5421.200ms COMP sample 13 diagK=100.0000 gen=0 t_since_start=NaNms rtDelta=31.0464 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5452.854ms COMP sample 14 diagK=100.0000 gen=0 t_since_start=NaNms rtDelta=30.8824 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5483.719ms COMP sample 15 diagK=100.0000 gen=0 t_since_start=NaNms rtDelta=32.9280 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5514.494ms COMP sample 16 diagK=100.0000 gen=0 t_since_start=NaNms rtDelta=31.2828 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5554.348ms COMP StartAnimation [COMP selftest-go] gen=1 -> 240.0000 probe_before=0.0000 last_vel_est=0.0000 propTranslationX=0.0000
+5554.456ms COMP sample 17 diagK=100.0000 gen=1 t_since_start=0.1743ms rtDelta=29.1192 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5577.441ms COMP sample 18 diagK=100.0000 gen=1 t_since_start=23.1488ms rtDelta=39.9320 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5608.855ms COMP sample 19 diagK=100.0000 gen=1 t_since_start=54.5715ms rtDelta=24.2004 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5639.779ms COMP sample 20 diagK=100.0000 gen=1 t_since_start=85.4982ms rtDelta=30.1712 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5671.151ms COMP sample 21 diagK=100.0000 gen=1 t_since_start=116.8698ms rtDelta=30.9468 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5702.141ms COMP StartAnimation [COMP selftest-interrupt] gen=2 -> 0.0000 probe_before=0.0000 last_vel_est=0.0000 propTranslationX=0.0000
+5702.182ms COMP sample 22 diagK=100.0000 gen=2 t_since_start=0.0750ms rtDelta=31.3520 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5732.428ms COMP sample 23 diagK=100.0000 gen=2 t_since_start=30.3173ms rtDelta=31.0452 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5764.495ms COMP sample 24 diagK=100.0000 gen=2 t_since_start=62.2291ms rtDelta=30.2796 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5794.954ms COMP sample 25 diagK=100.0000 gen=2 t_since_start=92.8372ms rtDelta=32.0380 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5826.282ms COMP sample 26 diagK=100.0000 gen=2 t_since_start=124.1655ms rtDelta=30.4444 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5857.390ms COMP sample 27 diagK=100.0000 gen=2 t_since_start=155.2835ms rtDelta=31.3232 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5888.503ms COMP sample 28 diagK=100.0000 gen=2 t_since_start=186.3790ms rtDelta=31.1216 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5919.912ms COMP sample 29 diagK=100.0000 gen=2 t_since_start=217.7980ms rtDelta=31.1064 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5951.005ms COMP sample 30 diagK=100.0000 gen=2 t_since_start=248.8895ms rtDelta=31.4064 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+5982.165ms COMP sample 31 diagK=100.0000 gen=2 t_since_start=280.0410ms rtDelta=31.0968 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6013.196ms COMP sample 32 diagK=100.0000 gen=2 t_since_start=311.0843ms rtDelta=31.1716 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6044.325ms COMP sample 33 diagK=100.0000 gen=2 t_since_start=342.2136ms rtDelta=31.0280 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6075.732ms COMP sample 34 diagK=100.0000 gen=2 t_since_start=373.6193ms rtDelta=31.1260 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6107.001ms COMP sample 35 diagK=100.0000 gen=2 t_since_start=404.8946ms rtDelta=31.3900 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6139.089ms COMP sample 36 diagK=100.0000 gen=2 t_since_start=436.9816ms rtDelta=31.2840 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6170.284ms COMP sample 37 diagK=100.0000 gen=2 t_since_start=468.1788ms rtDelta=32.0748 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6201.346ms COMP sample 38 diagK=100.0000 gen=2 t_since_start=499.2401ms rtDelta=31.2124 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6231.924ms COMP sample 39 diagK=100.0000 gen=2 t_since_start=529.8172ms rtDelta=31.0636 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6263.139ms COMP sample 40 diagK=100.0000 gen=2 t_since_start=561.0335ms rtDelta=30.5572 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6294.641ms COMP sample 41 diagK=100.0000 gen=2 t_since_start=592.5350ms rtDelta=31.2308 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6325.552ms COMP sample 42 diagK=100.0000 gen=2 t_since_start=623.4373ms rtDelta=31.5104 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6356.844ms COMP sample 43 diagK=100.0000 gen=2 t_since_start=654.6778ms rtDelta=30.8868 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6388.747ms COMP sample 44 diagK=100.0000 gen=2 t_since_start=686.6052ms rtDelta=31.3124 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6420.707ms COMP sample 45 diagK=100.0000 gen=2 t_since_start=718.5973ms rtDelta=31.9020 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6451.474ms COMP sample 46 diagK=100.0000 gen=2 t_since_start=749.3628ms rtDelta=31.9632 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6481.992ms COMP sample 47 diagK=100.0000 gen=2 t_since_start=779.8766ms rtDelta=30.7656 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6512.405ms COMP sample 48 diagK=100.0000 gen=2 t_since_start=810.2966ms rtDelta=30.5216 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6544.045ms COMP sample 49 diagK=100.0000 gen=2 t_since_start=841.9380ms rtDelta=30.3896 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6575.074ms COMP sample 50 diagK=100.0000 gen=2 t_since_start=872.9655ms rtDelta=31.6540 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6606.189ms COMP sample 51 diagK=100.0000 gen=2 t_since_start=904.0815ms rtDelta=31.0160 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6637.560ms COMP sample 52 diagK=100.0000 gen=2 t_since_start=935.4535ms rtDelta=31.1132 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6669.297ms COMP sample 53 diagK=100.0000 gen=2 t_since_start=967.1906ms rtDelta=31.3696 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6700.403ms COMP sample 54 diagK=100.0000 gen=2 t_since_start=998.2960ms rtDelta=31.7360 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6731.737ms COMP sample 55 diagK=100.0000 gen=2 t_since_start=1029.6201ms rtDelta=31.1292 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6763.219ms COMP sample 56 diagK=100.0000 gen=2 t_since_start=1061.1050ms rtDelta=31.3256 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6794.834ms COMP sample 57 diagK=100.0000 gen=2 t_since_start=1092.7208ms rtDelta=31.4824 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6825.809ms COMP sample 58 diagK=100.0000 gen=2 t_since_start=1123.7034ms rtDelta=31.6084 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6857.137ms COMP sample 59 diagK=100.0000 gen=2 t_since_start=1155.0305ms rtDelta=30.9680 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6888.236ms COMP sample 60 diagK=100.0000 gen=2 t_since_start=1186.1289ms rtDelta=31.3424 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6919.383ms COMP sample 61 diagK=100.0000 gen=2 t_since_start=1217.2773ms rtDelta=31.1024 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6949.418ms COMP sample 62 diagK=100.0000 gen=2 t_since_start=1247.3112ms rtDelta=31.1456 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+6979.857ms COMP sample 63 diagK=100.0000 gen=2 t_since_start=1277.7509ms rtDelta=30.0392 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7011.107ms COMP sample 64 diagK=100.0000 gen=2 t_since_start=1309.0014ms rtDelta=30.4184 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7041.714ms COMP StartAnimation [COMP settle-go(0->240 from rest)] gen=3 -> 240.0000 probe_before=0.0000 last_vel_est=0.0000 propTranslationX=0.0000
+7041.750ms COMP sample 65 diagK=100.0000 gen=3 t_since_start=0.0751ms rtDelta=31.2672 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7073.056ms COMP sample 66 diagK=100.0000 gen=3 t_since_start=31.3783ms rtDelta=30.6424 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7104.117ms COMP sample 67 diagK=100.0000 gen=3 t_since_start=62.4408ms rtDelta=31.3336 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7136.070ms COMP sample 68 diagK=100.0000 gen=3 t_since_start=94.3912ms rtDelta=31.0168 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7166.770ms COMP sample 69 diagK=100.0000 gen=3 t_since_start=125.0904ms rtDelta=31.9536 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7197.869ms COMP sample 70 diagK=100.0000 gen=3 t_since_start=156.1916ms rtDelta=30.7160 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7229.615ms COMP sample 71 diagK=100.0000 gen=3 t_since_start=187.9230ms rtDelta=31.0832 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7259.967ms COMP sample 72 diagK=100.0000 gen=3 t_since_start=218.2898ms rtDelta=31.7512 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7291.036ms COMP sample 73 diagK=100.0000 gen=3 t_since_start=249.3601ms rtDelta=30.3464 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7322.442ms COMP sample 74 diagK=100.0000 gen=3 t_since_start=280.7663ms rtDelta=31.0824 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7353.169ms COMP sample 75 diagK=100.0000 gen=3 t_since_start=311.4898ms rtDelta=31.4072 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7384.677ms COMP sample 76 diagK=100.0000 gen=3 t_since_start=342.9849ms rtDelta=30.7144 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7416.369ms COMP sample 77 diagK=100.0000 gen=3 t_since_start=374.6844ms rtDelta=31.5144 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7447.846ms COMP sample 78 diagK=100.0000 gen=3 t_since_start=406.1606ms rtDelta=31.6952 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7479.228ms COMP sample 79 diagK=100.0000 gen=3 t_since_start=437.5446ms rtDelta=31.4984 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7510.380ms COMP sample 80 diagK=100.0000 gen=3 t_since_start=468.6978ms rtDelta=31.3584 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7541.498ms COMP sample 81 diagK=100.0000 gen=3 t_since_start=499.8150ms rtDelta=31.1648 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7572.801ms COMP sample 82 diagK=100.0000 gen=3 t_since_start=531.1171ms rtDelta=31.1040 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7604.808ms COMP sample 83 diagK=100.0000 gen=3 t_since_start=563.1235ms rtDelta=31.3064 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7636.787ms COMP sample 84 diagK=100.0000 gen=3 t_since_start=595.1023ms rtDelta=32.0040 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7667.789ms COMP sample 85 diagK=100.0000 gen=3 t_since_start=626.1036ms rtDelta=31.9784 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7699.643ms COMP sample 86 diagK=100.0000 gen=3 t_since_start=657.9639ms rtDelta=31.0040 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7730.626ms COMP sample 87 diagK=100.0000 gen=3 t_since_start=688.9496ms rtDelta=31.8488 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7761.603ms COMP sample 88 diagK=100.0000 gen=3 t_since_start=719.9270ms rtDelta=30.9784 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7792.683ms COMP sample 89 diagK=100.0000 gen=3 t_since_start=751.0054ms rtDelta=30.9760 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7823.457ms COMP sample 90 diagK=100.0000 gen=3 t_since_start=781.7792ms rtDelta=31.0976 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7855.430ms COMP sample 91 diagK=100.0000 gen=3 t_since_start=813.7520ms rtDelta=30.7584 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7887.028ms COMP sample 92 diagK=100.0000 gen=3 t_since_start=845.3429ms rtDelta=31.9904 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7919.787ms COMP sample 93 diagK=100.0000 gen=3 t_since_start=878.1039ms rtDelta=31.5904 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7949.603ms COMP sample 94 diagK=100.0000 gen=3 t_since_start=907.9189ms rtDelta=32.7712 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+7981.732ms COMP sample 95 diagK=100.0000 gen=3 t_since_start=940.0459ms rtDelta=29.8192 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8013.104ms COMP sample 96 diagK=100.0000 gen=3 t_since_start=971.4183ms rtDelta=32.1160 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8044.224ms COMP sample 97 diagK=100.0000 gen=3 t_since_start=1002.5367ms rtDelta=31.3704 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8076.131ms COMP sample 98 diagK=100.0000 gen=3 t_since_start=1034.4472ms rtDelta=31.1176 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8107.167ms COMP sample 99 diagK=100.0000 gen=3 t_since_start=1065.4836ms rtDelta=31.9080 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8139.136ms COMP sample 100 diagK=100.0000 gen=3 t_since_start=1097.4518ms rtDelta=31.0352 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8171.165ms COMP sample 101 diagK=100.0000 gen=3 t_since_start=1129.4804ms rtDelta=31.9680 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8203.270ms COMP sample 102 diagK=100.0000 gen=3 t_since_start=1161.5850ms rtDelta=32.0304 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8234.300ms COMP sample 103 diagK=100.0000 gen=3 t_since_start=1192.6158ms rtDelta=32.1216 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8266.310ms COMP sample 104 diagK=100.0000 gen=3 t_since_start=1224.6247ms rtDelta=31.0152 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8297.141ms COMP sample 105 diagK=100.0000 gen=3 t_since_start=1255.4607ms rtDelta=32.0240 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8329.152ms COMP sample 106 diagK=100.0000 gen=3 t_since_start=1287.4745ms rtDelta=30.8080 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8361.175ms COMP sample 107 diagK=100.0000 gen=3 t_since_start=1319.4983ms rtDelta=32.0096 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8393.119ms COMP sample 108 diagK=100.0000 gen=3 t_since_start=1351.4396ms rtDelta=32.0200 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8423.357ms COMP sample 109 diagK=100.0000 gen=3 t_since_start=1381.6726ms rtDelta=31.9504 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8455.406ms COMP sample 110 diagK=100.0000 gen=3 t_since_start=1413.7207ms rtDelta=30.2440 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8487.305ms COMP sample 111 diagK=100.0000 gen=3 t_since_start=1445.6214ms rtDelta=32.0520 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8519.348ms COMP sample 112 diagK=100.0000 gen=3 t_since_start=1477.6650ms rtDelta=31.8952 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8552.880ms COMP StartAnimation [COMP bezier(enter ease, 220ms) ->0] gen=4 -> 0.0000 probe_before=0.0000 last_vel_est=0.0000 propTranslationX=0.0000
+8552.944ms COMP sample 113 diagK=100.0000 gen=4 t_since_start=0.1122ms rtDelta=32.0576 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8581.866ms COMP sample 114 diagK=100.0000 gen=4 t_since_start=29.0279ms rtDelta=33.5968 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8582.738ms COMP batch completed [COMP bezier(enter ease, 220ms) ->0] gen=4 (current gen=4) after 29.9020ms probe=0.0000 propTranslationX=0.0000 target=0.0000 |final-target|=0.000E+000
+8582.765ms COMP batch completed [COMP settle-go(0->240 from rest)] gen=3 (current gen=4, i.e. interrupted) after 1541.0885ms probe=0.0000 propTranslationX=0.0000 target=240.0000 |final-target|=2.400E+002
+8582.773ms COMP batch completed [COMP selftest-interrupt] gen=2 (current gen=4, i.e. interrupted) after 2880.6734ms probe=0.0000 propTranslationX=0.0000 target=0.0000 |final-target|=0.000E+000
+8582.780ms COMP batch completed [COMP selftest-go] gen=1 (current gen=4, i.e. interrupted) after 3028.5054ms probe=0.0000 propTranslationX=0.0000 target=240.0000 |final-target|=2.400E+002
+8612.867ms COMP sample 115 diagK=100.0000 gen=4 t_since_start=60.0285ms rtDelta=28.9728 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8644.853ms COMP sample 116 diagK=100.0000 gen=4 t_since_start=92.0161ms rtDelta=30.9776 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8676.939ms COMP sample 117 diagK=100.0000 gen=4 t_since_start=124.1016ms rtDelta=31.9408 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8708.002ms COMP sample 118 diagK=100.0000 gen=4 t_since_start=155.1639ms rtDelta=32.0872 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8739.867ms COMP sample 119 diagK=100.0000 gen=4 t_since_start=187.0272ms rtDelta=31.0640 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8772.018ms COMP sample 120 diagK=100.0000 gen=4 t_since_start=219.1746ms rtDelta=31.8656 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8803.896ms COMP sample 121 diagK=100.0000 gen=4 t_since_start=251.0561ms rtDelta=32.1608 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8835.861ms COMP sample 122 diagK=100.0000 gen=4 t_since_start=283.0269ms rtDelta=31.8920 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8867.464ms COMP sample 123 diagK=100.0000 gen=4 t_since_start=314.6321ms rtDelta=31.9480 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8899.371ms COMP sample 124 diagK=100.0000 gen=4 t_since_start=346.5397ms rtDelta=31.5872 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8930.378ms COMP sample 125 diagK=100.0000 gen=4 t_since_start=377.5478ms rtDelta=31.9064 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8961.342ms COMP sample 126 diagK=100.0000 gen=4 t_since_start=408.5109ms rtDelta=31.0048 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+8993.162ms COMP sample 127 diagK=100.0000 gen=4 t_since_start=440.3229ms rtDelta=30.9648 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+9025.203ms COMP sample 128 diagK=100.0000 gen=4 t_since_start=472.3636ms rtDelta=31.8312 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+9055.567ms COMP sample 129 diagK=100.0000 gen=4 t_since_start=502.7349ms rtDelta=32.0552 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+9086.435ms COMP sample 130 diagK=100.0000 gen=4 t_since_start=533.6035ms rtDelta=30.3544 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+9118.360ms COMP sample 131 diagK=100.0000 gen=4 t_since_start=565.5296ms rtDelta=30.8536 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+9150.108ms COMP sample 132 diagK=100.0000 gen=4 t_since_start=597.2751ms rtDelta=31.9232 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+9181.507ms COMP sample 133 diagK=100.0000 gen=4 t_since_start=628.6760ms rtDelta=31.7512 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+9213.246ms COMP sample 134 diagK=100.0000 gen=4 t_since_start=660.4116ms rtDelta=31.3960 probe=0.0000 propTranslationX=0.0000 vel_est=0.0000
+9244.949ms COMP sampler Rendering UNSUBSCRIBE
+9245.102ms SW Rendering SUBSCRIBE
+9245.106ms MODE -> 软件路径 (selftest): probe before stop=0.0000 after stop=0.0000 propTranslationX=0.0000 -> software from=0.0000 ok=True sw value=0.0000 vel=0.0000
+9247.003ms SW Rendering UNSUBSCRIBE
+9247.008ms SW tick 89 dt=start value=0.0000 vel=0.0000 X=0.0000 running=False
+9247.010ms SW settled value=0.0000 X=0.0000
+9542.601ms SW Rendering SUBSCRIBE
+9542.614ms retarget[SW after-switch-go] -> 120.0000 ok=True before(value=0.0000 vel=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000
+9557.334ms SW tick 90 dt=start value=4.3229 vel=541.3923 X=4.3229 running=True
+9588.784ms SW tick 91 dt=31.4497 value=30.5017 vel=997.7312 X=30.5017 running=True
+9619.161ms SW tick 92 dt=30.3776 value=60.7208 vel=941.6557 X=60.7208 running=True
+9649.970ms SW tick 93 dt=30.8093 value=86.2702 vel=704.0937 X=86.2702 running=True
+9680.227ms SW tick 94 dt=30.2572 value=103.7126 vel=454.0848 X=103.7126 running=True
+9711.058ms SW tick 95 dt=30.8301 value=114.4053 vel=250.4058 X=114.4053 running=True
+9742.386ms SW tick 96 dt=31.3297 value=119.9067 vel=111.8858 X=119.9067 running=True
+9773.635ms SW tick 97 dt=31.2483 value=122.0331 vel=32.5920 X=122.0331 running=True
+9804.801ms SW tick 98 dt=31.1661 value=122.3725 vel=-5.4481 X=122.3725 running=True
+9836.785ms SW tick 99 dt=31.9831 value=121.9327 vel=-18.9571 X=121.9327 running=True
+9868.339ms SW tick 100 dt=31.5526 value=121.3057 vel=-19.4560 X=121.3057 running=True
+9899.100ms SW tick 101 dt=30.7617 value=120.7676 vel=-15.1393 X=120.7676 running=True
+9930.322ms SW tick 102 dt=31.2229 value=120.3774 vel=-9.9129 X=120.3774 running=True
+9961.610ms SW tick 103 dt=31.2874 value=120.1386 vel=-5.5720 X=120.1386 running=True
+9992.955ms SW tick 104 dt=31.3452 value=120.0142 vel=-2.5909 X=120.0142 running=True
+10024.382ms SW tick 105 dt=31.4269 value=119.9631 vel=-0.8352 X=119.9632 running=True
+10055.498ms SW tick 106 dt=31.1155 value=119.9524 vel=0.0279 X=119.9524 running=True
+10085.756ms SW tick 107 dt=30.2575 value=119.9590 vel=0.3498 X=119.9590 running=True
+10116.837ms SW tick 108 dt=31.0820 value=119.9712 vel=0.3983 X=119.9712 running=True
+10147.904ms SW Rendering UNSUBSCRIBE
+10147.910ms SW tick 109 dt=start value=120.0000 vel=0.0000 X=120.0000 running=False
+10147.911ms SW settled value=120.0000 X=120.0000
+11041.780ms SELFTEST DONE
+131032.396ms unloaded: sw subscribed=False sampler=False

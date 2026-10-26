@@ -1,0 +1,11 @@
+t_a1a_sha_post.txt — post-run SHA verification
+UTC_AWST=2026-10-24 23:04:16 AWST
+composition.h path=code/composition.h
+composition.h sha256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+composition.h expect=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+composition.h match=True
+GATE_BODY_SHA256=0750a8402d4118c98025e71863f79bafd689966c2565fa922d0674e8bcf89d1d
+GATE_BODY expect=0750a8402d4118c98025e71863f79bafd689966c2565fa922d0674e8bcf89d1d
+GATE_BODY match=True
+LOCKED_AT=2026-10-24 22:27:54 AWST
+APPROVED_BY=pidan APPROVED_AT=2026-10-24 22:34:47 AWST

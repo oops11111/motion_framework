@@ -1,0 +1,21 @@
+# m2_delta_v_s1_summary.txt (offline adjudicate; probe crashed before DONE)
+session=1 offline=1 note=IVel0_t300dbl_incomplete_10/20_not_required_for_ticket
+composition_expected=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+NVH cell=t060fwd Nv_h_P95=7.521 n_base=20 sigma_ts=0.00481 |a|=2193.26
+NVH cell=t060rev Nv_h_P95=7.276 n_base=20 sigma_ts=0.00481 |a|=2246.80
+NVH cell=t156fwd Nv_h_P95=28.583 n_base=20 sigma_ts=0.00481 |a|=1263.35
+NVH cell=t156rev Nv_h_P95=27.314 n_base=20 sigma_ts=0.00481 |a|=1197.20
+NVH cell=t300fwd Nv_h_P95=32.490 n_base=20 sigma_ts=0.00481 |a|=291.59
+NVH cell=t300rev Nv_h_P95=18.043 n_base=20 sigma_ts=0.00481 |a|=205.21
+NVH cell=t300dbl Nv_h_P95=35.695 n_base=20 sigma_ts=0.00481 |a|=205.16
+CELL cell=t060fwd role=core Nv_h=7.521 thrMed=20.000 |a|*蟽=10.550 jud=False wgc_n=20 wgc_pass=2/20 base_pass=19/20 IVel0_pass=0/20 verdict=dv-SKIP
+CELL cell=t060rev role=core Nv_h=7.276 thrMed=20.000 |a|*蟽=10.807 jud=False wgc_n=20 wgc_pass=0/20 base_pass=20/20 IVel0_pass=2/20 verdict=dv-SKIP
+CELL cell=t156fwd role=aux-t156 Nv_h=28.583 thrMed=20.000 |a|*蟽=6.077 jud=False wgc_n=20 wgc_pass=0/20 base_pass=14/20 IVel0_pass=0/20 verdict=dv-SKIP
+CELL cell=t156rev role=aux-t156 Nv_h=27.314 thrMed=20.000 |a|*蟽=5.759 jud=False wgc_n=20 wgc_pass=0/20 base_pass=16/20 IVel0_pass=0/20 verdict=dv-SKIP
+CELL cell=t300fwd role=core Nv_h=32.490 thrMed=20.000 |a|*蟽=1.403 jud=False wgc_n=20 wgc_pass=0/20 base_pass=13/20 IVel0_pass=0/20 verdict=dv-SKIP
+CELL cell=t300rev role=core Nv_h=18.043 thrMed=20.000 |a|*蟽=0.987 jud=False wgc_n=20 wgc_pass=4/20 base_pass=19/20 IVel0_pass=4/20 verdict=dv-SKIP
+CELL cell=t300dbl role=core Nv_h=35.695 thrMed=20.000 |a|*蟽=0.987 jud=False wgc_n=20 wgc_pass=0/20 base_pass=15/20 IVel0_pass=0/10 verdict=dv-SKIP
+ctrl basePass=False IVel0_t060_both_FAIL=True
+cells=t060fwd:dv-SKIP,t060rev:dv-SKIP,t156fwd:dv-SKIP,t156rev:dv-SKIP,t300fwd:dv-SKIP,t300rev:dv-SKIP,t300dbl:dv-SKIP
+SESSION_INCONCLUSIVE_CANDIDATE
+===== M2-DELTA-V PROBE DONE =====

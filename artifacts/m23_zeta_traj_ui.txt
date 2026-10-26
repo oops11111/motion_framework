@@ -1,0 +1,116 @@
+16.180ms 派题 #8 MotionSoftDemo (pid 15880); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 15:11:17.988; OS=10.0.19045.0; QPC freq=10000000
+22.939ms load_tokens ok
+38.632ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+43.528ms Zeta traj probe requested (--zeta-traj-probe); starts in 800 ms (派题 #23 ζ>1 trajectory fidelity)
+52.866ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+53.897ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+854.877ms # win_zeta_gt1_traj_probe.txt — 派题 #23 ζ>1 NaturalMotion trajectory fidelity
+855.136ms # wall=2026-10-20 15:11:18 Asia/Taipei; OS=10.0.19045.0
+855.512ms # Common: Translation.X 0→240 Period=0.32s InitialVelocity=0; WGC align; NO composition.h change
+855.550ms # Cases: ζ=1.5, ζ=3.0, optional ζ=1.0; metrics: monotone, overshoot, arrive(|x-240|<1), vs spring.h settle, distinguish 1.5 vs 3.0
+1050.806ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+2538.190ms DWMFLUSH probe: calls=100 total=1660.6 ms lastHr=0x00000000 fails=0 interval mean=16.606 min=10.940 p50=16.655 p95=17.174 max=17.558 ms
+2538.200ms DWMFLUSH verdict: ≈60Hz vsync | timer tiers k*15.625±1.0 (k=1,2): k1=47.0% k2=0.0% total=47.0% | vsync 1000/60.020=16.661±1.0 ms: 99.0%, p95=17.174 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+2540.784ms DWMFLUSH raw intervals ms: 10.940,17.174,16.800,16.281,17.164,16.100,17.098,16.129,17.263,15.988,16.480,16.883,16.835,16.373,16.622,16.809,16.760,16.492,17.367,16.331,16.597,16.671,16.184,17.135,16.176,17.075,16.521,16.578,16.683,16.860,16.277,16.815,16.605,16.994,16.353,16.707,16.819,16.666,16.554,16.619,16.974,16.408,16.466,16.933,16.912,16.074,17.066,16.255,16.450,17.025,16.655,16.616,16.646,16.977,16.080,17.060,16.278,16.778,16.671,16.713,17.239,16.556,16.332,16.513,17.143,16.285,16.445,16.770,17.558,16.317,16.546,16.760,16.063,16.711,17.031,16.225,16.552,16.894,16.932,16.558,16.804,16.518,16.814,16.662,16.460,16.663,16.396,17.029,17.006,16.212,17.174,16.131,16.928,16.503,16.690,16.599,16.502,16.827,16.944,16.460
+2541.017ms DwmFlushVerdict=≈60Hz vsync
+2542.882ms MODE -> 合成器路径 (zeta-traj-probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+2544.683ms COMP reset[zt start] StopAnimation + Translation.X:=0.0000
+2994.448ms WGC start hr=0x00000000
+2994.736ms COMP reset[zt cal] StopAnimation + Translation.X:=37.0000
+3405.151ms COMP reset[zt cal end] StopAnimation + Translation.X:=0.0000
+3913.174ms cal: cx0=100.482 cx37=137.482 pxPerDip=1.0000
+3917.007ms ----- ζ=1.5 -----
+3971.166ms COMP reset[ζ=1.5 rest] StopAnimation + Translation.X:=0.0000
+4032.294ms   spring.h mf_spring_settle=1.205s
+4041.615ms   START Period=0.32 ζ=1.5 0→240 record=4.51s
+8556.775ms COMP reset[ζ=1.5 end] StopAnimation + Translation.X:=0.0000
+8584.891ms   n=255 τ=280ms RMS_vs_spring.h=74.37 travelFrac=0.994
+8584.945ms   monotone=True maxBack=0.02 maxOvershoot=0.000 finalErr=1.505 arrive=NaNs settleSoft=1.205s ratio=NaN peakSpeed=223.1 → PASS-shape
+8589.160ms   samples: t=-12 x=31.5 soft=0.0; t=504 x=124.0 soft=233.6; t=1021 x=177.5 soft=239.9; t=1537 x=206.1 soft=240.0; t=2054 x=221.5 soft=240.0; t=2570 x=230.1 soft=240.0; t=3086 x=234.5 soft=240.0; t=3603 x=237.1 soft=240.0
+11708.797ms ----- ζ=3 -----
+14827.128ms COMP reset[ζ=3 rest] StopAnimation + Translation.X:=0.0000
+17945.116ms   spring.h mf_spring_settle=2.408s
+17945.304ms   START Period=0.32 ζ=3 0→240 record=7.52s
+25473.777ms COMP reset[ζ=3 end] StopAnimation + Translation.X:=0.0000
+25478.143ms   n=436 τ=280ms RMS_vs_spring.h=82.48 travelFrac=0.994
+25478.187ms   monotone=True maxBack=0.02 maxOvershoot=0.000 finalErr=4.513 arrive=NaNs settleSoft=2.408s ratio=NaN peakSpeed=121.1 → PASS-shape
+25478.273ms   samples: t=-4 x=22.5 soft=0.0; t=896 x=105.5 soft=227.9; t=1796 x=157.1 soft=239.4; t=2696 x=189.0 soft=240.0; t=3595 x=208.5 soft=240.0; t=4495 x=220.5 soft=240.0; t=5395 x=228.0 soft=240.0; t=6294 x=232.5 soft=240.0
+28596.478ms ----- ζ=1 -----
+31716.309ms COMP reset[ζ=1 rest] StopAnimation + Translation.X:=0.0000
+34839.782ms   spring.h mf_spring_settle=0.600s
+34839.919ms   START Period=0.32 ζ=1 0→240 record=3.00s
+37852.524ms COMP reset[ζ=1 end] StopAnimation + Translation.X:=0.0000
+37853.248ms   n=166 τ=280ms RMS_vs_spring.h=79.06 travelFrac=0.998
+37853.289ms   monotone=True maxBack=0.02 maxOvershoot=0.000 finalErr=0.472 arrive=2.211s settleSoft=0.600s ratio=3.69 peakSpeed=314.4 → PASS-shape
+37853.332ms   samples: t=-20 x=37.5 soft=0.0; t=312 x=124.5 soft=236.3; t=647 x=183.5 soft=240.0; t=978 x=214.5 soft=240.0; t=1312 x=229.1 soft=240.0; t=1646 x=235.5 soft=240.0; t=1979 x=238.5 soft=240.0; t=2312 x=239.5 soft=240.0
+37858.841ms ----- distinguish ζ1.5 vs ζ3.0 -----
+37858.866ms   arrive_ratio(3/1.5)=NaN peakSpeed_ratio(3/1.5)=0.54 pairwiseRMS=54.46 → distinguishable=True
+37858.881ms ===== SUMMARY =====
+37858.891ms | ζ | valid | monotone | maxOvershoot | finalErr | arrive_s | settleSoft_s | ratio | peakSpeed | verd |
+37858.902ms | 1.5 | True | True | 0.000 | 1.505 | NaN | 1.205 | NaN | 223.1 | PASS-shape |
+37858.910ms | 3 | True | True | 0.000 | 4.513 | NaN | 2.408 | NaN | 121.1 | PASS-shape |
+37858.920ms | 1 | True | True | 0.000 | 0.472 | 2.211 | 0.600 | 3.69 | 314.4 | PASS-shape |
+37858.927ms | distinguish 1.5 vs 3.0 | arrive_ratio=NaN peak_ratio=0.54 RMS=54.46 | True |
+37858.934ms CONCLUSION: PASS — ζ>1 traj monotone, overshoot≤0.5px (1.5:0.000 3.0:0.000), distinguishable (arrive_ratio=NaN peak_ratio=0.54 RMS=54.5). arrive 1.5=NaNs 3.0=NaNs. composition.h gate UNCHANGED.
+37858.940ms ===== ZETA TRAJ PROBE DONE =====
+38679.942ms MAPTEST auto-close window
+38684.881ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+38753.235ms SHUTDOWN reason=Page.Unloaded: already done -> no-op
+22.232ms 派题 #8 MotionSoftDemo (pid 51636); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 15:13:03.294; OS=10.0.19045.0; QPC freq=10000000
+30.215ms load_tokens ok
+46.865ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+51.544ms Zeta traj probe requested (--zeta-traj-probe); starts in 800 ms (派题 #23 ζ>1 trajectory fidelity)
+61.075ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+62.286ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+865.814ms # win_zeta_gt1_traj_probe.txt — 派题 #23 ζ>1 NaturalMotion trajectory fidelity
+866.094ms # wall=2026-10-20 15:13:04 Asia/Taipei; OS=10.0.19045.0
+866.454ms # Common: Translation.X 0→240 Period=0.32s InitialVelocity=0; WGC align; NO composition.h change
+866.472ms # Cases: ζ=1.5, ζ=3.0, optional ζ=1.0; metrics: monotone, overshoot, arrive(|x-240|<1), vs spring.h settle, distinguish 1.5 vs 3.0
+1059.105ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+2564.812ms DWMFLUSH probe: calls=100 total=1660.9 ms lastHr=0x00000000 fails=0 interval mean=16.609 min=11.553 p50=16.584 p95=17.493 max=18.414 ms
+2564.828ms DWMFLUSH verdict: ≈60Hz vsync | timer tiers k*15.625±1.0 (k=1,2): k1=50.0% k2=0.0% total=50.0% | vsync 1000/60.020=16.661±1.0 ms: 96.0%, p95=17.493 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+2567.241ms DWMFLUSH raw intervals ms: 11.553,17.306,16.573,16.399,16.856,16.366,16.881,16.594,16.032,16.768,17.825,16.669,16.328,15.943,17.776,16.950,16.414,16.486,16.450,16.383,16.678,16.534,17.089,16.751,16.685,16.627,17.446,15.920,16.479,16.834,16.747,16.325,17.000,16.479,16.584,16.543,16.464,17.052,16.277,17.196,16.414,17.036,16.676,16.777,16.323,16.736,16.302,16.707,16.786,16.648,16.797,16.533,16.655,16.308,17.182,16.577,16.876,16.564,16.953,16.319,16.794,16.429,16.635,16.377,16.502,16.140,17.526,15.960,17.383,16.413,17.008,16.714,16.193,17.119,15.972,17.047,16.416,16.047,17.493,16.547,15.994,17.423,16.013,17.133,16.271,17.302,15.829,18.414,15.768,16.275,17.288,15.815,17.614,15.791,17.424,15.851,17.306,16.059,17.345,15.850
+2567.613ms DwmFlushVerdict=≈60Hz vsync
+2569.340ms MODE -> 合成器路径 (zeta-traj-probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+2571.082ms COMP reset[zt start] StopAnimation + Translation.X:=0.0000
+3011.504ms WGC start hr=0x00000000
+3011.759ms COMP reset[zt cal] StopAnimation + Translation.X:=37.0000
+3426.388ms COMP reset[zt cal end] StopAnimation + Translation.X:=0.0000
+3946.939ms cal: cx0=100.473 cx37=137.473 pxPerDip=1.0000
+3951.265ms ----- ζ=1.5 -----
+4006.637ms COMP reset[ζ=1.5 rest] StopAnimation + Translation.X:=0.0000
+4065.465ms   spring.h mf_spring_settle=1.205s
+4074.666ms   START Period=0.32 ζ=1.5 0→240 record=6.22s
+10302.775ms COMP reset[ζ=1.5 end] StopAnimation + Translation.X:=0.0000
+10329.516ms   n=359 τ=280ms RMS_vs_spring.h=73.93 travelFrac=0.998
+10329.572ms   monotone=True maxBack=0.02 maxOvershoot=0.000 finalErr=0.455 arrive1=4.496s arrive2=3.912s arrive95=2.413s arrive99=3.846s settleSoft=1.205s ratio(report/soft)=3.73 peakSpeed=240.2 → PASS-shape
+10333.871ms   samples: t=-20 x=31.5 soft=0.0; t=713 x=150.5 soft=238.7; t=1447 x=202.5 soft=240.0; t=2180 x=224.5 soft=240.0; t=2913 x=233.5 soft=240.0; t=3646 x=237.5 soft=240.0; t=4379 x=239.0 soft=240.0; t=5112 x=239.5 soft=240.0
+13453.095ms ----- ζ=3 -----
+16557.464ms COMP reset[ζ=3 rest] StopAnimation + Translation.X:=0.0000
+19670.691ms   spring.h mf_spring_settle=2.408s
+19670.849ms   START Period=0.32 ζ=3 0→240 record=10.43s
+30114.934ms COMP reset[ζ=3 end] StopAnimation + Translation.X:=0.0000
+30122.293ms   n=612 τ=280ms RMS_vs_spring.h=81.96 travelFrac=0.997
+30122.332ms   monotone=True maxBack=0.01 maxOvershoot=0.000 finalErr=0.384 arrive1=8.911s arrive2=8.094s arrive95=5.346s arrive99=8.028s settleSoft=2.408s ratio(report/soft)=3.70 peakSpeed=124.2 → PASS-shape
+30122.415ms   samples: t=-20 x=21.7 soft=0.0; t=1246 x=129.4 soft=236.3; t=2513 x=183.9 soft=239.9; t=3779 x=211.8 soft=240.0; t=5046 x=226.0 soft=240.0; t=6312 x=233.1 soft=240.0; t=7578 x=237.1 soft=240.0; t=8844 x=238.6 soft=240.0
+33229.872ms ----- ζ=1 -----
+36336.740ms COMP reset[ζ=1 rest] StopAnimation + Translation.X:=0.0000
+39453.740ms   spring.h mf_spring_settle=0.600s
+39453.871ms   START Period=0.32 ζ=1 0→240 record=4.10s
+43562.653ms COMP reset[ζ=1 end] StopAnimation + Translation.X:=0.0000
+43563.522ms   n=231 τ=280ms RMS_vs_spring.h=77.39 travelFrac=0.998
+43563.564ms   monotone=True maxBack=0.01 maxOvershoot=0.605 finalErr=0.605 arrive1=1.973s arrive2=1.824s arrive95=1.257s arrive99=1.807s settleSoft=0.600s ratio(report/soft)=3.29 peakSpeed=298.5 → FAIL-overshoot
+43563.600ms   samples: t=-9 x=42.6 soft=0.0; t=457 x=156.3 soft=239.7; t=923 x=211.8 soft=240.0; t=1390 x=232.0 soft=240.0; t=1856 x=238.1 soft=240.0; t=2324 x=240.1 soft=240.0; t=2790 x=240.2 soft=240.0; t=3256 x=240.6 soft=240.0
+43574.976ms ----- distinguish ζ1.5 vs ζ3.0 -----
+43575.005ms   arrive_ratio(3/1.5)=1.98 peakSpeed_ratio(3/1.5)=0.52 pairwiseRMS=39.68 → distinguishable=True
+43575.016ms ===== SUMMARY =====
+43575.027ms | ζ | valid | monotone | maxOvershoot | finalErr | arrive_s | settleSoft_s | ratio | peakSpeed | verd |
+43575.041ms | 1.5 | True | True | 0.000 | 0.455 | 4.496 | 1.205 | 3.73 | 240.2 | PASS-shape |
+43575.050ms | 3 | True | True | 0.000 | 0.384 | 8.911 | 2.408 | 3.70 | 124.2 | PASS-shape |
+43575.059ms | 1 | True | True | 0.605 | 0.605 | 1.973 | 0.600 | 3.29 | 298.5 | FAIL-overshoot |
+43575.065ms | distinguish 1.5 vs 3.0 | arrive_ratio=1.98 peak_ratio=0.52 RMS=39.68 | True |
+43575.073ms CONCLUSION: PASS — ζ>1 traj monotone, overshoot≤0.5px (1.5:0.000 3.0:0.000), distinguishable (arrive_ratio=1.98 peak_ratio=0.52 RMS=39.7). arrive 1.5=4.496s 3.0=8.911s. composition.h gate UNCHANGED.
+43575.079ms ===== ZETA TRAJ PROBE DONE =====
+44405.091ms MAPTEST auto-close window
+44409.936ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+44469.165ms SHUTDOWN reason=Page.Unloaded: already done -> no-op

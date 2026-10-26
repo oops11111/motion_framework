@@ -1,0 +1,10 @@
+立刻执行·M2-02｜已 LOCK+APPROVED
+
+gate=`docs/m2_02_gate_LOCKED.md`
+GATE_BODY_SHA256=ce147d212d31910b84c6c8e5566fbf50e740efcaadb27747cde827db2ec0a180 @ 2026-10-25 00:42:43 AWST
+approved=pidan@2026-10-25 01:11:43 AWST（`docs/m2_02_approved.md`）
+自包含派单：`docs/workbuddy_m2_02_dispatch.md`
+
+范围：C# Play/Cancel/Retarget（≥5 Retarget 覆盖中途/同属性/跨动画）+ ETW 最小集 6 + 预览宿主 v0 token smoke；≥3 独立进程会话。
+禁令：不改 composition.h（PRE/POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418）；禁影子 IV；不重开 S1/R-3/R-2；不解冻 Bv；成功≠采用；perf CI≥2 机另票。
+产出：artifacts/m2_02_* + docs/m2_02_result.md + G4 ONELINE。跑完回 ONELINE。

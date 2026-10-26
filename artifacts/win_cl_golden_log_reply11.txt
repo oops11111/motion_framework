@@ -1,0 +1,106 @@
+host=DESKTOP-K93N3P8; date=2026-10-19 18:30 Asia/Taipei (派题 #4 / reply11)
+cl=Microsoft C/C++ 19.44.35228 x64 (VS 2022 BuildTools 17.14, MSVC 14.44.35207); vcvars64 = C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat
+  (vswhere -all also lists VS Community 2026 18.6 at C:\Program Files\Microsoft Visual Studio\18\Community; -latest picks it, so BuildTools 2022 was chosen explicitly to keep cl 19.44)
+source=C:\Users\admin\motion_framework\code (box code/ incl. explore/ + capi/, via code_sync.tar.gz md5 c864b56b5b48a4ed0506e86581b163f2, old code\ removed first)
+flags=/nologo /std:c++17 /EHsc /O2 /W3 ; script C:\Users\admin\motion_framework\run_golden_reply11.bat
+
+SUMMARY: timeline 422 / tokens 743 / controller 236 / composition 2063 checks, 0 failures (total 3464)
+         expected (box g++ reply11) 422 / 743 / 236 / 2063 -> match_linux_artifacts=yes
+         extra: explore/software_demo_test 10/0 ; capi/fm_capi_test 23/0 (box g++: 23/0)
+         MotionNative continuity_test (C ABI) 13/0
+
+================ full Windows output: run_golden_reply11.bat ================
+==== ENV ====
+host=DESKTOP-K93N3P8 date=2026/10/19 周一 18:30:22.37
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\cl.exe
+flags=/nologo /std:c++17 /EHsc /O2 /W3
+
+==== BUILD timeline_tests ====
+timeline_tests.cpp
+cl_exit=0
+
+==== BUILD tokens_tests ====
+tokens_tests.cpp
+cl_exit=0
+
+==== BUILD controller_tests ====
+controller_tests.cpp
+cl_exit=0
+
+==== BUILD composition_tests ====
+composition_tests.cpp
+cl_exit=0
+
+==== RUN timeline_tests ====
+  settle bound: min(an-scan)=-0.0025  max(an-scan)=0.2526 s
+422 checks, 0 failures
+run_exit=0
+==== RUN tokens_tests motion.json ====
+  sample motion.json: 4 transitions OK
+743 checks, 0 failures
+run_exit=0
+==== RUN controller_tests ====
+236 checks, 0 failures
+run_exit=0
+==== RUN composition_tests ====
+2063 checks, 0 failures
+run_exit=0
+
+==== BUILD+RUN explore\software_demo_test (extra) ====
+software_demo_test.cpp
+cl_exit=0
+  settled in 69 frames (575 ms); 138 sink writes
+10 checks, 0 failures
+run_exit=0
+
+==== BUILD+RUN capi\fm_capi_test (cl /I.. /I..\explore) ====
+fm_capi_test.cpp
+fm_capi.cpp
+fm_capi.cpp(60): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+正在生成代码...
+  正在创建库 fm_capi_test.lib 和对象 fm_capi_test.exp
+cl_exit=0
+  demo.enter: 69 frames (575 ms), 138 sink calls
+23 checks, 0 failures
+run_exit=0
+==== DONE ====
+
+================ full Windows output: C:\Users\admin\motion_framework\MotionNative\build.bat (fluidmotion.dll + continuity_test) ================
+用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.44.35228 版
+==== BUILD fluidmotion.dll ====
+fm_capi.cpp
+C:\Users\admin\motion_framework\code\capi\fm_capi.cpp(60): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  正在创建库 fluidmotion.lib 和对象 fluidmotion.exp
+cl_exit=0
+          1    0 000265D0 fm_animation_cancel
+          2    1 00026680 fm_animation_create
+          3    2 00026A10 fm_animation_play
+          4    3 00026AC0 fm_animation_release
+          5    4 00026B50 fm_animation_retarget
+          6    5 00026D60 fm_create
+          7    6 00026E50 fm_create_manual
+          8    7 00026F10 fm_current
+          9    8 00026FB0 fm_destroy
+         10    9 00027060 fm_is_running
+         11    A 00027080 fm_load_tokens
+         12    B 000274B0 fm_manual_advance
+         13    C 000274E0 fm_on_frame
+         14    D 00027540 fm_set_reduced_motion
+==== BUILD+RUN continuity_test ====
+continuity_test.cpp
+cl_exit=0
+before retarget: value=217.522813117 vel=729.152815097 (sink=217.522813117)
+right after retarget(0): value=217.522813117 vel=729.152815097  |dv|=0.000e+00 |dvel|=0.000e+00
+after +0.1ms frame: value=217.595197912 vel=718.548043883  |dv|=7.238e-02
+after +16.7ms frame: value=216.995374752 vel=-671.689962054  step=-0.527438 (pre-retarget vel*dt=12.152547)
+settled after 37 more frames at value=0.000000000 (sink=0.000000000, sink calls=48)
+13 checks, 0 failures
+run_exit=0
+
+================ MotionSoftDemo in-app self-test (retarget lines; full logs: win_app_tick_log_run1.txt / win_app_tick_log_run2_pinned.txt) ================
+run1 25.525ms load_tokens ok path=C:\Users\admin\motion_framework\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppX\demo_motion.json
+run1 1047.889ms retarget[selftest-go] -> 240.0000 ok=True before(value=0.0000 vel=0.0000 has=True X=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000 |dvel|=0.000E+000
+run1 1202.218ms retarget[selftest-interrupt] -> 0.0000 ok=True before(value=208.7421 vel=885.8967 has=True X=208.7421) after(value=220.4033 vel=674.1961) |dv|=1.166E+001 |dvel|=2.117E+002
+run2(pinned WASDK 2.5.1) 12.286ms load_tokens ok path=C:\Users\admin\motion_framework\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppX\demo_motion.json
+run2(pinned WASDK 2.5.1) 1028.882ms retarget[selftest-go] -> 240.0000 ok=True before(value=0.0000 vel=0.0000 has=True X=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000 |dvel|=0.000E+000
+run2(pinned WASDK 2.5.1) 1182.783ms retarget[selftest-interrupt] -> 0.0000 ok=True before(value=220.1544 vel=679.0237 has=True X=220.1544) after(value=220.3160 vel=675.8906) |dv|=1.616E-001 |dvel|=3.133E+000

@@ -1,0 +1,24 @@
+# M2-01 G2 口径写死（采数前 LOCK）
+WALL: 2026-10-24 AWST (Australia/Perth)
+GATE: docs/m2_01_gate_LOCKED.md GATE_BODY_SHA256=182f945c77b7103b8883be523742af8e6dcd8ca2d4232529a5fac347a168beb1
+APPROVED: pidan@2026-10-24 23:42:17 AWST
+composition.h PRE: a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418 (verified match)
+
+## 探针（静止/零激励）
+- 场景：CompReset(rest=120 DIP) + 不 StartAnimation（零激励静止）；WGC 捕获。
+- 非 #30 运动线性 KeyFrame；本票选「静止零激励」而非运动底噪。
+
+## 样本
+- 会话数 = 3（独立进程启动，各写一份 raw）。
+- 每会话有效样本：n ≥ 60 帧（WGC 到达帧，剔除启动后前 5 帧暖机）。
+- 单位：DIP；标定 pxPerDip 同既有 cal（cx0 / cx37）。
+
+## 指标口径（写死，不得混用）
+- 指标名：静止位置 RMS = sqrt(mean((x_i - mean(x))^2))，x 为 DIP。
+- 会话得分 = 该会话单一 RMS（不对窗再取中位）。
+- PASS：3/3 会话 RMS < 0.5 DIP。
+- FAIL：任一会话 RMS ≥ 0.5 且 n≥60。
+- INVALID：n<60 / 混用 #30 运动 RMS / hash 不符 / 拼凑补测。
+
+## 与 #30 关系
+- #30 harness-noise = 运动线性 KF vs 理想直线 RMS（~1.28–1.64 DIP）——口径不同，本票不采用、不混用。

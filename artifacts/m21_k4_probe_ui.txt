@@ -1,0 +1,36 @@
+15.117ms 派题 #8 MotionSoftDemo (pid 48564); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 11:35:13.868; OS=10.0.19045.0; QPC freq=10000000
+21.664ms load_tokens ok
+36.210ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+40.726ms K4 probe requested (--k4-probe); starts in 800 ms (派题 #21 KeyFrame hold final)
+48.878ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+49.893ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+866.262ms # win_k4_hold_probe.txt — 派题 #21 K4 KeyFrame hold FinalValue after completion
+866.537ms # wall=2026-10-20 11:35:14 Asia/Taipei; OS=10.0.19045.0
+866.915ms # ScalarKeyFrame 0→100 Duration=400ms + K1 easing; after visual arrive sample ≥500ms ≈100
+866.950ms # Optional: ScopedBatch.Completed vs visual arrive (record only)
+1043.635ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+2219.935ms DWMFLUSH probe: calls=80 total=1331.5 ms lastHr=0x00000000 fails=0 interval mean=16.644 min=15.250 p50=16.642 p95=17.317 max=17.455 ms
+2219.952ms DWMFLUSH verdict: ≈60Hz vsync | timer tiers k*15.625±1.0 (k=1,2): k1=43.8% k2=0.0% total=43.8% | vsync 1000/60.020=16.661±1.0 ms: 98.8%, p95=17.317 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+2222.497ms DWMFLUSH raw intervals ms: 15.250,16.771,16.406,16.938,16.473,16.621,16.870,16.740,15.986,16.634,16.884,16.642,16.427,16.781,16.594,16.863,16.519,16.616,16.916,16.350,16.687,16.628,16.883,16.484,16.802,16.524,16.602,16.865,16.526,16.637,16.653,16.679,17.423,15.904,17.455,15.920,17.295,16.186,17.001,16.138,17.317,16.034,17.170,16.699,16.199,16.972,16.624,16.299,17.171,16.067,17.375,16.505,16.144,17.107,16.334,17.063,16.802,15.998,17.113,16.433,16.898,16.264,17.089,16.129,17.315,16.120,16.670,17.020,16.651,16.724,16.176,17.110,16.637,16.211,17.397,16.151,16.955,16.374,16.965,16.680
+2222.636ms DwmFlushVerdict=≈60Hz vsync
+2224.167ms MODE -> 合成器路径 (k4-probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+2225.856ms COMP reset[k4 start] StopAnimation + Translation.X:=0.0000
+2654.635ms WGC start hr=0x00000000
+2654.911ms COMP reset[k4 cal] StopAnimation + Translation.X:=37.0000
+3063.339ms COMP reset[k4 cal end] StopAnimation + Translation.X:=0.0000
+3579.907ms cal: cx0=100.490 cx37=137.490 pxPerDip=1.0000
+3637.402ms COMP reset[k4 rest] StopAnimation + Translation.X:=0.0000
+3705.998ms   START KeyFrame Duration=400ms 0→100 easing=EnterC1/C2 qpc=6098842176497 wall=3703.7ms
+4039.670ms   visual near target (|x-100|<3 ×3) at arrive≈270ms
+4124.596ms   ScopedBatch.Completed at wall=4124.6ms
+4854.688ms   HOLD ≥500ms n=39 median=100.00 min=100.00 max=100.00 range=0.00 |med-target|=0.000 → PASS
+4854.725ms   batchCompleted=True batchAt=4124.6ms visualArrive≈270ms tStart=3703.7 (record only)
+4855.019ms   Properties.Translation.X after hold=100.00 (informational)
+4855.036ms ===== SUMMARY =====
+4855.047ms | KeyFrame hold≥500ms | median=100.00 range=0.00 |err|=0.000 | PASS |
+4855.061ms | ScopedBatch.Completed | fired=True at=4124.6 | visualArrive_ms=270 |
+4855.080ms CONCLUSION: K4 PASS — after KeyFrame completes, WGC holds ≈FinalValue for ≥500ms (stable, no drift). ScopedBatch.Completed at 4124.6ms vs visualArrive≈270ms.
+4855.087ms ===== K4 PROBE DONE =====
+5679.741ms MAPTEST auto-close window
+5684.699ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+5709.555ms SHUTDOWN reason=Page.Unloaded: already done -> no-op

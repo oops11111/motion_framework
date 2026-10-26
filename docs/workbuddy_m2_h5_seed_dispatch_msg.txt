@@ -1,0 +1,10 @@
+【派单 M2-H5-SEED】全文见 docs/workbuddy_m2_h5_seed_dispatch.md
+- 授权：gate docs/m2_h5_seed_gate_LOCKED.md（LOCKED_AT 2026-10-25 00:17:37 AWST，hash 28a60c37…a4b0）+ docs/m2_h5_seed_approved.md（pidan @ 2026-10-25 00:18:34 AWST）；严格遵循，不改 body/hash，不补测
+- 路径：分级 A→B；A=WGC/屏一致 seed（DIP/s,QPC）；B=IV=null+0 回退；PASS 只评 A 会话
+- 探针：运动中打断/反向；每会话有效 n=12；|v_screen|≥5.0 DIP/s；3 个不同进程会话
+- 臂：{A 修复, B 降级}；B 仅对照，不计 3/3
+- 指标：r_i=|v_seed/v_screen|，med_r；v_screen=打断前末两帧 WGC Translation.X，QPC，DIP/s
+- PASS：3/3 med_r∈[0.8,1.2] 且所有 r_i<2.0；只锁速度比；FAIL/INVALID a–f 按 gate
+- 只改 MainPage.xaml.cs / R3Probe.cs 的 seed 赋值；禁改 composition.h PlanOverride/PlanGraph；禁对齐 spring.h
+- 禁令：不重开 S1/R-3/R-2；不解冻 Bv；成功≠采用；composition.h sha a55d4952…e418 PRE+POST 校验
+- 产出：artifacts/m2_h5_seed_*；docs/m2_h5_seed_result.md 含 G4 ONELINE

@@ -1,0 +1,4 @@
+
+score_sess=1 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=62180 dotnetPID=45572 saw=True verdict=FAIL_CANDIDATE calib=1.3358225694150683
+score_sess=2 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=50644 dotnetPID=28724 saw=True verdict=FAIL_CANDIDATE calib=1.3358225694150683
+score_sess=3 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=61368 dotnetPID=19196 saw=True verdict=FAIL_CANDIDATE calib=1.3358225694150683

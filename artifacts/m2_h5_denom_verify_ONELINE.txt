@@ -1,0 +1,1 @@
+M2-H5-DENOM-VERIFY | gate=fd00a06058b239abfe03a52175463a52741718318ce99416a4ce762cf037889b @ 2026-10-26 16:09:00 Asia/Taipei | approved=pidan@2026-10-26 16:12:48 Australia/Perth | mode=verify | ticket=H5-DENOM-VERIFY-FAIL | KEEP v_denom≡v_pre；path=PATHB-A；calib=C1 exact=1.3358225694150683；禁静默0.7511；验证采数=是；落地=否；七hash不翻盘；禁抬thr；成功≠落地采用≠Δv-PASS；≠PERF-CI；禁立刻Δv″；单机 DESKTOP-K93N3P8

@@ -1,0 +1,13 @@
+TICKET=SEED-CALIB-FAIL
+PATH_B_PRIME=HUNG
+gate=09f6414bd22748133b2bf7354c49188e8af6708154ea534a3ebad1fb3e0f793d
+LOCKED_AT=2026-10-26 12:03:33 Asia/Taipei
+approved=pidan@2026-10-26 13:04:53 Asia/Taipei
+calib_exact=0.7510829456
+calib_display=0.7511
+path=P-LS+TS/N=5
+ratioOk=True (s1 med_r=0.9893; s2=1.0002; s3=1.0007)
+smoke=t060 fwd+rev FAIL all sessions (fwd 1/20,3/20,1/20; rev 0/20,0/20,0/20)
+ctrl=basePass=True IVel0_t060_both_FAIL=True
+composition PRE=POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+labels=SEED-CALIB-* only; NOT Δv-PASS; NOT SEED-ABS-PASS; 831818/06467b82 not flipped

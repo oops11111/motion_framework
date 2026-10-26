@@ -1,0 +1,24 @@
+# 任务：代写「对 DeepSeek M1b spec 的四点评审」草稿
+
+你是 FluidMotion（Windows 桌面端动效框架）文档整理侧。Claude Free 额度未恢复前，由你先写评审草稿；Claude 约 14:40 台北恢复后会接手定稿，你不必等 Claude。
+
+## 产出要求
+用简体中文写一份结构化评审稿，标题建议：`对 DeepSeek M1b spec 的评审（Notion 草稿）`。
+对下面四点每点给出：**结论（同意 / 部分同意 / 反对 / 已结案）**、**依据（引用 deepseek_m1b_spec 章节或真机结论）**、**对产品/实现的建议（一句）**、**是否还要真机验证**。
+文末加「与 Claude PARTIAL 的衔接」：说明 Claude 已做闭式弹簧验算（Td≈0.5114 s @ T0=0.32, ζ=0.78；overshoot≈4.78 px）但未写书面结论。
+不要编造未出现在材料里的数值；材料不足处标「材料不足」。
+
+## 必须覆盖的四点
+1. **Period / DampingRatio 映射**：DeepSeek 已定案 S1：`Period=response`（无阻尼）、`DampingRatio=ζ`；峰峰≈0.511 s 支持无阻尼。扫参后形状 RMS 最低约 A 8% / E 6%，已结案为 NaturalMotion vs spring.h **固有差异**；产品仍 S1，**§4 形状门槛不放宽**（见 deepseek §4.1 / §5.3）。请评判该结案是否合理，以及 Claude spec 里 H1/H2/H3 是否应改为「H1 已定案」。
+2. **InitialValue / InitialVelocity 打断重定向**：DeepSeek 要求弹簧打断必须显式种子（影子 / spring.h::At）；InitialVelocity 默认 0。请对比 Claude 的混合策略 B（不设 InitialValue）vs 引擎播种 A，给出推荐。
+3. **TryStartAnimation vs StartAnimation + TryGetAnimationController**：真机已核实——无 TryStartAnimation；KeyFrame 可用控制器；**NaturalMotion / 弹簧 TryGet 恒 null**。请确认 DeepSeek 写法是否正确，Claude 文档是否需改。
+4. **ζ>1（过阻尼）要不要 lower 到合成器**：DeepSeek / Claude 材料里相关讨论；请给出「合成器直通 / 软件 lower / capability 门控」三选一推荐及理由。
+
+## 输入材料（协调 bot 侧已就绪，请向对接 bot 要文件或摘要）
+- `/workspace/motion_framework/docs/deepseek_m1b_spec.md`（尤其 §2、§4、§4.1、§5.2、§5.3）
+- `/workspace/motion_framework/docs/claude_m1b_spec.md`（rev2，含 §7）
+- `/workspace/motion_framework/docs/claude_m1b_deepseek_review.md`（PARTIAL）
+- `/workspace/motion_framework/docs/claude_m1b_reply.md`（Reply 2）
+
+## 交付
+把完整评审正文用 Copy response 交回对接 bot；对接 bot 应写入 `/workspace/motion_framework/docs/notion_deepseek_review.md`。不要改账号、不要升级付费。

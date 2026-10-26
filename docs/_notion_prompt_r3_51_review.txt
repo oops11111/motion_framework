@@ -1,0 +1,51 @@
+You are acting as a careful technical re-reviewer for a Windows Composition spring / retarget project (R-3). Produce an English FINAL block suitable to paste into docs/claude_r3_51_review.md.
+
+Hard rules:
+- Use tags [M]=measured in #51 (or cited from the facts below), [D]=derived by arithmetic from reported numbers only, [H]=hypothesis untested.
+- Do NOT invent unmeasured numbers. Do NOT change composition.h. Keep R-3 OPEN unless you have a strong ship case.
+- Bv remains the shipped degraded fallback unless you explicitly say otherwise.
+- Same-session only; do not compare to #49 numbers as if conditions match.
+- S2 is not on the critical path; do not revive it without strong evidence.
+- Mark clearly that this review is produced via Notion AI as a fallback while Claude Free is rate-limited — but still write in the same technical FINAL style as a Claude re-review.
+
+Structure your reply as:
+1. Short status line (R-3 OPEN / rate-limit note if relevant).
+2. Sections answering the 5 Asks below with [M]/[D]/[H].
+3. A final "## FINAL (paste into docs/claude_r3_51_review.md)" block that is self-contained (Verdict, Findings, Next probe or STOP, Hard stops, Caveats, R-3 status).
+
+---
+
+# R-3 #51 English re-review (after A×3 + Part1/Part2)
+
+R-3 stays OPEN. composition.h sha256 `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418` unchanged. Same-session interleaving; do not compare to #49. S2 not revived.
+
+## Measured facts (from workbuddy #51)
+
+**ONELINE:** A×3=0/3; Part1 effective advance δ0=39.5 ms, unsaturated median (eff−τ0)≈+2.7; A1a=FAIL[3.3,6.8,8.3,33.3]; A1b=PASS; −5 was bound-hit pseudo-FAIL, refit bimodal {+6.5,−10}; c×3=14.00/13.89/13.90 (all ≈14, no ≈14↔≈30 toggle); blockers=A subgate rotation + ε bimodality + A1a fine-grid non-multiple FAIL; **NO-ADOPT**.
+
+### A×3
+| sess | A1a | A1b | A1c | A2 | A total | failing subgates |
+| a1 | PASS | FAIL | FAIL | PASS | FAIL | A1b early-pair(−Δ); A1c 4/5 ε_fit=−5 |
+| a2 | FAIL | PASS | PASS | PASS | FAIL | A1a τ0=50 median RMS=0.557 |
+| a3 | PASS | PASS | FAIL | PASS | FAIL | A1c 3/5 ε_fit=−5 |
+→ reproducible instability (rotating subgates), not a one-off.
+
+### Part1
+- Refit #50 raw with widened τ: −5 was search-bound pseudo-FAIL; after widen → bimodal {+6.5,−10}.
+- A1a fine grid 15 pts×≥5: δ0=39.5; unsaturated median (fitted_shift−τ0)≈+2.7; FAIL at 3.3,6.8,8.3,33.3 (includes non-multiples and 33.3F).
+- A1b re-crop origin=220 for −Δ: stays on screen → **PASS**.
+
+### Part2
+Three sessions c_LS≈14.00/13.89/13.90; ε≈14−φ; **no ≈30 mode**. S2 |Δε| 0.2/0.2/1.8 (c3 outlier; do not revive S2 critical path).
+
+Artifacts: `artifacts/p15_51*.txt`; summary `artifacts/p15_51.txt`. Prior #50 review: `docs/claude_r3_50_review.md`.
+
+## Ask
+Produce an English FINAL block suitable to paste into `docs/claude_r3_51_review.md`, covering:
+1. Verdict on S1 / R-3 after #51 (adopt? revise? hold Bv?).
+2. Does A×3=0/3 with rotating subgates permanently block ship, or is there a salvageable A redesign?
+3. Does Part1 refute / confirm the ≈2× advance hypothesis (eff−τ0 median ≈+2.7 vs commanded)?
+4. Does Part2 (c locked ≈14) clear the cross-session ε toggle concern from #50, or not?
+5. Concrete next probe (or STOP / stay on Bv) with hard stops. Tag [M]/[D]/[H] as in #50.
+
+Keep R-3 OPEN unless you have a strong ship case. No composition.h changes. Bv remains degraded fallback unless you say otherwise.

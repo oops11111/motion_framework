@@ -1,0 +1,42 @@
+# win_period_min_probe.txt — 派题 #26 Spring Period minimum accept/clamp/throw
+# wall=2026-10-20 15:29:08 Asia/Taipei; OS=10.0.19045.0
+# Translation.X 0→100 ζ=0.8 IVel=0; Period grid 0.001/0.01/0.05/0.32 + Zero/negative optional
+# NO composition.h change
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.475 cx37=137.475 pxPerDip=1.0000
+----- Period=0.001s -----
+  assign: ok; readback Period=0.001s (unchanged)
+  StartAnimation Period=0.001s ζ=0.8 0→100
+  run: ran WGC_n=2 (few)
+----- Period=0.01s -----
+  assign: ok; readback Period=0.01s (unchanged)
+  StartAnimation Period=0.01s ζ=0.8 0→100
+  run: WGC n=24 travel=101.5 last=100.0 arrive=80ms → VISIBLE_MOTION
+  samples: t=13 x=0.0; t=80 x=99.5; t=147 x=100.0; t=213 x=100.0; t=279 x=100.0
+----- Period=0.05s -----
+  assign: ok; readback Period=0.05s (unchanged)
+  StartAnimation Period=0.05s ζ=0.8 0→100
+  run: WGC n=36 travel=101.5 last=100.0 arrive=216ms → VISIBLE_MOTION
+  samples: t=15 x=0.0; t=133 x=61.0; t=248 x=100.0; t=365 x=101.0; t=482 x=100.0
+----- Period=0.32s -----
+  assign: ok; readback Period=0.32s (unchanged)
+  StartAnimation Period=0.32s ζ=0.8 0→100
+  run: WGC n=73 travel=100.0 last=97.0 arrive=1ms → INSTANT≈final
+  samples: t=1 x=100.0; t=235 x=12.5; t=469 x=42.5; t=702 x=69.5; t=935 x=86.5
+----- optional Period=TimeSpan.Zero -----
+  Zero: THROW ArgumentException: The parameter is incorrect.
+
+An invalid period is specified. It cannot be 0.
+----- optional Period=TimeSpan.FromSeconds(-0.01) -----
+  negative: ok readback=-0.01s
+===== SUMMARY =====
+| Period_s | assign | readback | run | verdict |
+| 0.001 | ok-as-set | 0.001 | ran WGC_n=2 (few) | ACCEPT |
+| 0.01 | ok-as-set | 0.01 | WGC n=24 travel=101.5 last=100.0 arrive=80ms → VISIBLE_MOTION | ACCEPT+runs |
+| 0.05 | ok-as-set | 0.05 | WGC n=36 travel=101.5 last=100.0 arrive=216ms → VISIBLE_MOTION | ACCEPT+runs |
+| 0.32 | ok-as-set | 0.32 | WGC n=73 travel=100.0 last=97.0 arrive=1ms → INSTANT≈final | ACCEPT+runs |
+| Zero | THROW ArgumentException | n/a | not-run | THROW |
+| -0.01 | ok | -0.01 | assign-only | ACCEPT-or-CLAMP |
+CONCLUSION: 0.001→ACCEPT; 0.01→ACCEPT+runs; 0.05→ACCEPT+runs; 0.32→ACCEPT+runs; Zero→THROW; -0.01→ACCEPT-or-CLAMP — composition.h UNCHANGED.
+===== PERIOD MIN PROBE DONE =====

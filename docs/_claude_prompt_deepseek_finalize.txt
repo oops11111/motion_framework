@@ -1,0 +1,69 @@
+# Task: Finalize the DeepSeek M1b 4-point review (Claude Free resumed)
+
+You previously started this review and paused at Free limit (~2:40 PM Taipei). Notion AI wrote a draft while you were out. Your job now is to **finalize** the written 4-point review and update `claude_m1b_spec` recommendations. Do **not** click Upgrade / Pro / Continue with Pro.
+
+## Deliverables (write them in the chat reply; no need to edit files yourself)
+
+### A. Final 4-point review
+For each of the four points below, give: **Agree / Partial / Disagree**, short rationale, and any spec/code change recommended.
+Base yourself on: (1) your earlier closed-form checks still valid, (2) Notion draft below, (3) **new device facts since Notion wrote the draft** (must supersede Notion where they conflict).
+
+### B. Spec deltas for `claude_m1b_spec.md`
+List concrete edits (section + old→new wording) for at least:
+1. H1/H2/H3 → mark **H1 settled** (Period=response); H2/H3 rejected or obsolete.
+2. Inherent mismatch (NaturalMotion vs spring.h ~A 8% / E 6% RMS) closed as risk; **§4 shape gate NOT relaxed**.
+3. Interrupt seeding: prefer DeepSeek explicit seed (shadow / spring.h::At for InitialValue+InitialVelocity); demote hybrid B.
+4. TryStartAnimation: does not exist; NaturalMotion TryGetAnimationController always null.
+5. ζ>1: API accepts without clamp; product **v1 does not lower**; `composition.h` gate already landed.
+
+### C. Do NOT invent
+No fabricated frame-capture numbers. Items still without device data stay "needs measurement" — do not fill them.
+
+---
+
+## New device facts since Notion draft (2026-10-20, workbuddy on DESKTOP-K93N3P8)
+
+- **S2 / ζ>1 (派题 #14)**: ζ≥0 accepted & not clamped (1.0/1.2/2.0/5.0 read back ≈ set); ζ<0 throws ArgumentException. Overdamped NaturalMotion **runs**. Product still **v1 does not lower ζ>1**. `composition.h` already has `if (c.damping > 1.0) return Fallback(...)` after ToCompositor in PlanOverride/PlanGraph. Regressions: ζ=0.8→CompositorSpring, ζ=1.2→AppThread; composition_tests 2073/0.
+- **S3 (#15)**: InitialVelocity = DIP/real-second, independent of Period. Rate-fold spot RMS≈13.6% (kept as planning assumption).
+- **S4 (#16)**: DelayTime + preset PASS.
+- **S5 (#17)**: Holds final value; mid Stop freezes; ScopedBatch.Completed late (record only).
+- **K5 (#18)**: Stop freezes; TryGet NOT reliable sync readback → use Stop + SetValue.
+- **K1 (#19)**: Easing shapes the segment ending at that keyframe (RMS≈0.57%).
+- **K2 (#20)**: y∉[0,1] HONOR; bezierOvershoot=true.
+- **K4 (#21)**: KeyFrame holds final value (|err|=0).
+- **K3 (#22) PARTIAL**: Progress takes effect immediately but is **time-normalized** (with easing: 0.5→~90≠midpoint); PlaybackRate 2/−1 work.
+- Core gates **S1–S5 and K1–K5** are now landed (K3 partial only).
+
+Your earlier closed-form (still citeable):
+```
+T0=0.32 z=0.78: Td=0.5114 s; first peak ~255.7 ms; overshoot≈4.78 px (1.99% travel)
+```
+
+---
+
+## Notion draft (for you to adopt / amend — do not rubber-stamp)
+
+### 1. Period / DampingRatio mapping — Notion: **Closed**
+H1=T0 confirmed by peak spacing ~0.511 s; H2 rejected; H3 no evidence needed after S1. Inherent mismatch closed; §4 gate stays. Suggest claude_m1b_spec mark H1 settled. No more device work.
+
+### 2. InitialValue / InitialVelocity interrupt seeding — Notion: **Agree (explicit seed)**
+DeepSeek: always set both from shadow / spring.h::At. Claude hybrid B (omit InitialValue + take engine velocity) depends on null-InitialValue behavior DeepSeek refuses to rely on, and on reading engine velocity — but TryGetScalar is always static. Recommend explicit seed; demote B/A.
+
+### 3. TryStartAnimation vs StartAnimation+TryGet — Notion: **Agree**
+No TryStartAnimation. KeyFrame: CreateAnimationController + 3-arg Start, or TryGet after Start (non-null). NaturalMotion TryGet **always null** — never use controller for Progress/PlaybackRate on springs. Shadow/spring.h is source of truth for spring progress/velocity.
+
+### 4. ζ>1 lower? — Notion: **Partial agree** (wrote before #14)
+Notion asked for device check of accept vs clamp, and a capability gate in composition.h.
+**UPDATE (supersedes Notion):** device check done (#14); composition.h gate already landed. Finalize as: Agree on "do not lower ζ>1 in v1", note API accepts ζ>1, gate is in code.
+
+---
+
+## Output format
+
+1. Title: `DeepSeek M1b review — FINAL`
+2. Point 1…4 with verdict + rationale + recommended change
+3. Section "claude_m1b_spec.md edits" as a bullet list of concrete wording changes
+4. Section "Open / needs measurement" (only real gaps)
+5. One-line summary for the coordinator
+
+Write in English. Keep it tight.

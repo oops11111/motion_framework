@@ -1,0 +1,55 @@
+12.286ms load_tokens ok path=C:\Users\admin\motion_framework\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppX\demo_motion.json
+14.492ms create enter=1 drag=2
+36.102ms tick 1 dt=0.0000ms X=-75.3289 opacity=0.5412 running=True
+63.615ms tick 2 dt=28.2736ms X=-57.9398 opacity=0.8208 running=True
+94.555ms tick 3 dt=30.9376ms X=-37.5779 opacity=0.9227 running=True
+110.713ms tick 4 dt=16.1650ms X=-28.2567 opacity=0.9500 running=True
+140.564ms tick 5 dt=29.8498ms X=-14.8330 opacity=0.9788 running=True
+171.465ms tick 6 dt=30.9024ms X=-5.9743 opacity=0.9928 running=True
+202.597ms tick 7 dt=31.1280ms X=-1.1366 opacity=0.9986 running=True
+218.670ms tick 8 dt=16.0503ms X=0.2187 opacity=0.9997 running=True
+249.609ms tick 9 dt=30.9615ms X=1.4285 opacity=1.0000 running=True
+280.606ms tick 10 dt=30.9964ms X=1.5657 opacity=1.0000 running=True
+311.479ms tick 11 dt=30.8722ms X=1.2573 opacity=1.0000 running=True
+343.132ms tick 12 dt=31.6505ms X=0.8377 opacity=1.0000 running=True
+373.721ms tick 13 dt=30.5871ms X=0.4882 opacity=1.0000 running=True
+404.416ms tick 14 dt=30.6941ms X=0.2396 opacity=1.0000 running=True
+435.528ms tick 15 dt=31.1088ms X=0.0863 opacity=1.0000 running=True
+466.601ms tick 16 dt=31.0838ms X=0.0071 opacity=1.0000 running=True
+497.419ms tick 17 dt=30.8124ms X=-0.0250 opacity=1.0000 running=True
+513.422ms tick 18 dt=16.0120ms X=-0.0306 opacity=1.0000 running=True
+544.103ms tick 19 dt=30.6796ms X=-0.0301 opacity=1.0000 running=True
+575.178ms tick 20 dt=31.0759ms X=-0.0229 opacity=1.0000 running=True
+607.073ms tick 21 dt=31.8928ms X=0.0000 opacity=1.0000 running=False
+1028.882ms retarget[selftest-go] -> 240.0000 ok=True before(value=0.0000 vel=0.0000 has=True X=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000 |dvel|=0.000E+000
+1057.975ms tick 22 dt=0.0000ms X=29.1492 opacity=1.0000 running=True
+1074.034ms tick 23 dt=16.0613ms X=59.1474 opacity=1.0000 running=True
+1104.576ms tick 24 dt=30.5432ms X=120.0082 opacity=1.0000 running=True
+1135.456ms tick 25 dt=30.8786ms X=171.5574 opacity=1.0000 running=True
+1151.525ms tick 26 dt=16.0757ms X=192.1829 opacity=1.0000 running=True
+1182.479ms tick 27 dt=30.9528ms X=220.1544 opacity=1.0000 running=True
+1182.783ms retarget[selftest-interrupt] -> 0.0000 ok=True before(value=220.1544 vel=679.0237 has=True X=220.1544) after(value=220.3160 vel=675.8906) |dv|=1.616E-001 |dvel|=3.133E+000
+1213.644ms tick 28 dt=31.1642ms X=203.5640 opacity=1.0000 running=True
+1244.376ms tick 29 dt=30.7343ms X=150.3617 opacity=1.0000 running=True
+1260.126ms tick 30 dt=15.7503ms X=121.1065 opacity=1.0000 running=True
+1290.095ms tick 31 dt=29.9687ms X=72.2278 opacity=1.0000 running=True
+1321.219ms tick 32 dt=31.1234ms X=35.7369 opacity=1.0000 running=True
+1352.182ms tick 33 dt=30.9635ms X=13.4050 opacity=1.0000 running=True
+1383.131ms tick 34 dt=30.9504ms X=1.6561 opacity=1.0000 running=True
+1414.460ms tick 35 dt=31.3168ms X=-3.3128 opacity=1.0000 running=True
+1445.034ms tick 36 dt=30.5871ms X=-4.4354 opacity=1.0000 running=True
+1476.361ms tick 37 dt=31.3244ms X=-3.8436 opacity=1.0000 running=True
+1507.461ms tick 38 dt=31.1023ms X=-2.7189 opacity=1.0000 running=True
+1539.322ms tick 39 dt=31.3969ms X=-1.6421 opacity=1.0000 running=True
+1569.763ms tick 40 dt=30.8444ms X=-0.8536 opacity=1.0000 running=True
+1600.651ms tick 41 dt=30.9488ms X=-0.3490 opacity=1.0000 running=True
+1631.847ms tick 42 dt=31.1958ms X=-0.0712 opacity=1.0000 running=True
+1662.383ms tick 43 dt=30.5357ms X=0.0507 opacity=1.0000 running=True
+1678.773ms tick 44 dt=16.3909ms X=0.0777 opacity=1.0000 running=True
+1709.264ms tick 45 dt=30.4913ms X=0.0873 opacity=1.0000 running=True
+1739.822ms tick 46 dt=30.5573ms X=0.0713 opacity=1.0000 running=True
+1755.831ms tick 47 dt=16.0096ms X=0.0596 opacity=1.0000 running=True
+1772.258ms tick 48 dt=16.4191ms X=0.0475 opacity=1.0000 running=True
+1802.832ms tick 49 dt=30.5811ms X=0.0279 opacity=1.0000 running=True
+1818.905ms tick 50 dt=16.0739ms X=0.0000 opacity=1.0000 running=False
+136289.835ms unloaded

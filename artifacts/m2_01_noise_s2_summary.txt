@@ -1,0 +1,10 @@
+sess=2
+n=128
+mean=120.00000000000001
+rms=1.4210854715202004E-14
+maxAbs=1.4210854715202004E-14
+range=0
+rest=120
+pxPerDip=1
+verdict=SESSION_PASS_CANDIDATE
+art=C:\Users\admin\motion_framework\artifacts\m2_01_noise_s2_raw.txt

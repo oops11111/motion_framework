@@ -1,0 +1,16 @@
+sess=1
+pid=10404
+sessionId=0x28A40DF285D5
+csharp=PASS
+etw=PASS
+preview=PASS
+playHits=3
+cancelHits=3
+retargetHits=7
+retargetOk=6
+jumpFails=0
+etwSeen=AnimationLifecycle,FrameTick,IdleTransition,PresentStats,Retarget,TokenLoad
+provider=FluidMotion-Motion
+providerGuid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d
+verdict=SESSION_PASS_CANDIDATE
+art=C:\Users\admin\motion_framework\artifacts\m2_02_s1_raw.txt

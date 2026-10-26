@@ -1,0 +1,46 @@
+你是 FluidMotion 文档整理侧。请按下列要求写「对 DeepSeek M1b spec 的评审（Notion 草稿）」——简体中文、可直接贴进 Notion。
+
+## 产出格式
+标题：`对 DeepSeek M1b spec 的评审（Notion 草稿）`
+对下面四点，每点固定四行：
+- **结论**：（同意 / 部分同意 / 反对 / 已结案）
+- **依据**：（引用 deepseek_m1b_spec 章节或真机结论；可引用 Claude PARTIAL 验算）
+- **建议**：（对产品/实现一句）
+- **是否还要真机验证**：（要 / 不要 / 部分还要）
+
+文末加一节「与 Claude PARTIAL 的衔接」。
+不要编造材料外数值；不足处写「材料不足」。
+
+## 四点
+1. Period / DampingRatio：S1 已定案 Period=response、DampingRatio=ζ；固有差异结案且门槛不放宽；Claude H1/H2/H3 是否应改「H1 已定案」。
+2. InitialValue / InitialVelocity 打断种子：DeepSeek 显式种子 vs Claude 混合 B vs 引擎播种 A。
+3. TryStartAnimation vs StartAnimation+TryGet：弹簧 TryGet 恒 null。
+4. ζ>1 是否 lower：直通 / 软件 / capability 门控。
+
+## 事实包（仅可用这些事实与数字）
+
+### DeepSeek S1 / 固有差异（deepseek_m1b_spec.md §1.2、§4、§4.1、§5.1、§5.3）
+- 定案：Period=response（无阻尼），DampingRatio=ζ；证据峰峰≈0.511 s（response=0.32、ζ=0.78），否决 Period=response/√(1−ζ²)。
+- §4 轨迹形状门槛：RMS≤1%·行程；弹簧扫参后最低约 A 8% / E 6%，无一≤1%。
+- §4.1/§5.3 已结案：NaturalMotion vs spring.h **固有差异**；产品仍 S1；**§4 形状门槛不放宽**。
+- §5.2 仍待验含：ζ>1 是否被 DampingRatio 接受/截断；InitialValue null 行为仅记录不依赖。
+
+### DeepSeek 打断 / 控制器（§2、§1.3、审校注）
+- 弹簧打断必须显式 InitialValue/InitialVelocity；种子来自影子 / spring.h::At。
+- InitialVelocity 默认 0，不设不会继承速度。
+- 不存在 TryStartAnimation。
+- KeyFrame：CreateAnimationController + 三参 StartAnimation，或 Start 后 TryGet 非 null。
+- NaturalMotion/弹簧：TryGetAnimationController **恒 null**；禁止依赖控制器做 Progress/PlaybackRate。
+- 审校注①：DeepSeek 建议 v1 对 ζ>1 暂不 lower；但现有 composition.h 规划器只要 caps.springNaturalMotion 就会 lower——规格建议≠现网行为。
+
+### Claude M1b（claude_m1b_spec.md）
+- Period 三假设 H1=T0、H2=阻尼周期、H3=T0/(2π)，原文写「由实测二选一」；当前代码是 H1。
+- 打断：推荐混合 B（不设 InitialValue，InitialVelocity 用引擎速度）；后备 A 引擎播种+前瞻。
+- TryGetScalar 实测恒静态；通过判据以截帧为准。
+
+### Claude PARTIAL（claude_m1b_deepseek_review.md）——仅有验算，无书面四点结论
+- Td≈0.5114 s @ T0=0.32, ζ=0.78；first peak ~255.7 ms；overshoot≈4.78 px（1.99% travel）。
+- 若干闭式 RMS 对照数字（如 vs T0=0.1512 z=0.78 → 9.89% 等）可引用，勿外推新结论。
+- Claude Free 约 14:40 台北恢复后接手定稿；本篇是 Notion 草稿。
+
+请直接输出完整评审正文。

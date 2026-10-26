@@ -1,0 +1,89 @@
+# win_m9_align_log.txt — 派题 #9 补充: three-way alignment at one interrupt
+# 2026-10-20 09:01 Asia/Taipei, screen on, --align. continuity 13/0. Build 0/0.
+# KEY: at interrupt t≈172ms shadow=228.99 DIP / 496.8 DIP/s; WGC dip=8.49; |WGC−shadow|=220.5 DIP
+# TryGetAnimationController("Translation.X")=null both before/after Start and at interrupt.
+# WGC lags shadow by ~160–200ms of motion (compositor submission + capture); Rendering ~31ms ticks.
+# Clock spans: ΔSW=434ms ΔSRT=450ms ΔqpcArrive=450ms — rates match; absolute SRT epoch ≠ Qpc100ns(CompStart.Qpc).
+
+14.015ms 派题 #8 MotionSoftDemo (pid 18760); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 09:01:46.720; OS=10.0.19045.0; QPC freq=10000000
+20.282ms load_tokens ok
+34.977ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.288ms ALIGN probe requested (--align); starts in 800 ms
+47.451ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+48.472ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+858.943ms ===== ALIGN PROBE START (one interrupt; shadow vs controller vs WGC) =====
+982.181ms ALIGN WGC start hr=0x00000000 hwnd=0x199137C
+985.494ms MODE -> 合成器路径 (align probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+985.902ms COMP reset[align rest] StopAnimation + Translation.X:=0.0000
+1054.517ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1707.312ms COMP reset[align cal 37] StopAnimation + Translation.X:=37.0000
+2117.661ms ALIGN cal: cx0=100.476 cx37=137.476 pxPerDip=1.0000 (scale=1.000)
+2117.707ms COMP reset[align cal end] StopAnimation + Translation.X:=0.0000
+2420.023ms ALIGN rest cx0 refreshed=100.476; render ticks so far=48 wgc=84
+2422.514ms ALIGN T0 StartAnimation impending: sw=2420.028ms qpc=6006757864958 shadow v=0.0000 vel=0.0000 controller=null
+2432.790ms COMP spring [ALIGN B1: 0->240] gen=1 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=6006757980896
+2432.805ms ALIGN T0+ StartAnimation returned: sw=2432.792ms qpc=6006757992595 Δsw=12.764ms controller=null
+2595.935ms ALIGN T1 interrupt impending: sw=2592.157ms qpc=6006759586244 elapsed_since_start=172.129ms
+2595.939ms ALIGN T1 shadow (spring.h seed): value=228.9909 vel=496.8329  << InitialValue/InitialVelocity
+2595.948ms ALIGN T1 controller: null
+2595.956ms ALIGN T1 nearest WGC by drain-Now: cx=108.961 dip=8.486 drainSw=2576.062 srtMs=600675944.269 qpcArrive=6006759289484 |Δsw_to_int|=16.095ms
+2595.958ms ALIGN T1 latest WGC: cx=108.961 dip=8.486 drainSw=2576.062 |Δsw_to_int|=16.095ms
+2595.961ms ALIGN T1 |WGC_DIP - shadow| (nearest) = 220.505 DIP
+2595.962ms ALIGN T1 |WGC_DIP - shadow| (latest)  = 220.505 DIP
+2596.076ms COMP spring [ALIGN B2: interrupt -> 0] gen=2 -> 0.0000 InitialValue=230.8036 InitialVelocity=456.1132 Period=0.32s DampingRatio=0.78 shadowSettle=0.6306s qpc=6006759625132
+2596.238ms ALIGN T1+ Retarget returned: sw=2596.077ms qpc=6006759625445 Δsw=3.920ms controller=null seeded InitialValue=230.8036 InitialVelocity=456.1132
+3015.882ms ALIGN render ticks around [start-20, int+200]: n=13
+3016.212ms ALIGN RENDER sw=2432.960 qpc=6006757994274 relStart=12.932 relInt=-159.197
+3016.215ms ALIGN RENDER sw=2451.490 qpc=6006758179576 relStart=31.462 relInt=-140.667
+3016.218ms ALIGN RENDER sw=2482.508 qpc=6006758489751 relStart=62.480 relInt=-109.649
+3016.222ms ALIGN RENDER sw=2513.544 qpc=6006758800118 relStart=93.516 relInt=-78.612
+3016.224ms ALIGN RENDER sw=2545.218 qpc=6006759116861 relStart=125.190 relInt=-46.938
+3016.227ms ALIGN RENDER sw=2576.060 qpc=6006759425274 relStart=156.032 relInt=-16.097
+3016.230ms ALIGN RENDER sw=2608.333 qpc=6006759748003 relStart=188.305 relInt=16.176
+3016.244ms ALIGN RENDER sw=2639.507 qpc=6006760059747 relStart=219.479 relInt=47.350
+3016.247ms ALIGN RENDER sw=2670.493 qpc=6006760369600 relStart=250.465 relInt=78.336
+3016.251ms ALIGN RENDER sw=2701.494 qpc=6006760679611 relStart=281.466 relInt=109.337
+3016.253ms ALIGN RENDER sw=2732.142 qpc=6006760986099 relStart=312.115 relInt=139.986
+3016.256ms ALIGN RENDER sw=2763.164 qpc=6006761296318 relStart=343.137 relInt=171.008
+3016.259ms ALIGN RENDER sw=2793.252 qpc=6006761597193 relStart=373.224 relInt=201.095
+3016.611ms ALIGN WGC frames around [start-50, int+250]: n=28
+3016.621ms ALIGN WGC swDrain=2388.853 srtMs=600675744.365 qpcArrive=6006757288096 cx=100.476 dip=0.000 |dip-shadowAtInt|=228.991 skewDrainToInt=-203.304ms skewArriveQpcToInt=-229.815ms
+3016.627ms ALIGN WGC swDrain=2388.853 srtMs=600675760.982 qpcArrive=6006757451148 cx=100.476 dip=0.000 |dip-shadowAtInt|=228.991 skewDrainToInt=-203.304ms skewArriveQpcToInt=-213.510ms
+3016.640ms ALIGN WGC swDrain=2432.961 srtMs=600675777.657 qpcArrive=6006757618992 cx=100.476 dip=0.000 |dip-shadowAtInt|=228.991 skewDrainToInt=-159.196ms skewArriveQpcToInt=-196.725ms
+3016.645ms ALIGN WGC swDrain=2432.961 srtMs=600675794.294 qpcArrive=6006757784463 cx=100.476 dip=0.000 |dip-shadowAtInt|=228.991 skewDrainToInt=-159.195ms skewArriveQpcToInt=-180.178ms
+3016.650ms ALIGN WGC swDrain=2432.961 srtMs=600675810.964 qpcArrive=6006757951648 cx=100.476 dip=0.000 |dip-shadowAtInt|=228.991 skewDrainToInt=-159.195ms skewArriveQpcToInt=-163.460ms
+3016.655ms ALIGN WGC swDrain=2451.492 srtMs=600675827.635 qpcArrive=6006758120483 cx=100.476 dip=0.000 |dip-shadowAtInt|=228.991 skewDrainToInt=-140.665ms skewArriveQpcToInt=-146.576ms
+3016.660ms ALIGN WGC swDrain=2482.510 srtMs=600675844.293 qpcArrive=6006758294112 cx=100.476 dip=0.000 |dip-shadowAtInt|=228.991 skewDrainToInt=-109.647ms skewArriveQpcToInt=-129.213ms
+3016.669ms ALIGN WGC swDrain=2482.510 srtMs=600675861.000 qpcArrive=6006758460532 cx=100.515 dip=0.039 |dip-shadowAtInt|=228.952 skewDrainToInt=-109.647ms skewArriveQpcToInt=-112.571ms
+3016.674ms ALIGN WGC swDrain=2514.325 srtMs=600675877.608 qpcArrive=6006758624640 cx=101.003 dip=0.528 |dip-shadowAtInt|=228.463 skewDrainToInt=-77.832ms skewArriveQpcToInt=-96.160ms
+3016.681ms ALIGN WGC swDrain=2514.325 srtMs=600675894.291 qpcArrive=6006758790684 cx=102.022 dip=1.547 |dip-shadowAtInt|=227.444 skewDrainToInt=-77.831ms skewArriveQpcToInt=-79.556ms
+3016.689ms ALIGN WGC swDrain=2545.220 srtMs=600675910.980 qpcArrive=6006758959007 cx=103.987 dip=3.511 |dip-shadowAtInt|=225.480 skewDrainToInt=-46.937ms skewArriveQpcToInt=-62.724ms
+3016.695ms ALIGN WGC swDrain=2576.062 srtMs=600675927.628 qpcArrive=6006759124848 cx=106.004 dip=5.528 |dip-shadowAtInt|=223.463 skewDrainToInt=-16.095ms skewArriveQpcToInt=-46.140ms
+3016.700ms ALIGN WGC swDrain=2576.062 srtMs=600675944.269 qpcArrive=6006759289484 cx=108.961 dip=8.486 |dip-shadowAtInt|=220.505 skewDrainToInt=-16.095ms skewArriveQpcToInt=-29.676ms
+3016.705ms ALIGN WGC swDrain=2608.334 srtMs=600675960.927 qpcArrive=6006759457379 cx=111.961 dip=11.486 |dip-shadowAtInt|=217.505 skewDrainToInt=16.177ms skewArriveQpcToInt=-12.886ms
+3016.710ms ALIGN WGC swDrain=2608.334 srtMs=600675977.577 qpcArrive=6006759622108 cx=115.000 dip=14.524 |dip-shadowAtInt|=214.467 skewDrainToInt=16.178ms skewArriveQpcToInt=3.586ms
+3016.715ms ALIGN WGC swDrain=2639.509 srtMs=600675994.242 qpcArrive=6006759789211 cx=118.968 dip=18.493 |dip-shadowAtInt|=210.498 skewDrainToInt=47.352ms skewArriveQpcToInt=20.297ms
+3016.720ms ALIGN WGC swDrain=2639.510 srtMs=600676010.933 qpcArrive=6006759956356 cx=331.038 dip=230.563 |dip-shadowAtInt|=1.572 skewDrainToInt=47.353ms skewArriveQpcToInt=37.011ms
+3016.725ms ALIGN WGC swDrain=2670.496 srtMs=600676027.578 qpcArrive=6006760122991 cx=334.015 dip=233.540 |dip-shadowAtInt|=4.549 skewDrainToInt=78.339ms skewArriveQpcToInt=53.675ms
+3016.730ms ALIGN WGC swDrain=2670.497 srtMs=600676044.235 qpcArrive=6006760292420 cx=340.968 dip=240.493 |dip-shadowAtInt|=11.502 skewDrainToInt=78.340ms skewArriveQpcToInt=70.618ms
+3016.739ms ALIGN WGC swDrain=2701.496 srtMs=600676060.907 qpcArrive=6006760458601 cx=346.002 dip=245.526 |dip-shadowAtInt|=16.535 skewDrainToInt=109.339ms skewArriveQpcToInt=87.236ms
+3016.749ms ALIGN WGC swDrain=2701.496 srtMs=600676077.553 qpcArrive=6006760622815 cx=350.476 dip=250.001 |dip-shadowAtInt|=21.010 skewDrainToInt=109.339ms skewArriveQpcToInt=103.657ms
+3016.754ms ALIGN WGC swDrain=2732.144 srtMs=600676094.270 qpcArrive=6006760791067 cx=353.960 dip=253.485 |dip-shadowAtInt|=24.494 skewDrainToInt=139.987ms skewArriveQpcToInt=120.482ms
+3016.759ms ALIGN WGC swDrain=2732.144 srtMs=600676110.918 qpcArrive=6006760957587 cx=356.023 dip=255.548 |dip-shadowAtInt|=26.557 skewDrainToInt=139.988ms skewArriveQpcToInt=137.134ms
+3016.765ms ALIGN WGC swDrain=2764.173 srtMs=600676127.571 qpcArrive=6006761122567 cx=357.972 dip=257.496 |dip-shadowAtInt|=28.505 skewDrainToInt=172.016ms skewArriveQpcToInt=153.632ms
+3016.770ms ALIGN WGC swDrain=2764.173 srtMs=600676144.168 qpcArrive=6006761288853 cx=358.491 dip=258.015 |dip-shadowAtInt|=29.024 skewDrainToInt=172.016ms skewArriveQpcToInt=170.261ms
+3016.775ms ALIGN WGC swDrain=2793.254 srtMs=600676160.855 qpcArrive=6006761462186 cx=358.519 dip=258.043 |dip-shadowAtInt|=29.052 skewDrainToInt=201.097ms skewArriveQpcToInt=187.594ms
+3016.780ms ALIGN WGC swDrain=2823.324 srtMs=600676177.528 qpcArrive=6006761624503 cx=357.983 dip=257.507 |dip-shadowAtInt|=28.516 skewDrainToInt=231.167ms skewArriveQpcToInt=203.826ms
+3016.790ms ALIGN WGC swDrain=2823.324 srtMs=600676194.173 qpcArrive=6006761789687 cx=356.953 dip=256.478 |dip-shadowAtInt|=27.487 skewDrainToInt=231.167ms skewArriveQpcToInt=220.344ms
+3016.796ms ALIGN clock spans over window: ΔStopwatch=434.471ms ΔSRT=449.808ms ΔqpcArrive=450.159ms |ΔSRT-ΔSW|=15.336 |Δqpc-ΔSW|=15.688
+3017.430ms ALIGN T2 +400ms: shadow v=-0.3824 vel=13.0779 WGC dip=224.528 |WGC-shadow|=224.911 controller=null
+3017.431ms ALIGN ROOTCAUSE =====
+3017.433ms ALIGN ROOTCAUSE interrupt |WGC_DIP - shadow_seed| = 220.505 DIP  (suite §4.2 |Δv|=452 compared WGC against shadow with possible wrong frame/rest/sign)
+3017.434ms ALIGN ROOTCAUSE controller readable = null (no mid-flight value API; Progress only if controller non-null)
+3017.436ms ALIGN ROOTCAUSE time skew latestWgcDrain-vs-interrupt = -16.095 ms; 1–3 WGC frames of capture latency → §4.1 p50≈44ms
+3017.438ms ALIGN ROOTCAUSE final-value: last WGC dip=224.528 vs target 0 → |err|=224.528 (suite §4.4 saw 4.53px)
+3017.439ms ALIGN ROOTCAUSE RMS: suite traj pairs WGC.SRT with Qpc100ns(CompStart.Qpc) as absolute times — if epochs differ, curve is time-shifted → high RMS; see ΔSRT vs ΔSW spans
+3017.439ms ALIGN ROOTCAUSE Rendering ~31ms is UI-thread throttle only; compositor+WGC are 60Hz; software path should use engine clock. Not a #5 failure.
+3017.440ms ===== ALIGN PROBE DONE =====
+3182.306ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=1 unsubs=1; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+3225.376ms SHUTDOWN reason=Page.Unloaded: already done -> no-op

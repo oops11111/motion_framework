@@ -1,0 +1,35 @@
+# win_zeta_gt1_traj_probe.txt — 派题 #23 ζ>1 NaturalMotion trajectory fidelity
+# wall=2026-10-20 15:13:04 Asia/Taipei; OS=10.0.19045.0
+# Common: Translation.X 0→240 Period=0.32s InitialVelocity=0; WGC align; NO composition.h change
+# Cases: ζ=1.5, ζ=3.0, optional ζ=1.0; metrics: monotone, overshoot, arrive(|x-240|<1), vs spring.h settle, distinguish 1.5 vs 3.0
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.473 cx37=137.473 pxPerDip=1.0000
+----- ζ=1.5 -----
+  spring.h mf_spring_settle=1.205s
+  START Period=0.32 ζ=1.5 0→240 record=6.22s
+  n=359 τ=280ms RMS_vs_spring.h=73.93 travelFrac=0.998
+  monotone=True maxBack=0.02 maxOvershoot=0.000 finalErr=0.455 arrive1=4.496s arrive2=3.912s arrive95=2.413s arrive99=3.846s settleSoft=1.205s ratio(report/soft)=3.73 peakSpeed=240.2 → PASS-shape
+  samples: t=-20 x=31.5 soft=0.0; t=713 x=150.5 soft=238.7; t=1447 x=202.5 soft=240.0; t=2180 x=224.5 soft=240.0; t=2913 x=233.5 soft=240.0; t=3646 x=237.5 soft=240.0; t=4379 x=239.0 soft=240.0; t=5112 x=239.5 soft=240.0
+----- ζ=3 -----
+  spring.h mf_spring_settle=2.408s
+  START Period=0.32 ζ=3 0→240 record=10.43s
+  n=612 τ=280ms RMS_vs_spring.h=81.96 travelFrac=0.997
+  monotone=True maxBack=0.01 maxOvershoot=0.000 finalErr=0.384 arrive1=8.911s arrive2=8.094s arrive95=5.346s arrive99=8.028s settleSoft=2.408s ratio(report/soft)=3.70 peakSpeed=124.2 → PASS-shape
+  samples: t=-20 x=21.7 soft=0.0; t=1246 x=129.4 soft=236.3; t=2513 x=183.9 soft=239.9; t=3779 x=211.8 soft=240.0; t=5046 x=226.0 soft=240.0; t=6312 x=233.1 soft=240.0; t=7578 x=237.1 soft=240.0; t=8844 x=238.6 soft=240.0
+----- ζ=1 -----
+  spring.h mf_spring_settle=0.600s
+  START Period=0.32 ζ=1 0→240 record=4.10s
+  n=231 τ=280ms RMS_vs_spring.h=77.39 travelFrac=0.998
+  monotone=True maxBack=0.01 maxOvershoot=0.605 finalErr=0.605 arrive1=1.973s arrive2=1.824s arrive95=1.257s arrive99=1.807s settleSoft=0.600s ratio(report/soft)=3.29 peakSpeed=298.5 → FAIL-overshoot
+  samples: t=-9 x=42.6 soft=0.0; t=457 x=156.3 soft=239.7; t=923 x=211.8 soft=240.0; t=1390 x=232.0 soft=240.0; t=1856 x=238.1 soft=240.0; t=2324 x=240.1 soft=240.0; t=2790 x=240.2 soft=240.0; t=3256 x=240.6 soft=240.0
+----- distinguish ζ1.5 vs ζ3.0 -----
+  arrive_ratio(3/1.5)=1.98 peakSpeed_ratio(3/1.5)=0.52 pairwiseRMS=39.68 → distinguishable=True
+===== SUMMARY =====
+| ζ | valid | monotone | maxOvershoot | finalErr | arrive_s | settleSoft_s | ratio | peakSpeed | verd |
+| 1.5 | True | True | 0.000 | 0.455 | 4.496 | 1.205 | 3.73 | 240.2 | PASS-shape |
+| 3 | True | True | 0.000 | 0.384 | 8.911 | 2.408 | 3.70 | 124.2 | PASS-shape |
+| 1 | True | True | 0.605 | 0.605 | 1.973 | 0.600 | 3.29 | 298.5 | FAIL-overshoot |
+| distinguish 1.5 vs 3.0 | arrive_ratio=1.98 peak_ratio=0.52 RMS=39.68 | True |
+CONCLUSION: PASS — ζ>1 traj monotone, overshoot≤0.5px (1.5:0.000 3.0:0.000), distinguishable (arrive_ratio=1.98 peak_ratio=0.52 RMS=39.7). arrive 1.5=4.496s 3.0=8.911s. composition.h gate UNCHANGED.
+===== ZETA TRAJ PROBE DONE =====

@@ -1,0 +1,4 @@
+
+calib_sess=1 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=20964 dotnetPID=24976 saw=True verdict=CALIB_OK
+calib_sess=2 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=43908 dotnetPID=780 saw=True verdict=CALIB_OK
+calib_sess=3 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=28160 dotnetPID=46576 saw=True verdict=CALIB_OK

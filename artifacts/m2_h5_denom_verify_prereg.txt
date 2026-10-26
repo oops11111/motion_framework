@@ -1,0 +1,18 @@
+# M2-H5-DENOM-VERIFY prereg — LOCKED before first session
+ticket=M2-H5-DENOM-VERIFY
+gate=fd00a06058b239abfe03a52175463a52741718318ce99416a4ce762cf037889b
+LOCKED_AT=2026-10-26 16:09:00 Asia/Taipei
+approved=pidan@2026-10-26 16:12:48 Australia/Perth
+mode=verify
+path=PATHB-A
+path_detail=V2-clamp P-LS+TS N=5 order=2 t_int=min(t_comp,t_last_WGC) P-VS=OFF Aprime=OFF
+denom=v_denom≡v_pre (quad LS w=5 same t_s); v_screen aux only
+calib=C1=median(v_denom/v_hat); Phase-Calib calib_probe=1.0; Phase-Score frozen calib_new; FORBIDDEN silent 0.7511
+H5=r_i=|v_seed/v_denom|; med_r∈[0.8,1.2]; no r_i≥2.0
+smoke=t060 fwd+rev ≥17/20; thr=max(20,0.05*|v_ref|); meas w=5; FORBIDDEN raise thr / drop 17/20
+ctrl=basePass ∧ IVel0_t060_both_FAIL KEEP
+sessions≥3 independent cold-start processes; machine=DESKTOP-K93N3P8; ≠PERF-CI
+land=NO; FORBIDDEN immediate Δv″; FORBIDDEN flip seven hashes
+labels=H5-DENOM-VERIFY-* only
+composition.h=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418 KEEP no-edit
+FORBIDDEN: shadow IV; steal-open A′; median(v_screen/v_hat); land as adopted

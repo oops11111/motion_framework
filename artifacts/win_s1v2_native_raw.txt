@@ -1,0 +1,42 @@
+用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.44.35228 版
+==== BUILD fluidmotion.dll (/MT static CRT) ====
+fm_capi.cpp
+  正在创建库 fluidmotion.lib 和对象 fluidmotion.exp
+cl_exit=0
+          1    0 000265D0 fm_animation_cancel
+          2    1 00026680 fm_animation_create
+          3    2 00026A10 fm_animation_play
+          4    3 00026AC0 fm_animation_release
+          5    4 00026B50 fm_animation_retarget
+          6    5 00026D60 fm_create
+          7    6 00026E50 fm_create_manual
+          8    7 00026F10 fm_current
+          9    8 00026FB0 fm_destroy
+         10    9 00027060 fm_is_running
+         11    A 00027080 fm_load_tokens
+         12    B 000274B0 fm_manual_advance
+         13    C 000274E0 fm_on_frame
+         14    D 00027540 fm_set_reduced_motion
+==== DLL dependents (expect no VCRUNTIME140/MSVCP140) ====
+Dump of file fluidmotion.dll
+File Type: DLL
+    KERNEL32.dll
+==== BUILD+RUN fm_capi_test (cl, /MT) ====
+fm_capi.cpp
+fm_capi_test.cpp
+正在生成代码...
+  正在创建库 fm_capi_test.lib 和对象 fm_capi_test.exp
+cl_exit=0
+  demo.enter: 69 frames (575 ms), 138 sink calls
+23 checks, 0 failures
+run_exit=0
+==== BUILD+RUN continuity_test ====
+continuity_test.cpp
+cl_exit=0
+before retarget: value=217.522813117 vel=729.152815097 (sink=217.522813117)
+right after retarget(0): value=217.522813117 vel=729.152815097  |dv|=0.000e+00 |dvel|=0.000e+00
+after +0.1ms frame: value=217.595197912 vel=718.548043883  |dv|=7.238e-02
+after +16.7ms frame: value=216.995374752 vel=-671.689962054  step=-0.527438 (pre-retarget vel*dt=12.152547)
+settled after 37 more frames at value=0.000000000 (sink=0.000000000, sink calls=48)
+13 checks, 0 failures
+run_exit=0

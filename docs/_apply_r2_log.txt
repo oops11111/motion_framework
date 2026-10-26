@@ -1,0 +1,17 @@
+Notion R-2 apply log — 2026-10-20 Asia/Taipei
+Source: docs/notion_r2_review_abc.md §B fenced blocks
+
+- docs/notion_brief.md — replaced §4.1 with B-1（### 4.1 复核状态 #23–#30）；R-2 known-fail；Notion 已接手 / Claude EN 延后
+- docs/notion_claude_offline_abc.md — replaced Open 六条 with B-2 checkbox Open + R-2 known-fail section；A/B/C prior sections kept
+- docs/deepseek_m1b_spec.md — replaced §5.3 R-2 entry with B-3 known-fail；§4.1 table row + revision log note
+- docs/claude_m1b_spec.md — light: HTML comment near §3 interrupt + R-1 risk line → R-2 known-fail / B-4 pointer（no EN rewrite）
+- docs/_apply_r2_log.txt — this file
+
+Success: no leftover「待 Claude≈19:40」as active R-2 next step；#25/#30 numbers match source.
+- 2026-10-20 Gemini UX：usage.md §1.7/§6 + notion_brief §4.1 已知限制；新建 gemini_r2_ux_note.md（R-2 约 20–28 px，演示规避飞行中改目标卖点）
+
+- 2026-10-20 #31 offline：确认 R-2=纯 R-1 衍生（Δ(0)=0.000 / Δ(16.7)=−9.517；artifact artifacts/win_r2_delta_offline.txt；不重开；composition.h 未改）
+  - docs/deepseek_m1b_spec.md §5.3 R-2：#31 子弹 + 重开条件注「#31 已测 Δ≤0.5」；修订记录加 #31
+  - docs/notion_brief.md §4.1：一行 #31 确认不重开
+  - docs/notion_claude_offline_abc.md R-2：确认行 + artifact + 重开条件注
+  - docs/notion_r2_review_abc.md：文末「## 后续证实（#31）」

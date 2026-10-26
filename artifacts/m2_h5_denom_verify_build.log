@@ -1,0 +1,42 @@
+  正在确定要还原的项目…
+  已还原 C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj (用时 4.18 秒)。
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVPrimeProbe.cs(182,24): warning CS0219: 变量“thrFloor”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVPrimeProbe.cs(84,13): warning CS0219: 变量“hangCountCell”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVProbe.cs(173,24): warning CS0219: 变量“thrFloor”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVProbe.cs(81,13): warning CS0219: 变量“hangCountCell”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MainPage.xaml.cs(4256,22): warning CS0219: 变量“TWO_PI”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MainPage.xaml.cs(5345,43): warning CS0219: 变量“arriveNeg”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\R3Probe.cs(389,20): warning CS8321: 声明了本地函数“Xs”，但从未使用过 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MotionEngine.cs(96,10): warning CS0414: 字段“MotionAnimation._played”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVPrimeProbe.cs(182,24): warning CS0219: 变量“thrFloor”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVPrimeProbe.cs(84,13): warning CS0219: 变量“hangCountCell”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVProbe.cs(173,24): warning CS0219: 变量“thrFloor”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVProbe.cs(81,13): warning CS0219: 变量“hangCountCell”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MainPage.xaml.cs(4256,22): warning CS0219: 变量“TWO_PI”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MainPage.xaml.cs(5345,43): warning CS0219: 变量“arriveNeg”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\R3Probe.cs(389,20): warning CS8321: 声明了本地函数“Xs”，但从未使用过 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MotionEngine.cs(96,10): warning CS0414: 字段“MotionAnimation._played”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+  MotionSoftDemo -> C:\Users\admin\motion_framework\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.dll
+
+已成功生成。
+
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVPrimeProbe.cs(182,24): warning CS0219: 变量“thrFloor”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVPrimeProbe.cs(84,13): warning CS0219: 变量“hangCountCell”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVProbe.cs(173,24): warning CS0219: 变量“thrFloor”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVProbe.cs(81,13): warning CS0219: 变量“hangCountCell”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MainPage.xaml.cs(4256,22): warning CS0219: 变量“TWO_PI”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MainPage.xaml.cs(5345,43): warning CS0219: 变量“arriveNeg”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\R3Probe.cs(389,20): warning CS8321: 声明了本地函数“Xs”，但从未使用过 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MotionEngine.cs(96,10): warning CS0414: 字段“MotionAnimation._played”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVPrimeProbe.cs(182,24): warning CS0219: 变量“thrFloor”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVPrimeProbe.cs(84,13): warning CS0219: 变量“hangCountCell”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVProbe.cs(173,24): warning CS0219: 变量“thrFloor”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\M2DeltaVProbe.cs(81,13): warning CS0219: 变量“hangCountCell”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MainPage.xaml.cs(4256,22): warning CS0219: 变量“TWO_PI”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MainPage.xaml.cs(5345,43): warning CS0219: 变量“arriveNeg”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\R3Probe.cs(389,20): warning CS8321: 声明了本地函数“Xs”，但从未使用过 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+C:\Users\admin\motion_framework\MotionSoftDemo\MotionEngine.cs(96,10): warning CS0414: 字段“MotionAnimation._played”已被赋值，但从未使用过它的值 [C:\Users\admin\motion_framework\MotionSoftDemo\MotionSoftDemo.csproj]
+    16 个警告
+    0 个错误
+
+已用时间 00:00:47.41

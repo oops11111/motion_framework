@@ -1,0 +1,37 @@
+# win_interrupt_seed_probe.txt — 派题 #25 interrupt continuity (single-τ whole traj vs WGC)
+# wall=2026-10-20 15:26:06 Asia/Taipei; OS=10.0.19045.0
+# B1: Period=0.32 ζ=0.78 0→240 IVel=0; interrupt ~150ms → 0
+# Seed: spring.h::At(elapsed + seedLead) → InitialValue/InitialVelocity; NO composition.h change
+# Align: ONE τ fit on PRE-interrupt B1 only, frozen for post (do NOT re-fit at interrupt). Metrics vs WGC.
+# §4: |Δpos|≤0.5px & ≤5% frame travel; |Δvel|≤max(20, 5%|v|). Record only if miss.
+DwmFlushVerdict=unknown
+WGC start hr=0x00000000
+cal: cx0=100.481 cx37=137.481 pxPerDip=1.0000
+----- seedLead=0.0ms -----
+  B1 START 0→240 qpc=6237359301605
+  trip: el=162ms shadow_x=225.3 WGC_lagged≈11.5
+  interrupt wallRel=162.0ms seedAt=162.0ms seedPos=225.35 seedVel=574.8
+  B2 START →0 IV=225.35 IVel=574.8 qpc=6237360929457 (Δstart=0.7ms)
+  single-τ=98ms (fit PRE-only RMS=58.18); frozen on post → wholeRMS=174.37 nPre+post=42
+  pre-int WGC vel fit n=5 wgcVel=391.8 (strictly before interrupt)
+  at interrupt (single-τ): WGC_pos=252.96 seed=225.35 |Δpos|=27.612 (frameDisp≈6.53; §4 pos=MISS)
+  at interrupt: WGC_vel≈391.8 seedVel=574.8 |Δvel|=183.0 thr=28.7 §4 vel=MISS
+  post0–200ms RMS vs B2 shadow n=12 RMS=178.91 DIP (74.55% travel) — compare to inherent ~12–28%
+  around-int: t=-42 wgc=237.5 mdl=189.4; t=-8 wgc=250.5 mdl=220.2; t=25 wgc=259.0 mdl=213.9; t=58 wgc=263.5 mdl=157.7; t=91 wgc=265.0 mdl=96.8; t=125 wgc=263.5 mdl=49.5; t=158 wgc=259.5 mdl=19.7; t=191 wgc=253.5 mdl=3.9
+----- seedLead=16.7ms -----
+  B1 START 0→240 qpc=6237443964180
+  trip: el=154ms shadow_x=220.5 WGC_lagged≈11.5
+  interrupt wallRel=154.3ms seedAt=171.0ms seedPos=230.02 seedVel=473.9
+  B2 START →0 IV=230.02 IVel=473.9 qpc=6237445514276 (Δstart=0.7ms)
+  single-τ=96ms (fit PRE-only RMS=62.07); frozen on post → wholeRMS=168.82 nPre+post=42
+  pre-int WGC vel fit n=4 wgcVel=317.5 (strictly before interrupt)
+  at interrupt (single-τ): WGC_pos=250.11 seed=230.02 |Δpos|=20.093 (frameDisp≈5.29; §4 pos=MISS)
+  at interrupt: WGC_vel≈317.5 seedVel=473.9 |Δvel|=156.4 thr=23.7 §4 vel=MISS
+  post0–200ms RMS vs B2 shadow n=12 RMS=179.66 DIP (74.86% travel) — compare to inherent ~12–28%
+  around-int: t=-48 wgc=233.0 mdl=170.4; t=-17 wgc=245.5 mdl=207.4; t=17 wgc=253.5 mdl=225.6; t=50 wgc=258.0 mdl=174.2; t=84 wgc=259.1 mdl=109.5; t=117 wgc=257.5 mdl=58.6; t=150 wgc=253.5 mdl=25.4; t=183 wgc=247.5 mdl=6.6
+===== SUMMARY =====
+| seedLead_ms | τ_ms | |Δpos| | |Δvel| | postRMS | travel@int | §4pos | §4vel |
+| 0.0 | 98 | 27.612 | 183.0 | 178.91 | 253.0 | False | False |
+| 16.7 | 96 | 20.093 | 156.4 | 179.66 | 250.1 | False | False |
+CONCLUSION: does NOT meet §4 (record magnitude vs inherent residual) — seedLead=0: |Δpos|=27.612 |Δvel|=183.0 postRMS=178.91; seedLead≈16.7ms: |Δpos|=20.093 |Δvel|=156.4 postRMS=179.66; better seedLead=16.7ms. single-τ align only. composition.h UNCHANGED.
+===== INTERRUPT SEED PROBE DONE =====

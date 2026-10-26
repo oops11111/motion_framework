@@ -1,0 +1,7 @@
+apply R-2′ gate (2026-10-20 Asia/Taipei)
+deepseek_m1b_spec.md: §5.3 R-2 子节 [26404:27934] 替换为 R-2′ 块（标题降级保持层级）+取代说明+修订记录
+notion_brief.md: §4.1 整条替换为「有条件关闭（R-2′）」
+usage.md: §1.7 Known limitation 替换为 B 节新条目，链接加 notion_r2_b_gate_ab.md
+claude_m1b_spec.md: §3 前 HTML 注释末尾追加 R-2′ 一句
+composition.h: 未改
+249行加注 R-2′ 例外

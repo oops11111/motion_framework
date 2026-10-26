@@ -1,0 +1,4 @@
+ticket=SEED-ABS-FAIL
+pass_sessions=0/3
+written_at=2026-10-26 11:53:30 Asia/Taipei
+ONELINE=M2-WGC-SEED-ABS | gate=831818e41a1fc445cdf763f97b506ad573a1efd9676d23cd3d106904c87180de @ 2026-10-26 10:59:25 Asia/Taipei | approved=pidan@2026-10-26 11:15:50 Asia/Taipei | path=P-LS+TS/N=5 | smoke=t060 | ratio=reg | ctrl=baseP/IVel0F | ticket=SEED-ABS-FAIL | 成功≠采用≠Δv-PASS；不改composition.h；禁影子IV；≠PERF-CI；06467b82不翻盘

@@ -1,0 +1,59 @@
+# p16_52.txt — 派题 #52 汇总（P1+P2+P3）
+# wall=2026-10-24 20:49 AWST; authority=docs/claude_r3_51_review.md FINAL; brief=docs/workbuddy_next_r3_52.md
+# composition.h sha256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418 PRE/POST/BOX all match
+# A v2 GATE locked_at=2026-10-24 20:33:42 AWST GATE_BODY_SHA256=189a08209f0c3e5dd664d3ca71b5f76d6fe246dfd96b0f67d15a12d93d1dea5d
+# harness: MotionSoftDemo/R3Probe.cs only (CodeBuddy #52); composition.h NOT modified; S2 not revived; no #49 cross-compare
+
+## ONELINE
+#52: P1=分开(pooled; a1分不开); A v2×3=2/3; P3=F5确认; ≈30c=无; 硬停=A×3<3/3→STOP S1; sha OK
+
+## P3 — residual vs τ0（离线；先于采数）
+- source=artifacts/p15_51_part1.txt 细网格；见 artifacts/p16_52_p3.txt
+- med(residual|unsat)=+2.70; slope=+0.326; SSE_2x/SSE_const=14.5×
+- τ0≈3.3 处 2× 与常数偏置不可区分已说明；未饱和多数 τ0>5
+- **verdict=CONFIRM_F5_REFUTE_2X**（Finding 5 确认；2× 超前假说证伪）
+
+## P2 — A v2×3（闸门采数前写死）
+| sess | A1a | A1b | A1c | A2 | A | notes |
+| a1 | PASS | PASS | PASS | PASS | **PASS** | ε n+/n−=8/4; tickPer≈16.66 |
+| a2 | PASS | PASS | PASS | PASS | **PASS** | ε n+/n−=7/5 |
+| a3 | **FAIL** τ0=21.8 RMS中位=0.781 | PASS | PASS | PASS | **FAIL** | A1a 唯败 |
+- A1b origin=220：3/3 会话四档全 PASS（出画清除）
+- A1c 宽界：3/3 无撞界；双模 {+6.5,−10} 显式；RMS中位≤0.41；sep≈16.5∈[14,19]
+- A2 path=PS：3/3
+- **A v2×3 = 2/3 < 3/3 → 硬停 STOP S1**（建议下轮关 R-3 留 Bv）
+
+## P1 — 帧相位 vs ε
+- 分离判据（写死）：(a) |med φ_mod(+)-med φ_mod(−)|_circ ≥ 0.25·tickPer；(b) nearest-median 纯度 ≥0.75；双满才算分开
+- 实测 tickPer 中位 ≈16.66 ms（非假设；≈60.02 Hz）
+- per-session: a1=分不开 (purity=0.50); a2=分开 (0.92); a3=分开
+- pooled n=36: d_circ=7.86≥4.17; purity=0.83 (30/36); n+/n−=25/11 → **分开**
+- med_phi_mod(+)=3.84 (−)=12.64; med_lag(+)=11.41 (−)=5.21
+- 注：帧相位与双模相关（pooled），但 a1 单会话分不开 → 路径不稳健；且 A×3 已硬停 S1，帧相位路径不再推进为 ship 依据
+
+## ≈30 c
+- 三会话 Stage B 短阵均未出现 ≈30 c 模态；硬停未因 ≈30c 触发
+
+## 硬停对照
+| 条件 | 结果 |
+| sha ≠ a55d4952…e418 | 未触发（PRE/POST OK） |
+| 拟合撞界 | 未触发（A1c 0 INVALID） |
+| P1 分不开双模 | per-sess 有 1/3 分不开；pooled=分开；不单独作 STOP 主因 |
+| A v2×3 < 3/3 | **触发 → STOP S1** |
+| ≈30 c | 未触发 |
+| 闸门采数后改 | 未发生（gates LOCKED_AT 先于 a1 raw wall 20:39:50） |
+| 复活 S2 / 比 #49 | 未发生 |
+
+## STOP 建议文案
+**STOP S1。** A v2 新鲜 A×3 = 2/3（a3 A1a τ0=21.8 FAIL）。按 FINAL：关闭 R-3 时以 Bv 为降级兜底；S1 NO-ADOPT 保持。帧相位与 ε 双模在 pooled 上可分，但不足以覆盖 A1a 不稳；#52 内不复活 S2、不与 #49 横比。
+
+## 产物
+- artifacts/p16_52.txt（本文件）
+- artifacts/p16_52_p3.txt
+- artifacts/p16_52_a_v2_gates.txt
+- artifacts/p16_52_sha.txt
+- artifacts/p16_52_p1_pooled.txt
+- artifacts/p16_52_a{1,2,3}.txt + _raw.txt + _run.txt
+- artifacts/p16_52_codebuddy_prompt.txt / _out.txt / _build.txt
+- docs/workbuddy_soft_demo.md ## 派题 #52
+- harness: MotionSoftDemo/R3Probe.cs（仅日志/探针）

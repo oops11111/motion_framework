@@ -1,0 +1,98 @@
+{
+  "$schema": "https://example.invalid/motion-tokens/v1.json",
+  "$comment": "Sample emitted by the Figma plugin. ALL VALUES ARE PLACEHOLDERS; the motion designer owns the final vocabulary and numbers.",
+  "version": 1,
+
+  "durations": {
+    "instant": "0ms",
+    "fast":    "100ms",
+    "normal":  "200ms",
+    "slow":    "350ms",
+    "default": "normal"
+  },
+
+  "easing": {
+    "standard":   [0.33, 0.0, 0.67, 1.0],
+    "emphasized": [0.2, 0.0, 0.0, 1.0],
+    "decelerate": [0.1, 0.9, 0.2, 1.0],
+    "accelerate": [0.9, 0.1, 1.0, 0.2],
+    "enter": "decelerate",
+    "exit":  "accelerate"
+  },
+
+  "springs": {
+    "snappy": { "response": "300ms", "damping": 0.8 },
+    "gentle": { "response": "500ms", "damping": 1.0 },
+    "bouncy": { "response": "400ms", "damping": 0.55 },
+    "press":  "snappy"
+  },
+
+  "transitions": {
+    "card.enter": {
+      "root": {
+        "type": "sequence",
+        "children": [
+          {
+            "type": "parallel",
+            "children": [
+              { "type": "track", "property": "opacity", "from": 0,
+                "steps": [ { "to": 1, "duration": "default", "ease": "enter" } ] },
+              { "type": "track", "property": "scale", "from": 0.96,
+                "steps": [ { "springTo": 1, "spring": "snappy" } ] },
+              { "type": "track", "property": "offsetY", "from": 12,
+                "steps": [ { "to": 0, "duration": "slow", "ease": "emphasized" } ] }
+            ]
+          },
+          { "type": "marker", "name": "entered" }
+        ]
+      },
+      "reduced": {
+        "type": "track", "property": "opacity", "from": 0,
+        "steps": [ { "to": 1, "duration": "fast" } ]
+      }
+    },
+
+    "card.exit": {
+      "root": {
+        "type": "parallel",
+        "children": [
+          { "type": "track", "property": "opacity", "from": 1,
+            "steps": [ { "to": 0, "duration": "fast", "ease": "exit" } ] },
+          { "type": "track", "property": "scale", "from": 1,
+            "steps": [ { "to": 0.98, "duration": "fast", "ease": "exit" } ] }
+        ]
+      },
+      "reduced": "instant"
+    },
+
+    "list.stagger-in": {
+      "root": {
+        "type": "stagger",
+        "delay": "40ms",
+        "children": [
+          { "type": "track", "property": "item0.opacity", "from": 0,
+            "steps": [ { "to": 1, "duration": "normal", "ease": "enter" } ] },
+          { "type": "track", "property": "item1.opacity", "from": 0,
+            "steps": [ { "to": 1, "duration": "normal", "ease": "enter" } ] },
+          { "type": "track", "property": "item2.opacity", "from": 0,
+            "steps": [ { "to": 1, "duration": "normal", "ease": "enter" } ] }
+        ]
+      },
+      "reduced": "instant"
+    },
+
+    "button.press": {
+      "root": {
+        "type": "track", "property": "scale", "from": 1,
+        "steps": [
+          { "to": 0.96, "duration": "fast", "ease": "standard" },
+          { "springTo": 1, "spring": "press", "inheritVelocity": true }
+        ]
+      },
+      "reduced": {
+        "type": "track", "property": "opacity", "from": 1,
+        "steps": [ { "to": 0.8, "duration": "fast" }, { "to": 1, "duration": "fast" } ]
+      }
+    }
+  }
+}

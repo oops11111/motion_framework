@@ -1,0 +1,20 @@
+M2-H5-DENOM-VERIFY bundle
+ticket=H5-DENOM-VERIFY-FAIL
+gate=fd00a06058b239abfe03a52175463a52741718318ce99416a4ce762cf037889b LOCKED_AT=2026-10-26 16:09:00 Asia/Taipei match=True
+approved=pidan@2026-10-26 16:12:48 Australia/Perth
+mode=verify land=NO
+path=PATHB-A (V2-clamp N=5 order=2 P-VS=OFF Aprime=OFF)
+KEEP v_denom≡v_pre (quad LS w=5 same t_int)
+calib_formula=C1=median(v_denom/v_hat)
+calib_new_exact=1.3358225694150683 n_samples=120 n_calib_sessions=3
+FORBIDDEN_silent_0.7511=honored
+composition_PRE=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+composition_POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+pass_sessions=0/3
+score_s1: med_r=1.1622 ratioOk=True smoke=fwd10/20+rev8/20 ctrl=KEEP FAIL_CANDIDATE appPID=62180
+score_s2: med_r=0.9911 ratioOk=True smoke=fwd0/20(SKIP jud=False Nv_h>thr)+rev9/20 ctrl=KEEP FAIL_CANDIDATE appPID=50644
+score_s3: med_r=1.1642 ratioOk=True smoke=fwd12/20+rev9/20 ctrl=KEEP FAIL_CANDIDATE appPID=61368
+seven_hashes_not_flipped=PATH-A′ f17871f1… / PATH-B′ a1161c77… / CALIB 09f6414b… / ABS 831818e4… / Δv′ 06467b82… / TRUTH 276b97f0… / DENOM d891df9f…
+no_shadow_IV_evidence: s1 Arm-WGC-seed t060fwd k=0 ivel_set=calib_new·v_hat ≠ shadow_v_log
+success≠land≠Δv-PASS; ≠PERF-CI; 禁立刻Δv″
+written_at=2026-10-26 17:24:08 Australia/Perth machine=DESKTOP-K93N3P8

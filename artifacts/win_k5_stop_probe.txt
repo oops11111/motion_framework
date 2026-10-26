@@ -1,0 +1,32 @@
+# win_k5_stop_probe.txt — 派题 #18 K5 StopAnimation mid-flight + TryGet
+# wall=2026-10-20 11:27:01 Asia/Taipei; OS=10.0.19045.0
+# A spring 0→240 stop @40–60%; B KeyFrame 1000ms 0→240 mid Stop; TryGet before/after Stop
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.485 cx37=137.485 pxPerDip=1.0000
+===== A) Spring mid-flight Stop @40–60% =====
+  [spring] START
+  [spring] TryGet BEFORE Stop: status=Succeeded x=0.00 (animating — often stale/static seed)
+  [spring] StopAnimation at WGC x≈103.5 frac=0.43 wall≈478ms
+  [spring] TryGet AFTER Stop (immediate): status=Succeeded x=0.00
+  [spring] TryGet AFTER freeze window: status=Succeeded x=113.97
+  [spring] POST-STOP (after 300ms lag drain) n=30 median=114.0 range=0.0 |med-stopWgc|=10.5 |med-target|=126.0 → PASS freeze
+  [spring] TryGet_vs_WGC: afterStop=0.0 afterHold=114.0 stopWgc=103.5 materializesFrozen=False
+===== B) KeyFrame 1000ms linear mid Stop @40–60% =====
+  [keyframe] START
+  [keyframe] TryGet BEFORE Stop: status=Succeeded x=0.00 (animating — often stale/static seed)
+  [keyframe] StopAnimation at WGC x≈131.5 frac=0.55 wall≈271ms
+  [keyframe] TryGet AFTER Stop (immediate): status=Succeeded x=0.00
+  [keyframe] TryGet AFTER freeze window: status=Succeeded x=145.55
+  [keyframe] POST-STOP (after 300ms lag drain) n=31 median=145.5 range=0.0 |med-stopWgc|=14.0 |med-target|=94.5 → PASS freeze
+  [keyframe] TryGet_vs_WGC: afterStop=0.0 afterHold=145.6 stopWgc=131.5 materializesFrozen=False
+===== SUMMARY =====
+| path | stopWgc | postMed | range | TryGet before | TryGet after | freeze |
+| spring | 103.5 | 114.0 | 0.0 | Succeeded:0.0 | Succeeded:0.0 | PASS |
+| keyframe | 131.5 | 145.5 | 0.0 | Succeeded:0.0 | Succeeded:0.0 | PASS |
+CONCLUSION: Spring: StopAnimation mid-flight FREEZES (WGC holds mid value). KeyFrame: StopAnimation mid-flight FREEZES (WGC). TryGetVector3(Translation): Succeeded but returns last Inserted static seed (spring 0.0, kf 0.0) — does NOT materialize animated/frozen value; use WGC or Stop+SetValue for handoff.
+===== K5 PROBE DONE =====
+
+## Clarification (TryGet timing)
+Immediate TryGet after Stop still showed Inserted seed 0.0 for both paths.
+After ~800ms lag-drain+hold window, TryGetVector3 returned frozen values matching WGC (spring≈114, keyframe≈145.5) — delayed materialization, not reliable as sync handoff; prefer Stop+explicit SetValue(shadow/WGC) for compositor→app transfer.

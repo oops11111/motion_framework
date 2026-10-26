@@ -1,0 +1,26 @@
+# win_s5_settle_probe.txt — 派题 #17 S5 spring settle / hold FinalValue
+# wall=2026-10-20 11:23:41 Asia/Taipei; OS=10.0.19045.0
+# Spring Period=0.32 ζ=0.78 0→240; after settle sample ≥500ms must stay ≈240
+# B: StopAnimation near completion — WGC should freeze near stop-time value
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.473 cx37=137.473 pxPerDip=1.0000
+spring.h SettleTime=0.628s
+===== A) run to settle; hold ≥500ms at FinalValue =====
+  START A qpc=6091914601291 (expect settle~0.63s + present lag)
+  visual near target at wall-arrive≈1189ms (first of lock window)
+  extra settle 900ms after first lock…
+  HOLD window n=40 median=240.54 min=240.03 max=242.03 range=2.00 |med-target|=0.536 stable=True → PASS
+  batchCompleted=False batchAt=NaN visualArrive≈1189ms (NaturalMotion Completed often unsupported)
+  Properties.Translation.X readback after hold=0.00 (informational; may be stale for NaturalMotion)
+  ScopedBatch.Completed at wall=6808.5ms
+===== B) StopAnimation near completion =====
+  START B qpc=6091974000558
+  StopAnimation at WGC x≈211.0 wall≈931ms
+  POST-STOP n=31 median=215.48 range=4.43 stopAtX=211.0 → PASS freeze (expect hold near stop, not keep animating to 240)
+===== SUMMARY =====
+| A hold≥500ms | median=240.54 range=2.00 |err|=0.536 | PASS |
+| B Stop near end | stopX=211.0 postMed=215.48 range=4.43 | PASS |
+| ScopedBatch.Completed | fired=True | visualArrive_ms=1189 |
+CONCLUSION: S5 PASS — after NaturalMotion spring settles, WGC holds ≈FinalValue for ≥500ms (no drift). StopAnimation near completion freezes near stop-time value. ScopedBatch.Completed observed (Δ vs visualArrive see log).
+===== S5 PROBE DONE =====

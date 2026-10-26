@@ -1,0 +1,15 @@
+host=DESKTOP-K93N3P8; date=2026-10-19 11:06+ Asia/Taipei
+cl=Microsoft C/C++ 19.44.35228 (VS 2022 BuildTools 17.14); vcvars64 x64
+source=C:\Users\admin\motion_framework\code (from C:\Users\admin\code_sync.tar.gz)
+flags=/std:c++17 /EHsc /O2 /W3
+
+timeline_tests: 419 checks, 0 failures
+  settle bound: min(an-scan)=-0.0025  max(an-scan)=0.2526 s
+tokens_tests motion.json: 617 checks, 0 failures
+  sample motion.json: 4 transitions OK
+controller_tests: 236 checks, 0 failures
+
+match_linux_artifacts=yes (419/617/236)
+composition=not built (per instructions)
+
+windows_app_sdk: Windows App Runtime installed via winget (1.4.7, 1.5.9, 1.6.9, 1.7.9, 1.8.10+, 2.5.1); nuget package microsoft.windowsappsdk not present under %USERPROFILE%\.nuget\packages

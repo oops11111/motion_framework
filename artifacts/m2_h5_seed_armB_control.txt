@@ -1,0 +1,6 @@
+# M2-H5-SEED arm B control (IV=null + InitialVelocity=0)
+Not counted in 3/3 PASS. Per-session med_r from summaries:
+s1 med_r=0.0000 n_valid=12
+s2 med_r=0.0000 n_valid=12
+s3 med_r=0.0000 n_valid=12
+Expected ≈0 when v_seed=0 and |v_screen|≥ε.

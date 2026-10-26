@@ -1,0 +1,42 @@
+# win_zeta_gt1_probe.txt — 派题 #14 S2 DampingRatio clamp/accept probe
+# wall=2026-10-20 11:08:29 Asia/Taipei; OS=10.0.19045.0; Period=0.32s
+# For each ζ: assign DampingRatio, catch throw, read back, optionally run 0→240 and sample Translation.X
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000 hwnd=0x1CF0698
+----- ζ=1 -----
+  assign: ok; readback DampingRatio=1 (unchanged)
+  StartAnimation Translation.X Period=0.32 DampingRatio=1 FinalValue=240; WGC cx0=100.473
+  run: ran WGC n=90 peakΔcx=226.0 lastΔcx=226.0 overshoot=no
+  WGC: t=16ms Δcx=0.0; t=266ms Δcx=37.5; t=516ms Δcx=104.5; t=766ms Δcx=158.5; t=1016ms Δcx=193.5; t=1265ms Δcx=214.5
+----- ζ=1.2 -----
+  assign: ok; readback DampingRatio=1.20000005 (unchanged)
+  StartAnimation Translation.X Period=0.32 DampingRatio=1.20000005 FinalValue=240; WGC cx0=328.525
+  run: ran WGC n=91 peakΔcx=0.0 lastΔcx=-16.5 overshoot=no
+  WGC: t=5ms Δcx=0.0; t=256ms Δcx=-193.5; t=505ms Δcx=-134.5; t=756ms Δcx=-86.6; t=1006ms Δcx=-53.6; t=1256ms Δcx=-31.5
+----- ζ=2 -----
+  assign: ok; readback DampingRatio=2 (unchanged)
+  StartAnimation Translation.X Period=0.32 DampingRatio=2 FinalValue=240; WGC cx0=314.010
+  run: ran WGC n=90 peakΔcx=0.0 lastΔcx=-50.0 overshoot=no
+  WGC: t=15ms Δcx=0.0; t=265ms Δcx=-186.6; t=515ms Δcx=-147.5; t=765ms Δcx=-114.6; t=1015ms Δcx=-88.0; t=1266ms Δcx=-66.5
+----- ζ=5 -----
+  assign: ok; readback DampingRatio=5 (unchanged)
+  StartAnimation Translation.X Period=0.32 DampingRatio=5 FinalValue=240; WGC cx0=267.002
+  run: ran WGC n=90 peakΔcx=0.0 lastΔcx=-79.6 overshoot=no
+  WGC: t=2ms Δcx=0.0; t=253ms Δcx=-152.5; t=503ms Δcx=-135.1; t=753ms Δcx=-119.5; t=1003ms Δcx=-105.0; t=1253ms Δcx=-91.1
+----- ζ=-0.1 -----
+  assign: THROW ArgumentException: The parameter is incorrect.
+
+An invalid damping ratio is specified. It cannot be less than 0.
+===== SUMMARY =====
+ζ=1 | assign=ok-as-set | readback=1 | ran WGC n=90 peakΔcx=226.0 lastΔcx=226.0 overshoot=no
+ζ=1.2 | assign=ok-as-set | readback=1.20000005 | ran WGC n=91 peakΔcx=0.0 lastΔcx=-16.5 overshoot=no
+ζ=2 | assign=ok-as-set | readback=2 | ran WGC n=90 peakΔcx=0.0 lastΔcx=-50.0 overshoot=no
+ζ=5 | assign=ok-as-set | readback=5 | ran WGC n=90 peakΔcx=0.0 lastΔcx=-79.6 overshoot=no
+ζ=-0.1 | assign=THROW ArgumentException: The parameter is incorrect.
+
+An invalid damping ratio is specified. It cannot be less than 0. | readback=n/a | not-run
+CONCLUSION: see SUMMARY — accept means assign ok and readback≈set; clamp means readback≠set; throw means API rejected.
+===== ZETA PROBE DONE =====
+
+## Coordinator one-liner
+DampingRatio: ζ≥0 (incl. 1.0/1.2/2.0/5.0) ACCEPTED with no clamp (readback≈set); ζ<0 THROWS ArgumentException ("cannot be less than 0"). Overdamped animations DO run (WGC motion; ζ=1 critical reached ~226 toward 240 without overshoot). API accepts ζ>1 — v1 planner still Fallbacks for product consistency with spring.h AppThread path.

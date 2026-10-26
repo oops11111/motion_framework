@@ -1,0 +1,22 @@
+# p15_51_c3 — Part2 session 3 c-stability (p50-style B)
+# source: p15_51_c3_raw.txt via p50.py
+
+## Stage B arms (tInt=60, n=48 each)
+| arm | J med | Δv_fd med | ε med ms |
+| Sup | 0.31 | 512.2 | 6.8 |
+| SupS2 | 0.18 | 379.4 | 8.5 |
+| Bv | 16.17 | 1026.8 | 8.4 |
+| base | 0.16 | 55.2 | 0.0 |
+
+## Sup ε(φ) bins → c
+| φ | Sup ε | ε+φ |
+| 1 | 12.8 | 13.8 |
+| 5 | 9.0 | 14.0 |
+| 9 | 5.0 | 14.0 |
+| 13 | 0.8 | 13.8 |
+
+c_est = 13.90 (LS ε=13.900 + -1.000·φ; median ε+φ=14.0; nearer ≈14 than ≈30)
+|Δε| Sup vs SupS2 = 1.8 ms (session outlier vs c1/c2 0.2; not used to revive S2)
+
+## ONELINE
+c3=13.90 (ε≈13.9−φ); nearer≈14; S2|Δ|=1.8

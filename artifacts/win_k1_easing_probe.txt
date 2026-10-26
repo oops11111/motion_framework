@@ -1,0 +1,22 @@
+# win_k1_easing_probe.txt — 派题 #19 K1 KeyFrame easing segment
+# wall=2026-10-20 11:29:20 Asia/Taipei; OS=10.0.19045.0
+# A: single-segment 220ms KeyFrame 0→100, easing=cubicBezier((0.10000000149011612,0.8999999761581421),(0.20000000298023224,1)) on END keyframe
+#    WGC vs EvaluateKeyframes-equivalent (BezierEase) + vs linear baseline
+# B: optional dual — 0→50 linear then 50→100 eased (easing only on 2nd segment)
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.492 cx37=137.492 pxPerDip=1.0000
+===== A) single-segment 220ms + decelerate easing on end keyframe =====
+  START A Duration=220ms easing=(0.10000000149011612,0.8999999761581421)-(0.20000000298023224,1) on key@1
+  A n=17 bestτ=26.0ms RMS_ease=0.571 (0.571%) RMS_linear=36.633 (36.633%) max|err|_ease=1.88
+  A verdict: easeBetterThanLinear=True shapePass(≤2%)=True
+  samples: t=0 wgc=0.0 ease=1.2 lin=0.1; t=34 wgc=72.5 ease=72.6 lin=15.7; t=68 wgc=89.5 ease=89.3 lin=30.7; t=101 wgc=95.5 ease=95.6 lin=45.8; t=134 wgc=98.5 ease=98.4 lin=61.0; t=167 wgc=99.5 ease=99.5 lin=76.1; t=201 wgc=100.0 ease=100.0 lin=91.2
+===== B) dual keyframes: 0→50 @0.5 linear, 50→100 @1.0 eased (total 440ms) =====
+  START B Duration=440ms key@0.5=50 (linear), key@1=100 (eased)
+  B n≈54 bestτ=14.0ms RMS_K1dual=8.982 (8.982%) RMS_wholeEase=32.047 RMS_linear=14.953 RMS_firstHalf≈linear=12.769
+  B verdict: K1-dual better than whole-curve-ease=True dualPass=False
+===== SUMMARY =====
+| A single ease | RMS_ease%=0.571 RMS_lin%=36.633 | PASS |
+| B dual K1 | RMS_dual%=8.982 RMS_allEase%=32.047 | CHECK |
+CONCLUSION: K1 AGREES with official semantics — easing on end keyframe shapes that segment (WGC≈EvaluateKeyframes/BezierEase; much better than linear). Dual-keyframe spot check: see RMS lines.
+===== K1 PROBE DONE =====

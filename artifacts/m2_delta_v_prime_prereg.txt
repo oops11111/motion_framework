@@ -1,0 +1,33 @@
+M2-Δv′ preregistration (G2-LOCK-12)
+gate=06467b8292f30239bb824a5379901fcaeefd2e0a79ba3442995bda84d9ae805c
+LOCKED_AT=2026-10-26 09:05:37 AWST
+approved=pidan@2026-10-26 09:09:19 AWST
+estimator=quadratic_LS
+w=5
+fit_order=2
+eval_point=t_s
+thr=max(20 DIP/s, 0.05*|v_ref|); v_ref=v_pre(t_s-)
+hang_cap=2
+n_per_cell_session=20
+pass_rule=>=17/20 Δv_i<=thr_i AND Nv_h<=thr_i
+judicable_P1=|a|*σ_ts<=thr (no /2; prior had <=thr/2)
+judicable_P2=thr>=Nv_h_cell (no 2×; prior had thr>=2*Nv_h)
+Nv_h=P95 of base Δv per cell (same estimator), measured before interrupt arms
+σ_ts=frame_sec/sqrt(12) (uniform within 1 frame); 60Hz → 1/60/√12≈0.00481s
+cells=t060fwd,t060rev,t156fwd,t156rev,t300fwd,t300rev,t300dbl
+core=t060fwd,t060rev,t300fwd,t300rev,t300dbl
+aux_skip_candidate=t156fwd,t156rev (rule-exported; SKIP≠PASS)
+arms=base (pos ctrl), Arm-WGC-seed (tested), IVel0 (neg ctrl ONLY t060 fwd+rev)
+IVel0_scope=t060fwd+t060rev only; t156/t300 IVel0 skipped (P5 harness bypass; crash≠INVALID)
+seed_path=WGC calib=1.0 for Arm-WGC-seed; InitialValue unset (compositor current)
+forbidden=shadow_IV, two_frame_diff, relative_A, composition.h edit, PERF-CI claim, reopen S1/R-3/R-2, thaw Bv, re-run prior gate d2349ceb
+t_s=argmin|x_post-x_pre| in W=[τ_kc-1,τ_kc] around commit/apply-aligned switch (QPC)
+base_nominal_switch=content_trip + max(1 frame, (w+0.5)*frame - trip) so prehistory ≥w at 60Hz
+interrupt_nominal_switch=StartAnimation_return + ~0.85 frame (apply-aligned)
+trip_wait=wall>=trip AND WGC |x|≥0.70*|shadow_x(trip)| OR wall>=trip+3frames (phase catch-up; shadow log-only NOT written to IV)
+num_guard=|a|>50000 or |v|>8000 → trial invalid num_unstable
+dbl_eval=t_s2 (second switch)
+period=0.32 zeta=0.78 final_primary=240
+machine=DESKTOP-K93N3P8 60Hz physical
+prior_gate_d2349ceb=NOT_RERUN; prior artifacts m2_delta_v_* not reused as this ticket
+script=MotionSoftDemo/M2DeltaVPrimeProbe.cs + artifacts/m2_delta_v_prime_run_sessions.ps1

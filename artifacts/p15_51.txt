@@ -1,0 +1,34 @@
+# p15_51.txt — 派题 #51 A-stability ×3 + Part1/Part2 汇总
+# composition.h sha256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418 (unchanged)
+# N_h #47 t060rev=0.41; probe=MF_R350_PROBE=1 / r350_probe.flag
+# updated 2026-10-24 20:17 AWST; NO-ADOPT; 不比 #49 跨会话数字; 同会话臂交错含 Sup/Bv/base
+
+## A×3 闸门表
+| sess | wall | A1a | A1b | A1c | A2 | A总 | 失败子项 |
+| a1 | 19:36:13 | PASS | FAIL | FAIL | PASS | FAIL | A1b early-pair(−Δ); A1c 4/5 ε_fit=−5 |
+| a2 | 19:39:24 | FAIL | PASS | PASS | PASS | FAIL | A1a τ0=50 中位RMS=0.557 |
+| a3 | 19:40:58 | PASS | PASS | FAIL | PASS | FAIL | A1c 3/5 ε_fit=−5 |
+- A×3 = **0/3 PASS**（失败子项轮换）
+- 相对 #50 AB PASS vs full FAIL：A-only×3 显示 **可复现不稳定**，非单次偶发。
+
+## Part1.1 A1c 放宽 ε 搜索界（离线 #50 raw）
+- 撞界 11/25；放宽后原撞界 → ε≈−10 且 RMS≤N_h → **−5 为伪 FAIL**；双模 {+6.5,−10}。详 p15_51_part1_refit.txt。
+
+## Part1.2/1.3 live（p15_51_part1_raw → p15_51_part1.txt）
+- A1a 细网格 15 pts×≥5：δ0=39.5；未饱和格 eff−τ0 中位=+2.7；A1a=FAIL[3.3,6.8,8.3,33.3]
+- A1b origin=220 重裁剪：−Δ 不出画 → **PASS**
+- 定义：ε=叠加最佳延迟；e=ε̂−ε_fit；J=|x−model| at interrupt；Δv_fd=|v_fd−v_model|；resid=x−model；c: ε≈c−φ；eff_adv=δ0−δ(τ0)
+
+## Part2 c-stability（p50-style B：tm=tInt_m−fo；每会话 48×4 臂交错）
+| sess | Sup ε(φ=1/5/9/13) | c_LS | nearer | SupS2|Δε| |
+| c1 | 13.0/9.0/5.0/1.0 | **14.00** | ≈14 | 0.2 |
+| c2 | 13.0/8.5/4.5/0.5 | **13.89** | ≈14 | 0.2 |
+| c3 | 12.8/9.0/5.0/0.8 | **13.90** | ≈14 | 1.8 |
+- **c 不在 ≈14↔≈30 间跳**：三会话均锁在 ≈14（ε≈14−φ）；未见 ≈30 模态。
+- S2：c1/c2 |Δ|=0.2 支持 Claude「非源」；c3 |Δ|=1.8 为会话离群，不据此复活 S2 主路径。
+
+## ONELINE
+A×3=0/3；Part1有效超前=δ0=39.5ms eff−τ0中位未饱和≈+2.7 A1a=FAIL[3.3,6.8,8.3,33.3] A1b=PASS −5伪FAIL双模{+6.5,−10}；c×3=14.00/13.89/13.90（均≈14，无≈30跳）；卡点=A子项轮换+ε双模+A1a细网格非倍数FAIL；NO-ADOPT；composition.h a55d4952…e418
+
+## 产物
+artifacts/p15_51_a{1,2,3}.txt(+raw)；p15_51_part1(_raw|_refit).txt；p15_51_c{1,2,3}.txt(+raw+_p50style)；本汇总 p15_51.txt

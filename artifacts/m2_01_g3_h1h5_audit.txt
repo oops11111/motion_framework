@@ -1,0 +1,46 @@
+# M2-01 G3 H1→H5 root-cause audit (offline + #37真机日志)
+GATE=182f945c77b7103b8883be523742af8e6dcd8ca2d4232529a5fac347a168beb1
+LOCKED_AT=2026-10-24 23:41:05 AWST
+APPROVED=pidan@2026-10-24 23:42:17 AWST
+REF=#37 artifacts/win_r2_p4_b2vel.txt + artifacts/win_r2_p4_raw.txt + docs/workbuddy_soft_demo.md §派题#37
+NOTE: Gemini 1.0×/260% figures are illustrative only — not #37 measured.
+
+## #37 velocity ratio (recomputed)
+arm=shadow n=12 med_vSet=620.0 med_v_pre=238.5 ratio_vSet/v_pre=2.600
+arm=zero n=12 med_vSet=0.0 med_v_pre=240.5 ratio_vSet/v_pre=0.000
+arm=unset n=12 med_vSet=nan med_v_pre=241.0 ratio_vSet/v_pre=nan
+arm=wgc n=12 med_vSet=183.5 med_v_pre=230.5 ratio_vSet/v_pre=0.796
+
+## H1 属性路径静态审计
+Evidence: MainPage uses StartAnimation("Translation.X", SpringScalarNaturalMotionAnimation) on AnimBox visual with SetIsTranslationEnabled.
+Property path is Translation.X; no wrong geometric subcomponent. 2.6× is magnitude mismatch of InitialVelocity, not wrong PropertyPath.
+Verdict: H1 investigated — NOT primary.
+Touches composition.h? No
+
+## H2 时基/单位混用
+Evidence: mf_spring_at uses t in seconds (SecSince/QPC); soft_demo documents InitialVelocity as DIP/s.
+ms/s mix would yield ~1000×; observed ratio ≈2.59 (med_vSet 620 / med_v_pre 239).
+Verdict: H2 investigated — NOT primary.
+Touches composition.h? No
+
+## H3 坐标系
+Evidence: shadow and WGC both in DIP of same visual Translation.X; #37 cal pxPerDip≈1.0; no TransformToVisual mismatch in seed path.
+Verdict: H3 investigated — NOT primary.
+Touches composition.h? No
+
+## H4 DIP/缩放
+Evidence: #37 environment pxPerDip=1.0000 (≈100% scale). Gemini 100% vs 260% is示意推演, not measured.
+2.6× still present at 1.0× → H4 falsified as primary (Gemini 证伪条件).
+Verdict: H4 investigated — NOT primary.
+Touches composition.h? Not indicated for this fix.
+
+## H5 Seed 源脱节 — PRIMARY
+Evidence (#37): shadow arm seeds InitialVelocity from spring.h analytic v(tInt): med_vSet=620 DIP/s vs screen v_pre med≈239 → ratio≈2.59≈2.6×.
+Doc: R-1 shape residual makes compositor B1 slower than spring.h; seeding shadow vel over-accelerates (worst arm); wgc screen vel best among arms.
+A-arm visible jump ~100–207 DIP (notion_r2_b_gate_ab / soft_demo cite) when shadow seed used.
+Primary cause: SEED SOURCE — spring.h closed-form velocity used as compositor InitialVelocity while on-screen NaturalMotion trajectory diverges (known 12–28% shape residual).
+Fix direction (另票): seed from WGC/screen-consistent velocity (or IV=null+0 degrade); do NOT use spring.h shadow vel for compositor interrupt seed.
+Touches composition.h for indicated fix? NO. (If later aligning compositor spring math to spring.h, that could touch composition.h — out of M2-01 scope.)
+
+## G3 VERDICT
+PASS — single primary = seed源(H5); evidence = artifacts/win_r2_p4_b2vel.txt; fix does not require editing composition.h.

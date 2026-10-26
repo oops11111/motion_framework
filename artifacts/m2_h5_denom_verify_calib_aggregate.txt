@@ -1,0 +1,14 @@
+calib_new_exact=1.3358225694150683
+calib_formula=C1=median(v_denom/v_hat)
+n_samples=120
+n_sessions=3
+session_medians=1.3385438573753232,1.345761262050146,1.2074588251150606
+session_n=40,40,40
+path=PATHB-A
+denom=v_pre
+calib_probe=1.0
+FORBIDDEN_silent=0.7510829456
+frozen_at=2026-10-26 16:55:08 Australia/Perth
+machine=DESKTOP-K93N3P8
+phase=calib_freeze
+land=NO

@@ -1,0 +1,2 @@
+s3 INVALID hang_cap exceeded t060rev/IVel0 too_few_frames n=0; archived as s3_INVALID_*; replacement session starting 2026-10-26 15:22:39 Asia/Taipei
+s3 REPLACEMENT done verdict=FAIL_CANDIDATE appPID=62768 at 2026-10-26 15:33:30 Asia/Taipei; ticket closed SEED-PATHA-PRIME-FAIL

@@ -1,0 +1,4 @@
+
+sess=1 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=35864 dotnetPID=47612 saw=True verdict=FAIL_CANDIDATE
+sess=2 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=56216 dotnetPID=36272 saw=True verdict=FAIL_CANDIDATE
+sess=3 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=54392 dotnetPID=60748 saw=True verdict=FAIL_CANDIDATE

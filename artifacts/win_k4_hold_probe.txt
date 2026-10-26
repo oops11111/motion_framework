@@ -1,0 +1,18 @@
+# win_k4_hold_probe.txt — 派题 #21 K4 KeyFrame hold FinalValue after completion
+# wall=2026-10-20 11:35:14 Asia/Taipei; OS=10.0.19045.0
+# ScalarKeyFrame 0→100 Duration=400ms + K1 easing; after visual arrive sample ≥500ms ≈100
+# Optional: ScopedBatch.Completed vs visual arrive (record only)
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.490 cx37=137.490 pxPerDip=1.0000
+  START KeyFrame Duration=400ms 0→100 easing=EnterC1/C2 qpc=6098842176497 wall=3703.7ms
+  visual near target (|x-100|<3 ×3) at arrive≈270ms
+  ScopedBatch.Completed at wall=4124.6ms
+  HOLD ≥500ms n=39 median=100.00 min=100.00 max=100.00 range=0.00 |med-target|=0.000 → PASS
+  batchCompleted=True batchAt=4124.6ms visualArrive≈270ms tStart=3703.7 (record only)
+  Properties.Translation.X after hold=100.00 (informational)
+===== SUMMARY =====
+| KeyFrame hold≥500ms | median=100.00 range=0.00 |err|=0.000 | PASS |
+| ScopedBatch.Completed | fired=True at=4124.6 | visualArrive_ms=270 |
+CONCLUSION: K4 PASS — after KeyFrame completes, WGC holds ≈FinalValue for ≥500ms (stable, no drift). ScopedBatch.Completed at 4124.6ms vs visualArrive≈270ms.
+===== K4 PROBE DONE =====

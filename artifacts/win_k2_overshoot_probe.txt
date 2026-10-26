@@ -1,0 +1,29 @@
+# win_k2_overshoot_probe.txt — 派题 #20 K2 CubicBezier y∉[0,1]
+# wall=2026-10-20 11:31:56 Asia/Taipei; OS=10.0.19045.0
+# Test CreateCubicBezierEasingFunction + KeyFrame run: reject / clamp / honor overshoot
+# Cases: in-range control; y=(-0.5,1.5); y=(1.4,1.2)
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.473 cx37=137.473 pxPerDip=1.0000
+----- [in_range] control=(0.2,0)-(0.8,1) -----
+  CreateCubicBezierEasingFunction: OK
+  StartAnimation: OK Duration=400ms 0→100
+  WGC n=54 τ=24ms min=0.0 max=100.0 overshoot=False undershoot=False
+  soft honor peak=100.0 min=0.0; RMS_honor=0.41 RMS_clamp=0.41 → IN_RANGE baseline RMS_honor=0.41
+----- [y_out_-0.5_1.5] control=(0.2,-0.5)-(0.8,1.5) -----
+  CreateCubicBezierEasingFunction: OK
+  StartAnimation: OK Duration=400ms 0→100
+  WGC n=55 τ=16ms min=-8.0 max=108.0 overshoot=True undershoot=True
+  soft honor peak=108.1 min=-8.1; RMS_honor=0.72 RMS_clamp=10.11 → HONOR (WGC matches unclamped BezierEase; overshoot/undershoot visible)
+----- [y_out_1.4_1.2] control=(0.4,1.4)-(0.6,1.2) -----
+  CreateCubicBezierEasingFunction: OK
+  StartAnimation: OK Duration=400ms 0→100
+  WGC n=55 τ=24ms min=0.0 max=114.1 overshoot=True undershoot=False
+  soft honor peak=114.1 min=0.0; RMS_honor=0.56 RMS_clamp=15.27 → HONOR (WGC matches unclamped BezierEase; overshoot/undershoot visible)
+===== SUMMARY =====
+| case | create | start | minX | maxX | RMS_honor | RMS_clamp | verdict |
+| in_range | ok | ok | 0.0 | 100.0 | 0.41 | 0.41 | IN_RANGE baseline RMS_honor=0.41 |
+| y_out_-0.5_1.5 | ok | ok | -8.0 | 108.0 | 0.72 | 10.11 | HONOR (WGC matches unclamped BezierEase; overshoot/undershoot visible) |
+| y_out_1.4_1.2 | ok | ok | 0.0 | 114.1 | 0.56 | 15.27 | HONOR (WGC matches unclamped BezierEase; overshoot/undershoot visible) |
+CONCLUSION: HONOR. RECOMMEND enable Capabilities::bezierOvershoot=true (API honors y∉[0,1]; WGC shows overshoot).
+===== K2 PROBE DONE =====

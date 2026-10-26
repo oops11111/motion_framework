@@ -1,0 +1,39 @@
+# p15_51_part1.txt — Part1 live fine-grid + A1b re-crop
+# source=p15_51_part1_raw.txt; composition.h sha256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418 (unchanged)
+# N_h t060rev=0.41; A1a gate=IV-rezero+seeded RMS (p51_a); eff_adv=δ0−δ_rest
+
+## 定义（与探针/p50 一致）
+- ε: 叠加最佳延迟 ms；e: ε̂−ε_fit；J: |x−model| at interrupt；Δv_fd: |v_fd−v_model|；resid: x−model
+- c: ε≈c−φ 截距；effective advance: fitted_shift−commanded_τ0，fitted_shift=δ0−δ(τ0)（rest-start）
+
+## A1a 细网格（F=帧倍数≈16.7，N=非倍数）
+| τ0 | n | RMS中位 | ≤N_h | δ_rest中位 | eff_adv | fitted_shift−τ0 |
+| 0.0F | 5 | 0.232 | PASS | 39.5 | 0.0 | +0.0 |
+| 3.3N | 5 | 1.323 | FAIL | 38.5 | 1.0 | -2.3 |
+| 6.8N | 5 | 1.342 | FAIL | 30.5 | 9.0 | +2.2 |
+| 8.3N | 5 | 1.382 | FAIL | 28.5 | 11.0 | +2.7 |
+| 10.0N | 5 | 0.207 | PASS | 29.0 | 10.5 | +0.5 |
+| 13.3N | 5 | 0.167 | PASS | 24.0 | 15.5 | +2.2 |
+| 16.7F | 5 | 0.170 | PASS | 19.5 | 20.0 | +3.3 |
+| 21.8N | 5 | 0.183 | PASS | 10.0 | 29.5 | +7.7 |
+| 25.0N | 5 | 0.137 | PASS | 5.0 | 34.5 | +9.5 |
+| 28.4N | 5 | 0.167 | PASS | 7.0 | 32.5 | +4.1 |
+| 33.3F | 5 | 1.739 | FAIL | 0.0 | 39.5 | +6.2 |
+| 36.7N | 5 | 0.121 | PASS | 0.0 | 39.5 | +2.8 |
+| 41.7N | 5 | 0.127 | PASS | 0.0 | 39.5 | -2.2 |
+| 45.0N | 5 | 0.159 | PASS | 0.0 | 39.5 | -5.5 |
+| 50.0F | 5 | 0.118 | PASS | 0.0 | 39.5 | -10.5 |
+- δ0(τ0=0)=39.5 ms
+- A1a 闸门: **FAIL** FAIL_τ0=[3.3, 6.8, 8.3, 33.3]
+- 未饱和格 eff−τ0 中位=+2.7 ms（≈0 → 有效超前≈指令 τ0；≠0 → 标定偏置）
+
+## A1b 重裁剪（origin=220 for −Δ）
+| amp | origin | n | RMS中位 | max|err| | offscreen | ≤N_h |
+| 120 | 0 | 5 | 0.171 | 0.482 | False | PASS |
+| 240 | 0 | 5 | 0.177 | 0.663 | False | PASS |
+| -240 | 220 | 5 | 0.235 | 0.649 | False | PASS |
+| -120 | 220 | 5 | 0.154 | 0.554 | False | PASS |
+- A1b 闸门: **PASS**（−Δ 留在画面内，符号线性可测）
+
+## ONELINE Part1
+Part1有效超前=δ0=39.5ms; eff−τ0[3:-2.3,7:+2.2,8:+2.7,10:+0.5,13:+2.2,17:+3.3,22:+7.7,25:+9.5,28:+4.1,33:+6.2,37:+2.8]; A1a=FAIL[3.3, 6.8, 8.3, 33.3]; A1b=PASS; 定义=ε/e/J/Δv_fd/resid/c 已写

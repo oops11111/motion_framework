@@ -1,0 +1,25 @@
+# win_rate_fold_probe.txt — 派题 #24 spring rate-fold: rate=1 baseline vs rate=2 fold (same session)
+# wall=2026-10-20 15:16:58 Asia/Taipei; OS=10.0.19045.0
+# Common: Translation.X 0→240 ζ=0.78 v0=400 DIP/s; align=best-τ vs spring.h (same as #13/#15); NO composition.h change
+# A rate=1: Period=0.32 IVel=v0 vs spring.h x(t)
+# B rate=2: Period=0.16 IVel=2·v0 vs spring.h x(2·t) with base (Period=0.32,v0)
+# Window: content time after τ in [0.02, 0.50] logical (B: wall tc with 2·tc in that range for primary compare; also report wall [0.02,0.50] vs x(2t))
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.488 cx37=137.488 pxPerDip=1.0000
+spring.h fold-identity max|x(2t;P=0.32,v0)-x(t;P=0.16,2v0)|=0.0000 (expect ~0)
+----- [A_rate1] Period=0.32 IVel=400 model=spring.h(P=0.32,v0=400) at 1·t -----
+  START qpc=6231886395677
+  align τ=292ms n=29 RMS=50.26 DIP (20.94% travel) max|err|=75.03 travelFrac=1.021
+  samples: t=31 wgc=115.0 soft=40.0; t=98 wgc=137.5 soft=164.7; t=164 wgc=157.5 soft=228.9; t=231 wgc=174.5 soft=244.3; t=298 wgc=189.5 soft=243.6; t=364 wgc=202.5 soft=241.2
+----- [B_rate2] Period=0.16 IVel=800 model=spring.h(P=0.32,v0=400) at 2·t -----
+  START qpc=6231973514429
+  align τ=234ms n=14 RMS=34.50 DIP (14.38% travel) max|err|=81.79 travelFrac=1.025
+  samples: t=26 wgc=163.5 soft=81.7; t=59 wgc=180.5 soft=191.8; t=92 wgc=194.5 soft=237.0; t=126 wgc=206.5 soft=244.8; t=159 wgc=216.5 soft=242.8; t=192 wgc=224.5 soft=240.7
+===== SUMMARY =====
+| case | Period | IVel | τ_ms | RMS | max|err| | %travel | n |
+| A rate=1 | 0.32 | 400 | 292 | 50.26 | 75.03 | 20.94 | 29 |
+| B rate=2 | 0.16 | 800 | 234 | 34.50 | 81.79 | 14.38 | 14 |
+Δ = RMS_B − RMS_A = -15.76 DIP
+CONCLUSION: 同量级（Δ < ½·RMS_A） — RMS_A=50.26 (20.9%) RMS_B=34.50 (14.4%) Δ=-15.76. Align=best-τ vs spring.h base(P=0.32,v0=400); B uses x(2·t). Formula/gate UNCHANGED; product still prefer default rate=1.
+===== RATE FOLD PROBE DONE =====

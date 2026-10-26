@@ -1,0 +1,25 @@
+# win_harness_noise_probe.txt — 派题 #30 harness floor: 0.25s linear KeyFrame vs ideal line
+# wall=2026-10-20 15:45:27 Asia/Taipei; OS=10.0.19045.0
+# Align=best-τ (scan 0..300ms step 2) vs ideal x(t)=240*(t/Dur) clamp t∈[0,Dur]; same WGC+cal as #13/#24
+# A Duration=0.25s + CreateLinearEasingFunction 0→240; B 0.32s same; compare %travel to spring residual band 12–28%
+# NO composition.h change
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.481 cx37=137.481 pxPerDip=1.0000
+----- [A_0.25s] Duration=250ms linear 0→240 -----
+  START
+  align best-τ=24ms n=15 RMS=1.637 DIP (0.682% travel) max|err|=3.11 (1.29%)
+  WGC range min=0.0 max=240.0
+  samples: t=3 wgc=0.0 ideal=2.6; t=37 wgc=32.5 ideal=35.4; t=70 wgc=65.5 ideal=66.8; t=103 wgc=98.0 ideal=99.0; t=137 wgc=130.5 ideal=131.6; t=170 wgc=163.5 ideal=162.9
+----- [B_0.32s] Duration=320ms linear 0→240 -----
+  START
+  align best-τ=24ms n=20 RMS=1.281 DIP (0.534% travel) max|err|=2.47 (1.03%)
+  WGC range min=0.0 max=240.0
+  samples: t=2 wgc=0.0 ideal=1.8; t=53 wgc=38.5 ideal=39.8; t=103 wgc=76.5 ideal=77.0; t=153 wgc=114.5 ideal=114.6; t=203 wgc=153.0 ideal=152.1; t=253 wgc=191.5 ideal=189.6
+===== SUMMARY =====
+| case | Dur_ms | τ_ms | n | RMS | max|err| | %travel |
+| A 0.25s | 250 | 24 | 15 | 1.637 | 3.11 | 0.682 |
+| B 0.32s | 320 | 24 | 20 | 1.281 | 2.47 | 0.534 |
+spring inherent residual band (prior probes): 12–28% travel
+CONCLUSION: 底噪 << 固有残差 — A(0.25s) RMS=1.637 (0.682% travel) max|err|=3.11; B(0.32s) RMS=1.281 (0.534%); spring band 12–28%.
+===== HARNESS NOISE PROBE DONE =====

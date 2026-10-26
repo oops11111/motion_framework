@@ -1,0 +1,1008 @@
+# win_m10_align_fix_log.txt — 派题 #10
+# 2026-10-20 09:0x Asia/Taipei, screen on. Build 0/0, continuity 13/0. Thresholds NOT relaxed.
+#
+# |WGC−shadow| BEFORE (same-wallclock at interrupt): ~220 DIP
+# |WGC−seed| AFTER (--align catch-up): 0.12–0.16 DIP  ✓ single digits
+# Suite --measure: catch-up failed (peak X=24 vs seed=224) — blocker; §4 still mostly miss
+#
+# TryGet: NaturalMotion always null (by design / KeyFrame-only). KeyFrame+CreateAnimationController+3-arg Start → TryGet non-null Progress/PlaybackRate.
+#
+
+===== --align (verification) =====
+14.381ms 派题 #8 MotionSoftDemo (pid 2712); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 09:10:36.497; OS=10.0.19045.0; QPC freq=10000000
+20.942ms load_tokens ok
+36.289ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+40.607ms ALIGN probe requested (--align); starts in 800 ms
+48.999ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+50.101ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+865.225ms ===== ALIGN PROBE START (one interrupt; shadow vs controller vs WGC) =====
+993.156ms ALIGN WGC start hr=0x00000000 hwnd=0x1C60698
+996.589ms MODE -> 合成器路径 (align probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+997.000ms COMP reset[align rest] StopAnimation + Translation.X:=0.0000
+1044.868ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1722.956ms COMP reset[align cal 37] StopAnimation + Translation.X:=37.0000
+2134.967ms ALIGN cal: cx0=100.486 cx37=137.486 pxPerDip=1.0000 (scale=1.000)
+2135.019ms COMP reset[align cal end] StopAnimation + Translation.X:=0.0000
+2449.633ms ALIGN rest cx0 refreshed=100.486; render ticks so far=49 wgc=87
+2450.899ms ALIGN T0 StartAnimation impending: sw=2449.638ms qpc=6012055923805 shadow v=0.0000 vel=0.0000 controller=null
+2461.248ms COMP spring [ALIGN B1: 0->240] gen=1 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=6012056027929 TryGet=null [NaturalMotion: controller unsupported]
+2461.261ms ALIGN T0+ StartAnimation returned: sw=2461.250ms qpc=6012056039924 Δsw=11.612ms controller=null
+2625.317ms ALIGN T1 interrupt impending: sw=2621.938ms qpc=6012057646793 elapsed_since_start=172.299ms
+2625.328ms ALIGN T1 shadow (spring.h seed): value=229.6313 vel=482.6058  << InitialValue/InitialVelocity
+2625.329ms ALIGN T1 controller: null
+2625.336ms ALIGN T1 nearest WGC by drain-Now: cx=105.986 dip=5.500 drainSw=2591.760 srtMs=601205736.235 qpcArrive=6012057218873 |Δsw_to_int|=30.177ms
+2625.339ms ALIGN T1 latest WGC: cx=105.986 dip=5.500 drainSw=2591.760 |Δsw_to_int|=30.177ms
+2625.342ms ALIGN T1 |WGC_DIP - shadow| (nearest, same-wallclock) = 224.131 DIP  [raw lag; expected large]
+2625.343ms ALIGN T1 |WGC_DIP - shadow| (latest, same-wallclock)  = 224.131 DIP
+2630.275ms ALIGN T1 QPC-aligned frame: tFr=52.9ms WGC_dip=0.038 shadow_at_tFr=74.503 |Δ|=74.465 DIP
+2630.288ms ALIGN T1 QPC-aligned frame: tFr=69.3ms WGC_dip=0.500 shadow_at_tFr=107.527 |Δ|=107.027 DIP
+2630.293ms ALIGN T1 QPC-aligned frame: tFr=85.8ms WGC_dip=1.528 shadow_at_tFr=138.254 |Δ|=136.726 DIP
+2630.302ms ALIGN T1 QPC-aligned frame: tFr=103.0ms WGC_dip=3.484 shadow_at_tFr=166.201 |Δ|=162.716 DIP
+2630.305ms ALIGN T1 QPC-aligned frame: tFr=119.1ms WGC_dip=5.500 shadow_at_tFr=187.846 |Δ|=182.346 DIP
+2630.571ms COMP spring [ALIGN B2: interrupt -> 0] gen=2 -> 0.0000 InitialValue=233.3557 InitialVelocity=396.1780 Period=0.32s DampingRatio=0.78 shadowSettle=0.6306s qpc=6012057732746 TryGet=null [NaturalMotion: controller unsupported]
+2630.578ms ALIGN T1+ Retarget returned: sw=2630.572ms qpc=6012057733145 Δsw=8.635ms controller=null seeded InitialValue=233.3557 InitialVelocity=396.1780
+3050.412ms ALIGN render ticks around [start-20, int+200]: n=13
+3050.770ms ALIGN RENDER sw=2434.243 qpc=6012055769845 relStart=-15.395 relInt=-187.695
+3050.773ms ALIGN RENDER sw=2465.207 qpc=6012056079490 relStart=15.569 relInt=-156.731
+3050.777ms ALIGN RENDER sw=2497.274 qpc=6012056400156 relStart=47.636 relInt=-124.663
+3050.781ms ALIGN RENDER sw=2528.777 qpc=6012056715190 relStart=79.139 relInt=-93.160
+3050.784ms ALIGN RENDER sw=2560.873 qpc=6012057036143 relStart=111.234 relInt=-61.065
+3050.788ms ALIGN RENDER sw=2591.758 qpc=6012057344999 relStart=142.120 relInt=-30.180
+3050.791ms ALIGN RENDER sw=2630.881 qpc=6012057736228 relStart=181.243 relInt=8.943
+3050.803ms ALIGN RENDER sw=2653.861 qpc=6012057966026 relStart=204.223 relInt=31.923
+3050.805ms ALIGN RENDER sw=2685.293 qpc=6012058280344 relStart=235.654 relInt=63.355
+3050.811ms ALIGN RENDER sw=2716.703 qpc=6012058594452 relStart=267.065 relInt=94.766
+3050.825ms ALIGN RENDER sw=2747.972 qpc=6012058907133 relStart=298.333 relInt=126.034
+3050.828ms ALIGN RENDER sw=2778.632 qpc=6012059213737 relStart=328.994 relInt=156.694
+3050.830ms ALIGN RENDER sw=2809.610 qpc=6012059523519 relStart=359.972 relInt=187.672
+3051.154ms ALIGN WGC frames around [start-50, int+250]: n=30
+3051.167ms ALIGN WGC swDrain=2402.816 srtMs=601205536.315 qpcArrive=6012055220383 cx=100.486 dip=0.000 |dip-shadowAtInt|=229.631 skewDrainToInt=-219.121ms skewArriveQpcToInt=-242.641ms
+3051.172ms ALIGN WGC swDrain=2402.817 srtMs=601205552.978 qpcArrive=6012055384207 cx=100.486 dip=0.000 |dip-shadowAtInt|=229.631 skewDrainToInt=-219.121ms skewArriveQpcToInt=-226.259ms
+3051.177ms ALIGN WGC swDrain=2434.245 srtMs=601205569.631 qpcArrive=6012055552626 cx=100.486 dip=0.000 |dip-shadowAtInt|=229.631 skewDrainToInt=-187.692ms skewArriveQpcToInt=-209.417ms
+3051.182ms ALIGN WGC swDrain=2434.246 srtMs=601205586.304 qpcArrive=6012055720942 cx=100.486 dip=0.000 |dip-shadowAtInt|=229.631 skewDrainToInt=-187.692ms skewArriveQpcToInt=-192.585ms
+3051.193ms ALIGN WGC swDrain=2465.209 srtMs=601205602.951 qpcArrive=6012055887208 cx=100.486 dip=0.000 |dip-shadowAtInt|=229.631 skewDrainToInt=-156.728ms skewArriveQpcToInt=-175.958ms
+3051.198ms ALIGN WGC swDrain=2465.209 srtMs=601205619.625 qpcArrive=6012056053286 cx=100.486 dip=0.000 |dip-shadowAtInt|=229.631 skewDrainToInt=-156.728ms skewArriveQpcToInt=-159.351ms
+3051.202ms ALIGN WGC swDrain=2497.817 srtMs=601205636.318 qpcArrive=6012056219174 cx=100.486 dip=0.000 |dip-shadowAtInt|=229.631 skewDrainToInt=-124.120ms skewArriveQpcToInt=-142.762ms
+3051.207ms ALIGN WGC swDrain=2497.818 srtMs=601205652.956 qpcArrive=6012056387313 cx=100.486 dip=0.000 |dip-shadowAtInt|=229.631 skewDrainToInt=-124.120ms skewArriveQpcToInt=-125.948ms
+3051.213ms ALIGN WGC swDrain=2528.780 srtMs=601205669.648 qpcArrive=6012056556954 cx=100.523 dip=0.038 |dip-shadowAtInt|=229.594 skewDrainToInt=-93.157ms skewArriveQpcToInt=-108.984ms
+3051.220ms ALIGN WGC swDrain=2560.876 srtMs=601205686.301 qpcArrive=6012056721428 cx=100.986 dip=0.500 |dip-shadowAtInt|=229.131 skewDrainToInt=-61.062ms skewArriveQpcToInt=-92.537ms
+3051.225ms ALIGN WGC swDrain=2560.876 srtMs=601205702.919 qpcArrive=6012056885977 cx=102.014 dip=1.528 |dip-shadowAtInt|=228.103 skewDrainToInt=-61.061ms skewArriveQpcToInt=-76.082ms
+3051.230ms ALIGN WGC swDrain=2591.760 srtMs=601205719.624 qpcArrive=6012057058005 cx=103.970 dip=3.484 |dip-shadowAtInt|=226.147 skewDrainToInt=-30.177ms skewArriveQpcToInt=-58.879ms
+3051.235ms ALIGN WGC swDrain=2591.760 srtMs=601205736.235 qpcArrive=6012057218873 cx=105.986 dip=5.500 |dip-shadowAtInt|=224.131 skewDrainToInt=-30.177ms skewArriveQpcToInt=-42.792ms
+3051.244ms ALIGN WGC swDrain=2630.883 srtMs=601205752.927 qpcArrive=6012057385515 cx=108.961 dip=8.475 |dip-shadowAtInt|=221.156 skewDrainToInt=8.945ms skewArriveQpcToInt=-26.128ms
+3051.249ms ALIGN WGC swDrain=2630.883 srtMs=601205769.577 qpcArrive=6012057552876 cx=111.966 dip=11.481 |dip-shadowAtInt|=218.150 skewDrainToInt=8.945ms skewArriveQpcToInt=-9.392ms
+3051.254ms ALIGN WGC swDrain=2630.883 srtMs=601205786.220 qpcArrive=6012057718745 cx=114.981 dip=14.495 |dip-shadowAtInt|=215.136 skewDrainToInt=8.945ms skewArriveQpcToInt=7.195ms
+3051.265ms ALIGN WGC swDrain=2653.864 srtMs=601205802.902 qpcArrive=6012057887401 cx=118.962 dip=18.476 |dip-shadowAtInt|=211.155 skewDrainToInt=31.927ms skewArriveQpcToInt=24.061ms
+3051.270ms ALIGN WGC swDrain=2685.295 srtMs=601205819.565 qpcArrive=6012058051298 cx=333.962 dip=233.476 |dip-shadowAtInt|=3.845 skewDrainToInt=63.357ms skewArriveQpcToInt=40.450ms
+3051.275ms ALIGN WGC swDrain=2685.295 srtMs=601205836.251 qpcArrive=6012058218366 cx=336.443 dip=235.957 |dip-shadowAtInt|=6.326 skewDrainToInt=63.357ms skewArriveQpcToInt=57.157ms
+3051.280ms ALIGN WGC swDrain=2716.706 srtMs=601205852.906 qpcArrive=6012058385933 cx=341.970 dip=241.484 |dip-shadowAtInt|=11.853 skewDrainToInt=94.768ms skewArriveQpcToInt=73.914ms
+3051.286ms ALIGN WGC swDrain=2716.706 srtMs=601205869.558 qpcArrive=6012058554690 cx=346.493 dip=246.007 |dip-shadowAtInt|=16.376 skewDrainToInt=94.768ms skewArriveQpcToInt=90.790ms
+3051.291ms ALIGN WGC swDrain=2747.974 srtMs=601205886.230 qpcArrive=6012058719557 cx=349.973 dip=249.487 |dip-shadowAtInt|=19.856 skewDrainToInt=126.037ms skewArriveQpcToInt=107.276ms
+3051.296ms ALIGN WGC swDrain=2747.974 srtMs=601205902.873 qpcArrive=6012058885302 cx=352.535 dip=252.050 |dip-shadowAtInt|=22.419 skewDrainToInt=126.037ms skewArriveQpcToInt=123.851ms
+3051.301ms ALIGN WGC swDrain=2778.635 srtMs=601205919.532 qpcArrive=6012059051405 cx=354.455 dip=253.969 |dip-shadowAtInt|=24.338 skewDrainToInt=156.697ms skewArriveQpcToInt=140.461ms
+3051.307ms ALIGN WGC swDrain=2809.612 srtMs=601205936.234 qpcArrive=6012059221196 cx=355.021 dip=254.536 |dip-shadowAtInt|=24.905 skewDrainToInt=187.675ms skewArriveQpcToInt=157.440ms
+3051.312ms ALIGN WGC swDrain=2809.613 srtMs=601205952.835 qpcArrive=6012059385883 cx=355.486 dip=255.000 |dip-shadowAtInt|=25.369 skewDrainToInt=187.675ms skewArriveQpcToInt=173.909ms
+3051.317ms ALIGN WGC swDrain=2841.734 srtMs=601205969.500 qpcArrive=6012059553329 cx=354.981 dip=254.495 |dip-shadowAtInt|=24.864 skewDrainToInt=219.796ms skewArriveQpcToInt=190.654ms
+3051.322ms ALIGN WGC swDrain=2841.734 srtMs=601205986.165 qpcArrive=6012059718329 cx=353.970 dip=253.484 |dip-shadowAtInt|=23.853 skewDrainToInt=219.796ms skewArriveQpcToInt=207.154ms
+3051.336ms ALIGN WGC swDrain=2873.263 srtMs=601206002.823 qpcArrive=6012059886314 cx=352.014 dip=251.528 |dip-shadowAtInt|=21.897 skewDrainToInt=251.326ms skewArriveQpcToInt=223.952ms
+3051.343ms ALIGN WGC swDrain=2873.264 srtMs=601206019.494 qpcArrive=6012060054737 cx=349.981 dip=249.496 |dip-shadowAtInt|=19.865 skewDrainToInt=251.326ms skewArriveQpcToInt=240.794ms
+3051.348ms ALIGN clock spans over window: ΔStopwatch=470.447ms ΔSRT=483.178ms ΔqpcArrive=483.435ms |ΔSRT-ΔSW|=12.731 |Δqpc-ΔSW|=12.988
+3052.023ms ALIGN T2 +400ms: shadow v=-0.3766 vel=13.0206 WGC dip=213.053 |WGC-shadow|=213.430 controller=null
+3057.492ms ALIGN T1 catch-up: first WGC near seed at +63.4ms drain; dip=233.476 seed=233.356 |dip-seed|=0.120; QPC-aligned |dip-shadow(t)|=25.371 DIP (goal: single digits)
+3057.494ms ALIGN ROOTCAUSE =====
+3057.496ms ALIGN ROOTCAUSE interrupt |WGC_DIP - shadow_seed| same-wallclock = 224.131 DIP (lag artifact); see QPC-aligned / catch-up lines for true error
+3057.497ms ALIGN ROOTCAUSE controller readable = null (no mid-flight value API; Progress only if controller non-null)
+3057.498ms ALIGN ROOTCAUSE time skew latestWgcDrain-vs-interrupt = -30.177 ms; 1–3 WGC frames of capture latency → §4.1 p50≈44ms
+3057.500ms ALIGN ROOTCAUSE final-value: last WGC dip=213.053 vs target 0 → |err|=213.053 (suite §4.4 saw 4.53px)
+3057.501ms ALIGN ROOTCAUSE RMS: suite traj pairs WGC.SRT with Qpc100ns(CompStart.Qpc) as absolute times — if epochs differ, curve is time-shifted → high RMS; see ΔSRT vs ΔSW spans
+3057.502ms ALIGN ROOTCAUSE Rendering ~31ms is UI-thread throttle only; compositor+WGC are 60Hz; software path should use engine clock. Not a #5 failure.
+3057.503ms ===== ALIGN PROBE DONE =====
+3925.747ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=1 unsubs=1; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+3950.462ms SHUTDOWN reason=Page.Unloaded: already done -> no-op
+
+===== --measure =====
+15.885ms 派题 #8 MotionSoftDemo (pid 46044); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 09:12:00.110; OS=10.0.19045.0; QPC freq=10000000
+22.886ms load_tokens ok
+38.875ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+43.917ms AUTORUN requested (launch arg --measure); suite starts in 1500 ms
+52.156ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+53.120ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+1054.285ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1560.451ms ===== SUITE START (autorun: launch arg --measure) =====
+1562.755ms SUITE focus: ShowWindow(SW_RESTORE)+SetForegroundWindow(hwnd=0x2030520) ok
+6566.771ms DWMFLUSH probe: calls=300 total=4984.4 ms lastHr=0x00000000 fails=0 interval mean=16.615 min=3.517 p50=16.671 p95=17.072 max=18.006 ms
+6566.780ms DWMFLUSH verdict: ≈60Hz vsync | timer tiers k*15.625±1.0 (k=1,2): k1=40.7% k2=0.0% total=40.7% | vsync 1000/60.020=16.661±1.0 ms: 97.3%, p95=17.072 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+6569.325ms DWMFLUSH raw intervals ms: 3.517,17.917,15.910,16.894,17.212,16.824,16.734,16.232,16.247,16.844,16.639,15.473,16.812,17.459,15.856,16.434,18.006,15.522,16.584,16.962,16.172,17.212,16.322,16.346,16.884,16.527,16.957,16.136,16.878,16.606,16.836,16.721,16.790,16.798,16.448,16.538,16.844,16.346,17.106,16.391,16.706,16.654,16.491,16.569,16.843,17.362,16.120,16.349,16.667,16.678,16.884,16.410,16.952,16.479,16.826,16.523,16.674,16.677,16.510,16.786,16.561,16.888,16.694,16.518,16.974,16.708,16.459,16.649,16.582,16.768,16.730,16.498,16.461,16.777,16.762,16.621,16.597,16.632,16.730,16.868,16.559,16.436,16.463,16.612,16.884,16.706,16.663,16.629,16.835,16.217,16.823,16.811,16.806,16.667,16.490,16.643,16.777,16.756,16.300,16.824,16.847,17.265,15.836,16.517,16.709,16.755,16.740,16.741,16.684,16.538,16.629,16.549,16.511,16.776,16.844,16.496,16.662,16.511,16.633,16.827,16.527,16.885,16.592,16.712,16.762,16.596,16.670,16.686,17.045,16.438,16.890,16.340,16.649,16.591,16.550,16.703,17.082,16.605,16.288,16.719,16.651,16.569,16.615,17.140,16.297,16.754,16.538,16.900,16.257,16.676,16.751,16.735,16.787,16.689,16.488,16.764,16.670,16.566,16.767,16.748,16.478,16.810,16.474,16.575,16.700,16.704,16.856,16.424,16.814,16.419,16.741,16.733,17.067,16.561,16.230,16.742,16.637,16.668,16.561,16.700,16.741,16.893,16.584,16.671,16.379,16.944,16.569,16.863,16.734,16.507,16.819,16.372,16.658,16.550,16.703,16.829,16.740,16.505,16.698,16.471,16.962,16.567,17.263,15.947,16.651,16.852,16.458,16.663,16.814,16.451,16.728,16.743,16.693,16.755,16.369,16.802,16.515,16.797,16.870,16.317,16.994,16.975,16.327,16.609,16.540,17.673,15.884,16.762,16.369,16.582,16.781,16.611,16.816,16.428,16.672,16.967,16.361,16.692,16.601,16.867,16.663,16.710,16.879,16.355,16.682,16.689,16.655,16.438,16.842,16.630,16.851,16.589,16.178,16.688,17.802,15.485,17.397,16.463,16.748,16.014,16.924,16.861,16.580,16.955,16.527,16.570,16.492,16.520,16.953,16.489,17.020,16.329,16.981,16.311,16.721,16.571,16.804,16.407,16.854,16.645,16.677,16.733,16.697,16.403,16.795,16.738,16.631,16.517,16.559,16.695,16.883,16.802,16.609,17.140,17.072,15.822,16.472,16.555,16.841,16.383
+6693.706ms WGC CreateForWindow(hwnd=0x2030520) start hr=0x00000000 item=960x725 RasterizationScale=1
+6694.775ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=6012934573370 qpcCompose=6012934573370 cRefresh=3 cFrame=2 rateRefresh=60020/1000 | qpcNow=6012934500991 | WGC frames=0
+7702.250ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=6012944736796 qpcCompose=6012944736796 cRefresh=4 cFrame=3 rateRefresh=60020/1000 | qpcNow=6012944579730 | WGC frames=60
+8712.693ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=6012954733328 qpcCompose=6012954733328 cRefresh=5 cFrame=4 rateRefresh=60020/1000 | qpcNow=6012954684158 | WGC frames=121
+8714.465ms MODE -> 合成器路径 (suite): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+8716.158ms COMP reset[suite start] StopAnimation + Translation.X:=0.0000
+9116.768ms COMP reset[calibration] StopAnimation + Translation.X:=37.0000
+9520.293ms COMP reset[calibration end] StopAnimation + Translation.X:=0.0000
+9938.059ms COMP spring [A: S1 spring 0->240 from rest] gen=1 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=6012966919213 TryGet=null [NaturalMotion: controller unsupported]
+11943.058ms COMP reset[after A] StopAnimation + Translation.X:=0.0000
+12351.683ms COMP spring [B1: go 240] gen=2 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=6012991073560 TryGet=null [NaturalMotion: controller unsupported]
+12511.440ms COMP spring [B2: interrupt -> 0] gen=3 -> 0.0000 InitialValue=223.8541 InitialVelocity=605.6068 Period=0.32s DampingRatio=0.78 shadowSettle=0.6304s qpc=6012992671276 TryGet=null [NaturalMotion: controller unsupported]
+14023.258ms COMP reset[after B] StopAnimation + Translation.X:=0.0000
+14429.653ms COMP spring [E: rate=2 spring 0->240 (Period=response/2)] gen=4 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.16s DampingRatio=0.78 shadowSettle=0.3367s qpc=6013011853384 TryGet=null [NaturalMotion: controller unsupported]
+15642.315ms COMP reset[after E] StopAnimation + Translation.X:=0.0000
+16055.528ms COMP bezier controller: created Progress=0.0000 rate=1.0000; TryGet after Start=Progress=0.000000 PlaybackRate=1.0000
+16057.265ms COMP bezier [C: bezier enter 0->240 220ms] -> 240.0000 from(shadow)=0.0000 220ms qpc=6013028078104
+16284.969ms COMP bezier batch Completed Progress=Progress=0.000000 PlaybackRate=1.0000
+16297.591ms COMP bezier wait: completed=True waited=200ms Progress=Progress=0.000000 PlaybackRate=1.0000
+16702.521ms COMP reset[after C] StopAnimation + Translation.X:=0.0000
+17018.163ms COMP spring [H: go 240 then switch to software at 120 ms] gen=5 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=6013037738499 TryGet=null [NaturalMotion: controller unsupported]
+17141.627ms MODE -> 软件路径 (suite handoff): handoff from SHADOW value=192.5800 vel=1140.6267 (readback after StopAnimation=0.0000, |shadow-readback|=192.5800) ok=True sw value=0.0000 vel=0.0000 handoff|dv|=192.5800
+18349.718ms SW retarget[SW reset] -> 0.0000 ok=True before(value=240.0000 vel=0.0000) after(value=240.0000 vel=0.0000) |dv|=0.000E+000
+19256.229ms SW retarget[D1: SW go 240] -> 240.0000 ok=True before(value=0.0000 vel=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000
+19412.561ms SW retarget[D2: SW interrupt -> 0] -> 0.0000 ok=True before(value=209.7763 vel=868.1934) after(value=221.8695 vel=645.4419) |dv|=1.209E+001
+20626.008ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=6013073860646 qpcCompose=6013073860646 cRefresh=6 cFrame=5 rateRefresh=60020/1000 | qpcNow=6013073817383 | WGC frames=836
+20654.065ms REPORT ===== spec §4 acceptance (note: the dispatch said §6; the spec's acceptance table is §4) =====
+20654.067ms REPORT run validity: VALID
+20654.067ms REPORT   gate rule (coordinator ruling #7): INVALID if DWM cRefresh advance < 50% of rateRefresh x elapsed, or WGC box-found frames in motion windows < 50% of rateRefresh x motion time, or any compositor scenario shows box displacement < 10% of commanded travel (frozen-frames); frame-id gate only on OS build >= 22000
+20654.067ms REPORT   frame-id gate skipped: OS build 19045 < 22000
+20654.068ms REPORT   DWM gate: PASS via DwmFlush verdict=≈60Hz vsync (timerFrac=40.7% vsyncFrac=97.3% p95=17.072 ms); cRefresh evidence (UNRELIABLE on this OS): 3->6=+3 in 13.93s = 0.36% of expected 836.2 — NOT used for pass/fail
+20654.068ms REPORT   WGC gate: box-found frames in motion windows = 135 (all frames in windows 135); expected rateRefresh x motion time 60.020 x 1.975 s = 118.5; ratio 113.88% (threshold >= 50%) -> pass; run total WGC frames=836, box found in 836
+20654.069ms REPORT   frozen-frames gate (per scenario, each must reach >= 10% of commanded travel; px->DIP /RasterizationScale 1.00): [A] frames=43 disp=172.06 DIP / commanded 240.00 DIP = 71.69% -> pass; [B1] frames=16 disp=250.50 DIP / commanded 240.00 DIP = 104.38% -> pass; [B2] frames=44 disp=252.44 DIP / commanded 223.85 DIP = 112.77% -> pass; [E] frames=26 disp=190.99 DIP / commanded 240.00 DIP = 79.58% -> pass; [C] frames=36 disp=240.53 DIP / commanded 240.00 DIP = 100.22% -> pass -> pass
+20654.298ms REPORT   clock gate: frameId 0 -> 0 (hr 0x80004001); DWM cRefresh 3 -> 5 -> 6, cFrame 2 -> 4 -> 5, qpcVBlank 6012934573370 -> 6012954733328 -> 6013073860646; WGC frames total=836 (box visible in 836) over 13.9 s
+20654.948ms REPORT   calibration: rest cx=100.4768 px, at 37 DIP cx=137.4768 px -> 1.0000 px/DIP 
+20663.269ms REPORT 1 启动延迟 n=4 p50=34.07 ms p95=66.60 ms max=66.60 ms (阈值 p50<=33, p95<=50, max<=200)
+20665.577ms REPORT   catch-up fallback: peak X=23.9960 at +190.7ms (seed=223.8541); using 4 frames from peak
+20665.885ms REPORT 2 打断位置连续性 |Δv|=199.858 px (measured 23.9960 vs shadow 223.8541 DIP; catch-up after 190.7 ms arrive-lag; nSkip=487) (阈值 <=0.5 px)
+20665.889ms REPORT 3 打断速度连续性 |Δvel|=144.19 px/s (measured -26.15 vs shadow -170.34 DIP/s) (阈值 <=max(20 px/s, 5%|v|))
+20665.890ms REPORT   align check |WGC_DIP - shadow_seed| at first post-catchup frame: |23.9960 - 223.8541| = 199.858 DIP (goal: single digits)
+20665.960ms REPORT   seed at interrupt (shadow, spring.h): InitialValue=223.8541 InitialVelocity=605.6068 DIP/s at +159.5 ms after B1
+20683.124ms REPORT 4 终值误差 |v-target|=22.563 px at t∈[0.633,0.967] s n=21 (settle=0.628s; 阈值 <=0.5 px)
+20684.440ms REPORT 5 A spring 0.32/0.78 presentationLag≈200.0 ms (fit mid-travel WGC to spring.h)
+20687.207ms REPORT 5 轨迹偏差 A spring 0.32/0.78 n=73 RMS=32.137% max=65.892% of travel 240.0 (QPC-aligned; 阈值 RMS<=1%, max<=2%)
+20687.535ms REPORT 5 E spring rate=2 (Period 0.16) presentationLag≈180.0 ms (fit mid-travel WGC to spring.h)
+20687.577ms REPORT 5 轨迹偏差 E spring rate=2 (Period 0.16) n=60 RMS=18.200% max=50.343% of travel 240.0 (QPC-aligned; 阈值 RMS<=1%, max<=2%)
+20687.675ms REPORT 5 C bezier 220ms presentationLag≈0.0 ms (fit mid-travel WGC to spring.h)
+20688.047ms REPORT 5 轨迹偏差 C bezier 220ms n=30 RMS=104.716% max=170.716% of travel 240.0 (QPC-aligned; 阈值 RMS<=1%, max<=2%)
+20688.669ms REPORT 6 帧间隔(CompositionTarget.Rendering) n=448 p50=31.12 ms p95=32.05 ms mean=31.06 ms (阈值 p50<=18, p95<=25; 熄屏下无效)
+20688.904ms REPORT 7 稳定性: exceptions=0; suite Rendering subs=1 unsubs=1; mode switches 2/2 ok; SW Rendering subscribed now=False
+20688.906ms REPORT 8 熄屏: display awake (gate passed)
+20690.306ms REPORT S1 Period 判别 first peak at t=1.200 s x=242.53 -> damped period est 2.400 s (S1 undamped: 0.511 s; damped-interpretation: 0.320 s); RMS vs S1 model=77.129 DIP, vs damped model=85.230 DIP -> Period = UNDAMPED period (S1 holds)
+20690.309ms RAW WGC frames: 836
+20690.645ms RAW WGC srt_rel=0.000ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.648ms RAW WGC srt_rel=16.629ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.649ms RAW WGC srt_rel=33.382ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.650ms RAW WGC srt_rel=50.003ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.651ms RAW WGC srt_rel=66.635ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.652ms RAW WGC srt_rel=83.278ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.653ms RAW WGC srt_rel=99.959ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.654ms RAW WGC srt_rel=116.595ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.655ms RAW WGC srt_rel=133.253ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.656ms RAW WGC srt_rel=149.930ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.656ms RAW WGC srt_rel=166.664ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.657ms RAW WGC srt_rel=183.257ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.658ms RAW WGC srt_rel=199.947ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.661ms RAW WGC srt_rel=216.594ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.662ms RAW WGC srt_rel=233.253ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.663ms RAW WGC srt_rel=249.891ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.664ms RAW WGC srt_rel=266.589ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.665ms RAW WGC srt_rel=283.228ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.665ms RAW WGC srt_rel=299.896ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.666ms RAW WGC srt_rel=316.568ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.667ms RAW WGC srt_rel=333.248ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.668ms RAW WGC srt_rel=349.875ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.669ms RAW WGC srt_rel=366.606ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.669ms RAW WGC srt_rel=383.245ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.670ms RAW WGC srt_rel=399.922ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.671ms RAW WGC srt_rel=416.547ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.672ms RAW WGC srt_rel=433.227ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.673ms RAW WGC srt_rel=449.848ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.674ms RAW WGC srt_rel=466.543ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.674ms RAW WGC srt_rel=483.192ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.675ms RAW WGC srt_rel=499.834ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.676ms RAW WGC srt_rel=516.467ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.677ms RAW WGC srt_rel=533.136ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.678ms RAW WGC srt_rel=549.853ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.679ms RAW WGC srt_rel=566.474ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.679ms RAW WGC srt_rel=583.138ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.681ms RAW WGC srt_rel=599.781ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.682ms RAW WGC srt_rel=616.451ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.683ms RAW WGC srt_rel=633.120ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.684ms RAW WGC srt_rel=649.797ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.685ms RAW WGC srt_rel=666.470ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.686ms RAW WGC srt_rel=683.118ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.686ms RAW WGC srt_rel=699.821ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.687ms RAW WGC srt_rel=716.438ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.688ms RAW WGC srt_rel=733.093ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.689ms RAW WGC srt_rel=749.793ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.690ms RAW WGC srt_rel=766.456ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.691ms RAW WGC srt_rel=783.092ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.692ms RAW WGC srt_rel=799.766ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.692ms RAW WGC srt_rel=816.390ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.693ms RAW WGC srt_rel=833.112ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.694ms RAW WGC srt_rel=849.727ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.695ms RAW WGC srt_rel=866.369ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.696ms RAW WGC srt_rel=883.028ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.697ms RAW WGC srt_rel=899.701ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.697ms RAW WGC srt_rel=916.348ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.698ms RAW WGC srt_rel=933.015ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.699ms RAW WGC srt_rel=949.674ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.700ms RAW WGC srt_rel=966.360ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.705ms RAW WGC srt_rel=983.005ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.706ms RAW WGC srt_rel=999.669ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.707ms RAW WGC srt_rel=1016.346ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.708ms RAW WGC srt_rel=1032.980ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.709ms RAW WGC srt_rel=1049.674ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.710ms RAW WGC srt_rel=1066.305ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.711ms RAW WGC srt_rel=1082.945ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.712ms RAW WGC srt_rel=1099.636ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.712ms RAW WGC srt_rel=1116.273ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.713ms RAW WGC srt_rel=1132.944ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.714ms RAW WGC srt_rel=1149.669ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.715ms RAW WGC srt_rel=1166.289ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.716ms RAW WGC srt_rel=1182.960ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.717ms RAW WGC srt_rel=1199.643ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.717ms RAW WGC srt_rel=1216.252ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.718ms RAW WGC srt_rel=1232.928ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.719ms RAW WGC srt_rel=1249.640ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.720ms RAW WGC srt_rel=1266.242ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.721ms RAW WGC srt_rel=1282.899ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.722ms RAW WGC srt_rel=1299.565ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.723ms RAW WGC srt_rel=1316.213ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.724ms RAW WGC srt_rel=1332.897ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.725ms RAW WGC srt_rel=1349.558ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.726ms RAW WGC srt_rel=1366.261ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.727ms RAW WGC srt_rel=1382.875ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.728ms RAW WGC srt_rel=1399.560ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.729ms RAW WGC srt_rel=1416.188ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.729ms RAW WGC srt_rel=1432.858ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.730ms RAW WGC srt_rel=1449.509ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.731ms RAW WGC srt_rel=1466.163ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.732ms RAW WGC srt_rel=1482.844ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.733ms RAW WGC srt_rel=1499.491ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.734ms RAW WGC srt_rel=1516.197ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.734ms RAW WGC srt_rel=1532.860ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.735ms RAW WGC srt_rel=1549.498ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.736ms RAW WGC srt_rel=1566.143ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.737ms RAW WGC srt_rel=1582.789ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.738ms RAW WGC srt_rel=1599.461ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.739ms RAW WGC srt_rel=1616.120ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.739ms RAW WGC srt_rel=1632.804ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.740ms RAW WGC srt_rel=1649.468ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.741ms RAW WGC srt_rel=1666.128ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.742ms RAW WGC srt_rel=1682.748ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.743ms RAW WGC srt_rel=1699.441ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.744ms RAW WGC srt_rel=1716.098ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.745ms RAW WGC srt_rel=1732.769ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.746ms RAW WGC srt_rel=1749.449ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.747ms RAW WGC srt_rel=1766.102ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.748ms RAW WGC srt_rel=1782.725ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.749ms RAW WGC srt_rel=1799.455ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.750ms RAW WGC srt_rel=1816.113ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.750ms RAW WGC srt_rel=1832.729ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.751ms RAW WGC srt_rel=1849.390ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.752ms RAW WGC srt_rel=1866.044ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.753ms RAW WGC srt_rel=1882.720ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.754ms RAW WGC srt_rel=1899.391ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.755ms RAW WGC srt_rel=1916.063ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.755ms RAW WGC srt_rel=1932.682ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.756ms RAW WGC srt_rel=1949.333ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.757ms RAW WGC srt_rel=1966.013ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.758ms RAW WGC srt_rel=1982.682ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.759ms RAW WGC srt_rel=1999.322ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.760ms RAW WGC srt_rel=2015.984ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.760ms RAW WGC srt_rel=2032.660ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.761ms RAW WGC srt_rel=2049.327ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.762ms RAW WGC srt_rel=2065.963ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.763ms RAW WGC srt_rel=2082.634ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.764ms RAW WGC srt_rel=2099.294ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.766ms RAW WGC srt_rel=2115.949ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.766ms RAW WGC srt_rel=2132.614ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.767ms RAW WGC srt_rel=2149.291ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.768ms RAW WGC srt_rel=2165.999ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.769ms RAW WGC srt_rel=2182.618ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.770ms RAW WGC srt_rel=2199.262ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.771ms RAW WGC srt_rel=2215.935ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.771ms RAW WGC srt_rel=2232.604ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.772ms RAW WGC srt_rel=2249.249ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.773ms RAW WGC srt_rel=2265.897ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.774ms RAW WGC srt_rel=2282.572ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.775ms RAW WGC srt_rel=2299.278ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.775ms RAW WGC srt_rel=2315.941ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.776ms RAW WGC srt_rel=2332.568ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.777ms RAW WGC srt_rel=2349.226ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.778ms RAW WGC srt_rel=2365.885ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.779ms RAW WGC srt_rel=2382.562ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.780ms RAW WGC srt_rel=2399.210ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.781ms RAW WGC srt_rel=2415.851ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.781ms RAW WGC srt_rel=2432.575ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.782ms RAW WGC srt_rel=2449.235ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.783ms RAW WGC srt_rel=2465.875ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.784ms RAW WGC srt_rel=2482.514ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.786ms RAW WGC srt_rel=2499.226ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.788ms RAW WGC srt_rel=2515.863ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.789ms RAW WGC srt_rel=2532.488ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.789ms RAW WGC srt_rel=2549.164ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.790ms RAW WGC srt_rel=2565.826ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.791ms RAW WGC srt_rel=2582.475ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.792ms RAW WGC srt_rel=2599.133ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.793ms RAW WGC srt_rel=2615.791ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.794ms RAW WGC srt_rel=2632.456ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.795ms RAW WGC srt_rel=2649.120ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.795ms RAW WGC srt_rel=2665.765ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.796ms RAW WGC srt_rel=2682.441ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.797ms RAW WGC srt_rel=2699.129ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.798ms RAW WGC srt_rel=2715.772ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.799ms RAW WGC srt_rel=2732.427ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.800ms RAW WGC srt_rel=2749.106ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.801ms RAW WGC srt_rel=2765.759ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.802ms RAW WGC srt_rel=2782.441ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.802ms RAW WGC srt_rel=2799.079ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.803ms RAW WGC srt_rel=2815.761ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.804ms RAW WGC srt_rel=2832.411ms size=960x725 box_px=[78,197] n=14061 cx=137.477
+20690.805ms RAW WGC srt_rel=2849.087ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.806ms RAW WGC srt_rel=2865.773ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.807ms RAW WGC srt_rel=2882.368ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.808ms RAW WGC srt_rel=2899.044ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.809ms RAW WGC srt_rel=2915.709ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.810ms RAW WGC srt_rel=2932.414ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.811ms RAW WGC srt_rel=2949.038ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.812ms RAW WGC srt_rel=2965.699ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.812ms RAW WGC srt_rel=2982.352ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.813ms RAW WGC srt_rel=2999.047ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.814ms RAW WGC srt_rel=3015.665ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.815ms RAW WGC srt_rel=3032.335ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.816ms RAW WGC srt_rel=3049.002ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.817ms RAW WGC srt_rel=3065.696ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.818ms RAW WGC srt_rel=3082.302ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.819ms RAW WGC srt_rel=3098.972ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.819ms RAW WGC srt_rel=3115.615ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.820ms RAW WGC srt_rel=3132.292ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.821ms RAW WGC srt_rel=3148.953ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.822ms RAW WGC srt_rel=3165.606ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.823ms RAW WGC srt_rel=3182.281ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.823ms RAW WGC srt_rel=3198.943ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.824ms RAW WGC srt_rel=3215.645ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.825ms RAW WGC srt_rel=3232.265ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.826ms RAW WGC srt_rel=3248.956ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.828ms RAW WGC srt_rel=3265.594ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.828ms RAW WGC srt_rel=3282.262ms size=960x725 box_px=[41,160] n=14057 cx=100.514
+20690.829ms RAW WGC srt_rel=3298.920ms size=960x725 box_px=[42,160] n=13911 cx=101.008
+20690.830ms RAW WGC srt_rel=3315.586ms size=960x725 box_px=[43,161] n=13906 cx=102.009
+20690.831ms RAW WGC srt_rel=3332.255ms size=960x725 box_px=[45,163] n=13910 cx=103.987
+20690.832ms RAW WGC srt_rel=3348.887ms size=960x725 box_px=[47,165] n=13912 cx=106.003
+20690.833ms RAW WGC srt_rel=3365.612ms size=960x725 box_px=[50,168] n=13962 cx=108.952
+20690.834ms RAW WGC srt_rel=3382.210ms size=960x725 box_px=[53,171] n=13962 cx=111.960
+20690.835ms RAW WGC srt_rel=3398.883ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20690.835ms RAW WGC srt_rel=3415.585ms size=960x725 box_px=[60,178] n=13960 cx=118.967
+20690.836ms RAW WGC srt_rel=3432.203ms size=960x725 box_px=[64,182] n=13960 cx=122.967
+20690.837ms RAW WGC srt_rel=3448.851ms size=960x725 box_px=[68,186] n=13910 cx=126.987
+20690.838ms RAW WGC srt_rel=3465.517ms size=960x725 box_px=[72,191] n=14014 cx=131.452
+20690.839ms RAW WGC srt_rel=3482.175ms size=960x725 box_px=[77,195] n=13911 cx=135.999
+20690.840ms RAW WGC srt_rel=3498.888ms size=960x725 box_px=[82,200] n=13937 cx=140.975
+20690.841ms RAW WGC srt_rel=3515.506ms size=960x725 box_px=[87,205] n=13949 cx=145.978
+20690.841ms RAW WGC srt_rel=3532.198ms size=960x725 box_px=[92,210] n=13921 cx=150.984
+20690.842ms RAW WGC srt_rel=3548.797ms size=960x725 box_px=[97,215] n=13912 cx=156.003
+20690.843ms RAW WGC srt_rel=3565.469ms size=960x725 box_px=[102,221] n=14011 cx=161.440
+20690.844ms RAW WGC srt_rel=3582.129ms size=960x725 box_px=[108,226] n=13962 cx=166.952
+20690.845ms RAW WGC srt_rel=3598.801ms size=960x725 box_px=[113,231] n=13905 cx=172.004
+20690.846ms RAW WGC srt_rel=3615.446ms size=960x725 box_px=[118,237] n=14015 cx=177.456
+20690.847ms RAW WGC srt_rel=3632.131ms size=960x725 box_px=[124,242] n=13960 cx=182.967
+20690.849ms RAW WGC srt_rel=3648.788ms size=960x725 box_px=[129,247] n=13911 cx=188.008
+20690.849ms RAW WGC srt_rel=3665.452ms size=960x725 box_px=[134,253] n=14060 cx=193.473
+20690.850ms RAW WGC srt_rel=3682.161ms size=960x725 box_px=[140,258] n=13959 cx=198.980
+20690.851ms RAW WGC srt_rel=3698.776ms size=960x725 box_px=[145,263] n=13912 cx=204.003
+20690.852ms RAW WGC srt_rel=3715.438ms size=960x725 box_px=[150,268] n=13908 cx=209.016
+20690.853ms RAW WGC srt_rel=3732.148ms size=960x725 box_px=[155,274] n=14019 cx=214.463
+20690.854ms RAW WGC srt_rel=3748.781ms size=960x725 box_px=[160,279] n=14061 cx=219.498
+20690.855ms RAW WGC srt_rel=3765.469ms size=960x725 box_px=[165,284] n=14061 cx=224.484
+20690.856ms RAW WGC srt_rel=3782.075ms size=960x725 box_px=[170,289] n=14019 cx=229.463
+20690.856ms RAW WGC srt_rel=3798.779ms size=960x725 box_px=[175,293] n=13905 cx=234.005
+20690.857ms RAW WGC srt_rel=3815.401ms size=960x725 box_px=[180,298] n=13910 cx=238.987
+20690.858ms RAW WGC srt_rel=3832.116ms size=960x725 box_px=[184,303] n=14060 cx=243.502
+20690.859ms RAW WGC srt_rel=3848.774ms size=960x725 box_px=[189,307] n=13911 cx=247.999
+20690.860ms RAW WGC srt_rel=3865.372ms size=960x725 box_px=[193,312] n=14021 cx=252.471
+20690.861ms RAW WGC srt_rel=3882.059ms size=960x725 box_px=[198,316] n=13962 cx=256.960
+20690.862ms RAW WGC srt_rel=3898.749ms size=960x725 box_px=[202,320] n=13937 cx=260.975
+20690.862ms RAW WGC srt_rel=3915.363ms size=960x725 box_px=[206,324] n=13921 cx=264.984
+20690.863ms RAW WGC srt_rel=3932.015ms size=960x725 box_px=[210,328] n=13952 cx=268.978
+20690.864ms RAW WGC srt_rel=3948.696ms size=960x725 box_px=[213,332] n=14060 cx=272.534
+20690.865ms RAW WGC srt_rel=3965.372ms size=960x725 box_px=[217,336] n=14011 cx=276.440
+20690.866ms RAW WGC srt_rel=3982.017ms size=960x725 box_px=[221,339] n=13923 cx=279.976
+20690.867ms RAW WGC srt_rel=3998.725ms size=960x725 box_px=[224,343] n=14011 cx=283.440
+20690.868ms RAW WGC srt_rel=4015.316ms size=960x725 box_px=[228,346] n=13961 cx=286.956
+20690.870ms RAW WGC srt_rel=4032.052ms size=960x725 box_px=[231,349] n=13937 cx=289.975
+20690.871ms RAW WGC srt_rel=4048.678ms size=960x725 box_px=[234,352] n=13910 cx=292.987
+20690.872ms RAW WGC srt_rel=4065.308ms size=960x725 box_px=[237,355] n=13910 cx=295.987
+20690.873ms RAW WGC srt_rel=4081.959ms size=960x725 box_px=[240,358] n=13961 cx=298.972
+20690.874ms RAW WGC srt_rel=4098.628ms size=960x725 box_px=[242,361] n=14061 cx=301.498
+20690.875ms RAW WGC srt_rel=4115.285ms size=960x725 box_px=[245,363] n=13911 cx=304.008
+20690.875ms RAW WGC srt_rel=4131.950ms size=960x725 box_px=[248,366] n=13962 cx=306.952
+20690.876ms RAW WGC srt_rel=4148.603ms size=960x725 box_px=[250,368] n=13911 cx=308.999
+20690.877ms RAW WGC srt_rel=4165.302ms size=960x725 box_px=[252,371] n=14014 cx=311.452
+20690.878ms RAW WGC srt_rel=4181.945ms size=960x725 box_px=[254,373] n=14058 cx=313.526
+20690.879ms RAW WGC srt_rel=4198.619ms size=960x725 box_px=[257,375] n=13961 cx=315.956
+20690.880ms RAW WGC srt_rel=4215.301ms size=960x725 box_px=[259,377] n=13962 cx=317.960
+20690.881ms RAW WGC srt_rel=4231.957ms size=960x725 box_px=[260,379] n=14057 cx=319.522
+20690.881ms RAW WGC srt_rel=4248.569ms size=960x725 box_px=[262,381] n=14015 cx=321.456
+20690.882ms RAW WGC srt_rel=4265.262ms size=960x725 box_px=[264,382] n=13912 cx=323.003
+20690.883ms RAW WGC srt_rel=4281.905ms size=960x725 box_px=[266,384] n=13961 cx=324.964
+20690.884ms RAW WGC srt_rel=4298.589ms size=960x725 box_px=[267,385] n=13908 cx=326.016
+20690.885ms RAW WGC srt_rel=4315.223ms size=960x725 box_px=[269,387] n=13960 cx=327.967
+20690.886ms RAW WGC srt_rel=4331.917ms size=960x725 box_px=[270,388] n=13912 cx=329.003
+20690.892ms RAW WGC srt_rel=4348.589ms size=960x725 box_px=[271,390] n=14019 cx=330.463
+20690.892ms RAW WGC srt_rel=4365.232ms size=960x725 box_px=[272,391] n=14060 cx=331.534
+20690.893ms RAW WGC srt_rel=4381.917ms size=960x725 box_px=[274,392] n=13959 cx=332.980
+20690.895ms RAW WGC srt_rel=4398.553ms size=960x725 box_px=[275,393] n=13937 cx=333.975
+20690.896ms RAW WGC srt_rel=4415.195ms size=960x725 box_px=[276,394] n=13923 cx=334.976
+20690.897ms RAW WGC srt_rel=4431.921ms size=960x725 box_px=[277,395] n=13952 cx=335.978
+20690.898ms RAW WGC srt_rel=4448.565ms size=960x725 box_px=[278,396] n=13961 cx=336.964
+20690.899ms RAW WGC srt_rel=4465.198ms size=960x725 box_px=[278,397] n=14058 cx=337.518
+20690.899ms RAW WGC srt_rel=4481.857ms size=960x725 box_px=[279,398] n=14011 cx=338.440
+20690.900ms RAW WGC srt_rel=4498.503ms size=960x725 box_px=[280,398] n=13911 cx=338.999
+20690.901ms RAW WGC srt_rel=4515.178ms size=960x725 box_px=[281,399] n=13961 cx=339.964
+20690.902ms RAW WGC srt_rel=4531.834ms size=960x725 box_px=[281,400] n=14011 cx=340.440
+20690.903ms RAW WGC srt_rel=4548.488ms size=960x725 box_px=[282,400] n=13923 cx=340.976
+20690.904ms RAW WGC srt_rel=4565.160ms size=960x725 box_px=[282,401] n=14019 cx=341.463
+20690.905ms RAW WGC srt_rel=4581.806ms size=960x725 box_px=[283,401] n=13923 cx=341.976
+20690.906ms RAW WGC srt_rel=4598.475ms size=960x725 box_px=[283,402] n=14011 cx=342.440
+20690.907ms RAW WGC srt_rel=4615.124ms size=960x725 box_px=[284,402] n=13960 cx=342.967
+20690.907ms RAW WGC srt_rel=4631.824ms size=960x725 box_px=[284,402] n=13912 cx=343.003
+20690.908ms RAW WGC srt_rel=4648.453ms size=960x725 box_px=[284,403] n=14019 cx=343.463
+20690.909ms RAW WGC srt_rel=4665.104ms size=960x725 box_px=[285,403] n=13960 cx=343.967
+20690.910ms RAW WGC srt_rel=4681.780ms size=960x725 box_px=[285,403] n=13910 cx=343.987
+20690.911ms RAW WGC srt_rel=4698.468ms size=960x725 box_px=[285,403] n=13906 cx=344.009
+20690.912ms RAW WGC srt_rel=4715.126ms size=960x725 box_px=[285,404] n=14019 cx=344.463
+20690.913ms RAW WGC srt_rel=4731.769ms size=960x725 box_px=[285,404] n=14058 cx=344.526
+20690.913ms RAW WGC srt_rel=4748.423ms size=960x725 box_px=[286,404] n=13960 cx=344.967
+20690.914ms RAW WGC srt_rel=4765.118ms size=960x725 box_px=[286,404] n=13923 cx=344.976
+20690.916ms RAW WGC srt_rel=4781.725ms size=960x725 box_px=[286,404] n=13911 cx=344.991
+20690.917ms RAW WGC srt_rel=4798.428ms size=960x725 box_px=[286,404] n=13912 cx=345.003
+20690.918ms RAW WGC srt_rel=4815.095ms size=960x725 box_px=[286,404] n=13911 cx=345.008
+20690.919ms RAW WGC srt_rel=4831.800ms size=960x725 box_px=[286,404] n=13906 cx=345.009
+20690.920ms RAW WGC srt_rel=4848.422ms size=960x725 box_px=[286,404] n=13906 cx=345.009
+20690.921ms RAW WGC srt_rel=4865.098ms size=960x725 box_px=[286,404] n=13906 cx=345.009
+20690.921ms RAW WGC srt_rel=4881.692ms size=960x725 box_px=[286,404] n=13908 cx=345.016
+20690.922ms RAW WGC srt_rel=4898.394ms size=960x725 box_px=[286,404] n=13906 cx=345.009
+20690.923ms RAW WGC srt_rel=4915.073ms size=960x725 box_px=[286,404] n=13906 cx=345.009
+20690.924ms RAW WGC srt_rel=4931.698ms size=960x725 box_px=[286,404] n=13906 cx=345.009
+20690.925ms RAW WGC srt_rel=4948.372ms size=960x725 box_px=[286,404] n=13903 cx=344.997
+20690.926ms RAW WGC srt_rel=4965.029ms size=960x725 box_px=[286,404] n=13912 cx=345.003
+20690.926ms RAW WGC srt_rel=4981.708ms size=960x725 box_px=[286,404] n=13911 cx=344.999
+20690.927ms RAW WGC srt_rel=4998.343ms size=960x725 box_px=[286,404] n=13911 cx=345.000
+20690.928ms RAW WGC srt_rel=5015.017ms size=960x725 box_px=[286,404] n=13910 cx=344.987
+20690.929ms RAW WGC srt_rel=5031.671ms size=960x725 box_px=[286,404] n=13937 cx=344.975
+20690.930ms RAW WGC srt_rel=5048.351ms size=960x725 box_px=[286,404] n=13959 cx=344.980
+20690.931ms RAW WGC srt_rel=5064.972ms size=960x725 box_px=[286,404] n=13962 cx=344.960
+20690.932ms RAW WGC srt_rel=5081.643ms size=960x725 box_px=[285,404] n=14058 cx=344.526
+20690.933ms RAW WGC srt_rel=5098.324ms size=960x725 box_px=[285,404] n=14062 cx=344.487
+20690.934ms RAW WGC srt_rel=5114.947ms size=960x725 box_px=[285,404] n=14019 cx=344.463
+20690.934ms RAW WGC srt_rel=5131.637ms size=960x725 box_px=[285,403] n=13903 cx=344.022
+20690.935ms RAW WGC srt_rel=5148.307ms size=960x725 box_px=[285,403] n=13906 cx=344.009
+20690.937ms RAW WGC srt_rel=5164.941ms size=960x725 box_px=[285,403] n=13912 cx=344.003
+20690.938ms RAW WGC srt_rel=5181.617ms size=960x725 box_px=[285,403] n=13910 cx=343.996
+20690.939ms RAW WGC srt_rel=5198.270ms size=960x725 box_px=[285,403] n=13923 cx=343.976
+20690.940ms RAW WGC srt_rel=5214.927ms size=960x725 box_px=[285,403] n=13959 cx=343.980
+20690.941ms RAW WGC srt_rel=5231.607ms size=960x725 box_px=[285,403] n=13962 cx=343.952
+20690.941ms RAW WGC srt_rel=5248.259ms size=960x725 box_px=[284,403] n=14058 cx=343.518
+20690.942ms RAW WGC srt_rel=5264.915ms size=960x725 box_px=[284,403] n=14031 cx=343.474
+20690.943ms RAW WGC srt_rel=5281.598ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.944ms RAW WGC srt_rel=5298.243ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.945ms RAW WGC srt_rel=5314.887ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.946ms RAW WGC srt_rel=5331.568ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.946ms RAW WGC srt_rel=5348.228ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.947ms RAW WGC srt_rel=5364.884ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.948ms RAW WGC srt_rel=5381.550ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.949ms RAW WGC srt_rel=5398.212ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.950ms RAW WGC srt_rel=5414.850ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.951ms RAW WGC srt_rel=5431.523ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.952ms RAW WGC srt_rel=5448.199ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.952ms RAW WGC srt_rel=5464.836ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.953ms RAW WGC srt_rel=5481.517ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.954ms RAW WGC srt_rel=5498.193ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.955ms RAW WGC srt_rel=5514.826ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.956ms RAW WGC srt_rel=5531.504ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.959ms RAW WGC srt_rel=5548.165ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.960ms RAW WGC srt_rel=5564.820ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.961ms RAW WGC srt_rel=5581.479ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.961ms RAW WGC srt_rel=5598.150ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.962ms RAW WGC srt_rel=5614.804ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.963ms RAW WGC srt_rel=5631.480ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.964ms RAW WGC srt_rel=5648.125ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.965ms RAW WGC srt_rel=5664.795ms size=960x725 box_px=[284,403] n=14012 cx=343.444
+20690.966ms RAW WGC srt_rel=5681.435ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20690.966ms RAW WGC srt_rel=5698.122ms size=960x725 box_px=[41,160] n=14057 cx=100.514
+20690.967ms RAW WGC srt_rel=5714.783ms size=960x725 box_px=[42,160] n=13911 cx=101.008
+20690.968ms RAW WGC srt_rel=5731.436ms size=960x725 box_px=[43,161] n=13906 cx=102.009
+20690.969ms RAW WGC srt_rel=5748.101ms size=960x725 box_px=[45,163] n=13910 cx=103.987
+20690.970ms RAW WGC srt_rel=5764.763ms size=960x725 box_px=[47,165] n=13912 cx=106.003
+20690.971ms RAW WGC srt_rel=5781.424ms size=960x725 box_px=[50,168] n=13962 cx=108.952
+20690.972ms RAW WGC srt_rel=5798.087ms size=960x725 box_px=[53,171] n=13962 cx=111.960
+20690.973ms RAW WGC srt_rel=5814.757ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20690.974ms RAW WGC srt_rel=5831.406ms size=960x725 box_px=[265,384] n=14011 cx=324.440
+20690.974ms RAW WGC srt_rel=5848.064ms size=960x725 box_px=[269,387] n=13905 cx=328.005
+20690.975ms RAW WGC srt_rel=5864.736ms size=960x725 box_px=[278,396] n=13911 cx=336.999
+20690.976ms RAW WGC srt_rel=5881.390ms size=960x725 box_px=[285,404] n=14060 cx=344.534
+20690.977ms RAW WGC srt_rel=5898.057ms size=960x725 box_px=[292,410] n=13922 cx=350.980
+20690.979ms RAW WGC srt_rel=5914.706ms size=960x725 box_px=[297,415] n=13912 cx=356.003
+20690.980ms RAW WGC srt_rel=5931.368ms size=960x725 box_px=[301,419] n=13906 cx=360.009
+20690.981ms RAW WGC srt_rel=5948.023ms size=960x725 box_px=[304,422] n=13903 cx=363.022
+20690.981ms RAW WGC srt_rel=5964.685ms size=960x725 box_px=[306,425] n=14061 cx=365.477
+20690.982ms RAW WGC srt_rel=5981.339ms size=960x725 box_px=[308,426] n=13949 cx=366.978
+20690.983ms RAW WGC srt_rel=5998.008ms size=960x725 box_px=[308,427] n=14011 cx=367.440
+20690.984ms RAW WGC srt_rel=6014.670ms size=960x725 box_px=[308,426] n=13912 cx=367.003
+20690.985ms RAW WGC srt_rel=6031.345ms size=960x725 box_px=[307,425] n=13906 cx=366.009
+20690.986ms RAW WGC srt_rel=6047.996ms size=960x725 box_px=[306,424] n=13961 cx=364.964
+20690.987ms RAW WGC srt_rel=6064.648ms size=960x725 box_px=[304,422] n=13964 cx=362.944
+20690.987ms RAW WGC srt_rel=6081.319ms size=960x725 box_px=[301,419] n=13911 cx=359.999
+20690.988ms RAW WGC srt_rel=6097.981ms size=960x725 box_px=[298,416] n=13910 cx=356.987
+20690.989ms RAW WGC srt_rel=6114.635ms size=960x725 box_px=[294,413] n=14047 cx=353.481
+20690.990ms RAW WGC srt_rel=6131.308ms size=960x725 box_px=[290,409] n=14058 cx=349.526
+20690.991ms RAW WGC srt_rel=6147.960ms size=960x725 box_px=[286,405] n=14012 cx=345.444
+20690.992ms RAW WGC srt_rel=6164.620ms size=960x725 box_px=[282,400] n=13956 cx=340.979
+20690.993ms RAW WGC srt_rel=6181.278ms size=960x725 box_px=[277,395] n=13905 cx=336.004
+20690.994ms RAW WGC srt_rel=6197.935ms size=960x725 box_px=[272,390] n=13910 cx=330.987
+20690.995ms RAW WGC srt_rel=6214.600ms size=960x725 box_px=[267,385] n=13961 cx=325.964
+20690.995ms RAW WGC srt_rel=6231.258ms size=960x725 box_px=[261,379] n=13908 cx=320.016
+20690.996ms RAW WGC srt_rel=6247.925ms size=960x725 box_px=[256,374] n=13961 cx=314.964
+20690.997ms RAW WGC srt_rel=6264.568ms size=960x725 box_px=[250,368] n=13912 cx=308.996
+20690.998ms RAW WGC srt_rel=6281.288ms size=960x725 box_px=[244,362] n=13905 cx=303.005
+20691.000ms RAW WGC srt_rel=6297.932ms size=960x725 box_px=[238,356] n=13903 cx=297.022
+20691.001ms RAW WGC srt_rel=6314.573ms size=960x725 box_px=[232,351] n=14015 cx=291.456
+20691.001ms RAW WGC srt_rel=6331.274ms size=960x725 box_px=[226,345] n=14020 cx=285.467
+20691.002ms RAW WGC srt_rel=6347.879ms size=960x725 box_px=[220,339] n=14019 cx=279.463
+20691.003ms RAW WGC srt_rel=6364.592ms size=960x725 box_px=[214,333] n=14047 cx=273.481
+20691.004ms RAW WGC srt_rel=6381.243ms size=960x725 box_px=[208,327] n=14061 cx=267.477
+20691.005ms RAW WGC srt_rel=6397.903ms size=960x725 box_px=[202,321] n=14058 cx=261.510
+20691.006ms RAW WGC srt_rel=6414.543ms size=960x725 box_px=[197,315] n=13962 cx=255.960
+20691.007ms RAW WGC srt_rel=6431.256ms size=960x725 box_px=[191,309] n=13949 cx=249.978
+20691.007ms RAW WGC srt_rel=6447.845ms size=960x725 box_px=[185,303] n=13911 cx=243.999
+20691.008ms RAW WGC srt_rel=6464.567ms size=960x725 box_px=[179,298] n=14015 cx=238.456
+20691.009ms RAW WGC srt_rel=6481.185ms size=960x725 box_px=[174,292] n=13960 cx=232.967
+20691.010ms RAW WGC srt_rel=6497.882ms size=960x725 box_px=[168,286] n=13908 cx=227.016
+20691.011ms RAW WGC srt_rel=6514.518ms size=960x725 box_px=[163,281] n=13949 cx=221.978
+20691.012ms RAW WGC srt_rel=6531.169ms size=960x725 box_px=[157,276] n=14058 cx=216.510
+20691.013ms RAW WGC srt_rel=6547.876ms size=960x725 box_px=[152,271] n=14013 cx=211.448
+20691.014ms RAW WGC srt_rel=6564.493ms size=960x725 box_px=[147,265] n=13908 cx=206.016
+20691.014ms RAW WGC srt_rel=6581.145ms size=960x725 box_px=[142,260] n=13915 cx=201.029
+20691.015ms RAW WGC srt_rel=6597.809ms size=960x725 box_px=[137,256] n=14061 cx=196.484
+20691.016ms RAW WGC srt_rel=6614.476ms size=960x725 box_px=[133,251] n=13959 cx=191.980
+20691.017ms RAW WGC srt_rel=6631.124ms size=960x725 box_px=[128,246] n=13906 cx=187.009
+20691.018ms RAW WGC srt_rel=6647.810ms size=960x725 box_px=[124,242] n=13959 cx=182.980
+20691.019ms RAW WGC srt_rel=6664.474ms size=960x725 box_px=[119,238] n=14032 cx=178.470
+20691.020ms RAW WGC srt_rel=6681.118ms size=960x725 box_px=[115,233] n=13906 cx=174.009
+20691.021ms RAW WGC srt_rel=6697.809ms size=960x725 box_px=[111,229] n=13906 cx=170.009
+20691.022ms RAW WGC srt_rel=6714.474ms size=960x725 box_px=[107,225] n=13903 cx=166.022
+20691.023ms RAW WGC srt_rel=6731.150ms size=960x725 box_px=[103,222] n=14060 cx=162.502
+20691.024ms RAW WGC srt_rel=6747.756ms size=960x725 box_px=[100,218] n=13923 cx=158.976
+20691.025ms RAW WGC srt_rel=6764.480ms size=960x725 box_px=[96,215] n=14015 cx=155.456
+20691.026ms RAW WGC srt_rel=6781.094ms size=960x725 box_px=[93,211] n=13910 cx=151.987
+20691.027ms RAW WGC srt_rel=6797.780ms size=960x725 box_px=[90,208] n=13960 cx=148.967
+20691.028ms RAW WGC srt_rel=6814.463ms size=960x725 box_px=[86,205] n=14059 cx=145.530
+20691.028ms RAW WGC srt_rel=6831.051ms size=960x725 box_px=[83,202] n=14059 cx=142.530
+20691.029ms RAW WGC srt_rel=6847.712ms size=960x725 box_px=[81,199] n=13960 cx=139.967
+20691.030ms RAW WGC srt_rel=6864.401ms size=960x725 box_px=[78,196] n=13911 cx=137.000
+20691.031ms RAW WGC srt_rel=6881.041ms size=960x725 box_px=[75,194] n=14014 cx=134.452
+20691.032ms RAW WGC srt_rel=6897.721ms size=960x725 box_px=[73,191] n=13937 cx=131.975
+20691.033ms RAW WGC srt_rel=6914.355ms size=960x725 box_px=[70,189] n=14031 cx=129.474
+20691.034ms RAW WGC srt_rel=6931.079ms size=960x725 box_px=[68,186] n=13903 cx=126.997
+20691.035ms RAW WGC srt_rel=6947.709ms size=960x725 box_px=[66,184] n=13911 cx=124.991
+20691.035ms RAW WGC srt_rel=6964.369ms size=960x725 box_px=[64,182] n=13922 cx=122.980
+20691.036ms RAW WGC srt_rel=6981.056ms size=960x725 box_px=[62,180] n=13910 cx=120.987
+20691.037ms RAW WGC srt_rel=6997.695ms size=960x725 box_px=[60,178] n=13911 cx=118.999
+20691.038ms RAW WGC srt_rel=7014.360ms size=960x725 box_px=[58,176] n=13903 cx=117.022
+20691.039ms RAW WGC srt_rel=7031.060ms size=960x725 box_px=[56,175] n=14059 cx=115.530
+20691.040ms RAW WGC srt_rel=7047.668ms size=960x725 box_px=[55,173] n=13911 cx=113.999
+20691.043ms RAW WGC srt_rel=7064.343ms size=960x725 box_px=[53,172] n=14058 cx=112.510
+20691.043ms RAW WGC srt_rel=7080.990ms size=960x725 box_px=[52,170] n=13912 cx=111.003
+20691.044ms RAW WGC srt_rel=7097.637ms size=960x725 box_px=[51,169] n=13959 cx=109.980
+20691.045ms RAW WGC srt_rel=7114.310ms size=960x725 box_px=[49,168] n=14058 cx=108.510
+20691.046ms RAW WGC srt_rel=7130.972ms size=960x725 box_px=[48,167] n=14015 cx=107.456
+20691.047ms RAW WGC srt_rel=7147.649ms size=960x725 box_px=[47,165] n=13908 cx=106.016
+20691.048ms RAW WGC srt_rel=7164.305ms size=960x725 box_px=[46,164] n=13906 cx=105.009
+20691.049ms RAW WGC srt_rel=7180.961ms size=960x725 box_px=[45,163] n=13909 cx=104.020
+20691.050ms RAW WGC srt_rel=7197.622ms size=960x725 box_px=[44,163] n=14014 cx=103.460
+20691.051ms RAW WGC srt_rel=7214.274ms size=960x725 box_px=[43,162] n=14058 cx=102.518
+20691.052ms RAW WGC srt_rel=7230.946ms size=960x725 box_px=[43,161] n=13959 cx=101.980
+20691.052ms RAW WGC srt_rel=7247.584ms size=960x725 box_px=[42,160] n=13911 cx=100.999
+20691.053ms RAW WGC srt_rel=7264.266ms size=960x725 box_px=[41,160] n=14019 cx=100.463
+20691.054ms RAW WGC srt_rel=7280.930ms size=960x725 box_px=[41,159] n=13959 cx=99.980
+20691.055ms RAW WGC srt_rel=7297.600ms size=960x725 box_px=[40,158] n=13906 cx=99.009
+20691.056ms RAW WGC srt_rel=7314.255ms size=960x725 box_px=[40,158] n=13960 cx=98.967
+20691.057ms RAW WGC srt_rel=7330.916ms size=960x725 box_px=[39,157] n=13906 cx=98.009
+20691.058ms RAW WGC srt_rel=7347.596ms size=960x725 box_px=[39,157] n=13952 cx=97.978
+20691.059ms RAW WGC srt_rel=7364.233ms size=960x725 box_px=[38,157] n=14021 cx=97.471
+20691.059ms RAW WGC srt_rel=7380.893ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.060ms RAW WGC srt_rel=7397.572ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.061ms RAW WGC srt_rel=7414.204ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.063ms RAW WGC srt_rel=7430.866ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.064ms RAW WGC srt_rel=7447.534ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.065ms RAW WGC srt_rel=7464.230ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.065ms RAW WGC srt_rel=7480.861ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.066ms RAW WGC srt_rel=7497.542ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.067ms RAW WGC srt_rel=7514.181ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.068ms RAW WGC srt_rel=7530.843ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.069ms RAW WGC srt_rel=7547.508ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.070ms RAW WGC srt_rel=7564.166ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.070ms RAW WGC srt_rel=7580.802ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.071ms RAW WGC srt_rel=7597.489ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.072ms RAW WGC srt_rel=7614.148ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.073ms RAW WGC srt_rel=7630.804ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.074ms RAW WGC srt_rel=7647.476ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.074ms RAW WGC srt_rel=7664.147ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.075ms RAW WGC srt_rel=7680.793ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.076ms RAW WGC srt_rel=7697.445ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.077ms RAW WGC srt_rel=7714.122ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.078ms RAW WGC srt_rel=7730.764ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.078ms RAW WGC srt_rel=7747.439ms size=960x725 box_px=[38,156] n=13912 cx=97.003
+20691.079ms RAW WGC srt_rel=7764.115ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.080ms RAW WGC srt_rel=7780.755ms size=960x725 box_px=[42,160] n=13959 cx=100.980
+20691.081ms RAW WGC srt_rel=7797.433ms size=960x725 box_px=[44,162] n=13910 cx=102.987
+20691.082ms RAW WGC srt_rel=7814.084ms size=960x725 box_px=[48,166] n=13911 cx=106.999
+20691.084ms RAW WGC srt_rel=7830.756ms size=960x725 box_px=[54,172] n=13911 cx=112.999
+20691.085ms RAW WGC srt_rel=7847.404ms size=960x725 box_px=[61,179] n=13915 cx=120.029
+20691.086ms RAW WGC srt_rel=7864.071ms size=960x725 box_px=[70,188] n=13962 cx=128.960
+20691.086ms RAW WGC srt_rel=7880.757ms size=960x725 box_px=[79,197] n=13911 cx=137.991
+20691.087ms RAW WGC srt_rel=7897.432ms size=960x725 box_px=[89,207] n=13923 cx=147.976
+20691.088ms RAW WGC srt_rel=7914.097ms size=960x725 box_px=[99,217] n=13906 cx=158.009
+20691.089ms RAW WGC srt_rel=7930.739ms size=960x725 box_px=[110,228] n=13937 cx=168.975
+20691.090ms RAW WGC srt_rel=7947.365ms size=960x725 box_px=[120,239] n=14058 cx=179.526
+20691.091ms RAW WGC srt_rel=7964.015ms size=960x725 box_px=[131,249] n=13903 cx=190.022
+20691.092ms RAW WGC srt_rel=7980.714ms size=960x725 box_px=[142,260] n=13923 cx=200.976
+20691.092ms RAW WGC srt_rel=7997.367ms size=960x725 box_px=[152,271] n=14013 cx=211.448
+20691.093ms RAW WGC srt_rel=8013.998ms size=960x725 box_px=[162,281] n=14060 cx=221.502
+20691.094ms RAW WGC srt_rel=8030.686ms size=960x725 box_px=[172,290] n=13915 cx=231.029
+20691.095ms RAW WGC srt_rel=8047.372ms size=960x725 box_px=[182,300] n=13959 cx=240.972
+20691.096ms RAW WGC srt_rel=8063.998ms size=960x725 box_px=[191,309] n=13952 cx=249.978
+20691.097ms RAW WGC srt_rel=8080.632ms size=960x725 box_px=[199,318] n=14014 cx=258.452
+20691.098ms RAW WGC srt_rel=8097.326ms size=960x725 box_px=[207,326] n=14047 cx=266.481
+20691.099ms RAW WGC srt_rel=8113.970ms size=960x725 box_px=[215,333] n=13911 cx=274.008
+20691.100ms RAW WGC srt_rel=8130.700ms size=960x725 box_px=[222,340] n=13908 cx=281.016
+20691.101ms RAW WGC srt_rel=8147.311ms size=960x725 box_px=[229,347] n=13911 cx=287.991
+20691.101ms RAW WGC srt_rel=8163.964ms size=960x725 box_px=[235,353] n=13903 cx=293.997
+20691.102ms RAW WGC srt_rel=8180.608ms size=960x725 box_px=[241,359] n=13923 cx=299.976
+20691.104ms RAW WGC srt_rel=8197.342ms size=960x725 box_px=[246,364] n=13911 cx=305.008
+20691.105ms RAW WGC srt_rel=8213.995ms size=960x725 box_px=[251,369] n=13911 cx=309.999
+20691.106ms RAW WGC srt_rel=8230.641ms size=960x725 box_px=[255,374] n=14021 cx=314.471
+20691.107ms RAW WGC srt_rel=8247.305ms size=960x725 box_px=[259,378] n=14031 cx=318.474
+20691.108ms RAW WGC srt_rel=8263.938ms size=960x725 box_px=[263,381] n=13912 cx=322.003
+20691.108ms RAW WGC srt_rel=8280.570ms size=960x725 box_px=[266,385] n=14012 cx=325.444
+20691.109ms RAW WGC srt_rel=8297.272ms size=960x725 box_px=[269,387] n=13908 cx=328.016
+20691.110ms RAW WGC srt_rel=8313.924ms size=960x725 box_px=[272,390] n=13922 cx=330.980
+20691.111ms RAW WGC srt_rel=8330.628ms size=960x725 box_px=[274,392] n=13906 cx=333.009
+20691.112ms RAW WGC srt_rel=8347.230ms size=960x725 box_px=[276,394] n=13908 cx=335.016
+20691.113ms RAW WGC srt_rel=8363.953ms size=960x725 box_px=[278,396] n=13911 cx=336.999
+20691.114ms RAW WGC srt_rel=8380.555ms size=960x725 box_px=[279,398] n=14059 cx=338.530
+20691.115ms RAW WGC srt_rel=8397.238ms size=960x725 box_px=[281,399] n=13910 cx=339.987
+20691.115ms RAW WGC srt_rel=8413.865ms size=960x725 box_px=[282,400] n=13912 cx=341.003
+20691.116ms RAW WGC srt_rel=8430.526ms size=960x725 box_px=[283,401] n=13911 cx=341.999
+20691.117ms RAW WGC srt_rel=8447.185ms size=960x725 box_px=[284,402] n=13923 cx=342.976
+20691.118ms RAW WGC srt_rel=8463.913ms size=960x725 box_px=[284,403] n=14058 cx=343.510
+20691.119ms RAW WGC srt_rel=8480.537ms size=960x725 box_px=[285,403] n=13911 cx=343.999
+20691.120ms RAW WGC srt_rel=8497.219ms size=960x725 box_px=[285,404] n=14061 cx=344.484
+20691.121ms RAW WGC srt_rel=8513.855ms size=960x725 box_px=[286,404] n=13959 cx=344.980
+20691.122ms RAW WGC srt_rel=8530.510ms size=960x725 box_px=[286,404] n=13905 cx=345.004
+20691.123ms RAW WGC srt_rel=8547.217ms size=960x725 box_px=[286,404] n=13903 cx=344.997
+20691.123ms RAW WGC srt_rel=8563.859ms size=960x725 box_px=[286,404] n=13906 cx=345.009
+20691.125ms RAW WGC srt_rel=8580.488ms size=960x725 box_px=[286,404] n=13908 cx=345.016
+20691.128ms RAW WGC srt_rel=8597.144ms size=960x725 box_px=[286,404] n=13906 cx=345.009
+20691.128ms RAW WGC srt_rel=8613.804ms size=960x725 box_px=[286,404] n=13911 cx=345.008
+20691.129ms RAW WGC srt_rel=8630.483ms size=960x725 box_px=[286,404] n=13911 cx=344.999
+20691.130ms RAW WGC srt_rel=8647.181ms size=960x725 box_px=[286,404] n=13922 cx=344.980
+20691.131ms RAW WGC srt_rel=8663.801ms size=960x725 box_px=[286,404] n=13960 cx=344.967
+20691.132ms RAW WGC srt_rel=8680.460ms size=960x725 box_px=[285,404] n=14057 cx=344.514
+20691.133ms RAW WGC srt_rel=8697.113ms size=960x725 box_px=[285,404] n=14014 cx=344.452
+20691.134ms RAW WGC srt_rel=8713.788ms size=960x725 box_px=[285,403] n=13903 cx=343.997
+20691.135ms RAW WGC srt_rel=8730.466ms size=960x725 box_px=[285,403] n=13910 cx=343.987
+20691.136ms RAW WGC srt_rel=8747.136ms size=960x725 box_px=[285,403] n=13960 cx=343.967
+20691.136ms RAW WGC srt_rel=8763.816ms size=960x725 box_px=[284,403] n=14060 cx=343.502
+20691.137ms RAW WGC srt_rel=8780.481ms size=960x725 box_px=[284,402] n=13914 cx=343.025
+20691.138ms RAW WGC srt_rel=8797.124ms size=960x725 box_px=[284,402] n=13912 cx=343.003
+20691.139ms RAW WGC srt_rel=8813.763ms size=960x725 box_px=[284,402] n=13923 cx=342.976
+20691.140ms RAW WGC srt_rel=8830.414ms size=960x725 box_px=[284,402] n=13961 cx=342.964
+20691.141ms RAW WGC srt_rel=8847.114ms size=960x725 box_px=[283,402] n=14062 cx=342.494
+20691.142ms RAW WGC srt_rel=8863.757ms size=960x725 box_px=[283,402] n=14011 cx=342.440
+20691.143ms RAW WGC srt_rel=8880.395ms size=960x725 box_px=[283,401] n=13911 cx=342.008
+20691.143ms RAW WGC srt_rel=8897.072ms size=960x725 box_px=[283,401] n=13911 cx=342.000
+20691.144ms RAW WGC srt_rel=8913.718ms size=960x725 box_px=[283,401] n=13949 cx=341.978
+20691.145ms RAW WGC srt_rel=8930.383ms size=960x725 box_px=[283,401] n=13961 cx=341.964
+20691.146ms RAW WGC srt_rel=8947.045ms size=960x725 box_px=[282,401] n=14058 cx=341.518
+20691.148ms RAW WGC srt_rel=8963.712ms size=960x725 box_px=[282,401] n=14021 cx=341.471
+20691.149ms RAW WGC srt_rel=8980.421ms size=960x725 box_px=[282,400] n=13915 cx=341.029
+20691.150ms RAW WGC srt_rel=8997.044ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.151ms RAW WGC srt_rel=9013.712ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.152ms RAW WGC srt_rel=9030.345ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.152ms RAW WGC srt_rel=9047.051ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.153ms RAW WGC srt_rel=9063.698ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.154ms RAW WGC srt_rel=9080.321ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.155ms RAW WGC srt_rel=9096.988ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.156ms RAW WGC srt_rel=9113.652ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.157ms RAW WGC srt_rel=9130.314ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.158ms RAW WGC srt_rel=9146.950ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.158ms RAW WGC srt_rel=9163.639ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.159ms RAW WGC srt_rel=9180.334ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.160ms RAW WGC srt_rel=9196.954ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.161ms RAW WGC srt_rel=9213.614ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.162ms RAW WGC srt_rel=9230.277ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.163ms RAW WGC srt_rel=9246.930ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.163ms RAW WGC srt_rel=9263.656ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.164ms RAW WGC srt_rel=9280.272ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.165ms RAW WGC srt_rel=9296.948ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.166ms RAW WGC srt_rel=9313.597ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.167ms RAW WGC srt_rel=9330.230ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.169ms RAW WGC srt_rel=9346.904ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.169ms RAW WGC srt_rel=9363.618ms size=960x725 box_px=[282,400] n=13906 cx=341.009
+20691.170ms RAW WGC srt_rel=9380.212ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.171ms RAW WGC srt_rel=9396.914ms size=960x725 box_px=[162,280] n=13937 cx=220.975
+20691.172ms RAW WGC srt_rel=9413.552ms size=960x725 box_px=[215,333] n=13960 cx=273.967
+20691.173ms RAW WGC srt_rel=9430.268ms size=960x725 box_px=[241,359] n=13912 cx=300.003
+20691.174ms RAW WGC srt_rel=9446.897ms size=960x725 box_px=[256,374] n=13911 cx=315.008
+20691.175ms RAW WGC srt_rel=9463.545ms size=960x725 box_px=[265,384] n=14015 cx=324.456
+20691.176ms RAW WGC srt_rel=9480.252ms size=960x725 box_px=[271,390] n=14011 cx=330.440
+20691.177ms RAW WGC srt_rel=9496.912ms size=960x725 box_px=[275,393] n=13906 cx=334.009
+20691.177ms RAW WGC srt_rel=9513.562ms size=960x725 box_px=[278,396] n=13956 cx=336.979
+20691.178ms RAW WGC srt_rel=9530.185ms size=960x725 box_px=[279,398] n=14061 cx=338.477
+20691.179ms RAW WGC srt_rel=9546.849ms size=960x725 box_px=[280,399] n=14060 cx=339.502
+20691.180ms RAW WGC srt_rel=9563.503ms size=960x725 box_px=[281,399] n=13911 cx=340.008
+20691.181ms RAW WGC srt_rel=9580.164ms size=960x725 box_px=[281,400] n=14019 cx=340.463
+20691.182ms RAW WGC srt_rel=9596.819ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.183ms RAW WGC srt_rel=9613.485ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.184ms RAW WGC srt_rel=9630.153ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.185ms RAW WGC srt_rel=9646.808ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.185ms RAW WGC srt_rel=9663.529ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.186ms RAW WGC srt_rel=9680.121ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.187ms RAW WGC srt_rel=9696.801ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.188ms RAW WGC srt_rel=9713.458ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.190ms RAW WGC srt_rel=9730.152ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.191ms RAW WGC srt_rel=9746.773ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.192ms RAW WGC srt_rel=9763.433ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.193ms RAW WGC srt_rel=9780.108ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.193ms RAW WGC srt_rel=9796.777ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.194ms RAW WGC srt_rel=9813.452ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.195ms RAW WGC srt_rel=9830.079ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.196ms RAW WGC srt_rel=9846.729ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.197ms RAW WGC srt_rel=9863.387ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.197ms RAW WGC srt_rel=9880.078ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.198ms RAW WGC srt_rel=9896.759ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.199ms RAW WGC srt_rel=9913.399ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.200ms RAW WGC srt_rel=9930.036ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.201ms RAW WGC srt_rel=9946.733ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.202ms RAW WGC srt_rel=9963.415ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.203ms RAW WGC srt_rel=9980.073ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.204ms RAW WGC srt_rel=9996.675ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.204ms RAW WGC srt_rel=10013.403ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.205ms RAW WGC srt_rel=10030.023ms size=960x725 box_px=[281,400] n=14061 cx=340.477
+20691.206ms RAW WGC srt_rel=10046.725ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.207ms RAW WGC srt_rel=10063.394ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.208ms RAW WGC srt_rel=10079.978ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.209ms RAW WGC srt_rel=10096.648ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.212ms RAW WGC srt_rel=10113.323ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.212ms RAW WGC srt_rel=10129.978ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.213ms RAW WGC srt_rel=10146.629ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.214ms RAW WGC srt_rel=10163.283ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.215ms RAW WGC srt_rel=10179.953ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.216ms RAW WGC srt_rel=10196.664ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.217ms RAW WGC srt_rel=10213.256ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.218ms RAW WGC srt_rel=10230.005ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.219ms RAW WGC srt_rel=10246.639ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.219ms RAW WGC srt_rel=10263.262ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.220ms RAW WGC srt_rel=10279.943ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.221ms RAW WGC srt_rel=10296.594ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.222ms RAW WGC srt_rel=10313.249ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.223ms RAW WGC srt_rel=10329.922ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.224ms RAW WGC srt_rel=10346.597ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.225ms RAW WGC srt_rel=10363.259ms size=960x725 box_px=[41,160] n=14061 cx=100.477
+20691.226ms RAW WGC srt_rel=10379.890ms size=960x725 box_px=[41,160] n=14057 cx=100.514
+20691.226ms RAW WGC srt_rel=10396.618ms size=960x725 box_px=[42,160] n=13911 cx=101.008
+20691.227ms RAW WGC srt_rel=10413.203ms size=960x725 box_px=[43,161] n=13906 cx=102.009
+20691.228ms RAW WGC srt_rel=10429.904ms size=960x725 box_px=[45,163] n=13910 cx=103.987
+20691.229ms RAW WGC srt_rel=10446.554ms size=960x725 box_px=[47,165] n=13912 cx=106.003
+20691.230ms RAW WGC srt_rel=10463.215ms size=960x725 box_px=[50,168] n=13962 cx=108.952
+20691.232ms RAW WGC srt_rel=10479.897ms size=960x725 box_px=[63,181] n=13961 cx=121.964
+20691.233ms RAW WGC srt_rel=10496.525ms size=960x725 box_px=[66,184] n=13911 cx=124.999
+20691.233ms RAW WGC srt_rel=10513.198ms size=960x725 box_px=[118,237] n=14060 cx=177.534
+20691.234ms RAW WGC srt_rel=10529.829ms size=960x725 box_px=[118,237] n=14060 cx=177.534
+20691.235ms RAW WGC srt_rel=10546.561ms size=960x725 box_px=[178,297] n=14019 cx=237.463
+20691.236ms RAW WGC srt_rel=10563.181ms size=960x725 box_px=[178,297] n=14019 cx=237.463
+20691.237ms RAW WGC srt_rel=10579.821ms size=960x725 box_px=[230,348] n=13937 cx=288.975
+20691.238ms RAW WGC srt_rel=10596.483ms size=960x725 box_px=[265,383] n=13906 cx=324.009
+20691.239ms RAW WGC srt_rel=10613.147ms size=960x725 box_px=[265,383] n=13906 cx=324.009
+20691.240ms RAW WGC srt_rel=10629.812ms size=960x725 box_px=[286,404] n=13962 cx=344.952
+20691.240ms RAW WGC srt_rel=10646.467ms size=960x725 box_px=[286,404] n=13962 cx=344.952
+20691.241ms RAW WGC srt_rel=10663.150ms size=960x725 box_px=[296,414] n=13906 cx=355.009
+20691.242ms RAW WGC srt_rel=10679.802ms size=960x725 box_px=[296,414] n=13906 cx=355.009
+20691.243ms RAW WGC srt_rel=10696.469ms size=960x725 box_px=[300,418] n=13911 cx=359.008
+20691.244ms RAW WGC srt_rel=10713.133ms size=960x725 box_px=[300,418] n=13911 cx=359.008
+20691.245ms RAW WGC srt_rel=10729.859ms size=960x725 box_px=[301,419] n=13959 cx=359.980
+20691.246ms RAW WGC srt_rel=10746.458ms size=960x725 box_px=[301,419] n=13959 cx=359.980
+20691.247ms RAW WGC srt_rel=10763.127ms size=960x725 box_px=[300,418] n=13910 cx=358.987
+20691.247ms RAW WGC srt_rel=10779.781ms size=960x725 box_px=[300,418] n=13910 cx=358.987
+20691.248ms RAW WGC srt_rel=10796.424ms size=960x725 box_px=[299,417] n=13961 cx=357.956
+20691.249ms RAW WGC srt_rel=10813.139ms size=960x725 box_px=[297,416] n=14059 cx=356.530
+20691.250ms RAW WGC srt_rel=10829.802ms size=960x725 box_px=[297,416] n=14059 cx=356.530
+20691.251ms RAW WGC srt_rel=10846.425ms size=960x725 box_px=[297,415] n=13952 cx=355.978
+20691.253ms RAW WGC srt_rel=10863.078ms size=960x725 box_px=[297,415] n=13952 cx=355.978
+20691.253ms RAW WGC srt_rel=10879.738ms size=960x725 box_px=[296,415] n=14011 cx=355.440
+20691.254ms RAW WGC srt_rel=10896.377ms size=960x725 box_px=[296,415] n=14011 cx=355.440
+20691.255ms RAW WGC srt_rel=10913.074ms size=960x725 box_px=[296,414] n=13912 cx=355.003
+20691.256ms RAW WGC srt_rel=10929.761ms size=960x725 box_px=[296,414] n=13912 cx=355.003
+20691.257ms RAW WGC srt_rel=10946.381ms size=960x725 box_px=[296,414] n=13910 cx=354.987
+20691.258ms RAW WGC srt_rel=10963.046ms size=960x725 box_px=[296,414] n=13910 cx=354.987
+20691.259ms RAW WGC srt_rel=10979.683ms size=960x725 box_px=[296,414] n=13910 cx=354.987
+20691.260ms RAW WGC srt_rel=10996.396ms size=960x725 box_px=[296,414] n=13910 cx=354.987
+20691.261ms RAW WGC srt_rel=11013.003ms size=960x725 box_px=[296,414] n=13910 cx=354.987
+20691.261ms RAW WGC srt_rel=11029.691ms size=960x725 box_px=[296,414] n=13910 cx=354.987
+20691.262ms RAW WGC srt_rel=11046.337ms size=960x725 box_px=[296,414] n=13911 cx=354.991
+20691.263ms RAW WGC srt_rel=11063.002ms size=960x725 box_px=[296,414] n=13905 cx=355.004
+20691.264ms RAW WGC srt_rel=11079.682ms size=960x725 box_px=[296,414] n=13905 cx=355.004
+20691.265ms RAW WGC srt_rel=11096.323ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.266ms RAW WGC srt_rel=11112.980ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.267ms RAW WGC srt_rel=11129.649ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.268ms RAW WGC srt_rel=11146.318ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.268ms RAW WGC srt_rel=11162.975ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.269ms RAW WGC srt_rel=11179.649ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.270ms RAW WGC srt_rel=11196.286ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.271ms RAW WGC srt_rel=11212.949ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.272ms RAW WGC srt_rel=11229.609ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.274ms RAW WGC srt_rel=11246.261ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.275ms RAW WGC srt_rel=11262.955ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.276ms RAW WGC srt_rel=11279.582ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.276ms RAW WGC srt_rel=11296.279ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.277ms RAW WGC srt_rel=11312.929ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.278ms RAW WGC srt_rel=11329.598ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.279ms RAW WGC srt_rel=11346.260ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.280ms RAW WGC srt_rel=11362.933ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.281ms RAW WGC srt_rel=11379.625ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.282ms RAW WGC srt_rel=11396.264ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.283ms RAW WGC srt_rel=11412.913ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.283ms RAW WGC srt_rel=11429.586ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.284ms RAW WGC srt_rel=11446.213ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.285ms RAW WGC srt_rel=11462.913ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.286ms RAW WGC srt_rel=11479.516ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.287ms RAW WGC srt_rel=11496.207ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.288ms RAW WGC srt_rel=11512.869ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.289ms RAW WGC srt_rel=11529.537ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.289ms RAW WGC srt_rel=11546.170ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.290ms RAW WGC srt_rel=11562.848ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.291ms RAW WGC srt_rel=11579.504ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.292ms RAW WGC srt_rel=11596.163ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.294ms RAW WGC srt_rel=11612.818ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.295ms RAW WGC srt_rel=11629.484ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.296ms RAW WGC srt_rel=11646.185ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.297ms RAW WGC srt_rel=11662.858ms size=960x725 box_px=[296,414] n=13911 cx=354.999
+20691.298ms RAW WGC srt_rel=11679.478ms size=960x725 box_px=[288,406] n=13905 cx=347.004
+20691.299ms RAW WGC srt_rel=11696.143ms size=960x725 box_px=[288,406] n=13905 cx=347.004
+20691.299ms RAW WGC srt_rel=11712.828ms size=960x725 box_px=[237,355] n=13911 cx=295.999
+20691.300ms RAW WGC srt_rel=11729.464ms size=960x725 box_px=[237,355] n=13911 cx=295.999
+20691.301ms RAW WGC srt_rel=11746.121ms size=960x725 box_px=[176,294] n=13905 cx=235.005
+20691.302ms RAW WGC srt_rel=11762.779ms size=960x725 box_px=[176,294] n=13905 cx=235.005
+20691.303ms RAW WGC srt_rel=11779.451ms size=960x725 box_px=[124,242] n=13962 cx=182.960
+20691.304ms RAW WGC srt_rel=11796.122ms size=960x725 box_px=[124,242] n=13962 cx=182.960
+20691.305ms RAW WGC srt_rel=11812.776ms size=960x725 box_px=[88,206] n=13906 cx=147.009
+20691.306ms RAW WGC srt_rel=11829.452ms size=960x725 box_px=[88,206] n=13906 cx=147.009
+20691.306ms RAW WGC srt_rel=11846.120ms size=960x725 box_px=[66,185] n=14014 cx=125.460
+20691.307ms RAW WGC srt_rel=11862.767ms size=960x725 box_px=[66,185] n=14014 cx=125.460
+20691.308ms RAW WGC srt_rel=11879.443ms size=960x725 box_px=[56,174] n=13960 cx=114.967
+20691.309ms RAW WGC srt_rel=11896.063ms size=960x725 box_px=[56,174] n=13960 cx=114.967
+20691.310ms RAW WGC srt_rel=11912.747ms size=960x725 box_px=[52,170] n=13923 cx=110.976
+20691.311ms RAW WGC srt_rel=11929.433ms size=960x725 box_px=[51,169] n=13915 cx=110.029
+20691.312ms RAW WGC srt_rel=11946.084ms size=960x725 box_px=[51,169] n=13915 cx=110.029
+20691.313ms RAW WGC srt_rel=11962.722ms size=960x725 box_px=[52,170] n=13905 cx=111.004
+20691.315ms RAW WGC srt_rel=11979.432ms size=960x725 box_px=[52,170] n=13905 cx=111.004
+20691.315ms RAW WGC srt_rel=11996.039ms size=960x725 box_px=[53,172] n=14019 cx=112.463
+20691.316ms RAW WGC srt_rel=12012.736ms size=960x725 box_px=[53,172] n=14019 cx=112.463
+20691.317ms RAW WGC srt_rel=12029.369ms size=960x725 box_px=[54,173] n=14060 cx=113.502
+20691.318ms RAW WGC srt_rel=12046.017ms size=960x725 box_px=[54,173] n=14060 cx=113.502
+20691.319ms RAW WGC srt_rel=12062.693ms size=960x725 box_px=[55,173] n=13908 cx=114.016
+20691.320ms RAW WGC srt_rel=12079.312ms size=960x725 box_px=[55,173] n=13908 cx=114.016
+20691.321ms RAW WGC srt_rel=12096.003ms size=960x725 box_px=[56,174] n=13960 cx=114.967
+20691.322ms RAW WGC srt_rel=12112.659ms size=960x725 box_px=[56,174] n=13960 cx=114.967
+20691.323ms RAW WGC srt_rel=12129.302ms size=960x725 box_px=[56,174] n=13905 cx=115.004
+20691.323ms RAW WGC srt_rel=12145.976ms size=960x725 box_px=[56,174] n=13905 cx=115.004
+20691.324ms RAW WGC srt_rel=12162.632ms size=960x725 box_px=[56,174] n=13911 cx=115.008
+20691.325ms RAW WGC srt_rel=12179.309ms size=960x725 box_px=[56,174] n=13911 cx=115.008
+20691.326ms RAW WGC srt_rel=12195.978ms size=960x725 box_px=[56,174] n=13911 cx=115.008
+20691.327ms RAW WGC srt_rel=12212.636ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.328ms RAW WGC srt_rel=12229.301ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.329ms RAW WGC srt_rel=12245.967ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.330ms RAW WGC srt_rel=12262.593ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.331ms RAW WGC srt_rel=12279.322ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.331ms RAW WGC srt_rel=12295.962ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.332ms RAW WGC srt_rel=12312.627ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.333ms RAW WGC srt_rel=12329.308ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.334ms RAW WGC srt_rel=12345.960ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.336ms RAW WGC srt_rel=12362.564ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.337ms RAW WGC srt_rel=12379.248ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.337ms RAW WGC srt_rel=12395.881ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.338ms RAW WGC srt_rel=12412.572ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.339ms RAW WGC srt_rel=12429.217ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.340ms RAW WGC srt_rel=12445.929ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.341ms RAW WGC srt_rel=12462.581ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.342ms RAW WGC srt_rel=12479.241ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.343ms RAW WGC srt_rel=12495.871ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.343ms RAW WGC srt_rel=12512.538ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.344ms RAW WGC srt_rel=12529.178ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.345ms RAW WGC srt_rel=12545.860ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.346ms RAW WGC srt_rel=12562.511ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.347ms RAW WGC srt_rel=12579.181ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.348ms RAW WGC srt_rel=12595.850ms size=960x725 box_px=[65,183] n=13923 cx=123.976
+20691.349ms RAW WGC srt_rel=12612.480ms size=960x725 box_px=[65,183] n=13923 cx=123.976
+20691.350ms RAW WGC srt_rel=12629.176ms size=960x725 box_px=[121,239] n=13908 cx=180.016
+20691.351ms RAW WGC srt_rel=12645.821ms size=960x725 box_px=[121,239] n=13908 cx=180.016
+20691.351ms RAW WGC srt_rel=12662.456ms size=960x725 box_px=[182,300] n=13952 cx=240.978
+20691.352ms RAW WGC srt_rel=12679.133ms size=960x725 box_px=[182,300] n=13952 cx=240.978
+20691.353ms RAW WGC srt_rel=12695.800ms size=960x725 box_px=[231,349] n=13910 cx=289.987
+20691.354ms RAW WGC srt_rel=12712.457ms size=960x725 box_px=[266,384] n=13952 cx=324.978
+20691.355ms RAW WGC srt_rel=12729.132ms size=960x725 box_px=[266,384] n=13952 cx=324.978
+20691.357ms RAW WGC srt_rel=12745.823ms size=960x725 box_px=[277,395] n=13911 cx=335.999
+20691.357ms RAW WGC srt_rel=12762.456ms size=960x725 box_px=[277,395] n=13911 cx=335.999
+20691.358ms RAW WGC srt_rel=12779.154ms size=960x725 box_px=[233,352] n=14013 cx=292.448
+20691.359ms RAW WGC srt_rel=12795.778ms size=960x725 box_px=[233,352] n=14013 cx=292.448
+20691.360ms RAW WGC srt_rel=12812.436ms size=960x725 box_px=[178,297] n=14058 cx=237.518
+20691.361ms RAW WGC srt_rel=12829.100ms size=960x725 box_px=[178,297] n=14058 cx=237.518
+20691.362ms RAW WGC srt_rel=12845.750ms size=960x725 box_px=[127,246] n=14011 cx=186.440
+20691.363ms RAW WGC srt_rel=12862.431ms size=960x725 box_px=[127,246] n=14011 cx=186.440
+20691.364ms RAW WGC srt_rel=12879.076ms size=960x725 box_px=[91,209] n=13961 cx=149.964
+20691.365ms RAW WGC srt_rel=12895.726ms size=960x725 box_px=[91,209] n=13961 cx=149.964
+20691.365ms RAW WGC srt_rel=12912.392ms size=960x725 box_px=[68,187] n=14047 cx=127.481
+20691.366ms RAW WGC srt_rel=12929.095ms size=960x725 box_px=[68,187] n=14047 cx=127.481
+20691.367ms RAW WGC srt_rel=12945.732ms size=960x725 box_px=[57,176] n=14013 cx=116.448
+20691.368ms RAW WGC srt_rel=12962.385ms size=960x725 box_px=[52,171] n=14058 cx=111.526
+20691.369ms RAW WGC srt_rel=12979.057ms size=960x725 box_px=[52,171] n=14058 cx=111.526
+20691.370ms RAW WGC srt_rel=12995.695ms size=960x725 box_px=[51,170] n=14058 cx=110.526
+20691.371ms RAW WGC srt_rel=13012.351ms size=960x725 box_px=[51,170] n=14058 cx=110.526
+20691.372ms RAW WGC srt_rel=13029.015ms size=960x725 box_px=[52,170] n=13906 cx=111.009
+20691.373ms RAW WGC srt_rel=13045.676ms size=960x725 box_px=[52,170] n=13906 cx=111.009
+20691.373ms RAW WGC srt_rel=13062.328ms size=960x725 box_px=[53,172] n=14019 cx=112.463
+20691.374ms RAW WGC srt_rel=13079.017ms size=960x725 box_px=[53,172] n=14019 cx=112.463
+20691.375ms RAW WGC srt_rel=13095.674ms size=960x725 box_px=[54,173] n=14031 cx=113.474
+20691.376ms RAW WGC srt_rel=13112.331ms size=960x725 box_px=[54,173] n=14031 cx=113.474
+20691.379ms RAW WGC srt_rel=13129.003ms size=960x725 box_px=[55,173] n=13906 cx=114.009
+20691.380ms RAW WGC srt_rel=13145.657ms size=960x725 box_px=[55,173] n=13906 cx=114.009
+20691.381ms RAW WGC srt_rel=13162.304ms size=960x725 box_px=[56,174] n=13961 cx=114.964
+20691.381ms RAW WGC srt_rel=13178.972ms size=960x725 box_px=[56,174] n=13961 cx=114.964
+20691.382ms RAW WGC srt_rel=13195.669ms size=960x725 box_px=[56,174] n=13912 cx=114.996
+20691.383ms RAW WGC srt_rel=13212.299ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.384ms RAW WGC srt_rel=13228.958ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.385ms RAW WGC srt_rel=13245.628ms size=960x725 box_px=[56,174] n=13911 cx=115.008
+20691.386ms RAW WGC srt_rel=13262.282ms size=960x725 box_px=[56,174] n=13911 cx=115.008
+20691.387ms RAW WGC srt_rel=13278.970ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.388ms RAW WGC srt_rel=13295.650ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.389ms RAW WGC srt_rel=13312.322ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.389ms RAW WGC srt_rel=13328.977ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.390ms RAW WGC srt_rel=13345.592ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.391ms RAW WGC srt_rel=13362.251ms size=960x725 box_px=[56,174] n=13912 cx=115.003
+20691.392ms RAW WGC srt_rel=13378.899ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.393ms RAW WGC srt_rel=13395.570ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.394ms RAW WGC srt_rel=13412.234ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.395ms RAW WGC srt_rel=13428.885ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.395ms RAW WGC srt_rel=13445.544ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.396ms RAW WGC srt_rel=13462.204ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.397ms RAW WGC srt_rel=13478.868ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.399ms RAW WGC srt_rel=13495.540ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.400ms RAW WGC srt_rel=13512.199ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.401ms RAW WGC srt_rel=13528.855ms size=960x725 box_px=[56,174] n=13888 cx=114.903
+20691.402ms RAW WGC srt_rel=13545.528ms size=960x725 box_px=[56,174] n=13719 cx=114.228
+20691.403ms RAW WGC srt_rel=13562.220ms size=960x725 box_px=[56,174] n=13590 cx=113.789
+20691.404ms RAW WGC srt_rel=13578.840ms size=960x725 box_px=[56,174] n=13728 cx=114.379
+20691.405ms RAW WGC srt_rel=13595.510ms size=960x725 box_px=[56,174] n=13564 cx=113.901
+20691.405ms RAW WGC srt_rel=13612.153ms size=960x725 box_px=[56,174] n=13564 cx=113.953
+20691.406ms RAW WGC srt_rel=13628.838ms size=960x725 box_px=[56,174] n=13564 cx=113.953
+20691.407ms RAW WGC srt_rel=13645.485ms size=960x725 box_px=[56,174] n=13588 cx=114.021
+20691.408ms RAW WGC srt_rel=13662.149ms size=960x725 box_px=[56,174] n=13701 cx=114.313
+20691.409ms RAW WGC srt_rel=13678.808ms size=960x725 box_px=[56,174] n=13833 cx=114.730
+20691.410ms RAW WGC srt_rel=13695.460ms size=960x725 box_px=[56,174] n=13899 cx=114.956
+20691.411ms RAW WGC srt_rel=13712.168ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.411ms RAW WGC srt_rel=13728.824ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.412ms RAW WGC srt_rel=13745.440ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.413ms RAW WGC srt_rel=13762.146ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.414ms RAW WGC srt_rel=13778.827ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.415ms RAW WGC srt_rel=13795.460ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.416ms RAW WGC srt_rel=13812.113ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.417ms RAW WGC srt_rel=13828.812ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.418ms RAW WGC srt_rel=13845.503ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.418ms RAW WGC srt_rel=13862.078ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.420ms RAW WGC srt_rel=13878.751ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.421ms RAW WGC srt_rel=13895.451ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.422ms RAW WGC srt_rel=13912.054ms size=960x725 box_px=[56,174] n=13911 cx=114.999
+20691.512ms RAW WGC last hr=0x00000000; suite starts logged=6; SW reference samples=26
+20691.513ms ===== SUITE DONE =====
+21964.982ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=4 unsubs=4 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=1 unsubs=1; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+22001.461ms SHUTDOWN reason=Page.Unloaded: already done -> no-op

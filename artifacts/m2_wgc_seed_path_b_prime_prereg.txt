@@ -1,0 +1,52 @@
+M2-WGC-SEED-PATH-B′ preregistration (G2-LOCK-7)
+gate=a1161c77c5d9ca262d9371f2cab9c3ecd5e7c4138de6fc9ad58c3e579eea3a43
+LOCKED_AT=2026-10-26 13:49:20 Asia/Taipei
+approved=pidan@2026-10-26 13:51:27 Asia/Taipei
+pathb_variant=PATHB-A
+path_A=PATHB-A=V2-clamp
+seed_N=5
+seed_order=2
+t_int=min(t_compositor_interrupt_QPC, t_last_WGC)
+t_last_WGC=last_mono_WGC_sample_QPC_before_interrupt
+t_int_rule=FORBIDDEN_extrapolate_past_t_last_WGC; if t_comp>t_last_WGC clamp to last sample
+calib_display=0.7511
+calib_exact=0.7510829456
+calib_KEEP=exact from CALIB; FORBIDDEN re-calibrate / retire
+eps=5.0 DIP/s
+P-VS=OFF
+Aprime=PATHB-A'=V2-clamp+V3-VS alpha_v=0.30 NOT_RUN this ticket (hang secondary)
+path_B=IV=null+InitialVelocity=0 (A fail: frames<N / nonfinite / non-mono / |v̂|<ε / WGC fail)
+ticket_PASS_evaluates=A_only
+measure_estimator=quadratic_LS
+measure_w=5
+fit_order=2
+eval_point=t_s
+thr=max(20 DIP/s, 0.05*|v_ref|); v_ref=v_pre(t_s-) KEEP
+hang_cap=2
+n_per_cell_session=20
+pass_rule=>=17/20 Δv_i<=thr_i AND Nv_h<=thr_i
+judicable_P1=|a|*σ_ts<=thr
+judicable_P2=thr>=Nv_h_cell
+Nv_h=P95 of base Δv per cell (same estimator), measured before interrupt arms
+σ_ts=frame_sec/sqrt(12); 60Hz → 1/60/√12≈0.00481s
+smoke_cells=t060fwd,t060rev (REQUIRED)
+optional_not_run=t300fwd,t300rev,t300dbl
+rule_SKIP=t156fwd,t156rev
+arms=base (pos ctrl), Arm-WGC-seed (tested PATHB-A), IVel0 (neg ctrl ONLY t060 fwd+rev)
+IVel0_scope=t060fwd+t060rev only; t300* IVel0 not in ticket (P5)
+H5_ratio=r_i=|v_seed/v_screen|; v_screen=last-two WGC before interrupt; med_r∈[0.8,1.2]; no r_i≥2.0
+SEED_TRUTH_CONFLICT=if H5 ratioOk AND t060 fwd+rev smoke both FAIL → SEED-PATHB-FAIL + hang SEED-TRUTH-CONFLICT; FORBIDDEN raise thr / relax 17/20 / change N/order/ε/calib / reopen calib-retire as mainline
+seed_vs_measure=seed window N=5 LS @ clamped t_int ≠ change measure estimator (still w=5 @ t_s)
+forbidden=shadow_IV, spring.h→IV, composition.h edit, Δv-PASS label, SEED-ABS-PASS label, SEED-CALIB-PASS label, re-run gate 09f6414b…793d, re-run gate 831818e4…80de, re-run gate 06467b82…805c, PERF-CI claim, reopen S1/R-3/R-2, thaw Bv, change thr/17/20/calib/N/order/ε at runtime, pool sessions, swap A→A′, immediate Δv″
+t_s=argmin|x_post-x_pre| in W=[τ_kc-1,τ_kc] around commit/apply-aligned switch (QPC)
+base_nominal_switch=content_trip + max(1 frame, (w+0.5)*frame - trip)
+interrupt_nominal_switch=StartAnimation_return + ~0.85 frame
+trip_wait=wall>=trip AND WGC |x|≥0.70*|shadow_x(trip)| OR wall>=trip+3frames (shadow log-only)
+num_guard=|a|>50000 or |v|>8000 → trial invalid num_unstable
+period=0.32 zeta=0.78 final_primary=240
+machine=DESKTOP-K93N3P8 60Hz physical ≠PERF-CI
+prior_gate_09f6414b=NOT_RERUN; prior_gate_831818e4=NOT_RERUN; prior_gate_06467b82=NOT_RERUN
+artifacts_prefix=m2_wgc_seed_path_b_prime_* (or m2_wgc_seed_pathb_*); MUST NOT use m2_wgc_seed_calib_* / m2_wgc_seed_abs_* / m2_delta_v_prime_*
+script=MotionSoftDemo/M2WgcSeedPathBPrimeProbe.cs + artifacts/m2_wgc_seed_path_b_prime_run_sessions.ps1
+labels=SEED-PATHB-PASS|SEED-PATHB-FAIL|SEED-PATHB-INVALID only
+structure_risk=KEEP calib + H5@2F may leave |ivel−v_pre|≈50; smoke FAIL is legal; FORBIDDEN raise thr

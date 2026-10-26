@@ -1,0 +1,40 @@
+# win_k3_controller_probe.txt — 派题 #22 K3 AnimationController Progress / PlaybackRate
+# wall=2026-10-20 11:42:21 Asia/Taipei; OS=10.0.19045.0
+# Linear KeyFrame 0→100 Duration=1000ms; Progress seek; PlaybackRate=±rate
+# A Progress=0.5 immediate; B rate=2 half duration; C rate=-1 reverse; D DelayTime+Progress (record)
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.486 cx37=137.486 pxPerDip=1.0000
+===== A) Progress→WGC calibration (Progress then Pause; short sample) =====
+  started rate=0+Pause Progress=0.0000 x≈NaN
+  Progress=0.00 → first=0.0 median=0.0 n=4 ctrl=0.0000 rate=0.00
+  Progress=0.25 → first=59.0 median=59.0 n=3 ctrl=0.2500 rate=0.00
+  Progress=0.50 → first=90.1 median=90.1 n=4 ctrl=0.5000 rate=0.00
+  Progress=0.75 → first=97.5 median=97.5 n=4 ctrl=0.7500 rate=0.00
+  Progress=1.00 → first=100.0 median=100.0 n=4 ctrl=1.0000 rate=0.00
+  seek@0.5 |x-50|=40.1 RMS_vs_linear=25.6 mono=True → EFFECT-nonlinear
+  A-live Progress=0.5+Pause before=19.0 first=90.1 |x-50|=40.1 (record)
+===== B) PlaybackRate=2 (expect arrive ~500ms not 1000ms) =====
+  START B rate=2.0000 Progress=0.0000
+  visualArrive≈372ms (expect ~500±present) → PASS
+===== C) PlaybackRate=-1 reverse (Progress=1 + rate=-1) =====
+  Progress=1 rate=-1 (ctrl Progress=1.0000 rate=-1.0000)
+  nearEnd≈99.5
+  t≈180ms x=96.5
+  t≈360ms x=88.5
+  t≈540ms x=53.5
+  t≈720ms x=0.0
+  t≈900ms x=0.0
+  t≈1080ms x=0.0
+  traj: nearEnd=99.5 mid≈88.5 late=0.0 decreasing=True near0=True → PASS
+===== D) DelayTime=300ms + Progress=0.5 during delay (record) =====
+  START D DelayTime=300ms Progress=0.0000 rate=1.0000
+  Pause+Progress=0.5 during delay (xPre≈0.0; ctrl Progress=0.5000)
+  duringDelayPausedSeek≈90.1 afterResumePlay≈98.5 (record only; no gate)
+===== SUMMARY =====
+| A Progress seek | cal 0/0.25/0.5/0.75/1 → 0/59/90/98/100 |err50|=40.1 | EFFECT-nonlinear |
+| B rate=2 | arrive_ms=372 (≈ half of 1000 + present) | PASS |
+| C rate=-1 | 100→0 over ~720ms | PASS |
+| D Delay+Progress | during=90.1 (=same warp as A@0.5) | RECORD |
+CONCLUSION: K3 PARTIAL — Progress 写入立即生效但线性 KeyFrame 上 Progress≠value 分数（0.5→90 非 50；RMS_vs_linear≈26）；PlaybackRate=2/−1 可用（372ms≈半程；反向到 0）。elapsed 定位勿假定 Progress=elapsed/duration 线性；rate 折叠可用 PlaybackRate。
+===== K3 PROBE DONE =====

@@ -1,0 +1,69 @@
+# t_a1a_s2.txt — T-A1a session 2
+# wall(raw)=2026-10-24 22:57:49;; cal cx0=100.478 cx37=137.478 pxPerDip=1.0000 srtOff=-158618 Period=0.0509296 DR=0.7800 omega0=19.6350 refresh=60020/1000 qpcRefreshPeriod=166611
+# composition.h sha256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418 (must match; not modified)
+# GATE locked_at=2026-10-24 22:27:54 AWST; GATE_BODY_SHA256=0750a8402d4118c98025e71863f79bafd689966c2565fa922d0674e8bcf89d1d
+# corr=CONFIRM_F5_REFUTE_2X; OFFSET_METHOD residual=(d0-d_rest)-tau0; d0=39.5; k=median(residual|unsat); ref=+2.7
+# focus tau0=[21.8, 3.3, 6.8, 8.3, 33.3]; N_h=0.41; A_end=True
+# A1a RMS gate = #52 IV-rezero + seeded(commanded tau0); NOT 2x; NOT seed+k as gate
+# OFFSET_METHOD estimates/reports k (constant-offset口径); 偏离2x/魔术数→INVALID
+
+## A1a focus grid + OFFSET_METHOD
+- corr=CONFIRM_F5_REFUTE_2X; OFFSET_METHOD=median(residual|unsat); d0=39.5
+- k_est=2.6999999999999993; median(residual|unsat)=+2.70; n_unsat=23; ref=+2.7
+- method_ok=True; used_2x=False; used_magic_single=False
+| tau0 | n | d_rest_med | residual_med | unsat | RMS_gate_med | RMS_seed+k_med | cell |
+| 21.8 | 5 | 18.5 | -0.8 | 5/5 | 0.202 | 0.727 | PASS |
+| 3.3 | 5 | 35.0 | +1.2 | 5/5 | 1.251 | 3.348 | FAIL |
+| 6.8 | 5 | 28.0 | +4.7 | 5/5 | 1.323 | 3.409 | FAIL |
+| 8.3 | 5 | 28.5 | +2.7 | 5/5 | 1.373 | 3.459 | FAIL |
+| 33.3 | 5 | 2.5 | +3.7 | 3/5 | 0.123 | 0.821 | PASS |
+- A1a: **FAIL** (tau0=3.3 RMS=1.251>N_h)
+
+## A1b delta linearity (origin=220 for -amp)
+| amp | origin | n | RMS_med | maxerr_med | offscreen | cell |
+| 120 | 0 | 5 | 0.166 | 0.577 | False | PASS |
+| 240 | 0 | 5 | 0.212 | 0.588 | False | PASS |
+| -120 | 220 | 5 | 0.164 | 0.512 | False | PASS |
+| -240 | 220 | 5 | 0.219 | 0.707 | False | PASS |
+- A1b: **PASS**
+
+## A1c superposition
+| rep | n | RMS | eps_fit | mode | invalid |
+| 0 | 42 | 0.210 | 3.0 | + | False |
+| 1 | 42 | 0.271 | 6.5 | + | False |
+| 2 | 42 | 0.219 | 6.5 | + | False |
+| 3 | 43 | 0.246 | -10.0 | - | False |
+| 4 | 43 | 0.224 | -10.0 | - | False |
+| 5 | 43 | 0.226 | -10.0 | - | False |
+| 6 | 42 | 0.239 | 6.5 | + | False |
+| 7 | 42 | 0.257 | 6.5 | + | False |
+| 8 | 42 | 0.254 | 6.5 | + | False |
+| 9 | 43 | 0.212 | 6.5 | + | False |
+| 10 | 42 | 0.226 | -10.0 | - | False |
+| 11 | 42 | 2.813 | 10.5 | + | False |
+- n_valid=12 n_invalid=0 n+/n-/OTHER=8/4/0
+- med(eps|+)= 6.5; med(eps|-)= -10.0; RMS_med=0.233
+- A1c: **PASS**
+
+## A2 path=PS
+- A2 trials=8; paths={'PS'}
+- A2: **PASS**
+
+## Session A: **FAIL** (A1a=FAIL A1b=PASS A1c=PASS A2=PASS)
+
+## ONELINE_SESSION
+A=FAIL; A1a=F; A1b=P; A1c=P; A2=P; k_est=2.6999999999999993; method_ok=True
+
+## MACHINE
+A1A=F
+A1B=P
+A1C=P
+A2=P
+A=F
+K_EST=2.6999999999999993
+METHOD_OK=True
+GRID tau=21.8 n=5 rms=0.202101297434518 rms_seed_k=0.7272754869295924 gate=PASS
+GRID tau=3.3 n=5 rms=1.2509537357641587 rms_seed_k=3.347683370156556 gate=FAIL
+GRID tau=6.8 n=5 rms=1.3226776312515307 rms_seed_k=3.4091719867378907 gate=FAIL
+GRID tau=8.3 n=5 rms=1.372872613079551 rms_seed_k=3.458680110654339 gate=FAIL
+GRID tau=33.3 n=5 rms=0.12297352738506365 rms_seed_k=0.8214565761666579 gate=PASS

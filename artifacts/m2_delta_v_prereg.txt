@@ -1,0 +1,30 @@
+M2-Δv preregistration (G2-LOCK-12)
+gate=d2349ceb0d37fdf332a4f00cb2c1f1217fe6856d0f3e5222ffaf82b8b15509c6
+LOCKED_AT=2026-10-25 23:33:05 AWST
+approved=pidan@2026-10-26 06:21:36 AWST
+estimator=quadratic_LS
+w=5
+fit_order=2
+eval_point=t_s
+thr=max(20 DIP/s, 0.05*|v_ref|); v_ref=v_pre(t_s-)
+hang_cap=2
+n_per_cell_session=20
+pass_rule=>=17/20 Δv_i<=thr_i
+judicable=thr>=2*Nv_h_cell AND |a|*σ_ts<=thr/2
+Nv_h=P95 of base Δv per cell (same estimator), measured before interrupt arms
+σ_ts=frame_sec/sqrt(12) (uniform within 1 frame)
+cells=t060fwd,t060rev,t156fwd,t156rev,t300fwd,t300rev,t300dbl
+core=t060fwd,t060rev,t300fwd,t300rev,t300dbl
+aux_skip_candidate=t156fwd,t156rev (rule-exported; SKIP≠PASS)
+arms=base (pos ctrl), Arm-WGC-seed (tested), IVel0 (neg ctrl on t060 fwd+rev)
+seed_path=WGC calib=1.0 for Arm-WGC-seed; InitialValue unset (compositor current)
+forbidden=shadow_IV, two_frame_diff, relative_A, composition.h edit, PERF-CI claim
+t_s=argmin|x_post-x_pre| in W=[τ_kc-1,τ_kc] around commit/apply-aligned switch (QPC)
+base_nominal_switch=content_trip + max(1 frame, (w+0.5)*frame - trip) so prehistory ≥w at 60Hz
+interrupt_nominal_switch=StartAnimation_return + ~0.85 frame (apply-aligned)
+trip_wait=wall>=trip AND WGC |x|≥0.70*|shadow_x(trip)| OR wall>=trip+3frames (phase catch-up for compositor lag; shadow log-only timing oracle NOT written to IV)
+num_guard=|a|>50000 or |v|>8000 → trial invalid num_unstable
+dbl_eval=t_s2 (second switch)
+period=0.32 zeta=0.78 final_primary=240
+machine=DESKTOP-K93N3P8 60Hz physical
+script=MotionSoftDemo/M2DeltaVProbe.cs + artifacts/m2_delta_v_run_sessions.ps1

@@ -1,0 +1,22 @@
+using System; using System.Drawing; using System.Drawing.Imaging; using System.Runtime.InteropServices; using System.Text; using System.Diagnostics;
+public static class Cap2 {
+  [StructLayout(LayoutKind.Sequential)] public struct R { public int l,t,r,b; }
+  [DllImport("user32.dll")] static extern bool GetWindowRect(IntPtr h, out R r);
+  // Screen-grabs ONE pixel row through the middle of the window (no image is saved) and reports where the blue box is.
+  public static string Run(IntPtr h, int ms, int periodMs) {
+    var sb = new StringBuilder(); var sw = Stopwatch.StartNew(); int n = 0;
+    R r; GetWindowRect(h, out r); int w = r.r - r.l; int y = r.t + (r.b - r.t) / 2 + 16;
+    using (var bmp = new Bitmap(w, 1, PixelFormat.Format32bppArgb)) using (var g = Graphics.FromImage(bmp)) {
+      while (sw.ElapsedMilliseconds < ms) {
+        g.CopyFromScreen(r.l, y, 0, 0, new Size(w, 1));
+        var d = bmp.LockBits(new Rectangle(0, 0, w, 1), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+        var row = new byte[w * 4]; Marshal.Copy(d.Scan0, row, 0, row.Length); bmp.UnlockBits(d);
+        int minx = -1, maxx = -1;
+        for (int x = 0; x < w; x++) { int B = row[x*4], G = row[x*4+1], Rr = row[x*4+2]; if (Math.Abs(Rr-59)<25 && Math.Abs(G-130)<25 && Math.Abs(B-246)<25) { if (minx < 0) minx = x; maxx = x; } }
+        sb.AppendFormat("{0:HH:mm:ss.fff} cap {1} blue_minx={2} blue_maxx={3} px0=({4},{5},{6})\n", DateTime.Now, n, minx, maxx, row[2], row[1], row[0]);
+        n++; var next = n * periodMs; while (sw.ElapsedMilliseconds < next) System.Threading.Thread.Sleep(1);
+      }
+    }
+    return sb.ToString();
+  }
+}

@@ -1,0 +1,54 @@
+# p16_52_p3.txt — P3 A1a residual vs τ0 (offline; no new data)
+# wall=2026-10-24 20:32:16 AWST; source=artifacts/p15_51_part1.txt fine grid
+# composition.h sha256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418 (not re-checked here; see p16_52 sha block)
+# Finding 5: ≈2× advance hypothesis — confirm or withdraw
+
+## 定义
+- residual = fitted_shift − τ0 = (δ0 − δ_rest) − τ0
+- 2× 模型预测：residual = τ0（随 τ0 增长）
+- 常数偏置模型：residual ≈ k（与 τ0 无关）
+- δ0(τ0=0)=39.5 ms；饱和判定：δ_rest≤0.5 ms
+- 未饱和：δ_rest>0.5 且 τ0>0（τ0=0 为参考点，不进残差中位）
+
+## per-point 表
+| τ0 | tag | n | RMS中位 | ≤N_h | δ_rest | eff_adv | residual | sat? |
+| 0.0 | F | 5 | 0.232 | PASS | 39.5 | 0.0 | +0.0 | N |
+| 3.3 | N | 5 | 1.323 | FAIL | 38.5 | 1.0 | -2.3 | N |
+| 6.8 | N | 5 | 1.342 | FAIL | 30.5 | 9.0 | +2.2 | N |
+| 8.3 | N | 5 | 1.382 | FAIL | 28.5 | 11.0 | +2.7 | N |
+| 10.0 | N | 5 | 0.207 | PASS | 29.0 | 10.5 | +0.5 | N |
+| 13.3 | N | 5 | 0.167 | PASS | 24.0 | 15.5 | +2.2 | N |
+| 16.7 | F | 5 | 0.170 | PASS | 19.5 | 20.0 | +3.3 | N |
+| 21.8 | N | 5 | 0.183 | PASS | 10.0 | 29.5 | +7.7 | N |
+| 25.0 | N | 5 | 0.137 | PASS | 5.0 | 34.5 | +9.5 | N |
+| 28.4 | N | 5 | 0.167 | PASS | 7.0 | 32.5 | +4.1 | N |
+| 33.3 | F | 5 | 1.739 | FAIL | 0.0 | 39.5 | +6.2 | Y |
+| 36.7 | N | 5 | 0.121 | PASS | 0.0 | 39.5 | +2.8 | Y |
+| 41.7 | N | 5 | 0.127 | PASS | 0.0 | 39.5 | -2.2 | Y |
+| 45.0 | N | 5 | 0.159 | PASS | 0.0 | 39.5 | -5.5 | Y |
+| 50.0 | F | 5 | 0.118 | PASS | 0.0 | 39.5 | -10.5 | Y |
+
+## 未饱和子集
+- n_unsat=9; τ0=[np.float64(3.3), np.float64(6.8), np.float64(8.3), np.float64(10.0), np.float64(13.3), np.float64(16.7), np.float64(21.8), np.float64(25.0), np.float64(28.4)]
+- residual=[np.float64(-2.3), np.float64(2.2), np.float64(2.7), np.float64(0.5), np.float64(2.2), np.float64(3.3), np.float64(7.7), np.float64(9.5), np.float64(4.1)]
+- median(residual)=+2.70 ms
+- slope(residual~τ0)=+0.326 (2× 期望 slope≈+1.0；常数期望≈0)
+- SSE_const=103.90; SSE_2x=1506.45; 比值 SSE_2x/SSE_const=14.5×
+
+## τ0≫2.7 子集（可区分区）
+- n=8; τ0=[np.float64(6.8), np.float64(8.3), np.float64(10.0), np.float64(13.3), np.float64(16.7), np.float64(21.8), np.float64(25.0), np.float64(28.4)]; residual=[np.float64(2.2), np.float64(2.7), np.float64(0.5), np.float64(2.2), np.float64(3.3), np.float64(7.7), np.float64(9.5), np.float64(4.1)]
+- SSE_const=73.26; SSE_2x=1475.09; 比值=20.1×
+- 例：τ0=16.7 residual=+3.3（2× 要 +16.7）；τ0=25.0 residual=+9.5（2× 要 +25.0）；τ0=28.4 residual=+4.1（2× 要 +28.4）
+
+## 低端不可区分说明
+- 在 τ0≈3.3：2× 预测 residual≈+3.3，常数偏置≈+2.7，二者在测量精度内不可区分。
+- 未饱和 τ0 分布：含 3.3/6.8/8.3（低端）以及 10–28.4（可区分）。多数未饱和点（7/9）τ0>5≫2.7，故 Finding 5 条件满足。
+- 饱和区（δ_rest=0：33.3+）residual 随 τ0 变负，是天花板截断，不支持 2×。
+
+## 结论
+- verdict=CONFIRM_F5_REFUTE_2X
+- Finding 5 确认：未饱和区 residual 近常数（中位≈+2.7），非随 τ0 增长；2× 超前假说被证伪。
+- A1a 仍 FAIL 于 [3.3,6.8,8.3,33.3]；帧倍数解释不足（3.3/6.8/8.3 非倍数）。本 P3 不采新数。
+
+## ONELINE P3
+P3=CONFIRM_F5_REFUTE_2X; med_res_unsat=+2.70; slope=+0.326; SSE_2x/SSE_const=14.5x; τ0≈3.3不可区分已说明; 未饱和多数τ0>5

@@ -1,0 +1,52 @@
+14.073ms 派题 #8 MotionSoftDemo (pid 49256); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 11:31:55.973; OS=10.0.19045.0; QPC freq=10000000
+20.646ms load_tokens ok
+35.329ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.603ms K2 probe requested (--k2-probe); starts in 800 ms (派题 #20 bezier y overshoot)
+47.713ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+48.691ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+860.077ms # win_k2_overshoot_probe.txt — 派题 #20 K2 CubicBezier y∉[0,1]
+860.350ms # wall=2026-10-20 11:31:56 Asia/Taipei; OS=10.0.19045.0
+860.392ms # Test CreateCubicBezierEasingFunction + KeyFrame run: reject / clamp / honor overshoot
+860.417ms # Cases: in-range control; y=(-0.5,1.5); y=(1.4,1.2)
+1043.910ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+2214.212ms DWMFLUSH probe: calls=80 total=1332.2 ms lastHr=0x00000000 fails=0 interval mean=16.653 min=15.631 p50=16.658 p95=17.333 max=17.457 ms
+2214.229ms DWMFLUSH verdict: ≈60Hz vsync | timer tiers k*15.625±1.0 (k=1,2): k1=43.8% k2=0.0% total=43.8% | vsync 1000/60.020=16.661±1.0 ms: 98.8%, p95=17.333 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+2216.676ms DWMFLUSH raw intervals ms: 15.631,17.154,16.497,16.609,16.715,16.736,16.801,16.890,15.857,16.666,16.509,16.751,16.614,16.561,16.658,16.689,16.677,16.675,16.600,16.983,16.612,16.628,16.673,16.657,16.685,16.650,17.457,15.880,16.669,16.606,16.340,17.139,17.197,15.675,17.141,16.201,17.228,16.080,17.139,16.163,17.333,16.077,17.153,16.910,16.174,17.174,16.076,17.098,16.468,16.201,17.358,16.028,17.143,16.061,17.133,17.241,16.061,16.227,17.396,16.491,16.960,16.833,16.409,16.640,16.350,16.210,16.666,17.145,16.296,17.099,16.114,17.388,16.023,17.285,16.438,16.139,17.112,16.997,15.939,17.300
+2216.818ms DwmFlushVerdict=≈60Hz vsync
+2218.432ms MODE -> 合成器路径 (k2-probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+2220.167ms COMP reset[k2 start] StopAnimation + Translation.X:=0.0000
+2645.789ms WGC start hr=0x00000000
+2646.062ms COMP reset[k2 cal] StopAnimation + Translation.X:=37.0000
+3052.992ms COMP reset[k2 cal end] StopAnimation + Translation.X:=0.0000
+3568.448ms cal: cx0=100.473 cx37=137.473 pxPerDip=1.0000
+3572.760ms ----- [in_range] control=(0.2,0)-(0.8,1) -----
+3573.905ms   CreateCubicBezierEasingFunction: OK
+3627.634ms COMP reset[in_range rest] StopAnimation + Translation.X:=0.0000
+3691.588ms   StartAnimation: OK Duration=400ms 0→100
+4596.182ms COMP reset[in_range end] StopAnimation + Translation.X:=0.0000
+4616.667ms   WGC n=54 τ=24ms min=0.0 max=100.0 overshoot=False undershoot=False
+4616.747ms   soft honor peak=100.0 min=0.0; RMS_honor=0.41 RMS_clamp=0.41 → IN_RANGE baseline RMS_honor=0.41
+4617.772ms ----- [y_out_-0.5_1.5] control=(0.2,-0.5)-(0.8,1.5) -----
+4617.845ms   CreateCubicBezierEasingFunction: OK
+4735.109ms COMP reset[y_out_-0.5_1.5 rest] StopAnimation + Translation.X:=0.0000
+4796.109ms   StartAnimation: OK Duration=400ms 0→100
+5703.941ms COMP reset[y_out_-0.5_1.5 end] StopAnimation + Translation.X:=0.0000
+5710.291ms   WGC n=55 τ=16ms min=-8.0 max=108.0 overshoot=True undershoot=True
+5710.324ms   soft honor peak=108.1 min=-8.1; RMS_honor=0.72 RMS_clamp=10.11 → HONOR (WGC matches unclamped BezierEase; overshoot/undershoot visible)
+5710.347ms ----- [y_out_1.4_1.2] control=(0.4,1.4)-(0.6,1.2) -----
+5710.386ms   CreateCubicBezierEasingFunction: OK
+5827.356ms COMP reset[y_out_1.4_1.2 rest] StopAnimation + Translation.X:=0.0000
+5890.847ms   StartAnimation: OK Duration=400ms 0→100
+6803.883ms COMP reset[y_out_1.4_1.2 end] StopAnimation + Translation.X:=0.0000
+6809.545ms   WGC n=55 τ=24ms min=0.0 max=114.1 overshoot=True undershoot=False
+6809.582ms   soft honor peak=114.1 min=0.0; RMS_honor=0.56 RMS_clamp=15.27 → HONOR (WGC matches unclamped BezierEase; overshoot/undershoot visible)
+6809.600ms ===== SUMMARY =====
+6809.606ms | case | create | start | minX | maxX | RMS_honor | RMS_clamp | verdict |
+6809.615ms | in_range | ok | ok | 0.0 | 100.0 | 0.41 | 0.41 | IN_RANGE baseline RMS_honor=0.41 |
+6809.624ms | y_out_-0.5_1.5 | ok | ok | -8.0 | 108.0 | 0.72 | 10.11 | HONOR (WGC matches unclamped BezierEase; overshoot/undershoot visible) |
+6809.634ms | y_out_1.4_1.2 | ok | ok | 0.0 | 114.1 | 0.56 | 15.27 | HONOR (WGC matches unclamped BezierEase; overshoot/undershoot visible) |
+6814.960ms CONCLUSION: HONOR. RECOMMEND enable Capabilities::bezierOvershoot=true (API honors y∉[0,1]; WGC shows overshoot).
+6814.984ms ===== K2 PROBE DONE =====
+7641.840ms MAPTEST auto-close window
+7647.074ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+7672.068ms SHUTDOWN reason=Page.Unloaded: already done -> no-op

@@ -1,0 +1,14 @@
+# p16_52_sha.txt — composition.h sha checks
+PRE_WALL=2026-10-24 20:36:08 AWST
+PRE_PATH=C:\Users\admin\motion_framework\code\composition.h
+PRE_SHA256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+EXPECT=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+PRE_MATCH=True
+POST_WALL=2026-10-24 20:48:47 AWST
+POST_PATH=C:\Users\admin\motion_framework\code\composition.h
+POST_SHA256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+EXPECT=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+POST_MATCH=True
+BOX_PATH=/workspace/motion_framework/code/composition.h
+BOX_SHA256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+BOX_MATCH=True

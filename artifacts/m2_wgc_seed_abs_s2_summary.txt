@@ -1,0 +1,12 @@
+# m2_wgc_seed_abs_s2_summary.txt
+session=2 pid=5060 hostname=DESKTOP-K93N3P8 prereg_hash=ec8950125ede7c94306e0b201f7e3aedc1b9bc07caf79dc90db1b2abda652c17 calib=1.000000 seed_N=5 meas_w=5 hang_cap=2 eps=5
+path_declare=A=P-LS+TS N=5 order=2 calib=1 P-VS=OFF
+composition_expected=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+H5_ratio n=40 med_r=1.3294 max_r=1.4161 any_ri_ge2=False ratioOk=False pathA_n=40 pathB_n=0
+CELL cell=t060fwd role=core Nv_h=11.476 thrMed=20.000 |a|*σ=10.756 jud=True wgc_n=20 wgc_pass=11/20 base_pass=19/20 IVel0_pass=0/20 verdict=FAIL
+CELL cell=t060rev role=core Nv_h=18.604 thrMed=20.000 |a|*σ=10.706 jud=True wgc_n=20 wgc_pass=0/20 base_pass=19/20 IVel0_pass=0/20 verdict=FAIL
+ctrl basePass=True IVel0_t060_both_FAIL=True pathAUsed=True ratioOk=False
+cells=t060fwd:FAIL,t060rev:FAIL
+label_note=SEED-ABS only; NOT Δv-PASS; prior 06467b82 not re-run
+SESSION_FAIL_CANDIDATE
+===== M2-WGC-SEED-ABS PROBE DONE =====

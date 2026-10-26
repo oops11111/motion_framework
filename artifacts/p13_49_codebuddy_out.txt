@@ -1,0 +1,26 @@
+All 5 wiring points present (lines 119, 121, 138, 170, 346). Done — no build or run attempted.
+
+## Summary
+
+**`MotionSoftDemo\R3Probe.cs`** — appended `private async Task RunR3E3Probe()` (lines 335–566), leaving the existing `RunR3P12Probe()` (lines 26–333) untouched. The new method mirrors the P12 PART B boilerplate: foreground + `DwmFlushProbe(80)` + `SetMode(true,"r3-e3-probe")` + `CompReset` + WGC start + 37 DIP calibration; helpers `WaitNear`/`Sp()`/`CapsSince`/`RawOf`/`Xs`; background `DwmFlush()` tick ring (256) with `TickInfo()` and `SpinToPhase(phiMs)`; finally-block cleanup. Artifact written to `C:\Users\admin\motion_framework\artifacts\p13_49_raw.txt`.
+
+Three trial arms:
+- **Sup**: `CreatePropertySet` with `b` and `d1`; expression `ps.b + ps.d1` on `Translation.X`; base spring `b:0→240` started and never stopped; at `tInt+phi` an overlay spring on `d1` with `FinalValue = bNew-240`, `InitialValue=0`, `InitialVelocity=0` is started (no readback, no δ). Shadow `mf_spring_at` computed for logging only.
+- **Bv**: B1 `0→240` on `Translation.X`; at `tInt+phi` a retarget spring with `InitialValue` unset (IV=null), `InitialVelocity=shV`, `FinalValue=bNew`.
+- **base**: B1 `0→240`; delay/spin to `tInt+phase` for timing parity; shadow computed; no retarget.
+
+Matrix: `tInt {60 (8 reps), 156 (4 reps)}` × `phi {1,5,9,13}` × `b_new {0,120}` × `arms {Sup,Bv,base}` = 288 trials. Per `(tInt,rep)` block, `(phi,b)` pairs are shuffled with `Random(20261049)`; inside each pair the 3 arms run in cyclic order rotated by `(rep+blockIndex)%3`. Prints `REP tInt=.. rep=.. DONE` and finally `===== P13 RAW DONE =====`.
+
+**`MotionSoftDemo\MainPage.xaml.cs`** — five minimal wiring edits (mirroring the P12 pattern), no other code touched:
+1. Line 119: log-filename ternary — prepended `_r3E3Probe ? "m49_r3_e3_ui.txt" : (...)` before `_r3P12Probe` and added the matching `)`.
+2. Line 121: `_log` append-flag `||` chain — appended `|| _r3E3Probe`.
+3. Line 138: bool field declaration — appended `_r3E3Probe`.
+4. Line 170: args parsing — added `_r3E3Probe = args0.Any(a => a.Equals("--r3-e3-probe", StringComparison.OrdinalIgnoreCase));` before the P12 parse line.
+5. Lines 346–353: dispatcher — added the `else if (_r3E3Probe) { Log("R3 E3 #49 probe (--r3-e3-probe)"); ... await RunR3E3Probe(); }` block BEFORE `else if (_r3P12Probe)`.
+
+**Assumptions** (matching P12 / the task spec):
+- `MfProbe.mf_map_spring`, `mf_spring_at`, `mf_dwm_timing`, `mf_cap_start`, `mf_cap_stop`, `ReadCaptures`, `Qpc`, `SecSince`, `F`, `CompReset`, `SetMode`, `Log`, `FlushLog`, `DwmFlushProbe`, `ShowWindow`, `SetForegroundWindow`, `CloseMainWindowSoon`, `_comp`, `_visual`, `_suiteRunning`, `MeasureButton`, `_dwmFlushVerdict`, and `Cap(double T100ns, long QpcArrive, int W, int H, int MinX, int MaxX, int N, double Cx)` are available on the same `public sealed partial class MainPage` (confirmed by reading both files).
+- The Sup trial logs `sup=1` on its TRIAL line; Bv/base omit it (offline uses `arm=`).
+- `blockIndex` is shared across both `tInt` blocks so the arm-rotation offset keeps cycling rather than resetting per `tInt` — this gives the requested rotation variety across the full 288-trial run.
+- `tInt_m` for Sup/Bv is sampled right after the interrupt `StartAnimation` returns; for `base` it is sampled right after `SpinToPhase` returns (no interrupt to time), per the spec.
+- Pre-existing odd indentation of the P12 `finally` block (lines 327–332) was left exactly as-is; the new E3 method uses consistent 4-space indentation throughout.

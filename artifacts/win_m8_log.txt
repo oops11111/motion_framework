@@ -1,0 +1,1511 @@
+# win_m8_log.txt — 派题 #8 (DESKTOP-K93N3P8, Win10 19045, 2026-10-20 04:4x–04:53 Asia/Taipei; display asleep, no input simulated)
+
+## 1. box g++ build of code/capi (fm_capi.cpp with portable bounded copy)
+g++ -std=c++17 -O2 -Wall -Wextra ... fm_capi.cpp fm_capi_test.cpp : 0 warnings; run in code/capi: 23 checks, 0 failures
+
+## 2. Windows native build (MotionNative\build.bat, cl 19.44, /MT)
+用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.44.35228 版
+==== BUILD fluidmotion.dll (/MT static CRT) ====
+fm_capi.cpp
+  正在创建库 fluidmotion.lib 和对象 fluidmotion.exp
+cl_exit=0
+          1    0 000265D0 fm_animation_cancel
+          2    1 00026680 fm_animation_create
+          3    2 00026A10 fm_animation_play
+          4    3 00026AC0 fm_animation_release
+          5    4 00026B50 fm_animation_retarget
+          6    5 00026D60 fm_create
+          7    6 00026E50 fm_create_manual
+          8    7 00026F10 fm_current
+          9    8 00026FB0 fm_destroy
+         10    9 00027060 fm_is_running
+         11    A 00027080 fm_load_tokens
+         12    B 000274B0 fm_manual_advance
+         13    C 000274E0 fm_on_frame
+         14    D 00027540 fm_set_reduced_motion
+==== DLL dependents (expect no VCRUNTIME140/MSVCP140) ====
+Dump of file fluidmotion.dll
+File Type: DLL
+    KERNEL32.dll
+==== BUILD+RUN fm_capi_test (cl, /MT) ====
+fm_capi.cpp
+fm_capi_test.cpp
+正在生成代码...
+  正在创建库 fm_capi_test.lib 和对象 fm_capi_test.exp
+cl_exit=0
+  demo.enter: 69 frames (575 ms), 138 sink calls
+23 checks, 0 failures
+run_exit=0
+==== BUILD+RUN continuity_test ====
+continuity_test.cpp
+cl_exit=0
+before retarget: value=217.522813117 vel=729.152815097 (sink=217.522813117)
+right after retarget(0): value=217.522813117 vel=729.152815097  |dv|=0.000e+00 |dvel|=0.000e+00
+after +0.1ms frame: value=217.595197912 vel=718.548043883  |dv|=7.238e-02
+after +16.7ms frame: value=216.995374752 vel=-671.689962054  step=-0.527438 (pre-retarget vel*dt=12.152547)
+settled after 37 more frames at value=0.000000000 (sink=0.000000000, sink calls=48)
+13 checks, 0 failures
+run_exit=0
+
+## 3. dotnet build -c Debug -p:Platform=x64 --no-incremental
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:16.56
+
+## 4. Lifecycle: 3 launches (--lifecycle), each closed via CloseMainWindow while Rendering subscribed; leftover process: none
+13.835ms 派题 #8 MotionSoftDemo (pid 26292, --lifecycle); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 04:52:31.177; OS=10.0.19045.0; QPC freq=10000000
+20.054ms load_tokens ok
+34.832ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.391ms LIFECYCLE retarget(response=3.0) ok=True subscribed=True subs=1
+47.546ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+48.624ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+855.645ms LIFECYCLE ready (animating, subscribed=True)
+1054.466ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1211.208ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=True subs=1 unsubs=1 paired=True disposed=True callbackErrors=0; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+1232.581ms SHUTDOWN reason=Page.Unloaded: already done -> no-op
+13.936ms 派题 #8 MotionSoftDemo (pid 15136, --lifecycle); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 04:52:41.777; OS=10.0.19045.0; QPC freq=10000000
+20.061ms load_tokens ok
+34.378ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+38.857ms LIFECYCLE retarget(response=3.0) ok=True subscribed=True subs=1
+47.706ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+48.755ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+853.118ms LIFECYCLE ready (animating, subscribed=True)
+1052.058ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1747.006ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=True subs=1 unsubs=1 paired=True disposed=True callbackErrors=0; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+1767.391ms SHUTDOWN reason=Page.Unloaded: already done -> no-op
+13.134ms 派题 #8 MotionSoftDemo (pid 55840, --lifecycle); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 04:52:52.895; OS=10.0.19045.0; QPC freq=10000000
+19.252ms load_tokens ok
+33.672ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+38.190ms LIFECYCLE retarget(response=3.0) ok=True subscribed=True subs=1
+47.239ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+48.258ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+852.038ms LIFECYCLE ready (animating, subscribed=True)
+1051.808ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1747.197ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=True subs=1 unsubs=1 paired=True disposed=True callbackErrors=0; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+1767.347ms SHUTDOWN reason=Page.Unloaded: already done -> no-op
+
+## 5. --measure run (DwmFlush probe + suite), display asleep
+13.798ms 派题 #8 MotionSoftDemo (pid 62712); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 04:53:15.945; OS=10.0.19045.0; QPC freq=10000000
+20.100ms load_tokens ok
+34.499ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+40.154ms AUTORUN requested (launch arg --measure); suite starts in 1500 ms
+47.800ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+48.811ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+1049.166ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1552.642ms ===== SUITE START (autorun: launch arg --measure) =====
+6566.745ms DWMFLUSH probe: calls=300 total=4996.6 ms lastHr=0x00000000 fails=0 interval mean=16.655 min=3.791 p50=15.654 p95=30.476 max=32.099 ms -> ≈60 Hz: DWM composes at full rate
+6711.482ms WGC CreateForWindow(hwnd=0x1F60520) start hr=0x00000000 item=960x725 RasterizationScale=1
+6712.920ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=5857693056556 qpcCompose=5857693056556 cRefresh=2 cFrame=1 rateRefresh=60020/1000 | qpcNow=5857693037313 | WGC frames=0
+7727.218ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=5857703347631 qpcCompose=5857703347631 cRefresh=3 cFrame=2 rateRefresh=60020/1000 | qpcNow=5857703184531 | WGC frames=45
+8740.070ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=5857713474325 qpcCompose=5857713474325 cRefresh=4 cFrame=3 rateRefresh=60020/1000 | qpcNow=5857713312871 | WGC frames=90
+8741.912ms MODE -> 合成器路径 (suite): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+8743.579ms COMP reset[suite start] StopAnimation + Translation.X:=0.0000
+9158.715ms COMP reset[calibration] StopAnimation + Translation.X:=37.0000
+9563.575ms COMP reset[calibration end] StopAnimation + Translation.X:=0.0000
+9977.842ms COMP spring [A: S1 spring 0->240 from rest] gen=1 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=5857725681905
+11685.447ms COMP reset[after A] StopAnimation + Translation.X:=0.0000
+12088.105ms COMP spring [B1: go 240] gen=2 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=5857746793089
+12244.008ms COMP spring [B2: interrupt -> 0] gen=3 -> 0.0000 InitialValue=221.3602 InitialVelocity=655.4939 Period=0.32s DampingRatio=0.78 shadowSettle=0.6303s qpc=5857748352129
+13753.883ms COMP reset[after B] StopAnimation + Translation.X:=0.0000
+14157.621ms COMP spring [E: rate=2 spring 0->240 (Period=response/2)] gen=4 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.16s DampingRatio=0.78 shadowSettle=0.3367s qpc=5857767487525
+15365.247ms COMP reset[after E] StopAnimation + Translation.X:=0.0000
+15772.665ms COMP bezier [C: bezier enter 0->240 220ms] -> 240.0000 from(shadow)=0.0000 220ms qpc=5857783638619
+16781.802ms COMP reset[after C] StopAnimation + Translation.X:=0.0000
+17094.690ms COMP spring [H: go 240 then switch to software at 120 ms] gen=5 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=5857796858897
+17218.403ms MODE -> 软件路径 (suite handoff): handoff from SHADOW value=192.7999 vel=1137.4117 (readback after StopAnimation=0.0000, |shadow-readback|=192.7999) ok=True sw value=0.0000 vel=0.0000 handoff|dv|=192.7999
+18431.218ms SW retarget[SW reset] -> 0.0000 ok=True before(value=240.0000 vel=0.0000) after(value=240.0000 vel=0.0000) |dv|=0.000E+000
+19336.136ms SW retarget[D1: SW go 240] -> 240.0000 ok=True before(value=0.0000 vel=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000
+19490.998ms SW retarget[D2: SW interrupt -> 0] -> 0.0000 ok=True before(value=208.7341 vel=886.0325) after(value=220.9070 vel=664.3803) |dv|=1.217E+001
+20702.691ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=5857833103168 qpcCompose=5857833103168 cRefresh=5 cFrame=4 rateRefresh=60020/1000 | qpcNow=5857832939283 | WGC frames=588
+20729.066ms REPORT ===== spec §4 acceptance (note: the dispatch said §6; the spec's acceptance table is §4) =====
+20729.072ms REPORT run validity: INVALID (display-asleep) — data recorded but not acceptable
+20729.073ms REPORT   gate rule (coordinator ruling #7): INVALID if DWM cRefresh advance < 50% of rateRefresh x elapsed, or WGC box-found frames in motion windows < 50% of rateRefresh x motion time, or any compositor scenario shows box displacement < 10% of commanded travel (frozen-frames); frame-id gate only on OS build >= 22000
+20729.073ms REPORT   frame-id gate skipped: OS build 19045 < 22000
+20729.074ms REPORT   DWM gate: cRefresh 2 -> 5 = +3 in 13.99 s; expected rateRefresh 60.020 Hz x 13.99 s = 839.7; ratio 0.36% (threshold >= 50%) -> FAIL; cFrame 1 -> 4
+20729.074ms REPORT   WGC gate: box-found frames in motion windows = 0 (all frames in windows 84); expected rateRefresh x motion time 60.020 x 1.971 s = 118.3; ratio 0.00% (threshold >= 50%) -> FAIL; run total WGC frames=588, box found in 0
+20729.075ms REPORT   frozen-frames gate (per scenario, each must reach >= 10% of commanded travel; px->DIP /RasterizationScale 1.00): [A] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [B1] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [B2] frames=0 disp=0.00 DIP / commanded 221.36 DIP = 0.00% -> FAIL; [E] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [C] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL -> FAIL (5/5 scenarios frozen)
+20729.076ms REPORT   INVALID because: DWM gate: cRefresh 2 -> 5 = +3 in 13.99 s; expected rateRefresh 60.020 Hz x 13.99 s = 839.7; ratio 0.36% (threshold >= 50%) -> FAIL; cFrame 1 -> 4
+20729.076ms REPORT   INVALID because: WGC gate: box-found frames in motion windows = 0 (all frames in windows 84); expected rateRefresh x motion time 60.020 x 1.971 s = 118.3; ratio 0.00% (threshold >= 50%) -> FAIL; run total WGC frames=588, box found in 0
+20729.077ms REPORT   INVALID because: frozen-frames: frozen-frames gate (per scenario, each must reach >= 10% of commanded travel; px->DIP /RasterizationScale 1.00): [A] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [B1] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [B2] frames=0 disp=0.00 DIP / commanded 221.36 DIP = 0.00% -> FAIL; [E] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [C] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL -> FAIL (5/5 scenarios frozen)
+20729.251ms REPORT   clock gate: frameId 0 -> 0 (hr 0x80004001); DWM cRefresh 2 -> 4 -> 5, cFrame 1 -> 3 -> 4, qpcVBlank 5857693056556 -> 5857713474325 -> 5857833103168; WGC frames total=588 (box visible in 0) over 14.0 s
+20729.483ms REPORT   calibration: rest cx=NaN px, at 37 DIP cx=NaN px -> 1.0000 px/DIP (N/A: no frame during calibration; using RasterizationScale)
+20735.377ms REPORT 1 启动延迟 p50/p95/max: N/A — no WGC frame showed |Δpx|>=0.5 after any StartAnimation (588 frames total) INVALID(display-asleep) 
+20735.688ms REPORT 2 打断位置连续性 |Δv|: N/A — 0 WGC frames with the box after the retarget (need >=2) INVALID(display-asleep) 
+20735.690ms REPORT 3 打断速度连续性 |Δvel|: N/A — same reason INVALID(display-asleep) 
+20735.769ms REPORT   seed at interrupt (shadow, spring.h): InitialValue=221.3602 InitialVelocity=655.4939 DIP/s at +155.5 ms after B1
+20741.356ms REPORT 4 终值误差: N/A — no WGC frame >= settle+0.9 s after A start (A frames=0) INVALID(display-asleep) 
+20741.938ms REPORT 5 轨迹偏差 A spring 0.32/0.78: N/A — 0 WGC frames in window (need >=5) INVALID(display-asleep) 
+20741.941ms REPORT 5 轨迹偏差 E spring rate=2 (Period 0.16): N/A — 0 WGC frames in window (need >=5) INVALID(display-asleep) 
+20741.942ms REPORT 5 轨迹偏差 C bezier 220ms: N/A — 0 WGC frames in window (need >=5) INVALID(display-asleep) 
+20743.091ms REPORT 6 帧间隔(CompositionTarget.Rendering) INVALID(display-asleep) n=450 p50=31.11 ms p95=32.01 ms mean=31.05 ms (阈值 p50<=18, p95<=25; 熄屏下无效)
+20743.338ms REPORT 7 稳定性: exceptions=0; suite Rendering subs=1 unsubs=1; mode switches 2/2 ok; SW Rendering subscribed now=False
+20743.340ms REPORT 8 熄屏: INVALID (not FAIL); app did not hang; evidence above
+20743.347ms REPORT S1 Period 判别: N/A — 0 WGC frames in A (need >=5); expected peak-to-peak (=damped period) 0.511 s if Period=undamped (S1), 0.320 s if Period=damped INVALID(display-asleep) 
+20743.348ms RAW WGC frames: 588
+20743.658ms RAW WGC srt_rel=0.000ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.661ms RAW WGC srt_rel=15.149ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.663ms RAW WGC srt_rel=30.787ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.664ms RAW WGC srt_rel=46.078ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.665ms RAW WGC srt_rel=62.093ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.667ms RAW WGC srt_rel=78.068ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.670ms RAW WGC srt_rel=108.228ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.672ms RAW WGC srt_rel=139.782ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.673ms RAW WGC srt_rel=155.345ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.674ms RAW WGC srt_rel=170.795ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.676ms RAW WGC srt_rel=186.770ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.677ms RAW WGC srt_rel=201.971ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.678ms RAW WGC srt_rel=232.518ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.679ms RAW WGC srt_rel=263.053ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.680ms RAW WGC srt_rel=279.150ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.681ms RAW WGC srt_rel=294.922ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.682ms RAW WGC srt_rel=310.826ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.683ms RAW WGC srt_rel=341.195ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.684ms RAW WGC srt_rel=372.185ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.685ms RAW WGC srt_rel=403.499ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.687ms RAW WGC srt_rel=419.484ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.688ms RAW WGC srt_rel=435.470ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.689ms RAW WGC srt_rel=451.470ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.690ms RAW WGC srt_rel=483.478ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.691ms RAW WGC srt_rel=514.468ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.692ms RAW WGC srt_rel=545.768ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.693ms RAW WGC srt_rel=561.730ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.694ms RAW WGC srt_rel=577.713ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.695ms RAW WGC srt_rel=608.387ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.696ms RAW WGC srt_rel=639.396ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.698ms RAW WGC srt_rel=670.778ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.699ms RAW WGC srt_rel=685.773ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.701ms RAW WGC srt_rel=701.453ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.702ms RAW WGC srt_rel=717.435ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.703ms RAW WGC srt_rel=748.551ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.704ms RAW WGC srt_rel=780.486ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.705ms RAW WGC srt_rel=795.452ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.706ms RAW WGC srt_rel=810.897ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.707ms RAW WGC srt_rel=840.946ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.708ms RAW WGC srt_rel=870.922ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.709ms RAW WGC srt_rel=902.923ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.710ms RAW WGC srt_rel=917.960ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.712ms RAW WGC srt_rel=933.912ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.713ms RAW WGC srt_rel=949.948ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.714ms RAW WGC srt_rel=981.498ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.715ms RAW WGC srt_rel=1013.558ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.716ms RAW WGC srt_rel=1029.569ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.717ms RAW WGC srt_rel=1045.558ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.718ms RAW WGC srt_rel=1061.553ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.719ms RAW WGC srt_rel=1076.632ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.720ms RAW WGC srt_rel=1108.049ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.722ms RAW WGC srt_rel=1139.572ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.723ms RAW WGC srt_rel=1171.080ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.724ms RAW WGC srt_rel=1186.331ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.726ms RAW WGC srt_rel=1202.324ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.727ms RAW WGC srt_rel=1234.295ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.728ms RAW WGC srt_rel=1265.310ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.729ms RAW WGC srt_rel=1297.190ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.730ms RAW WGC srt_rel=1313.191ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.731ms RAW WGC srt_rel=1328.835ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.732ms RAW WGC srt_rel=1344.764ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.734ms RAW WGC srt_rel=1360.702ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.735ms RAW WGC srt_rel=1376.763ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.736ms RAW WGC srt_rel=1392.744ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.737ms RAW WGC srt_rel=1423.731ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.738ms RAW WGC srt_rel=1439.048ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.739ms RAW WGC srt_rel=1454.952ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.740ms RAW WGC srt_rel=1485.877ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.741ms RAW WGC srt_rel=1517.591ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.742ms RAW WGC srt_rel=1548.722ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.743ms RAW WGC srt_rel=1579.016ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.745ms RAW WGC srt_rel=1594.178ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.746ms RAW WGC srt_rel=1609.838ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.749ms RAW WGC srt_rel=1641.184ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.750ms RAW WGC srt_rel=1672.097ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.751ms RAW WGC srt_rel=1703.397ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.752ms RAW WGC srt_rel=1718.659ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.753ms RAW WGC srt_rel=1734.759ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.754ms RAW WGC srt_rel=1749.820ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.756ms RAW WGC srt_rel=1780.278ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.757ms RAW WGC srt_rel=1810.710ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.758ms RAW WGC srt_rel=1826.579ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.759ms RAW WGC srt_rel=1857.027ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.760ms RAW WGC srt_rel=1888.326ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.761ms RAW WGC srt_rel=1919.362ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.762ms RAW WGC srt_rel=1949.947ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.763ms RAW WGC srt_rel=1965.760ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.764ms RAW WGC srt_rel=1980.759ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.765ms RAW WGC srt_rel=1995.915ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.766ms RAW WGC srt_rel=2011.105ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.768ms RAW WGC srt_rel=2026.227ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.769ms RAW WGC srt_rel=2057.609ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.770ms RAW WGC srt_rel=2089.464ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.771ms RAW WGC srt_rel=2105.485ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.772ms RAW WGC srt_rel=2121.462ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.773ms RAW WGC srt_rel=2152.554ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.775ms RAW WGC srt_rel=2183.221ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.776ms RAW WGC srt_rel=2214.344ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.777ms RAW WGC srt_rel=2229.686ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.778ms RAW WGC srt_rel=2244.873ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.779ms RAW WGC srt_rel=2260.370ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.780ms RAW WGC srt_rel=2290.637ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.782ms RAW WGC srt_rel=2321.630ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.783ms RAW WGC srt_rel=2352.456ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.784ms RAW WGC srt_rel=2368.790ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.785ms RAW WGC srt_rel=2384.589ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.786ms RAW WGC srt_rel=2399.707ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.787ms RAW WGC srt_rel=2414.872ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.788ms RAW WGC srt_rel=2430.113ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.789ms RAW WGC srt_rel=2445.128ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.790ms RAW WGC srt_rel=2460.764ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.791ms RAW WGC srt_rel=2492.557ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.792ms RAW WGC srt_rel=2523.882ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.793ms RAW WGC srt_rel=2555.198ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.794ms RAW WGC srt_rel=2587.294ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.796ms RAW WGC srt_rel=2617.716ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.797ms RAW WGC srt_rel=2648.910ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.798ms RAW WGC srt_rel=2665.055ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.799ms RAW WGC srt_rel=2680.189ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.800ms RAW WGC srt_rel=2695.485ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.802ms RAW WGC srt_rel=2710.397ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.803ms RAW WGC srt_rel=2726.403ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.804ms RAW WGC srt_rel=2756.655ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.805ms RAW WGC srt_rel=2787.681ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.806ms RAW WGC srt_rel=2802.866ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.807ms RAW WGC srt_rel=2818.824ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.808ms RAW WGC srt_rel=2833.816ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.809ms RAW WGC srt_rel=2849.941ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.810ms RAW WGC srt_rel=2880.383ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.812ms RAW WGC srt_rel=2912.233ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.813ms RAW WGC srt_rel=2943.440ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.814ms RAW WGC srt_rel=2974.750ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.815ms RAW WGC srt_rel=3005.040ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.816ms RAW WGC srt_rel=3035.633ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.817ms RAW WGC srt_rel=3066.822ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.818ms RAW WGC srt_rel=3082.272ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.819ms RAW WGC srt_rel=3098.253ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.820ms RAW WGC srt_rel=3113.526ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.821ms RAW WGC srt_rel=3129.572ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.822ms RAW WGC srt_rel=3144.954ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.824ms RAW WGC srt_rel=3176.587ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.825ms RAW WGC srt_rel=3222.558ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.826ms RAW WGC srt_rel=3253.826ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.827ms RAW WGC srt_rel=3284.904ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.829ms RAW WGC srt_rel=3315.088ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.830ms RAW WGC srt_rel=3345.714ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.831ms RAW WGC srt_rel=3361.575ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.832ms RAW WGC srt_rel=3377.731ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.833ms RAW WGC srt_rel=3393.020ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.834ms RAW WGC srt_rel=3424.323ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.835ms RAW WGC srt_rel=3456.263ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.836ms RAW WGC srt_rel=3487.490ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.837ms RAW WGC srt_rel=3503.501ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.838ms RAW WGC srt_rel=3518.492ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.839ms RAW WGC srt_rel=3549.516ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.840ms RAW WGC srt_rel=3580.629ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.842ms RAW WGC srt_rel=3611.621ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.843ms RAW WGC srt_rel=3627.313ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.844ms RAW WGC srt_rel=3643.380ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.845ms RAW WGC srt_rel=3659.387ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.846ms RAW WGC srt_rel=3689.838ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.847ms RAW WGC srt_rel=3720.858ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.848ms RAW WGC srt_rel=3752.278ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.849ms RAW WGC srt_rel=3767.608ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.850ms RAW WGC srt_rel=3782.969ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.851ms RAW WGC srt_rel=3798.790ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.852ms RAW WGC srt_rel=3814.731ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.854ms RAW WGC srt_rel=3830.795ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.855ms RAW WGC srt_rel=3846.193ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.857ms RAW WGC srt_rel=3861.244ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.858ms RAW WGC srt_rel=3892.354ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.860ms RAW WGC srt_rel=3939.739ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.861ms RAW WGC srt_rel=3970.468ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.862ms RAW WGC srt_rel=4001.726ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.863ms RAW WGC srt_rel=4032.761ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.864ms RAW WGC srt_rel=4063.702ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.865ms RAW WGC srt_rel=4079.521ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.867ms RAW WGC srt_rel=4095.516ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.868ms RAW WGC srt_rel=4110.562ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.869ms RAW WGC srt_rel=4126.514ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.870ms RAW WGC srt_rel=4142.096ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.871ms RAW WGC srt_rel=4173.137ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.872ms RAW WGC srt_rel=4189.093ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.873ms RAW WGC srt_rel=4221.061ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.874ms RAW WGC srt_rel=4252.081ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.875ms RAW WGC srt_rel=4284.181ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.876ms RAW WGC srt_rel=4300.105ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.877ms RAW WGC srt_rel=4316.073ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.879ms RAW WGC srt_rel=4332.225ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.880ms RAW WGC srt_rel=4348.114ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.881ms RAW WGC srt_rel=4363.099ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.882ms RAW WGC srt_rel=4379.165ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.883ms RAW WGC srt_rel=4394.885ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.884ms RAW WGC srt_rel=4409.815ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.886ms RAW WGC srt_rel=4425.632ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.887ms RAW WGC srt_rel=4472.259ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.888ms RAW WGC srt_rel=4504.361ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.889ms RAW WGC srt_rel=4535.039ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.890ms RAW WGC srt_rel=4565.704ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.892ms RAW WGC srt_rel=4597.819ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.893ms RAW WGC srt_rel=4629.080ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.894ms RAW WGC srt_rel=4644.959ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.895ms RAW WGC srt_rel=4660.960ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.896ms RAW WGC srt_rel=4676.759ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.897ms RAW WGC srt_rel=4692.746ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.898ms RAW WGC srt_rel=4722.808ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.899ms RAW WGC srt_rel=4753.730ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.900ms RAW WGC srt_rel=4768.942ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.901ms RAW WGC srt_rel=4785.084ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.902ms RAW WGC srt_rel=4800.154ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.904ms RAW WGC srt_rel=4816.165ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.905ms RAW WGC srt_rel=4846.469ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.906ms RAW WGC srt_rel=4877.552ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.907ms RAW WGC srt_rel=4908.894ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.908ms RAW WGC srt_rel=4925.107ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.909ms RAW WGC srt_rel=4956.736ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.910ms RAW WGC srt_rel=4988.038ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.911ms RAW WGC srt_rel=5019.409ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.913ms RAW WGC srt_rel=5049.824ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.914ms RAW WGC srt_rel=5065.966ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.915ms RAW WGC srt_rel=5080.859ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.916ms RAW WGC srt_rel=5096.290ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.917ms RAW WGC srt_rel=5111.999ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.918ms RAW WGC srt_rel=5127.035ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.919ms RAW WGC srt_rel=5143.069ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.921ms RAW WGC srt_rel=5158.813ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.922ms RAW WGC srt_rel=5189.052ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.923ms RAW WGC srt_rel=5220.145ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.924ms RAW WGC srt_rel=5250.975ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.925ms RAW WGC srt_rel=5282.175ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.926ms RAW WGC srt_rel=5312.397ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.927ms RAW WGC srt_rel=5328.005ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.928ms RAW WGC srt_rel=5343.251ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.929ms RAW WGC srt_rel=5358.614ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.930ms RAW WGC srt_rel=5389.399ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.931ms RAW WGC srt_rel=5421.350ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.932ms RAW WGC srt_rel=5451.753ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.933ms RAW WGC srt_rel=5467.817ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.935ms RAW WGC srt_rel=5483.310ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.936ms RAW WGC srt_rel=5514.415ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.937ms RAW WGC srt_rel=5545.176ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.938ms RAW WGC srt_rel=5576.782ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.940ms RAW WGC srt_rel=5592.534ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.941ms RAW WGC srt_rel=5622.978ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.942ms RAW WGC srt_rel=5654.232ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.943ms RAW WGC srt_rel=5684.554ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.944ms RAW WGC srt_rel=5715.054ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.945ms RAW WGC srt_rel=5730.800ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.946ms RAW WGC srt_rel=5746.545ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.947ms RAW WGC srt_rel=5761.676ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.948ms RAW WGC srt_rel=5777.792ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.949ms RAW WGC srt_rel=5793.953ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.950ms RAW WGC srt_rel=5824.448ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.951ms RAW WGC srt_rel=5855.595ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.952ms RAW WGC srt_rel=5886.118ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.954ms RAW WGC srt_rel=5918.162ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.955ms RAW WGC srt_rel=5949.460ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.956ms RAW WGC srt_rel=5980.586ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.957ms RAW WGC srt_rel=5996.076ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.958ms RAW WGC srt_rel=6011.124ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.959ms RAW WGC srt_rel=6026.594ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.960ms RAW WGC srt_rel=6042.690ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.961ms RAW WGC srt_rel=6058.409ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.962ms RAW WGC srt_rel=6074.567ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.963ms RAW WGC srt_rel=6106.478ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.964ms RAW WGC srt_rel=6137.786ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.966ms RAW WGC srt_rel=6168.707ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.967ms RAW WGC srt_rel=6199.993ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.968ms RAW WGC srt_rel=6231.344ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.969ms RAW WGC srt_rel=6263.141ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.972ms RAW WGC srt_rel=6294.459ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.973ms RAW WGC srt_rel=6309.842ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.974ms RAW WGC srt_rel=6325.453ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.975ms RAW WGC srt_rel=6356.352ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.976ms RAW WGC srt_rel=6386.928ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.977ms RAW WGC srt_rel=6418.063ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.978ms RAW WGC srt_rel=6434.169ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.979ms RAW WGC srt_rel=6449.243ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.980ms RAW WGC srt_rel=6464.808ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.982ms RAW WGC srt_rel=6480.071ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.983ms RAW WGC srt_rel=6495.769ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.984ms RAW WGC srt_rel=6511.623ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.985ms RAW WGC srt_rel=6543.148ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.986ms RAW WGC srt_rel=6574.277ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.987ms RAW WGC srt_rel=6604.904ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.988ms RAW WGC srt_rel=6636.814ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.989ms RAW WGC srt_rel=6668.347ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.990ms RAW WGC srt_rel=6699.435ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.991ms RAW WGC srt_rel=6715.426ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.992ms RAW WGC srt_rel=6730.960ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.993ms RAW WGC srt_rel=6746.577ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.994ms RAW WGC srt_rel=6761.557ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.996ms RAW WGC srt_rel=6776.887ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.997ms RAW WGC srt_rel=6792.661ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20743.999ms RAW WGC srt_rel=6808.423ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.000ms RAW WGC srt_rel=6853.928ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.001ms RAW WGC srt_rel=6885.046ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.002ms RAW WGC srt_rel=6917.039ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.003ms RAW WGC srt_rel=6948.388ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.004ms RAW WGC srt_rel=6978.505ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.005ms RAW WGC srt_rel=6994.065ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.006ms RAW WGC srt_rel=7009.282ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.007ms RAW WGC srt_rel=7024.503ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.008ms RAW WGC srt_rel=7055.307ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.009ms RAW WGC srt_rel=7087.385ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.011ms RAW WGC srt_rel=7118.795ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.012ms RAW WGC srt_rel=7133.684ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.013ms RAW WGC srt_rel=7149.625ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.014ms RAW WGC srt_rel=7164.886ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.015ms RAW WGC srt_rel=7195.954ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.016ms RAW WGC srt_rel=7226.883ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.017ms RAW WGC srt_rel=7257.931ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.018ms RAW WGC srt_rel=7288.309ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.019ms RAW WGC srt_rel=7320.245ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.020ms RAW WGC srt_rel=7350.941ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.021ms RAW WGC srt_rel=7382.206ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.022ms RAW WGC srt_rel=7397.533ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.024ms RAW WGC srt_rel=7413.535ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.025ms RAW WGC srt_rel=7428.668ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.026ms RAW WGC srt_rel=7443.921ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.028ms RAW WGC srt_rel=7459.478ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.029ms RAW WGC srt_rel=7475.442ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.030ms RAW WGC srt_rel=7491.316ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.031ms RAW WGC srt_rel=7537.560ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.032ms RAW WGC srt_rel=7568.730ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.033ms RAW WGC srt_rel=7600.055ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.034ms RAW WGC srt_rel=7630.401ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.035ms RAW WGC srt_rel=7661.184ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.036ms RAW WGC srt_rel=7676.328ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.037ms RAW WGC srt_rel=7691.618ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.038ms RAW WGC srt_rel=7707.403ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.039ms RAW WGC srt_rel=7738.560ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.040ms RAW WGC srt_rel=7768.811ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.042ms RAW WGC srt_rel=7799.418ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.043ms RAW WGC srt_rel=7815.012ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.044ms RAW WGC srt_rel=7830.599ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.045ms RAW WGC srt_rel=7846.338ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.046ms RAW WGC srt_rel=7861.558ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.047ms RAW WGC srt_rel=7876.712ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.048ms RAW WGC srt_rel=7892.656ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.049ms RAW WGC srt_rel=7907.745ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.051ms RAW WGC srt_rel=7954.384ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.052ms RAW WGC srt_rel=7985.068ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.053ms RAW WGC srt_rel=8016.383ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.054ms RAW WGC srt_rel=8047.564ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.055ms RAW WGC srt_rel=8078.125ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.056ms RAW WGC srt_rel=8093.412ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.057ms RAW WGC srt_rel=8108.883ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.058ms RAW WGC srt_rel=8124.229ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.060ms RAW WGC srt_rel=8155.780ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.061ms RAW WGC srt_rel=8186.242ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.062ms RAW WGC srt_rel=8217.059ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.063ms RAW WGC srt_rel=8232.268ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.064ms RAW WGC srt_rel=8247.186ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.065ms RAW WGC srt_rel=8262.473ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.066ms RAW WGC srt_rel=8278.294ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.067ms RAW WGC srt_rel=8293.449ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.068ms RAW WGC srt_rel=8309.561ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.069ms RAW WGC srt_rel=8340.557ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.070ms RAW WGC srt_rel=8387.712ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.071ms RAW WGC srt_rel=8418.020ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.073ms RAW WGC srt_rel=8449.251ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.074ms RAW WGC srt_rel=8480.607ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.075ms RAW WGC srt_rel=8496.624ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.076ms RAW WGC srt_rel=8511.818ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.078ms RAW WGC srt_rel=8527.622ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.079ms RAW WGC srt_rel=8543.321ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.080ms RAW WGC srt_rel=8558.600ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.081ms RAW WGC srt_rel=8574.789ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.083ms RAW WGC srt_rel=8605.576ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.085ms RAW WGC srt_rel=8651.626ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.086ms RAW WGC srt_rel=8683.222ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.087ms RAW WGC srt_rel=8713.246ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.088ms RAW WGC srt_rel=8744.542ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.089ms RAW WGC srt_rel=8759.607ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.090ms RAW WGC srt_rel=8774.735ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.091ms RAW WGC srt_rel=8806.003ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.092ms RAW WGC srt_rel=8837.753ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.093ms RAW WGC srt_rel=8868.058ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.094ms RAW WGC srt_rel=8899.263ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.095ms RAW WGC srt_rel=8914.383ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.096ms RAW WGC srt_rel=8929.726ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.097ms RAW WGC srt_rel=8945.693ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.099ms RAW WGC srt_rel=8961.221ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.100ms RAW WGC srt_rel=8992.255ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.101ms RAW WGC srt_rel=9023.173ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.102ms RAW WGC srt_rel=9054.920ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.103ms RAW WGC srt_rel=9085.976ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.104ms RAW WGC srt_rel=9117.308ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.105ms RAW WGC srt_rel=9149.044ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.106ms RAW WGC srt_rel=9180.259ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.107ms RAW WGC srt_rel=9195.388ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.109ms RAW WGC srt_rel=9210.681ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.110ms RAW WGC srt_rel=9226.640ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.111ms RAW WGC srt_rel=9242.405ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.113ms RAW WGC srt_rel=9274.176ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.114ms RAW WGC srt_rel=9320.866ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.115ms RAW WGC srt_rel=9352.704ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.116ms RAW WGC srt_rel=9384.807ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.117ms RAW WGC srt_rel=9415.855ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.118ms RAW WGC srt_rel=9446.523ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.119ms RAW WGC srt_rel=9461.559ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.120ms RAW WGC srt_rel=9476.776ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.121ms RAW WGC srt_rel=9492.741ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.123ms RAW WGC srt_rel=9508.558ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.124ms RAW WGC srt_rel=9538.618ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.125ms RAW WGC srt_rel=9584.844ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.126ms RAW WGC srt_rel=9615.869ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.127ms RAW WGC srt_rel=9646.888ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.128ms RAW WGC srt_rel=9677.635ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.129ms RAW WGC srt_rel=9708.770ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.130ms RAW WGC srt_rel=9724.311ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.131ms RAW WGC srt_rel=9755.468ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.132ms RAW WGC srt_rel=9786.215ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.133ms RAW WGC srt_rel=9817.251ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.135ms RAW WGC srt_rel=9849.262ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.136ms RAW WGC srt_rel=9864.194ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.137ms RAW WGC srt_rel=9880.383ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.139ms RAW WGC srt_rel=9895.246ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.140ms RAW WGC srt_rel=9910.613ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.141ms RAW WGC srt_rel=9926.751ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.142ms RAW WGC srt_rel=9958.825ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.143ms RAW WGC srt_rel=9989.956ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.144ms RAW WGC srt_rel=10021.213ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.145ms RAW WGC srt_rel=10053.078ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.146ms RAW WGC srt_rel=10083.935ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.147ms RAW WGC srt_rel=10115.892ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.148ms RAW WGC srt_rel=10131.886ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.149ms RAW WGC srt_rel=10146.873ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.151ms RAW WGC srt_rel=10162.264ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.152ms RAW WGC srt_rel=10178.245ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.153ms RAW WGC srt_rel=10194.253ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.154ms RAW WGC srt_rel=10225.225ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.155ms RAW WGC srt_rel=10256.217ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.156ms RAW WGC srt_rel=10288.205ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.157ms RAW WGC srt_rel=10318.214ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.158ms RAW WGC srt_rel=10349.644ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.159ms RAW WGC srt_rel=10380.877ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.160ms RAW WGC srt_rel=10395.942ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.161ms RAW WGC srt_rel=10412.031ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.163ms RAW WGC srt_rel=10426.928ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.164ms RAW WGC srt_rel=10443.116ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.165ms RAW WGC srt_rel=10458.254ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.167ms RAW WGC srt_rel=10473.498ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.168ms RAW WGC srt_rel=10504.325ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.169ms RAW WGC srt_rel=10535.475ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.170ms RAW WGC srt_rel=10550.739ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.171ms RAW WGC srt_rel=10581.898ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.172ms RAW WGC srt_rel=10613.673ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.173ms RAW WGC srt_rel=10645.680ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.174ms RAW WGC srt_rel=10677.650ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.175ms RAW WGC srt_rel=10692.954ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.177ms RAW WGC srt_rel=10707.862ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.178ms RAW WGC srt_rel=10723.400ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.179ms RAW WGC srt_rel=10753.865ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.180ms RAW WGC srt_rel=10785.253ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.181ms RAW WGC srt_rel=10800.848ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.182ms RAW WGC srt_rel=10816.487ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.183ms RAW WGC srt_rel=10831.502ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.184ms RAW WGC srt_rel=10862.226ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.185ms RAW WGC srt_rel=10893.309ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.186ms RAW WGC srt_rel=10924.455ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.187ms RAW WGC srt_rel=10954.618ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.189ms RAW WGC srt_rel=10985.614ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.191ms RAW WGC srt_rel=11016.290ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.192ms RAW WGC srt_rel=11048.307ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.193ms RAW WGC srt_rel=11063.291ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.195ms RAW WGC srt_rel=11079.314ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.196ms RAW WGC srt_rel=11095.514ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.197ms RAW WGC srt_rel=11127.394ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.198ms RAW WGC srt_rel=11157.513ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.199ms RAW WGC srt_rel=11173.571ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.200ms RAW WGC srt_rel=11204.315ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.202ms RAW WGC srt_rel=11235.500ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.203ms RAW WGC srt_rel=11266.500ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.204ms RAW WGC srt_rel=11297.726ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.205ms RAW WGC srt_rel=11313.213ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.206ms RAW WGC srt_rel=11328.591ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.207ms RAW WGC srt_rel=11344.672ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.208ms RAW WGC srt_rel=11359.906ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.209ms RAW WGC srt_rel=11375.777ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.211ms RAW WGC srt_rel=11390.907ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.212ms RAW WGC srt_rel=11421.363ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.213ms RAW WGC srt_rel=11453.350ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.214ms RAW WGC srt_rel=11484.359ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.215ms RAW WGC srt_rel=11516.388ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.216ms RAW WGC srt_rel=11546.915ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.217ms RAW WGC srt_rel=11562.565ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.218ms RAW WGC srt_rel=11578.549ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.219ms RAW WGC srt_rel=11594.558ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.221ms RAW WGC srt_rel=11609.551ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.222ms RAW WGC srt_rel=11624.589ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.223ms RAW WGC srt_rel=11654.616ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.225ms RAW WGC srt_rel=11686.028ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.226ms RAW WGC srt_rel=11716.866ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.227ms RAW WGC srt_rel=11748.892ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.228ms RAW WGC srt_rel=11780.064ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.229ms RAW WGC srt_rel=11811.615ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.230ms RAW WGC srt_rel=11827.626ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.231ms RAW WGC srt_rel=11843.620ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.232ms RAW WGC srt_rel=11859.683ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.233ms RAW WGC srt_rel=11875.615ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.234ms RAW WGC srt_rel=11890.656ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.235ms RAW WGC srt_rel=11920.854ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.236ms RAW WGC srt_rel=11951.799ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.238ms RAW WGC srt_rel=11983.863ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.239ms RAW WGC srt_rel=12015.183ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.240ms RAW WGC srt_rel=12047.199ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.241ms RAW WGC srt_rel=12078.272ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.242ms RAW WGC srt_rel=12094.213ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.243ms RAW WGC srt_rel=12110.202ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.244ms RAW WGC srt_rel=12126.167ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.245ms RAW WGC srt_rel=12142.192ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.246ms RAW WGC srt_rel=12157.739ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.248ms RAW WGC srt_rel=12173.079ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.249ms RAW WGC srt_rel=12203.837ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.251ms RAW WGC srt_rel=12235.906ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.252ms RAW WGC srt_rel=12267.427ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.253ms RAW WGC srt_rel=12299.274ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.254ms RAW WGC srt_rel=12330.478ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.255ms RAW WGC srt_rel=12361.201ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.256ms RAW WGC srt_rel=12376.985ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.257ms RAW WGC srt_rel=12391.971ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.258ms RAW WGC srt_rel=12407.048ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.259ms RAW WGC srt_rel=12437.121ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.266ms RAW WGC srt_rel=12467.528ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.267ms RAW WGC srt_rel=12483.133ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.268ms RAW WGC srt_rel=12498.461ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.269ms RAW WGC srt_rel=12514.423ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.270ms RAW WGC srt_rel=12529.911ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.272ms RAW WGC srt_rel=12560.668ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.273ms RAW WGC srt_rel=12592.235ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.274ms RAW WGC srt_rel=12622.561ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.275ms RAW WGC srt_rel=12653.666ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.276ms RAW WGC srt_rel=12684.637ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.277ms RAW WGC srt_rel=12715.458ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.278ms RAW WGC srt_rel=12746.445ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.279ms RAW WGC srt_rel=12761.585ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.282ms RAW WGC srt_rel=12777.368ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.283ms RAW WGC srt_rel=12792.147ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.284ms RAW WGC srt_rel=12807.952ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.285ms RAW WGC srt_rel=12823.914ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.286ms RAW WGC srt_rel=12839.225ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.287ms RAW WGC srt_rel=12870.471ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.288ms RAW WGC srt_rel=12916.827ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.289ms RAW WGC srt_rel=12948.462ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.290ms RAW WGC srt_rel=12979.386ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.291ms RAW WGC srt_rel=13010.474ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.292ms RAW WGC srt_rel=13025.935ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.294ms RAW WGC srt_rel=13041.039ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.295ms RAW WGC srt_rel=13056.352ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.296ms RAW WGC srt_rel=13072.421ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.297ms RAW WGC srt_rel=13103.687ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.298ms RAW WGC srt_rel=13134.252ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.299ms RAW WGC srt_rel=13149.452ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.300ms RAW WGC srt_rel=13164.693ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.301ms RAW WGC srt_rel=13179.727ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.302ms RAW WGC srt_rel=13195.764ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.304ms RAW WGC srt_rel=13226.044ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.305ms RAW WGC srt_rel=13256.220ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.306ms RAW WGC srt_rel=13272.267ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.307ms RAW WGC srt_rel=13303.845ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.309ms RAW WGC srt_rel=13334.664ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.310ms RAW WGC srt_rel=13365.110ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.311ms RAW WGC srt_rel=13396.080ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.313ms RAW WGC srt_rel=13411.382ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.315ms RAW WGC srt_rel=13426.546ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.316ms RAW WGC srt_rel=13442.067ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.317ms RAW WGC srt_rel=13457.454ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.318ms RAW WGC srt_rel=13473.321ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.319ms RAW WGC srt_rel=13489.373ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.320ms RAW WGC srt_rel=13520.692ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.321ms RAW WGC srt_rel=13566.333ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.322ms RAW WGC srt_rel=13598.130ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.323ms RAW WGC srt_rel=13629.936ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.324ms RAW WGC srt_rel=13660.966ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.325ms RAW WGC srt_rel=13693.113ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.327ms RAW WGC srt_rel=13708.662ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.328ms RAW WGC srt_rel=13724.578ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.329ms RAW WGC srt_rel=13740.579ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.330ms RAW WGC srt_rel=13756.564ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.331ms RAW WGC srt_rel=13772.520ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.332ms RAW WGC srt_rel=13802.822ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.333ms RAW WGC srt_rel=13849.203ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.334ms RAW WGC srt_rel=13864.407ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.335ms RAW WGC srt_rel=13895.168ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.337ms RAW WGC srt_rel=13926.541ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.338ms RAW WGC srt_rel=13958.225ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20744.416ms RAW WGC last hr=0x00000000; suite starts logged=6; SW reference samples=26
+20744.419ms ===== SUITE DONE =====
+20839.737ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=4 unsubs=4 paired=True disposed=True callbackErrors=0; probe bridge subs=1 unsubs=1; suite Rendering subs=1 unsubs=1; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+20861.256ms SHUTDOWN reason=Page.Unloaded: already done -> no-op
+
+# ==================== 派题 #8 follow-ups (2026-10-20 04:56–04:59 Asia/Taipei, display asleep) ====================
+## build: dotnet --no-incremental 0 warnings 0 errors; native fm_capi_test 23/0, continuity_test 13/0
+
+## A. fault injection run (--lifecycle --inject-faults)
+13.967ms 派题 #8 MotionSoftDemo (pid 67756, --lifecycle); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 04:57:35.464; OS=10.0.19045.0; QPC freq=10000000
+16.125ms INJECT faults ON (one throw each in _render, _sink, _onRendering)
+20.646ms load_tokens ok
+30.833ms BRIDGE callback exception in render: InjectedFaultException: injected fault in _render (first on=1)
+38.507ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+43.083ms LIFECYCLE retarget(response=3.0) ok=True subscribed=True subs=1
+50.780ms INJECT frame 1: offsetX=-72.076 vel=461.30 callbackErrors=1
+51.970ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+52.963ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+67.820ms INJECT frame 2: offsetX=-63.220 vel=450.42 callbackErrors=1
+90.746ms BRIDGE callback exception in sink: InjectedFaultException: injected fault in _sink (call 5)
+90.771ms INJECT frame 3: offsetX=-53.049 vel=437.77 callbackErrors=2
+123.615ms INJECT frame 4: offsetX=-38.945 vel=419.94 callbackErrors=2
+153.787ms INJECT frame 5: offsetX=-26.514 vel=403.97 callbackErrors=2
+185.853ms INJECT frame 6: offsetX=-13.833 vel=387.42 callbackErrors=2
+216.928ms INJECT frame 7: offsetX=-2.048 vel=371.82 callbackErrors=2
+247.924ms INJECT frame 8: offsetX=9.243 vel=356.66 callbackErrors=2
+279.578ms INJECT frame 9: offsetX=20.304 vel=341.63 callbackErrors=2
+309.937ms INJECT frame 10: offsetX=30.464 vel=327.65 callbackErrors=2
+309.967ms BRIDGE callback exception in rendering: InjectedFaultException: injected fault in _onRendering (frame 10)
+340.570ms INJECT frame 11: offsetX=40.290 vel=313.98 callbackErrors=3
+371.488ms INJECT frame 12: offsetX=49.788 vel=300.63 callbackErrors=3
+401.931ms INJECT frame 13: offsetX=58.747 vel=287.90 callbackErrors=3
+433.885ms INJECT frame 14: offsetX=67.736 vel=275.01 callbackErrors=3
+465.586ms INJECT frame 15: offsetX=76.257 vel=262.67 callbackErrors=3
+497.516ms INJECT frame 16: offsetX=84.455 vel=250.70 callbackErrors=3
+529.556ms INJECT frame 17: offsetX=92.301 vel=239.14 callbackErrors=3
+561.156ms INJECT frame 18: offsetX=99.684 vel=228.17 callbackErrors=3
+592.472ms INJECT frame 19: offsetX=106.662 vel=217.73 callbackErrors=3
+622.821ms INJECT frame 20: offsetX=113.122 vel=207.99 callbackErrors=3
+653.281ms INJECT frame 21: offsetX=119.299 vel=198.61 callbackErrors=3
+683.581ms INJECT frame 22: offsetX=125.197 vel=189.60 callbackErrors=3
+715.270ms INJECT frame 23: offsetX=131.061 vel=180.58 callbackErrors=3
+746.317ms INJECT frame 24: offsetX=136.534 vel=172.11 callbackErrors=3
+777.469ms INJECT frame 25: offsetX=141.769 vel=163.97 callbackErrors=3
+808.596ms INJECT frame 26: offsetX=146.750 vel=156.17 callbackErrors=3
+839.757ms INJECT frame 27: offsetX=151.500 vel=148.70 callbackErrors=3
+858.424ms LIFECYCLE ready (animating, subscribed=True)
+871.723ms INJECT frame 28: offsetX=156.135 vel=141.36 callbackErrors=3
+903.044ms INJECT frame 29: offsetX=160.454 vel=134.49 callbackErrors=3
+933.348ms INJECT frame 30: offsetX=164.433 vel=128.13 callbackErrors=3
+964.913ms INJECT frame 31: offsetX=168.377 vel=121.80 callbackErrors=3
+995.992ms INJECT frame 32: offsetX=172.068 vel=115.85 callbackErrors=3
+1027.132ms INJECT frame 33: offsetX=175.586 vel=110.15 callbackErrors=3
+1043.745ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1058.181ms INJECT frame 34: offsetX=178.921 vel=104.72 callbackErrors=3
+1089.390ms INJECT frame 35: offsetX=182.108 vel=99.52 callbackErrors=3
+1121.628ms INJECT frame 36: offsetX=185.233 vel=94.39 callbackErrors=3
+1152.412ms INJECT frame 37: offsetX=188.066 vel=89.72 callbackErrors=3
+1183.140ms INJECT frame 38: offsetX=190.755 vel=85.28 callbackErrors=3
+1214.297ms INJECT frame 39: offsetX=193.344 vel=80.99 callbackErrors=3
+1245.285ms INJECT frame 40: offsetX=195.790 vel=76.91 callbackErrors=3
+2239.258ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=True subs=1 unsubs=1 paired=True disposed=True callbackErrors=3 faultsInjected=[sink=True render=True rendering=True]; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+2277.981ms SHUTDOWN reason=Page.Unloaded: already done -> no-op
+
+## B. DwmFlush distribution verdict — offline classify_dwmflush.py (same rule as app)
+PS standalone raw (04:58): n=300 k1=91.0% k2=6.7% timer=97.7% vsync(16.661±1)=42.0% p95=30.544 mean=16.832 -> timer-driven
+app --measure raw (04:58): n=300 k1=92.7% k2=6.0% timer=98.7% vsync(16.661±1)=46.7% p95=30.381 mean=16.741 -> timer-driven
+NOTE: the #8 04:5x run logged only summary stats (mean 16.655, p50 15.654, p95 30.476), no raw intervals -> fractions cannot be recomputed for it; p95>18 already excludes vsync.
+
+## PS standalone raw intervals (ms)
+18.809,14.065,15.500,14.939,16.032,15.555,15.981,16.041,15.385,15.539,31.636,14.519,16.031,16.118,15.933,16.001,16.575,15.546,15.873,15.108,15.460,14.909,15.896,15.878,15.245,31.840,31.177,15.091,15.634,16.045,15.750,16.011,15.973,15.513,16.023,15.969,16.016,15.988,16.062,16.115,15.886,15.594,16.067,15.997,30.933,16.055,15.936,16.030,16.014,16.018,15.986,16.003,15.116,15.998,16.025,15.562,16.002,15.995,15.622,15.571,15.931,16.004,30.017,15.016,16.007,15.131,15.212,15.779,15.086,15.232,15.138,15.861,14.959,30.367,15.946,15.199,16.265,15.054,15.122,15.674,16.128,16.084,14.887,15.929,15.237,15.168,15.870,15.369,31.177,16.437,15.736,15.243,15.863,15.134,16.117,15.268,16.063,15.245,15.843,15.923,15.997,16.028,15.135,30.129,15.380,16.091,15.597,15.109,15.608,15.863,15.465,15.180,15.732,15.052,15.338,30.982,31.819,16.148,15.778,15.349,15.353,16.143,15.822,15.932,15.195,15.485,14.958,15.226,15.308,15.994,30.278,15.264,15.985,15.126,15.287,16.041,15.235,15.337,15.541,16.313,15.889,15.429,16.045,15.491,31.179,15.123,15.773,15.319,15.842,15.847,15.088,15.215,15.341,15.436,14.815,15.930,16.116,15.689,31.072,15.654,15.777,15.451,15.146,15.663,15.699,15.299,15.498,15.838,15.422,15.274,16.039,30.814,15.313,15.792,15.150,15.002,15.810,15.230,15.294,15.589,15.909,15.594,16.271,14.932,15.911,31.862,30.480,15.442,15.539,15.843,15.232,15.813,15.052,14.837,16.003,14.863,16.262,15.581,31.411,15.618,15.297,15.003,15.284,16.180,15.118,15.340,15.844,15.513,15.293,15.341,16.280,30.174,15.704,16.009,15.212,16.205,15.506,15.788,15.454,15.148,15.081,16.163,15.099,15.850,15.571,30.202,16.310,15.787,15.124,16.159,15.996,15.158,15.349,15.819,15.744,16.137,15.401,15.418,15.604,15.274,31.344,15.558,15.141,15.774,15.174,15.592,15.147,15.995,15.758,15.872,16.173,15.242,15.829,15.089,30.263,16.201,15.027,15.279,15.155,16.397,14.984,16.077,15.171,16.121,15.253,15.241,15.349,31.472,16.054,15.752,15.407,15.941,15.185,15.610,15.181,16.208,15.321,15.495,15.450,15.305,15.900,15.252,30.895,15.979,14.950,15.188,15.716,15.727,15.212,15.338,15.617,15.544,14.750,16.035,15.568,30.544,15.075,16.296,15.526,15.614,
+
+## C. --measure run with new DwmFlush verdict
+13.852ms 派题 #8 MotionSoftDemo (pid 73328); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 04:58:01.305; OS=10.0.19045.0; QPC freq=10000000
+20.223ms load_tokens ok
+34.867ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.651ms AUTORUN requested (launch arg --measure); suite starts in 1500 ms
+48.747ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+49.822ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+1049.954ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1561.377ms ===== SUITE START (autorun: launch arg --measure) =====
+6603.773ms DWMFLUSH probe: calls=300 total=5022.3 ms lastHr=0x00000000 fails=0 interval mean=16.741 min=14.836 p50=15.814 p95=30.381 max=32.122 ms
+6603.782ms DWMFLUSH verdict: timer-driven | timer tiers k*15.625±1.0 (k=1,2): k1=92.7% k2=6.0% total=98.7% | vsync 1000/60.020=16.661±1.0 ms: 46.7%, p95=30.381 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+6606.419ms DWMFLUSH raw intervals ms: 20.163,15.704,15.089,15.974,15.863,16.135,31.586,15.482,16.080,15.886,15.993,16.045,16.029,16.069,16.021,15.947,16.006,15.613,15.585,15.569,16.088,14.945,15.295,30.186,16.001,15.894,16.005,15.613,15.238,15.251,15.454,15.269,15.128,14.891,15.648,15.249,31.132,14.972,15.402,14.993,15.539,16.330,15.852,15.995,16.006,16.028,16.031,15.352,16.034,15.992,16.021,16.067,16.003,15.931,32.122,31.881,15.027,16.065,15.972,16.128,15.559,15.332,15.136,16.051,15.902,16.044,15.983,16.004,15.948,15.925,16.072,16.043,15.972,32.035,15.918,16.026,15.966,15.595,15.903,15.751,16.293,16.115,15.102,15.724,15.131,15.261,16.012,15.874,15.096,30.322,15.206,16.001,15.259,15.712,15.569,15.740,15.992,15.436,15.474,16.108,15.121,15.974,16.023,16.257,15.182,30.442,15.017,15.242,15.116,15.280,15.181,15.355,15.924,16.005,15.220,16.071,15.536,15.347,31.947,15.829,15.319,15.247,14.900,15.417,15.528,14.886,15.881,15.234,15.980,16.215,15.629,30.209,15.227,16.226,15.289,15.331,15.443,15.795,14.856,14.967,15.168,15.402,15.921,15.454,30.381,15.365,16.085,15.621,15.899,16.010,15.981,15.991,16.111,15.952,15.961,15.999,14.951,15.071,15.186,31.339,15.767,15.369,15.982,15.210,15.628,15.022,15.881,15.315,15.217,15.196,15.214,30.151,15.628,15.928,15.259,15.239,15.242,16.259,15.883,15.516,15.406,15.456,15.431,15.472,15.338,31.178,15.797,15.990,15.958,16.049,16.050,15.998,15.658,15.497,15.973,16.203,15.057,15.652,15.169,15.647,16.056,15.886,30.342,15.963,15.975,15.044,14.933,15.791,15.892,15.954,15.208,15.879,15.434,15.967,15.473,15.982,15.994,30.542,15.970,16.057,15.879,16.057,16.020,15.965,15.169,15.814,15.974,16.067,14.982,15.977,15.038,16.102,15.891,16.044,15.574,32.007,16.023,16.105,15.875,15.983,16.028,15.499,15.990,16.034,15.006,15.211,16.021,15.597,15.535,16.085,16.017,14.983,15.397,31.904,15.932,15.090,15.041,16.303,15.813,15.444,15.980,15.814,15.739,15.496,15.133,15.199,15.260,30.829,15.078,15.385,15.577,16.090,15.335,16.022,15.836,15.975,15.269,15.437,15.050,15.466,15.456,31.553,14.947,16.180,14.836,15.236,15.609,15.113,15.919,16.091,15.401,15.474,15.574,15.201,31.650,15.252,15.399,15.088,15.441,15.285
+6733.759ms WGC CreateForWindow(hwnd=0x1171276) start hr=0x00000000 item=960x725 RasterizationScale=1
+6734.837ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=5860546954501 qpcCompose=5860546954501 cRefresh=3 cFrame=2 rateRefresh=60020/1000 | qpcNow=5860546849228 | WGC frames=0
+7738.439ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=5860556895140 qpcCompose=5860556895140 cRefresh=4 cFrame=3 rateRefresh=60020/1000 | qpcNow=5860556889331 | WGC frames=43
+8752.106ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=5860567030394 qpcCompose=5860567030394 cRefresh=5 cFrame=4 rateRefresh=60020/1000 | qpcNow=5860567025945 | WGC frames=89
+8753.835ms MODE -> 合成器路径 (suite): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+8755.533ms COMP reset[suite start] StopAnimation + Translation.X:=0.0000
+9169.229ms COMP reset[calibration] StopAnimation + Translation.X:=37.0000
+9574.635ms COMP reset[calibration end] StopAnimation + Translation.X:=0.0000
+9990.208ms COMP spring [A: S1 spring 0->240 from rest] gen=1 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=5860579398528
+11704.822ms COMP reset[after A] StopAnimation + Translation.X:=0.0000
+12108.077ms COMP spring [B1: go 240] gen=2 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=5860600585351
+12263.975ms COMP spring [B2: interrupt -> 0] gen=3 -> 0.0000 InitialValue=221.3729 InitialVelocity=655.2438 Period=0.32s DampingRatio=0.78 shadowSettle=0.6303s qpc=5860602144002
+13772.258ms COMP reset[after B] StopAnimation + Translation.X:=0.0000
+14175.480ms COMP spring [E: rate=2 spring 0->240 (Period=response/2)] gen=4 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.16s DampingRatio=0.78 shadowSettle=0.3367s qpc=5860621259348
+15385.934ms COMP reset[after E] StopAnimation + Translation.X:=0.0000
+15795.830ms COMP bezier [C: bezier enter 0->240 220ms] -> 240.0000 from(shadow)=0.0000 220ms qpc=5860637462881
+16806.133ms COMP reset[after C] StopAnimation + Translation.X:=0.0000
+17117.575ms COMP spring [H: go 240 then switch to software at 120 ms] gen=5 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=5860650680352
+17243.614ms MODE -> 软件路径 (suite handoff): handoff from SHADOW value=195.4701 vel=1097.8625 (readback after StopAnimation=0.0000, |shadow-readback|=195.4701) ok=True sw value=0.0000 vel=0.0000 handoff|dv|=195.4701
+18459.398ms SW retarget[SW reset] -> 0.0000 ok=True before(value=240.0000 vel=0.0000) after(value=240.0000 vel=0.0000) |dv|=0.000E+000
+19362.350ms SW retarget[D1: SW go 240] -> 240.0000 ok=True before(value=0.0000 vel=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000
+19518.641ms SW retarget[D2: SW interrupt -> 0] -> 0.0000 ok=True before(value=195.2494 vel=1101.1677) after(value=221.8432 vel=645.9635) |dv|=2.659E+001
+20732.465ms CLOCK dcomp(skipped) frameId=0 stats(hr=0x80004001) start=0 target=0 period=0 | DWM(hr=0x00000000) qpcVBlank=5860686993428 qpcCompose=5860686993428 cRefresh=6 cFrame=5 rateRefresh=60020/1000 | qpcNow=5860686829577 | WGC frames=640
+20757.764ms REPORT ===== spec §4 acceptance (note: the dispatch said §6; the spec's acceptance table is §4) =====
+20757.765ms REPORT run validity: INVALID (display-asleep) — data recorded but not acceptable
+20757.765ms REPORT   gate rule (coordinator ruling #7): INVALID if DWM cRefresh advance < 50% of rateRefresh x elapsed, or WGC box-found frames in motion windows < 50% of rateRefresh x motion time, or any compositor scenario shows box displacement < 10% of commanded travel (frozen-frames); frame-id gate only on OS build >= 22000
+20757.766ms REPORT   frame-id gate skipped: OS build 19045 < 22000
+20757.766ms REPORT   DWM gate: cRefresh 3 -> 6 = +3 in 14.00 s; expected rateRefresh 60.020 Hz x 14.00 s = 840.2; ratio 0.36% (threshold >= 50%) -> FAIL; cFrame 2 -> 5
+20757.766ms REPORT   WGC gate: box-found frames in motion windows = 0 (all frames in windows 90); expected rateRefresh x motion time 60.020 x 1.971 s = 118.3; ratio 0.00% (threshold >= 50%) -> FAIL; run total WGC frames=640, box found in 0
+20757.767ms REPORT   frozen-frames gate (per scenario, each must reach >= 10% of commanded travel; px->DIP /RasterizationScale 1.00): [A] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [B1] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [B2] frames=0 disp=0.00 DIP / commanded 221.37 DIP = 0.00% -> FAIL; [E] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [C] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL -> FAIL (5/5 scenarios frozen)
+20757.768ms REPORT   INVALID because: DWM gate: cRefresh 3 -> 6 = +3 in 14.00 s; expected rateRefresh 60.020 Hz x 14.00 s = 840.2; ratio 0.36% (threshold >= 50%) -> FAIL; cFrame 2 -> 5
+20757.768ms REPORT   INVALID because: WGC gate: box-found frames in motion windows = 0 (all frames in windows 90); expected rateRefresh x motion time 60.020 x 1.971 s = 118.3; ratio 0.00% (threshold >= 50%) -> FAIL; run total WGC frames=640, box found in 0
+20757.768ms REPORT   INVALID because: frozen-frames: frozen-frames gate (per scenario, each must reach >= 10% of commanded travel; px->DIP /RasterizationScale 1.00): [A] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [B1] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [B2] frames=0 disp=0.00 DIP / commanded 221.37 DIP = 0.00% -> FAIL; [E] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL; [C] frames=0 disp=0.00 DIP / commanded 240.00 DIP = 0.00% -> FAIL -> FAIL (5/5 scenarios frozen)
+20757.954ms REPORT   clock gate: frameId 0 -> 0 (hr 0x80004001); DWM cRefresh 3 -> 5 -> 6, cFrame 2 -> 4 -> 5, qpcVBlank 5860546954501 -> 5860567030394 -> 5860686993428; WGC frames total=640 (box visible in 0) over 14.0 s
+20758.204ms REPORT   calibration: rest cx=NaN px, at 37 DIP cx=NaN px -> 1.0000 px/DIP (N/A: no frame during calibration; using RasterizationScale)
+20763.737ms REPORT 1 启动延迟 p50/p95/max: N/A — no WGC frame showed |Δpx|>=0.5 after any StartAnimation (640 frames total) INVALID(display-asleep) 
+20764.200ms REPORT 2 打断位置连续性 |Δv|: N/A — 0 WGC frames with the box after the retarget (need >=2) INVALID(display-asleep) 
+20764.202ms REPORT 3 打断速度连续性 |Δvel|: N/A — same reason INVALID(display-asleep) 
+20764.340ms REPORT   seed at interrupt (shadow, spring.h): InitialValue=221.3729 InitialVelocity=655.2438 DIP/s at +155.6 ms after B1
+20769.304ms REPORT 4 终值误差: N/A — no WGC frame >= settle+0.9 s after A start (A frames=0) INVALID(display-asleep) 
+20769.876ms REPORT 5 轨迹偏差 A spring 0.32/0.78: N/A — 0 WGC frames in window (need >=5) INVALID(display-asleep) 
+20769.878ms REPORT 5 轨迹偏差 E spring rate=2 (Period 0.16): N/A — 0 WGC frames in window (need >=5) INVALID(display-asleep) 
+20769.879ms REPORT 5 轨迹偏差 C bezier 220ms: N/A — 0 WGC frames in window (need >=5) INVALID(display-asleep) 
+20770.955ms REPORT 6 帧间隔(CompositionTarget.Rendering) INVALID(display-asleep) n=450 p50=31.13 ms p95=32.00 ms mean=31.03 ms (阈值 p50<=18, p95<=25; 熄屏下无效)
+20771.188ms REPORT 7 稳定性: exceptions=0; suite Rendering subs=1 unsubs=1; mode switches 2/2 ok; SW Rendering subscribed now=False
+20771.189ms REPORT 8 熄屏: INVALID (not FAIL); app did not hang; evidence above
+20771.196ms REPORT S1 Period 判别: N/A — 0 WGC frames in A (need >=5); expected peak-to-peak (=damped period) 0.511 s if Period=undamped (S1), 0.320 s if Period=damped INVALID(display-asleep) 
+20771.199ms RAW WGC frames: 640
+20771.507ms RAW WGC srt_rel=0.000ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.510ms RAW WGC srt_rel=31.260ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.511ms RAW WGC srt_rel=78.782ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.512ms RAW WGC srt_rel=94.335ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.513ms RAW WGC srt_rel=109.517ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.516ms RAW WGC srt_rel=125.093ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.517ms RAW WGC srt_rel=155.500ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.518ms RAW WGC srt_rel=185.638ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.519ms RAW WGC srt_rel=216.269ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.520ms RAW WGC srt_rel=231.953ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.521ms RAW WGC srt_rel=262.735ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.522ms RAW WGC srt_rel=294.216ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.522ms RAW WGC srt_rel=324.490ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.523ms RAW WGC srt_rel=339.804ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.524ms RAW WGC srt_rel=355.804ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.525ms RAW WGC srt_rel=371.518ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.526ms RAW WGC srt_rel=386.675ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.527ms RAW WGC srt_rel=417.661ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.528ms RAW WGC srt_rel=448.774ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.529ms RAW WGC srt_rel=463.901ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.530ms RAW WGC srt_rel=479.702ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.531ms RAW WGC srt_rel=510.955ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.532ms RAW WGC srt_rel=542.470ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.534ms RAW WGC srt_rel=573.755ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.535ms RAW WGC srt_rel=589.537ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.536ms RAW WGC srt_rel=605.018ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.537ms RAW WGC srt_rel=621.005ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.537ms RAW WGC srt_rel=636.113ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.538ms RAW WGC srt_rel=667.664ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.539ms RAW WGC srt_rel=683.396ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.540ms RAW WGC srt_rel=698.879ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.541ms RAW WGC srt_rel=744.843ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.542ms RAW WGC srt_rel=760.640ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.543ms RAW WGC srt_rel=775.887ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.544ms RAW WGC srt_rel=791.070ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.545ms RAW WGC srt_rel=807.181ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.546ms RAW WGC srt_rel=822.863ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.546ms RAW WGC srt_rel=854.302ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.547ms RAW WGC srt_rel=884.542ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.548ms RAW WGC srt_rel=915.765ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.549ms RAW WGC srt_rel=931.561ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.550ms RAW WGC srt_rel=947.659ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.551ms RAW WGC srt_rel=978.035ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.552ms RAW WGC srt_rel=1009.861ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.553ms RAW WGC srt_rel=1040.240ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.554ms RAW WGC srt_rel=1055.338ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.554ms RAW WGC srt_rel=1070.549ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.556ms RAW WGC srt_rel=1086.501ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.557ms RAW WGC srt_rel=1102.351ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.558ms RAW WGC srt_rel=1132.872ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.559ms RAW WGC srt_rel=1179.155ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.560ms RAW WGC srt_rel=1195.181ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.561ms RAW WGC srt_rel=1211.164ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.561ms RAW WGC srt_rel=1242.420ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.562ms RAW WGC srt_rel=1273.222ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.563ms RAW WGC srt_rel=1304.660ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.564ms RAW WGC srt_rel=1320.396ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.565ms RAW WGC srt_rel=1336.051ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.566ms RAW WGC srt_rel=1366.695ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.567ms RAW WGC srt_rel=1382.008ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.570ms RAW WGC srt_rel=1398.105ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.571ms RAW WGC srt_rel=1428.238ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.572ms RAW WGC srt_rel=1459.176ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.573ms RAW WGC srt_rel=1475.187ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.573ms RAW WGC srt_rel=1490.681ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.574ms RAW WGC srt_rel=1506.201ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.575ms RAW WGC srt_rel=1522.197ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.576ms RAW WGC srt_rel=1537.451ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.577ms RAW WGC srt_rel=1553.470ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.578ms RAW WGC srt_rel=1569.221ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.579ms RAW WGC srt_rel=1599.869ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.580ms RAW WGC srt_rel=1615.365ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.581ms RAW WGC srt_rel=1646.023ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.582ms RAW WGC srt_rel=1677.391ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.583ms RAW WGC srt_rel=1708.545ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.583ms RAW WGC srt_rel=1739.765ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.584ms RAW WGC srt_rel=1754.908ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.585ms RAW WGC srt_rel=1771.027ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.586ms RAW WGC srt_rel=1786.112ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.587ms RAW WGC srt_rel=1817.068ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.588ms RAW WGC srt_rel=1832.763ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.589ms RAW WGC srt_rel=1848.747ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.589ms RAW WGC srt_rel=1864.147ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.591ms RAW WGC srt_rel=1896.306ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.592ms RAW WGC srt_rel=1912.447ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.593ms RAW WGC srt_rel=1927.582ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.594ms RAW WGC srt_rel=1943.556ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.595ms RAW WGC srt_rel=1959.564ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.596ms RAW WGC srt_rel=1991.560ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.596ms RAW WGC srt_rel=2022.612ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.597ms RAW WGC srt_rel=2054.687ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.598ms RAW WGC srt_rel=2070.099ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.599ms RAW WGC srt_rel=2086.136ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.600ms RAW WGC srt_rel=2116.424ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.601ms RAW WGC srt_rel=2132.460ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.602ms RAW WGC srt_rel=2147.723ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.603ms RAW WGC srt_rel=2163.763ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.604ms RAW WGC srt_rel=2193.890ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.605ms RAW WGC srt_rel=2209.032ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.606ms RAW WGC srt_rel=2224.421ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.606ms RAW WGC srt_rel=2239.091ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.607ms RAW WGC srt_rel=2254.216ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.608ms RAW WGC srt_rel=2269.438ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.609ms RAW WGC srt_rel=2285.561ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.610ms RAW WGC srt_rel=2317.399ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.611ms RAW WGC srt_rel=2347.567ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.612ms RAW WGC srt_rel=2378.135ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.613ms RAW WGC srt_rel=2408.486ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.614ms RAW WGC srt_rel=2440.530ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.615ms RAW WGC srt_rel=2455.746ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.616ms RAW WGC srt_rel=2471.711ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.617ms RAW WGC srt_rel=2486.900ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.618ms RAW WGC srt_rel=2503.076ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.619ms RAW WGC srt_rel=2519.088ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.620ms RAW WGC srt_rel=2535.128ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.621ms RAW WGC srt_rel=2565.893ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.621ms RAW WGC srt_rel=2597.225ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.622ms RAW WGC srt_rel=2612.791ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.623ms RAW WGC srt_rel=2628.804ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.624ms RAW WGC srt_rel=2644.434ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.625ms RAW WGC srt_rel=2659.668ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.626ms RAW WGC srt_rel=2674.715ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.627ms RAW WGC srt_rel=2705.899ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.627ms RAW WGC srt_rel=2737.031ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.628ms RAW WGC srt_rel=2752.057ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.629ms RAW WGC srt_rel=2782.929ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.630ms RAW WGC srt_rel=2798.960ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.631ms RAW WGC srt_rel=2814.324ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.632ms RAW WGC srt_rel=2830.086ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.633ms RAW WGC srt_rel=2862.006ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.634ms RAW WGC srt_rel=2893.367ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.636ms RAW WGC srt_rel=2909.529ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.636ms RAW WGC srt_rel=2924.760ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.637ms RAW WGC srt_rel=2940.216ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.638ms RAW WGC srt_rel=2956.241ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.639ms RAW WGC srt_rel=2972.222ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.640ms RAW WGC srt_rel=2987.512ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.641ms RAW WGC srt_rel=3018.659ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.642ms RAW WGC srt_rel=3049.694ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.643ms RAW WGC srt_rel=3065.372ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.643ms RAW WGC srt_rel=3081.530ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.644ms RAW WGC srt_rel=3111.396ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.645ms RAW WGC srt_rel=3141.858ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.646ms RAW WGC srt_rel=3172.995ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.647ms RAW WGC srt_rel=3189.111ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.648ms RAW WGC srt_rel=3204.587ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.649ms RAW WGC srt_rel=3220.316ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.650ms RAW WGC srt_rel=3235.469ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.650ms RAW WGC srt_rel=3251.325ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.651ms RAW WGC srt_rel=3282.453ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.652ms RAW WGC srt_rel=3313.518ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.653ms RAW WGC srt_rel=3329.151ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.654ms RAW WGC srt_rel=3360.142ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.655ms RAW WGC srt_rel=3390.872ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.656ms RAW WGC srt_rel=3422.211ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.658ms RAW WGC srt_rel=3437.444ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.658ms RAW WGC srt_rel=3453.102ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.659ms RAW WGC srt_rel=3469.024ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.660ms RAW WGC srt_rel=3485.011ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.663ms RAW WGC srt_rel=3516.114ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.663ms RAW WGC srt_rel=3547.026ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.664ms RAW WGC srt_rel=3562.421ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.665ms RAW WGC srt_rel=3577.561ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.666ms RAW WGC srt_rel=3592.912ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.667ms RAW WGC srt_rel=3608.771ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.668ms RAW WGC srt_rel=3640.050ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.669ms RAW WGC srt_rel=3671.064ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.670ms RAW WGC srt_rel=3702.250ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.671ms RAW WGC srt_rel=3733.320ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.672ms RAW WGC srt_rel=3748.454ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.673ms RAW WGC srt_rel=3764.057ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.673ms RAW WGC srt_rel=3779.349ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.674ms RAW WGC srt_rel=3810.527ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.675ms RAW WGC srt_rel=3841.659ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.676ms RAW WGC srt_rel=3856.997ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.677ms RAW WGC srt_rel=3873.042ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.678ms RAW WGC srt_rel=3888.201ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.679ms RAW WGC srt_rel=3904.340ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.679ms RAW WGC srt_rel=3920.240ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.680ms RAW WGC srt_rel=3935.431ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.681ms RAW WGC srt_rel=3951.281ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.682ms RAW WGC srt_rel=3982.574ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.684ms RAW WGC srt_rel=3998.124ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.685ms RAW WGC srt_rel=4013.698ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.685ms RAW WGC srt_rel=4029.703ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.686ms RAW WGC srt_rel=4045.748ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.687ms RAW WGC srt_rel=4076.803ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.688ms RAW WGC srt_rel=4107.902ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.689ms RAW WGC srt_rel=4138.482ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.690ms RAW WGC srt_rel=4153.676ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.691ms RAW WGC srt_rel=4169.121ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.692ms RAW WGC srt_rel=4184.248ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.693ms RAW WGC srt_rel=4215.373ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.693ms RAW WGC srt_rel=4246.721ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.694ms RAW WGC srt_rel=4293.978ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.695ms RAW WGC srt_rel=4308.672ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.696ms RAW WGC srt_rel=4323.882ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.697ms RAW WGC srt_rel=4339.790ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.698ms RAW WGC srt_rel=4371.065ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.699ms RAW WGC srt_rel=4402.114ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.699ms RAW WGC srt_rel=4418.009ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.700ms RAW WGC srt_rel=4448.443ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.701ms RAW WGC srt_rel=4463.475ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.702ms RAW WGC srt_rel=4478.811ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.703ms RAW WGC srt_rel=4509.163ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.704ms RAW WGC srt_rel=4540.692ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.706ms RAW WGC srt_rel=4556.450ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.707ms RAW WGC srt_rel=4572.438ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.707ms RAW WGC srt_rel=4588.563ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.708ms RAW WGC srt_rel=4603.691ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.709ms RAW WGC srt_rel=4619.551ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.710ms RAW WGC srt_rel=4635.609ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.711ms RAW WGC srt_rel=4666.539ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.712ms RAW WGC srt_rel=4697.640ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.713ms RAW WGC srt_rel=4712.878ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.714ms RAW WGC srt_rel=4728.950ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.714ms RAW WGC srt_rel=4760.558ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.715ms RAW WGC srt_rel=4790.833ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.716ms RAW WGC srt_rel=4822.939ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.717ms RAW WGC srt_rel=4837.912ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.718ms RAW WGC srt_rel=4853.327ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.719ms RAW WGC srt_rel=4868.838ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.720ms RAW WGC srt_rel=4898.559ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.721ms RAW WGC srt_rel=4914.687ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.721ms RAW WGC srt_rel=4960.274ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.722ms RAW WGC srt_rel=4976.158ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.723ms RAW WGC srt_rel=4991.463ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.724ms RAW WGC srt_rel=5006.953ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.725ms RAW WGC srt_rel=5022.020ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.726ms RAW WGC srt_rel=5037.437ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.728ms RAW WGC srt_rel=5068.627ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.729ms RAW WGC srt_rel=5099.877ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.730ms RAW WGC srt_rel=5130.225ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.730ms RAW WGC srt_rel=5145.421ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.731ms RAW WGC srt_rel=5161.431ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.732ms RAW WGC srt_rel=5192.655ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.733ms RAW WGC srt_rel=5223.905ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.734ms RAW WGC srt_rel=5238.955ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.735ms RAW WGC srt_rel=5254.793ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.736ms RAW WGC srt_rel=5269.999ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.736ms RAW WGC srt_rel=5285.926ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.737ms RAW WGC srt_rel=5301.558ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.738ms RAW WGC srt_rel=5332.264ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.739ms RAW WGC srt_rel=5363.499ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.740ms RAW WGC srt_rel=5394.901ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.741ms RAW WGC srt_rel=5410.021ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.742ms RAW WGC srt_rel=5425.211ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.743ms RAW WGC srt_rel=5441.040ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.744ms RAW WGC srt_rel=5456.691ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.744ms RAW WGC srt_rel=5487.216ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.745ms RAW WGC srt_rel=5518.991ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.746ms RAW WGC srt_rel=5534.952ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.747ms RAW WGC srt_rel=5550.477ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.748ms RAW WGC srt_rel=5581.398ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.750ms RAW WGC srt_rel=5596.664ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.750ms RAW WGC srt_rel=5611.686ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.751ms RAW WGC srt_rel=5642.777ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.752ms RAW WGC srt_rel=5673.479ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.754ms RAW WGC srt_rel=5688.623ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.755ms RAW WGC srt_rel=5703.770ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.756ms RAW WGC srt_rel=5719.532ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.757ms RAW WGC srt_rel=5735.472ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.758ms RAW WGC srt_rel=5751.329ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.758ms RAW WGC srt_rel=5782.970ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.759ms RAW WGC srt_rel=5814.309ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.760ms RAW WGC srt_rel=5830.059ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.761ms RAW WGC srt_rel=5845.216ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.762ms RAW WGC srt_rel=5861.258ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.763ms RAW WGC srt_rel=5892.575ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.764ms RAW WGC srt_rel=5923.736ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.765ms RAW WGC srt_rel=5939.481ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.766ms RAW WGC srt_rel=5954.210ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.766ms RAW WGC srt_rel=5969.533ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.767ms RAW WGC srt_rel=5985.581ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.768ms RAW WGC srt_rel=6001.551ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.769ms RAW WGC srt_rel=6032.514ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.770ms RAW WGC srt_rel=6062.903ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.771ms RAW WGC srt_rel=6093.189ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.772ms RAW WGC srt_rel=6124.430ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.773ms RAW WGC srt_rel=6155.728ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.773ms RAW WGC srt_rel=6187.977ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.775ms RAW WGC srt_rel=6218.945ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.776ms RAW WGC srt_rel=6233.911ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.777ms RAW WGC srt_rel=6265.139ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.778ms RAW WGC srt_rel=6281.092ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.779ms RAW WGC srt_rel=6296.130ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.780ms RAW WGC srt_rel=6342.030ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.780ms RAW WGC srt_rel=6357.449ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.781ms RAW WGC srt_rel=6373.583ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.782ms RAW WGC srt_rel=6389.443ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.783ms RAW WGC srt_rel=6404.238ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.784ms RAW WGC srt_rel=6420.057ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.785ms RAW WGC srt_rel=6451.446ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.786ms RAW WGC srt_rel=6481.810ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.786ms RAW WGC srt_rel=6496.883ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.787ms RAW WGC srt_rel=6512.942ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.788ms RAW WGC srt_rel=6528.723ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.789ms RAW WGC srt_rel=6544.799ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.790ms RAW WGC srt_rel=6575.978ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.791ms RAW WGC srt_rel=6607.265ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.792ms RAW WGC srt_rel=6622.591ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.793ms RAW WGC srt_rel=6637.861ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.793ms RAW WGC srt_rel=6653.602ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.794ms RAW WGC srt_rel=6669.405ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.795ms RAW WGC srt_rel=6684.872ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.797ms RAW WGC srt_rel=6715.556ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.798ms RAW WGC srt_rel=6746.904ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.799ms RAW WGC srt_rel=6762.221ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.800ms RAW WGC srt_rel=6777.429ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.800ms RAW WGC srt_rel=6808.594ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.801ms RAW WGC srt_rel=6838.851ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.802ms RAW WGC srt_rel=6869.565ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.803ms RAW WGC srt_rel=6885.589ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.804ms RAW WGC srt_rel=6901.593ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.805ms RAW WGC srt_rel=6916.527ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.806ms RAW WGC srt_rel=6948.169ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.806ms RAW WGC srt_rel=6964.050ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.807ms RAW WGC srt_rel=6995.840ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.808ms RAW WGC srt_rel=7027.332ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.809ms RAW WGC srt_rel=7042.562ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.810ms RAW WGC srt_rel=7057.898ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.811ms RAW WGC srt_rel=7073.081ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.812ms RAW WGC srt_rel=7089.196ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.813ms RAW WGC srt_rel=7120.241ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.814ms RAW WGC srt_rel=7151.504ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.815ms RAW WGC srt_rel=7182.634ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.815ms RAW WGC srt_rel=7213.388ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.816ms RAW WGC srt_rel=7228.671ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.817ms RAW WGC srt_rel=7259.649ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.819ms RAW WGC srt_rel=7290.615ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.820ms RAW WGC srt_rel=7305.739ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.821ms RAW WGC srt_rel=7321.748ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.821ms RAW WGC srt_rel=7336.820ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.822ms RAW WGC srt_rel=7352.908ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.823ms RAW WGC srt_rel=7368.132ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.824ms RAW WGC srt_rel=7383.709ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.825ms RAW WGC srt_rel=7414.897ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.826ms RAW WGC srt_rel=7430.712ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.827ms RAW WGC srt_rel=7446.095ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.827ms RAW WGC srt_rel=7461.357ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.828ms RAW WGC srt_rel=7491.871ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.829ms RAW WGC srt_rel=7523.454ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.830ms RAW WGC srt_rel=7554.519ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.831ms RAW WGC srt_rel=7570.502ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.832ms RAW WGC srt_rel=7585.873ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.833ms RAW WGC srt_rel=7601.033ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.834ms RAW WGC srt_rel=7631.815ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.835ms RAW WGC srt_rel=7663.010ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.835ms RAW WGC srt_rel=7694.436ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.836ms RAW WGC srt_rel=7710.727ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.837ms RAW WGC srt_rel=7726.167ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.838ms RAW WGC srt_rel=7757.212ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.839ms RAW WGC srt_rel=7788.246ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.841ms RAW WGC srt_rel=7819.544ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.841ms RAW WGC srt_rel=7835.743ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.842ms RAW WGC srt_rel=7850.620ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.844ms RAW WGC srt_rel=7866.688ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.845ms RAW WGC srt_rel=7897.713ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.846ms RAW WGC srt_rel=7913.329ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.847ms RAW WGC srt_rel=7944.346ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.848ms RAW WGC srt_rel=7960.442ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.849ms RAW WGC srt_rel=7975.994ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.850ms RAW WGC srt_rel=7992.189ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.850ms RAW WGC srt_rel=8007.825ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.851ms RAW WGC srt_rel=8023.927ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.852ms RAW WGC srt_rel=8039.425ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.853ms RAW WGC srt_rel=8070.542ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.854ms RAW WGC srt_rel=8101.695ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.855ms RAW WGC srt_rel=8132.225ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.856ms RAW WGC srt_rel=8163.712ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.857ms RAW WGC srt_rel=8178.852ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.857ms RAW WGC srt_rel=8194.225ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.858ms RAW WGC srt_rel=8210.185ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.859ms RAW WGC srt_rel=8240.596ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.860ms RAW WGC srt_rel=8271.430ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.861ms RAW WGC srt_rel=8286.517ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.862ms RAW WGC srt_rel=8301.807ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.863ms RAW WGC srt_rel=8317.296ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.864ms RAW WGC srt_rel=8347.884ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.865ms RAW WGC srt_rel=8379.035ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.866ms RAW WGC srt_rel=8394.031ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.867ms RAW WGC srt_rel=8409.040ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.868ms RAW WGC srt_rel=8424.156ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.869ms RAW WGC srt_rel=8454.750ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.870ms RAW WGC srt_rel=8486.700ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.871ms RAW WGC srt_rel=8517.819ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.872ms RAW WGC srt_rel=8532.967ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.873ms RAW WGC srt_rel=8563.370ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.874ms RAW WGC srt_rel=8579.413ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.875ms RAW WGC srt_rel=8594.554ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.875ms RAW WGC srt_rel=8625.536ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.876ms RAW WGC srt_rel=8641.229ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.877ms RAW WGC srt_rel=8656.689ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.878ms RAW WGC srt_rel=8671.941ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.879ms RAW WGC srt_rel=8687.141ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.880ms RAW WGC srt_rel=8702.903ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.881ms RAW WGC srt_rel=8718.726ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.882ms RAW WGC srt_rel=8750.635ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.882ms RAW WGC srt_rel=8781.171ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.883ms RAW WGC srt_rel=8796.473ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.884ms RAW WGC srt_rel=8812.364ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.885ms RAW WGC srt_rel=8828.213ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.886ms RAW WGC srt_rel=8843.270ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.888ms RAW WGC srt_rel=8874.853ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.889ms RAW WGC srt_rel=8905.662ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.890ms RAW WGC srt_rel=8921.073ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.891ms RAW WGC srt_rel=8937.014ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.891ms RAW WGC srt_rel=8952.425ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.892ms RAW WGC srt_rel=8967.767ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.893ms RAW WGC srt_rel=8983.336ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.894ms RAW WGC srt_rel=8999.325ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.895ms RAW WGC srt_rel=9030.450ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.896ms RAW WGC srt_rel=9046.475ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.897ms RAW WGC srt_rel=9062.572ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.898ms RAW WGC srt_rel=9077.998ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.898ms RAW WGC srt_rel=9094.098ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.899ms RAW WGC srt_rel=9109.388ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.900ms RAW WGC srt_rel=9140.799ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.901ms RAW WGC srt_rel=9171.585ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.902ms RAW WGC srt_rel=9187.099ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.903ms RAW WGC srt_rel=9203.112ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.904ms RAW WGC srt_rel=9219.103ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.905ms RAW WGC srt_rel=9234.720ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.906ms RAW WGC srt_rel=9250.794ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.907ms RAW WGC srt_rel=9266.688ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.912ms RAW WGC srt_rel=9297.727ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.913ms RAW WGC srt_rel=9313.342ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.915ms RAW WGC srt_rel=9328.346ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.916ms RAW WGC srt_rel=9343.893ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.917ms RAW WGC srt_rel=9358.950ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.918ms RAW WGC srt_rel=9390.924ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.919ms RAW WGC srt_rel=9422.149ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.920ms RAW WGC srt_rel=9437.159ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.921ms RAW WGC srt_rel=9453.187ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.922ms RAW WGC srt_rel=9469.298ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.923ms RAW WGC srt_rel=9484.976ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.923ms RAW WGC srt_rel=9500.965ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.924ms RAW WGC srt_rel=9516.950ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.925ms RAW WGC srt_rel=9547.450ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.926ms RAW WGC srt_rel=9563.476ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.927ms RAW WGC srt_rel=9578.960ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.928ms RAW WGC srt_rel=9594.124ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.929ms RAW WGC srt_rel=9623.776ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.930ms RAW WGC srt_rel=9654.897ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.930ms RAW WGC srt_rel=9670.920ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.931ms RAW WGC srt_rel=9686.976ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.932ms RAW WGC srt_rel=9701.883ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.933ms RAW WGC srt_rel=9717.903ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.934ms RAW WGC srt_rel=9733.912ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.935ms RAW WGC srt_rel=9763.879ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.936ms RAW WGC srt_rel=9795.486ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.938ms RAW WGC srt_rel=9810.447ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.939ms RAW WGC srt_rel=9826.442ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.939ms RAW WGC srt_rel=9856.612ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.940ms RAW WGC srt_rel=9887.765ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.942ms RAW WGC srt_rel=9919.732ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.943ms RAW WGC srt_rel=9935.743ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.944ms RAW WGC srt_rel=9950.913ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.945ms RAW WGC srt_rel=9966.905ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.946ms RAW WGC srt_rel=9982.430ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.947ms RAW WGC srt_rel=10014.458ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.948ms RAW WGC srt_rel=10045.483ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.949ms RAW WGC srt_rel=10061.453ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.950ms RAW WGC srt_rel=10077.394ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.950ms RAW WGC srt_rel=10093.424ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.951ms RAW WGC srt_rel=10109.426ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.952ms RAW WGC srt_rel=10125.435ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.953ms RAW WGC srt_rel=10156.914ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.954ms RAW WGC srt_rel=10187.823ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.955ms RAW WGC srt_rel=10203.019ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.956ms RAW WGC srt_rel=10218.177ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.957ms RAW WGC srt_rel=10233.508ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.958ms RAW WGC srt_rel=10263.701ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.959ms RAW WGC srt_rel=10295.469ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.960ms RAW WGC srt_rel=10326.637ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.960ms RAW WGC srt_rel=10342.073ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.961ms RAW WGC srt_rel=10357.250ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.962ms RAW WGC srt_rel=10372.971ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.964ms RAW WGC srt_rel=10404.222ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.965ms RAW WGC srt_rel=10435.760ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.966ms RAW WGC srt_rel=10466.375ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.967ms RAW WGC srt_rel=10482.373ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.968ms RAW WGC srt_rel=10498.593ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.968ms RAW WGC srt_rel=10530.238ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.969ms RAW WGC srt_rel=10562.227ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.970ms RAW WGC srt_rel=10593.792ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.971ms RAW WGC srt_rel=10609.908ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.972ms RAW WGC srt_rel=10624.835ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.973ms RAW WGC srt_rel=10655.906ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.974ms RAW WGC srt_rel=10686.287ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.975ms RAW WGC srt_rel=10716.664ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.976ms RAW WGC srt_rel=10747.950ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.977ms RAW WGC srt_rel=10779.820ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.977ms RAW WGC srt_rel=10795.878ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.978ms RAW WGC srt_rel=10811.833ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.979ms RAW WGC srt_rel=10827.164ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.980ms RAW WGC srt_rel=10842.863ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.981ms RAW WGC srt_rel=10858.929ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.982ms RAW WGC srt_rel=10906.103ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.983ms RAW WGC srt_rel=10922.079ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.984ms RAW WGC srt_rel=10937.274ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.984ms RAW WGC srt_rel=10952.887ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.986ms RAW WGC srt_rel=10968.829ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.987ms RAW WGC srt_rel=10984.033ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.988ms RAW WGC srt_rel=11015.691ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.989ms RAW WGC srt_rel=11046.107ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.990ms RAW WGC srt_rel=11061.348ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.991ms RAW WGC srt_rel=11076.419ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.992ms RAW WGC srt_rel=11092.534ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.993ms RAW WGC srt_rel=11108.599ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.994ms RAW WGC srt_rel=11139.945ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.995ms RAW WGC srt_rel=11170.310ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.995ms RAW WGC srt_rel=11185.563ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.996ms RAW WGC srt_rel=11201.224ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.997ms RAW WGC srt_rel=11216.519ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.998ms RAW WGC srt_rel=11232.539ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20771.999ms RAW WGC srt_rel=11263.713ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.000ms RAW WGC srt_rel=11294.959ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.001ms RAW WGC srt_rel=11310.113ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.002ms RAW WGC srt_rel=11326.080ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.003ms RAW WGC srt_rel=11341.708ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.004ms RAW WGC srt_rel=11372.209ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.005ms RAW WGC srt_rel=11403.435ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.005ms RAW WGC srt_rel=11434.722ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.006ms RAW WGC srt_rel=11449.997ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.007ms RAW WGC srt_rel=11465.811ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.009ms RAW WGC srt_rel=11496.184ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.010ms RAW WGC srt_rel=11512.136ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.011ms RAW WGC srt_rel=11527.207ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.012ms RAW WGC srt_rel=11542.593ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.013ms RAW WGC srt_rel=11573.402ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.014ms RAW WGC srt_rel=11588.766ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.014ms RAW WGC srt_rel=11604.610ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.015ms RAW WGC srt_rel=11620.684ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.016ms RAW WGC srt_rel=11636.766ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.017ms RAW WGC srt_rel=11651.738ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.018ms RAW WGC srt_rel=11666.822ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.019ms RAW WGC srt_rel=11682.947ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.020ms RAW WGC srt_rel=11714.099ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.021ms RAW WGC srt_rel=11745.363ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.021ms RAW WGC srt_rel=11760.924ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.022ms RAW WGC srt_rel=11776.999ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.023ms RAW WGC srt_rel=11793.032ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.024ms RAW WGC srt_rel=11808.780ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.025ms RAW WGC srt_rel=11838.635ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.026ms RAW WGC srt_rel=11869.401ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.027ms RAW WGC srt_rel=11884.697ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.028ms RAW WGC srt_rel=11900.776ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.029ms RAW WGC srt_rel=11916.129ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.030ms RAW WGC srt_rel=11931.911ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.031ms RAW WGC srt_rel=11962.447ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.032ms RAW WGC srt_rel=11994.320ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.033ms RAW WGC srt_rel=12009.550ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.035ms RAW WGC srt_rel=12025.543ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.036ms RAW WGC srt_rel=12041.514ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.037ms RAW WGC srt_rel=12072.386ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.038ms RAW WGC srt_rel=12103.783ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.038ms RAW WGC srt_rel=12135.071ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.039ms RAW WGC srt_rel=12151.133ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.040ms RAW WGC srt_rel=12167.220ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.041ms RAW WGC srt_rel=12182.269ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.042ms RAW WGC srt_rel=12213.407ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.043ms RAW WGC srt_rel=12229.610ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.044ms RAW WGC srt_rel=12260.832ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.045ms RAW WGC srt_rel=12292.533ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.046ms RAW WGC srt_rel=12308.288ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.047ms RAW WGC srt_rel=12324.299ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.047ms RAW WGC srt_rel=12340.232ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.048ms RAW WGC srt_rel=12355.697ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.049ms RAW WGC srt_rel=12371.682ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.050ms RAW WGC srt_rel=12387.415ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.051ms RAW WGC srt_rel=12418.272ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.052ms RAW WGC srt_rel=12449.282ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.053ms RAW WGC srt_rel=12479.341ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.054ms RAW WGC srt_rel=12494.821ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.054ms RAW WGC srt_rel=12510.014ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.056ms RAW WGC srt_rel=12525.329ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.057ms RAW WGC srt_rel=12556.321ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.058ms RAW WGC srt_rel=12602.558ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.059ms RAW WGC srt_rel=12617.748ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.060ms RAW WGC srt_rel=12633.752ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.061ms RAW WGC srt_rel=12649.756ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.061ms RAW WGC srt_rel=12665.572ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.062ms RAW WGC srt_rel=12697.233ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.063ms RAW WGC srt_rel=12728.005ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.064ms RAW WGC srt_rel=12743.177ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.065ms RAW WGC srt_rel=12758.901ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.066ms RAW WGC srt_rel=12789.892ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.067ms RAW WGC srt_rel=12820.725ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.068ms RAW WGC srt_rel=12852.832ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.069ms RAW WGC srt_rel=12867.965ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.069ms RAW WGC srt_rel=12883.268ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.070ms RAW WGC srt_rel=12899.210ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.071ms RAW WGC srt_rel=12930.324ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.072ms RAW WGC srt_rel=12961.297ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.073ms RAW WGC srt_rel=12993.288ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.074ms RAW WGC srt_rel=13009.471ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.075ms RAW WGC srt_rel=13024.574ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.076ms RAW WGC srt_rel=13039.613ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.076ms RAW WGC srt_rel=13055.713ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.078ms RAW WGC srt_rel=13071.752ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.079ms RAW WGC srt_rel=13102.649ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.080ms RAW WGC srt_rel=13133.830ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.081ms RAW WGC srt_rel=13149.071ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.082ms RAW WGC srt_rel=13179.167ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.083ms RAW WGC srt_rel=13194.321ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.084ms RAW WGC srt_rel=13210.011ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.085ms RAW WGC srt_rel=13225.393ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.085ms RAW WGC srt_rel=13241.255ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.086ms RAW WGC srt_rel=13288.562ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.087ms RAW WGC srt_rel=13303.466ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.088ms RAW WGC srt_rel=13318.975ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.089ms RAW WGC srt_rel=13334.937ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.090ms RAW WGC srt_rel=13350.127ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.091ms RAW WGC srt_rel=13365.782ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.092ms RAW WGC srt_rel=13381.748ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.092ms RAW WGC srt_rel=13412.479ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.093ms RAW WGC srt_rel=13428.485ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.094ms RAW WGC srt_rel=13444.787ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.095ms RAW WGC srt_rel=13459.996ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.096ms RAW WGC srt_rel=13475.396ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.097ms RAW WGC srt_rel=13491.011ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.098ms RAW WGC srt_rel=13521.828ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.099ms RAW WGC srt_rel=13552.450ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.100ms RAW WGC srt_rel=13567.481ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.101ms RAW WGC srt_rel=13582.792ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.102ms RAW WGC srt_rel=13597.887ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.103ms RAW WGC srt_rel=13629.087ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.104ms RAW WGC srt_rel=13661.302ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.105ms RAW WGC srt_rel=13691.502ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.106ms RAW WGC srt_rel=13707.538ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.107ms RAW WGC srt_rel=13723.662ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.108ms RAW WGC srt_rel=13755.048ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.108ms RAW WGC srt_rel=13786.143ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.109ms RAW WGC srt_rel=13816.942ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.110ms RAW WGC srt_rel=13847.975ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.111ms RAW WGC srt_rel=13879.256ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.112ms RAW WGC srt_rel=13894.250ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.113ms RAW WGC srt_rel=13910.374ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.114ms RAW WGC srt_rel=13941.455ms size=960x725 box_px=[-1,-1] n=0 cx=-1.000
+20772.192ms RAW WGC last hr=0x00000000; suite starts logged=6; SW reference samples=27
+20772.193ms ===== SUITE DONE =====
+22759.016ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=4 unsubs=4 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=1 unsubs=1; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+22779.630ms SHUTDOWN reason=Page.Unloaded: already done -> no-op

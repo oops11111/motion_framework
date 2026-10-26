@@ -1,0 +1,25 @@
+# win_pointer_ps_probe.txt — 派题 #32 WinUI3 pointer-position PropertySet availability
+# wall=2026-10-20 20:25:25 Asia/Taipei; OS=10.0.19045.0; WASDK 2.5.1
+# NO synthetic input (no SendInput/InputInjector, real mouse not moved). Programmatic feeds only.
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal cx0=100.47 pxPerDip=1.0000
+----- [1] ElementCompositionPreview.GetPointerPositionPropertySet -----
+  ElementCompositionPreview methods: As,Equals,FromAbi,GetElementChildVisual,GetElementVisual,GetHashCode,GetPointerPositionPropertySet,GetScrollViewerManipulationPropertySet,GetType,op_Equality,op_Inequality,SetElementChildVisual,SetImplicitHideAnimation,SetImplicitShowAnimation,SetIsTranslationEnabled,ToString
+  call OK; TryGetVector3(Position)=Succeeded value=<0, 0, 0>
+  expression bound; WGC x now=0.0 (real pointer not moved)
+  write Position (programmatic) OK
+  [1-pointerPS-write] lag=11.4ms ≈0.7 frames; settled WGC=120.0
+----- [2] CompositionPropertySet (UI-thread write) + ExpressionAnimation ps.Position.X -----
+  [2-ps-step0to120] lag=35.8ms ≈2.1 frames; settled WGC=120.0
+  ramp n=62 median lag=49.3ms ≈3.0 frames
+  PointerRoutedEventArgs.GetCurrentPoint present=True; real PointerMoved events seen=0
+----- [3] InteractionTracker + expression tracker.Position.X -----
+  VisualInteractionSource.Create OK
+  [3-tracker-TryUpdatePosition120] lag=33.4ms ≈2.0 frames; settled WGC=120.0
+===== SUMMARY =====
+| 1 GetPointerPositionPropertySet | AVAILABLE call ok; programmatic write OK; lag=11.4ms ≈0.7 frames; settled WGC=120.0 |
+| 2 PropertySet UI-thread write + expr | AVAILABLE; lag=35.8ms ≈2.1 frames; settled WGC=120.0; ramp n=62 median lag=49.3ms ≈3.0 frames |
+| 3 InteractionTracker + expr | AVAILABLE (Create OK; VisualInteractionSource.Create OK); lag=33.4ms ≈2.0 frames; settled WGC=120.0 |
+| real mouse | real PointerMoved during probe=0 (no synthetic input); 真实鼠标跟随未测（用户约束不合成输入；需用户手动移动或批准 SendInput 补测） |
+===== POINTER PS PROBE DONE =====

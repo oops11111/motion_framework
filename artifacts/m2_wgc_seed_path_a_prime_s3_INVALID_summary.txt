@@ -1,0 +1,15 @@
+# m2_wgc_seed_path_a_prime_s3_summary.txt
+session=3 pid=11164 hostname=DESKTOP-K93N3P8 prereg_hash=6a12e95e1f7174c11357b9d81914a7416586070b901f2d492347022af3cfd69f calib=0.751083 seed_N=5 meas_w=5 hang_cap=2 eps=5 alpha_v=0.3 P-VS=ON eps_before_vs=true
+path_declare=PATHB-A′=V2-clamp+V3-VS N=5 order=2 t_int=min(t_comp,t_last_WGC) calib_exact=0.7510829456 calib_display=0.7511 P-VS=ON alpha_v=0.3 eps_before_vs=true
+pathb_variant=PATHB-A′
+composition_expected=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+H5_ratio n=40 med_r=0.8596 max_r=1.0040 any_ri_ge2=False ratioOk=True pathA_n=40 pathB_n=0
+P-VS=ON alpha_v=0.3 eps_before_vs=true vs_n=40 med_v_s=136.319 med_v_hat=127.634 vs_have_prev_end=True
+t_int_clamp n_clamped=40 rule=min(t_comp,t_last_WGC) pathb_variant=PATHB-A′ P-VS=OFF
+CELL cell=t060fwd role=core Nv_h=16.961 thrMed=20.000 |a|*σ=10.494 jud=True wgc_n=20 wgc_pass=0/20 base_pass=19/20 IVel0_pass=0/20 verdict=FAIL
+CELL cell=t060rev role=core Nv_h=15.387 thrMed=20.000 |a|*σ=10.766 jud=True wgc_n=20 wgc_pass=0/20 base_pass=20/20 IVel0_pass=2/11 verdict=FAIL
+ctrl basePass=True IVel0_t060_both_FAIL=False pathAUsed=True ratioOk=True
+cells=t060fwd:FAIL,t060rev:FAIL
+label_note=SEED-PATHB only; NOT Δv-PASS/SEED-ABS-PASS/SEED-CALIB-PASS; prior 09f6414b/831818e4/06467b82 not re-run; Aprime_not_run
+SESSION_INVALID
+===== M2-WGC-SEED-PATH-A-PRIME PROBE DONE =====

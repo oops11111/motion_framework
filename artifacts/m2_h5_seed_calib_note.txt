@@ -1,0 +1,9 @@
+# M2-H5-SEED calibration note
+calib = 1.0 (written into MainPage.xaml.cs const Calib)
+rationale:
+  Gate v_screen = last-two WGC Translation.X frames at interrupt (same window as seed).
+  Therefore seed = calib * v_wgc and v_screen = v_wgc ⇒ r_i ≡ |calib|.
+  Dispatch explicitly accepts same-window identity (r≡1 cleanest).
+  #37 wgc med ratio 0.796 was vs offline-differently-computed v_pre (not same window);
+  that systematic bias does NOT apply under this ticket's frozen v_screen definition.
+  No warmup session used; no 1/0.796 factor applied.

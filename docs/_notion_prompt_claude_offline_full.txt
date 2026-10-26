@@ -1,0 +1,84 @@
+# 任务：Claude 额度空窗期接手 — 写出 A/B/C 三份中文交付（Notion AI · 请用 Opus 5.5，勿用 Auto）
+
+你是文档助手。请根据下方「已定稿事实」直接写出 A、B、C 三节中文正文。不要建议升级 Claude Pro、不要重开 H1、不要放宽 1% 门槛、不要编造未测截帧数字。
+
+写完后用清晰 Markdown，标题层级如下，便于 Copy response。
+
+---
+
+## 已定稿事实（Claude 英文 FINAL，四点全部 Agree；勿重开）
+
+### Point 1 — Period / DampingRatio
+- 结论 Agree：H1 settled。产品映射 `Period = response`，`ζ_c = ζ`（SpringMapping 缩放 1.0）。
+- H2 预测阻尼周期约 0.32 s，H3 预测约 3.2 s，对照观测约 0.511 s，均拒绝。ζ≥1 时 Period 仍为 response，无特例。
+- 「settled」含义：选定且未被推翻，不是联合辨识唯一解。例如 (T₀=0.25, ζ=0.872) 也能给出同一 0.511 s；ζ=0.78 时第二极值约 0.095 px，无法当真测峰峰间隔。
+- **产品映射形状残差（必须引用这个，不是扫参最优）**：场景 A **28.6%** RMS，场景 E **12.1%** RMS。
+- 扫参最优约 8%/6%（如 T₀=0.1512 等非产品变体）**仅作对照**，勿写成产品残差。
+- ≤1%·行程门槛**不放宽**，记为 known-fail / 已接受风险 R-1。不为达标去调 Period 或 ζ。
+- K1 关键帧形状 RMS≈0.57%：若对齐管线与速度可比，则 harness 底噪低，弹簧残差为真。
+
+### Point 2 — 打断种子
+- 结论 Agree：始终显式设置 `InitialValue` 与 `InitialVelocity`，二者均取自影子状态的 `spring.h::At(elapsed + seedLead)`。
+- **只降级 hybrid B**（不设 InitialValue + InitialVelocity 取「引擎速度」）。B 不建于 M1b；仅文档备选；若 A 对显示轨迹的打断残差失败再重评。
+- **保留前瞻 A**（显式种子 + lookahead）作为计划，不是降级项。
+- 修正旧 Notion 草稿：引擎速度来自 **C++ 引擎**，不是合成器；`TryGetScalar` 恒为静态与此无关（该发现来自 workbuddy）。
+- 降级 B 的真实理由：依赖文档未写明的 null-InitialValue 语义；失败模式是大跳到陈旧起点。显式种子失败模式仅是小的 δ·v 误差。
+- Point1 后果：影子相对合成器残差 12–28% RMS 即显式种子的误差预算，打断连续性必须对照**显示轨迹**测量。
+
+### Point 3 — TryStartAnimation / 控制器
+- 结论 Agree：不存在 `TryStartAnimation`。CompositionObject 成员仅有 StartAnimation（2/3 参）、组变体、StopAnimation、TryGetAnimationController。
+- 弹簧：`TryGetAnimationController` 恒为 null（设备事实）；弹簧用普通 StartAnimation 并重播种。
+- KeyFrame：优先 `CreateAnimationController()` + 三参 `StartAnimation`；Start 后再 TryGet 仅作后备。
+- K3 部分确认：Progress 时间归一化（匹配 elapsed/duration）；PlaybackRate 2 与 −1 可用；Progress+Delay、|rate|>16、带 Progress 的反向未测；关键帧 capability 标志暂保持 false。
+
+### Point 4 — ζ>1
+- 结论 Agree：API 对 ζ≥0 接受且不钳制（1.0/1.2/2.0/5.0 回读≈设定），ζ<0 抛异常，过阻尼动画可跑。
+- 证据仅为 API 层接受；轨迹保真未测。
+- **composition.h 硬门控已落地**：`ToCompositor` 后 `c.damping > 1.0` 时不 lower；ζ=0.8→CompositorSpring，ζ=1.2→AppThread；composition_tests 2073/0。v1 对 ζ>1 **不 lower**。
+- 日后放开：改为 `Capabilities::overdampedSpring`，并通过轨迹检查（单调、过冲≤0.5 px、在模型 15% 内 settle、ζ=1.5 vs 3.0 曲线有别）。
+
+### Open / needs measurement（六条，必须写入摘要）
+1. 对照显示轨迹的打断连续性（整次运行同一时间偏置；含 δ 与 seedLead）；此前打断数字材料中未给。
+2. ζ>1 轨迹保真（单调、settle 时间、ζ=1.5 vs 3.0）。
+3. 弹簧 rate-fold 形状：13.6% 抽测 RMS 无法与底残差分离；需同跑 rate=1 对照；此前 v1 场景保持 rate=1。
+4. K3 剩余：Progress+DelayTime、|rate|>16、带 Progress 的反向。
+5. 弹簧速度下 harness 底噪（0.25 s 线性标定）；K1 的 0.57% 只是未知速度下的代理。
+6. 对照 diff 确认门控边界（严格 `> 1.0`）。
+
+### 设备事实行（写进 B，不发明数字）
+- S3：`InitialVelocity` 为 DIP/真实秒，与 Period 无关 [device]
+- S4：通过
+- S5：保持终值；飞行中 Stop 冻结；Completed 偏晚
+- K1：RMS ≈0.57%
+- K2：y∉[0,1] 被尊重 → `bezierOvershoot=true`（取代「默认 false 直到 T-K2」）
+- K3：Progress 立即且时间归一化；PlaybackRate 2/−1 可用；Progress+Delay 与 |rate|>16 未测；关键帧 flags 暂 false
+- K4：终值保持
+- K5：Stop 冻结；TryGet 不可靠，用 Stop+SetValue
+- B4：亮屏上 Completed 偏晚而非偏早；14–30 ms 早完成是熄屏伪影；B1–B3 无支持
+- M-1：改为仅报告（按场景记录产品映射下弹簧形状 RMS）
+- M-1b：门槛保留 ≤1%·travel，注明 known-fail，已接受风险 R-1：产品 A 28.6% / E 12.1%；扫参最优 8%/6%；不为通过而调参
+
+### 相对旧 Notion 草稿（notion_deepseek_review.md）的关键修正
+- Point1：旧稿把扫参 8%/6% 写得像产品残差 → 必须改为产品 28.6%/12.1%；补上 settled≠联合辨识的限定。
+- Point2：旧稿以 TryGetScalar 静态论证「无引擎速度」→ 错；引擎速度来自 C++ 引擎。B 只降级、A 保留。
+- Point4：旧稿建议改 composition.h 门控 → 现已落地，改为记录门控现状与放开条件。
+
+---
+
+## 请输出
+
+### A. FINAL 中文摘要（约 1 页）
+可进说明页的中文：四点结论；相对旧 Notion 草稿的修正点（尤其 Point2「引擎速度不来自合成器」）；产品残差 28.6%/12.1% vs 扫参 8%/6%；Open 六条。
+
+### B. claude_m1b_spec 修订 4 可粘贴中文段落
+按 edits 清单写出可直接粘贴进 md 的中文替换段落，至少覆盖：
+1. §2.1：标题改为「**H1 已定案：** Period = response，ζ_c = ζ」；H2/H3 行改为拒绝并写预测 vs 观测；证据限制段保留四组数字但不重开映射；低 ζ 辨识改为可选诊断非门禁。
+2. §3：B 改为「M1b 不实现；仅文档备选」；加入 Seed = spring.h::At(elapsed+seedLead) 同时用于 InitialValue/InitialVelocity；速度来自引擎永非合成器。
+3. §2.4：硬门控已落地段落（见 Point4）。
+4. M-1 / M-1b known-fail 行。
+5. S2–S5 / K1–K5 设备事实行（只写上文已给数字与结论，不编造）。
+
+### C. notion_brief 增量（3–6 条 bullet）
+覆盖：M1b 门控现状（S1–S5、K1–K5 摘要）；固有差异 known-fail（产品残差与门槛）；下一步优先真机项（打断相对显示轨迹、ζ>1 轨迹、rate=1 对照、K3 剩余）。
+
+直接输出 A/B/C 全文 Markdown，不要前言客套。

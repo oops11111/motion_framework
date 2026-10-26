@@ -1,0 +1,11 @@
+# R-2 重开落盘日志 — 2026-10-20 约 20:40 Asia/Taipei
+依据：docs/notion_r2_reopen_abc.md（A/B/C）；composition.h 未改。
+
+- docs/deepseek_m1b_spec.md — §5.3 R-2 整节替换为 B 节稿（OPEN，seed 来源缺陷，J_vis≈207 DIP，J_vis/Δv_vis 主指标，S/L 两列，处置 flag/interruptible）；§4.1 表行 known-fail→OPEN；§5.2#23 的 20–28 标注作废；修订记录追加一条。
+- docs/notion_brief.md — §4.1「复核状态 #23–#30」整节替换为 B 节「4.1 R-2 飞行中 retarget —— 重开」。（旧 #23–#30 条目随之移除，原文仍在 notion_r2_review_abc.md。）
+- docs/usage.md — §1.7 Known limitation 替换为 B 节英文稿（约 207 DIP，20–28 px 声明撤回，interruptible / seedMode=FromCurrent）；§3.1 Retarget 括注与 §6 限制表 R-2 行同步改为 OPEN/207 DIP，链接改指 notion_r2_reopen_abc.md。
+- docs/notion_r2_review_abc.md、docs/notion_claude_offline_abc.md — 顶部加注：R-2 已因 #33 重开，以 notion_r2_reopen_abc.md 为准。
+- docs/gemini_r2_ux_note.md — 同上加注（第 4 步搜到的 20–28/known-fail 过时口径；正文为 Gemini 原评估，不改写）。
+- docs/claude_m1b_spec.md — 原 §3「飞行中 retarget 不跳变」（含旧 Notion HTML 注释）替换为 claude_m1b_r2_reply.md §1 英文 §3；前置 HTML 注释（R-2 OPEN、单侧规则仅 Δpos>+0.5 判失败、修正 both≤0.5）；标题/状态改 OPEN；“Both satisfy the rule”改为单侧表述；20–28 px 结论与发布说明改为 ≈207 DIP；hybrid B 改为 M1b flag 缓解；保留“软件→合成器交接”与 C-ABI 块。
+- docs/workbuddy_next_r2_reopen.md — 新建，#34–#38 对应 P1–P5；禁止合成鼠标/键盘输入，只用程序化动画，产物 artifacts/win_*.txt。
+- rg 扫描（纯 R-1 衍生 / both ≤0.5 / 20–28 / known-fail）：活文档已修正；未改的有意保留为历史记录：_notion_prompt_*、_notion_*_raw*、_apply_r2_log.txt、workbuddy_next_r2_delta.md / _r2_post.md、workbuddy_soft_demo.md 历史结果、artifacts/*、archive/*、claude_m1b_artifacts/*、claude_m1b_r2_reply.md（原始回复）、notion_r2_reopen_abc.md 自身（引用 20–28 作为被作废的数）。

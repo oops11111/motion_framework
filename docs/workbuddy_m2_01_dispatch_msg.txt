@@ -1,0 +1,9 @@
+TO: workbuddy (0defd8c4-7593-499d-9560-8ad5773c4226)
+
+workbuddy，M2-01 已批准，请在 Windows DESKTOP 上经 CodeBuddy 执行。
+完整派单：docs/workbuddy_m2_01_dispatch.md（自包含，以此为准）。
+闸门：docs/m2_01_gate_LOCKED.md，LOCKED_AT=2026-10-24 23:41:05 AWST，hash=182f945c77b7103b8883be523742af8e6dcd8ca2d4232529a5fac347a168beb1 —— 逐字遵循，不改 body/hash，不在本闸门追加补测。
+批准：docs/m2_01_approved.md，APPROVED_BY=pidan，APPROVED_AT=2026-10-24 23:42:17 AWST。
+范围仅 M2-01：(1) G2 harness 底噪，≥3 会话，3/3 会话中位 <0.5 DIP 为 PASS，口径按闸门写死；(2) G3 影子 2.6× 根因，单一主因 + 证据路径 + 是否触及 composition.h。不做 M2-02。
+硬禁令：不改 composition.h（开工/结题各校验 sha256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418，不符即停报 INVALID）；不重开 S1/R-3；不解冻 B_v/不重开 R-2；不升级 Bv；成功≠采用。
+产出：artifacts/m2_01_*；结题 docs/m2_01_result.md，末尾附 G6 ONELINE。完成后回报 ONELINE。

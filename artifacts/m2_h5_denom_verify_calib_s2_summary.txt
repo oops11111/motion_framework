@@ -1,0 +1,15 @@
+# m2_h5_denom_verify_s2_summary.txt
+session=2 pid=43908 hostname=DESKTOP-K93N3P8 phase=calib prereg_hash=61d84c2c4db909d8e790d3ff321279131c6b797c5b11ce316e4170f746477dd5 calib=1 calib_source=calib_probe=1.0 seed_N=5 meas_w=5 hang_cap=2 eps=5
+path_declare=PATHB-A=V2-clamp N=5 order=2 t_int=min(t_comp,t_last_WGC) calib_exact=1 P-VS=OFF Aprime=OFF
+pathb_variant=PATHB-A
+composition_expected=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+H5_ratio denom=v_pre n=40 med_r=0.7431 max_r=0.9011 any_ri_ge2=False ratioOk=False pathA_n=40 pathB_n=0
+t_int_clamp n_clamped=40 rule=min(t_comp,t_last_WGC) pathb_variant=PATHB-A P-VS=OFF
+C1_calib_samples n=40 median_v_denom_over_v_hat=1.345761262050146 (session-local; aggregate across sessions for freeze)
+CELL cell=t060fwd role=core Nv_h=8.974 thrMed=20.000 |a|*σ=10.745 jud=True wgc_n=20 wgc_pass=8/20 base_pass=20/20 IVel0_pass=0/20 verdict=FAIL
+CELL cell=t060rev role=core Nv_h=11.905 thrMed=20.000 |a|*σ=10.685 jud=True wgc_n=20 wgc_pass=0/20 base_pass=19/20 IVel0_pass=5/20 verdict=FAIL
+ctrl basePass=True IVel0_t060_both_FAIL=True pathAUsed=True ratioOk=False
+cells=t060fwd:FAIL,t060rev:FAIL
+label_note=H5-DENOM-VERIFY only; NOT Δv-PASS/SEED-*-PASS/SEED-TRUTH-PASS; seven hashes not flipped; Aprime_not_run; land=NO; silent_0.7511=FORBIDDEN
+SESSION_CALIB_OK
+===== M2-H5-DENOM-VERIFY PROBE DONE =====

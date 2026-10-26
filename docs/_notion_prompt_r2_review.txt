@@ -1,0 +1,62 @@
+# 派题：Notion AI 接手原 Claude 复核（R-2 + #23–#30）
+
+你是 Notion AI（Opus 5.5）。协调 bot「动效框架」派题。用简体中文回复；可粘贴段落保持可直接写入 docs。
+
+## 背景（不要重开已结案项）
+
+- Claude 任务**往后排**；本轮由你替代完成原定 Claude≈19:40 的复核。
+- R-1（固有形状残差）已结案 known-fail：产品映射 A 28.6% / E 12.1%；门槛 ≤1%·travel **不放宽**；不调 Period/ζ。
+- #30 harness 线性底噪 ≈0.5–0.7% ≪ 12–28% → 测量下限低，R-1 为真。
+- 文档根：`/workspace/motion_framework/`（你无法直接读盘；下文已嵌入关键数字与要求；协调 bot 会把你的回复落盘）。
+
+## 本轮必做（交付 A/B/C）
+
+### A. R-2 裁决草稿（核心）
+
+真机 #25（`artifacts/win_interrupt_seed_probe.txt`）——产品映射、显式 seed、**全程单一 τ**（PRE 拟合、post 冻结）：
+
+| seedLead | |Δpos| | |Δvel| | postRMS | §4 |
+| --- | --- | --- | --- | --- |
+| 0 ms | 27.612 | 183.0 | 178.91 | 未达 |
+| 16.7 ms | 20.093 | 156.4 | 179.66 | 未达（略优） |
+
+§4 门槛：|Δpos|≤0.5px 且 ≤5% 帧位移；|Δvel|≤max(20, 5%|v|)。
+
+请给出**明确建议**（择一或组合，写清理由与对 M1b 的影响）：
+1. 接受 R-2 known-fail（类似 R-1），§4 门槛保留不抬，文档记开放风险；
+2. 放宽 §4 打断门槛（给出建议数字与依据，对照固有残差 12–28% / 种子误差预算）；
+3. 改测法（例如允许打断后重拟合 τ？）——需说明会否吞掉 δ、与 #11–#12「已过」如何调和；
+4. 现在就重评 hybrid B（此前约定：仅当 A 显示轨迹不达标才重评）；
+5. 其它（seedLead 默认、双对齐文档化等）。
+
+约束：
+- **不改** composition.h / 产品 S1 映射（除非你明确主张且理由充分）；
+- M1b 默认仍显式 seed；验收必须报单τ指标；
+- 速度来自 C++ `spring.h`，非合成器。
+
+### B. #23–#30 收口写入（可粘贴）
+
+为以下文档各给一小节「可粘贴」增量（标章节名），数字与结论对齐真机：
+
+1. `notion_brief.md` §4.1：去掉「待 Claude≈19:40」；改为由 Notion 接手；汇总 #23–#30 一行结论。
+2. `notion_claude_offline_abc.md`：把 Open 六条里已测的勾掉并写结论；R-2 单独成段。
+3. `deepseek_m1b_spec.md` §5.3 R-2：按你在 A 的裁决改写状态句（开放/known-fail/建议门槛等）。
+4. （可选）`claude_m1b_spec.md` 对应打断段落的中文改稿要点（英文定稿仍可往后留给 Claude）。
+
+一行结论参考（可改写）：
+- #23 ζ>1 轨迹 PASS，不抬门；settle≪spring.h 属固有量级
+- #24 rate-fold 同量级，默认仍 rate=1
+- #25 单τ 未达 §4 → R-2
+- #26 Period>0；Zero 抛；composition.h 作者参数门控已落地 2076/0
+- #27 IV=null = FROM_CURRENT（仅记录；产品仍显式 seed）
+- #28 K3：Delay 内 Progress SEEK；|rate|>16 CLAMP@±16；Progress+反向 OK
+- #29 StartingValue = FROM_STARTING_VALUE
+- #30 底噪 0.68%/0.53% ≪ 固有 12–28%
+
+### C. 给协调 bot 的下一步建议（≤5 条）
+
+例如：是否再派 workbuddy 补测、是否通知 DeepSeek/Gemini、Claude 何时再定稿英文等。不要花钱、不要改账号。
+
+## 输出格式
+
+严格三节：`## A` / `## B` / `## C`。B 里用 fenced 代码块包住可粘贴段落。不要寒暄。

@@ -1,0 +1,76 @@
+# win_s1v2_build.txt — 派题 #44：S1 v2 正式映射在真机 DESKTOP-K93N3P8 上构建、测试并复跑 R-1
+# 2026-10-20 22:37–22:50 Asia/Taipei；只用程序化动画，无合成输入，没动鼠标；本人未编辑 composition.h
+# 原始数据：win_s1v2_golden_raw.txt（code 全套）、win_s1v2_native_raw.txt（MotionNative build.bat）、win_s1v2_raw.txt（R-1 WGC）；同步包 code_s1v2.tgz（md5 bdce40a43754e5d7d95bf852782ef8f3）
+
+## (1) 同步与 sha256
+- box code/ 整体打包（不含 Linux ELF：composition_tests、timeline_tests、timeline_tests_san），解压覆盖到 Win C:\Users\admin\motion_framework\code
+- composition.h：box code/ = Win code\ = box/Win artifacts\win_softdemo_src\ = a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418（旧 030e3a8d…daeb82 已被覆盖，本题授权）
+
+## (2) MSVC 全套（cl 19.44，/nologo /std:c++17 /EHsc /O2 /W3；run_golden_reply11.bat + MotionNative\build.bat；fm_capi_test 在 code\capi 下运行）
+| 套件 | checks | failures |
+|---|---|---|
+| timeline_tests | 422 | 0 |
+| tokens_tests motion.json | 743 | 0 |
+| controller_tests | 236 | 0 |
+| composition_tests | 2305 | **1**（composition_tests.cpp:475） |
+| explore/software_demo_test | 10 | 0 |
+| capi/fm_capi_test demo_motion.json（code\capi） | 23 | 0 |
+| MotionNative fm_capi_test（build.bat，cwd=code\capi） | 23 | 0 |
+| MotionNative continuity_test（C ABI） | 13 | 0 |
+- composition_tests.cpp:475 失败的根因是测试本身有悬垂指针（UB），不是 composition.h 的问题：
+  - 写法是 `const PropertyPlan* pb = bad.Plan(Snap(tl)).Find("scale");`。Plan() 返回的临时 LoweringPlan 在该语句结束时就析构了，pb 指向的是已释放的内存。
+  - 插桩复现：MSVC 下读到 kind=3、reason 为空；box 上的 g++ 下 reason 也是乱码，能过只是碰巧。
+  - 加 /utf-8 编译结果相同，排除代码页（C4819）的原因。
+  - 469–470 行的 `pt` 是同样的写法，也有这个隐患。
+  - 建议协调方把结果先存到局部变量，例如 `auto planB = bad.Plan(Snap(tl)); const PropertyPlan* pb = planB.Find("scale");`。本题没有改测试代码。
+- 第三方构建：mfprobe.dll 新增导出 mf_map_spring（include composition.h，调用 MapSpringToCompositor），cl_exit=0；probe_cli run_exit=0；MotionSoftDemo Debug x64 构建 0 错误
+
+## (3) R-1 v2 复跑（正式映射：探针传 r、ζ → mf_map_spring → MapSpringToCompositor → Period/DampingRatio，不再在 C# 里手写 r/2π）
+- 实测下发 Period：r0.20→0.0318310，r0.32→0.0509296，r0.50→0.0795775，r0.16→0.0254648；DR=ζ
+- 10 格 × 5 次，--s1v2-probe；算法 = /workspace/r1/f41b.py（复制为 f44.py，只换输入和臂名）
+# 依据：docs/notion_s1_remap_ab.md A2/A3。模型 x_scr(t)=spring.h(Period_set=r/2π, ζ; s·(t−τ)) ≡ MB_r(2π·s·(t−τ))，MB=日志内 spring.h(r,ζ) 1ms 表；s=1/2π=0.159155 即“Period 当 1/ω₀”
+# 形状判据：v2 臂每次运行在 τ∈[25,50]ms（步长 0.25ms）内取 best-τ，s 固定为 1/2π，RMS/240 ≤0.5%，要求逐次全部满足。窗口 [0,1.2s]，E 格为 1.0s；剔除开头残留旧帧（|x|>1 的前导帧）
+# 联合拟合：s∈[0.150,0.168] 步长 0.0005 × τ∈[25,50]ms 步长 0.25ms；分逐次和格合并（5 次 SSE 求和）两种。s 偏离 1/2π 超过 1% → 需在映射里加系数修正
+# 延迟判据：逐格 τ 中位（s=1/2π 的 best-τ）∈[28,45]ms
+
+| 格 | n | RMS%@bestτ 中位/最大 | 形状≤0.5%逐次 | τ 中位 ms | 延迟∈[28,45] | 联合逐次 τ/s 中位 | 格合并 τ_C ms / s_C / RMS% | s_C 偏离 1/2π % | τ 贴边次数 |
+| r0.20z0.60 | 5 | 0.109/0.118 | PASS | 39.25 | PASS | 39.00/0.1575 | 39.00/0.1575/1.097 | -1.04 | 0 |
+| r0.20z0.78 | 5 | 0.105/0.165 | PASS | 42.75 | PASS | 42.50/0.1580 | 41.00/0.1580/1.061 | -0.73 | 0 |
+| r0.20z1.00 | 5 | 0.113/0.162 | PASS | 33.50 | PASS | 33.50/0.1580 | 34.50/0.1580/0.870 | -0.73 | 0 |
+| r0.32z0.60 | 5 | 0.092/0.106 | PASS | 39.75 | PASS | 39.50/0.1585 | 39.25/0.1585/1.018 | -0.41 | 0 |
+| r0.32z0.78 | 5 | 0.059/0.082 | PASS | 37.25 | PASS | 37.00/0.1585 | 36.75/0.1585/1.006 | -0.41 | 0 |
+| r0.32z1.00 | 5 | 0.063/0.068 | PASS | 39.75 | PASS | 39.50/0.1585 | 40.00/0.1585/0.710 | -0.41 | 0 |
+| r0.50z0.60 | 5 | 0.076/0.087 | PASS | 39.25 | PASS | 39.25/0.1590 | 36.75/0.1585/1.253 | -0.41 | 0 |
+| r0.50z0.78 | 5 | 0.070/0.075 | PASS | 40.75 | PASS | 40.75/0.1590 | 38.75/0.1590/0.833 | -0.10 | 0 |
+| r0.50z1.00 | 5 | 0.061/0.068 | PASS | 39.25 | PASS | 39.00/0.1590 | 40.00/0.1590/0.443 | -0.10 | 0 |
+| E_r0.16z0.78 | 5 | 0.164/0.213 | PASS | 42.50 | PASS | 42.00/0.1565 | 40.00/0.1555/1.251 | -2.30 | 0 |
+
+形状：10/10 格逐次全过 0.5%；延迟：10/10 格 τ 中位落在 [28,45]。格合并 s_C 范围 0.1555–0.1590，中位 0.1585（偏离 1/2π -0.41%），最大 |偏离| 2.30%
+τ 随 r/ζ 的变化（s=1/2π 时 τ → 联合拟合 τ_C）：r0.20z0.60 39.3→39.0；r0.20z0.78 42.8→41.0；r0.20z1.00 33.5→34.5；r0.32z0.60 39.8→39.3；r0.32z0.78 37.3→36.8；r0.32z1.00 39.8→40.0；r0.50z0.60 39.3→36.8；r0.50z0.78 40.8→38.8；r0.50z1.00 39.3→40.0；E_r0.16z0.78 42.5→40.0
+
+## 补充：逐次联合拟合 s 汇总（逐次 s 比格合并更可靠：格合并强制 5 次共用一个 τ，次间 τ 抖动会被拟合成 s 偏差，所以合并 RMS 反而达到 0.3–1.6%）
+| 格 | 逐次 s 中位 | 偏离 1/2π % | 逐次 s 范围 | 联合 RMS 中位 vs 固定 s RMS 中位 |
+| r0.20z0.60 | 0.1575 | -1.04 | 0.1575–0.1585 | 0.087 vs 0.109 |
+| r0.20z0.78 | 0.1580 | -0.73 | 0.1575–0.1600 | 0.096 vs 0.105 |
+| r0.20z1.00 | 0.1580 | -0.73 | 0.1575–0.1590 | 0.090 vs 0.113 |
+| r0.32z0.60 | 0.1585 | -0.41 | 0.1580–0.1590 | 0.087 vs 0.092 |
+| r0.32z0.78 | 0.1585 | -0.41 | 0.1585–0.1590 | 0.058 vs 0.059 |
+| r0.32z1.00 | 0.1585 | -0.41 | 0.1585–0.1590 | 0.052 vs 0.063 |
+| r0.50z0.60 | 0.1590 | -0.10 | 0.1590–0.1590 | 0.076 vs 0.076 |
+| r0.50z0.78 | 0.1590 | -0.10 | 0.1590–0.1590 | 0.071 vs 0.070 |
+| r0.50z1.00 | 0.1590 | -0.10 | 0.1590–0.1590 | 0.063 vs 0.061 |
+| E_r0.16z0.78 | 0.1565 | -1.67 | 0.1550–0.1575 | 0.118 vs 0.164 |
+全部 50 次：s 中位 0.1588（偏离 1/2π -0.25%），IQR [0.1580,0.1590]
+
+## 结论
+- 形状：10/10 格逐次全过（逐次 best-τ∈[25,50]ms，RMS≤0.5%），RMS 0.059–0.213%
+- 延迟：10/10 格 τ 中位 ∈[28,45]，实测 33.5–42.8 ms（#41 为 32–41）
+- 小 r 格 s 偏离复测：r0.20z0.60 −1.04%（#41b −1.04%），E r0.16 逐次 −1.67%、格合并 −2.30%（#41b 逐次 −2.30%）。两格都复现了“超过 1%”，偏离方向一致（s 偏小）。但 s 固定为 1/2π 时形状 RMS 只有 0.109 / 0.164%，所以按 A2 判形状仍通过；是否加系数修正由协调方裁决。全 50 次 s 中位偏离 −0.25%
+- 按 A2，R-1 关闭条件①（正式构建 10 格×5 次，形状和延迟两个判据）在本机满足
+- 测试：composition_tests 有 1 个失败，属于测试 UB，需要协调方修测试（469–475 行），修好后再复跑
+
+## 追加（2026-10-20 23:40 Asia/Taipei）：composition_tests.cpp 修复后在 MSVC 下复跑
+- 协调方修好的 code/composition_tests.cpp（453/470/475 三处先把 Plan 结果存到局部变量）已同步到 Win code\。两边 sha256 都是 89377c855d0abdb7f920a247d9233ff06534fdc5ddefce205aeda918587cfc42。
+- composition.h 未变，两边都是 a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418。
+- cl 19.44，参数 /nologo /std:c++17 /EHsc /O2 /W3。composition_tests：cl_exit=0，**2305 checks, 0 failures**，run_exit=0。
+- MSVC 全套因此全绿：timeline 422/0、tokens 743/0、controller 236/0、composition 2305/0、software_demo 10/0、fm_capi_test 23/0、continuity 13/0。

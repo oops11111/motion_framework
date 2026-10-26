@@ -1,0 +1,26 @@
+{
+  "$comment": "Tokens for MotionSoftDemo. PLACEHOLDER values; the designer owns the final vocabulary.",
+  "version": 1,
+  "durations": { "fast": "120ms", "normal": "220ms" },
+  "easing":    { "enter": [0.1, 0.9, 0.2, 1.0], "exit": [0.9, 0.1, 1.0, 0.2] },
+  "springs":   { "snappy": { "response": "320ms", "damping": 0.78 } },
+  "transitions": {
+    "demo.enter": {
+      "root": { "type": "parallel", "children": [
+        { "type": "track", "property": "opacity", "from": 0,
+          "steps": [ { "to": 1, "duration": "normal", "ease": "enter" } ] },
+        { "type": "track", "property": "offsetX", "from": -80,
+          "steps": [ { "springTo": 0, "spring": "snappy" } ] } ] },
+      "reduced": { "type": "track", "property": "opacity", "from": 0,
+                   "steps": [ { "to": 1, "duration": "fast" } ] }
+    },
+    "demo.exit": {
+      "root": { "type": "parallel", "children": [
+        { "type": "track", "property": "opacity", "from": 1,
+          "steps": [ { "to": 0, "duration": "fast", "ease": "exit" } ] },
+        { "type": "track", "property": "offsetX", "from": 0,
+          "steps": [ { "springTo": 80, "spring": "snappy" } ] } ] },
+      "reduced": "instant"
+    }
+  }
+}

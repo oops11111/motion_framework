@@ -1,0 +1,26 @@
+==== BUILD mfprobe.dll ====
+mf_probe.cpp
+  正在创建库 mfprobe.lib 和对象 mfprobe.exp
+cl_exit=0
+          1    0 000034C0 mf_cap_count
+          2    1 00003550 mf_cap_frames
+          3    2 00003560 mf_cap_get
+          4    3 000036A0 mf_cap_item_size
+          5    4 00003710 mf_cap_last_hr
+          6    5 00003720 mf_cap_start
+          7    6 00003B30 mf_cap_stop
+          8    7 00003D00 mf_dcomp_frame_id
+          9    8 00003D60 mf_dcomp_stats
+         10    9 00003E30 mf_dwm_timing
+         11    A 00003F20 mf_spring_at
+         12    B 00004210 mf_spring_settle
+==== BUILD+RUN probe_cli ====
+probe_cli.cpp
+cl_exit=0
+spring(0.32,0.78) 0->240 at t=0.15: value=217.522813 vel=729.152815 settle=0.6281 s
+t=000ms frameId created=0(hr=0x80004001) confirmed=0(0x80004001) completed=0(0x80004001) | stats(hr=0x80004001) start=0 target=0 period=0 targets=0 | DWM hr=0x00000000 qpcVBlank=5675582917226 qpcCompose=5675582917226 cRefresh=2 cFrame=1 rate=60020/1000 qpcNow=5675582782853 freq=10000000
+t=500ms frameId created=0(hr=0x80004001) confirmed=0(0x80004001) completed=0(0x80004001) | stats(hr=0x80004001) start=0 target=0 period=0 targets=0 | DWM hr=0x00000000 qpcVBlank=5675587812632 qpcCompose=5675587812632 cRefresh=3 cFrame=2 rate=60020/1000 qpcNow=5675587805716 freq=10000000
+t=1000ms frameId created=0(hr=0x80004001) confirmed=0(0x80004001) completed=0(0x80004001) | stats(hr=0x80004001) start=0 target=0 period=0 targets=0 | DWM hr=0x00000000 qpcVBlank=5675592814627 qpcCompose=5675592814627 cRefresh=4 cFrame=3 rate=60020/1000 qpcNow=5675592954831 freq=10000000
+t=1500ms frameId created=0(hr=0x80004001) confirmed=0(0x80004001) completed=0(0x80004001) | stats(hr=0x80004001) start=0 target=0 period=0 targets=0 | DWM hr=0x00000000 qpcVBlank=5675597984312 qpcCompose=5675597984312 cRefresh=5 cFrame=4 rate=60020/1000 qpcNow=5675597973485 freq=10000000
+t=2000ms frameId created=0(hr=0x80004001) confirmed=0(0x80004001) completed=0(0x80004001) | stats(hr=0x80004001) start=0 target=0 period=0 targets=0 | DWM hr=0x00000000 qpcVBlank=5675602856197 qpcCompose=5675602856197 cRefresh=6 cFrame=5 rate=60020/1000 qpcNow=5675602993953 freq=10000000
+run_exit=0

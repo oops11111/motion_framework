@@ -1,0 +1,10 @@
+立刻执行·M2-Δv′｜已 LOCK+APPROVED
+
+gate=`docs/m2_delta_v_prime_gate_LOCKED.md`
+GATE_BODY_SHA256=06467b8292f30239bb824a5379901fcaeefd2e0a79ba3442995bda84d9ae805c @ 2026-10-26 09:05:37 AWST
+approved=pidan@2026-10-26 09:09:19 AWST（`docs/m2_delta_v_prime_approved.md`）
+自包含派单：`docs/workbuddy_m2_delta_v_prime_dispatch.md`
+
+范围：Arm-WGC-seed；可判 \|a\|σ≤thr 且 thr≥Nv_h；KEEP thr=max(20,5%|v_ref|)、二次 w=5；核心5格；≥3会话；base PASS；IVel0 t060 fwd+rev FAIL；IVel0·t300dbl 不进票；1机 DESKTOP-K93N3P8。
+禁令：不改 composition.h（a55d4952…e418）；禁影子IV；不重开 S1/R-3/R-2；不解冻Bv；成功≠采用；≠PERF-CI；禁重跑前序 d2349ceb…09c6。
+产出：artifacts/m2_delta_v_prime_* + docs/m2_delta_v_prime_result.md + G4 ONELINE。跑完回 ONELINE。

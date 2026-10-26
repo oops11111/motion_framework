@@ -1,0 +1,7 @@
+host=grok-bot-vm-476842336; date=2026-10-19 10:26:13 CST; g++=g++ (Debian 14.2.0-19) 14.2.0
+  settle bound: min(an-scan)=-0.0025  max(an-scan)=0.2526 s
+419 checks, 0 failures
+  sample motion.json: 4 transitions OK
+617 checks, 0 failures
+236 checks, 0 failures
+composition_smoke=ok

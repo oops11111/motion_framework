@@ -1,0 +1,81 @@
+# win_r2_p4_b2vel.txt — 派题 #37 P4：B2 速度来源（IV=null 臂，诊断）
+# 真机 DESKTOP-K93N3P8，同会话交错 base/shadow/zero/unset/wgc，每臂 12 次；只用程序化动画，没有合成输入；composition.h sha256 前后=030e3a8d40672f6f461785b6fa885d2c3c24ca483c3722f8e0b048fac8daeb82（未改）
+# 场景同 #33：B1 spring P=0.32 ζ=0.78 0→240 IV=0；约 156ms 打断；B2 spring P=0.32 ζ=0.78 Final=0，InitialValue 不设（null）
+# 臂：shadow=InitialVelocity:=spring.h v(tInt)（模型影子速度，约 640 DIP/s）；zero=InitialVelocity:=0f；unset=不设；wgc（加测）=InitialVelocity:=打断前末两帧 WGC 屏幕速度（v=(x2−x1)/(t2−t1)，取到达时间）
+# 测量同 #34：首 post 帧=与不打断基线中位轨迹偏离 >1.5 DIP 连续 2 帧；J_vis=|x_post−(x_pre+v_pre·Δt)|；Δv_vis=|v_post−v_pre|；阈：J_vis ≤0.5 DIP（本单重点），另列 #34 宽阈「帧位移+3.11」；Δv_vis ≤ max(20, 5%|v_pre|)
+# postRMS（post 200ms）：S=对 spring.h 影子 B2（seed=影子 x,v），L=对 spring.h B2（起点=屏幕末 pre 帧 x、速度=该臂实际设定）；spring.h 公式自检 max|py−MB1|=0.0000
+
+----- shadow n=12 -----
+  #0 L=56ms x_pre=22.5 v_pre=239 vSet=612 v_post=538 J=5.09 帧位移=3.97 Δv=298(阈20) 峰值=97.0 rmsS=109.5 rmsL=52.0
+  #1 L=13ms x_pre=14.5 v_pre=183 vSet=471 v_post=255 J=0.75 帧位移=3.21 Δv=72(阈20) 峰值=80.5 rmsS=116.0 rmsL=40.5
+  #2 L=73ms x_pre=32.5 v_pre=408 vSet=468 v_post=374 J=0.26 帧位移=6.76 Δv=34(阈20) 峰值=80.0 rmsS=104.9 rmsL=48.8
+  #3 L=70ms x_pre=26.5 v_pre=241 vSet=621 v_post=510 J=5.52 帧位移=3.94 Δv=269(阈20) 峰值=101.0 rmsS=106.7 rmsL=58.7
+  #4 L=1ms x_pre=14.5 v_pre=182 vSet=490 v_post=238 J=0.90 帧位移=3.06 Δv=55(阈20) 峰值=86.0 rmsS=116.4 rmsL=41.1
+  #5 L=70ms x_pre=26.5 v_pre=242 vSet=619 v_post=552 J=4.96 帧位移=4.09 Δv=310(阈20) 峰值=100.5 rmsS=107.7 rmsL=54.8
+  #6 L=55ms x_pre=22.5 v_pre=238 vSet=636 v_post=539 J=5.59 帧位移=3.96 Δv=301(阈20) 峰值=100.1 rmsS=107.9 rmsL=57.3
+  #7 L=69ms x_pre=26.5 v_pre=238 vSet=625 v_post=510 J=5.62 帧位移=3.86 Δv=272(阈20) 峰值=101.5 rmsS=107.8 rmsL=55.1
+  #8 L=53ms x_pre=22.5 v_pre=244 vSet=648 v_post=540 J=5.92 帧位移=4.07 Δv=296(阈20) 峰值=102.0 rmsS=108.8 rmsL=54.4
+  #9 L=56ms x_pre=25.5 v_pre=180 vSet=478 v_post=416 J=4.01 帧位移=3.03 Δv=236(阈20) 峰值=81.5 rmsS=107.9 rmsL=48.3
+  #10 L=66ms x_pre=26.5 v_pre=237 vSet=626 v_post=509 J=5.64 帧位移=3.85 Δv=273(阈20) 峰值=101.5 rmsS=106.7 rmsL=59.0
+  #11 L=66ms x_pre=26.5 v_pre=244 vSet=648 v_post=540 J=5.91 帧位移=4.09 Δv=296(阈20) 峰值=104.5 rmsS=107.3 rmsL=56.8
+  汇总：J_vis 中位=5.30 [0.26,5.92] ≤0.5:1/12 宽阈:12/12；Δv_vis 中位=272（阈中位 20）达标 0/12；基线 J=0.36 Δv=32；峰值中位=100.3；postRMS S=107.9 L=54.6；L 中位=61ms；vSet 中位=620，v_pre 中位=239
+----- zero n=12 -----
+  #0 L=51ms x_pre=22.5 v_pre=244 vSet=0 v_post=-26 J=4.09 帧位移=4.09 Δv=271(阈20) 峰值=22.5 rmsS=111.7 rmsL=13.8
+  #1 L=16ms x_pre=14.5 v_pre=178 vSet=0 v_post=241 J=0.88 帧位移=3.08 Δv=63(阈20) 峰值=22.5 rmsS=120.2 rmsL=15.6
+  #2 L=43ms x_pre=22.5 v_pre=236 vSet=0 v_post=-26 J=3.90 帧位移=3.89 Δv=262(阈20) 峰值=22.5 rmsS=114.3 rmsL=13.8
+  #3 L=50ms x_pre=22.5 v_pre=244 vSet=0 v_post=-1 J=4.19 帧位移=4.19 Δv=245(阈20) 峰值=22.5 rmsS=115.7 rmsL=13.3
+  #4 L=37ms x_pre=18.5 v_pre=233 vSet=0 v_post=-1 J=3.77 帧位移=3.77 Δv=234(阈20) 峰值=18.5 rmsS=115.0 rmsL=11.3
+  #5 L=47ms x_pre=22.5 v_pre=243 vSet=0 v_post=-26 J=4.06 帧位移=4.06 Δv=270(阈20) 峰值=22.5 rmsS=116.5 rmsL=13.2
+  #6 L=13ms x_pre=11.5 v_pre=182 vSet=0 v_post=246 J=0.07 帧位移=3.11 Δv=64(阈20) 峰值=18.5 rmsS=115.8 rmsL=13.2
+  #7 L=38ms x_pre=22.5 v_pre=241 vSet=0 v_post=-26 J=3.98 帧位移=3.98 Δv=266(阈20) 峰值=22.5 rmsS=114.1 rmsL=13.8
+  #8 L=51ms x_pre=26.5 v_pre=243 vSet=0 v_post=-1 J=3.97 帧位移=3.97 Δv=243(阈20) 峰值=26.5 rmsS=115.6 rmsL=15.9
+  #9 L=42ms x_pre=22.5 v_pre=243 vSet=0 v_post=-25 J=4.12 帧位移=4.12 Δv=269(阈20) 峰值=22.5 rmsS=118.6 rmsL=13.2
+  #10 L=47ms x_pre=22.5 v_pre=238 vSet=0 v_post=-1 J=3.95 帧位移=3.95 Δv=239(阈20) 峰值=22.5 rmsS=111.8 rmsL=13.8
+  #11 L=15ms x_pre=18.5 v_pre=240 vSet=0 v_post=245 J=0.02 帧位移=4.02 Δv=5(阈20) 峰值=26.5 rmsS=113.0 rmsL=18.8
+  汇总：J_vis 中位=3.96 [0.02,4.19] ≤0.5:2/12 宽阈:12/12；Δv_vis 中位=244（阈中位 20）达标 1/12；基线 J=0.08 Δv=25；峰值中位=22.5；postRMS S=115.3 L=13.8；L 中位=42ms；vSet 中位=0，v_pre 中位=240
+----- unset n=12 -----
+  #0 L=53ms x_pre=26.5 v_pre=234 vSet=nan v_post=-1 J=3.78 帧位移=3.78 Δv=234(阈20) 峰值=26.5 rmsS=111.7 rmsL=16.4
+  #1 L=46ms x_pre=22.5 v_pre=238 vSet=nan v_post=-1 J=3.89 帧位移=3.89 Δv=239(阈20) 峰值=22.5 rmsS=114.3 rmsL=13.8
+  #2 L=50ms x_pre=26.5 v_pre=246 vSet=nan v_post=-1 J=4.15 帧位移=4.15 Δv=247(阈20) 峰值=26.5 rmsS=111.4 rmsL=16.5
+  #3 L=43ms x_pre=22.5 v_pre=235 vSet=nan v_post=-25 J=3.75 帧位移=3.75 Δv=260(阈20) 峰值=22.5 rmsS=114.5 rmsL=13.8
+  #4 L=39ms x_pre=18.5 v_pre=219 vSet=nan v_post=-1 J=3.39 帧位移=3.39 Δv=220(阈20) 峰值=18.5 rmsS=115.4 rmsL=11.2
+  #5 L=53ms x_pre=22.5 v_pre=240 vSet=nan v_post=-2 J=4.03 帧位移=4.03 Δv=242(阈20) 峰值=22.5 rmsS=116.1 rmsL=13.3
+  #6 L=42ms x_pre=22.5 v_pre=242 vSet=nan v_post=-1 J=4.01 帧位移=4.01 Δv=243(阈20) 峰值=22.5 rmsS=114.2 rmsL=13.9
+  #7 L=45ms x_pre=22.5 v_pre=241 vSet=nan v_post=-1 J=4.00 帧位移=4.00 Δv=242(阈20) 峰值=22.5 rmsS=114.2 rmsL=13.9
+  #8 L=37ms x_pre=22.5 v_pre=244 vSet=nan v_post=-25 J=4.16 帧位移=4.15 Δv=269(阈20) 峰值=22.5 rmsS=118.3 rmsL=13.3
+  #9 L=46ms x_pre=22.5 v_pre=242 vSet=nan v_post=-1 J=4.08 帧位移=4.08 Δv=243(阈20) 峰值=22.5 rmsS=113.9 rmsL=13.9
+  #10 L=51ms x_pre=22.5 v_pre=243 vSet=nan v_post=-1 J=4.25 帧位移=4.25 Δv=244(阈20) 峰值=22.5 rmsS=115.2 rmsL=13.3
+  #11 L=39ms x_pre=22.5 v_pre=241 vSet=nan v_post=-1 J=3.96 帧位移=3.96 Δv=242(阈20) 峰值=22.5 rmsS=114.1 rmsL=13.8
+  汇总：J_vis 中位=4.00 [3.39,4.25] ≤0.5:0/12 宽阈:12/12；Δv_vis 中位=243（阈中位 20）达标 0/12；基线 J=0.14 Δv=29；峰值中位=22.5；postRMS S=114.2 L=13.8；L 中位=45ms；vSet 中位=nan，v_pre 中位=241
+----- wgc n=12 -----
+  #0 L=41ms x_pre=22.5 v_pre=237 vSet=186 v_post=178 J=3.09 帧位移=4.11 Δv=59(阈20) 峰值=42.0 rmsS=115.2 rmsL=24.7
+  #1 L=13ms x_pre=14.5 v_pre=184 vSet=184 v_post=241 J=0.85 帧位移=3.11 Δv=57(阈20) 峰值=41.5 rmsS=114.9 rmsL=25.2
+  #2 L=51ms x_pre=22.5 v_pre=240 vSet=178 v_post=150 J=3.01 帧位移=4.02 Δv=90(阈20) 峰值=41.0 rmsS=108.8 rmsL=25.8
+  #3 L=14ms x_pre=14.5 v_pre=185 vSet=185 v_post=245 J=0.87 帧位移=3.09 Δv=60(阈20) 峰值=42.0 rmsS=115.1 rmsL=25.2
+  #4 L=13ms x_pre=14.5 v_pre=184 vSet=184 v_post=241 J=0.89 帧位移=3.07 Δv=57(阈20) 峰值=41.5 rmsS=116.4 rmsL=23.6
+  #5 L=53ms x_pre=22.5 v_pre=242 vSet=183 v_post=178 J=3.01 帧位移=4.02 Δv=63(阈20) 峰值=41.5 rmsS=112.9 rmsL=24.6
+  #6 L=51ms x_pre=22.5 v_pre=224 vSet=185 v_post=175 J=2.54 帧位移=3.56 Δv=48(阈20) 峰值=42.0 rmsS=109.8 rmsL=26.1
+  #7 L=50ms x_pre=22.5 v_pre=245 vSet=180 v_post=154 J=2.97 帧位移=3.98 Δv=91(阈20) 峰值=41.5 rmsS=109.2 rmsL=25.9
+  #8 L=41ms x_pre=22.5 v_pre=242 vSet=179 v_post=155 J=3.09 帧位移=4.10 Δv=87(阈20) 峰值=41.0 rmsS=115.2 rmsL=24.2
+  #9 L=67ms x_pre=28.0 v_pre=91 vSet=239 v_post=209 J=2.01 帧位移=1.51 Δv=119(阈20) 峰值=52.5 rmsS=107.1 rmsL=33.5
+  #10 L=42ms x_pre=22.5 v_pre=245 vSet=182 v_post=156 J=3.12 帧位移=4.13 Δv=89(阈20) 峰值=41.5 rmsS=115.8 rmsL=24.5
+  #11 L=1ms x_pre=14.5 v_pre=179 vSet=179 v_post=243 J=0.98 帧位移=2.98 Δv=64(阈20) 峰值=44.5 rmsS=114.4 rmsL=26.9
+  汇总：J_vis 中位=2.75 [0.85,3.12] ≤0.5:0/12 宽阈:12/12；Δv_vis 中位=64（阈中位 20）达标 0/12；基线 J=0.12 Δv=29；峰值中位=41.5；postRMS S=114.6 L=25.2；L 中位=42ms；vSet 中位=184，v_pre 中位=230
+===== 汇总表（每臂 12 次；阈：J_vis ≤0.5 DIP；Δv_vis ≤ max(20, 5%|v_pre|)≈20 DIP/s）=====
+| 臂 | InitialVelocity 实设中位 | J_vis 中位 [min,max] | J≤0.5 | Δv_vis 中位 | Δv 达标 | B2 上冲峰值中位（#33 对照≈269） | postRMS S / L | 基线 J / Δv |
+| shadow（spring.h v） | 620 | 5.30 [0.26,5.92] | 1/12 | 272 | 0/12 | 100.3 | 107.9 / 54.6 | 0.36 / 32 |
+| zero（0f） | 0 | 3.96 [0.02,4.19] | 2/12 | 244 | 1/12 | 22.5 | 115.3 / 13.8 | 0.08 / 25 |
+| unset（不设） | — | 4.00 [3.39,4.25] | 0/12 | 243 | 0/12 | 22.5 | 114.2 / 13.8 | 0.14 / 29 |
+| wgc（屏幕末两帧速度，加测） | 184 | 2.75 [0.85,3.12] | 0/12 | 64 | 0/12 | 41.5 | 114.6 / 25.2 | 0.12 / 29 |
+（屏幕实际 v_pre 中位约 240 DIP/s）
+
+===== 解读 =====
+- 影子速度（spring.h，约 620）是屏幕实际速度（约 240）的 2.6 倍。R-1 形状差导致合成器 B1 远慢于 spring.h，所以给影子速度会反向加速：J 变大到 5.3，Δv 到 272，B2 上冲到约 100（屏幕起点约 22）。最差。
+- unset 和 zero 表现等价：不设时 InitialVelocity 就是 0，替换后停一帧，Δv≈240，和 #34 一致。
+- wgc（打断前末两帧的屏幕速度）最好：Δv 降到 64，J 降到 2.75，上冲约 41。但仍未达标。原因是 WGC 到达时间有 1–2 帧滞后，加速段测得的 v 偏低（184，实际 240）。
+- 两个门槛（Δv_vis ≤20、J_vis ≤0.5）在任何臂都没达到。
+- spring.h 公式自检 max|py−MB1|=0。
+
+===== 结论 =====
+最优臂=wgc（屏幕速度）；三个指定臂中 zero 和 unset 并列（J≈4.0，Δv≈244），shadow 最差。Δv_vis 门槛：未达到。J_vis 门槛：未达到。
+给 #35 B 臂的速度设法：InitialValue 不设，InitialVelocity 用「屏幕/合成器实际速度」，不能用 spring.h 影子速度。目前可用的最好估计是 WGC 末两帧差分，再按加速度外推到打断时刻，以补偿约 1 帧滞后。

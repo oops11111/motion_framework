@@ -1,0 +1,15 @@
+# t_a1a_sha_pre.txt — T-A1a PRE hash check
+# wall=2026-10-24 22:44:06 AWST
+composition.h path=code/composition.h
+composition.h sha256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+composition.h expect=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+composition.h match=True
+gate path=docs/t_a1a_gate_LOCKED.md
+gate GATE_BODY_SHA256 computed=0750a8402d4118c98025e71863f79bafd689966c2565fa922d0674e8bcf89d1d
+gate GATE_BODY_SHA256 expect=0750a8402d4118c98025e71863f79bafd689966c2565fa922d0674e8bcf89d1d
+gate match=True
+LOCKED_AT=2026-10-24 22:27:54 AWST
+APPROVED_BY=pidan
+APPROVED_AT=2026-10-24 22:34:47 AWST
+STATUS=LOCKED
+corr=CONFIRM_F5_REFUTE_2X

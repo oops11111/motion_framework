@@ -1,0 +1,3 @@
+sess=1 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=59588 saw=False offline_adj=1 verdict=INCONCLUSIVE_CANDIDATE note=crash_during_IVel0_t300dbl_core_cells_complete
+sess=2 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=49404 saw=False offline_adj=1 verdict=INCONCLUSIVE_CANDIDATE note=crash_during_IVel0_t300dbl_core_cells_complete
+sess=3 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 appPID=24020 saw=False offline_adj=1 verdict=INCONCLUSIVE_CANDIDATE note=crash_during_IVel0_t300dbl_core_cells_complete

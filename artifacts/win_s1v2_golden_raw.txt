@@ -1,0 +1,56 @@
+==== ENV ====
+host=DESKTOP-K93N3P8 date=周二 2026/10/20 22:38:23.05
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\cl.exe
+flags=/nologo /std:c++17 /EHsc /O2 /W3
+
+==== BUILD timeline_tests ====
+timeline_tests.cpp
+cl_exit=0
+
+==== BUILD tokens_tests ====
+tokens_tests.cpp
+cl_exit=0
+
+==== BUILD controller_tests ====
+controller_tests.cpp
+cl_exit=0
+
+==== BUILD composition_tests ====
+composition_tests.cpp
+composition_tests.cpp(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+composition_tests.cpp(448): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+cl_exit=0
+
+==== RUN timeline_tests ====
+  settle bound: min(an-scan)=-0.0025  max(an-scan)=0.2526 s
+422 checks, 0 failures
+run_exit=0
+==== RUN tokens_tests motion.json ====
+  sample motion.json: 4 transitions OK
+743 checks, 0 failures
+run_exit=0
+==== RUN controller_tests ====
+236 checks, 0 failures
+run_exit=0
+==== RUN composition_tests ====
+FAIL composition_tests.cpp:475  pb && pb->kind == PlanKind::AppThread && Has(pb->reason, "mapped Period")
+2305 checks, 1 failures
+run_exit=1
+
+==== BUILD+RUN explore\software_demo_test (extra) ====
+software_demo_test.cpp
+cl_exit=0
+  settled in 69 frames (575 ms); 138 sink writes
+10 checks, 0 failures
+run_exit=0
+
+==== BUILD+RUN capi\fm_capi_test (cl /I.. /I..\explore) ====
+fm_capi_test.cpp
+fm_capi.cpp
+正在生成代码...
+  正在创建库 fm_capi_test.lib 和对象 fm_capi_test.exp
+cl_exit=0
+  demo.enter: 69 frames (575 ms), 138 sink calls
+23 checks, 0 failures
+run_exit=0
+==== DONE ====

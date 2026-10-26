@@ -1,0 +1,487 @@
+# 派题 #5 — MotionSoftDemo, frame source = CompositionTarget.Rendering (replaces 16 ms DispatcherQueueTimer)
+# host DESKTOP-K93N3P8, 2026-10-19 ~18:50-19:10 Asia/Taipei; Debug x64; WASDK 2.5.1; fluidmotion.dll (code/capi/fm_capi.cpp, unchanged)
+# Build: dotnet build -c Debug -p:Platform=x64 --no-incremental -> 0 warnings, 0 errors
+# Stats = intervals between consecutive Rendering callbacks while the engine is running (idle gaps excluded), Stopwatch + RenderingEventArgs.RenderingTime
+#
+# SUMMARY of 5 launches (stopwatch_interval, >=209 intervals each):
+#  run A (first build, idle gaps still counted, old stats line) count=212 mean=36.04 (incl. 688 ms idle gap) p50=31.15 p95=32.13
+#  run B  count=209 mean=31.21 min=13.65 p50=31.32 p95=32.12 max=35.59 ms   (fg=False)
+#  run C  count=210 mean=31.09 min=14.01 p50=31.20 p95=32.06 max=33.46 ms   (fg=True: app window was the foreground window)
+#  run D  count=209 mean=31.03 min=13.19 p50=31.19 p95=32.05 max=32.41 ms   (log buffered in memory, no per-frame file I/O)
+#  run E  count=210 mean=31.10 min=13.41 p50=31.25 p95=32.06 max=32.61 ms   (FINAL, below in full; SetThreadExecutionState(DISPLAY_REQUIRED) held by shell during run)
+#  => ~32 fps, NOT ~16.7 ms. RenderingTime deltas equal Stopwatch deltas (p50 31.2 ms) -> compositor itself is pacing at 2 x 15.625 ms.
+#  Environment: monitor PHL 1280x1024 @60 Hz (Win32_VideoController.CurrentRefreshRate=60), GTX 970, console session (not RDP), not locked;
+#  user input idle ~7046 s vs AC display-off timeout 900 s -> display very likely powered off -> DWM without real vblank, timer-paced.
+#  fm_on_frame cost 0.013-0.035 ms/frame (first call 1.06 ms) -> app side is not the bottleneck.
+#
+# ===== run E (final) full log =====
+3.946ms frame source = CompositionTarget.Rendering
+9.303ms load_tokens ok path=C:\Users\admin\motion_framework\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppX\demo_motion.json
+10.383ms create enter=1 drag=2
+16.277ms Rendering SUBSCRIBE (subs=1 unsubs=0)
+29.268ms tick 1 dt=start renderingTimeDelta=start fm_on_frame=1.0802ms fg=False X=-76.6833 opacity=0.4805 running=True
+41.943ms tick 2 dt=13.4144ms renderingTimeDelta=0.0000ms fm_on_frame=0.0248ms fg=False X=-69.4570 opacity=0.6907 running=True
+64.211ms tick 3 dt=22.8735ms renderingTimeDelta=6.6440ms fm_on_frame=0.0293ms fg=False X=-54.7489 opacity=0.8432 running=True
+96.072ms tick 4 dt=31.7546ms renderingTimeDelta=19.9224ms fm_on_frame=0.0356ms fg=False X=-34.2312 opacity=0.9334 running=True
+125.927ms tick 5 dt=29.9208ms renderingTimeDelta=31.7086ms fm_on_frame=0.0273ms fg=False X=-18.9976 opacity=0.9709 running=True
+157.179ms tick 6 dt=31.2796ms renderingTimeDelta=29.8369ms fm_on_frame=0.0424ms fg=False X=-8.3814 opacity=0.9894 running=True
+188.760ms tick 7 dt=31.5973ms renderingTimeDelta=31.2969ms fm_on_frame=0.0342ms fg=False X=-2.2910 opacity=0.9974 running=True
+220.689ms tick 8 dt=31.9287ms renderingTimeDelta=31.5697ms fm_on_frame=0.0347ms fg=False X=0.5870 opacity=0.9999 running=True
+252.423ms tick 9 dt=31.7329ms renderingTimeDelta=31.9167ms fm_on_frame=0.0359ms fg=False X=1.5250 opacity=1.0000 running=True
+284.479ms tick 10 dt=31.9804ms renderingTimeDelta=31.7479ms fm_on_frame=0.0252ms fg=False X=1.5109 opacity=1.0000 running=True
+316.372ms tick 11 dt=31.9724ms renderingTimeDelta=32.0260ms fm_on_frame=0.0255ms fg=False X=1.1380 opacity=1.0000 running=True
+348.462ms tick 12 dt=32.0820ms renderingTimeDelta=31.8848ms fm_on_frame=0.0417ms fg=False X=0.7200 opacity=1.0000 running=True
+380.085ms tick 13 dt=31.5978ms renderingTimeDelta=32.1542ms fm_on_frame=0.0374ms fg=False X=0.3915 opacity=1.0000 running=True
+412.063ms tick 14 dt=32.0115ms renderingTimeDelta=31.5944ms fm_on_frame=0.0266ms fg=False X=0.1710 opacity=1.0000 running=True
+443.599ms tick 15 dt=31.5327ms renderingTimeDelta=31.9556ms fm_on_frame=0.0375ms fg=False X=0.0479 opacity=1.0000 running=True
+474.625ms tick 16 dt=31.0278ms renderingTimeDelta=31.5653ms fm_on_frame=0.0291ms fg=False X=-0.0098 opacity=1.0000 running=True
+506.654ms tick 17 dt=32.0341ms renderingTimeDelta=30.9990ms fm_on_frame=0.0203ms fg=False X=-0.0301 opacity=1.0000 running=True
+538.672ms tick 18 dt=32.0130ms renderingTimeDelta=32.0043ms fm_on_frame=0.0304ms fg=False X=-0.0303 opacity=1.0000 running=True
+570.562ms tick 19 dt=31.8832ms renderingTimeDelta=32.0518ms fm_on_frame=0.0223ms fg=False X=-0.0231 opacity=1.0000 running=True
+603.250ms Rendering UNSUBSCRIBE (subs=1 unsubs=1)
+603.270ms tick 20 dt=start renderingTimeDelta=start fm_on_frame=0.9817ms fg=False X=0.0000 opacity=1.0000 running=False
+1032.668ms Rendering SUBSCRIBE (subs=2 unsubs=1)
+1033.594ms retarget[selftest-go] -> 240.0000 ok=True since_last_frame=idle before(value=0.0000 vel=0.0000 has=True X=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000 |dvel|=0.000E+000 |after-(before+vel*dt)|=0.000E+000
+1033.920ms tick 21 dt=start renderingTimeDelta=start fm_on_frame=0.0251ms fg=False X=0.0667 opacity=1.0000 running=True
+1059.437ms tick 22 dt=25.5803ms renderingTimeDelta=1.4243ms fm_on_frame=0.0150ms fg=False X=25.1774 opacity=1.0000 running=True
+1090.345ms tick 23 dt=30.9109ms renderingTimeDelta=25.4310ms fm_on_frame=0.0150ms fg=False X=84.2537 opacity=1.0000 running=True
+1121.320ms tick 24 dt=30.9708ms renderingTimeDelta=30.9309ms fm_on_frame=0.0186ms fg=False X=143.2471 opacity=1.0000 running=True
+1153.234ms tick 25 dt=31.9133ms renderingTimeDelta=30.9498ms fm_on_frame=0.0166ms fg=False X=189.6377 opacity=1.0000 running=True
+1183.600ms tick 26 dt=30.3709ms renderingTimeDelta=31.9361ms fm_on_frame=0.0144ms fg=False X=218.2207 opacity=1.0000 running=True
+1199.302ms retarget[selftest-interrupt] -> 0.0000 ok=True since_last_frame=15.6296ms before(value=218.2207 vel=716.0159 has=True X=218.2207) after(value=227.8562 vel=521.6487) |dv|=9.636E+000 |dvel|=1.944E+002 |after-(before+vel*dt)|=1.556E+000
+1215.316ms tick 27 dt=31.7144ms renderingTimeDelta=30.3410ms fm_on_frame=0.0142ms fg=False X=224.7550 opacity=1.0000 running=True
+1246.081ms tick 28 dt=30.7569ms renderingTimeDelta=31.7354ms fm_on_frame=0.0141ms fg=False X=180.0301 opacity=1.0000 running=True
+1277.667ms tick 29 dt=31.5934ms renderingTimeDelta=30.7629ms fm_on_frame=0.0142ms fg=False X=119.7872 opacity=1.0000 running=True
+1309.656ms tick 30 dt=31.9800ms renderingTimeDelta=31.5867ms fm_on_frame=0.0286ms fg=False X=67.7652 opacity=1.0000 running=True
+1340.285ms tick 31 dt=30.6318ms renderingTimeDelta=32.0286ms fm_on_frame=0.0315ms fg=False X=32.9314 opacity=1.0000 running=True
+1372.082ms tick 32 dt=31.8054ms renderingTimeDelta=30.6344ms fm_on_frame=0.0184ms fg=False X=11.2096 opacity=1.0000 running=True
+1403.542ms tick 33 dt=31.4539ms renderingTimeDelta=31.7686ms fm_on_frame=0.0379ms fg=False X=0.3896 opacity=1.0000 running=True
+1435.777ms tick 34 dt=32.2402ms renderingTimeDelta=31.5086ms fm_on_frame=0.0221ms fg=False X=-3.8858 opacity=1.0000 running=True
+1466.648ms tick 35 dt=30.8716ms renderingTimeDelta=32.1812ms fm_on_frame=0.0156ms fg=False X=-4.5347 opacity=1.0000 running=True
+1497.736ms tick 36 dt=31.0897ms renderingTimeDelta=30.8592ms fm_on_frame=0.0142ms fg=False X=-3.7333 opacity=1.0000 running=True
+1528.584ms tick 37 dt=30.8338ms renderingTimeDelta=31.0820ms fm_on_frame=0.0194ms fg=False X=-2.5638 opacity=1.0000 running=True
+1559.720ms tick 38 dt=31.0952ms renderingTimeDelta=30.8701ms fm_on_frame=0.0179ms fg=False X=-1.5112 opacity=1.0000 running=True
+1590.453ms tick 39 dt=30.7426ms renderingTimeDelta=31.1408ms fm_on_frame=0.0147ms fg=False X=-0.7597 opacity=1.0000 running=True
+1621.566ms tick 40 dt=31.1589ms renderingTimeDelta=30.7212ms fm_on_frame=0.0161ms fg=False X=-0.2880 opacity=1.0000 running=True
+1651.821ms tick 41 dt=30.2554ms renderingTimeDelta=31.1179ms fm_on_frame=0.0164ms fg=False X=-0.0438 opacity=1.0000 running=True
+1683.059ms tick 42 dt=31.2065ms renderingTimeDelta=30.2519ms fm_on_frame=0.0172ms fg=False X=0.0644 opacity=1.0000 running=True
+1714.845ms tick 43 dt=31.7924ms renderingTimeDelta=31.2353ms fm_on_frame=0.0217ms fg=False X=0.0910 opacity=1.0000 running=True
+1745.261ms tick 44 dt=30.4408ms renderingTimeDelta=31.8086ms fm_on_frame=0.0163ms fg=False X=0.0799 opacity=1.0000 running=True
+1775.115ms tick 45 dt=29.8549ms renderingTimeDelta=30.4128ms fm_on_frame=0.0130ms fg=False X=0.0580 opacity=1.0000 running=True
+1805.576ms tick 46 dt=30.4569ms renderingTimeDelta=29.8278ms fm_on_frame=0.0179ms fg=False X=0.0361 opacity=1.0000 running=True
+1837.519ms Rendering UNSUBSCRIBE (subs=2 unsubs=2)
+1837.531ms tick 47 dt=start renderingTimeDelta=start fm_on_frame=0.0374ms fg=False X=0.0000 opacity=1.0000 running=False
+2526.265ms Rendering SUBSCRIBE (subs=3 unsubs=2)
+2526.278ms retarget[stats-go] -> 300.0000 ok=True since_last_frame=idle before(value=0.0000 vel=0.0000 has=True X=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000 |dvel|=0.000E+000 |after-(before+vel*dt)|=0.000E+000
+2526.424ms tick 48 dt=start renderingTimeDelta=start fm_on_frame=0.0255ms fg=False X=0.0001 opacity=1.0000 running=True
+2557.347ms tick 49 dt=30.8779ms renderingTimeDelta=0.3398ms fm_on_frame=0.0137ms fg=False X=3.8151 opacity=1.0000 running=True
+2587.374ms tick 50 dt=30.0704ms renderingTimeDelta=30.8608ms fm_on_frame=0.0196ms fg=False X=14.1640 opacity=1.0000 running=True
+2618.742ms tick 51 dt=31.3697ms renderingTimeDelta=30.0466ms fm_on_frame=0.0187ms fg=False X=30.9317 opacity=1.0000 running=True
+2649.537ms tick 52 dt=30.7961ms renderingTimeDelta=32.5696ms fm_on_frame=0.0164ms fg=False X=52.2844 opacity=1.0000 running=True
+2681.492ms tick 53 dt=31.9388ms renderingTimeDelta=29.6094ms fm_on_frame=0.0133ms fg=False X=78.4297 opacity=1.0000 running=True
+2713.089ms tick 54 dt=31.6134ms renderingTimeDelta=31.8980ms fm_on_frame=0.0152ms fg=False X=107.2095 opacity=1.0000 running=True
+2744.354ms tick 55 dt=31.2651ms renderingTimeDelta=31.6146ms fm_on_frame=0.0144ms fg=False X=137.4754 opacity=1.0000 running=True
+2775.260ms tick 56 dt=30.9060ms renderingTimeDelta=31.2702ms fm_on_frame=0.0141ms fg=False X=168.2118 opacity=1.0000 running=True
+2806.292ms tick 57 dt=31.0178ms renderingTimeDelta=30.9072ms fm_on_frame=0.0157ms fg=False X=199.0202 opacity=1.0000 running=True
+2836.908ms tick 58 dt=30.6270ms renderingTimeDelta=31.0338ms fm_on_frame=0.0262ms fg=False X=228.6530 opacity=1.0000 running=True
+2867.595ms tick 59 dt=30.6881ms renderingTimeDelta=30.6512ms fm_on_frame=0.0139ms fg=False X=256.9426 opacity=1.0000 running=True
+2898.572ms tick 60 dt=30.9795ms renderingTimeDelta=30.6436ms fm_on_frame=0.0132ms fg=False X=283.5027 opacity=1.0000 running=True
+2928.977ms tick 61 dt=30.3930ms renderingTimeDelta=30.9796ms fm_on_frame=0.0174ms fg=False X=307.1864 opacity=1.0000 running=True
+2959.596ms tick 62 dt=30.6269ms renderingTimeDelta=30.4178ms fm_on_frame=0.0688ms fg=False X=328.3219 opacity=1.0000 running=True
+2990.923ms tick 63 dt=31.3205ms renderingTimeDelta=30.6284ms fm_on_frame=0.0219ms fg=False X=346.9632 opacity=1.0000 running=True
+3022.042ms tick 64 dt=31.1301ms renderingTimeDelta=31.3310ms fm_on_frame=0.0134ms fg=False X=362.2845 opacity=1.0000 running=True
+3053.400ms tick 65 dt=31.3511ms renderingTimeDelta=31.0908ms fm_on_frame=0.0131ms fg=False X=374.4644 opacity=1.0000 running=True
+3084.063ms tick 66 dt=30.6701ms renderingTimeDelta=31.3522ms fm_on_frame=0.0195ms fg=False X=383.2677 opacity=1.0000 running=True
+3115.064ms tick 67 dt=30.9947ms renderingTimeDelta=30.6470ms fm_on_frame=0.0261ms fg=False X=389.1561 opacity=1.0000 running=True
+3146.319ms tick 68 dt=31.2617ms renderingTimeDelta=31.0114ms fm_on_frame=0.0145ms fg=False X=392.2136 opacity=1.0000 running=True
+3177.851ms tick 69 dt=31.5313ms renderingTimeDelta=31.2626ms fm_on_frame=0.0157ms fg=False X=392.6022 opacity=1.0000 running=True
+3208.097ms tick 70 dt=30.2429ms renderingTimeDelta=31.5506ms fm_on_frame=0.0142ms fg=False X=390.6965 opacity=1.0000 running=True
+3239.670ms tick 71 dt=31.5760ms renderingTimeDelta=30.2168ms fm_on_frame=0.0149ms fg=False X=386.6326 opacity=1.0000 running=True
+3270.887ms tick 72 dt=31.2160ms renderingTimeDelta=31.5842ms fm_on_frame=0.0140ms fg=False X=380.8569 opacity=1.0000 running=True
+3302.419ms tick 73 dt=31.5339ms renderingTimeDelta=31.2210ms fm_on_frame=0.0137ms fg=False X=373.5899 opacity=1.0000 running=True
+3333.549ms retarget[stats-interrupt] -> 60.0000 ok=True since_last_frame=31.1221ms before(value=373.5899 vel=-249.6469 has=True X=373.5899) after(value=365.3367 vel=-278.7571) |dv|=8.253E+000 |dvel|=2.911E+001 |after-(before+vel*dt)|=4.836E-001
+3333.610ms tick 74 dt=31.1878ms renderingTimeDelta=31.5340ms fm_on_frame=0.0132ms fg=False X=365.3223 opacity=1.0000 running=True
+3365.018ms tick 75 dt=31.4102ms renderingTimeDelta=31.2140ms fm_on_frame=0.0140ms fg=False X=353.1115 opacity=1.0000 running=True
+3397.624ms tick 76 dt=32.6067ms renderingTimeDelta=31.3652ms fm_on_frame=0.0141ms fg=False X=333.9510 opacity=1.0000 running=True
+3426.806ms tick 77 dt=29.1815ms renderingTimeDelta=32.6230ms fm_on_frame=0.0151ms fg=False X=312.2297 opacity=1.0000 running=True
+3458.008ms tick 78 dt=31.1904ms renderingTimeDelta=29.1880ms fm_on_frame=0.0199ms fg=False X=285.3124 opacity=1.0000 running=True
+3489.709ms tick 79 dt=31.7105ms renderingTimeDelta=31.2212ms fm_on_frame=0.0137ms fg=False X=255.1171 opacity=1.0000 running=True
+3521.338ms tick 80 dt=31.6313ms renderingTimeDelta=31.6712ms fm_on_frame=0.0140ms fg=False X=223.2537 opacity=1.0000 running=True
+3552.174ms tick 81 dt=30.8367ms renderingTimeDelta=31.6172ms fm_on_frame=0.0269ms fg=False X=191.4798 opacity=1.0000 running=True
+3582.787ms tick 82 dt=30.6131ms renderingTimeDelta=30.8516ms fm_on_frame=0.0137ms fg=False X=160.0941 opacity=1.0000 running=True
+3613.728ms tick 83 dt=30.9413ms renderingTimeDelta=30.5944ms fm_on_frame=0.0123ms fg=False X=129.2912 opacity=1.0000 running=True
+3645.050ms tick 84 dt=31.3176ms renderingTimeDelta=30.9352ms fm_on_frame=0.0144ms fg=False X=99.7354 opacity=1.0000 running=True
+3676.366ms tick 85 dt=31.3204ms renderingTimeDelta=31.3520ms fm_on_frame=0.0353ms fg=False X=72.3898 opacity=1.0000 running=True
+3707.220ms tick 86 dt=30.8530ms renderingTimeDelta=31.2864ms fm_on_frame=0.0150ms fg=False X=48.0126 opacity=1.0000 running=True
+3738.216ms tick 87 dt=30.9951ms renderingTimeDelta=30.8672ms fm_on_frame=0.0166ms fg=False X=26.4605 opacity=1.0000 running=True
+3768.409ms tick 88 dt=30.1942ms renderingTimeDelta=31.0220ms fm_on_frame=0.0135ms fg=False X=8.4890 opacity=1.0000 running=True
+3799.579ms tick 89 dt=31.0737ms renderingTimeDelta=30.1780ms fm_on_frame=0.0144ms fg=False X=-6.7680 opacity=1.0000 running=True
+3831.383ms tick 90 dt=31.8956ms renderingTimeDelta=31.1656ms fm_on_frame=0.0250ms fg=False X=-18.9846 opacity=1.0000 running=True
+3862.317ms tick 91 dt=30.7241ms renderingTimeDelta=31.8356ms fm_on_frame=0.0243ms fg=False X=-27.5189 opacity=1.0000 running=True
+3893.351ms tick 92 dt=31.2492ms renderingTimeDelta=30.9504ms fm_on_frame=0.0140ms fg=False X=-33.0764 opacity=1.0000 running=True
+3924.254ms tick 93 dt=30.9029ms renderingTimeDelta=30.9844ms fm_on_frame=0.0150ms fg=False X=-35.6677 opacity=1.0000 running=True
+3955.524ms tick 94 dt=31.2680ms renderingTimeDelta=30.9112ms fm_on_frame=0.0174ms fg=False X=-35.6035 opacity=1.0000 running=True
+3986.214ms tick 95 dt=30.6912ms renderingTimeDelta=31.2816ms fm_on_frame=0.0147ms fg=False X=-33.1958 opacity=1.0000 running=True
+4017.259ms tick 96 dt=31.0459ms renderingTimeDelta=30.6776ms fm_on_frame=0.0221ms fg=False X=-28.7126 opacity=1.0000 running=True
+4048.207ms tick 97 dt=30.9437ms renderingTimeDelta=31.0500ms fm_on_frame=0.0157ms fg=False X=-22.5215 opacity=1.0000 running=True
+4079.957ms tick 98 dt=31.7538ms renderingTimeDelta=30.9332ms fm_on_frame=0.0131ms fg=False X=-14.7375 opacity=1.0000 running=True
+4111.166ms tick 99 dt=31.2090ms renderingTimeDelta=31.7520ms fm_on_frame=0.0128ms fg=False X=-6.0228 opacity=1.0000 running=True
+4142.553ms tick 100 dt=31.3866ms renderingTimeDelta=31.2124ms fm_on_frame=0.0154ms fg=False X=3.4665 opacity=1.0000 running=True
+4173.346ms tick 101 dt=30.7916ms renderingTimeDelta=31.3932ms fm_on_frame=0.0196ms fg=False X=13.1736 opacity=1.0000 running=True
+4204.597ms tick 102 dt=31.2530ms renderingTimeDelta=30.8132ms fm_on_frame=0.0132ms fg=False X=23.1428 opacity=1.0000 running=True
+4236.533ms tick 103 dt=31.9347ms renderingTimeDelta=31.2284ms fm_on_frame=0.0157ms fg=False X=33.1718 opacity=1.0000 running=True
+4267.486ms tick 104 dt=30.9534ms renderingTimeDelta=31.9404ms fm_on_frame=0.0132ms fg=False X=42.5128 opacity=1.0000 running=True
+4297.889ms tick 105 dt=30.4038ms renderingTimeDelta=30.9492ms fm_on_frame=0.0136ms fg=False X=51.1348 opacity=1.0000 running=True
+4329.720ms tick 106 dt=31.8175ms renderingTimeDelta=30.3936ms fm_on_frame=0.0199ms fg=False X=59.4078 opacity=1.0000 running=True
+4359.887ms tick 107 dt=30.1806ms renderingTimeDelta=31.8728ms fm_on_frame=0.0130ms fg=False X=66.4324 opacity=1.0000 running=True
+4391.447ms tick 108 dt=31.5580ms renderingTimeDelta=30.1340ms fm_on_frame=0.0177ms fg=False X=72.8252 opacity=1.0000 running=True
+4422.574ms tick 109 dt=31.1288ms renderingTimeDelta=31.5508ms fm_on_frame=0.0125ms fg=False X=78.1255 opacity=1.0000 running=True
+4453.965ms tick 110 dt=31.3904ms renderingTimeDelta=31.1116ms fm_on_frame=0.0146ms fg=False X=82.4308 opacity=1.0000 running=True
+4484.999ms tick 111 dt=31.0339ms renderingTimeDelta=31.4236ms fm_on_frame=0.0144ms fg=False X=85.6660 opacity=1.0000 running=True
+4515.405ms tick 112 dt=30.4029ms renderingTimeDelta=31.0108ms fm_on_frame=0.0134ms fg=False X=87.8781 opacity=1.0000 running=True
+4546.516ms tick 113 dt=31.1122ms renderingTimeDelta=30.4256ms fm_on_frame=0.0150ms fg=False X=89.2100 opacity=1.0000 running=True
+4577.163ms tick 114 dt=30.6491ms renderingTimeDelta=31.1128ms fm_on_frame=0.0134ms fg=False X=89.6667 opacity=1.0000 running=True
+4608.518ms tick 115 dt=31.3552ms renderingTimeDelta=30.6368ms fm_on_frame=0.0132ms fg=False X=89.3382 opacity=1.0000 running=True
+4640.108ms tick 116 dt=31.5902ms renderingTimeDelta=31.3564ms fm_on_frame=0.0142ms fg=False X=88.2897 opacity=1.0000 running=True
+4671.359ms tick 117 dt=31.2511ms renderingTimeDelta=31.5760ms fm_on_frame=0.0129ms fg=False X=86.6474 opacity=1.0000 running=True
+4702.418ms tick 118 dt=31.0592ms renderingTimeDelta=31.2480ms fm_on_frame=0.0125ms fg=False X=84.5246 opacity=1.0000 running=True
+4734.342ms tick 119 dt=31.9237ms renderingTimeDelta=31.0536ms fm_on_frame=0.0132ms fg=False X=81.9444 opacity=1.0000 running=True
+4764.404ms tick 120 dt=30.0595ms renderingTimeDelta=31.9448ms fm_on_frame=0.0132ms fg=False X=79.2456 opacity=1.0000 running=True
+4796.157ms tick 121 dt=31.7438ms renderingTimeDelta=30.0640ms fm_on_frame=0.0146ms fg=False X=76.2140 opacity=1.0000 running=True
+4826.343ms tick 122 dt=30.1961ms renderingTimeDelta=31.7576ms fm_on_frame=0.0180ms fg=False X=73.2466 opacity=1.0000 running=True
+4856.720ms tick 123 dt=30.3776ms renderingTimeDelta=30.2004ms fm_on_frame=0.0231ms fg=False X=70.2594 opacity=1.0000 running=True
+4887.763ms tick 124 dt=31.0442ms renderingTimeDelta=30.3696ms fm_on_frame=0.0141ms fg=False X=67.2784 opacity=1.0000 running=True
+4918.107ms tick 125 dt=30.3441ms renderingTimeDelta=31.0296ms fm_on_frame=0.0144ms fg=False X=64.4993 opacity=1.0000 running=True
+4949.380ms tick 126 dt=31.2699ms renderingTimeDelta=30.3552ms fm_on_frame=0.0185ms fg=False X=61.8299 opacity=1.0000 running=True
+4980.062ms tick 127 dt=30.6824ms renderingTimeDelta=31.2896ms fm_on_frame=0.0215ms fg=False X=59.4464 opacity=1.0000 running=True
+5011.753ms tick 128 dt=31.6927ms renderingTimeDelta=30.6908ms fm_on_frame=0.0153ms fg=False X=57.2645 opacity=1.0000 running=True
+5041.990ms tick 129 dt=30.2373ms renderingTimeDelta=31.6532ms fm_on_frame=0.0149ms fg=False X=55.4720 opacity=1.0000 running=True
+5073.562ms tick 130 dt=31.5724ms renderingTimeDelta=30.2532ms fm_on_frame=0.0140ms fg=False X=53.9156 opacity=1.0000 running=True
+5104.832ms tick 131 dt=31.2709ms renderingTimeDelta=31.5700ms fm_on_frame=0.0136ms fg=False X=52.6962 opacity=1.0000 running=True
+5136.008ms tick 132 dt=31.1758ms renderingTimeDelta=31.2396ms fm_on_frame=0.0129ms fg=False X=51.7957 opacity=1.0000 running=True
+5167.950ms tick 133 dt=31.9420ms renderingTimeDelta=31.1748ms fm_on_frame=0.0127ms fg=False X=51.1875 opacity=1.0000 running=True
+5199.978ms tick 134 dt=32.0142ms renderingTimeDelta=31.9416ms fm_on_frame=0.0166ms fg=False X=50.8783 opacity=1.0000 running=True
+5231.023ms tick 135 dt=31.0577ms renderingTimeDelta=32.0452ms fm_on_frame=0.0132ms fg=False X=50.8418 opacity=1.0000 running=True
+5261.308ms tick 136 dt=30.2853ms renderingTimeDelta=31.0452ms fm_on_frame=0.0146ms fg=False X=51.0302 opacity=1.0000 running=True
+5292.596ms tick 137 dt=31.2882ms renderingTimeDelta=30.2760ms fm_on_frame=0.0142ms fg=False X=51.4275 opacity=1.0000 running=True
+5323.730ms tick 138 dt=31.1341ms renderingTimeDelta=31.3032ms fm_on_frame=0.0135ms fg=False X=51.9954 opacity=1.0000 running=True
+5355.013ms tick 139 dt=31.2776ms renderingTimeDelta=31.1328ms fm_on_frame=0.0199ms fg=False X=52.7061 opacity=1.0000 running=True
+5386.127ms tick 140 dt=31.1194ms renderingTimeDelta=31.2928ms fm_on_frame=0.0149ms fg=False X=53.5201 opacity=1.0000 running=True
+5417.838ms tick 141 dt=31.7106ms renderingTimeDelta=31.1084ms fm_on_frame=0.0149ms fg=False X=54.4258 opacity=1.0000 running=True
+5449.041ms tick 142 dt=31.2028ms renderingTimeDelta=31.6940ms fm_on_frame=0.0141ms fg=False X=55.3615 opacity=1.0000 running=True
+5480.935ms tick 143 dt=31.8927ms renderingTimeDelta=31.1972ms fm_on_frame=0.0185ms fg=False X=56.3337 opacity=1.0000 running=True
+5512.868ms tick 144 dt=31.8978ms renderingTimeDelta=31.9200ms fm_on_frame=0.0139ms fg=False X=57.2953 opacity=1.0000 running=True
+5544.190ms tick 145 dt=31.3589ms renderingTimeDelta=31.9268ms fm_on_frame=0.0140ms fg=False X=58.2065 opacity=1.0000 running=True
+5575.351ms tick 146 dt=31.1612ms renderingTimeDelta=31.3252ms fm_on_frame=0.0135ms fg=False X=59.0591 opacity=1.0000 running=True
+5607.304ms tick 147 dt=31.9477ms renderingTimeDelta=31.1416ms fm_on_frame=0.0295ms fg=False X=59.8618 opacity=1.0000 running=True
+5639.255ms tick 148 dt=31.9495ms renderingTimeDelta=32.0372ms fm_on_frame=0.0342ms fg=False X=60.5797 opacity=1.0000 running=True
+5670.370ms tick 149 dt=31.1180ms renderingTimeDelta=31.9432ms fm_on_frame=0.0271ms fg=False X=61.1882 opacity=1.0000 running=True
+5701.493ms tick 150 dt=31.1263ms renderingTimeDelta=31.1064ms fm_on_frame=0.0149ms fg=False X=61.7015 opacity=1.0000 running=True
+5732.550ms tick 151 dt=31.0459ms renderingTimeDelta=31.0576ms fm_on_frame=0.0283ms fg=False X=62.1157 opacity=1.0000 running=True
+5764.129ms tick 152 dt=31.5700ms renderingTimeDelta=31.1504ms fm_on_frame=0.0172ms fg=False X=62.4373 opacity=1.0000 running=True
+5795.105ms tick 153 dt=30.9963ms renderingTimeDelta=31.4956ms fm_on_frame=0.0145ms fg=False X=62.6577 opacity=1.0000 running=True
+5825.586ms tick 154 dt=30.4794ms renderingTimeDelta=30.9816ms fm_on_frame=0.0181ms fg=False X=62.7870 opacity=1.0000 running=True
+5856.524ms tick 155 dt=30.9360ms renderingTimeDelta=30.5000ms fm_on_frame=0.0250ms fg=False X=62.8357 opacity=1.0000 running=True
+5887.162ms tick 156 dt=30.6425ms renderingTimeDelta=30.9588ms fm_on_frame=0.0130ms fg=False X=62.8096 opacity=1.0000 running=True
+5918.280ms tick 157 dt=31.1170ms renderingTimeDelta=30.5924ms fm_on_frame=0.0140ms fg=False X=62.7161 opacity=1.0000 running=True
+5949.495ms tick 158 dt=31.2154ms renderingTimeDelta=31.1172ms fm_on_frame=0.0164ms fg=False X=62.5641 opacity=1.0000 running=True
+5980.083ms tick 159 dt=30.5815ms renderingTimeDelta=31.2176ms fm_on_frame=0.0244ms fg=False X=62.3685 opacity=1.0000 running=True
+6011.450ms tick 160 dt=31.3705ms renderingTimeDelta=30.6316ms fm_on_frame=0.0220ms fg=False X=62.1299 opacity=1.0000 running=True
+6041.980ms tick 161 dt=30.5320ms renderingTimeDelta=31.3684ms fm_on_frame=0.0140ms fg=False X=61.8704 opacity=1.0000 running=True
+6072.321ms tick 162 dt=30.3423ms renderingTimeDelta=30.4700ms fm_on_frame=0.0124ms fg=False X=61.5951 opacity=1.0000 running=True
+6101.949ms tick 163 dt=29.6265ms renderingTimeDelta=30.3508ms fm_on_frame=0.0145ms fg=False X=61.3174 opacity=1.0000 running=True
+6133.717ms tick 164 dt=31.7700ms renderingTimeDelta=29.6392ms fm_on_frame=0.0124ms fg=False X=61.0183 opacity=1.0000 running=True
+6165.553ms tick 165 dt=31.8329ms renderingTimeDelta=31.7556ms fm_on_frame=0.0175ms fg=False X=60.7250 opacity=1.0000 running=True
+6196.402ms tick 166 dt=30.8458ms renderingTimeDelta=31.8440ms fm_on_frame=0.0305ms fg=False X=60.4535 opacity=1.0000 running=True
+6228.496ms tick 167 dt=32.0941ms renderingTimeDelta=30.8976ms fm_on_frame=0.0324ms fg=False X=60.1900 opacity=1.0000 running=True
+6260.395ms tick 168 dt=31.8991ms renderingTimeDelta=32.0988ms fm_on_frame=0.0293ms fg=False X=59.9520 opacity=1.0000 running=True
+6292.452ms tick 169 dt=32.0578ms renderingTimeDelta=31.8916ms fm_on_frame=0.0287ms fg=False X=59.7406 opacity=1.0000 running=True
+6323.375ms tick 170 dt=30.9219ms renderingTimeDelta=32.0492ms fm_on_frame=0.0297ms fg=False X=59.5654 opacity=1.0000 running=True
+6355.333ms tick 171 dt=31.9601ms renderingTimeDelta=30.9312ms fm_on_frame=0.0246ms fg=False X=59.4153 opacity=1.0000 running=True
+6387.331ms tick 172 dt=31.9980ms renderingTimeDelta=31.9460ms fm_on_frame=0.0246ms fg=False X=59.2971 opacity=1.0000 running=True
+6419.433ms tick 173 dt=32.1010ms renderingTimeDelta=32.0220ms fm_on_frame=0.0305ms fg=False X=59.2103 opacity=1.0000 running=True
+6451.440ms tick 174 dt=32.0070ms renderingTimeDelta=32.1080ms fm_on_frame=0.0299ms fg=False X=59.1543 opacity=1.0000 running=True
+6481.772ms tick 175 dt=30.3307ms renderingTimeDelta=32.0080ms fm_on_frame=0.0303ms fg=False X=59.1276 opacity=1.0000 running=True
+6513.712ms tick 176 dt=31.9420ms renderingTimeDelta=30.3124ms fm_on_frame=0.0278ms fg=False X=59.1250 opacity=1.0000 running=True
+6545.712ms tick 177 dt=31.9962ms renderingTimeDelta=31.9496ms fm_on_frame=0.0288ms fg=False X=59.1457 opacity=1.0000 running=True
+6577.856ms tick 178 dt=32.1477ms renderingTimeDelta=31.9812ms fm_on_frame=0.0286ms fg=False X=59.1869 opacity=1.0000 running=True
+6609.895ms tick 179 dt=32.0382ms renderingTimeDelta=32.1644ms fm_on_frame=0.0327ms fg=False X=59.2451 opacity=1.0000 running=True
+6641.874ms tick 180 dt=31.9790ms renderingTimeDelta=32.0180ms fm_on_frame=0.0280ms fg=False X=59.3166 opacity=1.0000 running=True
+6673.835ms tick 181 dt=31.9612ms renderingTimeDelta=32.0024ms fm_on_frame=0.0252ms fg=False X=59.3982 opacity=1.0000 running=True
+6705.855ms tick 182 dt=32.0187ms renderingTimeDelta=31.9288ms fm_on_frame=0.0283ms fg=False X=59.4868 opacity=1.0000 running=True
+6737.913ms tick 183 dt=32.0468ms renderingTimeDelta=32.0372ms fm_on_frame=0.0297ms fg=False X=59.5793 opacity=1.0000 running=True
+6769.824ms tick 184 dt=31.9213ms renderingTimeDelta=32.0780ms fm_on_frame=0.0295ms fg=False X=59.6723 opacity=1.0000 running=True
+6801.912ms tick 185 dt=32.0899ms renderingTimeDelta=31.9072ms fm_on_frame=0.0313ms fg=False X=59.7641 opacity=1.0000 running=True
+6832.750ms tick 186 dt=30.8380ms renderingTimeDelta=32.0648ms fm_on_frame=0.0241ms fg=False X=59.8487 opacity=1.0000 running=True
+6863.997ms tick 187 dt=31.2487ms renderingTimeDelta=30.8464ms fm_on_frame=0.0193ms fg=False X=59.9290 opacity=1.0000 running=True
+6896.059ms tick 188 dt=32.0614ms renderingTimeDelta=31.2200ms fm_on_frame=0.0209ms fg=False X=60.0042 opacity=1.0000 running=True
+6928.014ms tick 189 dt=31.9561ms renderingTimeDelta=32.0704ms fm_on_frame=0.0174ms fg=False X=60.0707 opacity=1.0000 running=True
+6959.654ms tick 190 dt=31.6404ms renderingTimeDelta=31.9528ms fm_on_frame=0.0172ms fg=False X=60.1275 opacity=1.0000 running=True
+6991.884ms tick 191 dt=32.2298ms renderingTimeDelta=31.6144ms fm_on_frame=0.0187ms fg=False X=60.1756 opacity=1.0000 running=True
+7023.752ms tick 192 dt=31.8679ms renderingTimeDelta=32.2528ms fm_on_frame=0.0197ms fg=False X=60.2132 opacity=1.0000 running=True
+7055.841ms tick 193 dt=32.0864ms renderingTimeDelta=31.8576ms fm_on_frame=0.0302ms fg=False X=60.2413 opacity=1.0000 running=True
+7086.866ms tick 194 dt=31.0296ms renderingTimeDelta=32.1376ms fm_on_frame=0.0138ms fg=False X=60.2593 opacity=1.0000 running=True
+7117.308ms tick 195 dt=30.4413ms renderingTimeDelta=30.9520ms fm_on_frame=0.0160ms fg=False X=60.2689 opacity=1.0000 running=True
+7148.163ms tick 196 dt=30.8557ms renderingTimeDelta=30.4456ms fm_on_frame=0.0122ms fg=False X=60.2710 opacity=1.0000 running=True
+7178.757ms tick 197 dt=30.5946ms renderingTimeDelta=30.8632ms fm_on_frame=0.0131ms fg=False X=60.2662 opacity=1.0000 running=True
+7210.791ms tick 198 dt=32.0334ms renderingTimeDelta=30.5888ms fm_on_frame=0.0146ms fg=False X=60.2549 opacity=1.0000 running=True
+7242.360ms tick 199 dt=31.5689ms renderingTimeDelta=32.0384ms fm_on_frame=0.0153ms fg=False X=60.2384 opacity=1.0000 running=True
+7274.424ms tick 200 dt=32.0608ms renderingTimeDelta=31.5808ms fm_on_frame=0.0156ms fg=False X=60.2171 opacity=1.0000 running=True
+7305.935ms tick 201 dt=31.5130ms renderingTimeDelta=32.0592ms fm_on_frame=0.0158ms fg=False X=60.1929 opacity=1.0000 running=True
+7337.509ms tick 202 dt=31.5735ms renderingTimeDelta=31.5120ms fm_on_frame=0.0185ms fg=False X=60.1664 opacity=1.0000 running=True
+7369.144ms tick 203 dt=31.6365ms renderingTimeDelta=31.5720ms fm_on_frame=0.0147ms fg=False X=60.1384 opacity=1.0000 running=True
+7400.489ms tick 204 dt=31.3460ms renderingTimeDelta=31.6312ms fm_on_frame=0.0132ms fg=False X=60.1101 opacity=1.0000 running=True
+7432.087ms tick 205 dt=31.5975ms renderingTimeDelta=31.3424ms fm_on_frame=0.0154ms fg=False X=60.0820 opacity=1.0000 running=True
+7463.386ms tick 206 dt=31.2658ms renderingTimeDelta=31.5848ms fm_on_frame=0.0142ms fg=False X=60.0550 opacity=1.0000 running=True
+7495.018ms tick 207 dt=31.6656ms renderingTimeDelta=31.3160ms fm_on_frame=0.0144ms fg=False X=60.0293 opacity=1.0000 running=True
+7525.251ms tick 208 dt=30.2326ms renderingTimeDelta=31.6392ms fm_on_frame=0.0158ms fg=False X=60.0066 opacity=1.0000 running=True
+7556.661ms tick 209 dt=31.4095ms renderingTimeDelta=30.2208ms fm_on_frame=0.0150ms fg=False X=59.9854 opacity=1.0000 running=True
+7587.501ms tick 210 dt=30.7933ms renderingTimeDelta=31.4168ms fm_on_frame=0.0149ms fg=False X=59.9673 opacity=1.0000 running=True
+7618.438ms tick 211 dt=30.9831ms renderingTimeDelta=30.8408ms fm_on_frame=0.0146ms fg=False X=59.9518 opacity=1.0000 running=True
+7649.011ms tick 212 dt=30.5734ms renderingTimeDelta=30.9368ms fm_on_frame=0.0152ms fg=False X=59.9393 opacity=1.0000 running=True
+7680.005ms tick 213 dt=30.9952ms renderingTimeDelta=30.5800ms fm_on_frame=0.0142ms fg=False X=59.9294 opacity=1.0000 running=True
+7711.296ms tick 214 dt=31.2900ms renderingTimeDelta=30.9800ms fm_on_frame=0.0150ms fg=False X=59.9224 opacity=1.0000 running=True
+7743.191ms tick 215 dt=31.8569ms renderingTimeDelta=31.2832ms fm_on_frame=0.0138ms fg=False X=59.9180 opacity=1.0000 running=True
+7773.879ms Rendering UNSUBSCRIBE (subs=3 unsubs=3)
+7773.891ms tick 216 dt=start renderingTimeDelta=start fm_on_frame=0.0360ms fg=False X=60.0000 opacity=1.0000 running=False
+9042.843ms STATS stopwatch_interval count=210 mean=31.1004ms min=13.4144ms p50=31.2511ms p95=32.0608ms p99=32.2298ms max=32.6067ms fps=32.1539
+9043.035ms STATS renderingTime_interval count=210 mean=30.6122ms min=0.0000ms p50=31.2212ms p95=32.0704ms p99=32.2528ms max=32.6230ms fps=32.6667
+9043.381ms STATS frames=216 subs=3 unsubs=3 subscribed_now=False
+127351.922ms STATS stopwatch_interval count=210 mean=31.1004ms min=13.4144ms p50=31.2511ms p95=32.0608ms p99=32.2298ms max=32.6067ms fps=32.1539
+127352.075ms STATS renderingTime_interval count=210 mean=30.6122ms min=0.0000ms p50=31.2212ms p95=32.0704ms p99=32.2528ms max=32.6230ms fps=32.6667
+127352.080ms STATS frames=216 subs=3 unsubs=3 subscribed_now=False
+127352.277ms unloaded: Rendering subscribed=False subs=3 unsubs=3
+
+# ===== run A (first 60fps build) full log =====
+4.586ms frame source = CompositionTarget.Rendering
+11.435ms load_tokens ok path=C:\Users\admin\motion_framework\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppX\demo_motion.json
+12.136ms create enter=1 drag=2
+19.606ms Rendering SUBSCRIBE (subs=1 unsubs=0)
+32.225ms tick 1 dt=start X=-75.9352 opacity=0.5163 running=True
+46.451ms tick 2 dt=14.4569ms X=-67.8024 opacity=0.7172 running=True
+68.173ms tick 3 dt=22.2657ms X=-53.2621 opacity=0.8524 running=True
+99.491ms tick 4 dt=31.3217ms X=-33.1919 opacity=0.9365 running=True
+130.292ms tick 5 dt=30.8008ms X=-17.8921 opacity=0.9731 running=True
+161.722ms tick 6 dt=31.4279ms X=-7.6709 opacity=0.9904 running=True
+192.895ms tick 7 dt=31.1750ms X=-1.9813 opacity=0.9977 running=True
+224.197ms tick 8 dt=31.2926ms X=0.6778 opacity=0.9999 running=True
+255.207ms tick 9 dt=31.0163ms X=1.5354 opacity=1.0000 running=True
+285.654ms tick 10 dt=30.4477ms X=1.5152 opacity=1.0000 running=True
+316.035ms tick 11 dt=30.3774ms X=1.1662 opacity=1.0000 running=True
+348.145ms tick 12 dt=32.1112ms X=0.7451 opacity=1.0000 running=True
+378.791ms tick 13 dt=30.6369ms X=0.4182 opacity=1.0000 running=True
+409.696ms tick 14 dt=30.9133ms X=0.1935 opacity=1.0000 running=True
+440.192ms tick 15 dt=30.4922ms X=0.0629 opacity=1.0000 running=True
+470.304ms tick 16 dt=30.1190ms X=-0.0022 opacity=1.0000 running=True
+501.600ms tick 17 dt=31.2936ms X=-0.0280 opacity=1.0000 running=True
+532.897ms tick 18 dt=31.3010ms X=-0.0313 opacity=1.0000 running=True
+563.483ms tick 19 dt=30.5860ms X=-0.0254 opacity=1.0000 running=True
+596.343ms Rendering UNSUBSCRIBE (subs=1 unsubs=1)
+596.371ms tick 20 dt=start X=0.0000 opacity=1.0000 running=False
+1031.903ms Rendering SUBSCRIBE (subs=2 unsubs=1)
+1031.986ms retarget[selftest-go] -> 240.0000 ok=True since_last_frame=434.9243ms before(value=0.0000 vel=0.0000 has=True X=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000 |dvel|=0.000E+000 |after-(before+vel*dt)|=0.000E+000
+1032.243ms tick 21 dt=435.8667ms X=0.0062 opacity=1.0000 running=True
+1059.471ms tick 22 dt=27.2317ms X=26.4936 opacity=1.0000 running=True
+1091.301ms tick 23 dt=31.8235ms X=87.7210 opacity=1.0000 running=True
+1123.392ms tick 24 dt=32.0949ms X=148.0605 opacity=1.0000 running=True
+1154.924ms tick 25 dt=31.5302ms X=192.5017 opacity=1.0000 running=True
+1186.363ms retarget[selftest-interrupt] -> 0.0000 ok=True since_last_frame=31.3656ms before(value=192.5017 vel=1141.7695 has=True X=192.5017) after(value=220.6257 vel=669.8692) |dv|=2.812E+001 |dvel|=4.719E+002 |after-(before+vel*dt)|=7.688E+000
+1186.446ms tick 26 dt=31.5281ms X=220.7238 opacity=1.0000 running=True
+1217.962ms tick 27 dt=31.5155ms X=202.6571 opacity=1.0000 running=True
+1250.185ms tick 28 dt=32.2217ms X=146.2203 opacity=1.0000 running=True
+1281.268ms tick 29 dt=31.0807ms X=91.0237 opacity=1.0000 running=True
+1311.877ms tick 30 dt=30.6124ms X=49.0308 opacity=1.0000 running=True
+1342.747ms tick 31 dt=30.8700ms X=21.2583 opacity=1.0000 running=True
+1373.984ms tick 32 dt=31.2294ms X=5.4443 opacity=1.0000 running=True
+1404.973ms tick 33 dt=30.9973ms X=-1.8772 opacity=1.0000 running=True
+1437.011ms tick 34 dt=32.0337ms X=-4.3019 opacity=1.0000 running=True
+1468.423ms tick 35 dt=31.4139ms X=-4.1765 opacity=1.0000 running=True
+1499.424ms tick 36 dt=31.0030ms X=-3.1548 opacity=1.0000 running=True
+1531.390ms tick 37 dt=31.9658ms X=-1.9952 opacity=1.0000 running=True
+1562.539ms tick 38 dt=31.1473ms X=-1.0940 opacity=1.0000 running=True
+1593.842ms tick 39 dt=31.2995ms X=-0.4889 opacity=1.0000 running=True
+1624.961ms tick 40 dt=31.1236ms X=-0.1432 opacity=1.0000 running=True
+1655.613ms tick 41 dt=30.6530ms X=0.0220 opacity=1.0000 running=True
+1687.174ms tick 42 dt=31.5430ms X=0.0822 opacity=1.0000 running=True
+1717.606ms tick 43 dt=30.4508ms X=0.0860 opacity=1.0000 running=True
+1748.076ms tick 44 dt=30.4476ms X=0.0681 opacity=1.0000 running=True
+1780.293ms tick 45 dt=32.1795ms X=0.0444 opacity=1.0000 running=True
+1812.013ms tick 46 dt=31.7700ms X=0.0249 opacity=1.0000 running=True
+1843.080ms Rendering UNSUBSCRIBE (subs=2 unsubs=2)
+1843.169ms tick 47 dt=start X=0.0000 opacity=1.0000 running=False
+2531.606ms Rendering SUBSCRIBE (subs=3 unsubs=2)
+2531.642ms retarget[stats-go] -> 300.0000 ok=True since_last_frame=688.3831ms before(value=0.0000 vel=0.0000 has=True X=0.0000) after(value=0.0000 vel=0.0000) |dv|=0.000E+000 |dvel|=0.000E+000 |after-(before+vel*dt)|=0.000E+000
+2531.808ms tick 48 dt=688.6346ms X=0.0002 opacity=1.0000 running=True
+2562.130ms tick 49 dt=30.3278ms X=3.6939 opacity=1.0000 running=True
+2593.344ms tick 50 dt=31.2157ms X=14.4505 opacity=1.0000 running=True
+2624.581ms tick 51 dt=31.2373ms X=31.2498 opacity=1.0000 running=True
+2655.334ms tick 52 dt=30.7508ms X=52.6343 opacity=1.0000 running=True
+2686.551ms tick 53 dt=31.2172ms X=78.2014 opacity=1.0000 running=True
+2717.716ms tick 54 dt=31.1661ms X=106.5428 opacity=1.0000 running=True
+2749.318ms tick 55 dt=31.6021ms X=137.1099 opacity=1.0000 running=True
+2780.565ms tick 56 dt=31.2473ms X=168.1830 opacity=1.0000 running=True
+2811.629ms tick 57 dt=31.0644ms X=199.0399 opacity=1.0000 running=True
+2841.863ms tick 58 dt=30.2331ms X=228.3054 opacity=1.0000 running=True
+2873.988ms tick 59 dt=32.1254ms X=257.8864 opacity=1.0000 running=True
+2906.084ms tick 60 dt=32.0954ms X=285.2812 opacity=1.0000 running=True
+2936.697ms tick 61 dt=30.6132ms X=308.9465 opacity=1.0000 running=True
+2968.826ms tick 62 dt=32.1281ms X=330.8363 opacity=1.0000 running=True
+2999.619ms tick 63 dt=30.7920ms X=348.7768 opacity=1.0000 running=True
+3031.654ms tick 64 dt=32.0330ms X=364.1332 opacity=1.0000 running=True
+3062.390ms tick 65 dt=30.7383ms X=375.6733 opacity=1.0000 running=True
+3092.880ms tick 66 dt=30.4862ms X=384.0740 opacity=1.0000 running=True
+3123.322ms tick 67 dt=30.4429ms X=389.5603 opacity=1.0000 running=True
+3154.591ms tick 68 dt=31.2693ms X=392.3594 opacity=1.0000 running=True
+3185.626ms tick 69 dt=31.0388ms X=392.5274 opacity=1.0000 running=True
+3217.467ms tick 70 dt=31.8408ms X=390.2885 opacity=1.0000 running=True
+3248.233ms tick 71 dt=30.7661ms X=386.1106 opacity=1.0000 running=True
+3280.109ms tick 72 dt=31.8643ms X=380.0375 opacity=1.0000 running=True
+3312.209ms tick 73 dt=32.1040ms X=372.4739 opacity=1.0000 running=True
+3328.275ms retarget[stats-interrupt] -> 60.0000 ok=True since_last_frame=16.0631ms before(value=372.4739 vel=-254.4220 has=True X=372.4739) after(value=368.2498 vel=-269.9971) |dv|=4.224E+000 |dvel|=1.558E+001 |after-(before+vel*dt)|=1.373E-001
+3343.474ms tick 74 dt=31.2689ms X=363.3095 opacity=1.0000 running=True
+3373.803ms tick 75 dt=30.3313ms X=348.7869 opacity=1.0000 running=True
+3404.627ms tick 76 dt=30.8258ms X=328.5502 opacity=1.0000 running=True
+3436.347ms tick 77 dt=31.7193ms X=303.1055 opacity=1.0000 running=True
+3467.213ms tick 78 dt=30.8659ms X=274.9555 opacity=1.0000 running=True
+3498.329ms tick 79 dt=31.1155ms X=244.2663 opacity=1.0000 running=True
+3528.475ms tick 80 dt=30.1474ms X=213.2750 opacity=1.0000 running=True
+3559.525ms tick 81 dt=31.0502ms X=180.9815 opacity=1.0000 running=True
+3591.581ms tick 82 dt=32.0571ms X=148.1297 opacity=1.0000 running=True
+3622.497ms tick 83 dt=30.9132ms X=117.6889 opacity=1.0000 running=True
+3654.526ms tick 84 dt=32.0308ms X=88.0720 opacity=1.0000 running=True
+3686.665ms tick 85 dt=32.1389ms X=60.9151 opacity=1.0000 running=True
+3717.306ms tick 86 dt=30.6414ms X=37.8038 opacity=1.0000 running=True
+3748.025ms tick 87 dt=30.7193ms X=17.6407 opacity=1.0000 running=True
+3778.912ms tick 88 dt=30.8844ms X=0.5762 opacity=1.0000 running=True
+3809.457ms tick 89 dt=30.5479ms X=-13.0632 opacity=1.0000 running=True
+3840.441ms tick 90 dt=30.9828ms X=-23.6182 opacity=1.0000 running=True
+3871.564ms tick 91 dt=31.1241ms X=-30.9920 opacity=1.0000 running=True
+3903.104ms tick 92 dt=31.5401ms X=-35.3294 opacity=1.0000 running=True
+3933.954ms tick 93 dt=30.8500ms X=-36.7419 opacity=1.0000 running=True
+3965.109ms tick 94 dt=31.1510ms X=-35.6003 opacity=1.0000 running=True
+3996.269ms tick 95 dt=31.1638ms X=-32.1805 opacity=1.0000 running=True
+4027.832ms tick 96 dt=31.5627ms X=-26.7393 opacity=1.0000 running=True
+4058.972ms tick 97 dt=31.1400ms X=-19.7595 opacity=1.0000 running=True
+4089.927ms tick 98 dt=30.9552ms X=-11.5871 opacity=1.0000 running=True
+4120.960ms tick 99 dt=31.0323ms X=-2.4943 opacity=1.0000 running=True
+4152.079ms tick 100 dt=31.1202ms X=7.2062 opacity=1.0000 running=True
+4182.901ms tick 101 dt=30.8218ms X=17.0852 opacity=1.0000 running=True
+4213.324ms tick 102 dt=30.4223ms X=26.8377 opacity=1.0000 running=True
+4244.261ms tick 103 dt=30.9372ms X=36.5133 opacity=1.0000 running=True
+4275.649ms tick 104 dt=31.3881ms X=45.8630 opacity=1.0000 running=True
+4306.425ms tick 105 dt=30.7726ms X=54.3931 opacity=1.0000 running=True
+4336.481ms tick 106 dt=30.0590ms X=61.9806 opacity=1.0000 running=True
+4367.204ms tick 107 dt=30.7228ms X=68.8685 opacity=1.0000 running=True
+4399.278ms tick 108 dt=32.0746ms X=75.0465 opacity=1.0000 running=True
+4430.038ms tick 109 dt=30.7600ms X=79.9521 opacity=1.0000 running=True
+4461.525ms tick 110 dt=31.4872ms X=83.9256 opacity=1.0000 running=True
+4492.199ms tick 111 dt=30.6722ms X=86.7905 opacity=1.0000 running=True
+4523.171ms tick 112 dt=30.9707ms X=88.7128 opacity=1.0000 running=True
+4553.820ms tick 113 dt=30.6523ms X=89.7112 opacity=1.0000 running=True
+4584.369ms tick 114 dt=30.5478ms X=89.8815 opacity=1.0000 running=True
+4615.057ms tick 115 dt=30.6876ms X=89.3081 opacity=1.0000 running=True
+4646.248ms tick 116 dt=31.1917ms X=88.0561 opacity=1.0000 running=True
+4677.102ms tick 117 dt=30.8548ms X=86.2564 opacity=1.0000 running=True
+4707.746ms tick 118 dt=30.6446ms X=84.0191 opacity=1.0000 running=True
+4739.013ms tick 119 dt=31.2665ms X=81.3805 opacity=1.0000 running=True
+4769.738ms tick 120 dt=30.7249ms X=78.5392 opacity=1.0000 running=True
+4801.546ms tick 121 dt=31.8082ms X=75.4406 opacity=1.0000 running=True
+4832.206ms tick 122 dt=30.6566ms X=72.3943 opacity=1.0000 running=True
+4862.935ms tick 123 dt=30.7326ms X=69.3627 opacity=1.0000 running=True
+4894.051ms tick 124 dt=31.1148ms X=66.3897 opacity=1.0000 running=True
+4925.501ms tick 125 dt=31.4504ms X=63.5478 opacity=1.0000 running=True
+4955.593ms tick 126 dt=30.0889ms X=61.0342 opacity=1.0000 running=True
+4986.606ms tick 127 dt=31.0135ms X=58.6918 opacity=1.0000 running=True
+5017.703ms tick 128 dt=31.0973ms X=56.6284 opacity=1.0000 running=True
+5049.770ms tick 129 dt=32.0661ms X=54.8224 opacity=1.0000 running=True
+5080.932ms tick 130 dt=31.1617ms X=53.3905 opacity=1.0000 running=True
+5112.997ms tick 131 dt=32.0648ms X=52.2516 opacity=1.0000 running=True
+5144.136ms tick 132 dt=31.1376ms X=51.4633 opacity=1.0000 running=True
+5175.289ms tick 133 dt=31.1543ms X=50.9739 opacity=1.0000 running=True
+5206.718ms tick 134 dt=31.4298ms X=50.7630 opacity=1.0000 running=True
+5238.023ms tick 135 dt=31.3056ms X=50.8102 opacity=1.0000 running=True
+5270.235ms tick 136 dt=32.2102ms X=51.0960 opacity=1.0000 running=True
+5302.159ms tick 137 dt=31.9218ms X=51.5831 opacity=1.0000 running=True
+5332.926ms tick 138 dt=30.7694ms X=52.2117 opacity=1.0000 running=True
+5364.329ms tick 139 dt=31.4044ms X=52.9806 opacity=1.0000 running=True
+5396.274ms tick 140 dt=31.9438ms X=53.8602 opacity=1.0000 running=True
+5427.937ms tick 141 dt=31.6654ms X=54.7962 opacity=1.0000 running=True
+5458.649ms tick 142 dt=30.7098ms X=55.7345 opacity=1.0000 running=True
+5490.330ms tick 143 dt=31.6807ms X=56.7069 opacity=1.0000 running=True
+5521.597ms tick 144 dt=31.2697ms X=57.6461 opacity=1.0000 running=True
+5552.491ms tick 145 dt=30.8928ms X=58.5324 opacity=1.0000 running=True
+5583.771ms tick 146 dt=31.2814ms X=59.3701 opacity=1.0000 running=True
+5614.056ms tick 147 dt=30.2844ms X=60.1099 opacity=1.0000 running=True
+5644.762ms tick 148 dt=30.7072ms X=60.7778 opacity=1.0000 running=True
+5676.460ms tick 149 dt=31.6982ms X=61.3730 opacity=1.0000 running=True
+5706.948ms tick 150 dt=30.4883ms X=61.8502 opacity=1.0000 running=True
+5738.540ms tick 151 dt=31.5917ms X=62.2445 opacity=1.0000 running=True
+5770.205ms tick 152 dt=31.6615ms X=62.5382 opacity=1.0000 running=True
+5802.085ms tick 153 dt=31.8802ms X=62.7352 opacity=1.0000 running=True
+5834.150ms tick 154 dt=32.0651ms X=62.8391 opacity=1.0000 running=True
+5865.431ms tick 155 dt=31.2809ms X=62.8566 opacity=1.0000 running=True
+5896.319ms tick 156 dt=30.8884ms X=62.8011 opacity=1.0000 running=True
+5928.442ms tick 157 dt=32.1230ms X=62.6766 opacity=1.0000 running=True
+5959.411ms tick 158 dt=30.9676ms X=62.5020 opacity=1.0000 running=True
+5990.324ms tick 159 dt=30.9143ms X=62.2845 opacity=1.0000 running=True
+6022.215ms tick 160 dt=31.8943ms X=62.0254 opacity=1.0000 running=True
+6053.252ms tick 161 dt=31.0362ms X=61.7496 opacity=1.0000 running=True
+6085.328ms tick 162 dt=32.0762ms X=61.4500 opacity=1.0000 running=True
+6117.345ms tick 163 dt=32.0158ms X=61.1458 opacity=1.0000 running=True
+6149.416ms tick 164 dt=32.0714ms X=60.8444 opacity=1.0000 running=True
+6180.827ms tick 165 dt=31.4096ms X=60.5599 opacity=1.0000 running=True
+6211.466ms tick 166 dt=30.6387ms X=60.2984 opacity=1.0000 running=True
+6241.960ms tick 167 dt=30.4946ms X=60.0584 opacity=1.0000 running=True
+6273.146ms tick 168 dt=31.1865ms X=59.8379 opacity=1.0000 running=True
+6304.544ms tick 169 dt=31.3933ms X=59.6441 opacity=1.0000 running=True
+6336.016ms tick 170 dt=31.4740ms X=59.4800 opacity=1.0000 running=True
+6367.524ms tick 171 dt=31.5101ms X=59.3469 opacity=1.0000 running=True
+6398.890ms tick 172 dt=31.3653ms X=59.2455 opacity=1.0000 running=True
+6428.900ms tick 173 dt=30.0128ms X=59.1768 opacity=1.0000 running=True
+6460.201ms tick 174 dt=31.3012ms X=59.1332 opacity=1.0000 running=True
+6490.948ms tick 175 dt=30.7460ms X=59.1163 opacity=1.0000 running=True
+6521.884ms tick 176 dt=30.9361ms X=59.1230 opacity=1.0000 running=True
+6552.915ms tick 177 dt=31.0319ms X=59.1508 opacity=1.0000 running=True
+6584.184ms tick 178 dt=31.2696ms X=59.1971 opacity=1.0000 running=True
+6614.354ms tick 179 dt=30.1691ms X=59.2564 opacity=1.0000 running=True
+6645.635ms tick 180 dt=31.2817ms X=59.3297 opacity=1.0000 running=True
+6676.203ms tick 181 dt=30.5673ms X=59.4101 opacity=1.0000 running=True
+6707.825ms tick 182 dt=31.6221ms X=59.4993 opacity=1.0000 running=True
+6738.901ms tick 183 dt=31.0767ms X=59.5900 opacity=1.0000 running=True
+6768.869ms tick 184 dt=29.9672ms X=59.6780 opacity=1.0000 running=True
+6800.958ms tick 185 dt=32.0893ms X=59.7703 opacity=1.0000 running=True
+6832.282ms tick 186 dt=31.3223ms X=59.8564 opacity=1.0000 running=True
+6863.592ms tick 187 dt=31.3119ms X=59.9368 opacity=1.0000 running=True
+6894.626ms tick 188 dt=31.0342ms X=60.0095 opacity=1.0000 running=True
+6924.902ms tick 189 dt=30.2755ms X=60.0727 opacity=1.0000 running=True
+6955.711ms tick 190 dt=30.8092ms X=60.1283 opacity=1.0000 running=True
+6986.874ms tick 191 dt=31.1635ms X=60.1754 opacity=1.0000 running=True
+7019.007ms tick 192 dt=32.1330ms X=60.2140 opacity=1.0000 running=True
+7049.554ms tick 193 dt=30.5466ms X=60.2414 opacity=1.0000 running=True
+7081.638ms tick 194 dt=32.0847ms X=60.2608 opacity=1.0000 running=True
+7112.017ms tick 195 dt=30.3782ms X=60.2708 opacity=1.0000 running=True
+7143.403ms tick 196 dt=31.3857ms X=60.2732 opacity=1.0000 running=True
+7175.755ms tick 197 dt=32.3528ms X=60.2682 opacity=1.0000 running=True
+7206.554ms tick 198 dt=30.7986ms X=60.2572 opacity=1.0000 running=True
+7237.363ms tick 199 dt=30.8096ms X=60.2410 opacity=1.0000 running=True
+7268.135ms tick 200 dt=30.7721ms X=60.2207 opacity=1.0000 running=True
+7299.471ms tick 201 dt=31.3340ms X=60.1967 opacity=1.0000 running=True
+7329.608ms tick 202 dt=30.1382ms X=60.1713 opacity=1.0000 running=True
+7361.126ms tick 203 dt=31.5152ms X=60.1434 opacity=1.0000 running=True
+7393.300ms tick 204 dt=32.1735ms X=60.1142 opacity=1.0000 running=True
+7423.550ms tick 205 dt=30.2523ms X=60.0868 opacity=1.0000 running=True
+7454.858ms tick 206 dt=31.3091ms X=60.0595 opacity=1.0000 running=True
+7486.026ms tick 207 dt=31.1684ms X=60.0336 opacity=1.0000 running=True
+7516.925ms tick 208 dt=30.8970ms X=60.0100 opacity=1.0000 running=True
+7548.620ms tick 209 dt=31.6969ms X=59.9881 opacity=1.0000 running=True
+7579.432ms tick 210 dt=30.8125ms X=59.9694 opacity=1.0000 running=True
+7611.507ms tick 211 dt=32.0747ms X=59.9528 opacity=1.0000 running=True
+7641.016ms tick 212 dt=29.5090ms X=59.9403 opacity=1.0000 running=True
+7672.416ms tick 213 dt=31.3996ms X=59.9299 opacity=1.0000 running=True
+7703.710ms tick 214 dt=31.2941ms X=59.9225 opacity=1.0000 running=True
+7735.092ms tick 215 dt=31.3829ms X=59.9177 opacity=1.0000 running=True
+7766.369ms Rendering UNSUBSCRIBE (subs=3 unsubs=3)
+7766.386ms tick 216 dt=start X=60.0000 opacity=1.0000 running=False
+9052.507ms STATS frame_interval count=212 mean=36.0358ms min=14.4569ms p50=31.1473ms p95=32.1254ms p99=32.3528ms max=688.6346ms fps=27.7502 frames=216 subs=3 unsubs=3 subscribed_now=False
+130816.326ms STATS frame_interval count=212 mean=36.0358ms min=14.4569ms p50=31.1473ms p95=32.1254ms p99=32.3528ms max=688.6346ms fps=27.7502 frames=216 subs=3 unsubs=3 subscribed_now=False
+130816.511ms unloaded: Rendering subscribed=False subs=3 unsubs=3

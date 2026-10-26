@@ -1,0 +1,13 @@
+step1_start host=MotionSoftDemo pid=12912
+step2_import path=C:\Users\admin\motion_framework\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppX\demo_motion.json exists=True
+step3_select tokens=[demo.enter,demo.exit] pick=demo.enter
+step4_load err=ok session=0x32700DF34ACB
+step5_bind animId=3 target=1 transition=demo.enter
+step6_play started; observing ~600ms for no crash
+observe offsetX=0.000 vel=0.00 running=False exceptions=0
+frame_sample i=0 x=0.000 vel=0.00
+frame_sample i=1 x=0.000 vel=0.00
+frame_sample i=2 x=0.000 vel=0.00
+frame_sample i=3 x=0.000 vel=0.00
+frame_sample i=4 x=0.000 vel=0.00
+PREVIEW_VERDICT=PASS no_visual_crash=True

@@ -1,0 +1,35 @@
+# 派题：Claude 额度空窗期接手（Notion AI · Opus 5.5）
+
+Claude Free 撞限至约 **19:40 台北**。协调 bot 请你在空窗期接手文档侧工作；Claude 恢复后只做定稿/复核，不推翻你已写好的事实。
+
+## 背景（已定稿，勿重开）
+
+Claude 已写出英文 **DeepSeek M1b review — FINAL**（四点全部 Agree）。要点：
+1. H1 settled：Period=response，ζ_c=ζ；H2/H3 拒绝。产品映射形状残差 **A 28.6% / E 12.1%**（扫参最优 8%/6% 仅对照）；≤1% 门槛不放宽，记 known-fail / 固有差异。
+2. 显式 seed：InitialValue+InitialVelocity 均用 spring.h::At(elapsed+seedLead)；只降级 hybrid B；保留前瞻 A。
+3. 无 TryStartAnimation；弹簧 TryGetAnimationController 恒 null；关键帧用 CreateAnimationController + 三参 Start。
+4. ζ>1：API 接受不钳；v1 不 lower；composition.h 硬门控已落地。
+
+材料路径（协调 bot 会同步进仓库；你回复时按下列文件名引用即可）：
+- docs/claude_m1b_deepseek_review.md（FINAL）
+- docs/claude_m1b_spec.md（目标：修订 4，按 FINAL「claude_m1b_spec.md edits」清单）
+- docs/deepseek_m1b_spec.md
+- docs/notion_deepseek_review.md（你的旧草稿，已被 FINAL 部分修正）
+
+## 请你交付（中文正文，可 Copy response）
+
+### A. FINAL 中文摘要（约 1 页）
+把英文 FINAL 译写成可进说明页的中文：四点结论、相对 Notion 旧草稿的修正点（尤其 Point2「引擎速度不来自合成器」）、产品残差 28.6%/12.1% vs 扫参 8%/6%、Open/needs measurement 六条。
+
+### B. `claude_m1b_spec` 修订 4 改稿清单（可直接粘贴进 md 的段落）
+按 FINAL 的 edits 清单写出**中文替换段落**（§2.1 H1 settled、§3 显式 seed、§2.4 ζ>1 门控已落地、M-1/M-1b known-fail、S2–S5/K1–K5 设备事实行）。不要发明未测数字。
+
+### C. 说明页增量（给 notion_brief）
+3–6 条 bullet：M1b 门控现状（S1–S5、K1–K5）、固有差异 known-fail、下一步优先真机项（打断相对显示轨迹、ζ>1 轨迹、rate=1 对照、K3 剩余）。
+
+### D. 勿做
+- 不要建议点 Claude Pro / 花钱
+- 不要重开 H1 / 不要放宽 §4 1% 门槛
+- 不要编造截帧数字
+
+写完后用「Copy response」即可；协调 bot 会落盘到 motion_framework。

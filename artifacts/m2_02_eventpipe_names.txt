@@ -1,0 +1,7 @@
+# EventPipe UTF-16 scan (partial; EventPipe metadata encoding incomplete for all names)
+Retarget
+FrameTick
+PresentStats
+# Authoritative min-6 SEEN (in-process EventListener): see m2_02_s*_etw_names.txt
+# AnimationLifecycle SEEN / Retarget SEEN / FrameTick SEEN / PresentStats SEEN / IdleTransition SEEN / TokenLoad SEEN
+# Provider FluidMotion-Motion enabled in collect banner (EventPipe m2_02_eventpipe.nettrace 1483562 bytes)

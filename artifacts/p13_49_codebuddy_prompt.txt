@@ -1,0 +1,60 @@
+You are editing a WinUI3 C# test harness. Work ONLY in these two files:
+  (1) APPEND to existing MotionSoftDemo\R3Probe.cs (do NOT delete RunR3P12Probe; add a new method)
+  (2) make minimal wiring edits in MotionSoftDemo\MainPage.xaml.cs
+Do NOT touch any other file. NEVER edit code\composition.h or anything under code\ or MotionNative\. Do NOT run builds, shells or programs. Do NOT add any SendInput / InputInjector / mouse / keyboard synthesis: only programmatic Composition animations.
+
+Context (existing members of `public sealed partial class MainPage` in MainPage.xaml.cs, namespace = MotionSoftDemo; read the file to confirm):
+- MfProbe.mf_map_spring(double response,double damping,out double period,out double dampingRatio)  // S1 v2 mapping, Period=r/(2*pi)
+- MfProbe.mf_spring_at(r, zeta, from, target, v0, t, out value, out velocity) // analytic shadow
+- MfProbe.mf_dwm_timing(...), MfProbe.mf_cap_start(hwnd), MfProbe.mf_cap_stop()
+- ReadCaptures() -> List<Cap>, record Cap(double T100ns,long QpcArrive,int W,int H,int MinX,int MaxX,int N,double Cx)
+- _comp (Compositor), _visual (Visual whose "Translation.X" is animated), CompReset(double value,string why), SetMode(bool,string), Log(string), FlushLog(), F(double,int), Qpc, SecSince(long,long), DwmFlush() P/Invoke, DwmFlushProbe(int), ShowWindow, SetForegroundWindow, CloseMainWindowSoon(), _suiteRunning, MeasureButton, _dwmFlushVerdict.
+- Existing RunR3P12Probe() in R3Probe.cs is the TEMPLATE for: window foreground, WGC start, calibration (cx0, ppd, srtOff), WaitNear helper, artifact StreamWriter "Both" logging, RAW line format `RAW tArr:x:tSrt` (ms relative to qStart, DIP, ms), DwmFlush tick ring + SpinToPhase, finally-block cleanup. Copy that boilerplate into the new method.
+
+Task: implement `private async Task RunR3E3Probe()` in R3Probe.cs (same `public sealed partial class MainPage`), writing artifact C:\Users\admin\motion_framework\artifacts\p13_49_raw.txt . Spring: r=0.32, zeta=0.78, mapped through mf_map_spring -> Period, DampingRatio (same for every spring). NO PART A feasibility probes — only the E3 overlay comparison matrix.
+
+Header lines (first two Both calls):
+  `# p13_49_raw.txt — 派题 #49 (R3 E3): Sup overlay vs Bv(+base) phase-sweep; tInt {60,156} ms; b_new {0,120}; phi {1,5,9,13} ms; arms {Sup,Bv,base}; programmatic Composition only, NO synthetic input`
+  `# wall=...; spring r=0.32 zeta=0.78; QPC freq=...; units: tSeed/tInt_m/phiAct/tickPer/lastTick = ms; RAW = tArr_ms:xDip:tSrt_ms`
+
+Boilerplate (same as RunR3P12Probe PART B):
+- Foreground + DwmFlushProbe(80) + SetMode(true,"r3-e3-probe") + CompReset + WGC start + 37 DIP calibration; log `cal cx0=... cx37=... pxPerDip=... srtOff=... Period=... DR=... omega0=... refresh=... qpcRefreshPeriod=...`
+- Helpers: WaitNear, Sp(), CapsSince, RawOf, Xs
+- Background Thread looping DwmFlush() → lock-protected ring (256); TickInfo(); SpinToPhase(phiMs) identical to P12
+
+Trial(arm, bNew, phiMs, tIntMs, rep):
+1. CompReset(0); WaitNear(0); delay 200 ms; qStart=Qpc.
+2. If arm == "Sup":
+   - ps=_comp.CreatePropertySet(); ps.InsertScalar("b",0f); ps.InsertScalar("d1",0f);
+   - ExpressionAnimation "ps.b + ps.d1" with SetReferenceParameter("ps",ps) on _visual "Translation.X".
+   - Spring on ps "b": InitialValue=0, InitialVelocity=0, FinalValue=240. Start it. Do NOT stop "b" later.
+   - Delay/spin to tIntMs (same pattern as P12: Task.Delay until tInt-25ms, busy-spin to tInt), then SpinToPhase(phiMs).
+   - tSeed = SecSince(qStart, actualQpc). Compute shadow mf_spring_at(r,zeta,0,240,0,tSeed)->shX,shV (log only; do NOT use for seeding Sup).
+   - On ps "d1": spring InitialValue=0, InitialVelocity=0, FinalValue=(float)(bNew-240). Start it. Do NOT read position/velocity; no δ.
+3. If arm == "Bv":
+   - Start B1 spring directly on _visual "Translation.X": InitialValue=0, InitialVelocity=0, FinalValue=240.
+   - Delay/spin to tIntMs then SpinToPhase(phiMs); tSeed; shadow shX,shV.
+   - New spring: InitialValue NOT set (IV=null), InitialVelocity=shV, FinalValue=bNew; StartAnimation on "Translation.X".
+4. If arm == "base":
+   - Start B1 on _visual "Translation.X" same as Bv; delay/spin to tInt+phase for timing parity; compute shadow; NO retarget.
+5. tInt_m = SecSince(qStart,Qpc) right after the interrupt StartAnimation returns (for base: right after SpinToPhase returns).
+6. Record captures until 700 ms from qStart. Log:
+   `TRIAL arm=.. b=.. tInt=.. phi=.. rep=.. tSeed=.. tInt_m=.. phiAct=<(qSeed-lastTick) ms> tickPer=<ms> shX=.. shV=.. lastTick=<ms rel qStart> n=..`
+   then RAW line. For Sup also log `sup=1` in the TRIAL line (or omit; offline uses arm=).
+7. Cleanup trial: _visual.StopAnimation("Translation.X"); if Sup was used, also try ps.StopAnimation("b")/("d1") inside try; CompReset(0).
+
+Matrix:
+- tIntMs primary 60; also 156 with half reps.
+- For tInt=60: phi in {1,5,9,13}; bNew in {0,120}; arms {Sup,Bv,base}; 8 reps → 4*2*3*8=192.
+- For tInt=156: same phi/b/arms; 4 reps → 96. Total 288 trials.
+- Order: for each (tInt,rep) block, shuffle list of (phi,b) with Random(20261049); inside each (phi,b) run the 3 arms in cyclic order rotated by (rep+blockIndex)%3.
+- Print "REP tInt=.. rep=.. DONE" and finally "===== P13 RAW DONE =====".
+
+Wiring in MainPage.xaml.cs (follow exactly the pattern used for _r3P12Probe — 5 places):
+1. log filename ternary: add `_r3E3Probe ? "m49_r3_e3_ui.txt" : (` at the front of the chain (before `_r3P12Probe`) and one extra `)` at the end.
+2. `_log` StreamWriter append-flag `||` list: add `|| _r3E3Probe`.
+3. bool field declaration list: add `_r3E3Probe`.
+4. args parsing: `_r3E3Probe = args0.Any(a => a.Equals("--r3-e3-probe", StringComparison.OrdinalIgnoreCase));`
+5. dispatcher: `else if (_r3E3Probe) { Log("R3 E3 #49 probe (--r3-e3-probe)"); ... await RunR3E3Probe(); }` placed BEFORE `else if (_r3P12Probe)`.
+
+When done, print a short summary of what you changed (file, line ranges) and any assumptions. Do not build or run.

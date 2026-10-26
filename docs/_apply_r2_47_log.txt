@@ -1,0 +1,10 @@
+# _apply_r2_47_log.txt  2026-10-21 01:13 Asia/Taipei
+来源：notion_r2_46_ab.md（A 裁决 + B 可粘贴块）、../artifacts/win_r2_p11_47.txt（#47）
+备份：*.bak_r2_47_20261021_011310
+- deepseek_m1b_spec.md：新增 §5.3.7（并入 #46 B 块全文 + #47 结果 + R-2 本机 FAIL 结题、M1b 降级 B_v 不满足 R-2）；§5.3.6 标为被取代（见 §5.3.7 引言）；附录 1385 行条件冻结措辞改正。
+- notion_brief.md：§4.1 标题改为本机 FAIL 结题；追加 #46/#47 裁决条目。
+- usage.md：Known limitation 标题改正并加 #47 状态更新；241 行与 373 行 R-2 行改正（删除「条件冻结 hybrid B / 跳变约 1 DIP」）。
+- #47 数据：J 仅 t300 两格过；t060 20.9/16.7、t156 7.0/3.5/7.0 DIP；Δv 可判 4 达标 3；J≈|v|×7–13 ms；剩余仅 C5(b)。
+- 未改代码。
+- 补充：usage.md #45 状态段、notion_brief.md #45 条目加「已被取代」标注。
+spec 260 行 §4.1 表 R-2 改为本机 FAIL 结题

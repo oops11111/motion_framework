@@ -1,0 +1,235 @@
+14.374ms 派题 #8 MotionSoftDemo (pid 22240); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 11:37:27.241; OS=10.0.19045.0; QPC freq=10000000
+20.837ms load_tokens ok
+35.371ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.625ms K3 probe requested (--k3-probe); starts in 800 ms (派题 #22 AnimationController Progress/Rate)
+47.751ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+48.756ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+861.386ms # win_k3_controller_probe.txt — 派题 #22 K3 AnimationController Progress / PlaybackRate
+861.655ms # wall=2026-10-20 11:37:28 Asia/Taipei; OS=10.0.19045.0
+862.073ms # Linear KeyFrame 0→100 Duration=1000ms; Progress seek; PlaybackRate=±rate
+862.108ms # A Progress=0.5 immediate; B rate=2 half duration; C rate=-1 reverse; D DelayTime+Progress (record)
+1052.512ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+2203.225ms DWMFLUSH probe: calls=80 total=1319.3 ms lastHr=0x00000000 fails=0 interval mean=16.491 min=2.564 p50=16.656 p95=17.325 max=17.613 ms
+2203.244ms DWMFLUSH verdict: ≈60Hz vsync | timer tiers k*15.625±1.0 (k=1,2): k1=45.0% k2=0.0% total=45.0% | vsync 1000/60.020=16.661±1.0 ms: 97.5%, p95=17.325 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+2205.747ms DWMFLUSH raw intervals ms: 2.564,17.186,16.473,16.456,16.875,16.722,16.480,16.565,16.944,16.564,16.337,16.550,16.606,16.884,16.453,16.803,16.530,16.625,16.653,16.667,16.686,16.922,16.357,16.690,16.656,16.794,16.602,16.678,16.681,16.540,16.730,16.828,16.622,17.469,15.729,17.106,16.658,16.303,17.022,16.325,17.296,16.430,16.107,17.305,16.157,17.018,16.423,17.071,16.140,17.117,16.175,17.034,16.620,16.424,16.908,16.352,16.975,16.942,15.905,17.162,16.183,17.486,15.809,17.293,17.094,15.589,17.325,16.159,17.564,15.983,17.231,15.845,17.316,15.915,17.140,16.160,17.613,15.731,17.225,16.752
+2205.904ms DwmFlushVerdict=≈60Hz vsync
+2207.536ms MODE -> 合成器路径 (k3-probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+2209.230ms COMP reset[k3 start] StopAnimation + Translation.X:=0.0000
+2638.740ms WGC start hr=0x00000000
+2639.035ms COMP reset[k3 cal] StopAnimation + Translation.X:=37.0000
+3049.197ms COMP reset[k3 cal end] StopAnimation + Translation.X:=0.0000
+3565.063ms cal: cx0=100.473 cx37=137.473 pxPerDip=1.0000
+3565.164ms ===== A) Progress=0.5 seek (expect ~50 DIP within ~1–2 frames) =====
+3626.469ms COMP reset[A rest] StopAnimation + Translation.X:=0.0000
+3691.080ms   START A Progress=0.0000 rate=1.0000
+3826.957ms   SET Progress=0.5 (was x≈15.5; ctrl now Progress=0.5000)
+4047.561ms   after seek: median=95.5 |x-50|=45.5 before=15.5 jumped=True → FAIL
+4047.635ms COMP reset[A end] StopAnimation + Translation.X:=0.0000
+4169.278ms ===== B) PlaybackRate=2 (expect arrive ~500ms not 1000ms) =====
+4169.340ms COMP reset[B rest] StopAnimation + Translation.X:=0.0000
+4233.123ms   START B rate=2.0000 Progress=0.0000
+4657.884ms   visualArrive≈390ms (expect ~500±present) → PASS
+4658.051ms COMP reset[B end] StopAnimation + Translation.X:=0.0000
+4780.835ms ===== C) PlaybackRate=-1 reverse (Progress=1 then reverse toward 0) =====
+4780.912ms COMP reset[C rest] StopAnimation + Translation.X:=0.0000
+4844.127ms   SET Progress=1 rate=-1 (ctrl Progress=1.0000 rate=-1.0000)
+6068.786ms   traj: nearEnd=99.0 mid≈85.5 late=0.0 decreasing=False near0=True → FAIL
+6068.873ms COMP reset[C end] StopAnimation + Translation.X:=0.0000
+6131.250ms ===== D) DelayTime=300ms + Progress=0.5 during delay (record) =====
+6131.312ms COMP reset[D rest] StopAnimation + Translation.X:=0.0000
+6195.350ms   START D DelayTime=300ms Progress=0.0000 rate=1.0000
+6290.056ms   SET Progress=0.5 during delay (xPre≈0.0; ctrl Progress=0.5000)
+7032.676ms   duringDelayAfterSeek≈90.1 afterDelayPlay≈99.5 (record only; no gate)
+7032.732ms ===== SUMMARY =====
+7032.744ms | A Progress=0.5 | before=15.5 after=95.5 |err|=45.5 | FAIL |
+7032.751ms | B rate=2 | arrive_ms=390 | PASS |
+7032.763ms | C rate=-1 | nearEnd=99.0 mid=85.5 late=0.0 | FAIL |
+7032.770ms | D Delay+Progress | during=90.1 after=99.5 | RECORD |
+7038.239ms CONCLUSION: K3 CHECK — see per-case verdicts; Progress/Rate not fully reliable for compositor lowering.
+7038.259ms ===== K3 PROBE DONE =====
+7867.767ms MAPTEST auto-close window
+7873.032ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+7897.831ms SHUTDOWN reason=Page.Unloaded: already done -> no-op
+13.523ms 派题 #8 MotionSoftDemo (pid 4688); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 11:39:24.765; OS=10.0.19045.0; QPC freq=10000000
+19.992ms load_tokens ok
+34.522ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+38.809ms K3 probe requested (--k3-probe); starts in 800 ms (派题 #22 AnimationController Progress/Rate)
+47.890ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+48.916ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+865.260ms # win_k3_controller_probe.txt — 派题 #22 K3 AnimationController Progress / PlaybackRate
+865.544ms # wall=2026-10-20 11:39:25 Asia/Taipei; OS=10.0.19045.0
+865.901ms # Linear KeyFrame 0→100 Duration=1000ms; Progress seek; PlaybackRate=±rate
+865.918ms # A Progress=0.5 immediate; B rate=2 half duration; C rate=-1 reverse; D DelayTime+Progress (record)
+1041.339ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+2206.203ms DWMFLUSH probe: calls=80 total=1318.5 ms lastHr=0x00000000 fails=0 interval mean=16.481 min=2.279 p50=16.641 p95=17.248 max=17.517 ms
+2206.221ms DWMFLUSH verdict: ≈60Hz vsync | timer tiers k*15.625±1.0 (k=1,2): k1=41.2% k2=0.0% total=41.2% | vsync 1000/60.020=16.661±1.0 ms: 98.8%, p95=17.248 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+2208.695ms DWMFLUSH raw intervals ms: 2.279,16.653,17.000,16.510,16.636,16.690,16.605,16.863,16.624,16.197,16.711,16.637,16.802,16.446,16.638,16.903,16.743,16.442,16.616,16.638,16.641,16.654,16.745,16.579,16.797,16.720,16.540,16.657,16.574,16.898,16.501,16.611,16.643,17.517,15.792,16.868,17.334,16.338,16.152,17.207,16.270,16.996,16.817,16.077,17.407,15.828,17.248,16.589,16.169,17.093,16.238,17.107,16.211,17.183,16.761,16.121,17.325,15.951,17.142,16.411,17.210,16.332,16.634,16.201,17.121,16.203,16.750,17.052,16.691,16.279,17.097,16.076,17.185,16.937,15.930,17.230,16.037,17.163,16.811,16.185
+2208.856ms DwmFlushVerdict=≈60Hz vsync
+2210.390ms MODE -> 合成器路径 (k3-probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+2212.086ms COMP reset[k3 start] StopAnimation + Translation.X:=0.0000
+2639.599ms WGC start hr=0x00000000
+2639.856ms COMP reset[k3 cal] StopAnimation + Translation.X:=37.0000
+3046.283ms COMP reset[k3 cal end] StopAnimation + Translation.X:=0.0000
+3563.246ms cal: cx0=100.483 cx37=137.483 pxPerDip=1.0000
+3563.276ms ===== A0) live Progress=0.5 WITHOUT Pause (record) =====
+3621.029ms COMP reset[A0 rest] StopAnimation + Translation.X:=0.0000
+3838.183ms   live SET Progress=0.5 (before x≈19.0; ctrl=0.5000)
+4059.631ms   live afterSeek median=95.5 |x-50|=45.5 (record)
+4059.706ms COMP reset[A0 end] StopAnimation + Translation.X:=0.0000
+4179.992ms ===== A) Progress=0.5 seek (Pause then Progress; expect ~50 DIP) =====
+4241.586ms COMP reset[A rest] StopAnimation + Translation.X:=0.0000
+4305.309ms   START A Progress=0.0000 rate=1.0000
+4461.810ms   Pause at x≈22.5 Progress=0.0000
+4522.803ms   SET Progress=0.5 while paused (ctrl Progress=0.5000)
+4927.946ms   pausedSeek median=90.1 |x-50|=40.1 before=22.5 jumped=False afterResume≈93.0 → FAIL
+4928.202ms COMP reset[A end] StopAnimation + Translation.X:=0.0000
+5050.856ms ===== B) PlaybackRate=2 (expect arrive ~500ms not 1000ms) =====
+5050.920ms COMP reset[B rest] StopAnimation + Translation.X:=0.0000
+5113.630ms   START B rate=2.0000 Progress=0.0000
+5531.138ms   visualArrive≈379ms (expect ~500±present) → PASS
+5531.212ms COMP reset[B end] StopAnimation + Translation.X:=0.0000
+5655.288ms ===== C) PlaybackRate=-1 reverse (Pause→Progress=1→rate=-1→Resume) =====
+5655.350ms COMP reset[C rest] StopAnimation + Translation.X:=0.0000
+5718.366ms   Pause+Progress=1+rate=-1 (ctrl Progress=1.0000 rate=-1.0000)
+5920.944ms   Resume reverse from x≈100.0
+6943.603ms   traj: nearEnd=100.0 mid≈95.5 late=4.1 decreasing=False near0=True → FAIL
+6943.690ms COMP reset[C end] StopAnimation + Translation.X:=0.0000
+7006.457ms ===== D) DelayTime=300ms + Progress=0.5 during delay (record) =====
+7006.506ms COMP reset[D rest] StopAnimation + Translation.X:=0.0000
+7068.859ms   START D DelayTime=300ms Progress=0.0000 rate=1.0000
+7160.920ms   Pause+Progress=0.5 during delay (xPre≈0.0; ctrl Progress=0.5000)
+8000.799ms   duringDelayPausedSeek≈90.1 afterResumePlay≈98.5 (record only; no gate)
+8000.853ms ===== SUMMARY =====
+8000.870ms | A Progress=0.5 | before=22.5 after=90.1 |err|=40.1 | FAIL |
+8000.885ms | B rate=2 | arrive_ms=379 | PASS |
+8000.892ms | C rate=-1 | nearEnd=100.0 mid=95.5 late=4.1 | FAIL |
+8000.900ms | D Delay+Progress | during=90.1 after=98.5 | RECORD |
+8006.528ms CONCLUSION: K3 CHECK — see per-case verdicts; Progress/Rate not fully reliable for compositor lowering.
+8006.546ms ===== K3 PROBE DONE =====
+8828.800ms MAPTEST auto-close window
+8834.435ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+8861.687ms SHUTDOWN reason=Page.Unloaded: already done -> no-op
+13.418ms 派题 #8 MotionSoftDemo (pid 17112); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 11:41:00.439; OS=10.0.19045.0; QPC freq=10000000
+19.803ms load_tokens ok
+34.571ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.944ms K3 probe requested (--k3-probe); starts in 800 ms (派题 #22 AnimationController Progress/Rate)
+48.114ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+49.125ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+862.343ms # win_k3_controller_probe.txt — 派题 #22 K3 AnimationController Progress / PlaybackRate
+862.588ms # wall=2026-10-20 11:41:01 Asia/Taipei; OS=10.0.19045.0
+862.967ms # Linear KeyFrame 0→100 Duration=1000ms; Progress seek; PlaybackRate=±rate
+862.990ms # A Progress=0.5 immediate; B rate=2 half duration; C rate=-1 reverse; D DelayTime+Progress (record)
+1053.164ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+2216.453ms DWMFLUSH probe: calls=80 total=1332.0 ms lastHr=0x00000000 fails=0 interval mean=16.650 min=16.009 p50=16.672 p95=16.841 max=17.461 ms
+2216.461ms DWMFLUSH verdict: ≈60Hz vsync | timer tiers k*15.625±1.0 (k=1,2): k1=31.2% k2=0.0% total=31.2% | vsync 1000/60.020=16.661±1.0 ms: 100.0%, p95=16.841 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+2218.853ms DWMFLUSH raw intervals ms: 16.009,17.461,16.576,16.838,16.274,16.841,16.372,16.122,16.756,16.485,16.801,16.712,16.766,16.434,16.743,16.678,16.541,16.739,16.611,16.767,16.636,16.603,16.627,16.803,16.712,16.457,16.648,16.677,16.672,16.786,16.536,16.677,16.625,16.764,16.731,16.656,16.634,16.868,16.683,16.627,16.446,16.862,16.640,16.574,16.700,16.705,16.561,16.619,16.675,16.690,16.807,16.677,16.677,16.592,16.663,16.702,16.653,17.245,16.074,16.560,16.644,16.751,16.606,16.679,16.675,16.649,16.708,16.654,16.740,16.614,16.707,16.716,16.577,16.690,16.605,16.348,16.645,16.712,16.688,16.540
+2219.067ms DwmFlushVerdict=≈60Hz vsync
+2220.634ms MODE -> 合成器路径 (k3-probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+2222.301ms COMP reset[k3 start] StopAnimation + Translation.X:=0.0000
+2646.713ms WGC start hr=0x00000000
+2646.975ms COMP reset[k3 cal] StopAnimation + Translation.X:=37.0000
+3052.006ms COMP reset[k3 cal end] StopAnimation + Translation.X:=0.0000
+3572.974ms cal: cx0=100.478 cx37=137.478 pxPerDip=1.0000
+3573.002ms ===== A) Progress→WGC calibration (Pause + PlaybackRate=0) =====
+3630.776ms COMP reset[A rest] StopAnimation + Translation.X:=0.0000
+3786.501ms   after Pause+rate=0: Progress=0.0000 x≈7.0
+4052.678ms   Progress=0.00 → WGC median=12.5 ctrl.Progress=0.0000
+4314.080ms   Progress=0.25 → WGC median=59.0 ctrl.Progress=0.2500
+4577.463ms   Progress=0.50 → WGC median=90.1 ctrl.Progress=0.5000
+4843.044ms   Progress=0.75 → WGC median=97.5 ctrl.Progress=0.7500
+5109.750ms   Progress=1.00 → WGC median=100.0 ctrl.Progress=1.0000
+5109.978ms   seek@0.5 |x-50|=40.1 mono=True clusterHigh=False → PASS-ish
+5110.041ms COMP reset[A live] StopAnimation + Translation.X:=0.0000
+5608.342ms   A-live (no pause) before=19.0 after=95.5 |x-50|=45.5 (record)
+5608.417ms COMP reset[A end] StopAnimation + Translation.X:=0.0000
+5732.148ms ===== B) PlaybackRate=2 (expect arrive ~500ms not 1000ms) =====
+5732.208ms COMP reset[B rest] StopAnimation + Translation.X:=0.0000
+5795.080ms   START B rate=2.0000 Progress=0.0000
+6214.637ms   visualArrive≈375ms (expect ~500±present) → PASS
+6214.709ms COMP reset[B end] StopAnimation + Translation.X:=0.0000
+6338.865ms ===== C) PlaybackRate=-1 reverse (Pause→Progress=1→rate=-1→Resume) =====
+6338.923ms COMP reset[C rest] StopAnimation + Translation.X:=0.0000
+6401.210ms   Pause+Progress=1+rate=-1 (ctrl Progress=1.0000 rate=-1.0000)
+6601.713ms   Resume reverse from x≈100.0
+7624.205ms   traj: nearEnd=100.0 mid≈96.0 late=6.5 decreasing=False near0=True → FAIL
+7624.275ms COMP reset[C end] StopAnimation + Translation.X:=0.0000
+7687.006ms ===== D) DelayTime=300ms + Progress=0.5 during delay (record) =====
+7687.055ms COMP reset[D rest] StopAnimation + Translation.X:=0.0000
+7751.068ms   START D DelayTime=300ms Progress=0.0000 rate=1.0000
+7842.301ms   Pause+Progress=0.5 during delay (xPre≈0.0; ctrl Progress=0.5000)
+8688.867ms   duringDelayPausedSeek≈90.1 afterResumePlay≈98.5 (record only; no gate)
+8688.930ms ===== SUMMARY =====
+8688.967ms | A Progress=0.5 | cal=13/59/90/97/100 |err50|=40.1 | PASS-ish |
+8688.974ms | B rate=2 | arrive_ms=375 | PASS |
+8688.982ms | C rate=-1 | nearEnd=100.0 mid=96.0 late=6.5 | FAIL |
+8688.991ms | D Delay+Progress | during=90.1 after=98.5 | RECORD |
+8694.279ms CONCLUSION: K3 PARTIAL — rate=2 PASS; Progress PASS-ish; reverse FAIL. PlaybackRate usable; Progress seek mapping must be verified before KeyFrame elapsed lowering.
+8694.296ms ===== K3 PROBE DONE =====
+9513.087ms MAPTEST auto-close window
+9517.763ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+9558.314ms SHUTDOWN reason=Page.Unloaded: already done -> no-op
+13.411ms 派题 #8 MotionSoftDemo (pid 40232); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 11:42:20.878; OS=10.0.19045.0; QPC freq=10000000
+19.834ms load_tokens ok
+34.329ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.555ms K3 probe requested (--k3-probe); starts in 800 ms (派题 #22 AnimationController Progress/Rate)
+47.665ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+48.650ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+853.735ms # win_k3_controller_probe.txt — 派题 #22 K3 AnimationController Progress / PlaybackRate
+854.003ms # wall=2026-10-20 11:42:21 Asia/Taipei; OS=10.0.19045.0
+854.350ms # Linear KeyFrame 0→100 Duration=1000ms; Progress seek; PlaybackRate=±rate
+854.367ms # A Progress=0.5 immediate; B rate=2 half duration; C rate=-1 reverse; D DelayTime+Progress (record)
+1043.124ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+2201.061ms DWMFLUSH probe: calls=80 total=1325.6 ms lastHr=0x00000000 fails=0 interval mean=16.570 min=9.649 p50=16.652 p95=16.923 max=17.275 ms
+2201.079ms DWMFLUSH verdict: ≈60Hz vsync | timer tiers k*15.625±1.0 (k=1,2): k1=32.5% k2=0.0% total=32.5% | vsync 1000/60.020=16.661±1.0 ms: 98.8%, p95=16.923 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+2203.533ms DWMFLUSH raw intervals ms: 9.649,17.248,16.321,16.624,16.673,16.775,16.644,16.194,16.520,16.904,16.403,16.879,16.494,16.632,16.666,16.923,16.627,16.672,16.398,16.682,16.734,16.627,16.861,16.459,16.660,16.737,16.652,16.579,16.740,16.624,16.657,16.617,16.652,16.712,16.668,17.275,16.017,16.622,16.707,16.630,16.617,16.706,16.648,16.794,16.532,16.643,16.664,17.081,16.652,16.785,16.427,16.563,16.498,16.675,16.644,16.648,16.785,16.739,16.503,16.658,16.833,16.445,16.816,16.579,16.602,16.792,16.545,16.650,16.674,16.652,16.643,16.990,16.464,16.814,16.384,16.632,16.668,16.674,16.768,16.548
+2203.690ms DwmFlushVerdict=≈60Hz vsync
+2205.224ms MODE -> 合成器路径 (k3-probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+2206.906ms COMP reset[k3 start] StopAnimation + Translation.X:=0.0000
+2630.844ms WGC start hr=0x00000000
+2631.093ms COMP reset[k3 cal] StopAnimation + Translation.X:=37.0000
+3039.488ms COMP reset[k3 cal end] StopAnimation + Translation.X:=0.0000
+3558.352ms cal: cx0=100.486 cx37=137.486 pxPerDip=1.0000
+3558.382ms ===== A) Progress→WGC calibration (Progress then Pause; short sample) =====
+3616.771ms COMP reset[A rest] StopAnimation + Translation.X:=0.0000
+3682.738ms   started rate=0+Pause Progress=0.0000 x≈NaN
+3913.660ms   Progress=0.00 → first=0.0 median=0.0 n=4 ctrl=0.0000 rate=0.00
+4034.085ms   Progress=0.25 → first=59.0 median=59.0 n=3 ctrl=0.2500 rate=0.00
+4158.337ms   Progress=0.50 → first=90.1 median=90.1 n=4 ctrl=0.5000 rate=0.00
+4282.300ms   Progress=0.75 → first=97.5 median=97.5 n=4 ctrl=0.7500 rate=0.00
+4407.507ms   Progress=1.00 → first=100.0 median=100.0 n=4 ctrl=1.0000 rate=0.00
+4409.657ms   seek@0.5 |x-50|=40.1 RMS_vs_linear=25.6 mono=True → FAIL
+4409.720ms COMP reset[A live] StopAnimation + Translation.X:=0.0000
+4814.268ms   A-live Progress=0.5+Pause before=19.0 first=90.1 |x-50|=40.1 (record)
+4814.430ms COMP reset[A end] StopAnimation + Translation.X:=0.0000
+4937.575ms ===== B) PlaybackRate=2 (expect arrive ~500ms not 1000ms) =====
+4937.633ms COMP reset[B rest] StopAnimation + Translation.X:=0.0000
+4999.726ms   START B rate=2.0000 Progress=0.0000
+5415.455ms   visualArrive≈372ms (expect ~500±present) → PASS
+5415.531ms COMP reset[B end] StopAnimation + Translation.X:=0.0000
+5540.044ms ===== C) PlaybackRate=-1 reverse (Progress=1 + rate=-1) =====
+5540.107ms COMP reset[C rest] StopAnimation + Translation.X:=0.0000
+5602.883ms   Progress=1 rate=-1 (ctrl Progress=1.0000 rate=-1.0000)
+5713.408ms   nearEnd≈99.5
+5949.102ms   t≈180ms x=96.5
+6183.779ms   t≈360ms x=88.5
+6417.387ms   t≈540ms x=53.5
+6649.486ms   t≈720ms x=0.0
+6885.416ms   t≈900ms x=0.0
+7119.636ms   t≈1080ms x=0.0
+7120.841ms   traj: nearEnd=99.5 mid≈88.5 late=0.0 decreasing=True near0=True → PASS
+7120.909ms COMP reset[C end] StopAnimation + Translation.X:=0.0000
+7182.189ms ===== D) DelayTime=300ms + Progress=0.5 during delay (record) =====
+7182.234ms COMP reset[D rest] StopAnimation + Translation.X:=0.0000
+7244.996ms   START D DelayTime=300ms Progress=0.0000 rate=1.0000
+7338.674ms   Pause+Progress=0.5 during delay (xPre≈0.0; ctrl Progress=0.5000)
+8190.120ms   duringDelayPausedSeek≈90.1 afterResumePlay≈98.5 (record only; no gate)
+8190.231ms ===== SUMMARY =====
+8190.250ms | A Progress=0.5 | cal=0/59/90/97/100 |err50|=40.1 | FAIL |
+8190.258ms | B rate=2 | arrive_ms=372 | PASS |
+8190.265ms | C rate=-1 | nearEnd=99.5 mid=88.5 late=0.0 | PASS |
+8190.272ms | D Delay+Progress | during=90.1 after=98.5 | RECORD |
+8195.574ms CONCLUSION: K3 PARTIAL — rate=2 PASS; Progress FAIL; reverse PASS. PlaybackRate usable; Progress seek mapping must be verified before KeyFrame elapsed lowering.
+8195.591ms ===== K3 PROBE DONE =====
+9010.950ms MAPTEST auto-close window
+9015.440ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+9059.405ms SHUTDOWN reason=Page.Unloaded: already done -> no-op

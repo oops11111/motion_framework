@@ -1,0 +1,50 @@
+# win_s3_velocity_probe.txt — 派题 #15 S3 InitialVelocity units (value / real second)
+# wall=2026-10-20 11:15:03 Asia/Taipei; OS=10.0.19045.0
+# base: Period=0.32s ζ=0.78 from=0→240; early-window slope vs commanded InitialVelocity
+# also: Period independence (Period=0.64 same v0); rate-fold spot (Period/2, v0×2) vs spring.h u(t)=x(2t)
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.475 cx37=137.475 pxPerDip=1.0000
+===== 1) InitialVelocity sweep (Period=0.32) =====
+  START [v0=0] Period=0.32 ζ=0.78 IV=0 IVel=0 FV=240 qpc=6086738324654
+  RESULT [v0=0] slope≈320.4 DIP/s (cmd=0.0); lag≈300ms nWin=5 |peak|=221.0 spring.h v0=0.0 v(tMid)=2028.4 RMS_cmd=88.7 RMS_v0=0=88.7
+  early: t=21ms x=61.0; t=37ms x=66.5; t=54ms x=71.5; t=71ms x=77.0; t=88ms x=82.5
+  START [v0=480] Period=0.32 ζ=0.78 IV=0 IVel=480 FV=240 qpc=6086773652954
+  RESULT [v0=480] slope≈339.5 DIP/s (cmd=480.0); lag≈288ms nWin=5 |peak|=242.5 spring.h v0=480.0 v(tMid)=1953.4 RMS_cmd=49.4 RMS_v0=0=50.4
+  early: t=32ms x=126.0; t=49ms x=131.5; t=66ms x=137.5; t=82ms x=143.0; t=99ms x=148.5
+  START [v0=-480] Period=0.32 ζ=0.78 IV=0 IVel=-480 FV=240 qpc=6086808759024
+  RESULT [v0=-480] slope≈307.7 DIP/s (cmd=-480.0); lag≈300ms nWin=5 |peak|=244.5 spring.h v0=-480.0 v(tMid)=2037.7 RMS_cmd=140.5 RMS_v0=0=142.6
+  early: t=25ms x=-4.0; t=42ms x=0.5; t=59ms x=5.5; t=75ms x=10.5; t=92ms x=16.5
+===== 2) Period independence (same IVel=480, Period=0.64 / 0.16) =====
+  START [Period=0.64 v0=480] Period=0.64 ζ=0.78 IV=0 IVel=480 FV=240 qpc=6086843907520
+  RESULT [Period=0.64 v0=480] slope≈326.3 DIP/s (cmd=480.0); lag≈260ms nWin=5 |peak|=243.5 spring.h v0=480.0 v(tMid)=1020.5 RMS_cmd=45.3 RMS_v0=0=48.7
+  early: t=33ms x=104.5; t=50ms x=110.5; t=66ms x=115.5; t=83ms x=121.1; t=100ms x=126.5
+  START [Period=0.16 v0=480] Period=0.16 ζ=0.78 IV=0 IVel=480 FV=240 qpc=6086878925660
+  RESULT [Period=0.16 v0=480] slope≈384.0 DIP/s (cmd=480.0); lag≈290ms nWin=5 |peak|=249.0 spring.h v0=480.0 v(tMid)=1881.5 RMS_cmd=32.6 RMS_v0=0=33.7
+  early: t=33ms x=176.5; t=50ms x=183.5; t=66ms x=190.5; t=83ms x=196.5; t=100ms x=202.0
+===== 2b) soft spring Period=1.5 (slope clearer; same IVel set) =====
+  START [soft P=1.5 v0=0] Period=1.5 ζ=0.78 IV=0 IVel=0 FV=240 qpc=6086914014788
+  RESULT [soft P=1.5 v0=0] slope≈31.9 DIP/s (cmd=0.0); lag≈296ms nWin=9 |peak|=242.0 spring.h v0=0.0 v(tMid)=301.6 RMS_cmd=70.2 RMS_v0=0=70.2
+  early: t=34ms x=4.0; t=50ms x=4.5; t=67ms x=5.0; t=84ms x=5.5; t=101ms x=6.0; t=117ms x=6.5
+  START [soft P=1.5 v0=480] Period=1.5 ζ=0.78 IV=0 IVel=480 FV=240 qpc=6086949106454
+  RESULT [soft P=1.5 v0=480] slope≈435.3 DIP/s (cmd=480.0); lag≈58ms nWin=9 |peak|=309.5 spring.h v0=480.0 v(tMid)=523.2 RMS_cmd=7.7 RMS_v0=0=39.0
+  early: t=29ms x=26.5; t=46ms x=34.0; t=62ms x=41.5; t=79ms x=49.0; t=95ms x=56.5; t=112ms x=63.5
+  START [soft P=1.5 v0=-480] Period=1.5 ζ=0.78 IV=0 IVel=-480 FV=240 qpc=6086984272731
+  RESULT [soft P=1.5 v0=-480] slope≈-142.0 DIP/s (cmd=-480.0); lag≈300ms nWin=9 |peak|=318.5 spring.h v0=-480.0 v(tMid)=91.3 RMS_cmd=76.7 RMS_v0=0=108.2
+  early: t=36ms x=-78.1; t=54ms x=-80.7; t=70ms x=-83.2; t=87ms x=-85.7; t=103ms x=-88.2; t=120ms x=-90.7
+===== 3) rate-fold spot check (rate=2): Period=0.16, IVel=0 vs spring.h(0.32) at 2t =====
+  START [rate=2 fold] Period=0.16 ζ=0.78 IVel=0
+  rate-fold vs spring.h(0.32)@2t: lag≈278ms n=26 RMS=32.52 DIP (13.55% travel)
+===== SUMMARY =====
+| tag | Period | cmd IVel | early slope | RMS vs spring.h(cmd) | RMS vs spring.h(v0=0) | cmd better? |
+| v0=0 | 0.32 | 0.0 | 320.4 | 88.7 | 88.7 | False |
+| v0=480 | 0.32 | 480.0 | 339.5 | 49.4 | 50.4 | False |
+| v0=-480 | 0.32 | -480.0 | 307.7 | 140.5 | 142.6 | False |
+| PeriodIndep | 0.64 | 480.0 | 326.3 | 45.3 | 48.7 | False |
+| PeriodIndep16 | 0.16 | 480.0 | 384.0 | 32.6 | 33.7 | False |
+units_check (Period=0.32 stiff): slope480=339.5 slope-480=307.7 slope0=320.4 (spring accel dominates by t≈50ms → slopes converge); RMS cmd/zero 480=49.4/50.4 -480=140.5/142.6
+period_indep: slope@0.32/0.64/0.16=339.5/326.3/384.0; RMS=49.4/45.3/32.6 → similar=True
+soft_Period=1.5 slopes: v0=0→31.9 v0=480→435.3 v0=-480→-142.0 signOk=True nearCmd=False
+NOTE Period=0.32: early WGC x at ~30–50ms content ranks x(480)>x(0)>x(-480) — InitialVelocity shifts trajectory even when slopes converge.
+CONCLUSION: InitialVelocity IS value/real-second (DIP/s): soft-Period early slopes track cmd sign/magnitude; stiff-Period early positions ordered by v0; units independent of Period (IVel seed not scaled by Period); rate-fold: see RMS vs spring.h(0.32)@2t (shape residual known from #13).
+===== S3 PROBE DONE =====

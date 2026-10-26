@@ -1,0 +1,10 @@
+apply r2_45 — 2026-10-21 00:35 (Asia/Taipei)
+预检（rg）：A5 / r2-est-v3 / E2 / E3 在三份目标文档中均无命中 -> notion_r2_estimator_ab.md、notion_r2_43_ab.md 的 B 块未并入，本次一并并入。
+备份：*.bak_r2_45_20261021_003516（deepseek_m1b_spec.md / notion_brief.md / usage.md）
+deepseek_m1b_spec.md：
+  §5.3 新增 5.3.4 A5（estimator B，注明负 lead 部分已否定）、5.3.5 r2-est-v3（43 B，含 ω₀=2π/r=1/Period 勘误、负 lead 否定）、5.3.6 裁决 #45（45 B 全文），插在「取代说明」前；标题降级以嵌套。
+  「M1b 打断（v2）」负 lead 条目后加〔已取代〕注。
+notion_brief.md：§4.1 末追加 #45 条件冻结要点（C5(b) 除外、B 缺陷、解冻条件、负 lead 否定、ω₀ 口径）；待办 #43 行标注已执行。
+usage.md：Known limitation 追加 #45 状态更新（用户口径）。
+未改：代码；usage.md §6 表中 R-2 行仍为旧 OPEN 描述（不在指定范围）。
+usage.md 241/373 行 R-2 状态更新为 M1b 条件冻结

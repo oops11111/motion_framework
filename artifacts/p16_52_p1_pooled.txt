@@ -1,0 +1,4 @@
+P1_POOLED n=36 tickPer=16.661 d_circ=7.86 thr=4.17 purity=0.83 (30/36) n+/n-=25/11
+med_phi_mod(+)= 3.84 (−)=12.64
+med_lag(+)= 11.41 (−)=5.21
+P1_POOLED_VERDICT=分开

@@ -1,0 +1,31 @@
+# win_iv_null_probe.txt — 派题 #27 InitialValue=null behavior (record only; product does not rely)
+# wall=2026-10-20 15:31:55 Asia/Taipei; OS=10.0.19045.0
+# Preset Translation.X=37; spring →200 Period=0.32 ζ=0.78 IVel=0
+# A: do NOT set InitialValue (null); B: InitialValue=0 control; C optional mid-flight replace without IV
+# NO composition.h change
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.476 cx37=137.476 pxPerDip=1.0000
+----- [A_IV_null] setInitialValue0=False preset=37 →200 -----
+  WGC before start median≈37.0 (expect ~37)
+  InitialValue before Start=null
+  START
+  early n=8 first=37.0 min=37.0 max=42.5
+  samples: t=11 x=37.0; t=28 x=37.0; t=45 x=37.0; t=61 x=37.5; t=78 x=38.5; t=94 x=39.5; t=111 x=40.5; t=128 x=42.5
+  verdict=FROM_CURRENT
+----- [B_IV_0] setInitialValue0=True preset=37 →200 -----
+  WGC before start median≈37.0 (expect ~37)
+  InitialValue before Start=0
+  START
+  early n=8 first=37.0 min=0.0 max=37.0
+  samples: t=11 x=37.0; t=28 x=0.0; t=45 x=0.0; t=62 x=0.5; t=78 x=1.5; t=95 x=3.0; t=112 x=4.5; t=128 x=6.5
+  verdict=FROM_ZERO
+----- [C] mid-flight replace without InitialValue (record) -----
+  replaced →0 without InitialValue
+  post-replace early x≈42.5 (n=6); samples=43,45,45,44,44,44
+===== SUMMARY =====
+| A IV=null | first=37.0 min=37.0 max=42.5 | FROM_CURRENT |
+| B IV=0 | first=37.0 min=0.0 max=37.0 | FROM_ZERO |
+| C mid-replace no IV | RECORD first≈42.5 |
+CONCLUSION: FROM_CURRENT — A(null) FROM_CURRENT first=37.0; B(IV=0) FROM_ZERO first=37.0; C=RECORD first≈42.5. Product still always explicit-seeds on interrupt. composition.h UNCHANGED.
+===== IV NULL PROBE DONE =====

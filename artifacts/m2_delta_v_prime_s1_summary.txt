@@ -1,0 +1,14 @@
+# m2_delta_v_prime_s1_summary.txt
+session=1 pid=48772 hostname=DESKTOP-K93N3P8 prereg_hash=7bfaa379ba238c1b409aaec2ace07a6749cce55a6edc57494687c1681b5a0496 calib=1.000000 w=5 hang_cap=2
+composition_expected=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+CELL cell=t060fwd role=core Nv_h=12.099 thrMed=20.000 |a|*σ=10.608 jud=True wgc_n=20 wgc_pass=2/20 base_pass=19/20 IVel0_pass=0/20 verdict=FAIL
+CELL cell=t060rev role=core Nv_h=11.745 thrMed=20.000 |a|*σ=10.951 jud=True wgc_n=20 wgc_pass=0/20 base_pass=20/20 IVel0_pass=1/20 verdict=FAIL
+CELL cell=t156fwd role=aux-t156 Nv_h=29.541 thrMed=20.000 |a|*σ=6.524 jud=False wgc_n=20 wgc_pass=0/20 base_pass=14/20 IVel0_pass=0/0 verdict=Δv-SKIP
+CELL cell=t156rev role=aux-t156 Nv_h=23.861 thrMed=20.000 |a|*σ=5.153 jud=False wgc_n=20 wgc_pass=0/20 base_pass=18/20 IVel0_pass=0/0 verdict=Δv-SKIP
+CELL cell=t300fwd role=core Nv_h=35.198 thrMed=20.000 |a|*σ=2.428 jud=False wgc_n=20 wgc_pass=0/20 base_pass=17/20 IVel0_pass=0/0 verdict=Δv-SKIP
+CELL cell=t300rev role=core Nv_h=20.750 thrMed=20.000 |a|*σ=1.586 jud=False wgc_n=20 wgc_pass=0/20 base_pass=18/20 IVel0_pass=0/0 verdict=Δv-SKIP
+CELL cell=t300dbl role=core Nv_h=21.306 thrMed=20.000 |a|*σ=2.031 jud=False wgc_n=20 wgc_pass=0/20 base_pass=18/20 IVel0_pass=0/0 verdict=Δv-SKIP
+ctrl basePass=True IVel0_t060_both_FAIL=True
+cells=t060fwd:FAIL,t060rev:FAIL,t156fwd:Δv-SKIP,t156rev:Δv-SKIP,t300fwd:Δv-SKIP,t300rev:Δv-SKIP,t300dbl:Δv-SKIP
+SESSION_FAIL_CANDIDATE
+===== M2-DELTA-V-PRIME PROBE DONE =====

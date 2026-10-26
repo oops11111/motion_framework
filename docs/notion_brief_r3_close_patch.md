@@ -1,0 +1,3 @@
+- **R-3 = CLOSED（2026-10-24 Australia/Perth）**；S1 = STOP / NO-ADOPT；Bv = 降级兜底（非合格基线，不作发版依据）。Notion / Gemini / DeepSeek #52 复核一致同意关闭并保留 Bv；Claude Free 对照不阻塞关闭（claude_r3_52_close.md 为 Notion AI 代笔兜底，待落盘）。composition.h 未改（sha256 a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418）。
+- **三条挂账**：① 关闭理由 = 闸门触发（A v2×3=2/3 < 3/3 → STOP S1），非数据复审结论；② Bv 挂账：P1 a1 分不开（pooled purity=0.83）、P3 = CONFIRM_F5_REFUTE_2X（med_res=+2.70；SSE 14.5×）、≈30c=无、S2 不复活、不与 #49 对比、不作发版依据；③ A1a 跟踪转出：a3 @ τ0=21.8，RMS 中位=0.781，不随 R-3 关闭而消失。
+- 详见：[r3_commit_staleness.md ## 结题（CLOSED）](r3_commit_staleness.md#结题closed)｜[notion_r3_52_pack.md](notion_r3_52_pack.md)｜[artifacts/p16_52.txt](../artifacts/p16_52.txt)｜[claude_r3_52_close.md](claude_r3_52_close.md)（待落盘）

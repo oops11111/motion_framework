@@ -1,0 +1,29 @@
+# win_starting_value_probe.txt — 派题 #29 InsertExpressionKeyFrame(0, this.StartingValue)
+# wall=2026-10-20 15:41:21 Asia/Taipei; OS=10.0.19045.0
+# Preset Translation.X=40; Duration=1000ms linear →100
+# A: key0=this.StartingValue; B: key0=explicit 0; C optional Stop+restart StartingValue
+# NO composition.h logic change in this probe (Period>0 gate sync is separate)
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.476 cx37=137.476 pxPerDip=1.0000
+----- [A_StartingValue] useStartingValue=True preset=40 →100 -----
+  WGC before start median≈40.0
+  START
+  early first=40.0 min=40.0 max=49.5
+  samples: t=10 x=40.0; t=26 x=40.0; t=43 x=41.5; t=60 x=42.5; t=77 x=44.5; t=93 x=45.5; t=110 x=47.5; t=127 x=49.5
+  verdict=FROM_STARTING_VALUE
+----- [B_explicit0] useStartingValue=False preset=40 →100 -----
+  WGC before start median≈40.0
+  START
+  early first=40.0 min=0.0 max=40.0
+  samples: t=10 x=40.0; t=27 x=0.0; t=44 x=2.5; t=61 x=4.5; t=78 x=7.0; t=94 x=9.5; t=111 x=12.5; t=128 x=15.5
+  verdict=FROM_EXPLICIT_ZERO
+----- [C] Stop mid-flight + restart StartingValue (record) -----
+  Stop at WGC≈86.5
+  restart early first≈86.5 samples=87,87,87,87,88,88
+===== SUMMARY =====
+| A StartingValue | first=40.0 min=40.0 max=49.5 | FROM_STARTING_VALUE |
+| B explicit 0 | first=40.0 min=0.0 max=40.0 | FROM_EXPLICIT_ZERO |
+| C Stop+restart | CONTINUE_FROM_STOP (stop=87 first=87) |
+CONCLUSION: FROM_STARTING_VALUE — A FROM_STARTING_VALUE first=40.0; B FROM_EXPLICIT_ZERO first=40.0; C=CONTINUE_FROM_STOP (stop=87 first=87).
+===== STARTING VALUE PROBE DONE =====

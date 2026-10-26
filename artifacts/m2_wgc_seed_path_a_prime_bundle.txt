@@ -1,0 +1,5 @@
+bundle=m2_wgc_seed_path_a_prime
+ticket=SEED-PATHA-PRIME-FAIL
+written_at=2026-10-26 15:33:30 Asia/Taipei
+oneline_file=artifacts/m2_wgc_seed_path_a_prime_ONELINE.txt
+result=docs/m2_wgc_seed_path_a_prime_result.md

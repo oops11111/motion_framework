@@ -1,0 +1,8 @@
+# m2_h5_seed_s1_summary.txt
+session=1 pid=62560 calib=1.000000 eps=5.0
+armA n_valid=12 med_r=1.0000 max_r=1.0000 any_r_ge_2=False attempts=12
+armB_control n_valid=12 med_r=0.0000 (expected≈0; not counted in 3/3)
+shadow_eliminated=yes (A seed from WGC*calib, NOT mf_spring_at)
+SESSION_PASS_CANDIDATE
+PASS_WINDOW=[0.8,1.2] STRONG_NO_SAMPLE_GE_2=yes
+===== M2-H5-SEED PROBE DONE =====

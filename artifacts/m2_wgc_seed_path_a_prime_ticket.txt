@@ -1,0 +1,7 @@
+TICKET=SEED-PATHA-PRIME-FAIL
+pass_sessions=0/3
+valid_sessions=3 (s1 FAIL, s2 FAIL, s3 REPLACEMENT FAIL; prior s3 INVALID hang_cap archived)
+SEED-TRUTH-CONFLICT=HUNG (比过 ∧ smoke 双灭 on s2+s3)
+composition PRE=POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+path=PATHB-A′ P-VS=ON alpha_v=0.30 eps_before_vs=true IV=calib*v_s
+WRITTEN_AT=2026-10-26 15:33:30 Asia/Taipei

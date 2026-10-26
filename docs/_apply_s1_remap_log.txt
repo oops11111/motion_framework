@@ -1,0 +1,24 @@
+apply S1 remap (ruling A1/B, docs/notion_s1_remap_ab.md) — 2026-10-20 22:1x Asia/Taipei
+backups: docs/*.bak_s1remap_20261020_221054 (deepseek_m1b_spec, notion_brief, usage, claude_m1b_spec, api); /tmp/composition.h.orig (not persisted)
+
+CODE code/composition.h
+  old sha256 030e3a8d40672f6f461785b6fa885d2c3c24ca483c3722f8e0b048fac8daeb82
+  new sha256 a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+  - S1 header comment -> v2 (Period = 1/omega0 = r/(2pi)); kTwoPi, kPeriodPerResponse
+  - MapSpringToCompositor(p, periodScale=1/(2pi), dampingScale=1): single mapping fn, asserts response>0, cites #36/#41
+  - SpringMapping defaults periodScale=1/(2pi), ToCompositor delegates to MapSpringToCompositor (calibration knob kept for #41b)
+  - SimulateSpring reference: spring.h response = 2pi*Period (compositor semantics)
+  - SpringAnimation default period = 0.35/(2pi)
+  - MappedSpringGate(c): post-mapping Period>0 (defensive) + zeta>1 not lowered (on mapped DampingRatio);
+    authoring response>0 gate kept BEFORE mapping (spring.h clamps to 1e-4 and would hide 0/neg)
+  - added #include <cassert>
+TESTS code/composition_tests.cpp: 2 expectations updated (0.3/2pi, 0.15/2pi); new TestS1RemapV2
+RESULTS (g++ -std=c++17 -O1 -Wall -Wextra): timeline 422/0, tokens 730/0, controller 236/0, composition 2305/0 (was 2076/0), fm_capi_test 23/0 (cwd=code/capi), software_demo_test 10/0
+
+DOCS
+  deepseek_m1b_spec.md: appended B block 1 (S1 v2 / R-1 v2 / M1b v2); v1 Period=response normative lines annotated superseded (L46,236,251,267,273,283,336,385); SpringMapping code listing updated
+  notion_brief.md: B block 2 inserted as section before "## 5." + new sha line; §3.3 rewritten to v2; §4 R-1 28.6/12.1 struck as void
+  usage.md: B block 3 inserted before footer
+  claude_m1b_spec.md: HTML comment after "H1 settled" line pointing to ruling + sha
+  api.md: SpringMapping snippet + L556 S1 status
+NOT TOUCHED (historical): workbuddy_*.md, notion_*_ab(c).md rulings, claude_m1b_deepseek_review.md, claude_m1b_artifacts/, archive/, *_raw*, artifacts/, deepseek_m1b_spec.md 派题 #6 log (L1236) and revision log (L403)

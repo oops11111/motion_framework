@@ -1,0 +1,7 @@
+.DS_Store
+*.user
+bin/
+obj/
+.vs/
+__pycache__/
+.venv/

@@ -1,0 +1,66 @@
+# win_r2_delta_offline.txt — 派题 #31 R-2 增量 Δ 离线补算
+# wall=2026-10-20 17:00:21 Asia/Taipei; offline only; NO device re-run; composition.h UNCHANGED
+#
+# 定义（docs/workbuddy_next_r2_delta.md）：
+#   增量 Δ = |打断时刻 单τ |Δpos|| − |同一相对时刻、不打断基线相对 spring.h/影子 的残差|
+#   门槛：Δ ≤ 0.5 px → 支撑「R-2 = 纯 R-1 衍生」；Δ > 0.5 px → 需重开 R-2
+
+===== 输入 =====
+打断 #25 artifacts/win_interrupt_seed_probe.txt：
+  seedLead=0.0  : τ=98ms  el/wallRel=162.0ms  WGC_pos=252.96  seed=225.35  |Δpos|=27.612
+  seedLead=16.7 : τ=96ms  el/wallRel=154.3ms  WGC_pos=250.11  seed=230.02  |Δpos|=20.093
+  （单τ：PRE-only best-τ，post 冻结；|Δpos|=|seed − WgcAt(tIntRel)|，WgcAt 在 tArr=tIntRel+τ 插值）
+
+不打断基线候选：
+  - win_m12_log.txt / win_m11_log.txt 场景 A：Period=0.32 ζ=0.78 0→240 IVel=0 全程
+  - win_m13_log.txt MAP a/A：同映射 bestτ=250ms RMS_shape=28.564%（仅聚合，无逐点）
+  - win_rate_fold_probe.txt rate=1：IVel=400 ≠ 0，不作主基线
+
+===== 方法 A（主）：同会话单τ、同一相对 content 时刻 =====
+说明：#25 在打断瞬间 WGC_pos 已按该跑的 PRE-only τ 对齐；
+seedLead=0 时 seed = B1 spring.h::At(tIntRel)，故 |Δpos| 本身就是「不打断 B1 基线」在该时刻的 τ 对齐残差。
+
+seedLead=0:
+  打断 |Δpos|     = 27.612
+  基线残差        = 27.612   （同式：|spring(tIntRel) − WGC_τ(tIntRel)|）
+  增量 Δ          = 27.612 − 27.612 = 0.000 px
+
+seedLead=16.7:
+  打断 |Δpos|     = 20.093   （|spring(tIntRel+16.7ms)=230.02 − WGC_τ=250.11|）
+  基线残差        = |trip shadow_x@el=154ms − WGC_pos|
+                  = |220.5 − 250.11| = 29.610 px
+                  （同一墙钟/同一 content 时刻的 B1 影子，不用 seedLead）
+  增量 Δ          = 20.093 − 29.610 = −9.517 px
+
+（交叉：around-int t=−8ms seedLead=0：|wgc−mdl|=|250.5−220.2|=30.3 ≈ 打断点 27.6，同量级。）
+
+===== 方法 B（交叉）：m12/m11 全程 A，bestτ 对齐后同一 content 时刻 =====
+复现 m12 TrajCheck：A CompStart←QPC 相对 WGC srt_rel；τ∈[−250,250]ms step2；window=1.2s
+  m12: bestτ=250ms RMS=65.99 DIP (27.50% travel) — 对齐 suite REPORT 5 / #13 a/A ≈27.5–28.6%
+  m11: bestτ=250ms RMS=68.94 DIP (28.73% travel)
+
+点残差 |WGC(tArr=tc+τ) − spring.h(tc)|（插值）：
+  m12 tc=162ms τ=250: |89.88 − 225.33| = 135.45
+  m12 tc=154ms τ=250: |87.27 − 220.33| = 133.06
+  m11 tc=162ms τ=250: |84.81 − 225.33| = 140.52
+  m11 tc=154ms τ=250: |82.39 − 220.33| = 137.94
+
+若硬套方法 B（注意：τ 制度与 #25 PRE-only τ≈96–98ms 不同，且全程 A 合成器峰值≈1.2s，与 spring.h 峰值≈0.25s 的 R-1 形状差在点上放大）：
+  Δ_B(0)    ≈ 27.612 − 135.45 = −107.84 px
+  Δ_B(16.7) ≈ 20.093 − 133.06 = −112.97 px
+均 ≪ 0.5；方向与方法 A 一致（打断 |Δpos| 未高出不打断基线）。
+
+不确定度：
+  - 方法 A：seedLead=0 为恒等式（Δ≡0）；seedLead=16.7 的基线用 trip 行 shadow_x=220.5（与 spring@154ms≈220.33 一致，差 <0.2px）。
+    因 τ>0，content 近打断处的 WGC 采样墙钟可能已越过 interrupt（present-lag），残差含「合成器续跑/B2 可视」成分；
+    但两 seedLead 共用同一套单τ 定义，差分仍有效。估计点残差不确定度 ≲ 2–3 px（帧插值 + shadow 四舍五入）。
+  - 方法 B：与 #25 单τ 窗口不同，点残差 130+ px 反映 R-1 固有形状差，不宜与 |Δpos|≈20–28 直接比绝对值；
+    仅作「打断未额外超出 R-1 量级」的方向性交叉。未重跑真机。
+
+未采用：win_rate_fold rate=1（IVel=400）；m13 无逐点采样（仅 RMS_shape%=28.564%）。
+
+===== 结论 =====
+增量Δ(seedLead=0)=0.000；Δ(16.7)=−9.517；相对 0.5px 门槛 → 支撑「纯 R-1 衍生」。
+
+（方法 B 交叉同结论。composition.h 未改。）
+===== R2 DELTA OFFLINE DONE =====

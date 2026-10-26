@@ -1,0 +1,10 @@
+ticket=H5-DENOM-VERIFY-FAIL
+reason=smoke_fail_all_sessions: none of score s1/s2/s3 reached t060 fwd+rev ≥17/20 (KEEP thr=max(20,0.05*|v_ref|); NO raise thr / NO lower 17/20)
+H5_ratio=all_three_ratioOk=True (med_r in [0.8,1.2], no r_i≥2.0; denom=v_pre)
+ctrl_KEEP=all_three basePass ∧ IVel0_t060_both_FAIL
+C1_frozen_exact=1.3358225694150683 ≠0.7510829456
+path=PATHB-A Aprime=OFF P-VS=OFF
+composition_PRE=POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+land=NO
+label_note=H5-DENOM-VERIFY-FAIL only; NOT Δv-PASS; NOT SEED-*-PASS; NOT SEED-TRUTH-PASS; NOT rewrite H5-DENOM-PASS landed; seven hashes NOT flipped
+written_at=2026-10-26 17:24:08 Australia/Perth

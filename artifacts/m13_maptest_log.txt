@@ -1,0 +1,89 @@
+13.942ms 派题 #8 MotionSoftDemo (pid 22740); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-20 09:24:06.597; OS=10.0.19045.0; QPC freq=10000000
+20.382ms load_tokens ok
+35.041ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.441ms MAPTEST requested (--maptest); starts in 1500 ms (派题 #13 Period/ζ mapping sweep)
+47.549ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+48.550ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+1052.271ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1551.352ms ===== MAPTEST START (派题 #13 Period/ζ mapping; thresholds NOT relaxed) =====
+1553.586ms MAPTEST focus hwnd=0xBA10D4
+4889.024ms DWMFLUSH probe: calls=200 total=3316.4 ms lastHr=0x00000000 fails=0 interval mean=16.582 min=1.054 p50=16.659 p95=16.900 max=17.578 ms
+4889.031ms DWMFLUSH verdict: ≈60Hz vsync | timer tiers k*15.625±1.0 (k=1,2): k1=28.5% k2=0.0% total=28.5% | vsync 1000/60.020=16.661±1.0 ms: 99.5%, p95=16.900 | rule: timer-driven if timer>=80%; else ≈60Hz vsync if vsync>=80% and p95<=18 ms; else unknown
+4891.488ms DWMFLUSH raw intervals ms: 1.054,16.491,17.498,16.674,16.611,16.644,16.502,16.720,15.939,16.790,16.538,16.663,16.702,16.545,16.724,16.602,16.721,16.671,16.632,16.670,16.666,16.910,16.638,16.429,16.669,16.692,16.762,16.501,16.736,16.801,16.560,16.586,16.676,16.758,16.540,16.659,16.850,16.464,16.679,16.657,16.657,16.875,16.440,16.674,16.640,16.672,16.653,16.676,16.901,16.429,16.689,16.684,16.618,16.673,16.628,16.648,16.703,16.612,16.891,16.434,16.694,16.662,16.633,16.653,16.893,16.533,16.604,16.686,16.706,16.553,16.672,16.643,16.673,16.673,16.675,17.578,16.240,16.328,16.666,16.472,16.763,16.538,16.842,16.610,16.648,16.813,16.662,16.523,16.598,16.731,16.743,16.547,16.578,16.744,16.584,16.745,16.676,16.561,16.652,16.640,16.735,16.634,16.642,16.663,16.627,16.674,16.659,16.709,16.662,16.683,16.627,16.674,16.629,16.628,16.687,16.605,16.726,16.648,16.931,16.672,16.404,16.818,17.271,16.280,16.663,16.478,16.422,16.666,16.670,16.682,16.656,16.815,16.488,16.735,16.639,16.638,16.657,16.610,16.952,16.570,16.689,16.464,16.908,16.602,16.502,16.720,16.670,16.598,16.660,16.651,16.597,16.659,16.792,16.566,16.701,16.627,16.689,16.651,16.900,16.680,16.686,16.417,16.703,16.560,16.809,16.570,16.625,16.661,16.664,16.682,16.645,16.883,16.410,16.810,16.482,16.921,16.605,16.653,16.631,16.659,16.518,16.683,16.639,16.645,16.671,16.894,16.765,16.425,16.837,16.440,16.745,16.634,16.633,16.854,16.421,16.723,17.364,15.938,16.636,16.659
+5018.953ms WGC CreateForWindow(hwnd=0xBA10D4) hr=0x00000000 item=960x725 scale=1
+5020.525ms MODE -> 合成器路径 (maptest): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+5022.186ms COMP reset[maptest start] StopAnimation + Translation.X:=0.0000
+5432.313ms COMP reset[maptest cal 37] StopAnimation + Translation.X:=37.0000
+5837.819ms COMP reset[maptest cal end] StopAnimation + Translation.X:=0.0000
+6243.266ms MAPTEST cal: cx0=100.473 cx37=137.473 pxPerDip=1.0000
+6243.618ms MAPTEST (b) formula: SettleTime(T₀,ζ=0.78,0→240)=response=0.32 → T₀=0.151243s (check settle=0.320000s); spring.h response IS already T₀ — this is counterfactual settle-derived mapping
+6243.632ms MAPTEST (a) Period=response=0.32s ζ=0.78 (S1 current)
+6243.635ms MAPTEST reference: A=spring.h(0.32,0.78); E=spring.h(0.16,0.78) — fixed; compositor Period/ζ vary
+6245.004ms COMP reset[a A rest] StopAnimation + Translation.X:=0.0000
+6608.583ms COMP spring [MAP a A Period=0.3200 ζ=0.78] gen=1 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.32s DampingRatio=0.78 shadowSettle=0.6281s qpc=6020198501614 TryGet=null [NaturalMotion: controller unsupported]
+9435.572ms MAPTEST a/A: Period=0.3200 ζ=0.78 ref=(0.32,0.78) n=93 peakX=244.5 bestτ=250.0ms RMS_shape=28.564%
+9436.985ms COMP reset[a after A] StopAnimation + Translation.X:=0.0000
+9798.592ms COMP spring [MAP a E Period=0.1600 ζ=0.78] gen=2 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.16s DampingRatio=0.78 shadowSettle=0.3367s qpc=6020230417351 TryGet=null [NaturalMotion: controller unsupported]
+11403.858ms MAPTEST a/E: Period=0.1600 ζ=0.78 ref=(0.16,0.78) n=81 peakX=244.6 bestτ=244.0ms RMS_shape=12.067%
+11403.914ms COMP reset[a after E] StopAnimation + Translation.X:=0.0000
+11755.086ms COMP reset[b_settle_inv A rest] StopAnimation + Translation.X:=0.0000
+12114.251ms COMP spring [MAP b_settle_inv A Period=0.1512 ζ=0.78] gen=3 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.1512430912686562s DampingRatio=0.78 shadowSettle=0.3200s qpc=6020253574304 TryGet=null [NaturalMotion: controller unsupported]
+14920.249ms MAPTEST b_settle_inv/A: Period=0.1512 ζ=0.78 ref=(0.32,0.78) n=93 peakX=244.6 bestτ=228.0ms RMS_shape=9.011%
+14920.296ms COMP reset[b_settle_inv after A] StopAnimation + Translation.X:=0.0000
+15276.568ms COMP spring [MAP b_settle_inv E Period=0.0756 ζ=0.78] gen=4 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.0756215456343281s DampingRatio=0.78 shadowSettle=0.1707s qpc=6020285197470 TryGet=null [NaturalMotion: controller unsupported]
+16880.595ms MAPTEST b_settle_inv/E: Period=0.0756 ζ=0.78 ref=(0.16,0.78) n=81 peakX=244.5 bestτ=148.0ms RMS_shape=6.523%
+16880.636ms COMP reset[b_settle_inv after E] StopAnimation + Translation.X:=0.0000
+17245.419ms MAPTEST best of (a)/(b) by mean(A,E) shape RMS: b_settle_inv (a=20.316% b=7.767%) → Period=0.1512 for ζ nudge
+17247.150ms COMP reset[c_b_settle_inv_z0p73 A rest] StopAnimation + Translation.X:=0.0000
+17611.560ms COMP spring [MAP c_b_settle_inv_z0p73 A Period=0.1512 ζ=0.73] gen=5 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.1512430912686562s DampingRatio=0.73 shadowSettle=0.3390s qpc=6020308547048 TryGet=null [NaturalMotion: controller unsupported]
+20416.630ms MAPTEST c_b_settle_inv_z0p73/A: Period=0.1512 ζ=0.73 ref=(0.32,0.78) n=93 peakX=248.5 bestτ=230.0ms RMS_shape=8.575%
+20416.674ms COMP reset[c_b_settle_inv_z0p73 after A] StopAnimation + Translation.X:=0.0000
+20775.758ms COMP spring [MAP c_b_settle_inv_z0p73 E Period=0.0756 ζ=0.73] gen=6 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.0756215456343281s DampingRatio=0.73 shadowSettle=0.1809s qpc=6020340189278 TryGet=null [NaturalMotion: controller unsupported]
+22378.633ms MAPTEST c_b_settle_inv_z0p73/E: Period=0.0756 ζ=0.73 ref=(0.16,0.78) n=81 peakX=248.5 bestτ=166.0ms RMS_shape=6.293%
+22378.674ms COMP reset[c_b_settle_inv_z0p73 after E] StopAnimation + Translation.X:=0.0000
+22735.990ms COMP reset[c_b_settle_inv_z0p83 A rest] StopAnimation + Translation.X:=0.0000
+23093.889ms COMP spring [MAP c_b_settle_inv_z0p83 A Period=0.1512 ζ=0.83] gen=7 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.1512430912686562s DampingRatio=0.83 shadowSettle=0.3041s qpc=6020363370164 TryGet=null [NaturalMotion: controller unsupported]
+25909.977ms MAPTEST c_b_settle_inv_z0p83/A: Period=0.1512 ζ=0.83 ref=(0.32,0.78) n=93 peakX=242.5 bestτ=246.0ms RMS_shape=9.573%
+25910.022ms COMP reset[c_b_settle_inv_z0p83 after A] StopAnimation + Translation.X:=0.0000
+26266.062ms COMP spring [MAP c_b_settle_inv_z0p83 E Period=0.0756 ζ=0.83] gen=8 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.0756215456343281s DampingRatio=0.83 shadowSettle=0.1621s qpc=6020395092366 TryGet=null [NaturalMotion: controller unsupported]
+27882.152ms MAPTEST c_b_settle_inv_z0p83/E: Period=0.0756 ζ=0.83 ref=(0.16,0.78) n=81 peakX=242.5 bestτ=156.0ms RMS_shape=7.074%
+27882.193ms COMP reset[c_b_settle_inv_z0p83 after E] StopAnimation + Translation.X:=0.0000
+28238.517ms COMP reset[c_b_settle_inv_z0p68 A rest] StopAnimation + Translation.X:=0.0000
+28598.217ms COMP spring [MAP c_b_settle_inv_z0p68 A Period=0.1512 ζ=0.68] gen=9 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.1512430912686562s DampingRatio=0.68 shadowSettle=0.3615s qpc=6020418413985 TryGet=null [NaturalMotion: controller unsupported]
+31403.778ms MAPTEST c_b_settle_inv_z0p68/A: Period=0.1512 ζ=0.68 ref=(0.32,0.78) n=93 peakX=253.0 bestτ=206.0ms RMS_shape=8.050%
+31403.826ms COMP reset[c_b_settle_inv_z0p68 after A] StopAnimation + Translation.X:=0.0000
+31760.800ms COMP spring [MAP c_b_settle_inv_z0p68 E Period=0.0756 ζ=0.68] gen=10 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.0756215456343281s DampingRatio=0.68 shadowSettle=0.1930s qpc=6020450039736 TryGet=null [NaturalMotion: controller unsupported]
+33366.895ms MAPTEST c_b_settle_inv_z0p68/E: Period=0.0756 ζ=0.68 ref=(0.16,0.78) n=81 peakX=253.0 bestτ=110.0ms RMS_shape=6.018%
+33366.937ms COMP reset[c_b_settle_inv_z0p68 after E] StopAnimation + Translation.X:=0.0000
+33725.237ms COMP reset[c_b_settle_inv_z0p88 A rest] StopAnimation + Translation.X:=0.0000
+34081.242ms COMP spring [MAP c_b_settle_inv_z0p88 A Period=0.1512 ζ=0.88] gen=11 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.1512430912686562s DampingRatio=0.88 shadowSettle=0.2912s qpc=6020473244180 TryGet=null [NaturalMotion: controller unsupported]
+36896.992ms MAPTEST c_b_settle_inv_z0p88/A: Period=0.1512 ζ=0.88 ref=(0.32,0.78) n=93 peakX=240.5 bestτ=238.0ms RMS_shape=10.199%
+36897.030ms COMP reset[c_b_settle_inv_z0p88 after A] StopAnimation + Translation.X:=0.0000
+37254.886ms COMP spring [MAP c_b_settle_inv_z0p88 E Period=0.0756 ζ=0.88] gen=12 -> 240.0000 InitialValue=0.0000 InitialVelocity=0.0000 Period=0.0756215456343281s DampingRatio=0.88 shadowSettle=0.1551s qpc=6020504980223 TryGet=null [NaturalMotion: controller unsupported]
+38858.221ms MAPTEST c_b_settle_inv_z0p88/E: Period=0.0756 ζ=0.88 ref=(0.16,0.78) n=81 peakX=240.5 bestτ=164.0ms RMS_shape=7.448%
+38858.262ms COMP reset[c_b_settle_inv_z0p88 after E] StopAnimation + Translation.X:=0.0000
+39216.747ms MAPTEST ===== RMS TABLE (shape = best-τ RMS % of travel 240; ref=spring.h canonical) =====
+39216.758ms MAPTEST | variant | scen | Period | ζ | n | peakX | bestτ_ms | RMS_shape% | ≤1%? |
+39223.225ms MAPTEST | c_b_settle_inv_z0p68 | A | 0.1512 | 0.68 | 93 | 253.0 | 206.0 | 8.050 | no |
+39223.236ms MAPTEST | c_b_settle_inv_z0p73 | A | 0.1512 | 0.73 | 93 | 248.5 | 230.0 | 8.575 | no |
+39223.238ms MAPTEST | b_settle_inv | A | 0.1512 | 0.78 | 93 | 244.6 | 228.0 | 9.011 | no |
+39223.240ms MAPTEST | c_b_settle_inv_z0p83 | A | 0.1512 | 0.83 | 93 | 242.5 | 246.0 | 9.573 | no |
+39223.241ms MAPTEST | c_b_settle_inv_z0p88 | A | 0.1512 | 0.88 | 93 | 240.5 | 238.0 | 10.199 | no |
+39223.243ms MAPTEST | a | A | 0.3200 | 0.78 | 93 | 244.5 | 250.0 | 28.564 | no |
+39223.245ms MAPTEST | c_b_settle_inv_z0p68 | E | 0.0756 | 0.68 | 81 | 253.0 | 110.0 | 6.018 | no |
+39223.246ms MAPTEST | c_b_settle_inv_z0p73 | E | 0.0756 | 0.73 | 81 | 248.5 | 166.0 | 6.293 | no |
+39223.249ms MAPTEST | b_settle_inv | E | 0.0756 | 0.78 | 81 | 244.5 | 148.0 | 6.523 | no |
+39223.251ms MAPTEST | c_b_settle_inv_z0p83 | E | 0.0756 | 0.83 | 81 | 242.5 | 156.0 | 7.074 | no |
+39223.252ms MAPTEST | c_b_settle_inv_z0p88 | E | 0.0756 | 0.88 | 81 | 240.5 | 164.0 | 7.448 | no |
+39223.261ms MAPTEST | a | E | 0.1600 | 0.78 | 81 | 244.6 | 244.0 | 12.067 | no |
+39225.097ms MAPTEST BEST A: c_b_settle_inv_z0p68 Period=0.1512 ζ=0.68 RMS_shape=8.050%
+39225.099ms MAPTEST BEST E: c_b_settle_inv_z0p68 Period=0.0756 ζ=0.68 RMS_shape=6.018%
+39225.873ms MAPTEST CONCLUSION: no variant reaches ≤1% shape RMS for A or E → 「合成器弹簧与 spring.h 固有差异」risk (parameter mapping exhausted for this round)
+39225.892ms MAPTEST ζ nudge c_b_settle_inv_z0p73: mean RMS=7.434% vs base b_settle_inv=7.767% → Δ=-0.333 pp (slight drop)
+39225.895ms MAPTEST ζ nudge c_b_settle_inv_z0p83: mean RMS=8.323% vs base b_settle_inv=7.767% → Δ=0.556 pp (no drop)
+39225.899ms MAPTEST ζ nudge c_b_settle_inv_z0p68: mean RMS=7.034% vs base b_settle_inv=7.767% → Δ=-0.733 pp (slight drop)
+39225.902ms MAPTEST ζ nudge c_b_settle_inv_z0p88: mean RMS=8.823% vs base b_settle_inv=7.767% → Δ=1.056 pp (no drop)
+39241.498ms ===== MAPTEST DONE =====
+40043.124ms MAPTEST auto-close window
+40047.847ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=1 unsubs=1; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+40087.511ms SHUTDOWN reason=Page.Unloaded: already done -> no-op

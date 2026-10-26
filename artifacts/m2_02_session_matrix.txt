@@ -1,0 +1,4 @@
+﻿binary=MotionSoftDemo machine=DESKTOP-K93N3P8 provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d
+sess=1 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 round=1 appPID=10404 dotnetPID=56136 saw=True nettraceBytes=0 verdict=PASS_CANDIDATE
+sess=2 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 round=2 appPID=62428 dotnetPID=52260 saw=True nettraceBytes=0 verdict=PASS_CANDIDATE
+sess=3 binary=MotionSoftDemo.exe machine=DESKTOP-K93N3P8 round=3 appPID=12912 dotnetPID=54356 saw=True nettraceBytes=0 verdict=PASS_CANDIDATE

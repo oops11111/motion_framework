@@ -1,0 +1,37 @@
+# win_k3_rest_probe.txt — 派题 #28 K3 rest: Progress+Delay, |rate|>16, Progress+reverse
+# wall=2026-10-20 15:34:23 Asia/Taipei; OS=10.0.19045.0
+# Linear KeyFrame 0→100 Duration=1000ms; CreateAnimationController + 3-arg Start
+# Note #22: Progress=0.5 → WGC≈90 (nonlinear); do not expect linear midpoint
+# NO composition.h change
+DwmFlushVerdict=≈60Hz vsync
+WGC start hr=0x00000000
+cal: cx0=100.488 cx37=137.488 pxPerDip=1.0000
+===== 1) Progress=0.5 during DelayTime=300ms =====
+  START Delay=300ms Progress=0.0000 rate=1.0000
+  Pause+Progress=0.5 during delay (xPre≈0.0; ctrl.Progress=0.5000)
+  duringDelay after seek≈90.0; Resume
+  afterResumePlay≈99.0
+  verdict1=SEEK_HONORED_IN_DELAY (x≈90; #22-like warp if ~90)
+===== 2) PlaybackRate=±20 (doc range [−16,16]) =====
+  set rate=20 → readback=16 (CLAMP@16)
+  START rate=16
+  visualArrive≈99ms (ideal rate20≈50ms; rate16≈62ms; rate1=1000ms)
+  set rate=-20 → readback=-16 (CLAMP@-16)
+  START Progress=1 rate=-16
+  nearEnd≈88.0 late≈0.0 (expect reverse toward 0 if rate negative honored)
+===== 3) PlaybackRate=-1 + Progress=0.75 =====
+  Pause+Progress=0.75+rate=-1 (ctrl Progress=0.7500 rate=-1.0000)
+  Resume reverse from x≈97.5
+  t≈150ms x=93.6
+  t≈300ms x=83.5
+  t≈450ms x=37.0
+  t≈600ms x=0.0
+  t≈750ms x=0.0
+  t≈900ms x=0.0
+  startX=97.5 late=0.0 → REVERSE_FROM_PROGRESS_OK
+===== SUMMARY =====
+| 1 Progress+Delay | during=90.0 after=99.0 | SEEK_HONORED_IN_DELAY (x≈90; #22-like warp if ~90) |
+| 2 |rate|>16 | +20 rb=16 arrive=99ms; -20 rb=-16 | rate+20:CLAMP@16+arrive99ms; rate-20:CLAMP@-16+REVERSE_OK |
+| 3 Progress=0.75 + rate=-1 | REVERSE_FROM_PROGRESS_OK |
+CONCLUSION: 1)SEEK_HONORED_IN_DELAY (x≈90; #22-like warp if ~90); 2)rate+20:CLAMP@16+arrive99ms; rate-20:CLAMP@-16+REVERSE_OK; 3)REVERSE_FROM_PROGRESS_OK. composition.h UNCHANGED.
+===== K3 REST PROBE DONE =====

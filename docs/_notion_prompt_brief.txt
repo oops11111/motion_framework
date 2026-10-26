@@ -1,0 +1,49 @@
+你是文档整理助手。请根据下面「已定事实与出处」，产出一份**中文项目说明页要点**，要求：
+1) 结构清晰，简洁到可直接贴进 Notion 页面；
+2) 覆盖：架构、里程碑、已知约束；
+3) 每条关键事实尽量标注出处文件名；
+4) 不确定处明确标「待验证」；
+5) 用 Markdown；不要编造材料里没有的数字或结论。
+
+--- 项目一句话 ---
+Windows 桌面端动效框架（FluidMotion）：为 WinUI 3 提供合成器驱动的过渡/微交互，可打断且保留速度；设计侧经 Figma motion tokens / Rive；首发宿主 WinUI 3。
+
+--- 架构（出处：summary.md / plan.md） ---
+- 执行层：WinUI 3 / Windows.UI.Composition；常规过渡在 DWM 合成线程跑。
+- 引擎：C++/WinRT，对外 WinMD → C#；不用 Rust；公开接口不混 C ABI（Rive/Skia 内部边界除外）。
+- 动画模型：声明式时间线；三次贝塞尔 + 命名缓动 token；闭式解弹簧，改目标保留速度；默认可打断。
+- 复杂矢量：Rive → CompositionDrawingSurface，表面位移/缩放/淡入由合成器属性驱动。
+- 设计到代码：Figma 插件产 JSON motion tokens；热重载预览；CI 校验 token；黄金帧回归。
+- 宿主：主接口 GetCompositionVisual()；首发附不被支持的 HWND 参考示例；EmbedToHwnd 推迟 V1.5（disputes.md）。
+- 备选：若 Rive/D3D 验证失败 → Skia + swapchain（token/引擎不变）。
+
+--- 里程碑（出处：plan.md / explore_round.md） ---
+- 总工期裁决建议：约 6 全职 × 30–34 周（技术验证后重算）。
+- M0 技术验证（约第 2 周）：Rive 进合成表面、120Hz 拖动错位、指针属性集、ALLOW_TEARING、管线延迟。
+- M1 核心（约第 10 周）：数学/时间线/token 无界面可测；分发器降级到合成器动画。
+- 已裁决拆分：M1a（纯逻辑已过）/ M1b（合成器真机）并行；任务 6 与 M0 可并行（explore_round.md Q2）。
+- M2 Alpha（约 16 周）→ M3 Rive+首试点（约 22）→ M4 Beta（约 28）→ M5 1.0（约 32–34）。
+- 探索轮建议：先 DeepSeek 阶段 0–2（golden + 软件路径演示），并行补 composition 测试；合成器单属性试点对齐 Gemini Day2。
+
+--- 当前定案 / 真机进展（出处：explore_round.md / workbuddy_soft_demo.md / deepseek_m1b_spec.md / claude_m1b_spec.md） ---
+- Q1=A：双侧测试证据（Linux g++ + Windows MSVC cl），日志在 artifacts/。
+- Q2：拆 M1a/M1b 并行。
+- Q3：仅软件路径即可算「可演示」（不必先有合成器 lowering）。
+- 软件路径：MotionSoftDemo（WinUI3 / WASDK 2.5.1）已 build+启动；假 Tick / 后接真实 C-ABI（workbuddy_soft_demo.md）。
+- 弹簧 Period 定案：Period = response（无阻尼周期 UNDAMPED）；DampingRatio = ζ。证据：response=0.32s、ζ=0.78 时峰峰≈0.511s（workbuddy_soft_demo.md / deepseek_m1b_spec.md 亮屏复测）。不要用 Period=response/√(1−ζ²)。
+- 弹簧 NaturalMotion：TryGetAnimationController 对 NaturalMotion（弹簧）恒为 null；AnimationController 仅适用于 KeyFrameAnimation → 不能靠 PlaybackRate；rate 折进 Period 与 InitialVelocity（已真机核实）。
+- 亮屏：DwmFlush / 合成 ≈60Hz vsync；但 UI 线程 CompositionTarget.Rendering 仍约 p50≈31ms（~32Hz）——属 UI 节流，非熄屏问题；软件路径物理积分应用引擎稳态时钟（workbuddy_soft_demo.md 派题 #9）。
+- offsetX/Y：XAML 元素须 Translation.X/Y + SetIsTranslationEnabled（Offset 会被布局覆盖）。
+- Claude M1b：单属性试点（opacity keyframe+bezier；offsetX spring 可打断）；Capabilities 需关掉未支持的 partialStart/rate/reverse。
+
+--- 已知约束 / 分歧裁决（出处：disputes.md / summary.md） ---
+- HWND 完整 EmbedToHwnd 不首发；Airspace 等硬限制。
+- 帧预算按刷新间隔比例；8.3ms 是每阶段失败红线；P95 同时卡绝对上限+相对回退；P99 丢帧率初期告警。
+- Rive 跟随指针延迟无法普遍消除；写成设计约束，延迟以实测为准。
+- GetPointerPositionPropertySet 在 WinUI3 是否可用、ALLOW_TEARING、管线延迟：待验证。
+- ζ>1、Period 极小钳制、InitialVelocity 单位等：部分待验证。
+
+--- 协作（出处：collab_roster.md） ---
+协调：动效框架 bot。设计/探索 Gemini；实现/审阅 Claude；复评 DeepSeek；本机执行 workbuddy；文档整理 Notion AI。不花钱、不改各 bot 账号。
+
+请输出完整「项目说明页要点」正文即可。

@@ -1,0 +1,59 @@
+# p16_52_a_v2_gates.txt — A v2 闸门（采数前写死；采数后不得改）
+# LOCKED_AT=2026-10-24 20:33:42 AWST (Australia/Perth)
+# authority=docs/claude_r3_51_review.md FINAL; brief=docs/workbuddy_next_r3_52.md
+# composition.h sha256 expect=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+# box composition.h sha256 pre=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418 match=TRUE
+# 本文件一经落盘即为闸门原文；后续 p16_52 汇总只引用，不得改写本闸门条文。
+
+## 总则
+- 新鲜 A×3；PASS 要求 **3/3** 会话全过。
+- 同会话交错 Sup / Bv / base（Stage B 短阵即可；不得只跑 A）。
+- 不与 #49 横比；不复活 S2；不改 composition.h。
+- 撞搜索界 = **INVALID**（不得记为 PASS/FAIL）。
+- 任会话再出 ≈30 c 模态 → 硬停 STOP S1（见 FINAL）。
+
+## A1a（不变）
+- τ0 ∈ {0.0, 16.7, 21.8, 33.3, 50.0} ms；每格 ≥5 reps。
+- 拟合：IV-rezero + seeded 模型；残差 RMS。
+- 闸门：逐 τ0 的 RMS **中位** ≤ N_h=0.41（#47 t060rev）。
+- 会话 A1a=PASS 当且仅当 5 个 τ0 格全 PASS。
+
+## A1b（改：crop origin=220）
+- amp ∈ {+120, +240, −120, −240}；每档 ≥5 reps。
+- 负幅度：Translation 起点 origin=220（RAW 仍相对 cal cx0）；正幅度 origin=0。
+- 闸门：每档 (非出画) 且 RMS 中位 ≤ N_h=0.41。
+- 出画判定：amp<0 且 |x_last − (origin+amp)| 过大或样本过少（沿用 #51 Part1 / p51_part1 口径）。
+- 会话 A1b=PASS 当且仅当 4 档全 PASS。
+
+## A1c（改：宽 ε 界 + 撞界 INVALID + 双模显式判据）
+- 协议：d0:0→240 运行中叠加 d1:0→−120于 tInt≈60 ms；≥5 reps（#52 harness 可加到 12 以利 P1）。
+- ε 搜索界（宽）：ε ∈ [−40.0, +40.0] ms，步长 0.5 ms。
+- **撞界规则**：若最优 ε 落在界端点（|ε−(−40)|<1e-6 或 |ε−(+40)|<1e-6），该 trial=**INVALID**；会话若存在任一 INVALID trial，则 A1c=**INVALID**（不得记 PASS/FAIL）。
+- 有效 trial：未撞界者。对其记录 ε_fit 与 RMS。
+- **双模显式判据**（写死）：
+  1. 模态中心 μ+ = +6.5 ms，μ− = −10.0 ms；归属半径 R = 4.0 ms。
+  2. 将每个有效 ε_fit 归入 nearest({μ+, μ−}) 若距离 ≤ R，否则归入 OTHER。
+  3. A1c=PASS 当且仅当同时满足：
+     (a) 无 INVALID trial；有效 trial 数 ≥5；
+     (b) OTHER 计数 = 0（所有有效 ε 落在两模之一）；
+     (c) 全体有效 trial 的 RMS 中位 ≤ N_h=0.41；
+     (d) 若两模均非空：|median(ε|μ+) − median(ε|μ−)| ∈ [14.0, 19.0] ms（≈1 帧）；若仅单模非空：亦允许（单模稳定）。
+  4. 不满足 (a)–(d) 且无 INVALID → A1c=FAIL。
+- 禁止用「全体 ε 中位」掩盖双模；必须按上列分模报告 n+/n−/OTHER。
+
+## A2（不变）
+- path=PS；≥4 trials（Sup 风格 tInt=60 phi=5）。
+- 闸门：全部 path=PS（统一 Expression 路径可测 ε）。
+
+## 会话总闸门
+- A = PASS ⇔ A1a∧A1b∧A1c∧A2 全为 PASS（A1c=INVALID ⇒ 会话非 PASS）。
+- A×3 PASS ⇔ 3/3 会话 A=PASS。
+
+## P1 旁路（非 A 闸门，但同 raw 必记）
+- 每 A1C trial 日志须含：tickPer_ms（实测帧周期）、lastTick_ms、phiAct_ms=(qD1−lastTick)、tD1_ms、tPresent0_ms（d1 后首帧 WGC present）、n。
+- 离线旁路拟合宽界 ε_fit，检验帧相位是否预测双模 {+6.5,−10}。
+
+## 签署
+LOCKED_AT=2026-10-24 20:33:42 AWST
+GATE_SHA256_PAYLOAD_FOLLOWS_BELOW_FOR_INTEGRITY
+GATE_BODY_SHA256=189a08209f0c3e5dd664d3ca71b5f76d6fe246dfd96b0f67d15a12d93d1dea5d
