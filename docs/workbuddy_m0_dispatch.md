@@ -1,7 +1,7 @@
 # 派题 · M0-A 技术验证（DESKTOP-K93N3P8）
 
 闸门：`docs/m0_tech_validation_gate_LOCKED.md`，GATE_BODY_SHA256=`942d6965dae1aa41f3b853923d08a11aac9714d60018888a5c486bfde5809768`，LOCKED_AT=2026-10-26 21:38:45 AWST。D1–D7 已按建议裁决，D1 = 允许 SendInput，仅限 M0。
-代码分支：`claude/m0-tech-validation`。**构建现在就可以做；采数（第 5 步）必须等 `docs/m0_tech_validation_approved.md` 落盘、APPROVED_* 非空之后。**
+代码分支：`claude/m0-tech-validation`。**已 APPROVED（`docs/m0_tech_validation_approved.md`，2026-10-26 21:43:10 AWST）：构建和采数（第 5 步）都可以执行。**
 
 ## 1. 取代码
 这台机器上的 `C:\Users\admin\motion_framework` 不是 git 仓库，**不要覆盖它**。把分支取到旁边的新目录：
@@ -31,7 +31,7 @@ powershell -ExecutionPolicy Bypass -File C:\Users\admin\mf_m0\m0\build_m0.ps1 -D
 ## 4. 重新构建 MotionSoftDemo
 按平常方式构建，确认 `m0rive.dll` 和 `MotionSoftDemo.exe` 在同一目录。
 
-## 5. 采数（approved 落盘后）
+## 5. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File C:\Users\admin\mf_m0\m0\run_m0.ps1 -DemoExe <...\MotionSoftDemo.exe> -Inject -Sessions 3 [-PresentMon <...\PresentMon.exe>]
 ```
