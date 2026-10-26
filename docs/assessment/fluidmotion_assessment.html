@@ -89,7 +89,7 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; border-t
   <div class="eyebrow">FluidMotion · motion_framework · 第三方接手评估</div>
   <h1>FluidMotion 实施评估：进度、效果与 Windows 界面优化程度</h1>
   <p class="meta">评估日期 2026-10-26 · 依据：仓库 <code>oops11111/motion_framework</code> 的 plan.md、14 张闸门票的结题文件、artifacts/ 中的真机日志，以及本次在 Linux 重新编译、重新运行的单测 · 评估人：Claude（Claude Code 接手会话）</p>
-  <p class="lede">一句话结论：核心前提已经在真机上得到证实，即动效交给合成器后能稳定跑满 60Hz，而 UI 线程只能跑到约 32Hz。但项目在计划第 2 周就进入了 M2 编号，M0 的四项技术验证一项都没做。最近两天的 14 张票里，有 10 张围绕同一个打断续接问题；其中 7 张真机票的结果都是 FAIL 或无定论。成功标准中能在真机上核对的，目前只有很少几项。</p>
+  <p class="lede">一句话结论：核心前提已经在真机上得到证实，即动效交给合成器后能稳定跑满 60Hz，而 UI 线程只能跑到约 32Hz。但项目在计划第 2 周就进入了 M2 编号，M0 的五项技术验证里，只有指针属性集做过一半（#32 结论 PARTIAL），其余四项都还没做。最近两天的 14 张票里，有 10 张围绕同一个打断续接问题；其中 7 张真机票的结果都是 FAIL 或无定论。成功标准中能在真机上核对的，目前只有很少几项。</p>
 </header>
 
 <section>
@@ -108,7 +108,7 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; border-t
   <div class="tbl"><table>
     <thead><tr><th>里程碑</th><th>计划验收门槛</th><th>状态</th><th>依据</th></tr></thead>
     <tbody>
-      <tr><td>M0 技术验证（第 2 周）</td><td>Rive 渲染进合成表面；120Hz 拖动错位测试；指针属性集；ALLOW_TEARING；管线延迟</td><td><span class="pill bad">未开始</span></td><td>代码和 MotionSoftDemo 里都没有 Rive；测试机只有 60Hz；这四项没有任何结题文件</td></tr>
+      <tr><td>M0 技术验证（第 2 周）</td><td>Rive 渲染进合成表面；120Hz 拖动错位测试；指针属性集；ALLOW_TEARING；管线延迟</td><td><span class="pill bad">基本未做</span></td><td>代码和 MotionSoftDemo 里都没有 Rive；测试机只有 60Hz。指针属性集 #32 为 PARTIAL：API 可调用、表达式可绑定，但因不允许合成输入，真实指针跟随延迟没测。ALLOW_TEARING 和管线延迟没有结题文件</td></tr>
       <tr><td>M1 核心（第 10 周）</td><td>数学、时间线、token 无界面测试；分发器降级；弹簧参数与真机对应</td><td><span class="pill good">基本达成</span></td><td>单测全绿；S1 v2 映射 <code>Period = response/(2π)</code>，真机 RMS 0.07–0.20%（10/10）</td></tr>
       <tr><td>M1b 打断续接 R-2</td><td>打断后位置连续、速度连续</td><td><span class="pill bad">本机 FAIL 结题</span></td><td>降级为 B_v（只保证位置连续）；明确不作为发版基线</td></tr>
       <tr><td>M2 Alpha（第 16 周）</td><td>C# API 可打断；ETW；预览宿主 v0；性能 CI ≥2 台物理机</td><td><span class="pill warn">部分</span></td><td>M2-02 PASS（C#、ETW、预览 v0）；PERF-CI 闸门已 LOCK，因只有一台机器而 HOLD</td></tr>
@@ -171,7 +171,7 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; border-t
   <div class="recs">
     <div class="rec">
       <div class="rec-h"><h3>回到关键路径：先做 M0</h3><span class="pill bad">最高</span></div>
-      <p>plan.md 的关键路径是 M0 → 分发器 → Rive 宿主 → 指针管线 → 试点。M0 的验收项一项都没做，而 Rive 能不能接进合成表面，决定要不要切换到 Skia 备选方案（切换要多花 4–8 周）。</p>
+      <p>plan.md 的关键路径是 M0 → 分发器 → Rive 宿主 → 指针管线 → 试点。M0 的验收项除指针属性集做了一半外都没做，而 Rive 能不能接进合成表面，决定要不要切换到 Skia 备选方案（切换要多花 4–8 周）。</p>
       <ul><li>用 2 周把 Rive 渲染进 CompositionDrawingSurface，同时试一遍 swapchain 路径</li><li>测 GetPointerPositionPropertySet、composition swapchain 上的 ALLOW_TEARING，以及实测管线延迟</li><li>按 M0 的结果重新估算工期</li></ul>
     </div>
     <div class="rec">
