@@ -329,3 +329,8 @@
   - mode=**doc-only**；主决议=**R2 挂账确认**（未同选 R1；R3 占位；R4* 否决）；**未采数**；未抬 thr；未立刻 Δv″；未翻 C1
   - H5-ABS-RESOLVE-PASS ≠ VERIFY-PASS 改写 ≠ Δv-PASS ≠ 落地；`H5-DENOM-VERIFY-FAIL` 仍 FAIL 归档；八 hash 不翻盘
   - next：**无新票；主线旁路确认后待命**；Δv″ / PERF-CI 继续 HOLD；composition.h 未触
+
+- **2026-10-26 — 协调点名 M2-PERF-CI-TOOLING（plan.md §8 第 8 项；offline-tooling；采数=否）**
+  - Claude 接手会话落盘：`tools/perf_ci/perf_ci_grade.py` + 单测 29/29 + `tools/perf_ci/README.md`；DRAFT `docs/m2_perf_ci_tooling_gate_DRAFT.md`（未 LOCK）
+  - 实现 LOCKED PERF-CI 闸门时发现开放问题 Q1–Q8，其中 Q1（Idle 与 ≥1000 帧冲突）、Q2（替代路径 P95≤T 无法满足）、Q7（基线不存在）会阻断首轮 PERF-CI，须在第二台机器就绪前裁决
+  - PERF-CI `5b007dd4…282a` 不改，仍 HOLD；composition.h 未触；引擎单测复验全绿（timeline 422 / tokens 743 / controller 236 / composition 2305 / capi 23 / soft-demo 10）
