@@ -1,0 +1,145 @@
+KV probe=M0 v1
+KV session=1
+KV pid=55496
+KV host=DESKTOP-K93N3P8
+KV os=Microsoft Windows NT 10.0.19045.0
+KV rasterization_scale=1.000
+KV refresh_hz=60.020
+KV riv=C:\Users\admin\motion_framework\artifacts\m0_assets\Knight_square_2.riv
+KV inject_approved=1
+KV m0_1.create_hr=0x00000000
+KV m0_1.reference_hr=0x00000000
+KV m0_1.create_graphics_device_hr=0x00000000
+KV m0_1.surface_interop_qi_hr=0x00000000
+KV m0_1a.start_hr=0x00000000
+KV m0_1a.frames=1176
+KV m0_1a.draw_failures=0
+KV m0_1a.cpu_p50_ms=0.393
+KV m0_1a.cpu_p95_ms=0.550
+KV m0_1a.cpu_max_ms=436.261
+KV m0_1a.cpu_p95_frac_T=0.033
+KV m0_1a.gpu_p50_ms=1.350
+KV m0_1a.gpu_p95_ms=2.610
+KV m0_1a.gpu_p95_frac_T=0.157
+KV m0_1a.interval_p50_ms=16.652
+KV m0_1a.interval_p95_ms=17.118
+KV m0_1a.last_hr=0x00000000
+KV m0_1a.offscreen_uav=1
+KV m0_ptr.start_screen=316,582
+KV m0_ptr.step_px=120
+KV m0_ptr.box_color=59,130,246
+KV m0_ptr.wgc_start_hr=0x00000000
+M0 expr: rest cx=30.46
+M0 expr step=0 dir=+ sent=1 latency_ms=42.12
+M0 expr step=1 dir=- sent=1 latency_ms=NaN
+M0 expr step=2 dir=+ sent=1 latency_ms=29.89
+M0 expr step=3 dir=- sent=1 latency_ms=NaN
+M0 expr step=4 dir=+ sent=1 latency_ms=15.43
+M0 expr step=5 dir=- sent=1 latency_ms=NaN
+M0 expr step=6 dir=+ sent=1 latency_ms=15.38
+M0 expr step=7 dir=- sent=1 latency_ms=NaN
+M0 expr step=8 dir=+ sent=1 latency_ms=25.72
+M0 expr step=9 dir=- sent=1 latency_ms=NaN
+M0 expr step=10 dir=+ sent=1 latency_ms=19.64
+M0 expr step=11 dir=- sent=1 latency_ms=NaN
+M0 expr step=12 dir=+ sent=1 latency_ms=24.65
+M0 expr step=13 dir=- sent=1 latency_ms=NaN
+M0 expr step=14 dir=+ sent=1 latency_ms=28.78
+M0 expr step=15 dir=- sent=1 latency_ms=NaN
+M0 expr step=16 dir=+ sent=1 latency_ms=17.13
+M0 expr step=17 dir=- sent=1 latency_ms=NaN
+M0 expr step=18 dir=+ sent=1 latency_ms=27.40
+M0 expr step=19 dir=- sent=1 latency_ms=NaN
+KV m0_35.expr.steps_hit=10/20
+KV m0_35.expr.latency_p50_ms=24.65
+KV m0_35.expr.latency_p95_ms=42.12
+KV m0_35.expr.clock_offset_min_ms=-15.738
+M0 ui: rest cx=100.41
+M0 ui step=0 dir=+ sent=1 latency_ms=69.87
+M0 ui step=1 dir=- sent=1 latency_ms=65.90
+M0 ui step=2 dir=+ sent=1 latency_ms=67.41
+M0 ui step=3 dir=- sent=1 latency_ms=65.47
+M0 ui step=4 dir=+ sent=1 latency_ms=78.05
+M0 ui step=5 dir=- sent=1 latency_ms=72.24
+M0 ui step=6 dir=+ sent=1 latency_ms=61.57
+M0 ui step=7 dir=- sent=1 latency_ms=77.51
+M0 ui step=8 dir=+ sent=1 latency_ms=60.96
+M0 ui step=9 dir=- sent=1 latency_ms=56.69
+M0 ui step=10 dir=+ sent=1 latency_ms=70.86
+M0 ui step=11 dir=- sent=1 latency_ms=67.14
+M0 ui step=12 dir=+ sent=1 latency_ms=66.31
+M0 ui step=13 dir=- sent=1 latency_ms=61.68
+M0 ui step=14 dir=+ sent=1 latency_ms=60.18
+M0 ui step=15 dir=- sent=1 latency_ms=58.40
+M0 ui step=16 dir=+ sent=1 latency_ms=71.08
+M0 ui step=17 dir=- sent=1 latency_ms=67.81
+M0 ui step=18 dir=+ sent=1 latency_ms=78.62
+M0 ui step=19 dir=- sent=1 latency_ms=61.90
+KV m0_35.ui.steps_hit=20/20
+KV m0_35.ui.latency_p50_ms=66.31
+KV m0_35.ui.latency_p95_ms=78.05
+KV m0_35.ui.clock_offset_min_ms=-15.322
+M0 drag_expr drag=0 dir=+ moves=121 frames_used=16
+M0 drag_expr drag=1 dir=- moves=121 frames_used=17
+M0 drag_expr drag=2 dir=+ moves=121 frames_used=16
+M0 drag_expr drag=3 dir=- moves=121 frames_used=16
+M0 drag_expr drag=4 dir=+ moves=121 frames_used=16
+M0 drag_expr drag=5 dir=- moves=121 frames_used=17
+M0 drag_expr drag=6 dir=+ moves=121 frames_used=16
+M0 drag_expr drag=7 dir=- moves=121 frames_used=16
+M0 drag_expr drag=8 dir=+ moves=121 frames_used=17
+M0 drag_expr drag=9 dir=- moves=121 frames_used=17
+M0 drag_expr drag=10 dir=+ moves=121 frames_used=16
+M0 drag_expr drag=11 dir=- moves=121 frames_used=16
+M0 drag_expr drag=12 dir=+ moves=121 frames_used=16
+M0 drag_expr drag=13 dir=- moves=121 frames_used=16
+M0 drag_expr drag=14 dir=+ moves=121 frames_used=16
+M0 drag_expr drag=15 dir=- moves=121 frames_used=16
+KV m0_2.drag_expr.samples=260
+KV m0_2.drag_expr.lag_p50_ms=37.58
+KV m0_2.drag_expr.lag_p95_ms=38.55
+KV m0_2.marker_hr=0x00000000
+M0 drag_surface drag=0 dir=+ moves=120 frames_used=16
+M0 drag_surface drag=1 dir=- moves=121 frames_used=16
+M0 drag_surface drag=2 dir=+ moves=121 frames_used=16
+M0 drag_surface drag=3 dir=- moves=121 frames_used=17
+M0 drag_surface drag=4 dir=+ moves=121 frames_used=16
+M0 drag_surface drag=5 dir=- moves=121 frames_used=16
+M0 drag_surface drag=6 dir=+ moves=121 frames_used=16
+M0 drag_surface drag=7 dir=- moves=121 frames_used=16
+M0 drag_surface drag=8 dir=+ moves=121 frames_used=16
+M0 drag_surface drag=9 dir=- moves=121 frames_used=16
+M0 drag_surface drag=10 dir=+ moves=121 frames_used=16
+M0 drag_surface drag=11 dir=- moves=121 frames_used=16
+M0 drag_surface drag=12 dir=+ moves=121 frames_used=17
+M0 drag_surface drag=13 dir=- moves=121 frames_used=16
+M0 drag_surface drag=14 dir=+ moves=121 frames_used=16
+M0 drag_surface drag=15 dir=- moves=121 frames_used=16
+KV m0_2.drag_surface.samples=258
+KV m0_2.drag_surface.lag_p50_ms=37.48
+KV m0_2.drag_surface.lag_p95_ms=38.64
+KV m0_2.lag_expr_p50_ms=37.58
+KV m0_2.lag_surface_p50_ms=37.48
+KV m0_2.misalign_ms=-0.10
+KV m0_2.misalign_px_at_drag_speed=0.04
+KV m0_2.drag_speed_px_per_ms=0.400
+KV m0_2.verdict=RECORDED
+KV m0_35.verdict=RECORDED
+KV m0_1b.create_swapchain_hr=0x00000000
+KV m0_1b.surface_for_swapchain_hr=0x00000000
+KV m0_1b.start_hr=0x00000000
+KV m0_1b_cumulative.frames=4707
+KV m0_1b_cumulative.draw_failures=0
+KV m0_1b_cumulative.cpu_p50_ms=0.417
+KV m0_1b_cumulative.cpu_p95_ms=0.590
+KV m0_1b_cumulative.cpu_max_ms=436.261
+KV m0_1b_cumulative.cpu_p95_frac_T=0.035
+KV m0_1b_cumulative.gpu_p50_ms=1.479
+KV m0_1b_cumulative.gpu_p95_ms=2.542
+KV m0_1b_cumulative.gpu_p95_frac_T=0.153
+KV m0_1b_cumulative.interval_p50_ms=16.654
+KV m0_1b_cumulative.interval_p95_ms=17.109
+KV m0_1b_cumulative.last_hr=0x00000000
+KV m0_1b_cumulative.offscreen_uav=1
+KV verdict=RECORDED
+KV device_removed_hr=0x00000000

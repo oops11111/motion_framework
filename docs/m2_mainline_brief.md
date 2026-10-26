@@ -329,3 +329,21 @@
   - mode=**doc-only**；主决议=**R2 挂账确认**（未同选 R1；R3 占位；R4* 否决）；**未采数**；未抬 thr；未立刻 Δv″；未翻 C1
   - H5-ABS-RESOLVE-PASS ≠ VERIFY-PASS 改写 ≠ Δv-PASS ≠ 落地；`H5-DENOM-VERIFY-FAIL` 仍 FAIL 归档；八 hash 不翻盘
   - next：**无新票；主线旁路确认后待命**；Δv″ / PERF-CI 继续 HOLD；composition.h 未触
+
+- **2026-10-26 — 协调「按建议 1 开始做 M0」→ 开 M0-A DRAFT（分支 `claude/m0-tech-validation`）**
+  - DRAFT：`docs/m0_tech_validation_gate_DRAFT.md`（未 LOCK；不授权采数）；待裁决 D1–D7（D1 = 是否允许 SendInput）
+  - 代码：`m0/`（tear 探针、Rive 表面 DLL、构建和运行脚本）+ `MotionSoftDemo/M0Probe.cs`（MainPage 加 11 行入口）；composition.h 未触
+  - 本地核实：WinAppSDK 2.5.1 的合成 interop IID 与系统版不同，已按头文件写入；Rive 钉 `runtime-v0.1.545`
+
+- **2026-10-26 21:38:45 AWST — M0-A LOCKED（D1–D7 按建议）**
+  - LOCKED：`docs/m0_tech_validation_gate_LOCKED.md`，hash=`942d6965dae1aa41f3b853923d08a11aac9714d60018888a5c486bfde5809768`
+  - 派工单：`docs/workbuddy_m0_dispatch.md`（构建可先行；采数等 approved 留证）；MainPage 补丁 `m0/mainpage_m0_hook.patch`
+
+- **2026-10-26 21:43:10 AWST — M0-A APPROVED by pidan → 派 workbuddy**
+  - approved：`docs/m0_tech_validation_approved.md`；gate `942d6965…9768` 不变；采数=是（-Inject，3 会话）；派工单 `docs/workbuddy_m0_dispatch.md`
+
+- **2026-10-26 23:50:32 AWST — M0-A CLOSED M0-A-PASS（3 会话，D1 注入）**
+  - 结果：`docs/m0_tech_validation_result.md`；数据 `m0/results/`（commit fac309a5）；gate `942d6965…9768` 复算 MATCH；composition.h PRE=POST
+  - M0-1a PASS 3/3（CPU P95 ≈0.03·T，GPU P95 0.04–0.19·T）；M0-2@60Hz 层间错位 ≤0.19 ms；表达式跟随比 UI 线程快约 45 ms；合成交换链接受 ALLOW_TEARING（API 层）
+  - 偏离：参考图全空（异步着色器编译，探针缺陷，已修）→ 第④条改以截图确认，待协调确认
+  - Go：Rive 路径继续；M0-B 等第二台机器（≥120Hz、Win11、有管理员权限）

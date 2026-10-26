@@ -1,0 +1,360 @@
+14.613ms 派题 #8 MotionSoftDemo (pid 55628); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-26 23:25:35.443; OS=10.0.19045.0; QPC freq=10000000
+21.043ms load_tokens ok
+35.684ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.903ms M0 tech-validation probe (--m0-probe / MF_M0_PROBE); starts in 800 ms; pointer phases need MF_M0_INJECT=1
+49.254ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+50.631ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+883.854ms KV probe=M0 v1
+884.204ms KV session=1
+884.599ms KV pid=55628
+884.678ms KV host=DESKTOP-K93N3P8
+884.765ms KV os=Microsoft Windows NT 10.0.19045.0
+885.006ms KV rasterization_scale=1.000
+885.059ms KV refresh_hz=60.020
+885.100ms KV riv=C:\Users\admin\motion_framework\artifacts\m0_assets\Knight_square_2.riv
+885.146ms KV inject_approved=0
+895.082ms MODE -> 合成器路径 (m0 probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+895.497ms COMP reset[m0 rest] StopAnimation + Translation.X:=0.0000
+914.326ms KV exception=DllNotFoundException: Unable to load DLL 'm0rive' or one of its dependencies: The specified module could not be found. (0x8007007E)
+914.409ms KV verdict=INVALID_EXCEPTION
+914.483ms COMP reset[m0 end] StopAnimation + Translation.X:=0.0000
+1045.052ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+14.266ms 派题 #8 MotionSoftDemo (pid 48036); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-26 23:27:46.137; OS=10.0.19045.0; QPC freq=10000000
+20.666ms load_tokens ok
+35.516ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.804ms M0 tech-validation probe (--m0-probe / MF_M0_PROBE); starts in 800 ms; pointer phases need MF_M0_INJECT=1
+48.245ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+49.276ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+862.558ms KV probe=M0 v1
+862.940ms KV session=1
+863.041ms KV pid=48036
+863.109ms KV host=DESKTOP-K93N3P8
+863.204ms KV os=Microsoft Windows NT 10.0.19045.0
+863.460ms KV rasterization_scale=1.000
+863.514ms KV refresh_hz=60.020
+863.555ms KV riv=C:\Users\admin\motion_framework\artifacts\m0_assets\Knight_square_2.riv
+863.601ms KV inject_approved=1
+866.440ms MODE -> 合成器路径 (m0 probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+866.840ms COMP reset[m0 rest] StopAnimation + Translation.X:=0.0000
+931.695ms KV m0_1.create_hr=0x00000000
+949.398ms KV m0_1.reference_hr=0x00000000
+953.292ms KV m0_1.create_graphics_device_hr=0x00000000
+959.908ms KV m0_1.surface_interop_qi_hr=0x00000000
+969.047ms KV m0_1a.start_hr=0x00000000
+1053.456ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+20994.026ms KV m0_1a.frames=1174
+20994.146ms KV m0_1a.draw_failures=0
+20994.197ms KV m0_1a.cpu_p50_ms=0.450
+20994.241ms KV m0_1a.cpu_p95_ms=0.539
+20994.285ms KV m0_1a.cpu_max_ms=481.084
+20994.326ms KV m0_1a.cpu_p95_frac_T=0.032
+20994.573ms KV m0_1a.gpu_p50_ms=1.330
+20994.606ms KV m0_1a.gpu_p95_ms=2.551
+20994.748ms KV m0_1a.gpu_p95_frac_T=0.153
+20994.768ms KV m0_1a.interval_p50_ms=16.656
+20994.781ms KV m0_1a.interval_p95_ms=17.072
+20994.794ms KV m0_1a.last_hr=0x00000000
+20994.809ms KV m0_1a.offscreen_uav=1
+21002.496ms KV m0_ptr.start_screen=160,426
+21002.542ms KV m0_ptr.step_px=120
+21007.370ms KV m0_ptr.box_color=59,130,246
+21160.039ms KV m0_ptr.wgc_start_hr=0x00000000
+21794.741ms M0 expr: rest cx=30.54
+22253.205ms M0 expr step=0 dir=+ sent=1 latency_ms=36.92
+22710.287ms M0 expr step=1 dir=- sent=1 latency_ms=NaN
+23167.985ms M0 expr step=2 dir=+ sent=1 latency_ms=21.08
+23627.582ms M0 expr step=3 dir=- sent=1 latency_ms=NaN
+24084.393ms M0 expr step=4 dir=+ sent=1 latency_ms=20.15
+24543.896ms M0 expr step=5 dir=- sent=1 latency_ms=NaN
+25003.788ms M0 expr step=6 dir=+ sent=1 latency_ms=20.20
+25458.513ms M0 expr step=7 dir=- sent=1 latency_ms=NaN
+25913.418ms M0 expr step=8 dir=+ sent=1 latency_ms=21.94
+26370.475ms M0 expr step=9 dir=- sent=1 latency_ms=NaN
+26827.675ms M0 expr step=10 dir=+ sent=1 latency_ms=26.34
+27284.804ms M0 expr step=11 dir=- sent=1 latency_ms=NaN
+27739.207ms M0 expr step=12 dir=+ sent=1 latency_ms=28.38
+28192.922ms M0 expr step=13 dir=- sent=1 latency_ms=NaN
+28652.464ms M0 expr step=14 dir=+ sent=1 latency_ms=19.98
+29108.962ms M0 expr step=15 dir=- sent=1 latency_ms=NaN
+29566.896ms M0 expr step=16 dir=+ sent=1 latency_ms=20.29
+30017.971ms M0 expr step=17 dir=- sent=1 latency_ms=NaN
+30474.181ms M0 expr step=18 dir=+ sent=1 latency_ms=27.66
+30930.116ms M0 expr step=19 dir=- sent=1 latency_ms=NaN
+30930.391ms COMP reset[m0 expr end] StopAnimation + Translation.X:=0.0000
+30947.854ms KV m0_35.expr.steps_hit=10/20
+30948.109ms KV m0_35.expr.latency_p50_ms=21.08
+30948.130ms KV m0_35.expr.latency_p95_ms=36.92
+30948.141ms KV m0_35.expr.clock_offset_min_ms=-15.407
+31575.561ms M0 ui: rest cx=100.40
+32033.074ms M0 ui step=0 dir=+ sent=1 latency_ms=52.86
+32486.803ms M0 ui step=1 dir=- sent=1 latency_ms=61.88
+32941.145ms M0 ui step=2 dir=+ sent=1 latency_ms=58.01
+33399.305ms M0 ui step=3 dir=- sent=1 latency_ms=70.18
+33850.657ms M0 ui step=4 dir=+ sent=1 latency_ms=78.53
+34308.659ms M0 ui step=5 dir=- sent=1 latency_ms=77.03
+34769.002ms M0 ui step=6 dir=+ sent=1 latency_ms=68.88
+35224.405ms M0 ui step=7 dir=- sent=1 latency_ms=58.40
+35681.949ms M0 ui step=8 dir=+ sent=1 latency_ms=69.51
+36137.555ms M0 ui step=9 dir=- sent=1 latency_ms=78.45
+36594.831ms M0 ui step=10 dir=+ sent=1 latency_ms=56.06
+37051.514ms M0 ui step=11 dir=- sent=1 latency_ms=81.94
+37506.238ms M0 ui step=12 dir=+ sent=1 latency_ms=75.11
+37961.141ms M0 ui step=13 dir=- sent=1 latency_ms=70.25
+38418.224ms M0 ui step=14 dir=+ sent=1 latency_ms=65.20
+38874.535ms M0 ui step=15 dir=- sent=1 latency_ms=57.97
+39332.831ms M0 ui step=16 dir=+ sent=1 latency_ms=84.82
+39790.212ms M0 ui step=17 dir=- sent=1 latency_ms=76.38
+40249.703ms M0 ui step=18 dir=+ sent=1 latency_ms=68.85
+40708.034ms M0 ui step=19 dir=- sent=1 latency_ms=59.21
+40711.577ms COMP reset[m0 ui end] StopAnimation + Translation.X:=0.0000
+40711.638ms KV m0_35.ui.steps_hit=20/20
+40711.673ms KV m0_35.ui.latency_p50_ms=68.88
+40711.685ms KV m0_35.ui.latency_p95_ms=81.94
+40711.696ms KV m0_35.ui.clock_offset_min_ms=-15.309
+41905.145ms M0 drag_expr drag=0 dir=+ moves=121 frames_used=17
+42456.335ms M0 drag_expr drag=1 dir=- moves=121 frames_used=17
+43020.684ms M0 drag_expr drag=2 dir=+ moves=121 frames_used=17
+43585.509ms M0 drag_expr drag=3 dir=- moves=121 frames_used=16
+44137.526ms M0 drag_expr drag=4 dir=+ moves=121 frames_used=16
+44688.747ms M0 drag_expr drag=5 dir=- moves=121 frames_used=17
+45245.512ms M0 drag_expr drag=6 dir=+ moves=121 frames_used=17
+45811.968ms M0 drag_expr drag=7 dir=- moves=121 frames_used=16
+46362.734ms M0 drag_expr drag=8 dir=+ moves=121 frames_used=16
+46915.131ms M0 drag_expr drag=9 dir=- moves=121 frames_used=16
+47468.277ms M0 drag_expr drag=10 dir=+ moves=121 frames_used=16
+48033.102ms M0 drag_expr drag=11 dir=- moves=121 frames_used=16
+48596.937ms M0 drag_expr drag=12 dir=+ moves=121 frames_used=16
+49161.224ms M0 drag_expr drag=13 dir=- moves=121 frames_used=16
+49727.338ms M0 drag_expr drag=14 dir=+ moves=121 frames_used=16
+50278.083ms M0 drag_expr drag=15 dir=- moves=121 frames_used=16
+50278.320ms COMP reset[m0 drag expr end] StopAnimation + Translation.X:=0.0000
+50278.825ms KV m0_2.drag_expr.samples=261
+50279.046ms KV m0_2.drag_expr.lag_p50_ms=37.49
+50279.064ms KV m0_2.drag_expr.lag_p95_ms=38.51
+50280.003ms KV m0_2.marker_hr=0x00000000
+51461.523ms M0 drag_surface drag=0 dir=+ moves=118 frames_used=16
+52027.228ms M0 drag_surface drag=1 dir=- moves=121 frames_used=16
+52593.717ms M0 drag_surface drag=2 dir=+ moves=121 frames_used=16
+53160.172ms M0 drag_surface drag=3 dir=- moves=121 frames_used=16
+53711.197ms M0 drag_surface drag=4 dir=+ moves=121 frames_used=16
+54262.843ms M0 drag_surface drag=5 dir=- moves=121 frames_used=16
+54827.558ms M0 drag_surface drag=6 dir=+ moves=121 frames_used=16
+55392.689ms M0 drag_surface drag=7 dir=- moves=121 frames_used=16
+55943.249ms M0 drag_surface drag=8 dir=+ moves=121 frames_used=16
+56494.720ms M0 drag_surface drag=9 dir=- moves=121 frames_used=16
+57046.623ms M0 drag_surface drag=10 dir=+ moves=121 frames_used=16
+57597.792ms M0 drag_surface drag=11 dir=- moves=121 frames_used=16
+58163.154ms M0 drag_surface drag=12 dir=+ moves=109 frames_used=17
+58719.379ms M0 drag_surface drag=13 dir=- moves=121 frames_used=16
+59275.255ms M0 drag_surface drag=14 dir=+ moves=120 frames_used=16
+59829.969ms M0 drag_surface drag=15 dir=- moves=120 frames_used=16
+59830.406ms KV m0_2.drag_surface.samples=257
+59830.432ms KV m0_2.drag_surface.lag_p50_ms=37.36
+59830.443ms KV m0_2.drag_surface.lag_p95_ms=39.65
+59830.901ms KV m0_2.lag_expr_p50_ms=37.49
+59830.948ms KV m0_2.lag_surface_p50_ms=37.36
+59830.968ms KV m0_2.misalign_ms=-0.12
+59831.778ms KV m0_2.misalign_px_at_drag_speed=0.05
+59831.796ms KV m0_2.drag_speed_px_per_ms=0.400
+59831.806ms KV m0_2.verdict=RECORDED
+59831.817ms KV m0_35.verdict=RECORDED
+59859.736ms KV m0_1b.create_swapchain_hr=0x00000000
+59859.961ms KV m0_1b.surface_for_swapchain_hr=0x00000000
+59870.377ms KV m0_1b.start_hr=0x00000000
+79873.697ms KV m0_1b_cumulative.frames=4707
+79873.734ms KV m0_1b_cumulative.draw_failures=0
+79873.754ms KV m0_1b_cumulative.cpu_p50_ms=0.459
+79873.765ms KV m0_1b_cumulative.cpu_p95_ms=0.582
+79873.776ms KV m0_1b_cumulative.cpu_max_ms=481.084
+79873.787ms KV m0_1b_cumulative.cpu_p95_frac_T=0.035
+79873.797ms KV m0_1b_cumulative.gpu_p50_ms=1.475
+79873.807ms KV m0_1b_cumulative.gpu_p95_ms=2.284
+79873.818ms KV m0_1b_cumulative.gpu_p95_frac_T=0.137
+79873.828ms KV m0_1b_cumulative.interval_p50_ms=16.659
+79873.838ms KV m0_1b_cumulative.interval_p95_ms=17.044
+79873.850ms KV m0_1b_cumulative.last_hr=0x00000000
+79873.861ms KV m0_1b_cumulative.offscreen_uav=1
+79873.872ms KV verdict=RECORDED
+79882.627ms KV device_removed_hr=0x00000000
+79885.346ms COMP reset[m0 end] StopAnimation + Translation.X:=0.0000
+13.865ms 派题 #8 MotionSoftDemo (pid 39460); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-26 23:29:17.328; OS=10.0.19045.0; QPC freq=10000000
+20.370ms load_tokens ok
+35.464ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+41.044ms M0 tech-validation probe (--m0-probe / MF_M0_PROBE); starts in 800 ms; pointer phases need MF_M0_INJECT=1
+49.604ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+50.622ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+861.767ms KV probe=M0 v1
+862.123ms KV session=1
+862.187ms KV pid=39460
+862.225ms KV host=DESKTOP-K93N3P8
+862.280ms KV os=Microsoft Windows NT 10.0.19045.0
+862.530ms KV rasterization_scale=1.000
+862.552ms KV refresh_hz=60.020
+862.566ms KV riv=C:\Users\admin\motion_framework\artifacts\m0_assets\Knight_square_2.riv
+862.582ms KV inject_approved=1
+865.416ms MODE -> 合成器路径 (m0 probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+865.814ms COMP reset[m0 rest] StopAnimation + Translation.X:=0.0000
+911.203ms KV m0_1.create_hr=0x00000000
+923.444ms KV m0_1.reference_hr=0x00000000
+925.226ms KV m0_1.create_graphics_device_hr=0x00000000
+928.549ms KV m0_1.surface_interop_qi_hr=0x00000000
+934.382ms KV m0_1a.start_hr=0x00000000
+1054.435ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+13.897ms 派题 #8 MotionSoftDemo (pid 55496); App.Unhandled subscribers=1; wallclock at Loaded = 2026-10-26 23:34:38.365; OS=10.0.19045.0; QPC freq=10000000
+20.419ms load_tokens ok
+35.576ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.949ms M0 tech-validation probe (--m0-probe / MF_M0_PROBE); starts in 800 ms; pointer phases need MF_M0_INJECT=1
+48.360ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+49.360ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+865.524ms KV probe=M0 v1
+865.874ms KV session=1
+865.979ms KV pid=55496
+866.046ms KV host=DESKTOP-K93N3P8
+866.130ms KV os=Microsoft Windows NT 10.0.19045.0
+866.375ms KV rasterization_scale=1.000
+866.429ms KV refresh_hz=60.020
+866.469ms KV riv=C:\Users\admin\motion_framework\artifacts\m0_assets\Knight_square_2.riv
+866.514ms KV inject_approved=1
+869.314ms MODE -> 合成器路径 (m0 probe): software value=0.0000 vel=0.0000 -> Translation.X=0.0000, BoxTranslate.X=0
+869.719ms COMP reset[m0 rest] StopAnimation + Translation.X:=0.0000
+914.670ms KV m0_1.create_hr=0x00000000
+926.665ms KV m0_1.reference_hr=0x00000000
+928.497ms KV m0_1.create_graphics_device_hr=0x00000000
+931.919ms KV m0_1.surface_interop_qi_hr=0x00000000
+937.887ms KV m0_1a.start_hr=0x00000000
+1052.010ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+20956.372ms KV m0_1a.frames=1176
+20956.514ms KV m0_1a.draw_failures=0
+20956.569ms KV m0_1a.cpu_p50_ms=0.393
+20956.614ms KV m0_1a.cpu_p95_ms=0.550
+20956.658ms KV m0_1a.cpu_max_ms=436.261
+20956.701ms KV m0_1a.cpu_p95_frac_T=0.033
+20956.934ms KV m0_1a.gpu_p50_ms=1.350
+20956.964ms KV m0_1a.gpu_p95_ms=2.610
+20957.094ms KV m0_1a.gpu_p95_frac_T=0.157
+20957.114ms KV m0_1a.interval_p50_ms=16.652
+20957.128ms KV m0_1a.interval_p95_ms=17.118
+20957.141ms KV m0_1a.last_hr=0x00000000
+20957.156ms KV m0_1a.offscreen_uav=1
+20960.750ms KV m0_ptr.start_screen=316,582
+20960.781ms KV m0_ptr.step_px=120
+20963.204ms KV m0_ptr.box_color=59,130,246
+21105.927ms KV m0_ptr.wgc_start_hr=0x00000000
+21742.277ms M0 expr: rest cx=30.46
+22198.662ms M0 expr step=0 dir=+ sent=1 latency_ms=42.12
+22654.198ms M0 expr step=1 dir=- sent=1 latency_ms=NaN
+23112.792ms M0 expr step=2 dir=+ sent=1 latency_ms=29.89
+23568.445ms M0 expr step=3 dir=- sent=1 latency_ms=NaN
+24032.854ms M0 expr step=4 dir=+ sent=1 latency_ms=15.43
+24484.793ms M0 expr step=5 dir=- sent=1 latency_ms=NaN
+24938.297ms M0 expr step=6 dir=+ sent=1 latency_ms=15.38
+25390.820ms M0 expr step=7 dir=- sent=1 latency_ms=NaN
+25842.770ms M0 expr step=8 dir=+ sent=1 latency_ms=25.72
+26296.574ms M0 expr step=9 dir=- sent=1 latency_ms=NaN
+26753.711ms M0 expr step=10 dir=+ sent=1 latency_ms=19.64
+27207.965ms M0 expr step=11 dir=- sent=1 latency_ms=NaN
+27661.997ms M0 expr step=12 dir=+ sent=1 latency_ms=24.65
+28120.201ms M0 expr step=13 dir=- sent=1 latency_ms=NaN
+28579.416ms M0 expr step=14 dir=+ sent=1 latency_ms=28.78
+29031.523ms M0 expr step=15 dir=- sent=1 latency_ms=NaN
+29486.494ms M0 expr step=16 dir=+ sent=1 latency_ms=17.13
+29937.625ms M0 expr step=17 dir=- sent=1 latency_ms=NaN
+30388.305ms M0 expr step=18 dir=+ sent=1 latency_ms=27.40
+30840.542ms M0 expr step=19 dir=- sent=1 latency_ms=NaN
+30840.772ms COMP reset[m0 expr end] StopAnimation + Translation.X:=0.0000
+30852.500ms KV m0_35.expr.steps_hit=10/20
+30852.740ms KV m0_35.expr.latency_p50_ms=24.65
+30852.759ms KV m0_35.expr.latency_p95_ms=42.12
+30852.770ms KV m0_35.expr.clock_offset_min_ms=-15.738
+31477.982ms M0 ui: rest cx=100.41
+31931.869ms M0 ui step=0 dir=+ sent=1 latency_ms=69.87
+32396.799ms M0 ui step=1 dir=- sent=1 latency_ms=65.90
+32848.648ms M0 ui step=2 dir=+ sent=1 latency_ms=67.41
+33302.556ms M0 ui step=3 dir=- sent=1 latency_ms=65.47
+33758.186ms M0 ui step=4 dir=+ sent=1 latency_ms=78.05
+34218.721ms M0 ui step=5 dir=- sent=1 latency_ms=72.24
+34669.332ms M0 ui step=6 dir=+ sent=1 latency_ms=61.57
+35135.694ms M0 ui step=7 dir=- sent=1 latency_ms=77.51
+35589.815ms M0 ui step=8 dir=+ sent=1 latency_ms=60.96
+36042.166ms M0 ui step=9 dir=- sent=1 latency_ms=56.69
+36495.739ms M0 ui step=10 dir=+ sent=1 latency_ms=70.86
+36946.389ms M0 ui step=11 dir=- sent=1 latency_ms=67.14
+37400.907ms M0 ui step=12 dir=+ sent=1 latency_ms=66.31
+37852.216ms M0 ui step=13 dir=- sent=1 latency_ms=61.68
+38303.913ms M0 ui step=14 dir=+ sent=1 latency_ms=60.18
+38757.725ms M0 ui step=15 dir=- sent=1 latency_ms=58.40
+39210.829ms M0 ui step=16 dir=+ sent=1 latency_ms=71.08
+39666.571ms M0 ui step=17 dir=- sent=1 latency_ms=67.81
+40133.103ms M0 ui step=18 dir=+ sent=1 latency_ms=78.62
+40585.673ms M0 ui step=19 dir=- sent=1 latency_ms=61.90
+40588.048ms COMP reset[m0 ui end] StopAnimation + Translation.X:=0.0000
+40588.104ms KV m0_35.ui.steps_hit=20/20
+40588.134ms KV m0_35.ui.latency_p50_ms=66.31
+40588.145ms KV m0_35.ui.latency_p95_ms=78.05
+40588.156ms KV m0_35.ui.clock_offset_min_ms=-15.322
+41774.412ms M0 drag_expr drag=0 dir=+ moves=121 frames_used=16
+42336.757ms M0 drag_expr drag=1 dir=- moves=121 frames_used=17
+42899.013ms M0 drag_expr drag=2 dir=+ moves=121 frames_used=16
+43465.462ms M0 drag_expr drag=3 dir=- moves=121 frames_used=16
+44026.535ms M0 drag_expr drag=4 dir=+ moves=121 frames_used=16
+44581.847ms M0 drag_expr drag=5 dir=- moves=121 frames_used=17
+45148.239ms M0 drag_expr drag=6 dir=+ moves=121 frames_used=16
+45708.314ms M0 drag_expr drag=7 dir=- moves=121 frames_used=16
+46272.779ms M0 drag_expr drag=8 dir=+ moves=121 frames_used=17
+46834.917ms M0 drag_expr drag=9 dir=- moves=121 frames_used=17
+47397.420ms M0 drag_expr drag=10 dir=+ moves=121 frames_used=16
+47947.654ms M0 drag_expr drag=11 dir=- moves=121 frames_used=16
+48513.801ms M0 drag_expr drag=12 dir=+ moves=121 frames_used=16
+49075.847ms M0 drag_expr drag=13 dir=- moves=121 frames_used=16
+49630.163ms M0 drag_expr drag=14 dir=+ moves=121 frames_used=16
+50181.326ms M0 drag_expr drag=15 dir=- moves=121 frames_used=16
+50181.565ms COMP reset[m0 drag expr end] StopAnimation + Translation.X:=0.0000
+50182.064ms KV m0_2.drag_expr.samples=260
+50182.281ms KV m0_2.drag_expr.lag_p50_ms=37.58
+50182.298ms KV m0_2.drag_expr.lag_p95_ms=38.55
+50182.794ms KV m0_2.marker_hr=0x00000000
+51364.092ms M0 drag_surface drag=0 dir=+ moves=120 frames_used=16
+51930.561ms M0 drag_surface drag=1 dir=- moves=121 frames_used=16
+52490.105ms M0 drag_surface drag=2 dir=+ moves=121 frames_used=16
+53052.344ms M0 drag_surface drag=3 dir=- moves=121 frames_used=17
+53617.244ms M0 drag_surface drag=4 dir=+ moves=121 frames_used=16
+54167.584ms M0 drag_surface drag=5 dir=- moves=121 frames_used=16
+54731.469ms M0 drag_surface drag=6 dir=+ moves=121 frames_used=16
+55283.562ms M0 drag_surface drag=7 dir=- moves=121 frames_used=16
+55845.928ms M0 drag_surface drag=8 dir=+ moves=121 frames_used=16
+56406.277ms M0 drag_surface drag=9 dir=- moves=121 frames_used=16
+56957.550ms M0 drag_surface drag=10 dir=+ moves=121 frames_used=16
+57520.572ms M0 drag_surface drag=11 dir=- moves=121 frames_used=16
+58081.642ms M0 drag_surface drag=12 dir=+ moves=121 frames_used=17
+58647.183ms M0 drag_surface drag=13 dir=- moves=121 frames_used=16
+59198.908ms M0 drag_surface drag=14 dir=+ moves=121 frames_used=16
+59753.155ms M0 drag_surface drag=15 dir=- moves=121 frames_used=16
+59753.555ms KV m0_2.drag_surface.samples=258
+59753.580ms KV m0_2.drag_surface.lag_p50_ms=37.48
+59753.592ms KV m0_2.drag_surface.lag_p95_ms=38.64
+59754.045ms KV m0_2.lag_expr_p50_ms=37.58
+59754.091ms KV m0_2.lag_surface_p50_ms=37.48
+59754.109ms KV m0_2.misalign_ms=-0.10
+59754.129ms KV m0_2.misalign_px_at_drag_speed=0.04
+59754.141ms KV m0_2.drag_speed_px_per_ms=0.400
+59754.151ms KV m0_2.verdict=RECORDED
+59754.161ms KV m0_35.verdict=RECORDED
+59778.140ms KV m0_1b.create_swapchain_hr=0x00000000
+59778.357ms KV m0_1b.surface_for_swapchain_hr=0x00000000
+59779.036ms KV m0_1b.start_hr=0x00000000
+79792.781ms KV m0_1b_cumulative.frames=4707
+79792.812ms KV m0_1b_cumulative.draw_failures=0
+79792.832ms KV m0_1b_cumulative.cpu_p50_ms=0.417
+79792.844ms KV m0_1b_cumulative.cpu_p95_ms=0.590
+79792.854ms KV m0_1b_cumulative.cpu_max_ms=436.261
+79792.865ms KV m0_1b_cumulative.cpu_p95_frac_T=0.035
+79792.875ms KV m0_1b_cumulative.gpu_p50_ms=1.479
+79792.889ms KV m0_1b_cumulative.gpu_p95_ms=2.542
+79792.899ms KV m0_1b_cumulative.gpu_p95_frac_T=0.153
+79792.909ms KV m0_1b_cumulative.interval_p50_ms=16.654
+79792.922ms KV m0_1b_cumulative.interval_p95_ms=17.109
+79792.934ms KV m0_1b_cumulative.last_hr=0x00000000
+79792.950ms KV m0_1b_cumulative.offscreen_uav=1
+79792.960ms KV verdict=RECORDED
+79802.494ms KV device_removed_hr=0x00000000
+79804.566ms COMP reset[m0 end] StopAnimation + Translation.X:=0.0000

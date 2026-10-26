@@ -1,0 +1,16 @@
+[2026-10-26 23:34:26] M0 run: host=DESKTOP-K93N3P8 sessions=3 inject=True
+[2026-10-26 23:34:26] machineId(SMBIOS UUID)=03000200-0400-0500-0006-000700080009
+[2026-10-26 23:34:26] composition.h sha256 PRE=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+[2026-10-26 23:34:28] PresentMon pid=60508
+[2026-10-26 23:34:30] tear probe exit=0
+[2026-10-26 23:34:32] session 1 dotnetPid=3160
+[2026-10-26 23:34:38] session 1 appPid=55496
+[2026-10-26 23:36:03] session 1 verdict=RECORDED frames=1176
+[2026-10-26 23:36:05] session 2 dotnetPid=18912
+[2026-10-26 23:36:10] session 2 appPid=20336
+[2026-10-26 23:37:35] session 2 verdict=RECORDED frames=1175
+[2026-10-26 23:37:37] session 3 dotnetPid=57300
+[2026-10-26 23:37:42] session 3 appPid=44084
+[2026-10-26 23:39:07] session 3 verdict=RECORDED frames=1174
+[2026-10-26 23:39:07] composition.h sha256 POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+[2026-10-26 23:39:07] RUN_DONE

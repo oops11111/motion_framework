@@ -1,0 +1,1429 @@
+[2026-10-26 22:33:15] cl: 用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.44.35228 版
+[2026-10-26 22:33:15] rive HEAD=2a043c31ccbda27628a2c80fd105c16ea35ed12a
+[2026-10-26 22:33:15] building rive (tests\, --toolset=msc release); first run downloads premake
+[2026-10-26 22:33:15] DXHEADERS_PREPEND: C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\microsoft_DirectX-Headers_v1.615.0\include\directx
++ premake5 vs2022 --config=release --out=out/release --with_rive_text --with_rive_layout --with_rive_canvas --toolset=msc
+make -C C:/Users/admin/mf_m0/m0/ext/rive-runtime/renderer/src/shaders -j20 OUT=C:/Users/admin/mf_m0/m0/ext/rive-runtime/tests/out/release/include/generated/shaders FLAGS="-p C:/Users/admin/mf_m0/m0/ext/rive-runtime/tests/dependencies/dabeaz_ply_3.11" d3d
+make: Entering directory `C:/Users/admin/mf_m0/m0/ext/rive-runtime/renderer/src/shaders'
+make: Nothing to be done for `d3d'.
+make: Leaving directory `C:/Users/admin/mf_m0/m0/ext/rive-runtime/renderer/src/shaders'
+Building configurations...
+Running action 'vs2022'...
++ msbuild.exe ./out/release/rive.sln
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+生成启动时间为 2026/10/26 22:33:20。
+
+节点 1 上的项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive.sln”(默认目标)。
+ValidateSolutionConfiguration:
+  正在生成解决方案配置“default|x64”。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive.sln”(1)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2) (默认目标)。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\tools_common.vcxproj”(3) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\tools_common.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\Lib.exe /OUT:"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\.\tools_common.lib" /NOLOGO /MACHINE:X64 /LTCG "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\fiddle_context.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\fiddle_context_d3d.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\fiddle_context_d3d12.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\fiddle_context_dawn.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\fiddle_context_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\fiddle_context_vulkan.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\shader_hotload.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\offscreen_render_target_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\offscreen_render_target_vulkan.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\offscreen_render_target_webgpu.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\offscreen_rendertarget_d3d.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\offscreen_rendertarget_d3d12.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\render_context_null.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\rive_android_app.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\rive_mgr.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\rive_wasm_app.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\stacktrace.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\tcp_client.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\test_harness.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_gl_renderer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window_android_vulkan.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window_canvas2d.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window_coregraphics.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window_egl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window_fiddle_context.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window_null.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window_skia.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window_svg.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window_vulkan_texture.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\testing_window_wgpu.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\write_png_file.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\batdude.png.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\montserrat.ttf.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\nomoon.png.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\paper.riv.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\roboto_flex.ttf.obj"
+  tools_common.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\tools_common.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\tools_common.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\tools_common\tools_common.tlog\tools_common.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\tools_common.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_pls_renderer.vcxproj”(4) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\rive_pls.5FFB054A.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\CL.exe /c /I..\..\..\dependencies /I..\..\..\renderer\include /I..\..\..\renderer\glad /I..\..\..\renderer\src /I..\..\..\include /Iinclude /I..\..\..\decoders\include /Zi /nologo /W3 /WX /diagnostics:column /MP /Ox /Oi /GL /D WITH_RIVE_TOOLS /D WITH_RIVE_TEXT /D RIVE_CANVAS /D WITH_RIVE_LAYOUT /D RELEASE /D NDEBUG /D _USE_MATH_DEFINES /D NOMINMAX /D _CRT_SECURE_NO_WARNINGS /D _SILENCE_CXX20_IS_POD_DEPRECATION_WARNING /D _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS /D RIVE_WINDOWS /D RIVE_DESKTOP_GL /D ORE_BACKEND_GL /D ORE_BACKEND_D3D11 /D ORE_BACKEND_D3D12 /D RIVE_ORE /D RIVE_DECODERS /D RIVE_KTX2 /D _HAS_EXCEPTIONS=0 /D _UNICODE /D UNICODE /GF /Gm- /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR- /std:c++latest /Fo"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\\" /Fd"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\.\rive_pls_renderer.pdb" /external:W3 /Gd /TP /wd4061 /wd4100 /wd4201 /wd4244 /wd4245 /wd4267 /wd4355 /wd4365 /wd4388 /wd4389 /wd4458 /wd4514 /wd4583 /wd4623 /wd4625 /wd4626 /wd4820 /wd4868 /wd5026 /wd5027 /wd5039 /wd5045 /wd5204 /wd5219 /wd5262 /wd5264 /wd4647 /FIrive_png_renames.h /FC /errorReport:queue ..\..\..\renderer\src\ore\d3d12\ore_context_d3d12.cpp
+  ore_context_d3d12.cpp
+Lib:
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\Lib.exe /OUT:"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\.\rive_pls_renderer.lib" /NOLOGO /MACHINE:X64 /LTCG "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\glad_custom.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\egl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\gles2.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\d3d_utils.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\pipeline_manager.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\render_context_d3d_impl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\d3d12_pipeline_manager.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\d3d12_utils.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\render_context_d3d12_impl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\deferred_cmd.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\deferred_host.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\draw.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\gl_state.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\gl_utils.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\load_store_actions_ext.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\pls_impl_rw_texture.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\pls_impl_webgl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\render_buffer_gl_impl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\render_context_gl_impl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\render_target_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\gpu.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\gpu_resource.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\gr_triangulator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\gradient.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\intersection_board.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_bind_group_d3d11.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_buffer_d3d11.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_context_d3d11.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_pipeline_d3d11.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_render_pass_d3d11.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_sampler_d3d11.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_shader_module_d3d11.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_texture_d3d11.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_bind_group_d3d12.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_buffer_d3d12.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_context_d3d12.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_pipeline_d3d12.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_render_pass_d3d12.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_sampler_d3d12.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_shader_module_d3d12.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_texture_d3d12.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_bind_group_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_buffer_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_context_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_pipeline_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_render_pass_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_sampler_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_shader_module_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_texture_gl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\hlsl_struct_layout.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_bind_group_layout.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_binding_map.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\ore_context.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\render_context.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\render_context_helper_impl.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\rive_render_factory.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\rive_render_image.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\rive_render_paint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\rive_render_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\rive_renderer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\sk_rectanizer_skyline.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\triangulation_controller.obj"
+  rive_pls_renderer.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_pls_renderer.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\rive_pls.5FFB054A.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_pls_renderer\rive_pls.5FFB054A.tlog\rive_pls_renderer.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_pls_renderer.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_cg_renderer.vcxproj”(5) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_cg_renderer\rive_cg_renderer.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_cg_renderer\rive_cg_renderer.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  所有输出均为最新。
+  rive_cg_renderer.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_cg_renderer.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_cg_renderer\rive_cg_renderer.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_cg_renderer\rive_cg_renderer.tlog\rive_cg_renderer.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_cg_renderer.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_decoders.vcxproj”(6) (默认目标)。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_decoders.vcxproj”(6)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\zlib.vcxproj”(7) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\zlib\zlib.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\zlib\zlib.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  所有输出均为最新。
+  zlib.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\zlib.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\zlib\zlib.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\zlib\zlib.tlog\zlib.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\zlib.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_decoders.vcxproj”(6)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libjpeg.vcxproj”(8) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libjpeg\libjpeg.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libjpeg\libjpeg.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  所有输出均为最新。
+  libjpeg.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libjpeg.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libjpeg\libjpeg.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libjpeg\libjpeg.tlog\libjpeg.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libjpeg.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_decoders.vcxproj”(6)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libwebp.vcxproj”(9) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libwebp\libwebp.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libwebp\libwebp.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  所有输出均为最新。
+  libwebp.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libwebp.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libwebp\libwebp.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libwebp\libwebp.tlog\libwebp.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libwebp.vcxproj”(默认目标)的操作。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\rive_decoders.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\CL.exe /c /I..\..\..\decoders\include /I..\..\..\include /Iinclude\libpng /I..\..\..\dependencies /I..\..\dependencies\glennrp_libpng_libpng16 /I"..\..\dependencies\rive-app_libjpeg_v9f" /I..\..\dependencies\webmproject_libwebp_v1.4.0\src /Zi /nologo /W3 /WX /diagnostics:column /MP /Ox /Oi /GL /D WITH_RIVE_TOOLS /D WITH_RIVE_TEXT /D RIVE_CANVAS /D WITH_RIVE_LAYOUT /D RELEASE /D NDEBUG /D _USE_MATH_DEFINES /D NOMINMAX /D _CRT_SECURE_NO_WARNINGS /D _SILENCE_CXX20_IS_POD_DEPRECATION_WARNING /D _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS /D RIVE_WINDOWS /D RIVE_DESKTOP_GL /D ORE_BACKEND_GL /D ORE_BACKEND_D3D11 /D ORE_BACKEND_D3D12 /D RIVE_ORE /D RIVE_PNG /D RIVE_JPEG /D RIVE_WEBP /D RIVE_KTX2 /D _HAS_EXCEPTIONS=0 /D _UNICODE /D UNICODE /GF /Gm- /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR- /std:c++latest /Fo"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\\" /Fd"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\.\rive_decoders.pdb" /external:W3 /Gd /TP /wd4061 /wd4100 /wd4201 /wd4244 /wd4245 /wd4267 /wd4355 /wd4365 /wd4388 /wd4389 /wd4458 /wd4514 /wd4583 /wd4623 /wd4625 /wd4626 /wd4820 /wd4868 /wd5026 /wd5027 /wd5039 /wd5045 /wd5204 /wd5219 /wd5262 /wd5264 /wd4647 /FIrive_png_renames.h /FIrive_libjpeg_renames.h /FC /errorReport:queue ..\..\..\decoders\src\decode_ktx2.cpp
+  decode_ktx2.cpp
+Lib:
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\Lib.exe /OUT:"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\.\rive_decoders.lib" /NOLOGO /MACHINE:X64 /LTCG "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\bitmap_decoder.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\bitmap_decoder_thirdparty.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\decode_jpeg.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\decode_ktx2.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\decode_png.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\decode_webp.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\texture_decoder.obj"
+  rive_decoders.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_decoders.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\rive_decoders.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_decoders\rive_decoders.tlog\rive_decoders.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_decoders.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive.vcxproj”(10) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\rive.tlog\unsuccessfulbuild”执行 Touch 任务。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\Lib.exe /OUT:"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\.\rive.lib" /NOLOGO /MACHINE:X64 /LTCG "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\advancing_component.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\animation_reset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\animation_reset_factory.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\animation_state.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\animation_state_instance.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_accumulator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_animation.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_animation_1d.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_animation_direct.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_1d.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_1d_input.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_1d_instance.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_1d_viewmodel.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_direct.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_direct_instance.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_transition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_ease_interpolator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_interpolator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_interpolator_component.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_interpolator_solver.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_value_interpolator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\elastic_ease.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\elastic_interpolator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_action_clear.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_action_target.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_action_traversal.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_listener_group.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\gamepad_listener_group.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\interpolating_keyframe.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyboard_listener_group.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyed_object.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyed_property.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_bool.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_callback.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_color.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_double.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_id.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_int.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_interpolator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_string.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_uint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layer_state.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\linear_animation.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\linear_animation_instance.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_action.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_align_target.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_bool_change.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_fire_event.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_change.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_invocation.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_number_change.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_trigger_change.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_gamepad.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_keyboard.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_semantic.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_viewmodel.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_viewmodel_change.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_animation.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_bool.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_linear_animation.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_number.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_remap_animation.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_simple_animation.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_state_machine.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_trigger.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\property_recorder.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_listener_action.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_transition_condition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\semantic_listener_group.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_instance.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_fire_action.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_fire_event.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_fire_trigger.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_input.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_input_instance.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_instance.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_layer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_listener.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_listener_single.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_transition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\system_state_instance.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_listener_group.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_bool_condition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_comparator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_condition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_focus_condition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_input_condition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_number_condition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_property_comparator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_property_viewmodel_comparator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_trigger_condition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_viewmodel_condition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\artboard.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\artboard_component_list.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\artboard_list_map_rule.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\artboard_referencer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\audio_asset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blob_asset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\file_asset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\file_asset_contents.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\file_asset_referencer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\font_asset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\image_asset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\manifest_asset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_asset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_module_asset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\shader_asset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\browser_image_decode.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\work_pool.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\audio_engine.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\audio_reader.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\audio_sound.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\audio_source.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\audio_event.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_artboard.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bitmap_cache.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bone.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\root_bone.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\skin.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\skinnable.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\tendon.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\weight.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\command_queue.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\command_server.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\component.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\component_origin.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\constrainable_list.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\distance_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\draggable_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\follow_path_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\ik_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\list_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\list_follow_path_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\rotation_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scale_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\clamped_scroll_physics.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\elastic_scroll_physics.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scroll_bar_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scroll_bar_constraint_proxy.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scroll_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scroll_constraint_proxy.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scroll_physics.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scroll_virtualizer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\virtual_layout.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\targeted_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transform_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\translation_constraint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\container_component.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\core.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\binary_data_reader.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\binary_reader.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\binary_writer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\core_bool_type.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\core_bytes_type.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\core_color_type.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\core_double_type.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\core_id_type.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\core_int_type.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\core_string_type.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\core_uint_type.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\custom_property.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\custom_property_container.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\custom_property_trigger.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_target_value.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_any.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_artboard.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_asset_blob.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_asset_font.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_asset_image.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_boolean.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_color.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_enum.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_list.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_number.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_string.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_symbol_list_index.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_trigger.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\context_value_viewmodel.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_boolean_negate.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_formula.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_group.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_group_item.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_interpolator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_list_to_length.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_number_to_list.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_operation.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_operation_value.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_operation_viewmodel.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_range_mapper.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_rounder.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_string_pad.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_string_remove_zeros.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_string_trim.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_system_degs_to_rads.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_system_normalizer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_to_number.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_to_string.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_trigger.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\formula_token.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind_container.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind_context.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind_list_item_consumer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind_viewmodel_consumer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_context.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind_path_referencer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\dependency_sorter.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\draw_rules.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\draw_target.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\drawable.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\event.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\factory.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\file.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_data.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\foreground_layout_drawable.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\animation_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\animation_state_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\any_state_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_animation_1d_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_animation_direct_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_1d_input_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_1d_viewmodel_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_direct_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blend_state_transition_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_ease_interpolator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_interpolator_component_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_value_interpolator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\elastic_interpolator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\entry_state_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\exit_state_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_action_clear_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_action_target_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_action_traversal_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyed_object_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyed_property_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_bool_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_callback_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_color_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_double_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_id_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_int_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_string_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyframe_uint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\linear_animation_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_align_target_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_bool_change_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_fire_event_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_number_change_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_trigger_change_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_event_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_gamepad_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_keyboard_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_pointer_button_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_semantic_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_text_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_viewmodel_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_viewmodel_change_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_bool_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_number_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_remap_animation_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_simple_animation_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_state_machine_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_trigger_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_listener_action_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_transition_condition_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_bool_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_fire_event_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_fire_trigger_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_layer_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_listener_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_listener_single_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_number_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_trigger_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_transition_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_artboard_condition_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_bool_condition_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_focus_condition_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_number_condition_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_property_artboard_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_property_component_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_property_viewmodel_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_self_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_trigger_condition_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_value_artboard_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_value_asset_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_value_boolean_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_value_color_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_value_enum_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_value_id_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_value_number_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_value_string_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_value_trigger_comparator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_viewmodel_condition_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\artboard_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\artboard_component_list_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\artboard_list_map_rule_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\audio_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\blob_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\file_asset_contents_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\font_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\image_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\manifest_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_module_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\shader_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\audio_event_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\backboard_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bitmap_cache_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bone_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_weight_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\root_bone_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\skin_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\tendon_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\weight_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\component_origin_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\distance_constraint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\follow_path_constraint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\ik_constraint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\list_follow_path_constraint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\rotation_constraint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scale_constraint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\clamped_scroll_physics_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\elastic_scroll_physics_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scroll_bar_constraint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scroll_constraint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transform_constraint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\translation_constraint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\core_type_tree.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\custom_property_boolean_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\custom_property_color_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\custom_property_enum_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\custom_property_group_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\custom_property_number_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\custom_property_string_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\custom_property_trigger_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_artboard_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_boolean_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_color_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_enum_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_integer_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_list_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_number_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_string_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_trigger_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_viewmodel_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_boolean_negate_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_formula_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_group_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_group_item_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_interpolator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_list_to_length_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_number_to_list_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_operation_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_operation_value_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_operation_viewmodel_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_range_mapper_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_rounder_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_string_pad_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_string_remove_zeros_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_string_trim_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_system_degs_to_rads_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_system_normalizer_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_to_number_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_to_string_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_trigger_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\formula_token_argument_separator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\formula_token_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\formula_token_function_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\formula_token_input_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\formula_token_operation_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\formula_token_parenthesis_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\formula_token_parenthesis_close_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\formula_token_parenthesis_open_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\formula_token_value_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind_context_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind_path_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\draw_rules_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\draw_target_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\event_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_data_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\foreground_layout_drawable_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\gamepad_input_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyboard_input_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\semantic_input_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\user_input_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\joystick_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layer_mask_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\artboard_component_list_override_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\axis_x_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\axis_y_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\grid_item_placement_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\grid_track_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layout_component_style_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layout_node_style_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layout_participant_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\n_sliced_node_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\n_slicer_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\n_slicer_tile_mode_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layout_component_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_artboard_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_artboard_layout_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_artboard_leaf_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\node_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\open_url_event_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_artboard_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_boolean_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_color_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_number_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_string_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_trigger_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_viewmodel_property_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_data_converter_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_drawable_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_interpolator_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_layout_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_path_effect_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_transition_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\selection_style_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\semantic_data_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\clipping_shape_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\contour_mesh_vertex_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_asymmetric_vertex_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_detached_vertex_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_mirrored_vertex_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\ellipse_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\image_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\list_path_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\mesh_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\mesh_vertex_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\color_channels_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\dash_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\dash_path_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\feather_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\fill_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\gradient_stop_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\group_effect_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\linear_gradient_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\paint_image_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\radial_gradient_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\solid_color_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\stroke_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\target_effect_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\trim_path_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\points_path_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\polygon_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\rectangle_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\shape_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\star_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\straight_vertex_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\triangle_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\solo_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_follow_path_modifier_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_cursor_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_selected_text_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_selection_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_text_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_modifier_group_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_modifier_range_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_style_axis_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_style_background_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_style_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_style_feature_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_style_paint_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_value_run_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_variation_modifier_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_enum_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_enum_custom_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_enum_system_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_enum_value_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_component_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_artboard_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset_blob_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset_font_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset_image_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_boolean_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_color_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_enum_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_list_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_list_item_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_number_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_string_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_symbol_list_index_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_trigger_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_value_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_viewmodel_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_artboard_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_asset_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_asset_blob_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_asset_font_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_asset_image_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_boolean_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_color_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_enum_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_enum_custom_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_enum_system_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_list_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_number_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_string_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_symbol_list_index_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_trigger_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_viewmodel_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\hittest_command_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\artboard_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\backboard_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bindable_property_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_bind_path_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_formula_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_converter_group_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\enum_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\file_asset_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyed_object_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyed_property_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layer_state_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\linear_animation_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_gamepad_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_keyboard_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_input_type_semantic_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_object_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_layer_component_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_layer_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_machine_listener_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\state_transition_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_asset_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transition_viewmodel_condition_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_list_importer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_manager.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focus_node.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\focusable.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\gamepad_batch.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\gamepad_input.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\keyboard_input.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\semantic_input.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\intrinsically_sizeable.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\joystick.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layer_mask.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layout.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\artboard_component_list_override.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\axis.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\axis_x.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\axis_y.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\grid_item_placement.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\grid_track.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layout_component_style.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layout_node_provider.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layout_participant.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layout_sizing_style.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\n_sliced_node.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\n_slicer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\n_slicer_details.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\n_slicer_tile_mode.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\layout_component.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\listener_group.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\logging_scripting_context.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_artboards.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_asset_reference.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_atoms.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_audio.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_buffer_ext.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_data_context.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_data_value.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_image_decode.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_listener_invocation.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_promise.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_properties.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_rive_base.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_rive_file.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_script_backend.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_scripted_context.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_scriptnet.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_state.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_transition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_color.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_input.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_mat2d.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_mat4.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_math.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_vec2d.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_blob.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_font.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_gpu.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_gradient.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_image.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_mesh.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_paint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_renderer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_renderer_library.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\lua_text.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\rive_lua_libs.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\aabb.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bezier_utils.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\bit_field_loc.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\contour_measure.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\hit_test.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\mat2d.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\mat2d_scale.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\n_slicer_helpers.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\path_measure.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\random.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\raw_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\raw_path_utils.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\rectangles_to_contour.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\vec2d.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_artboard.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_artboard_layout.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_artboard_leaf.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\nested_artboard_mesh_host.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\node.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\offscreen_raster.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\parent_traversal.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\profiler.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\rive_profile.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\renderer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scene.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_artboard.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_boolean.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_color.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_number.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_string.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_trigger.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_input_viewmodel_property.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\decoded_file.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\script_backend.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_data_converter.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_drawable.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_interpolator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_layout.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_object.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_path_effect.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\scripted_transition.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\net.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\net_policy.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\semantic_data.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\semantic_inference_registry.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\semantic_manager.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\semantic_provider.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\clipping_shape.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_asymmetric_vertex.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_detached_vertex.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_mirrored_vertex.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cubic_vertex.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\deformer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\ellipse.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\image.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\list_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\mesh.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\mesh_host.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\mesh_vertex.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\color.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\dash.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\dash_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\effects_container.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\feather.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\fill.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\gradient_stop.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\group_effect.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\linear_gradient.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\paint_image.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\paint_outset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\radial_gradient.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\shape_paint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\shape_paint_mutator.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\shape_paint_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\solid_color.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\stroke.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\stroke_effect.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\target_effect.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\trim_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\parametric_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\path_composer.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\path_vertex.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\points_common_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\points_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\polygon.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\rectangle.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\shape.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\shape_paint_container.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\slice_mesh.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\star.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\straight_vertex.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\triangle.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\vertex.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\simple_array.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\solo.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\static_scene.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\cursor.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\font_hb.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\fully_shaped_text.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\glyph_lookup.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\line_break.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\line_break_data.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\line_breaker.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\raw_text.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\raw_text_input.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_engine.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_follow_path_modifier.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_cursor.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_drawable.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_selected_text.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_selection.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_input_text.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_interface.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_modifier.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_modifier_group.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_modifier_range.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_selection_controller.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_selection_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_style.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_style_axis.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_style_background.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_style_feature.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_style_paint.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_target_modifier.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_value_run.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_variation_helper.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\text_variation_modifier.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\utf.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\transform_component.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_enum.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\data_enum_value.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\property_symbol_dependent.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_artboard_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset_blob_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset_font_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset_image_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_boolean_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_color_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_enum_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_list_index_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_list_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_number_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_string_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_trigger_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_value_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_runtime.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_artboard.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset_blob.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset_font.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_asset_image.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_boolean.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_color.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_enum.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_list.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_list_item.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_number.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_string.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_symbol_list_index.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_trigger.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_value.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_instance_viewmodel.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_enum.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\viewmodel_property_enum_system.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\write_attribution.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\virtualizing_component.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\browser_scripting_vm.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\gpu_proxy.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\module_context.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\render_proxy.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\module_tier_ladder.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\prelinked_aot.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\wasm_scripting_vm.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\watermark.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\world_transform_component.obj"
+  rive.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\rive.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive\rive.tlog\rive.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libpng.vcxproj”(11) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libpng\libpng.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libpng\libpng.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  所有输出均为最新。
+  libpng.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libpng.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libpng\libpng.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\libpng\libpng.tlog\libpng.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libpng.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_yoga.vcxproj”(12) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_yoga\rive_yoga.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_yoga\rive_yoga.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  所有输出均为最新。
+  rive_yoga.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_yoga.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_yoga\rive_yoga.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_yoga\rive_yoga.tlog\rive_yoga.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_yoga.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_harfbuzz.vcxproj”(13) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_harfbuzz\rive_harfbuzz.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_harfbuzz\rive_harfbuzz.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  所有输出均为最新。
+  rive_harfbuzz.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_harfbuzz.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_harfbuzz\rive_harfbuzz.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_harfbuzz\rive_harfbuzz.tlog\rive_harfbuzz.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_harfbuzz.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_sheenbidi.vcxproj”(14) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_sheenbidi\rive_sheenbidi.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_sheenbidi\rive_sheenbidi.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  所有输出均为最新。
+  rive_sheenbidi.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_sheenbidi.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_sheenbidi\rive_sheenbidi.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\rive_sheenbidi\rive_sheenbidi.tlog\rive_sheenbidi.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_sheenbidi.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\miniaudio.vcxproj”(15) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\miniaudio\miniaudio.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\miniaudio\miniaudio.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  所有输出均为最新。
+  miniaudio.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\miniaudio.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\miniaudio\miniaudio.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\miniaudio\miniaudio.tlog\miniaudio.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\miniaudio.vcxproj”(默认目标)的操作。
+项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj”(2)正在节点 1 上生成“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\glfw3.vcxproj”(16) (默认目标)。
+PrepareForBuild:
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\glfw3\glfw3.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\glfw3\glfw3.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+ClCompile:
+  所有输出均为最新。
+Lib:
+  所有输出均为最新。
+  glfw3.vcxproj -> C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\glfw3.lib
+FinalizeBuildStatus:
+  正在删除文件“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\glfw3\glfw3.tlog\unsuccessfulbuild”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\glfw3\glfw3.tlog\glfw3.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\glfw3.vcxproj”(默认目标)的操作。
+PrepareForBuild:
+  正在创建目录“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\”。
+  已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
+  正在创建目录“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\bench.tlog\”。
+InitializeBuildStatus:
+  正在创建“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\bench.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\bench.tlog\unsuccessfulbuild”执行 Touch 任务。
+ComputeStdModulesCompileInputs:
+  正在读取为库 'microsoft/STL'提供数据的库清单文件 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\modules.json'。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.ixx”，以使用此项目生成。
+  正在从库“microsoft/STL”添加模块源“C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\modules\std.compat.ixx”，以使用此项目生成。
+MakeDirsForCl:
+  正在创建目录“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\microsoft\STL”。
+SetModuleDependencies:
+  正在创建目录“C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\bench_MD.tlog\”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\CL.exe /c /I..\..\..\dependencies /I..\.. /I..\..\..\renderer\include /I..\..\..\renderer\path_fiddle /I..\..\..\renderer\shader_hotload /I..\..\..\renderer\src /I..\..\..\include /I..\..\..\cg_renderer\include /I..\..\..\decoders\include /I..\..\unit_tests /Iinclude\libpng /Zi /nologo /W3 /WX /diagnostics:column /MP /Ox /Oi /GL /D WITH_RIVE_TOOLS /D WITH_RIVE_TEXT /D RIVE_CANVAS /D WITH_RIVE_LAYOUT /D RELEASE /D NDEBUG /D NOMINMAX /D RIVE_WINDOWS /D RIVE_DESKTOP_GL /D ORE_BACKEND_GL /D ORE_BACKEND_D3D11 /D ORE_BACKEND_D3D12 /D RIVE_ORE /D SK_GL /D GL_SILENCE_DEPRECATION /D YOGA_EXPORT= /D _USE_MATH_DEFINES /D _CRT_SECURE_NO_WARNINGS /D _CRT_NONSTDC_NO_DEPRECATE /D _WINSOCK_DEPRECATED_NO_WARNINGS /D UNICODE /D _SILENCE_CXX20_IS_POD_DEPRECATION_WARNING /D _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS /D _HAS_EXCEPTIONS=0 /D _UNICODE /D UNICODE /GF /Gm- /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR- /std:c++latest /Fo"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\\" /Fd"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\vc143.pdb" /external:W3 /Gd /TP /wd4061 /wd4100 /wd4201 /wd4244 /wd4245 /wd4267 /wd4355 /wd4365 /wd4388 /wd4389 /wd4458 /wd4514 /wd4583 /wd4623 /wd4625 /wd4626 /wd4820 /wd4868 /wd5026 /wd5027 /wd5039 /wd5045 /wd5204 /wd5219 /wd5262 /wd5264 /wd4647 /FIrive_png_renames.h /FC /errorReport:queue /EHsc ..\..\bench\add_raw_path.cpp ..\..\bench\artboard_frame_bench.cpp ..\..\bench\bench.cpp ..\..\bench\build_raw_path.cpp ..\..\bench\draw_pls_path.cpp ..\..\bench\intersection_board_bench.cpp ..\..\bench\iterate_raw_path.cpp ..\..\bench\map_points.cpp ..\..\bench\measure_path.cpp ..\..\bench\raw_path_bounds.cpp
+  add_raw_path.cpp
+  artboard_frame_bench.cpp
+  bench.cpp
+  build_raw_path.cpp
+  draw_pls_path.cpp
+  intersection_board_bench.cpp
+  iterate_raw_path.cpp
+  map_points.cpp
+  measure_path.cpp
+  raw_path_bounds.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\.\bench.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\..\build\windows\bin\release opengl32.lib d3d11.lib d3d12.lib dxguid.lib dxgi.lib Dbghelp.lib d3dcompiler.lib ws2_32.lib gdi32.lib shell32.lib advapi32.lib user32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\.\bench.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /LTCGOUT:"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\bench.iobj" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\.\bench.lib" /MACHINE:X64 "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\add_raw_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\artboard_frame_bench.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\bench.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\build_raw_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\draw_pls_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\intersection_board_bench.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\iterate_raw_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\map_points.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\measure_path.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\obj\default\bench\raw_path_bounds.obj"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\tools_common.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_pls_renderer.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_cg_renderer.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\zlib.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libjpeg.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libwebp.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_decoders.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\libpng.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_yoga.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_harfbuzz.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\rive_sheenbidi.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\miniaudio.lib"
+  "C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\glfw3.lib"
+  正在生成代码
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\StatusStack.c(58): warning C4711: 为自动内联扩展选定了函数“StatusStackSetEmpty” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(536): warning C4711: 为自动内联扩展选定了函数“BracketQueueFinalize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBCodepointSequence.c(136): warning C4711: 为自动内联扩展选定了函数“GetUTF16CodepointAt” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBCodepointSequence.c(140): warning C4711: 为自动内联扩展选定了函数“GetUTF32CodepointAt” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\StatusStack.c(67): warning C4711: 为自动内联扩展选定了函数“StatusStackInsertElement” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\RunQueue.c(104): warning C4711: 为自动内联扩展选定了函数“RunQueueInsertElement” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\RunQueue.c(113): warning C4711: 为自动内联扩展选定了函数“LevelRunAttach” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBAlgorithm.c(197): warning C4711: 为自动内联扩展选定了函数“DisposeAlgorithm” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\RunQueue.c(114): warning C4711: 为自动内联扩展选定了函数“FindPreviousPartialRun” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(476): warning C4711: 为自动内联扩展选定了函数“BracketQueueInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(65): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(69): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(564): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(180): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(181): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\LevelRun.c(30): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\LevelRun.c(31): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\LevelRun.c(36): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\LevelRun.c(43): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(38): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(39): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(43): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(45): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(447): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(448): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(454): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(456): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(461): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(462): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(468): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(384): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(412): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(412): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(426): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(427): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(428): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\BracketQueue.c(98): warning C4711: 为自动内联扩展选定了函数“BracketQueueInsertElement” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\BracketQueue.c(189): warning C4711: 为自动内联扩展选定了函数“BracketQueueFinalizePairs” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(153): warning C4711: 为自动内联扩展选定了函数“BidiChainAdd” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(144): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(164): warning C4711: 为自动内联扩展选定了函数“BidiChainAdd” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(145): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(172): warning C4711: 为自动内联扩展选定了函数“BidiChainAdd” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(145): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(152): warning C4711: 为自动内联扩展选定了函数“BidiChainIsSingle” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(202): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(173): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(164): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(203): warning C4711: 为自动内联扩展选定了函数“BidiChainAbandonNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(95): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(132): warning C4711: 为自动内联扩展选定了函数“BidiChainAbandonNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(102): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(131): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(184): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(114): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(123): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(156): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(302): warning C4711: 为自动内联扩展选定了函数“BracketQueueGetOpeningLink” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(303): warning C4711: 为自动内联扩展选定了函数“BracketQueueGetClosingLink” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(309): warning C4711: 为自动内联扩展选定了函数“BracketQueueGetStrongType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(320): warning C4711: 为自动内联扩展选定了函数“BracketQueueGetPriorStrongLink” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(325): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(330): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(333): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(338): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(360): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(361): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(365): warning C4711: 为自动内联扩展选定了函数“BracketQueueDequeue” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBAlgorithm.c(197): warning C4711: 为自动内联扩展选定了函数“DisposeAlgorithm” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(699): warning C4711: 为自动内联扩展选定了函数“SBAlgorithmRelease” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(700): warning C4711: 为自动内联扩展选定了函数“DisposeParagraph” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(79): warning C4711: 为自动内联扩展选定了函数“StatusStackFinalize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(80): warning C4711: 为自动内联扩展选定了函数“RunQueueFinalize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(536): warning C4711: 为自动内联扩展选定了函数“BracketQueueFinalize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(81): warning C4711: 为自动内联扩展选定了函数“IsolatingRunFinalize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(206): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(207): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(180): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(181): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(220): warning C4711: 为自动内联扩展选定了函数“SkipIsolatingRun” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(64): warning C4711: 为自动内联扩展选定了函数“BidiChainInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\StatusStack.c(58): warning C4711: 为自动内联扩展选定了函数“StatusStackSetEmpty” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(65): warning C4711: 为自动内联扩展选定了函数“StatusStackInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(66): warning C4711: 为自动内联扩展选定了函数“RunQueueInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(476): warning C4711: 为自动内联扩展选定了函数“BracketQueueInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(67): warning C4711: 为自动内联扩展选定了函数“IsolatingRunInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(227): warning C4711: 为自动内联扩展选定了函数“BracketQueueReset” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(237): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(243): warning C4711: 为自动内联扩展选定了函数“LookupBracketPair” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\BracketQueue.c(98): warning C4711: 为自动内联扩展选定了函数“BracketQueueInsertElement” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(248): warning C4711: 为自动内联扩展选定了函数“BracketQueueEnqueue” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(260): warning C4711: 为自动内联扩展选定了函数“BracketQueueShouldDequeue” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(275): warning C4711: 为自动内联扩展选定了函数“BracketQueueSetStrongType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBAlgorithm.c(82): warning C4711: 为自动内联扩展选定了函数“AllocateAlgorithm” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBAlgorithm.c(88): warning C4711: 为自动内联扩展选定了函数“DetermineBidiTypes” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(38): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(39): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(43): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(45): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(487): warning C4711: 为自动内联扩展选定了函数“AttachLevelRunLinks” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(447): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(448): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(454): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(456): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(461): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(462): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(468): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(519): warning C4711: 为自动内联扩展选定了函数“ResolveImplicitLevels” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(65): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(69): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(525): warning C4711: 为自动内联扩展选定了函数“AttachOriginalLinks” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(527): warning C4711: 为自动内联扩展选定了函数“BidiChainSetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBAlgorithm.c(102): warning C4711: 为自动内联扩展选定了函数“SBCodepointSequenceIsValid” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\RunQueue.c(104): warning C4711: 为自动内联扩展选定了函数“RunQueueInsertElement” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\RunQueue.c(113): warning C4711: 为自动内联扩展选定了函数“LevelRunAttach” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\RunQueue.c(114): warning C4711: 为自动内联扩展选定了函数“FindPreviousPartialRun” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(523): warning C4711: 为自动内联扩展选定了函数“RunQueueEnqueue” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(532): warning C4711: 为自动内联扩展选定了函数“RunQueueDequeue” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(292): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(413): warning C4711: 为自动内联扩展选定了函数“StatusStackGetIsolateStatus” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(414): warning C4711: 为自动内联扩展选定了函数“StatusStackPop” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(473): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(474): warning C4711: 为自动内联扩展选定了函数“BidiChainAbandonNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(422): warning C4711: 为自动内联扩展选定了函数“StatusStackGetOverrideStatus” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(421): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(421): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(479): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(481): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(482): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(490): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\LevelRun.c(30): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\LevelRun.c(31): warning C4711: 为自动内联扩展选定了函数“BidiChainGetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\LevelRun.c(36): warning C4711: 为自动内联扩展选定了函数“BidiChainGetNext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\LevelRun.c(43): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(499): warning C4711: 为自动内联扩展选定了函数“LevelRunInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(425): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(393): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(395): warning C4711: 为自动内联扩展选定了函数“StatusStackGetOverrideStatus” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(393): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(479): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(355): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(360): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(365): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(370): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(416): warning C4711: 为自动内联扩展选定了函数“StatusStackPop” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(396): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(396): warning C4711: 为自动内联扩展选定了函数“StatusStackGetOverrideStatus” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(375): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(375): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(375): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(375): warning C4711: 为自动内联扩展选定了函数“StatusStackGetOverrideStatus” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(380): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(450): warning C4711: 为自动内联扩展选定了函数“StatusStackSetEmpty” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(457): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(466): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(380): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(380): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(387): warning C4711: 为自动内联扩展选定了函数“StatusStackGetOverrideStatus” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(387): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(387): warning C4711: 为自动内联扩展选定了函数“BidiChainSetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(380): warning C4711: 为自动内联扩展选定了函数“StatusStackGetOverrideStatus” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(439): warning C4711: 为自动内联扩展选定了函数“StatusStackGetIsolateStatus” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(387): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(387): warning C4711: 为自动内联扩展选定了函数“StatusStackGetEmbeddingLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(375): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(380): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(387): warning C4711: 为自动内联扩展选定了函数“BidiChainSetType” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(440): warning C4711: 为自动内联扩展选定了函数“StatusStackPop” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(64): warning C4711: 为自动内联扩展选定了函数“BidiChainInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\StatusStack.c(58): warning C4711: 为自动内联扩展选定了函数“StatusStackSetEmpty” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(65): warning C4711: 为自动内联扩展选定了函数“StatusStackInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(66): warning C4711: 为自动内联扩展选定了函数“RunQueueInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(476): warning C4711: 为自动内联扩展选定了函数“BracketQueueInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(67): warning C4711: 为自动内联扩展选定了函数“IsolatingRunInitialize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(576): warning C4711: 为自动内联扩展选定了函数“CreateParagraphContext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(579): warning C4711: 为自动内联扩展选定了函数“DetermineParagraphLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(564): warning C4711: 为自动内联扩展选定了函数“BidiChainGetLevel” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(592): warning C4711: 为自动内联扩展选定了函数“SaveLevels” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(598): warning C4711: 为自动内联扩展选定了函数“SBAlgorithmRetain” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(79): warning C4711: 为自动内联扩展选定了函数“StatusStackFinalize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(80): warning C4711: 为自动内联扩展选定了函数“RunQueueFinalize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\IsolatingRun.c(536): warning C4711: 为自动内联扩展选定了函数“BracketQueueFinalize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(81): warning C4711: 为自动内联扩展选定了函数“IsolatingRunFinalize” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(608): warning C4711: 为自动内联扩展选定了函数“DisposeParagraphContext” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(632): warning C4711: 为自动内联扩展选定了函数“DetermineBoundary” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(638): warning C4711: 为自动内联扩展选定了函数“AllocateParagraph” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(645): warning C4711: 为自动内联扩展选定了函数“DisposeParagraph” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBAlgorithm.c(176): warning C4711: 为自动内联扩展选定了函数“SBUIntegerNormalizeRange” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(632): warning C4711: 为自动内联扩展选定了函数“DetermineBoundary” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(638): warning C4711: 为自动内联扩展选定了函数“AllocateParagraph” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBParagraph.c(645): warning C4711: 为自动内联扩展选定了函数“DisposeParagraph” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\dependencies\Tehreer_SheenBidi_v2.6\Source\SBAlgorithm.c(179): warning C4711: 为自动内联扩展选定了函数“SBParagraphCreate” [C:\Users\admin\mf_m0\m0\ext\rive-runtime\tests\out\release\bench.vcxproj]
+[2026-10-26 23:32:03] rive libs: glfw3.lib, libjpeg.lib, libpng.lib, libwebp.lib, luau_vm.lib, miniaudio.lib, rive_cg_renderer.lib, rive_decoders.lib, rive_harfbuzz.lib, rive_pls_renderer.lib, rive_sheenbidi.lib, rive_yoga.lib, rive.lib, tools_common.lib, zlib.lib
+[2026-10-26 23:32:03] building m0rive.dll
+m0rive.cpp
+rive_pls_renderer.lib(render_context.obj) : 找到 MSIL .netmodule 或使用 /GL 编译的模块；正在使用 /LTCG 重新启动链接；将 /LTCG 添加到链接命令行以改进链接器性能
+  正在创建库 C:\Users\admin\mf_m0\m0\out\m0rive.lib 和对象 C:\Users\admin\mf_m0\m0\out\m0rive.exp
+rive_pls_renderer.lib(ore_context_d3d11.obj) : error LNK2001: 无法解析的外部符号 WKPDID_D3DDebugObjectName
+C:\Users\admin\mf_m0\m0\out\m0rive.dll : fatal error LNK1120: 1 个无法解析的外部命令
+
+[2026-10-26 23:34:23] NOTE: background MSBuild/link (pids 59592/33228) killed after stall since 22:34; rive.lib+pls already built; m0rive.dll + m0_tear_probe.exe produced via parallel link at ~23:02 (dxguid.lib + /DNOMINMAX). Restored m0rive.dll into m0\out from AppX copy.
+[2026-10-26 23:34:23] BUILD_OK

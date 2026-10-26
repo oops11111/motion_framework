@@ -1,0 +1,4 @@
+﻿session,pid,verdict,m0_1a_frames,m0_1a_cpu_p95_ms,m0_1a_gpu_p95_ms,expr_latency_p50_ms,ui_latency_p50_ms,misalign_px
+1,55496,RECORDED,1176,0.550,2.610,24.65,66.31,0.04
+2,20336,RECORDED,1175,0.531,3.133,24.18,68.51,0.00
+3,44084,RECORDED,1174,0.529,0.655,20.54,69.44,0.08
