@@ -338,3 +338,6 @@
 - **2026-10-26 21:38:45 AWST — M0-A LOCKED（D1–D7 按建议）**
   - LOCKED：`docs/m0_tech_validation_gate_LOCKED.md`，hash=`942d6965dae1aa41f3b853923d08a11aac9714d60018888a5c486bfde5809768`
   - 派工单：`docs/workbuddy_m0_dispatch.md`（构建可先行；采数等 approved 留证）；MainPage 补丁 `m0/mainpage_m0_hook.patch`
+
+- **2026-10-26 21:43:10 AWST — M0-A APPROVED（会话用户）→ 派 workbuddy**
+  - approved：`docs/m0_tech_validation_approved.md`；gate `942d6965…9768` 不变；采数=是（-Inject，3 会话）；派工单 `docs/workbuddy_m0_dispatch.md`
