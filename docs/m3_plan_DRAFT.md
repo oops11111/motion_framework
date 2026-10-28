@@ -1,6 +1,6 @@
 # M3 规划（m3_plan_DRAFT.md）
 
-STATUS=DRAFT（规划文档，**不授权采数**；其中每张真机票仍须单独走 DRAFT → LOCK → APPROVED）
+STATUS=DRAFT，F1–F6 已裁决（pidan「F 按建议」，2026-10-28 20:26:23 AWST）。规划文档，**不授权采数**；其中每张真机票仍须单独走 DRAFT → LOCK → APPROVED。
 起草：Claude（Claude Code 接手会话），2026-10-28。依据：plan.md §4–§5（M3 = 第 22 周“Rive 层 + 首个试点”）；`docs/m0_tech_validation_result.md`；`docs/m0b_win11_r3_result.md`；评估报告 `docs/assessment/fluidmotion_assessment.html`（在 `claude/m2-perf-ci-tooling` 分支）。
 
 ## 1. 进入 M3 时的状态
@@ -45,8 +45,8 @@ STATUS=DRAFT（规划文档，**不授权采数**；其中每张真机票仍须�
 | 有管理员权限 | 设备丢失注入（`dxcap -forcetdr` 等）、PresentMon | DESKTOP-IJI1KJG 可提权 |
 | 一台集显或低端笔记本 | PERF-CI 第二台机器（GPU 档须不同于两台独显机） | 没有 |
 
-## 6. 需要裁决的事项（附建议）
-| # | 问题 | 建议 | 理由 |
+## 6. 裁决（pidan：F1–F6 全部按建议）
+| # | 问题 | 裁决（= 原建议） | 理由 |
 |---|---|---|---|
 | **F1** | Rive 默认走哪条路径 | **合成表面为默认**，交换链作为可选项（大面积、高频内容） | 表面路径 CPU 约为交换链的一半，DPI 和合成都交给系统；交换链保留给需要 independent flip 的场景 |
 | **F2** | 是否默认启用撕裂 | **默认关闭**，只对低延迟跟随场景开放 opt-in | 框架目标是流畅、合规的同步动画；撕裂的收益只在极低延迟场景 |
@@ -63,4 +63,4 @@ STATUS=DRAFT（规划文档，**不授权采数**；其中每张真机票仍须�
 5. 试点 1 选型并行进行；接入在 1、2 完成后开始。
 
 ## 8. 禁令（沿用）
-不改 `composition.h`（分发器冻结；若 M3 需要改，另开闸门）；不重开 S1/R-3/R-2；不解冻 Bv（F5 裁决前）；禁影子 IV；成功 ≠ 采用；PERF-CI 在第二台机器到位前仍 HOLD。
+不改 `composition.h`（分发器冻结；若 M3 需要改，另开闸门）；不重开 S1/R-3/R-2；Bv 按 F5 在试点期作为发布行为（位置连续），但仍不作为“满足 R-2”的依据，也不重开 R-2 票；禁影子 IV；成功 ≠ 采用；PERF-CI 在第二台机器到位前仍 HOLD。

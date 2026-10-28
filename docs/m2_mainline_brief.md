@@ -393,3 +393,7 @@
 - **2026-10-28 — M3 规划 DRAFT + M0 工具收尾（分支 `claude/m3-plan`）**
   - `docs/m3_plan_DRAFT.md`：WP1–WP5、票序、硬件需求；待裁决 F1–F6
   - `m0/run_m0.ps1`：新增 `-LaunchMode Exe`（并回 M0-B r3 执行方的直接启动方式）；PresentMon 改为随探针进程退出；探针也接受 `--m0-inject` 参数
+
+- **2026-10-28 20:26:23 AWST — M3 规划 F1–F6 按建议裁决（pidan）**
+  - F1 默认走合成表面，交换链可选；F2 撕裂默认关；F3 首次显示前离屏预热；F4 按未来 WinMD 的形状冻结 C# API，试点绑定它；F5 试点期按 B_v 发布，速度不连续写进设计约束，另请设计师盲测；F6 真机票保留闸门，代码和文档走 PR
+  - 记录在 `docs/m3_plan_DRAFT.md` §6；PERF-CI 的 Q1–Q8 仍待裁决（PR #5 未合并）
