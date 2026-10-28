@@ -1,8 +1,12 @@
 # Runs the M0 probes on the lab machine (M0-A: DESKTOP-K93N3P8; M0-B: Win11 machine).
 # Collects data: run only after the ticket's gate is LOCKED and APPROVED.
-#   powershell -ExecutionPolicy Bypass -File m0\run_m0.ps1 -DemoExe <...\MotionSoftDemo.exe> -DemoProj <project dir> [-Inject] [-Sessions 3] [-PresentMon <...\PresentMon.exe>] [-ArtDir <dir>]
+#   powershell -ExecutionPolicy Bypass -File m0\run_m0.ps1 -DemoExe <...\MotionSoftDemo.exe> -DemoProj <project dir> [-LaunchMode Package|Exe] [-Inject] [-Sessions 3] [-PresentMon <...\PresentMon.exe>] [-ArtDir <dir>]
+# -LaunchMode Package (default): `dotnet run` with the MSIX launch profile, as on DESKTOP-K93N3P8 (M0-A).
+# -LaunchMode Exe: start -DemoExe directly with env vars and args, as used on DESKTOP-IJI1KJG (M0-B r3,
+#   where the package profile was missing). Use a build output that starts unpackaged (M0-B r3: Debug).
 param(
     [Parameter(Mandatory = $true)][string]$DemoExe,
+    [ValidateSet("Package", "Exe")][string]$LaunchMode = "Package",
     [switch]$Inject,
     [int]$Sessions = 3,
     [string]$PresentMon = "",
@@ -80,9 +84,10 @@ function Stage-NativeDll {
         if (Test-Path $appx) { Copy-Item $dll $appx -Force }
       }
     }
+    Copy-Item $dll (Split-Path $DemoExe -Parent) -Force   # Exe mode loads it from beside the exe
 }
 
-Say "M0 run: host=$env:COMPUTERNAME sessions=$Sessions inject=$($Inject.IsPresent)"
+Say "M0 run: host=$env:COMPUTERNAME sessions=$Sessions inject=$($Inject.IsPresent) launch=$LaunchMode"
 $uuid = (Get-CimInstance Win32_ComputerSystemProduct).UUID
 Say "machineId(SMBIOS UUID)=$uuid"
 $os = Get-CimInstance Win32_OperatingSystem
@@ -99,13 +104,18 @@ $pm = $null
 if ($PresentMon -and (Test-Path $PresentMon)) {
     $pm = Start-Process $PresentMon -PassThru -WindowStyle Hidden -ArgumentList @(
         "--process_name", "m0_tear_probe.exe", "--output_file", (Join-Path $tearDir "presentmon.csv"),
-        "--timed", "60", "--terminate_after_timed", "--no_console_stats")
+        "--terminate_on_proc_exit", "--no_console_stats")
     Start-Sleep 2
     Say "PresentMon pid=$($pm.Id)"
 } else { Say "PresentMon not given: PresentMode (independent flip) will not be recorded" }
 & (Join-Path $Out "m0_tear_probe.exe") $tearDir $TearFramesPerArm | Out-File (Join-Path $tearDir "stdout.txt")
 Say "tear probe exit=$LASTEXITCODE"
-if ($pm) { Stop-Process -Id $pm.Id -ErrorAction SilentlyContinue }
+if ($pm) {
+    # PresentMon exits by itself once the probe has exited; give it time to flush the CSV.
+    if (-not $pm.WaitForExit(30000)) { Say "WARN PresentMon still running 30 s after the probe; stopping it"; Stop-Process -Id $pm.Id -ErrorAction SilentlyContinue }
+    $pmRows = if (Test-Path (Join-Path $tearDir "presentmon.csv")) { (Get-Content (Join-Path $tearDir "presentmon.csv")).Count - 1 } else { 0 }
+    Say "PresentMon rows=$pmRows"
+}
 
 $matrix = @("session,pid,verdict,refresh_hz,m0_1a_frames,m0_1a_cpu_p95_ms,m0_1a_gpu_p95_ms,m0_1b_frames,expr_latency_p50_ms,ui_latency_p50_ms,misalign_ms,misalign_px")
 for ($s = 1; $s -le $Sessions; $s++) {
@@ -120,10 +130,15 @@ for ($s = 1; $s -le $Sessions; $s++) {
     Stage-NativeDll
     $env:MF_M0_PROBE = "1"; $env:MF_M0_SESSION = "$s"; $env:MF_M0_INJECT = $(if ($Inject) { "1" } else { "0" }); $env:MF_M0_ARTDIR = $ArtDir
     $env:WINAPP_CLI_TELEMETRY_OPTOUT = "1"
-    $dotnetArgs = @('run','-c','Debug','-p:Platform=x64','--no-build','--launch-profile','MotionSoftDemo (Package)','--','--m0-probe')
-    if ($Inject) { $dotnetArgs += '--m0-inject' }
-    $p = Start-Process -FilePath 'dotnet' -ArgumentList $dotnetArgs -WorkingDirectory $demoProj -PassThru -WindowStyle Normal
-    Say "session $s dotnetPid=$($p.Id)"
+    $appArgs = @('--m0-probe'); if ($Inject) { $appArgs += '--m0-inject' }
+    if ($LaunchMode -eq "Exe") {
+        $p = Start-Process -FilePath $DemoExe -ArgumentList $appArgs -WorkingDirectory (Split-Path $DemoExe -Parent) -PassThru -WindowStyle Normal
+        Say "session $s exePid=$($p.Id) exe=$DemoExe"
+    } else {
+        $dotnetArgs = @('run','-c','Debug','-p:Platform=x64','--no-build','--launch-profile','MotionSoftDemo (Package)','--') + $appArgs
+        $p = Start-Process -FilePath 'dotnet' -ArgumentList $dotnetArgs -WorkingDirectory $demoProj -PassThru -WindowStyle Normal
+        Say "session $s dotnetPid=$($p.Id)"
+    }
     $app = $null
     for ($i=0; $i -lt 90 -and -not $app; $i++) {
       Start-Sleep 1

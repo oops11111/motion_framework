@@ -389,3 +389,7 @@
   - M0-4：合成交换链 + ALLOW_TEARING 在 Win11/AMD 上为 Hardware: Independent Flip，AllowsTearing=1（屏幕层面可撕裂）
   - 偏离：执行方用了未提交的本地 runner（直接启动 Debug exe）；PresentMon 只覆盖 60 s，没抓到 hwnd 对照组。均不影响判据
   - Go：Rive 路径进入 M3 规划；Skia 备选不启用
+
+- **2026-10-28 — M3 规划 DRAFT + M0 工具收尾（分支 `claude/m3-plan`）**
+  - `docs/m3_plan_DRAFT.md`：WP1–WP5、票序、硬件需求；待裁决 F1–F6
+  - `m0/run_m0.ps1`：新增 `-LaunchMode Exe`（并回 M0-B r3 执行方的直接启动方式）；PresentMon 改为随探针进程退出；探针也接受 `--m0-inject` 参数

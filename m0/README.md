@@ -22,6 +22,8 @@ powershell -ExecutionPolicy Bypass -File m0\build_m0.ps1 -DemoBinDir <MotionSoft
 powershell -ExecutionPolicy Bypass -File m0\run_m0.ps1 -DemoExe <...\MotionSoftDemo.exe> -Inject -Sessions 3 [-PresentMon <...\PresentMon.exe>]
 ```
 
+启动方式：`-LaunchMode Package`（默认）用 `dotnet run` 加 MSIX 启动配置（M0-A 时的 DESKTOP-K93N3P8）；`-LaunchMode Exe` 直接启动 `-DemoExe`，通过环境变量和 `--m0-probe --m0-inject` 传参（M0-B r3 时的 DESKTOP-IJI1KJG，那台机器没有打包启动配置，用的是 Debug 版的输出）。传了 `-PresentMon` 时，PresentMon 会跟随撕裂探针进程退出（`--terminate_on_proc_exit`），runner 再等它写完 CSV，不再固定 60 秒。这个参数来自 PresentMon 2.x 的命令行，第一次使用时请确认 `m0_run.log` 里的 `PresentMon rows=` 不为 0。
+
 产物都写到 `C:\Users\admin\motion_framework\artifacts`，包括：`m0_s{n}_summary.txt`（key=value）、`m0_s{n}_raw.txt`、`m0_s{n}_screen_m0_1a.png`、`m0_s{n}_rive_ref_t0500.bgra`、`m0_session_matrix.txt`、`m0_tear\m0_tear_summary.txt`、`m0_tear\m0_tear_frames.csv`，以及可选的 `m0_tear\presentmon.csv`、`m0_run.log`。
 
 ## 已知限制
