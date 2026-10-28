@@ -1,7 +1,7 @@
 # 派题 · M3-RIVE-DPI（DESKTOP-IJI1KJG）
 
 闸门：`docs/m3_rive_dpi_gate_LOCKED.md`，GATE_BODY_SHA256=`92e6b4e9fd1014faf74714eb6cb20fc7e998169dc1171785bb8ea43f68d97bf5`，LOCKED_AT=2026-10-28 20:39:58 AWST。G1–G4 已按建议裁决。
-代码分支：`claude/m3-rive-dpi`。**第 1–3 步（取代码、构建）不采数，现在就可以做；第 4 步采数要等 `docs/m3_rive_dpi_approved.md` 落盘。**
+代码分支：`claude/m3-rive-dpi`。**已 APPROVED（`docs/m3_rive_dpi_approved.md`，pidan @ 2026-10-28 21:28:50 AWST）：第 1–5 步都可以执行。**
 `<ROOT>` 沿用 `C:\Users\Lh\mf_m0b`；数据目录用新的 `<ROOT>\artifacts_m3dpi`。
 
 ## 0. 前提
@@ -27,7 +27,7 @@ git -C <ROOT>\repo log -1 --format=%H
 ## 3. 熟悉一次流程（不采数，可选）
 不带 runner、手动启动一次 `MotionSoftDemo.exe --m3-dpi-probe`，看清楚提示出现在哪里。这一次的输出不提交。
 
-## 4. 采数（approved 落盘后）
+## 4. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_dpi.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3dpi -Sessions 3
 ```
