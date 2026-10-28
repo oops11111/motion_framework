@@ -1,0 +1,268 @@
+KV probe=M0 v3
+KV session=3
+KV pid=16764
+KV host=DESKTOP-IJI1KJG
+KV os=Microsoft Windows NT 10.0.26200.0
+KV rasterization_scale=1.000
+KV refresh_hz=75.028
+KV riv=C:\Users\Lh\mf_m0b\artifacts_r3\m0_assets\Knight_square_2.riv
+KV inject_approved=1
+KV m0_1.create_hr=0x00000000
+KV m0_1.reference_hr=0x00000000
+KV m0_1.create_graphics_device_hr=0x00000000
+KV m0_1.surface_interop_qi_hr=0x00000000
+KV m0_1a.start_hr=0x00000000
+KV m0_1a.frames=1500
+KV m0_1a.draw_failures=0
+KV m0_1a.cpu_p50_ms=0.837
+KV m0_1a.cpu_p95_ms=1.089
+KV m0_1a.cpu_max_ms=1.363
+KV m0_1a.cpu_p95_frac_T=0.082
+KV m0_1a.gpu_p50_ms=0.187
+KV m0_1a.gpu_p95_ms=0.192
+KV m0_1a.gpu_p95_frac_T=0.014
+KV m0_1a.gpu_samples_dropped=0
+KV m0_1a.interval_p50_ms=13.343
+KV m0_1a.interval_p95_ms=14.154
+KV m0_1a.last_hr=0x00000000
+KV m0_1a.offscreen_uav=1
+KV m0_ptr.start_screen=290,549
+KV m0_ptr.step_px=120
+KV m0_ptr.box_color=59,130,246
+KV m0_ptr.wgc_start_hr=0x00000000
+KV m0_ptr.x0_computed_dip=100.00
+KV m0_ptr.pps_rest=Succeeded:0.00,0.00
+KV m0_ptr.x0_used_dip=100.00
+M0 expr: rest cx=100.44
+M0F expr step=0 rel_ms=35.63 cx=220.44 minx=161 maxx=280 n=13900
+M0 expr step=0 dir=+ sent=1 latency_ms=35.63
+M0F expr step=1 rel_ms=29.86 cx=100.44 minx=41 maxx=160 n=13900
+M0 expr step=1 dir=- sent=1 latency_ms=29.86
+M0F expr step=2 rel_ms=22.82 cx=100.49 minx=41 maxx=160 n=14016
+M0F expr step=2 rel_ms=49.48 cx=220.44 minx=161 maxx=280 n=13900
+M0 expr step=2 dir=+ sent=1 latency_ms=49.48
+M0F expr step=3 rel_ms=13.80 cx=220.49 minx=161 maxx=280 n=14016
+M0F expr step=3 rel_ms=40.46 cx=100.44 minx=41 maxx=160 n=13900
+M0 expr step=3 dir=- sent=1 latency_ms=40.46
+M0F expr step=4 rel_ms=33.62 cx=220.44 minx=161 maxx=280 n=13900
+M0 expr step=4 dir=+ sent=1 latency_ms=33.62
+M0F expr step=5 rel_ms=26.20 cx=220.49 minx=161 maxx=280 n=14016
+M0F expr step=5 rel_ms=52.85 cx=100.44 minx=41 maxx=160 n=13900
+M0 expr step=5 dir=- sent=1 latency_ms=52.85
+M0F expr step=6 rel_ms=19.29 cx=100.49 minx=41 maxx=160 n=14016
+M0F expr step=6 rel_ms=45.95 cx=220.44 minx=161 maxx=280 n=13900
+M0 expr step=6 dir=+ sent=1 latency_ms=45.95
+M0F expr step=7 rel_ms=38.68 cx=100.44 minx=41 maxx=160 n=13900
+M0 expr step=7 dir=- sent=1 latency_ms=38.68
+M0F expr step=8 rel_ms=31.06 cx=220.44 minx=161 maxx=280 n=13900
+M0 expr step=8 dir=+ sent=1 latency_ms=31.06
+M0F expr step=9 rel_ms=24.59 cx=220.49 minx=161 maxx=280 n=14016
+M0F expr step=9 rel_ms=51.24 cx=100.44 minx=41 maxx=160 n=13900
+M0 expr step=9 dir=- sent=1 latency_ms=51.24
+M0F expr step=10 rel_ms=17.85 cx=100.49 minx=41 maxx=160 n=14016
+M0F expr step=10 rel_ms=44.50 cx=220.44 minx=161 maxx=280 n=13900
+M0 expr step=10 dir=+ sent=1 latency_ms=44.50
+M0F expr step=11 rel_ms=37.50 cx=100.44 minx=41 maxx=160 n=13900
+M0 expr step=11 dir=- sent=1 latency_ms=37.50
+M0F expr step=12 rel_ms=31.41 cx=220.44 minx=161 maxx=280 n=13900
+M0 expr step=12 dir=+ sent=1 latency_ms=31.41
+M0F expr step=13 rel_ms=24.70 cx=220.49 minx=161 maxx=280 n=14016
+M0F expr step=13 rel_ms=51.35 cx=100.44 minx=41 maxx=160 n=13900
+M0 expr step=13 dir=- sent=1 latency_ms=51.35
+M0F expr step=14 rel_ms=18.08 cx=100.49 minx=41 maxx=160 n=14016
+M0F expr step=14 rel_ms=44.73 cx=220.44 minx=161 maxx=280 n=13900
+M0 expr step=14 dir=+ sent=1 latency_ms=44.73
+M0F expr step=15 rel_ms=36.61 cx=100.44 minx=41 maxx=160 n=13900
+M0 expr step=15 dir=- sent=1 latency_ms=36.61
+M0F expr step=16 rel_ms=29.08 cx=220.44 minx=161 maxx=280 n=13900
+M0 expr step=16 dir=+ sent=1 latency_ms=29.08
+M0F expr step=17 rel_ms=22.28 cx=220.49 minx=161 maxx=280 n=14016
+M0F expr step=17 rel_ms=48.93 cx=100.44 minx=41 maxx=160 n=13900
+M0 expr step=17 dir=- sent=1 latency_ms=48.93
+M0F expr step=18 rel_ms=16.42 cx=100.49 minx=41 maxx=160 n=14016
+M0F expr step=18 rel_ms=43.08 cx=220.44 minx=161 maxx=280 n=13900
+M0 expr step=18 dir=+ sent=1 latency_ms=43.08
+M0F expr step=19 rel_ms=36.62 cx=100.44 minx=41 maxx=160 n=13900
+M0 expr step=19 dir=- sent=1 latency_ms=36.62
+KV m0_35.expr.steps_hit=20/20
+KV m0_35.expr.latency_p50_ms=38.68
+KV m0_35.expr.latency_p95_ms=51.35
+KV m0_35.expr.clock_offset_min_ms=-12.322
+M0 ui: rest cx=100.44
+M0F ui step=0 rel_ms=38.29 cx=100.49 minx=41 maxx=160 n=14016
+M0F ui step=0 rel_ms=64.95 cx=220.44 minx=161 maxx=280 n=13900
+M0 ui step=0 dir=+ sent=1 latency_ms=64.95
+M0F ui step=1 rel_ms=31.45 cx=220.49 minx=161 maxx=280 n=14016
+M0F ui step=1 rel_ms=58.10 cx=100.44 minx=41 maxx=160 n=13900
+M0 ui step=1 dir=- sent=1 latency_ms=58.10
+M0F ui step=2 rel_ms=24.76 cx=100.49 minx=41 maxx=160 n=14016
+M0F ui step=2 rel_ms=51.41 cx=220.44 minx=161 maxx=280 n=13900
+M0 ui step=2 dir=+ sent=1 latency_ms=51.41
+M0F ui step=3 rel_ms=17.58 cx=220.49 minx=161 maxx=280 n=14016
+M0F ui step=3 rel_ms=44.24 cx=100.44 minx=41 maxx=160 n=13900
+M0 ui step=3 dir=- sent=1 latency_ms=44.24
+M0F ui step=4 rel_ms=37.15 cx=100.49 minx=41 maxx=160 n=14016
+M0F ui step=4 rel_ms=63.80 cx=220.44 minx=161 maxx=280 n=13900
+M0 ui step=4 dir=+ sent=1 latency_ms=63.80
+M0F ui step=5 rel_ms=28.87 cx=220.49 minx=161 maxx=280 n=14016
+M0F ui step=5 rel_ms=55.53 cx=100.44 minx=41 maxx=160 n=13900
+M0 ui step=5 dir=- sent=1 latency_ms=55.53
+M0F ui step=6 rel_ms=21.27 cx=100.49 minx=41 maxx=160 n=14016
+M0F ui step=6 rel_ms=47.93 cx=220.44 minx=161 maxx=280 n=13900
+M0 ui step=6 dir=+ sent=1 latency_ms=47.93
+M0F ui step=7 rel_ms=39.93 cx=220.49 minx=161 maxx=280 n=14016
+M0F ui step=7 rel_ms=66.59 cx=100.44 minx=41 maxx=160 n=13900
+M0 ui step=7 dir=- sent=1 latency_ms=66.59
+M0F ui step=8 rel_ms=33.89 cx=100.49 minx=41 maxx=160 n=14016
+M0F ui step=8 rel_ms=60.55 cx=220.44 minx=161 maxx=280 n=13900
+M0 ui step=8 dir=+ sent=1 latency_ms=60.55
+M0F ui step=9 rel_ms=27.15 cx=220.49 minx=161 maxx=280 n=14016
+M0F ui step=9 rel_ms=53.81 cx=100.44 minx=41 maxx=160 n=13900
+M0 ui step=9 dir=- sent=1 latency_ms=53.81
+M0F ui step=10 rel_ms=20.00 cx=100.49 minx=41 maxx=160 n=14016
+M0F ui step=10 rel_ms=46.66 cx=220.44 minx=161 maxx=280 n=13900
+M0 ui step=10 dir=+ sent=1 latency_ms=46.66
+M0F ui step=11 rel_ms=39.65 cx=220.49 minx=161 maxx=280 n=14016
+M0F ui step=11 rel_ms=66.31 cx=100.44 minx=41 maxx=160 n=13900
+M0 ui step=11 dir=- sent=1 latency_ms=66.31
+M0F ui step=12 rel_ms=32.84 cx=100.49 minx=41 maxx=160 n=14016
+M0F ui step=12 rel_ms=59.50 cx=220.44 minx=161 maxx=280 n=13900
+M0 ui step=12 dir=+ sent=1 latency_ms=59.50
+M0F ui step=13 rel_ms=24.77 cx=220.49 minx=161 maxx=280 n=14016
+M0F ui step=13 rel_ms=51.42 cx=100.44 minx=41 maxx=160 n=13900
+M0 ui step=13 dir=- sent=1 latency_ms=51.42
+M0F ui step=14 rel_ms=17.72 cx=100.49 minx=41 maxx=160 n=14016
+M0F ui step=14 rel_ms=44.38 cx=220.44 minx=161 maxx=280 n=13900
+M0 ui step=14 dir=+ sent=1 latency_ms=44.38
+M0F ui step=15 rel_ms=37.16 cx=220.49 minx=161 maxx=280 n=14016
+M0F ui step=15 rel_ms=63.81 cx=100.44 minx=41 maxx=160 n=13900
+M0 ui step=15 dir=- sent=1 latency_ms=63.81
+M0F ui step=16 rel_ms=30.56 cx=100.49 minx=41 maxx=160 n=14016
+M0F ui step=16 rel_ms=57.21 cx=220.44 minx=161 maxx=280 n=13900
+M0 ui step=16 dir=+ sent=1 latency_ms=57.21
+M0F ui step=17 rel_ms=23.21 cx=220.49 minx=161 maxx=280 n=14016
+M0F ui step=17 rel_ms=49.86 cx=100.44 minx=41 maxx=160 n=13900
+M0 ui step=17 dir=- sent=1 latency_ms=49.86
+M0F ui step=18 rel_ms=15.34 cx=100.49 minx=41 maxx=160 n=14016
+M0F ui step=18 rel_ms=42.00 cx=220.44 minx=161 maxx=280 n=13900
+M0 ui step=18 dir=+ sent=1 latency_ms=42.00
+M0F ui step=19 rel_ms=33.67 cx=220.49 minx=161 maxx=280 n=14016
+M0F ui step=19 rel_ms=60.33 cx=100.44 minx=41 maxx=160 n=13900
+M0 ui step=19 dir=- sent=1 latency_ms=60.33
+KV m0_35.ui.steps_hit=20/20
+KV m0_35.ui.latency_p50_ms=55.53
+KV m0_35.ui.latency_p95_ms=66.31
+KV m0_35.ui.clock_offset_min_ms=-12.260
+M0 drag_expr drag=0 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=1 dir=- moves=121 frames_used=10
+M0 drag_expr drag=2 dir=+ moves=121 frames_used=11
+M0 drag_expr drag=3 dir=- moves=121 frames_used=10
+M0 drag_expr drag=4 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=5 dir=- moves=121 frames_used=10
+M0 drag_expr drag=6 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=7 dir=- moves=121 frames_used=10
+M0 drag_expr drag=8 dir=+ moves=121 frames_used=11
+M0 drag_expr drag=9 dir=- moves=121 frames_used=10
+M0 drag_expr drag=10 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=11 dir=- moves=121 frames_used=10
+M0 drag_expr drag=12 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=13 dir=- moves=121 frames_used=10
+M0 drag_expr drag=14 dir=+ moves=121 frames_used=11
+M0 drag_expr drag=15 dir=- moves=121 frames_used=10
+M0 drag_expr drag=16 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=17 dir=- moves=121 frames_used=10
+M0 drag_expr drag=18 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=19 dir=- moves=121 frames_used=10
+M0 drag_expr drag=20 dir=+ moves=121 frames_used=11
+M0 drag_expr drag=21 dir=- moves=121 frames_used=11
+M0 drag_expr drag=22 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=23 dir=- moves=121 frames_used=10
+M0 drag_expr drag=24 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=25 dir=- moves=121 frames_used=10
+M0 drag_expr drag=26 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=27 dir=- moves=121 frames_used=11
+M0 drag_expr drag=28 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=29 dir=- moves=121 frames_used=10
+M0 drag_expr drag=30 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=31 dir=- moves=121 frames_used=10
+M0 drag_expr drag=32 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=33 dir=- moves=121 frames_used=10
+M0 drag_expr drag=34 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=35 dir=- moves=121 frames_used=10
+M0 drag_expr drag=36 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=37 dir=- moves=121 frames_used=10
+M0 drag_expr drag=38 dir=+ moves=121 frames_used=10
+M0 drag_expr drag=39 dir=- moves=121 frames_used=10
+KV m0_2.drag_expr.samples=406
+KV m0_2.drag_expr.lag_p50_ms=30.52
+KV m0_2.drag_expr.lag_p95_ms=31.61
+KV m0_2.marker_hr=0x00000000
+M0 drag_surface drag=0 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=1 dir=- moves=121 frames_used=10
+M0 drag_surface drag=2 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=3 dir=- moves=121 frames_used=10
+M0 drag_surface drag=4 dir=+ moves=121 frames_used=11
+M0 drag_surface drag=5 dir=- moves=121 frames_used=10
+M0 drag_surface drag=6 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=7 dir=- moves=121 frames_used=10
+M0 drag_surface drag=8 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=9 dir=- moves=121 frames_used=10
+M0 drag_surface drag=10 dir=+ moves=121 frames_used=11
+M0 drag_surface drag=11 dir=- moves=121 frames_used=10
+M0 drag_surface drag=12 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=13 dir=- moves=121 frames_used=10
+M0 drag_surface drag=14 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=15 dir=- moves=121 frames_used=10
+M0 drag_surface drag=16 dir=+ moves=121 frames_used=11
+M0 drag_surface drag=17 dir=- moves=121 frames_used=10
+M0 drag_surface drag=18 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=19 dir=- moves=121 frames_used=10
+M0 drag_surface drag=20 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=21 dir=- moves=121 frames_used=10
+M0 drag_surface drag=22 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=23 dir=- moves=121 frames_used=11
+M0 drag_surface drag=24 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=25 dir=- moves=121 frames_used=10
+M0 drag_surface drag=26 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=27 dir=- moves=121 frames_used=10
+M0 drag_surface drag=28 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=29 dir=- moves=121 frames_used=11
+M0 drag_surface drag=30 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=31 dir=- moves=121 frames_used=10
+M0 drag_surface drag=32 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=33 dir=- moves=121 frames_used=10
+M0 drag_surface drag=34 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=35 dir=- moves=121 frames_used=10
+M0 drag_surface drag=36 dir=+ moves=121 frames_used=11
+M0 drag_surface drag=37 dir=- moves=121 frames_used=10
+M0 drag_surface drag=38 dir=+ moves=121 frames_used=10
+M0 drag_surface drag=39 dir=- moves=121 frames_used=10
+KV m0_2.drag_surface.samples=406
+KV m0_2.drag_surface.lag_p50_ms=30.46
+KV m0_2.drag_surface.lag_p95_ms=31.54
+KV m0_2.lag_expr_p50_ms=30.52
+KV m0_2.lag_surface_p50_ms=30.46
+KV m0_2.misalign_ms=-0.06
+KV m0_2.misalign_px_at_drag_speed=0.03
+KV m0_2.drag_speed_px_per_ms=0.400
+KV m0_2.verdict=RECORDED
+KV m0_35.verdict=RECORDED
+KV m0_1b.create_swapchain_hr=0x00000000
+KV m0_1b.surface_for_swapchain_hr=0x00000000
+KV m0_1b.start_hr=0x00000000
+KV m0_1b.frames=1501
+KV m0_1b.draw_failures=0
+KV m0_1b.cpu_p50_ms=1.625
+KV m0_1b.cpu_p95_ms=2.369
+KV m0_1b.cpu_max_ms=2.801
+KV m0_1b.cpu_p95_frac_T=0.178
+KV m0_1b.gpu_p50_ms=0.207
+KV m0_1b.gpu_p95_ms=0.220
+KV m0_1b.gpu_p95_frac_T=0.017
+KV m0_1b.gpu_samples_dropped=0
+KV m0_1b.interval_p50_ms=13.367
+KV m0_1b.interval_p95_ms=14.335
+KV m0_1b.last_hr=0x00000000
+KV m0_1b.offscreen_uav=1
+KV verdict=RECORDED
+KV device_removed_hr=0x00000000

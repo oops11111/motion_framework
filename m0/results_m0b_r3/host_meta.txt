@@ -1,0 +1,6 @@
+﻿DemoExe=Debug win-x64 (Release/pub unpackaged REGDB_E_CLASSNOTREG; Package launch-profile missing on host)
+path=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe
+elevated=True
+tip_commit=6c2b9c174ca9dc61352f1caaacb345a353a560e8
+composition_PRE_POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+PresentMode_dominant=Hardware: Independent Flip
