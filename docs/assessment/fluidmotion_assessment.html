@@ -1,0 +1,212 @@
+<title>FluidMotion 实施评估</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: single reading column (~72ch) with full-width tables; status encoded as pills + a stacked ledger bar. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #17202b;
+  --muted: #5b6676;
+  --line: #dde2e9;
+  --accent: #1f5fa8;
+  --accent-soft: #e6eef8;
+  --good: #1d7a4b; --good-bg: #e3f3ea;
+  --warn: #9a6400; --warn-bg: #fbf0d9;
+  --bad: #b23a2e;  --bad-bg: #f9e4e1;
+  --idle: #6b7380; --idle-bg: #eceef2;
+  --f-display: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --f-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11161d; --surface: #18202a; --ink: #e4e9f0; --muted: #9aa5b4; --line: #2a3441;
+  --accent: #7fb0ea; --accent-soft: #1d2d42;
+  --good: #6fd19c; --good-bg: #173326; --warn: #e8b55a; --warn-bg: #352a14;
+  --bad: #f08a7e; --bad-bg: #3a1d1a; --idle: #a3abb7; --idle-bg: #242c37; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11161d; --surface: #18202a; --ink: #e4e9f0; --muted: #9aa5b4; --line: #2a3441;
+  --accent: #7fb0ea; --accent-soft: #1d2d42;
+  --good: #6fd19c; --good-bg: #173326; --warn: #e8b55a; --warn-bg: #352a14;
+  --bad: #f08a7e; --bad-bg: #3a1d1a; --idle: #a3abb7; --idle-bg: #242c37; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.75; }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 40px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 44px; }
+header { display: grid; gap: 10px; }
+.eyebrow { font-size: 12px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+h1 { font-family: var(--f-display); font-size: clamp(28px, 5vw, 38px); line-height: 1.25; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-size: 22px; margin: 0; text-wrap: balance; }
+h3 { font-size: 16px; margin: 0; }
+p { margin: 0; max-width: 72ch; }
+.lede { font-size: 17px; color: var(--ink); }
+.meta { color: var(--muted); font-size: 13px; }
+section { display: grid; gap: 16px; }
+.mono, td.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+code { font-family: var(--f-mono); font-size: .9em; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+
+.verdict { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.vcard { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.vcard .k { font-size: 13px; color: var(--muted); }
+.vcard .v { font-family: var(--f-display); font-size: 20px; }
+.vcard p { font-size: 13.5px; color: var(--muted); }
+
+.pill { display: inline-block; font-size: 12px; font-weight: 500; padding: 1px 9px; border-radius: 999px; white-space: nowrap; }
+.good { color: var(--good); background: var(--good-bg); }
+.warn { color: var(--warn); background: var(--warn-bg); }
+.bad  { color: var(--bad);  background: var(--bad-bg); }
+.idle { color: var(--idle); background: var(--idle-bg); }
+
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { font-size: 12px; letter-spacing: .06em; color: var(--muted); font-weight: 500; background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 500; }
+
+.ledger { display: grid; gap: 10px; }
+.bar { display: flex; height: 28px; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); }
+.bar span { display: grid; place-items: center; font-size: 12px; font-family: var(--f-mono); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--muted); }
+
+.recs { display: grid; gap: 12px; counter-reset: rec; }
+.rec { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; display: grid; gap: 8px; min-width: 0; }
+.rec-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
+.rec-h h3::before { counter-increment: rec; content: counter(rec) ". "; color: var(--accent); font-family: var(--f-mono); }
+.rec p, .rec li { font-size: 14px; }
+.rec ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.why { color: var(--muted); }
+.callout { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 12px 16px; border-radius: 0 6px 6px 0; }
+.callout p { font-size: 14px; }
+footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">FluidMotion · motion_framework · 第三方接手评估</div>
+  <h1>FluidMotion 实施评估：进度、效果与 Windows 界面优化程度</h1>
+  <p class="meta">评估日期 2026-10-26 · 依据：仓库 <code>oops11111/motion_framework</code> 的 plan.md、14 张闸门票的结题文件、artifacts/ 中的真机日志，以及本次在 Linux 重新编译、重新运行的单测 · 评估人：Claude（Claude Code 接手会话）</p>
+  <p class="lede">一句话结论：核心前提已经在真机上得到证实，即动效交给合成器后能稳定跑满 60Hz，而 UI 线程只能跑到约 32Hz。但项目在计划第 2 周就进入了 M2 编号，M0 的五项技术验证里，只有指针属性集做过一半（#32 结论 PARTIAL），其余四项都还没做。最近两天的 14 张票里，有 10 张围绕同一个打断续接问题；其中 7 张真机票的结果都是 FAIL 或无定论。成功标准中能在真机上核对的，目前只有很少几项。</p>
+  <div class="callout"><p><strong>2026-10-28 更新：</strong>本页是 2026-10-26 的快照。此后 M0 已关闭：M0-A（Win10 / GTX 970 / 60Hz）和 M0-B r3（Win11 / RX 7800 XT / 75Hz）都 PASS。Rive 能渲染进 WinUI 3 合成表面，GPU P95 为刷新间隔的 1.4%，与合成器驱动的元素错位约 0.05 ms；合成交换链带 ALLOW_TEARING 时为 Hardware: Independent Flip。plan.md 中的 120Hz 已按 pidan 指示改为 75Hz。详见 <code>docs/m0_tech_validation_result.md</code> 和 <code>docs/m0b_win11_r3_result.md</code>；下文中关于 M0 的描述以这两份结题为准。</p></div>
+</header>
+
+<section>
+  <h2>总评</h2>
+  <div class="verdict">
+    <div class="vcard"><span class="k">工程基础</span><span class="v"><span class="pill good">扎实</span></span><p>纯逻辑核心共 3,706 项单测，在 Linux g++ 13 下全部通过；C API 和软件路径演示的 33 项也全绿。</p></div>
+    <div class="vcard"><span class="k">Windows 优化（已测部分）</span><span class="v"><span class="pill good">方向成立</span></span><p>合成器路径约 60fps，UI 线程路径约 32fps；弹簧映射误差 ≤0.2%。</p></div>
+    <div class="vcard"><span class="k">打断续接（R-2）</span><span class="v"><span class="pill bad">未达标</span></span><p>可见跳变从 170 DIP 降到 2 DIP；但速度连续性要求 ≥17/20，最好一次只有 12/20。</p></div>
+    <div class="vcard"><span class="k">成功标准覆盖</span><span class="v"><span class="pill warn">大部分未测</span></span><p>只有一台 60Hz、Win10、GTX 970 的机器，用 Debug 构建；120Hz、DPI、P95/P99、闲置、Rive 均未测。</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>一、进度对照计划</h2>
+  <p>plan.md 的起点是 2026-10-19，按 6 人、30–34 周规划。今天是第 8 天，按日历只在 M0 的范围内。项目文件里的“M2”只是票的编号，并不表示 M0、M1 的验收门槛已经通过。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>里程碑</th><th>计划验收门槛</th><th>状态</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td>M0 技术验证（第 2 周）</td><td>Rive 渲染进合成表面；120Hz 拖动错位测试；指针属性集；ALLOW_TEARING；管线延迟</td><td><span class="pill bad">基本未做</span></td><td>代码和 MotionSoftDemo 里都没有 Rive；测试机只有 60Hz。指针属性集 #32 为 PARTIAL：API 可调用、表达式可绑定，但因不允许合成输入，真实指针跟随延迟没测。ALLOW_TEARING 和管线延迟没有结题文件</td></tr>
+      <tr><td>M1 核心（第 10 周）</td><td>数学、时间线、token 无界面测试；分发器降级；弹簧参数与真机对应</td><td><span class="pill good">基本达成</span></td><td>单测全绿；S1 v2 映射 <code>Period = response/(2π)</code>，真机 RMS 0.07–0.20%（10/10）</td></tr>
+      <tr><td>M1b 打断续接 R-2</td><td>打断后位置连续、速度连续</td><td><span class="pill bad">本机 FAIL 结题</span></td><td>降级为 B_v（只保证位置连续）；明确不作为发版基线</td></tr>
+      <tr><td>M2 Alpha（第 16 周）</td><td>C# API 可打断；ETW；预览宿主 v0；性能 CI ≥2 台物理机</td><td><span class="pill warn">部分</span></td><td>M2-02 PASS（C#、ETW、预览 v0）；PERF-CI 闸门已 LOCK，因只有一台机器而 HOLD</td></tr>
+      <tr><td>M3–M5</td><td>Rive 层、试点 1/2、Beta、1.0</td><td><span class="pill idle">未开始</span></td><td>没有试点应用；没有 Figma 插件；token 有加载器，但没有热重载管线</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>二、Windows 界面优化程度</h2>
+  <p>所有数字都来自同一台测试机 DESKTOP-K93N3P8：Windows 10 19045、GTX 970、1280×1024 60Hz 显示器、100% 缩放，MotionSoftDemo 用 WinUI 3 / WASDK 2.5.1 的 x64 Debug 构建。换到别的机器，结论不能直接照搬。</p>
+
+  <h3>已在真机上测到的效果</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>维度</th><th>实测结果</th><th>对界面的意义</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>合成器下放</td><td class="num">DwmFlush ≈60Hz vsync（p95 16.9 ms）；WGC 827 帧 / 13.8 s ≈ 59.9 fps</td><td>交给合成器的平移、透明度等动画能跑满刷新率，UI 线程卡住也不影响</td><td><span class="pill good">达成</span></td></tr>
+      <tr><td>UI 线程帧率</td><td class="num">CompositionTarget.Rendering p50 ≈ 31.2 ms（约 32Hz，等于 2×15.625 ms 时钟节拍）</td><td>在 UI 线程逐帧驱动的动画只有一半帧率。这是“必须下放合成器”最直接的证据，同时说明软件降级路径的观感会明显变差</td><td><span class="pill warn">原因未查清</span></td></tr>
+      <tr><td>弹簧参数一致性</td><td class="num">时间缩放 s=0.159≈1/(2π)（9/9）；改映射后 best-τ RMS 0.07–0.20%（10/10）</td><td>设计师在 token 里写的弹簧，交给合成器后手感一致</td><td><span class="pill good">达成</span></td></tr>
+      <tr><td>打断时的可见跳变</td><td class="num">J_vis 中位：A 臂 170 DIP → hybrid B 2.0 DIP（440 次交错）</td><td>中途改目标时，元素不再瞬移，肉眼可见的跳变下降约 99%</td><td><span class="pill good">大幅改善</span></td></tr>
+      <tr><td>打断时的速度连续</td><td class="num">|Δv| 中位 A 359 → B 58；Δv 系列 7 张真机票均未通过，最近一次 VERIFY 的 t060 smoke 最高 12/20，门槛 17/20</td><td>改目标后仍会出现可感知的“顿一下”或“突然加速”；项目文件建议演示中避免“飞行中改目标”的镜头</td><td><span class="pill bad">未达标</span></td></tr>
+      <tr><td>打断响应延迟 L</td><td class="num">B 40–45 ms，A 20–29 ms</td><td>B 方案比 A 慢约 15 ms；可能是检测判据造成的，尚未查清</td><td><span class="pill warn">待查</span></td></tr>
+      <tr><td>测量底噪</td><td class="num">静止零激励 RMS ≈ 0 DIP（3/3）</td><td>只说明静止画面的测量链没有抖动，不代表运动中的测量精度（运动探针 RMS 约 1.3–1.6 DIP）</td><td><span class="pill idle">只能部分说明</span></td></tr>
+      <tr><td>可观测性</td><td class="num">ETW 6 类事件都能看到（EventSource）；EventPipe 采集成功；logman 无管理员权限</td><td>已具备排查卡顿的手段；性能 CI 依赖的 ETL 路径还没打通</td><td><span class="pill good">基本达成</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>对照 plan.md 成功标准</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>成功标准</th><th>状态</th><th>缺什么</th></tr></thead>
+    <tbody>
+      <tr><td>60/120Hz 以上保持流畅</td><td><span class="pill warn">只测了 60Hz</span></td><td>需要一台 120Hz 或 144Hz 显示器，最好是 Win11（Win10 上拿不到 DCompositionGetFrameId）</td></tr>
+      <tr><td>P95 预算（UI 12% / 渲染 35% / GPU 35%）</td><td><span class="pill idle">未测</span></td><td>PERF-CI 等第二台机器；闸门本身也有 3 个阻断问题（见建议 3）</td></tr>
+      <tr><td>P99 每千帧丢帧率</td><td><span class="pill idle">未测</span></td><td>同上；PresentStats 现在是写死的占位值</td></tr>
+      <tr><td>闲置 0 计时器，CPU/GPU 近 0</td><td><span class="pill idle">未测</span></td><td>有 IdleTransition 事件，但没有闲置开销的数字</td></tr>
+      <tr><td>动画可打断且保留速度</td><td><span class="pill bad">未达标</span></td><td>位置连续已做到，速度连续没有做到</td></tr>
+      <tr><td>token 修改 2 秒内上屏</td><td><span class="pill idle">未测</span></td><td>预览宿主 v0 只验证了“导入、播放、不崩溃”，没有热重载计时</td></tr>
+      <tr><td>减少动效（Narrator、系统设置）</td><td><span class="pill warn">只在引擎层</span></td><td><code>tokens.h</code> 强制要求提供 reduced 变体；Windows 端还没接 <code>UISettings.AnimationsEnabled</code></td></tr>
+      <tr><td>多屏与 DPI 矩阵、RDP、GPU 切换</td><td><span class="pill idle">未测</span></td><td>测试机只有单屏、100% 缩放</td></tr>
+      <tr><td>两个真实应用接入</td><td><span class="pill idle">未开始</span></td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><p><strong>优化程度小结：</strong>在“60Hz、单屏、100% 缩放、Debug 构建”这一个点上，下放合成器把动画从约 32fps 提到约 60fps，打断时的可见跳变降低约 99%。速度连续性、高刷新率、性能预算和闲置开销都还没有证据。按 plan.md 的 9 条成功标准算，达成 0 条，部分达成 2 条，未达标 1 条，未测或未开始 6 条。</p></div>
+</section>
+
+<section>
+  <h2>三、实施效果：最近 14 张闸门票</h2>
+  <p>这 14 张票从 2026-10-24 22:27 到 10-26 20:10 共约 46 小时，都只在一台机器上执行。每张票通常产生 8–10 份文件（DRAFT、LOCKED、approved、result，加上 Gemini、DeepSeek、Notion 的设计、审阅和结题包，以及派工单），docs/ 下目前共有 273 份文件。</p>
+  <div class="ledger">
+    <div class="bar" role="img" aria-label="14 张票：真机通过 3，真机失败 7，无定论 1，仅文档决议 3">
+      <span class="good" style="flex:3">3</span><span class="bad" style="flex:7">7</span><span class="warn" style="flex:1">1</span><span class="idle" style="flex:3">3</span>
+    </div>
+    <div class="legend"><span><span class="pill good">真机 PASS 3</span> M2-01、H5-SEED、M2-02</span><span><span class="pill bad">真机 FAIL 7</span> T-A1a、Δv′、SEED-ABS、SEED-CALIB、PATH-B′、PATH-A′、DENOM-VERIFY</span><span><span class="pill warn">无定论 1</span> Δv</span><span><span class="pill idle">仅文档 3</span> SEED-TRUTH、DENOM-REVISE、ABS-RESOLVE</span></div>
+  </div>
+  <p>这 14 张票里，从 Δv 起的 7 张真机票和 3 张仅文档票都围绕同一个问题：打断时，交给合成器的初速度（seed）该从哪里取。各条路径（P-LS、V2-clamp、P-VS、改分母、重新标定）都出现同一种现象：相对比值能通过，绝对 smoke 测试仍然不过。最后一张票把这个矛盾挂账（R2）。闸门流程很好地防止了改阈值、翻结论这类问题，但没有阻止团队在同一个局部方向上反复投入。</p>
+</section>
+
+<section>
+  <h2>四、开发建议（按优先级）</h2>
+  <div class="recs">
+    <div class="rec">
+      <div class="rec-h"><h3>回到关键路径：先做 M0</h3><span class="pill bad">最高</span></div>
+      <p>plan.md 的关键路径是 M0 → 分发器 → Rive 宿主 → 指针管线 → 试点。M0 的验收项除指针属性集做了一半外都没做，而 Rive 能不能接进合成表面，决定要不要切换到 Skia 备选方案（切换要多花 4–8 周）。</p>
+      <ul><li>用 2 周把 Rive 渲染进 CompositionDrawingSurface，同时试一遍 swapchain 路径</li><li>测 GetPointerPositionPropertySet、composition swapchain 上的 ALLOW_TEARING，以及实测管线延迟</li><li>按 M0 的结果重新估算工期</li></ul>
+    </div>
+    <div class="rec">
+      <div class="rec-h"><h3>补第二台机器，而且要选对规格</h3><span class="pill bad">最高</span></div>
+      <p>现在被这件事卡住的有 PERF-CI、R-2 C5(b)、多刷新率矩阵和 frameId 门。建议第二台满足：Win11 22000 以上；120Hz 或 144Hz 显示器；集显或低端笔记本（和现在的 GTX 970 独显错开 GPU 档）；有管理员权限，能走 logman ETL；150% 缩放。一台机器就能同时满足多项闸门要求。</p>
+    </div>
+    <div class="rec">
+      <div class="rec-h"><h3>先修 PERF-CI 闸门，再去采数</h3><span class="pill warn">高</span></div>
+      <p>把 PERF-CI 闸门写成判分脚本时发现，有 3 条按现在的写法，首轮必然判不过（详见 <code>docs/m2_perf_ci_tooling_gate_DRAFT.md</code>）：</p>
+      <ul><li>Q1：闲置的应用不会 Present，Idle 场景凑不到 1000 帧。改为按时长统计，或直接断言 0 次 Present</li><li>Q2：降级路径要求“帧间隔 P95 ≤ T”，垂直同步的抖动使它几乎无法满足。需要加容差</li><li>Q7：还没有基线。先跑一轮只建基线、不判分</li></ul>
+      <p>另外，<code>M202Probe.cs</code> 里的 PresentStats 要换成真实统计；正式测量改用 Release 构建。</p>
+    </div>
+    <div class="rec">
+      <div class="rec-h"><h3>给打断续接设时间盒，换个思路</h3><span class="pill warn">高</span></div>
+      <p>同一个“seed 取哪里”的方向已经连续 7 张真机票没有通过。建议停止在这个方向上开新的采数票，在下面三种做法里选一种：</p>
+      <ul><li><strong>产品上接受：</strong>发版用 B_v（位置连续），把“改目标时速度可能不连续”写进设计约束和文档。闸门正好禁止把 B_v 当发版基线，所以这一步需要协调显式改裁决</li><li><strong>改判据：</strong>17/20 smoke 是工程门槛。请设计师在真机上盲测几组打断场景，看可感知的顿挫阈值在哪，再据此决定门槛</li><li><strong>换机制：</strong>不再从影子轨迹推算 seed。把需要可打断的属性交给合成器自己保存的状态（例如 ExpressionAnimation 读 PropertySet），或用 InteractionTracker 的惯性模型。可行性需要先做一个小原型验证，不确定能否成功</li></ul>
+    </div>
+    <div class="rec">
+      <div class="rec-h"><h3>查清 UI 线程只有 32Hz 的原因</h3><span class="pill warn">高</span></div>
+      <p>能力分发器在无法下放时要回到 UI 线程计算。如果 UI 线程本身只有 32Hz，降级后的动画会明显卡顿。31.2 ms 正好是两个 15.625 ms 的时钟节拍，像是计时器分辨率或 WinUI 的 Rendering 节流造成的。这一点 2026-10-20 就记成了“另案处理”，至今没有派单。</p>
+    </div>
+    <div class="rec">
+      <div class="rec-h"><h3>让实现回到 plan.md 定下的架构</h3><span class="pill idle">中</span></div>
+      <ul><li>C# 现在通过 C ABI 的 P/Invoke 调用引擎。架构要求公开接口走 C++/WinRT 的 WinMD，需要排进 M2 的计划</li><li>ETW 现在用的是 C# 的 EventSource。计划要求引擎侧用 C++ TraceLogging，否则引擎内部的耗时无法拆分到各阶段</li><li>Windows 端接上 <code>UISettings.AnimationsEnabled</code>，让 tokens.h 里已经强制提供的 reduced 变体真正生效</li></ul>
+    </div>
+    <div class="rec">
+      <div class="rec-h"><h3>给流程减负</h3><span class="pill idle">中</span></div>
+      <ul><li>只有真机采数票保留 DRAFT → LOCK → APPROVED 和哈希锁；纯文档、纯工具的票用一份 PR 加评审就够了</li><li>用一份状态表（票、状态、哈希、下一步）取代散在 brief、pack、next 里的追加记录</li><li>清理仓库：已提交的 Linux 二进制（<code>code/composition_tests</code>、<code>timeline_tests*</code>）、artifacts/ 中误存的 Windows 路径文件、几百 KB 的原始回复稿，以及 .gitignore 已列出的 <code>bin/</code>、<code>obj/</code> 之外的构建产物</li><li>给 code/ 加 CMake 和 CI（含 ASan/UBSan），这样 Linux 侧的单测证据可以自动复现</li></ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>证据：plan.md；docs/notion_brief.md §3–4；docs/workbuddy_soft_demo.md；docs/m2_01_result.md、m2_02_result.md 及其余 12 份 *_result.md；docs/side_parked_hang_degrade.md；docs/notion_r2_b_gate_ab.md。单测数字是 2026-10-26 在 Linux g++ 13.3 上重跑的结果（timeline 422 / tokens 743 / controller 236 / composition 2305 / C API 23 / soft-demo 10）。</p>
+  <p>局限：所有真机数据都来自同一台机器、Debug 构建、60Hz；本评估没有新采任何真机数据。建议部分是接手者的判断，没有经过 Gemini、DeepSeek、Notion 复评，也没有经过协调裁决。</p>
+</footer>
+</div>
