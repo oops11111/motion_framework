@@ -280,5 +280,125 @@ class GradeTests(unittest.TestCase):
             self.assertIn("ticket=PASS", f.read())
 
 
+
+class GradeR2Tests(unittest.TestCase):
+    """Gate r2 (rulings Q1-Q8). r2 is not LOCKED yet, so most tests run --dry-run;
+    test_locked_r2_pass simulates the LOCK by setting the expected hash."""
+
+    def setUp(self):
+        self._td = tempfile.TemporaryDirectory()
+        self.fx = Fixture(self._td.name)
+        tmp = self._td.name
+        self.gate = os.path.join(tmp, "perf_ci_gate_r2.md")
+        with open(self.gate, "w") as f:
+            f.write("# PERF-CI r2 (test stand-in)\nGATE_BODY_SHA256: x\n")
+        m = self.fx.m()
+        m["gateVersion"] = "r2"
+        m["gate"] = self.gate
+        for i, mach in enumerate(m["machines"]):
+            mach["machineId"] = f"03FF0210-04E0-057F-E006-E9070008000{i}"
+            for run in mach["runs"]:
+                if run["scenario"] == "idle":
+                    # An idle app should not present at all: header only. (Every
+                    # PresentMon row is a present, including the first one whose
+                    # interval is NA, so write_presentmon would add one.)
+                    with open(os.path.join(tmp, run["presentmonCsv"]), "w") as f:
+                        f.write("Application,ProcessID,MsBetweenPresents\n")
+                    run.update(durationSec=60, cpuAvgPercent=0.05, gpuAvgPercent=0.0)
+        self.m = m
+        self._saved = g.RULES["r2"]["sha"]
+
+    def tearDown(self):
+        g.RULES["r2"]["sha"] = self._saved
+        self._td.cleanup()
+
+    def run_(self, m=None, **kw):
+        return self.fx.run(m or self.m, **kw)
+
+    def test_unlocked_r2_rejects_real_grading(self):
+        r = self.run_()
+        self.assertEqual(r["ticket"], "INVALID")
+        self.assertIn("not LOCKED", json.dumps(r))
+
+    def test_dry_run_pass_with_idle_by_duration(self):
+        r = self.run_(dry_run=True)
+        self.assertEqual(r["ticket"], "DRY-RUN(PASS)", json.dumps(r, ensure_ascii=False)[:2000])
+        idle = [c for c in r["cells"] if c["scenario"] == "idle"]
+        self.assertTrue(idle and all(c["metrics"]["presents"] == 0 for c in idle))
+
+    def test_locked_r2_pass(self):
+        g.RULES["r2"]["sha"] = g.gate_body_sha256(self.gate)
+        self.assertEqual(self.run_()["ticket"], "PASS")
+
+    def test_idle_presents_fail(self):
+        run = next(r for r in self.m["machines"][0]["runs"] if r["scenario"] == "idle")
+        write_presentmon(os.path.join(self._td.name, run["presentmonCsv"]), [16.6, 16.7], run["pid"])
+        self.assertEqual(self.run_(dry_run=True)["ticket"], "DRY-RUN(FAIL)")
+
+    def test_idle_cpu_fail_and_short_duration_invalid(self):
+        run = next(r for r in self.m["machines"][0]["runs"] if r["scenario"] == "idle")
+        run["cpuAvgPercent"] = 0.2
+        self.assertEqual(self.run_(dry_run=True)["ticket"], "DRY-RUN(FAIL)")
+        run["cpuAvgPercent"] = 0.05
+        run["durationSec"] = 30
+        self.assertEqual(self.run_(dry_run=True)["ticket"], "DRY-RUN(INVALID)")
+
+    def test_fallback_allows_vsync_jitter(self):
+        # +-5% jitter puts frame P95 near 1.05*T: FAIL under r1 (<= T), PASS under r2 (<= 1.1*T).
+        T = 1000 / 120
+        for i, run in enumerate(self.m["machines"][1]["runs"]):
+            run["stageP95Ms"] = None
+            if run["scenario"] != "idle":
+                write_presentmon(os.path.join(self._td.name, run["presentmonCsv"]), frames(1200, T, seed=i), run["pid"])
+        self.assertEqual(self.run_(dry_run=True)["ticket"], "DRY-RUN(PASS)")
+        r1 = copy.deepcopy(self.m)
+        r1["gateVersion"] = "r1"
+        r1["gate"] = os.path.abspath(GATE)
+        for mach in r1["machines"]:
+            mach["machineId"] = "id-" + mach["hostname"]
+            for run in mach["runs"]:
+                if run["scenario"] == "idle":
+                    write_presentmon(os.path.join(self._td.name, run["presentmonCsv"]), frames(1200, 1000 / mach["runs"][0]["refreshHz"], seed=3), run["pid"])
+        self.assertIn("FAIL", self.fx.run(r1, dry_run=True)["ticket"])
+
+    def test_small_count_reconcile_floor(self):
+        run = next(r for r in self.m["machines"][0]["runs"] if r["scenario"] == "steady_play")
+        write_presentmon(os.path.join(self._td.name, run["presentmonCsv"]), frames(1500, 1000 / 60, drops=1), run["pid"])
+        # PresentStats says 0 drops, PresentMon 1: a conflict under r1, the same magnitude under r2.
+        self.assertEqual(self.run_(dry_run=True)["ticket"], "DRY-RUN(PASS)")
+
+    def test_machine_id_must_be_uuid(self):
+        self.m["machines"][0]["machineId"] = "DESKTOP-K93N3P8"
+        r = self.run_(dry_run=True)
+        self.assertEqual(r["ticket"], "DRY-RUN(INVALID)")
+        self.assertIn("SMBIOS UUID", json.dumps(r))
+
+    def test_baseline_round_then_graded_round(self):
+        g.RULES["r2"]["sha"] = g.gate_body_sha256(self.gate)
+        b = copy.deepcopy(self.m)
+        b["mode"] = "baseline"
+        for mach in b["machines"]:
+            mach.pop("baselines")
+            mach["runs"] = [r for r in mach["runs"] if r["round"] == 1]
+        rb = self.run_(b)
+        self.assertEqual(rb["ticket"], "BASELINE", json.dumps(rb)[:1500])
+        mid = b["machines"][0]["machineId"]
+        self.assertIn("steady_play", rb["baselines"][mid])
+        self.assertNotIn("idle", rb["baselines"][mid])
+        path = os.path.join(self._td.name, "baselines.json")
+        with open(path, "w") as f:
+            json.dump(rb["baselines"], f)
+        graded = copy.deepcopy(self.m)
+        graded["baselinesFile"] = "baselines.json"
+        for mach in graded["machines"]:
+            mach.pop("baselines")
+        self.assertEqual(self.run_(graded)["ticket"], "PASS")
+
+    def test_baseline_mode_not_defined_for_r1(self):
+        m = self.fx.m()
+        m["mode"] = "baseline"
+        self.assertIn("INVALID", self.fx.run(m)["ticket"])
+
+
 if __name__ == "__main__":
     unittest.main()

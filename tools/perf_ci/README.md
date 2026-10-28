@@ -12,6 +12,18 @@ python3 -m unittest discover -s tools/perf_ci -v      # 合成数据单测
 ```
 退出码：0 PASS，1 FAIL，2 INVALID，3 DRY-RUN 或用法错误。`--out-dir` 写出 `perf_ci_report.md` 和 `.json`。
 
+## 闸门版本
+manifest 里的 `"gateVersion"` 决定按哪一版判分：
+- `"r1"`（默认）：`docs/m2_perf_ci_gate_LOCKED.md`（`5b007dd4…282a`）。
+- `"r2"`：`docs/m2_perf_ci_gate_r2_DRAFT.md`，即按 Q1–Q8 裁决修订后的版本。r2 LOCK 之前只接受 `--dry-run`；LOCK 后，把 hash 填进 `RULES["r2"]["sha"]`。
+
+r2 与 r1 的差别：
+- Idle 按时长判定：每轮 ≥60 秒，0 次 Present，CPU 和 GPU 均 ≤0.1%。Idle 的 run 需要提供 `durationSec`、`cpuAvgPercent`、`gpuAvgPercent`；
+- 降级路径的门槛为帧间隔 P95 ≤ 1.1·T；
+- 两边丢帧数都 ≤2 时，不计口径冲突；
+- machineId 必须是 SMBIOS UUID；
+- 支持只建基线的轮次（`"mode": "baseline"`），生成 `perf_ci_baselines.json`（退出码 4）；判分轮用 `"baselinesFile"` 引用这个文件。
+
 ## manifest.json
 
 路径都相对 manifest 所在目录（也可写绝对路径）。

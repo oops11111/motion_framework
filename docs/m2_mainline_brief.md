@@ -406,3 +406,8 @@
 - **2026-10-28 20:31:11 AWST — PERF-CI Q1–Q8 按建议裁决（pidan）→ 合入 PR #5**
   - 裁决记录在 `docs/m2_perf_ci_tooling_gate_DRAFT.md`；Q1/Q2/Q3/Q7 改变判据，写入新版 PERF-CI 闸门 r2（另开 DRAFT），原 LOCKED `5b007dd4…282a` 不改
   - 采数前提：Q4 真实 PresentStats、Q6 WPA 导出口径；PERF-CI 仍 HOLD（缺 GPU 档不同的第二台机器）
+
+- **2026-10-28 — PR #5 合入 main；开 PERF-CI 闸门 r2 DRAFT（分支 `claude/m2-perf-ci-r2`）**
+  - DRAFT：`docs/m2_perf_ci_gate_r2_DRAFT.md`（写入 Q1–Q8 裁决；r1 `5b007dd4…282a` 不改）；待裁决 H1–H3
+  - 判分脚本支持 `gateVersion: r2`（Idle 按时长、1.1·T、小计数下限、UUID、基线轮）；单测 39/39；r2 LOCK 前只接受 dry-run
+  - LOCK 前提：Q4 真实 PresentStats、Q6 WPA profile；采数还缺一台集显或低端笔记本

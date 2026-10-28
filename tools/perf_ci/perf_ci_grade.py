@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 """M2-PERF-CI offline grader (stdlib only; runs on the lab machines and on Linux).
 
-Implements G2-LOCK-9..13 of docs/m2_perf_ci_gate_LOCKED.md
-(GATE_BODY_SHA256 5b007dd43ba351dc0985a52d1745485954d149575feeca622791275005cd282a).
+Implements G2 of the PERF-CI gate named by the manifest's "gateVersion":
+  r1  docs/m2_perf_ci_gate_LOCKED.md (5b007dd4...282a), the default;
+  r2  docs/m2_perf_ci_gate_r2_DRAFT.md: rulings Q1-Q8 (idle judged by duration,
+      fallback P95 <= 1.1*T, small-count reconcile floor, SMBIOS UUID machineId,
+      baseline-only round). Until r2 is LOCKED its hash is unknown and only
+      --dry-run is accepted.
 The grader only READS artefacts that were already captured; it never starts a capture,
 and it refuses to emit PASS unless the gate hash matches and an APPROVED file is given.
+A manifest with "mode": "baseline" (r2) builds per-machine baselines instead of grading.
 
 Usage:
   perf_ci_grade.py <manifest.json> [--out-dir DIR] [--dry-run] [--frame-column NAME]
 
-Exit codes: 0 PASS, 1 FAIL, 2 INVALID, 3 DRY-RUN / usage error.
+Exit codes: 0 PASS, 1 FAIL, 2 INVALID, 3 DRY-RUN / usage error, 4 BASELINE written.
 Manifest format: tools/perf_ci/README.md.
 """
 import argparse
@@ -21,7 +26,18 @@ import os
 import re
 import sys
 
-GATE_SHA = "5b007dd43ba351dc0985a52d1745485954d149575feeca622791275005cd282a"
+GATE_SHA = "5b007dd43ba351dc0985a52d1745485954d149575feeca622791275005cd282a"  # r1
+# Per gate version. r2 "sha" stays None until the r2 gate is LOCKED.
+RULES = {
+    "r1": {"sha": GATE_SHA, "fallback_factor": 1.0, "reconcile_floor": 0,
+           "idle_by_duration": False, "uuid_machine_id": False, "baseline_mode": False},
+    "r2": {"sha": None, "fallback_factor": 1.1, "reconcile_floor": 2,
+           "idle_by_duration": True, "uuid_machine_id": True, "baseline_mode": True},
+}
+IDLE_MIN_SEC = 60          # r2 Q1
+IDLE_MAX_CPU_PCT = 0.1     # r2 Q1: plan.md "闲置 CPU/GPU 接近 0（≤0.1%）"
+IDLE_MAX_GPU_PCT = 0.1
+UUID_RE = re.compile(r"^[0-9A-Fa-f]{8}-(?:[0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$")
 SCENARIOS = ("idle", "steady_play", "interrupted_retarget")
 GPU_TIERS = ("igpu", "dgpu", "lowend-laptop")
 CAPTURE_METHODS = ("logman-etl", "eventpipe")
@@ -110,8 +126,45 @@ def _exists(base, p):
     return bool(p) and os.path.isfile(os.path.join(base, p))
 
 
-def grade_run(base, machine, run, column):
+def count_presents(path, pid):
+    """Rows (presents) for `pid` in a PresentMon CSV, whatever their duration."""
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        fields = reader.fieldnames or []
+        return sum(1 for row in reader
+                   if "ProcessID" not in fields or row.get("ProcessID", "").strip() == str(pid))
+
+
+def grade_idle(base, c, run):
+    """r2 Q1: idle is judged by duration, zero presents and near-zero CPU/GPU,
+    not by frame count (an idle compositor app should not present at all)."""
+    for key in ("presentmonCsv", "trace"):
+        if not _exists(base, run.get(key)):
+            c.invalid.append(f"artefact missing: {key}")
+    dur, cpu, gpu = run.get("durationSec"), run.get("cpuAvgPercent"), run.get("gpuAvgPercent")
+    for k, v in (("durationSec", dur), ("cpuAvgPercent", cpu), ("gpuAvgPercent", gpu)):
+        if not isinstance(v, (int, float)) or v < 0:
+            c.invalid.append(f"{k} missing")
+    if c.invalid:
+        return c
+    if dur < IDLE_MIN_SEC:
+        c.invalid.append(f"idle duration {dur}s < {IDLE_MIN_SEC}s")
+        return c
+    presents = count_presents(os.path.join(base, run["presentmonCsv"]), run.get("pid"))
+    c.metrics.update(idle_s=float(dur), presents=presents, cpu_pct=float(cpu), gpu_pct=float(gpu))
+    if presents:
+        c.fail.append(f"idle presents {presents} != 0")
+    if cpu > IDLE_MAX_CPU_PCT:
+        c.fail.append(f"idle CPU {cpu:.3f}% > {IDLE_MAX_CPU_PCT}%")
+    if gpu > IDLE_MAX_GPU_PCT:
+        c.fail.append(f"idle GPU {gpu:.3f}% > {IDLE_MAX_GPU_PCT}%")
+    return c
+
+
+def grade_run(base, machine, run, column, rules=RULES["r1"]):
     c = Cell(machine, run)
+    if rules["idle_by_duration"] and c.scenario == "idle":
+        return grade_idle(base, c, run)
     hz = run.get("refreshHz")
     if not isinstance(hz, (int, float)) or hz <= 0:
         c.invalid.append("refreshHz missing")
@@ -173,9 +226,10 @@ def grade_run(base, machine, run, column):
         if method != "eventpipe":
             c.invalid.append("stageP95Ms missing (fallback allowed only on eventpipe path)")
             return c
-        c.notes.append("SUBSTITUTE: stage split unavailable -> PresentMon frame P95 <= T")
-        if frame_p95 > T:
-            c.fail.append(f"frame P95 {frame_p95:.3f}ms > T {T:.3f}ms")
+        k = rules["fallback_factor"]
+        c.notes.append(f"SUBSTITUTE: stage split unavailable -> PresentMon frame P95 <= {k:g}*T")
+        if frame_p95 > k * T:
+            c.fail.append(f"frame P95 {frame_p95:.3f}ms > {k:g}*T {k * T:.3f}ms")
         b = (baseline or {}).get("frameP95Ms")
         if not isinstance(b, (int, float)) or b <= 0:
             c.invalid.append("baseline frameP95Ms missing")
@@ -192,7 +246,10 @@ def grade_run(base, machine, run, column):
     mean = sum(frames) / n
     c.metrics.update(ps_dropped=ps_drops, ps_interval_ms=ps_interval, frame_mean_ms=mean)
     conflicts = []
-    if ps_drops > drops:
+    floor = rules["reconcile_floor"]  # r2 Q3: both counts <= floor are the same magnitude
+    if floor and ps_drops <= floor and drops <= floor:
+        pass
+    elif ps_drops > drops:
         conflicts.append(f"PresentStats dropped {ps_drops} > PresentMon {drops}")
     elif drops > RECONCILE_FACTOR * ps_drops:
         conflicts.append(f"PresentMon dropped {drops} > {RECONCILE_FACTOR:g}x PresentStats {ps_drops}")
@@ -207,7 +264,7 @@ def grade_run(base, machine, run, column):
     return c
 
 
-def grade_matrix(base, manifest):
+def grade_matrix(base, manifest, rules=RULES["r1"], min_rounds=MIN_ROUNDS):
     """G2-LOCK-9 / -10 / -12 checks that span runs; returns INVALID reasons."""
     bad = []
     machines = manifest.get("machines") or []
@@ -218,6 +275,8 @@ def grade_matrix(base, manifest):
         bad.append("machineId missing")
     if len(set(ids)) != len(ids):
         bad.append("machineId not distinct")
+    if rules["uuid_machine_id"] and any(i and not UUID_RE.match(str(i)) for i in ids):
+        bad.append("machineId is not an SMBIOS UUID (r2 Q8)")
     tiers = {m.get("gpuTier") for m in machines}
     if not tiers <= set(GPU_TIERS):
         bad.append(f"gpuTier outside {GPU_TIERS}")
@@ -241,8 +300,8 @@ def grade_matrix(base, manifest):
         for s in SCENARIOS:
             rs = [r for r in runs if r.get("scenario") == s]
             pids = [r.get("pid") for r in rs]
-            if len(rs) < MIN_ROUNDS:
-                bad.append(f"{h}/{s}: rounds {len(rs)} < {MIN_ROUNDS}")
+            if len(rs) < min_rounds:
+                bad.append(f"{h}/{s}: rounds {len(rs)} < {min_rounds}")
             elif any(p is None for p in pids) or len(set(pids)) != len(pids):
                 bad.append(f"{h}/{s}: rounds not independent processes (pid missing/repeated)")
     return bad
@@ -259,20 +318,89 @@ def read_approval(base, path):
     return f"{by.group(1)}@{at.group(1).strip()}" if by and at else None
 
 
+def load_baselines(base, manifest):
+    """Fill machine["baselines"] from manifest["baselinesFile"] (keyed by machineId)
+    unless the machine carries inline baselines."""
+    path = manifest.get("baselinesFile")
+    if not _exists(base, path):
+        return
+    with open(os.path.join(base, path), encoding="utf-8") as f:
+        table = json.load(f)
+    for m in manifest.get("machines") or []:
+        if not m.get("baselines") and m.get("machineId") in table:
+            m["baselines"] = table[m["machineId"]]
+
+
+def build_baselines(base, manifest, column):
+    """r2 Q7 baseline-only round: per machine and non-idle scenario, the median
+    over rounds of frame P95 and of each stage P95. Returns ({machineId: ...}, problems)."""
+    out, problems = {}, []
+    for m in manifest.get("machines") or []:
+        per = {}
+        for s in SCENARIOS:
+            if s == "idle":
+                continue
+            frames95, stages = [], {k: [] for k in STAGE_BUDGET}
+            for r in (x for x in m.get("runs") or [] if x.get("scenario") == s):
+                try:
+                    _, fr = read_presentmon(os.path.join(base, r["presentmonCsv"]), r.get("pid"), column)
+                except (OSError, ValueError, KeyError) as e:
+                    problems.append(f"{m.get('hostname')}/{s}: PresentMon unreadable: {e}")
+                    continue
+                if len(fr) < MIN_FRAMES:
+                    problems.append(f"{m.get('hostname')}/{s}: frames {len(fr)} < {MIN_FRAMES}")
+                    continue
+                frames95.append(p95(fr))
+                for k in STAGE_BUDGET:
+                    v = (r.get("stageP95Ms") or {}).get(k)
+                    if isinstance(v, (int, float)):
+                        stages[k].append(v)
+            med = lambda v: sorted(v)[(len(v) - 1) // 2]
+            if not frames95:
+                problems.append(f"{m.get('hostname')}/{s}: no usable baseline round")
+                continue
+            entry = {"frameP95Ms": med(frames95)}
+            if all(stages[k] for k in STAGE_BUDGET):
+                entry["stageP95Ms"] = {k: med(stages[k]) for k in STAGE_BUDGET}
+            per[s] = entry
+        out[m.get("machineId")] = per
+    return out, problems
+
+
 def grade(manifest_path, dry_run=False, column=None):
     base = os.path.dirname(os.path.abspath(manifest_path))
     with open(manifest_path, encoding="utf-8") as f:
         manifest = json.load(f)
+    version = manifest.get("gateVersion", "r1")
+    rules = RULES.get(version)
+    top = []
+    if rules is None:
+        rules = RULES["r1"]
+        top.append(f"unknown gateVersion {version!r}")
     gate_path = manifest.get("gate") or ""
     gate_sha = gate_body_sha256(os.path.join(base, gate_path)) if _exists(base, gate_path) else None
-    top = []
-    if gate_sha != GATE_SHA:
-        top.append(f"gate hash {gate_sha or 'missing'} != {GATE_SHA}")
+    if rules["sha"] is None:
+        if not dry_run:
+            top.append(f"gate {version} is not LOCKED yet; only --dry-run is accepted")
+    elif gate_sha != rules["sha"]:
+        top.append(f"gate hash {gate_sha or 'missing'} != {rules['sha']}")
     approved = read_approval(base, manifest.get("approvedFile"))
     if not dry_run and approved is None:
         top.append("no APPROVED file with APPROVED_BY/AT (未授权采数)")
-    top += grade_matrix(base, manifest)
-    cells = [grade_run(base, m, r, column)
+    baseline_mode = manifest.get("mode") == "baseline"
+    if baseline_mode and not rules["baseline_mode"]:
+        top.append(f"baseline mode is not defined for gate {version}")
+    top += grade_matrix(base, manifest, rules, 1 if baseline_mode else MIN_ROUNDS)
+    result = {"gate_version": version, "gate_sha": gate_sha, "invalid": top,
+              "machines": len(manifest.get("machines") or []), "approved": approved or "NONE"}
+    if baseline_mode:
+        baselines, problems = build_baselines(base, manifest, column)
+        ticket = "BASELINE-INVALID" if top or problems else "BASELINE"
+        result.update(ticket=f"DRY-RUN({ticket})" if dry_run else ticket,
+                      invalid=top + problems, baselines=baselines, cells=[])
+        return result
+    load_baselines(base, manifest)
+    cells = [grade_run(base, m, r, column, rules)
              for m in manifest.get("machines") or [] for r in m.get("runs") or []]
     if top or any(c.verdict == "INVALID" for c in cells):
         ticket = "INVALID"
@@ -282,16 +410,15 @@ def grade(manifest_path, dry_run=False, column=None):
         ticket = "PASS"
     if dry_run:
         ticket = f"DRY-RUN({ticket})"
-    return {"ticket": ticket, "gate_sha": gate_sha, "invalid": top,
-            "machines": len(manifest.get("machines") or []),
-            "approved": approved or "NONE",
-            "cells": [{"host": c.host, "scenario": c.scenario, "round": c.round,
-                       "verdict": c.verdict, "invalid": c.invalid, "fail": c.fail,
-                       "notes": c.notes, "metrics": c.metrics} for c in cells]}
+    result.update(ticket=ticket,
+                  cells=[{"host": c.host, "scenario": c.scenario, "round": c.round,
+                          "verdict": c.verdict, "invalid": c.invalid, "fail": c.fail,
+                          "notes": c.notes, "metrics": c.metrics} for c in cells])
+    return result
 
 
 def oneline(r):
-    return (f"M2-PERF-CI | gate={r['gate_sha']} | approved={r['approved']} | machines={r['machines']}"
+    return (f"M2-PERF-CI {r.get('gate_version', 'r1')} | gate={r['gate_sha']} | approved={r['approved']} | machines={r['machines']}"
             f" | ticket={r['ticket']} | 成功≠采用；不改composition.h；禁影子IV；≥2物理机；主判据PresentMon")
 
 
@@ -327,8 +454,11 @@ def main(argv=None):
             f.write(md)
         with open(os.path.join(a.out_dir, "perf_ci_report.json"), "w", encoding="utf-8") as f:
             json.dump(r, f, ensure_ascii=False, indent=2)
+        if "baselines" in r:
+            with open(os.path.join(a.out_dir, "perf_ci_baselines.json"), "w", encoding="utf-8") as f:
+                json.dump(r["baselines"], f, ensure_ascii=False, indent=2)
     sys.stdout.write(md)
-    return {"PASS": 0, "FAIL": 1, "INVALID": 2}.get(r["ticket"], 3)
+    return {"PASS": 0, "FAIL": 1, "INVALID": 2, "BASELINE": 4}.get(r["ticket"], 3)
 
 
 if __name__ == "__main__":
