@@ -1,0 +1,22 @@
+[2026-10-28 16:48:03] M0 run LAB: host=DESKTOP-IJI1KJG sessions=3 inject=True M0Root=C:\Users\Lh\mf_m0b\repo\m0 Out=C:\Users\Lh\mf_m0b\repo\m0\out
+[2026-10-28 16:48:03] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-10-28 16:48:03] os=Microsoft Windows 11 ×¨Òµ°æ build=26200
+[2026-10-28 16:48:03] elevated=True (PresentMon needs an elevated shell or Performance Log Users membership)
+[2026-10-28 16:48:03] gpu=AMD Radeon RX 7800 XT refresh=75Hz mode=1280x1024
+[2026-10-28 16:48:03] composition.h sha256 PRE=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+[2026-10-28 16:48:05] PresentMon pid=17336
+[2026-10-28 16:51:04] tear probe exit=0
+[2026-10-28 16:51:06] session 1 LAB launch DemoExe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe args=--m0-probe --m0-inject
+[2026-10-28 16:51:06] session 1 demoExePid=15304
+[2026-10-28 16:51:07] session 1 appPid=15304
+[2026-10-28 16:52:57] session 1 verdict=RECORDED frames=1502
+[2026-10-28 16:52:59] session 2 LAB launch DemoExe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe args=--m0-probe --m0-inject
+[2026-10-28 16:52:59] session 2 demoExePid=4440
+[2026-10-28 16:53:00] session 2 appPid=4440
+[2026-10-28 16:54:51] session 2 verdict=RECORDED frames=1501
+[2026-10-28 16:54:53] session 3 LAB launch DemoExe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe args=--m0-probe --m0-inject
+[2026-10-28 16:54:53] session 3 demoExePid=16764
+[2026-10-28 16:54:54] session 3 appPid=16764
+[2026-10-28 16:56:45] session 3 verdict=RECORDED frames=1500
+[2026-10-28 16:56:45] composition.h sha256 POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+[2026-10-28 16:56:45] RUN_DONE

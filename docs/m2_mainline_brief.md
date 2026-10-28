@@ -351,3 +351,41 @@
 - **2026-10-27 — M0-A 合入 main（PR #1）；开 M0-B DRAFT（分支 `claude/m0b-win11`）**
   - M0-A 第④条偏离：pidan 以「开pr合并」确认
   - M0-B DRAFT：`docs/m0b_win11_gate_DRAFT.md`（Win11 复核：M0-2 在 ≥120Hz 下正式判定、M0-1a 回归、M0-4 用 PresentMon）；待裁决 E1–E4；不授权采数
+
+- **2026-10-27 00:19:21 AWST — M0-B LOCKED（E1–E4 按建议）**
+  - LOCKED：`docs/m0b_win11_gate_LOCKED.md`，hash=`5e1bbb6d517babf6f04a94ee9af93cc17f208f5ea9e5bdcf7ac47c8cd49df203`
+  - 分支 `claude/m0b-win11-run`（从 main `513dd5e` 拉出）；派工单 `docs/workbuddy_m0b_dispatch.md`（预检和构建可先做；采数等 approved）
+
+- **2026-10-28 09:16:57 AWST — M0-B 闸门 r2 LOCKED（pidan：「修改120hz为75hz」）**
+  - r2：`docs/m0b_win11_gate_r2_LOCKED.md`，hash=`fd3acfc787564137532cc52adb64066427a88b159f0c6b4312dfd9dece40505c`；取代 r1 `5e1bbb6d…f203`（r1 未 APPROVED、未采数，文件不改）
+  - M0-2 判定所需刷新率改为 ≥75Hz，门槛 2 ms 不变；与 plan.md「120Hz 拖动错位测试」的偏离已记录，120Hz 结论转 M3 混合刷新率矩阵
+  - 派工单已改指向 r2；采数仍等 approved
+
+- **2026-10-28 09:18:00 AWST — M0-B APPROVED by pidan → 派 workbuddy**
+  - approved：`docs/m0b_win11_approved.md`；gate r2 `fd3acfc7…505c` 不变；采数=是（-Inject，3 会话）；派工单 `docs/workbuddy_m0b_dispatch.md`
+
+- **2026-10-28 09:36:54 AWST — plan.md 的 120Hz 全部改为 75Hz（pidan）**
+  - 共 5 处：目标“60/75Hz 以上保持流畅”；M-0 任务与 M0 验收门槛“75Hz 拖动错位测试”；多屏矩阵“60+75Hz、60+144Hz 混合”；试点指标“60/75Hz 下”
+  - 因此 M0-B r2（`fd3acfc7…505c`）的 ≥75Hz 判定与 plan.md 一致；r2 中“与 plan.md 的偏离 / 120Hz 结论转 M3”一条已不再适用（r2 已 LOCK，正文不改，以本条为准）
+  - summary.md、disputes.md 中“120Hz 下 ≤1ms”是按比例换算的预算示例，未改
+
+- **2026-10-28 12:01:34 AWST — M0-B CLOSED M0-B-INCONCLUSIVE（DESKTOP-IJI1KJG，Win11 26200，RX 7800 XT，75Hz，未提权）**
+  - 结果：`docs/m0b_win11_result.md`；数据 `m0/results_m0b/`（commit 6096c411）；gate r2 `fd3acfc7…505c` 复算 MATCH；composition.h PRE=POST
+  - M0-2：错位 0.06/0.08/0.01 ms（≤2 ms），但每条路径样本只有 161–163（要求 ≥200）→ INCONCLUSIVE
+  - M0-1a：①②④ 和 CPU（≤0.073·T）都满足；GPU P95 因探针时间戳读取 bug（AMD 上触发）无效 → INCONCLUSIVE
+  - 已修：探针 v3（GPU 查询读取、拖动 16→40 次）；建议出 r3 并整票重跑，待 pidan 决定
+
+- **2026-10-28 14:53:18 AWST — M0-B 闸门 r3 LOCKED（pidan：「按建议出 r3」）**
+  - r3：`docs/m0b_win11_gate_r3_LOCKED.md`，hash=`741729784693893dedb6190b5d2768617045554ae90a58dfe00fd52855f48ede`；取代 r2 `fd3acfc7…505c`（r2 文件不改，r2 结论 INCONCLUSIVE 保留）
+  - 判据不变；要求探针 M0 v3、同一台 DESKTOP-IJI1KJG 整票重跑 3 个会话、结果放 `m0/results_m0b_r3/`、不混用 r2 数据；GPU 丢弃样本超过 10% 时 GPU P95 视为无效
+  - 派工单：`docs/workbuddy_m0b_r3_dispatch.md`；采数等 r3 approved
+
+- **2026-10-28 15:26:25 AWST — M0-B r3 APPROVED by pidan（提权 + PresentMon）→ 采数**
+  - approved：`docs/m0b_win11_r3_approved.md`；gate r3 `74172978…8ede` 不变；派工单 `docs/workbuddy_m0b_r3_dispatch.md`；数据进 `m0/results_m0b_r3/`
+
+- **2026-10-28 17:11:40 AWST — M0-B r3 CLOSED M0-B-PASS → M0 关闭**
+  - 结果：`docs/m0b_win11_r3_result.md`；数据 `m0/results_m0b_r3/`（commit c3491a87）；gate r3 `74172978…8ede` 复算 MATCH；composition.h PRE=POST
+  - M0-2 PASS：错位 −0.04/0.06/−0.06 ms，每条路径样本 404–408；M0-1a PASS：CPU P95 ≤0.096·T，GPU P95 0.014·T，丢弃 0，参考图非空且一致
+  - M0-4：合成交换链 + ALLOW_TEARING 在 Win11/AMD 上为 Hardware: Independent Flip，AllowsTearing=1（屏幕层面可撕裂）
+  - 偏离：执行方用了未提交的本地 runner（直接启动 Debug exe）；PresentMon 只覆盖 60 s，没抓到 hwnd 对照组。均不影响判据
+  - Go：Rive 路径进入 M3 规划；Skia 备选不启用

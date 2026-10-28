@@ -1,0 +1,8 @@
+﻿host=DESKTOP-IJI1KJG
+build=26200
+refresh=75
+elevated=False
+composition_PRE=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+composition_POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+m0rive_sha256=ddc5f296daf709372cd127ffba077b5508f545166354418c0f985b4893db0a5f
+captured_at=2026-10-28 11:27:25 Asia/Perth
