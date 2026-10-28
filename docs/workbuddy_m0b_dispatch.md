@@ -1,6 +1,6 @@
 # 派题 · M0-B Win11 复核
 
-闸门：`docs/m0b_win11_gate_LOCKED.md`，GATE_BODY_SHA256=`5e1bbb6d517babf6f04a94ee9af93cc17f208f5ea9e5bdcf7ac47c8cd49df203`，LOCKED_AT=2026-10-27 00:19:21 AWST。E1–E4 已按建议裁决。
+闸门：`docs/m0b_win11_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`fd3acfc787564137532cc52adb64066427a88b159f0c6b4312dfd9dece40505c`，LOCKED_AT=2026-10-28 09:16:57 AWST。r2 取代 r1（`5e1bbb6d…f203`），唯一改动是 M0-2 判定所需刷新率从 ≥120Hz 改为 ≥75Hz。E1–E4 已按建议裁决。
 代码分支：`claude/m0b-win11-run`。**第 0–4 步（预检和构建）不采数，现在就可以做；第 5 步采数要等 `docs/m0b_win11_approved.md` 落盘。**
 下文的 `<ROOT>` 指 Win11 机器上的工作目录，例如 `C:\Users\<用户名>\mf_m0b`；`<ART>` 指 artifacts 目录，例如 `<ROOT>\artifacts`。
 
@@ -15,7 +15,7 @@ Get-CimInstance Win32_VideoController | Select-Object Name, CurrentRefreshRate, 
 ```
 对照闸门 G1：
 - build ≥ 22000，UUID 不是 `03000200-0400-0500-0006-000700080009`，否则整票 INVALID，停在这里；
-- 刷新率 < 120Hz：可以继续，但 M0-2 只记录、不判定（E1）。如果显示设置里能调到 120Hz 或更高，先调好；
+- 刷新率 < 75Hz：可以继续，但 M0-2 只记录、不判定（E1）。如果显示设置里能调到 75Hz 或更高，先调好（选这台显示器支持的最高刷新率）；
 - 没有管理员权限：可以继续，但 M0-4 拿不到 PresentMode。
 
 ## 1. 取代码
