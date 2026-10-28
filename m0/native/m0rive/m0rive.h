@@ -24,6 +24,7 @@ typedef struct m0r_stats {
     int32_t interop_qi_hr;        // QueryInterface for ICompositionDrawingSurfaceInterop
     int32_t offscreen_has_uav;    // 1 if the B8G8R8A8 offscreen target was created with UAV binding
     int32_t device_removed_hr;    // GetDeviceRemovedReason at stop
+    uint64_t gpu_samples_dropped; // timestamp sets that never became valid (excluded from gpu_*)
 } m0r_stats;
 
 // Creates a hardware D3D11 device (feature level 11_1, BGRA support, multithread

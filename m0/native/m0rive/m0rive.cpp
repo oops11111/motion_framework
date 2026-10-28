@@ -91,6 +91,7 @@ struct Probe {
     static constexpr int kQ = 4;
     ComPtr<ID3D11Query> qDisjoint[kQ], qBegin[kQ], qEnd[kQ];
     uint64_t qIssued = 0, qRead = 0;
+    std::atomic<uint64_t> gpuDropped{0};  // query sets that never became valid (render thread writes)
 
     std::thread thread;
     std::atomic<bool> running{false};
@@ -134,19 +135,34 @@ void MakeQueries(Probe& p) {
     }
 }
 
-// Reads every finished query set without stalling; returns GPU ms values.
+// Reads every finished query set; returns GPU ms values. A set is read only when
+// the disjoint query and both timestamps report S_OK: GetData with flags 0 does
+// not block, and M0-B (AMD) showed the disjoint result can be ready before the
+// timestamps, which left a timestamp at 0 and wrapped e - b. When the ring is full
+// the oldest set is waited for by polling. Sets that still fail are dropped and
+// counted in gpuDropped.
 void DrainQueries(Probe& p, std::vector<double>& out) {
     while (p.qRead < p.qIssued) {
         const int i = static_cast<int>(p.qRead % Probe::kQ);
         D3D11_QUERY_DATA_TIMESTAMP_DISJOINT dj{};
         UINT64 b = 0, e = 0;
-        if (p.ctx->GetData(p.qDisjoint[i].Get(), &dj, sizeof dj, D3D11_ASYNC_GETDATA_DONOTFLUSH) != S_OK) {
+        auto ready = [&] {
+            return p.ctx->GetData(p.qDisjoint[i].Get(), &dj, sizeof dj, 0) == S_OK &&
+                   p.ctx->GetData(p.qBegin[i].Get(), &b, sizeof b, 0) == S_OK &&
+                   p.ctx->GetData(p.qEnd[i].Get(), &e, sizeof e, 0) == S_OK;
+        };
+        bool ok = ready();
+        if (!ok) {
             if (p.qIssued - p.qRead < Probe::kQ) return;  // not ready yet, ring has room
-            p.ctx->GetData(p.qDisjoint[i].Get(), &dj, sizeof dj, 0);  // ring full: wait
+            for (int spin = 0; spin < 2000 && !ok; ++spin) {  // ring full: wait up to ~2 s
+                Sleep(1);
+                ok = ready();
+            }
         }
-        p.ctx->GetData(p.qBegin[i].Get(), &b, sizeof b, 0);
-        p.ctx->GetData(p.qEnd[i].Get(), &e, sizeof e, 0);
-        if (!dj.Disjoint && dj.Frequency) out.push_back(1000.0 * static_cast<double>(e - b) / static_cast<double>(dj.Frequency));
+        if (ok && !dj.Disjoint && dj.Frequency && e >= b)
+            out.push_back(1000.0 * static_cast<double>(e - b) / static_cast<double>(dj.Frequency));
+        else
+            ++p.gpuDropped;
         ++p.qRead;
     }
 }
@@ -350,6 +366,7 @@ M0R_API int32_t m0r_get_stats(m0r_stats* out) {
     out->interop_qi_hr = g->interopQiHr;
     out->offscreen_has_uav = g->offscreenUav ? 1 : 0;
     out->device_removed_hr = g->dev->GetDeviceRemovedReason();
+    out->gpu_samples_dropped = g->gpuDropped.load();
     return S_OK;
 }
 
@@ -361,6 +378,7 @@ M0R_API int32_t m0r_reset_stats(void) {
     g->intervalMs.clear();
     g->frames = 0;
     g->drawFailures = 0;
+    g->gpuDropped.store(0);
     return S_OK;
 }
 

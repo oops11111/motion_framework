@@ -38,6 +38,7 @@ internal static class M0Native
         public ulong Frames, BeginDrawFailures;
         public double CpuP50, CpuP95, CpuMax, GpuP50, GpuP95, IntervalP50, IntervalP95;
         public int LastHr, InteropQiHr, OffscreenHasUav, DeviceRemovedHr;
+        public ulong GpuSamplesDropped;
     }
 
     [DllImport(Dll, CharSet = CharSet.Unicode)] internal static extern int m0r_create(string rivPath, uint w, uint h, out IntPtr device);
@@ -105,7 +106,7 @@ public sealed partial class MainPage
     const int M0Steps = 20;                // latency steps per path
     const int M0StepDip = 120;             // step / drag amplitude
     const int M0StepGapMs = 450;
-    const int M0Drags = 16;                // drags per M0-2 path
+    const int M0Drags = 40;                // drags per M0-2 path; M0-B saw ~10 usable WGC frames per drag (WGC ~37 fps at 75 Hz), so 16 gave ~160 < 200 samples
     const int M0DragMs = 300;              // one drag of M0StepDip at constant speed
 
     private async Task RunM0Probe()
@@ -135,7 +136,7 @@ public sealed partial class MainPage
             double scale = XamlRoot?.RasterizationScale ?? 1.0;
             double refreshHz = 0;
             try { MfProbe.mf_dwm_timing(out _, out _, out _, out _, out var rn, out var rd, out _); if (rd > 0) refreshHz = (double)rn / rd; } catch { }
-            Kv("probe", "M0 v2");
+            Kv("probe", "M0 v3");
             Kv("session", sess);
             Kv("pid", Environment.ProcessId);
             Kv("host", Environment.MachineName);
@@ -248,6 +249,7 @@ public sealed partial class MainPage
         kv(p + ".gpu_p50_ms", F(s.GpuP50, 3));
         kv(p + ".gpu_p95_ms", F(s.GpuP95, 3));
         kv(p + ".gpu_p95_frac_T", F(s.GpuP95 / T, 3));    // plan budget: GPU <= 0.35
+        kv(p + ".gpu_samples_dropped", s.GpuSamplesDropped);
         kv(p + ".interval_p50_ms", F(s.IntervalP50, 3));
         kv(p + ".interval_p95_ms", F(s.IntervalP95, 3));
         kv(p + ".last_hr", "0x" + s.LastHr.ToString("X8", CultureInfo.InvariantCulture));
