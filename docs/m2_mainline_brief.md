@@ -379,3 +379,6 @@
   - r3：`docs/m0b_win11_gate_r3_LOCKED.md`，hash=`741729784693893dedb6190b5d2768617045554ae90a58dfe00fd52855f48ede`；取代 r2 `fd3acfc7…505c`（r2 文件不改，r2 结论 INCONCLUSIVE 保留）
   - 判据不变；要求探针 M0 v3、同一台 DESKTOP-IJI1KJG 整票重跑 3 个会话、结果放 `m0/results_m0b_r3/`、不混用 r2 数据；GPU 丢弃样本超过 10% 时 GPU P95 视为无效
   - 派工单：`docs/workbuddy_m0b_r3_dispatch.md`；采数等 r3 approved
+
+- **2026-10-28 15:26:25 AWST — M0-B r3 APPROVED by pidan（提权 + PresentMon）→ 采数**
+  - approved：`docs/m0b_win11_r3_approved.md`；gate r3 `74172978…8ede` 不变；派工单 `docs/workbuddy_m0b_r3_dispatch.md`；数据进 `m0/results_m0b_r3/`

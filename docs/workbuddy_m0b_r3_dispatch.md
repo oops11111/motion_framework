@@ -1,7 +1,7 @@
 # 派题 · M0-B r3 重跑（DESKTOP-IJI1KJG）
 
 闸门：`docs/m0b_win11_gate_r3_LOCKED.md`，GATE_BODY_SHA256=`741729784693893dedb6190b5d2768617045554ae90a58dfe00fd52855f48ede`，LOCKED_AT=2026-10-28 14:53:18 AWST。r3 取代 r2；判据不变，只要求用探针 v3 在同一台机器上整票重跑。
-代码分支：`claude/m0b-win11-run`。**采数（第 4 步）要等 `docs/m0b_win11_r3_approved.md` 落盘。** r2 的批准不能用于 r3。第 1–3 步不采数，可以先做。
+代码分支：`claude/m0b-win11-run`。**已 APPROVED（`docs/m0b_win11_r3_approved.md`，pidan @ 2026-10-28 15:26:25 AWST）：第 1–5 步都可以执行；要求在提权 shell 中运行并带 `-PresentMon`。**
 `<ROOT>` 沿用上一轮的 `C:\Users\Lh\mf_m0b`。新数据放在**新目录** `<ROOT>\artifacts_r3`，不要和上一轮的 `<ROOT>\artifacts` 混用。
 
 ## 0. 前提
@@ -26,7 +26,7 @@ git -C <ROOT>\repo log -1 --format=%H
 ## 3. PresentMon（建议这次补上）
 如果能拿到管理员权限，就用**提权**的 PowerShell 跑第 4 步，并传入 `-PresentMon <PresentMon.exe 路径>`（2.x 版本），这样 M0-4 能拿到 PresentMode。拿不到就照常跑，并在回报里写明。
 
-## 4. 采数（r3 approved 落盘后）
+## 4. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m0\run_m0.ps1 -DemoExe <...\MotionSoftDemo.exe> -DemoProj <ROOT>\MotionSoftDemo -ArtDir <ROOT>\artifacts_r3 -Inject -Sessions 3 [-PresentMon <...\PresentMon.exe>]
 ```
