@@ -1,7 +1,7 @@
 # 派题 · M0-B Win11 复核
 
 闸门：`docs/m0b_win11_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`fd3acfc787564137532cc52adb64066427a88b159f0c6b4312dfd9dece40505c`，LOCKED_AT=2026-10-28 09:16:57 AWST。r2 取代 r1（`5e1bbb6d…f203`），唯一改动是 M0-2 判定所需刷新率从 ≥120Hz 改为 ≥75Hz。E1–E4 已按建议裁决。
-代码分支：`claude/m0b-win11-run`。**第 0–4 步（预检和构建）不采数，现在就可以做；第 5 步采数要等 `docs/m0b_win11_approved.md` 落盘。**
+代码分支：`claude/m0b-win11-run`。**已 APPROVED（`docs/m0b_win11_approved.md`，pidan @ 2026-10-28 09:18:00 AWST）：第 0–6 步都可以执行。第 0 步预检不满足 G1 第 1 或第 4 行（不是 Win11，或机器还是 DESKTOP-K93N3P8）时，停下回报，不采数。**
 下文的 `<ROOT>` 指 Win11 机器上的工作目录，例如 `C:\Users\<用户名>\mf_m0b`；`<ART>` 指 artifacts 目录，例如 `<ROOT>\artifacts`。
 
 ## 0. 预检（不采数，先回报）
@@ -41,7 +41,7 @@ powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m0\build_m0.ps1 -ArtDir <AR
 - 有管理员权限时：用**提权**的 PowerShell 执行第 5 步，并传入 `-PresentMon <PresentMon.exe 路径>`（2.x 版本）。
 - 没有管理员权限：不传 `-PresentMon`，在回报里写明。
 
-## 5. 采数（approved 落盘后）
+## 5. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m0\run_m0.ps1 -DemoExe <...\MotionSoftDemo.exe> -DemoProj <ROOT>\MotionSoftDemo -ArtDir <ART> -Inject -Sessions 3 [-PresentMon <...\PresentMon.exe>]
 ```
