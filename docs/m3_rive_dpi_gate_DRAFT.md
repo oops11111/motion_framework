@@ -1,5 +1,10 @@
 # M3-RIVE-DPI 门槛闸门（m3_rive_dpi_gate_DRAFT.md）
 
+> **SUPERSEDED_BY_LOCKED**：`docs/m3_rive_dpi_gate_LOCKED.md`
+> GATE_BODY_SHA256=`92e6b4e9fd1014faf74714eb6cb20fc7e998169dc1171785bb8ea43f68d97bf5`
+> LOCKED_AT=2026-10-28 20:39:58 AWST
+> 本 DRAFT 保留不删；以 LOCKED 为准。
+
 STATUS=DRAFT（**NOT LOCKED**；本文件**不授权采数**）
 LOCKED_AT: （LOCK 时填）
 GATE_BODY_SHA256: （LOCK 时算；约定：对落盘全文做 SHA-256，**排除**以 GATE_BODY_SHA256 开头的那一行；LOCKED_AT 计入哈希）
@@ -36,18 +41,21 @@ Rive 内容所在的合成表面，在窗口所在显示器的缩放比例变化
 - **PASS** ⇔ ①②④⑤⑥ 每个会话都满足；③⑦只记录。
 - **INVALID**：缺产物；hash 不符；未授权采数；改 composition.h；缩放没有真正发生（探针没捕获到变化）。
 
-## G3 需要裁决的事项（附建议）
-| # | 问题 | 建议 | 理由 |
+## G3 裁决（pidan：G1–G4 全部按建议）
+| # | 问题 | 裁决（= 原建议） | 理由 |
 |---|---|---|---|
 | **G1** | 怎样触发缩放变化 | **由操作员按探针提示，在“设置 → 显示 → 缩放”里手动切换**；探针按 `XamlRoot.Changed` 记录时刻，不依赖操作员手速 | 单显示器上没有正式的编程接口（只有未公开的 `DisplayConfigSetDeviceInfo` 用法，不建议依赖）；把窗口拖到另一块缩放不同的显示器属于 M3-MATRIX |
 | **G2** | 测哪些缩放比例 | **100% ↔ 125%** | 两台测试机都是 1280×1024，Windows 在这个分辨率下通常只提供 100% 和 125%（150% 会让有效高度低于 720）。自定义缩放需要注销，不能实时切换。150%/200% 留给有更高分辨率显示器的 M3-MATRIX |
 | **G3** | 用哪台机器 | **DESKTOP-IJI1KJG**（Win11、可提权、M0-B 的那台） | 已有完整的构建和运行环境；Win11 是主要目标平台 |
 | **G4** | 操作员手动操作会不会影响“不碰鼠标键盘”的约定 | 本票**不注入指针**（不需要 SendInput）；操作员只在提示出现时切换缩放，其余时间不碰 | 本票只测渲染和尺寸，不测指针 |
 
-## G4 实现计划（裁决后写，写完在本 DRAFT 补“本地验证”一栏）
-- `m0rive`：新增 `m0r_resize(width, height)`。由 UI 线程登记新尺寸，渲染线程在下一帧开头执行：表面 interop `Resize`、重建离屏纹理和 Rive 渲染目标、记录“收到请求 → 新尺寸首帧完成”的时间；按缩放段分别统计 CPU/GPU。
-- 新探针 `MotionSoftDemo/M3DpiProbe.cs`（`--m3-dpi-probe`）：监听 `XamlRoot.Changed`，换算新像素尺寸并调用 `m0r_resize`；在窗口内显示“请把缩放切到 125%/100%”的提示和倒计时；每次切换后截窗口图、导出参考图、记录进程专用内存。
-- runner：复用 `m0/run_m0.ps1` 的启动方式（`-LaunchMode Exe`），新增 M3 模式，或另写一个小 runner，裁决后再定。
+## G4 实现（已写，未在真机运行）
+| 文件 | 内容 | 本地验证 |
+|---|---|---|
+| `m0/native/m0rive/m0rive.{h,cpp}` | 新增 `m0r_resize(w, h)`：UI 线程只登记请求，渲染线程在下一帧开头执行表面 interop `Resize`、重建离屏纹理、Rive 渲染目标和标记 RTV；渲染线程未运行时直接在调用线程执行。新增 `m0r_get_resize`，报告次数、最近一次和最大的“请求 → 新尺寸首帧完成”耗时、实际尺寸和 HRESULT。交换链路径返回 E_NOTIMPL（F1） | MinGW 对照钉住的 Rive 头文件（含默认宏和 `-Wshadow`）做语法检查，通过 |
+| `MotionSoftDemo/M3DpiProbe.cs`（`--m3-dpi-probe`） | 表面逻辑尺寸固定为 400 DIP；在窗口内提示操作员切换缩放；监听 `XamlRoot.Changed`，换算像素尺寸并调用 `m0r_resize`；分 5 个缩放段统计帧数、失败、CPU/GPU P95、GPU 丢弃样本、进程专用内存；每段请 runner 截窗口图，并导出该尺寸下的参考图 | 对照 WinAppSDK 2.5.1 编译，0 错误 |
+| `MotionSoftDemo/MainPage.xaml.cs` +11 行；`m3/mainpage_m3_hook.patch` | 入口 | 补丁能打到 main 上的 MainPage |
+| `m3/run_m3_dpi.ps1` | 按会话启动应用；响应探针的截图请求（只截应用窗口）；等待 summary；输出会话矩阵 | 未做语法检查（本环境没有 PowerShell），已人工复查 |
 
 ## G5 禁令
 不改 composition.h；不重开 S1/R-3/R-2；禁影子 IV；本 DRAFT ≠ 授权采数；成功 ≠ 采用；PERF-CI 仍 HOLD。

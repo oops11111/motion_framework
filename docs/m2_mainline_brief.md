@@ -410,3 +410,8 @@
 - **2026-10-28 20:31:11 AWST — PERF-CI Q1–Q8 按建议裁决（pidan）→ 合入 PR #5**
   - 裁决记录在 `docs/m2_perf_ci_tooling_gate_DRAFT.md`；Q1/Q2/Q3/Q7 改变判据，写入新版 PERF-CI 闸门 r2（另开 DRAFT），原 LOCKED `5b007dd4…282a` 不改
   - 采数前提：Q4 真实 PresentStats、Q6 WPA 导出口径；PERF-CI 仍 HOLD（缺 GPU 档不同的第二台机器）
+
+- **2026-10-28 20:39:58 AWST — M3-RIVE-DPI LOCKED（G1–G4 按建议）**
+  - LOCKED：`docs/m3_rive_dpi_gate_LOCKED.md`，hash=`92e6b4e9fd1014faf74714eb6cb20fc7e998169dc1171785bb8ea43f68d97bf5`
+  - 代码：`m0r_resize`/`m0r_get_resize`、`M3DpiProbe.cs`（`--m3-dpi-probe`）、`m3/run_m3_dpi.ps1`、`m3/mainpage_m3_hook.patch`；派工单 `docs/workbuddy_m3_rive_dpi_dispatch.md`；采数等 approved
+  - PERF-CI r2：H1–H3 按建议裁决（Idle 0.1%；第三台机器由 pidan 安排；Q4 由 Claude 实现，Q6 由懂 WPA 的人做）
