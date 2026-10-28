@@ -90,6 +90,7 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; border-t
   <h1>FluidMotion 实施评估：进度、效果与 Windows 界面优化程度</h1>
   <p class="meta">评估日期 2026-10-26 · 依据：仓库 <code>oops11111/motion_framework</code> 的 plan.md、14 张闸门票的结题文件、artifacts/ 中的真机日志，以及本次在 Linux 重新编译、重新运行的单测 · 评估人：Claude（Claude Code 接手会话）</p>
   <p class="lede">一句话结论：核心前提已经在真机上得到证实，即动效交给合成器后能稳定跑满 60Hz，而 UI 线程只能跑到约 32Hz。但项目在计划第 2 周就进入了 M2 编号，M0 的五项技术验证里，只有指针属性集做过一半（#32 结论 PARTIAL），其余四项都还没做。最近两天的 14 张票里，有 10 张围绕同一个打断续接问题；其中 7 张真机票的结果都是 FAIL 或无定论。成功标准中能在真机上核对的，目前只有很少几项。</p>
+  <div class="callout"><p><strong>2026-10-28 更新：</strong>本页是 2026-10-26 的快照。此后 M0 已关闭：M0-A（Win10 / GTX 970 / 60Hz）和 M0-B r3（Win11 / RX 7800 XT / 75Hz）都 PASS。Rive 能渲染进 WinUI 3 合成表面，GPU P95 为刷新间隔的 1.4%，与合成器驱动的元素错位约 0.05 ms；合成交换链带 ALLOW_TEARING 时为 Hardware: Independent Flip。plan.md 中的 120Hz 已按 pidan 指示改为 75Hz。详见 <code>docs/m0_tech_validation_result.md</code> 和 <code>docs/m0b_win11_r3_result.md</code>；下文中关于 M0 的描述以这两份结题为准。</p></div>
 </header>
 
 <section>
