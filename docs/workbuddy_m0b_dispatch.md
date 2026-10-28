@@ -1,3 +1,5 @@
+> **已被 r3 取代**：重跑请用 `docs/workbuddy_m0b_r3_dispatch.md`（闸门 r3 `74172978…8ede`）。本文件保留，作为 r2 那一轮的记录。
+
 # 派题 · M0-B Win11 复核
 
 闸门：`docs/m0b_win11_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`fd3acfc787564137532cc52adb64066427a88b159f0c6b4312dfd9dece40505c`，LOCKED_AT=2026-10-28 09:16:57 AWST。r2 取代 r1（`5e1bbb6d…f203`），唯一改动是 M0-2 判定所需刷新率从 ≥120Hz 改为 ≥75Hz。E1–E4 已按建议裁决。
