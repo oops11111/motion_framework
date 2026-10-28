@@ -382,3 +382,10 @@
 
 - **2026-10-28 15:26:25 AWST — M0-B r3 APPROVED by pidan（提权 + PresentMon）→ 采数**
   - approved：`docs/m0b_win11_r3_approved.md`；gate r3 `74172978…8ede` 不变；派工单 `docs/workbuddy_m0b_r3_dispatch.md`；数据进 `m0/results_m0b_r3/`
+
+- **2026-10-28 17:11:40 AWST — M0-B r3 CLOSED M0-B-PASS → M0 关闭**
+  - 结果：`docs/m0b_win11_r3_result.md`；数据 `m0/results_m0b_r3/`（commit c3491a87）；gate r3 `74172978…8ede` 复算 MATCH；composition.h PRE=POST
+  - M0-2 PASS：错位 −0.04/0.06/−0.06 ms，每条路径样本 404–408；M0-1a PASS：CPU P95 ≤0.096·T，GPU P95 0.014·T，丢弃 0，参考图非空且一致
+  - M0-4：合成交换链 + ALLOW_TEARING 在 Win11/AMD 上为 Hardware: Independent Flip，AllowsTearing=1（屏幕层面可撕裂）
+  - 偏离：执行方用了未提交的本地 runner（直接启动 Debug exe）；PresentMon 只覆盖 60 s，没抓到 hwnd 对照组。均不影响判据
+  - Go：Rive 路径进入 M3 规划；Skia 备选不启用
