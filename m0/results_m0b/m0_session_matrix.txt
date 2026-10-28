@@ -1,0 +1,4 @@
+﻿session,pid,verdict,refresh_hz,m0_1a_frames,m0_1a_cpu_p95_ms,m0_1a_gpu_p95_ms,m0_1b_frames,expr_latency_p50_ms,ui_latency_p50_ms,misalign_ms,misalign_px
+1,16108,RECORDED,75.027,1501,0.926,184467433947156.375,1500,41.97,53.87,0.06,0.02
+2,15580,RECORDED,75.028,1502,0.936,184467433856226.469,1501,40.03,51.81,0.08,0.03
+3,5480,RECORDED,75.028,1502,0.971,184467433770094.500,1500,40.64,52.00,-0.01,0.00

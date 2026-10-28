@@ -1,0 +1,22 @@
+[2026-10-28 11:19:33] M0 run: host=DESKTOP-IJI1KJG sessions=3 inject=True
+[2026-10-28 11:19:33] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-10-28 11:19:33] os=Microsoft Windows 11 ×¨Òµ°æ build=26200
+[2026-10-28 11:19:33] elevated=False (PresentMon needs an elevated shell or Performance Log Users membership)
+[2026-10-28 11:19:33] gpu=AMD Radeon RX 7800 XT refresh=75Hz mode=1280x1024
+[2026-10-28 11:19:33] composition.h sha256 PRE=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+[2026-10-28 11:19:33] PresentMon not given: PresentMode (independent flip) will not be recorded
+[2026-10-28 11:22:37] tear probe exit=0
+[2026-10-28 11:22:39] session 1 demoExePid=16108 exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\pub-win-x64\MotionSoftDemo.exe
+[2026-10-28 11:22:40] session 1 appPid=16108
+[2026-10-28 11:22:40] session 1 MainWindowHandle=0xE06E6
+[2026-10-28 11:24:04] session 1 verdict=RECORDED frames=1501
+[2026-10-28 11:24:06] session 2 demoExePid=15580 exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\pub-win-x64\MotionSoftDemo.exe
+[2026-10-28 11:24:07] session 2 appPid=15580
+[2026-10-28 11:24:07] session 2 MainWindowHandle=0x90292
+[2026-10-28 11:25:31] session 2 verdict=RECORDED frames=1502
+[2026-10-28 11:25:34] session 3 demoExePid=5480 exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\pub-win-x64\MotionSoftDemo.exe
+[2026-10-28 11:25:35] session 3 appPid=5480
+[2026-10-28 11:25:35] session 3 MainWindowHandle=0x1805AC
+[2026-10-28 11:26:59] session 3 verdict=RECORDED frames=1502
+[2026-10-28 11:26:59] composition.h sha256 POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+[2026-10-28 11:26:59] RUN_DONE
