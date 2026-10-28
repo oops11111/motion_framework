@@ -4,7 +4,7 @@
 //   M0-2  drag misalignment, surface vs element  (same pointer expression; WGC)
 //   M0-3/5 pointer -> screen latency             (pointer PropertySet expression vs UI-thread write; WGC)
 // M0-2 / M0-3 / M0-5 move the real cursor with SendInput and run only when
-// MF_M0_INJECT=1 (gate decision D1). Without it they are logged as SKIP.
+// MF_M0_INJECT=1 or --m0-inject (gate decision D1). Without either they are logged as SKIP.
 // composition.h is not used or touched; no shadow IV; no spring/retarget code.
 using System;
 using System.Collections.Generic;
@@ -119,7 +119,9 @@ public sealed partial class MainPage
         Directory.CreateDirectory(artDir);
         string sess = Environment.GetEnvironmentVariable("MF_M0_SESSION") ?? "1";
         string rivPath = Environment.GetEnvironmentVariable("MF_M0_RIV") ?? Path.Combine(artDir, "m0_assets", "Knight_square_2.riv");
-        bool inject = Environment.GetEnvironmentVariable("MF_M0_INJECT") == "1";
+        // run_m0.ps1 passes both the env var and --m0-inject; either one enables the pointer phases.
+        bool inject = Environment.GetEnvironmentVariable("MF_M0_INJECT") == "1"
+                      || Environment.GetCommandLineArgs().Any(x => x.Equals("--m0-inject", StringComparison.OrdinalIgnoreCase));
         var raw = new StreamWriter(Path.Combine(artDir, $"m0_s{sess}_raw.txt"), false, new UTF8Encoding(false));
         var sum = new StreamWriter(Path.Combine(artDir, $"m0_s{sess}_summary.txt"), false, new UTF8Encoding(false));
         void Raw(string s) { Log(s); raw.WriteLine(s); raw.Flush(); }
