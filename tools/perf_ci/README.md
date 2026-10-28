@@ -22,6 +22,7 @@ r2 与 r1 的差别：
 - 降级路径的门槛为帧间隔 P95 ≤ 1.1·T；
 - 两边丢帧数都 ≤2 时，不计口径冲突；
 - machineId 必须是 SMBIOS UUID；
+- PresentStats 汇总中 `source=unavailable` 时（Win10，由 `PresentStatsSampler` 写出），跳过对账并记说明，不判 INVALID；
 - 支持只建基线的轮次（`"mode": "baseline"`），生成 `perf_ci_baselines.json`（退出码 4）；判分轮用 `"baselinesFile"` 引用这个文件。
 
 ## manifest.json

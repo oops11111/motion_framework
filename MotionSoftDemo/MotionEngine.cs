@@ -77,6 +77,10 @@ public sealed class MotionEngine : IDisposable
     public void EmitPresentStats(uint dropped = 0, double intervalMs = 0)
         => MotionEtw.Log.PresentStats(_sessionId, dropped, intervalMs);
 
+    /// PERF-CI r2 Q4: emit measured stats (PresentStatsSampler) instead of placeholders.
+    internal void EmitPresentStats(PresentStatsSampler.Result r)
+        => MotionEtw.Log.PresentStats(_sessionId, r.Dropped, r.IntervalMs);
+
     public void Dispose()
     {
         if (_disposed) return;

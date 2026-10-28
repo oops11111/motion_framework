@@ -30,9 +30,11 @@ GATE_SHA = "5b007dd43ba351dc0985a52d1745485954d149575feeca622791275005cd282a"  #
 # Per gate version. r2 "sha" stays None until the r2 gate is LOCKED.
 RULES = {
     "r1": {"sha": GATE_SHA, "fallback_factor": 1.0, "reconcile_floor": 0,
-           "idle_by_duration": False, "uuid_machine_id": False, "baseline_mode": False},
+           "idle_by_duration": False, "uuid_machine_id": False, "baseline_mode": False,
+           "presentstats_unavailable_ok": False},
     "r2": {"sha": None, "fallback_factor": 1.1, "reconcile_floor": 2,
-           "idle_by_duration": True, "uuid_machine_id": True, "baseline_mode": True},
+           "idle_by_duration": True, "uuid_machine_id": True, "baseline_mode": True,
+           "presentstats_unavailable_ok": True},
 }
 IDLE_MIN_SEC = 60          # r2 Q1
 IDLE_MAX_CPU_PCT = 0.1     # r2 Q1: plan.md "闲置 CPU/GPU 接近 0（≤0.1%）"
@@ -103,6 +105,18 @@ def read_present_stats(path):
         return int(parts[1]), float(parts[2])
     kv = dict(l.split("=", 1) for l in text.splitlines() if "=" in l)
     return int(kv["dropped"]), float(kv["intervalMs"])
+
+
+def present_stats_source(path):
+    """The source= value of a key=value PresentStats summary, or None."""
+    try:
+        with open(path, encoding="utf-8-sig") as f:
+            for line in f:
+                if line.startswith("source="):
+                    return line.split("=", 1)[1].strip()
+    except OSError:
+        pass
+    return None
 
 
 class Cell:
@@ -238,6 +252,11 @@ def grade_run(base, machine, run, column, rules=RULES["r1"]):
 
     # PresentStats reconciliation (G2-LOCK-11): own count <= system count, and the
     # two within 2x of each other; a conflict needs a written explanation.
+    # r2 Q4: on Windows 10 the sampler has no source and writes source=unavailable;
+    # reconciliation is then skipped with a note instead of INVALID.
+    if rules["presentstats_unavailable_ok"] and present_stats_source(os.path.join(base, run["presentStats"])) == "unavailable":
+        c.notes.append("PRESENTSTATS-UNAVAILABLE: no in-process source on this OS; reconcile skipped (r2 Q4)")
+        return c
     try:
         ps_drops, ps_interval = read_present_stats(os.path.join(base, run["presentStats"]))
     except (OSError, ValueError, KeyError, IndexError) as e:

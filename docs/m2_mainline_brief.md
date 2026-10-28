@@ -411,3 +411,8 @@
   - DRAFT：`docs/m2_perf_ci_gate_r2_DRAFT.md`（写入 Q1–Q8 裁决；r1 `5b007dd4…282a` 不改）；待裁决 H1–H3
   - 判分脚本支持 `gateVersion: r2`（Idle 按时长、1.1·T、小计数下限、UUID、基线轮）；单测 39/39；r2 LOCK 前只接受 dry-run
   - LOCK 前提：Q4 真实 PresentStats、Q6 WPA profile；采数还缺一台集显或低端笔记本
+
+- **2026-10-28 20:42:03 AWST — PERF-CI r2：H1–H3 按建议记录；Q4 实现（真实 PresentStats）**
+  - `MotionSoftDemo/PresentStatsSampler.cs`：Win11 上用 DComp 帧统计（source=dcomp），Win10 写 source=unavailable；`MotionEngine.EmitPresentStats(Result)` 重载
+  - 判分脚本 r2：source=unavailable 时跳过对账并记说明；单测 40/40
+  - r2 LOCK 前还差：Q4 在 Win11 上冒烟一次；Q6 WPA profile（需懂 WPA 的人）；采数还缺一台集显或低端笔记本

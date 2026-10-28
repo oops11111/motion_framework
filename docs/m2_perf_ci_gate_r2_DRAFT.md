@@ -21,7 +21,7 @@ APPROVED_AT: ＿＿＿＿
 | **Q1** | Idle 也要求每轮 PresentMon 有效帧 ≥1000 | Idle **按时长判定**：每轮 ≥ 60 秒；PASS ⇔ 本进程 Present 数 = 0，且进程 CPU 平均 ≤ 0.1%、GPU 引擎占用平均 ≤ 0.1%（plan.md“闲置 CPU/GPU 接近 0”，取 Gemini 的 ≤0.1%）。1000 帧要求、丢帧率、P95、回退、对账都不适用于 Idle | 闲置的合成器应用本来就不该 Present |
 | **Q2** | 降级路径：帧间隔 P95 ≤ T | 帧间隔 P95 ≤ **1.1·T** | 垂直同步抖动使 P95 必然略大于 T |
 | **Q3** | 对账：两边差 >2× 即冲突 | 两边丢帧数都 ≤ 2 时**视为同量级**，不计冲突 | 小计数时 2× 过严 |
-| **Q4** | — | **采数前提**：`PresentStats` 必须是真实统计（`M202Probe.cs` 现在写死 `EmitPresentStats(0, 16.666)`），runner 记录其实现 commit | 占位值无法对账 |
+| **Q4** | — | **采数前提**：`PresentStats` 必须是真实统计。**已实现**（`MotionSoftDemo/PresentStatsSampler.cs`，未在真机运行）：Win11 22000+ 上逐帧读取 DComp 完成帧的目标时间，间隔 >1.5×帧周期记为丢帧，写出 `source=dcomp` 的 key=value 汇总并发 ETW `PresentStats`；Win10 上没有可靠来源，写 `source=unavailable`，**此时跳过对账并记说明，不判 INVALID**。注意它统计的是系统合成帧，不是归属到本进程的 present，只在应用每帧都在动画时可比（Idle 不用它） | 占位值无法对账 |
 | **Q5** | 未写死 | P95 = 最近秩，不插值 | 写死口径 |
 | **Q6** | 阶段 P95 来自 WPA，但未定义口径 | **采数前提**：由懂 WPA 的人提交 UI、渲染、GPU 三个阶段的导出 profile（`.wpaProfile`）和说明，落盘到 `tools/perf_ci/wpa/`；各机器用同一份 | 否则各机不可比 |
 | **Q7** | 相对基线 = 同机同场景基线版本（未说明怎样产生） | **先跑一轮只建基线的轮次**（manifest `"mode": "baseline"`，每机每个非 Idle 场景 ≥1 轮），由脚本生成 `perf_ci_baselines.json`（按 machineId，取各轮中位数），不判分；判分轮通过 `baselinesFile` 引用它 | 首轮没有基线可比 |
@@ -34,13 +34,13 @@ APPROVED_AT: ＿＿＿＿
 - P99：同 r1（每千帧丢帧 <1.0，丢帧 = 帧间隔 >1.5·T）。
 
 ## G2 判据（r2 版；未列出的条款同 r1 的 G2-LOCK-9…14）
-- **G2-r2-1 采数前提**：Q4、Q6 都完成并落盘，否则**不得 LOCK**。
+- **G2-r2-1 采数前提**：Q4、Q6 都完成并落盘，否则**不得 LOCK**。现状：Q4 代码已完成，待在 DESKTOP-IJI1KJG（Win11）上冒烟一次，确认 `source=dcomp` 且帧周期约等于 1000/刷新率；Q6 待懂 WPA 的人提交。
 - **G2-r2-2 轮次**：每机先完成 1 轮基线（Q7），再完成 ≥2 轮判分；基线轮和判分轮必须是不同进程，不得混用。
 - **G2-r2-3 机器**：≥2 台物理机，machineId 为 SMBIOS UUID 且互异，GPU 档 ≥2 种（集显 / 独显 / 低端笔记本）。**现状**：DESKTOP-K93N3P8（GTX 970）和 DESKTOP-IJI1KJG（RX 7800 XT）都是独显，还缺一台集显或低端笔记本。
 - **G2-r2-4 PASS/FAIL**：同 r1 的 G2-LOCK-13，其中 Idle 按 Q1 判，降级路径按 Q2 判，对账按 Q3 判。
 
-## G3 需要裁决的事项（附建议）
-| # | 问题 | 建议 |
+## G3 裁决（pidan：H1–H3 全部按建议）
+| # | 问题 | 裁决（= 原建议） |
 |---|---|---|
 | **H1** | Idle 的 CPU/GPU 门槛用 0.1% 是否合适 | **采用 0.1%**（plan.md 中 Gemini 的数字）。若实测发现 WinUI 宿主本身的底噪就超过它，再按“框架开启 vs 关闭”的差值另议 |
 | **H2** | 第三台机器（集显或低端笔记本）由谁提供、何时到位 | 由 pidan 安排；到位前本票只能 LOCK，不能采数 |

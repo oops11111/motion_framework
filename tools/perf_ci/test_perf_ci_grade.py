@@ -367,6 +367,19 @@ class GradeR2Tests(unittest.TestCase):
         # PresentStats says 0 drops, PresentMon 1: a conflict under r1, the same magnitude under r2.
         self.assertEqual(self.run_(dry_run=True)["ticket"], "DRY-RUN(PASS)")
 
+    def test_presentstats_unavailable_skips_reconcile_in_r2_only(self):
+        run = next(r for r in self.m["machines"][0]["runs"] if r["scenario"] == "steady_play")
+        with open(os.path.join(self._td.name, run["presentStats"]), "w") as f:
+            f.write("source=unavailable\nframes=0\n")
+        r = self.run_(dry_run=True)
+        self.assertEqual(r["ticket"], "DRY-RUN(PASS)")
+        self.assertIn("PRESENTSTATS-UNAVAILABLE", json.dumps(r))
+        m1 = self.fx.m()
+        run1 = next(r for r in m1["machines"][0]["runs"] if r["scenario"] == "steady_play")
+        with open(os.path.join(self._td.name, run1["presentStats"]), "w") as f:
+            f.write("source=unavailable\nframes=0\n")
+        self.assertEqual(self.fx.run(m1)["ticket"], "INVALID")  # r1 has no such allowance
+
     def test_machine_id_must_be_uuid(self):
         self.m["machines"][0]["machineId"] = "DESKTOP-K93N3P8"
         r = self.run_(dry_run=True)
