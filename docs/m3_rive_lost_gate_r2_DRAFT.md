@@ -1,5 +1,10 @@
 # M3-RIVE-LOST 门槛闸门 r2（m3_rive_lost_gate_r2_DRAFT.md）
 
+> **SUPERSEDED_BY_LOCKED**：`docs/m3_rive_lost_gate_r2_LOCKED.md`
+> GATE_BODY_SHA256=`dc0770c1f6a6819a5f6cffeb6bea2ef828b93045ec8e75f39910ee9537d29d10`
+> LOCKED_AT=2026-10-29 18:13:07 AWST
+> 本 DRAFT 保留不删；以 LOCKED 为准。
+
 STATUS=DRAFT（**NOT LOCKED**；本文件**不授权采数**）
 LOCKED_AT: （LOCK 时填）
 GATE_BODY_SHA256: （LOCK 时算；约定：对落盘全文做 SHA-256，**排除**以 GATE_BODY_SHA256 开头的那一行；LOCKED_AT 计入哈希）
@@ -19,8 +24,8 @@ APPROVED_AT: ＿＿＿＿
 - 只把 r1 的 K1（注入手段）、K4/K5 的部分细节换成下面的 L1–L4；`event4101` 不再作为注入证据（见 L1）。
 - 结果目录改为 `m3/results_lost_r2/`，不与 r1 数据混用。
 
-## G3 待裁决（L1–L5，附建议）
-| # | 问题 | 建议 | 理由 |
+## G3 裁决（pidan：L1–L5 全部按建议）
+| # | 问题 | 裁决（= 原建议） | 理由 |
 |---|---|---|---|
 | **L1** | 用什么让设备丢失 | **重启显卡驱动**：管理员执行 `pnputil /restart-device "<显卡实例 ID>"`（Win10 2004 起系统自带；实例 ID 由 runner 用 `Get-PnpDevice -Class Display` 取得）。所有 D3D 设备会收到 `DXGI_ERROR_DEVICE_REMOVED`。注入证据改为：pnputil 退出码 + 显卡设备状态在重启后回到 OK + 探针记录的 removed reason。真正的 GPU 挂起（TDR）作为遗留项，不在本票 | 确定能让设备丢失，而且对应最常见的真实场景（驱动更新、驱动崩溃后重启）。我们的恢复路径不区分丢失原因，所以换手段不影响要验证的内容。备选 a：继续用 `dxcap -forcetdr`（这台 build 26300 上已证实无效）；备选 b：自己写一个死循环计算着色器触发真 TDR（RDNA3 支持计算抢占，可能根本触发不了 TDR，又要多一轮试错） |
 | **L2** | 采数前要不要先单独验证注入手段 | **要。** runner 在第 1 个会话前做一次“注入自检”：不启动应用，执行一次 L1，等 30 s，确认 pnputil 退出码 0、显卡状态回到 OK、屏幕恢复。自检不过就停止，记 `BLOCKED_INJECT`，不进会话。自检算在次数上限里 | r1 的问题是注入手段本身无效，却要等到会话里 30 s 超时才发现。先自检，失败时也不会白白占用会话 |
@@ -28,12 +33,12 @@ APPROVED_AT: ＿＿＿＿
 | **L4** | 次数、间隔、停止条件 | 沿用 r1：3 个会话 × 每会话 2 次；两次间隔 ≥ 45 s；会话之间 ≥ 120 s；全程 ≤ 8 次（含 L2 自检 1 次，共 7 次）。停止条件同 r1 K5，另加：显卡设备状态 30 s 内没回到 OK 也立即停止，记 `INVALID_SYSTEM` | 驱动重启不是 TDR，不受“60 s 内 5 次蓝屏”的限制，但间隔仍留给显示恢复；保持和 r1 一致便于比较 |
 | **L5** | r1 那次运行的标签 | **按 r1 LOCKED G2 记为 INVALID**（“注入命令执行了但探针 30 s 内没检测到丢失”），并在权威结题后附更正：闸门已 LOCK 且 APPROVED（hash 复算 MATCH）；应用没有崩溃（`CRASHED_NO_VERDICT` 是 runner 标注错误）。INCONCLUSIVE 和 INVALID 都是非 PASS，结论不变 | 标签与 LOCK 时写死的口径一致；三处事实更正避免后面的人误以为“未授权采数”或“Rive 崩溃了” |
 
-## G4 实现计划（L 裁决后写，LOCK 前完成）
-| 文件 | 改动 |
-|---|---|
-| `m3/run_m3_lost.ps1` | L1 注入（取显卡实例 ID；`pnputil /restart-device`；记录输出、退出码、设备状态）；L2 自检；L3 标注修正；L4 停止条件；保留 `-Simulate` |
-| `MotionSoftDemo/M3LostProbe.cs` | 只改 `mode` 字段和提示文字（`pnputil-restart`）；协议（`inject<k>.req` / `inject<k>.detected=1`）不变 |
-| `m0/native/m0rive/*` | **不改**（恢复路径与丢失原因无关；r1 模拟冒烟已跑通） |
+## G4 实现（已写，未在真机运行；代码 = 分支 `claude/m3-rive-lost` 提交 `05f7576`）
+| 文件 | 改动 | 本地验证 |
+|---|---|---|
+| `m3/run_m3_lost.ps1` | L1：自动找显卡实例 ID（只有一块非基本显示适配器时；否则要求 `-GpuInstanceId`），注入 = `pnputil /restart-device`，之后最多等 30 s 让设备状态回到 OK，记录输出、退出码、状态和耗时；L2：第 1 个会话前在不启动应用的情况下自检一次，失败记 `BLOCKED_INJECT` 并退出；L3：先判断应用是否自己退出再结束它，被结束的标 `KILLED_BY_RUNNER`；L4：间隔、冷却、上限沿用 r1，设备 30 s 内没回到 OK 立即停止。矩阵最后一列改为 `injections_ok`。`dxcap` 和 4101 检查已移除 | 本环境没有 PowerShell，人工复查 |
+| `MotionSoftDemo/M3LostProbe.cs` | `probe=M3-LOST v2`，`mode=pnputil-restart`，提示文字改为“重启显卡驱动” | 对照 WinAppSDK 2.5.1 编译 0 个 C# 错误 |
+| `m0/native/m0rive/*`、MainPage 补丁 | **不改** | — |
 
 ## G5 禁令
 同 r1；另：r1 数据（`m3/results_lost/`）不改不删，不与 r2 混用；本 DRAFT ≠ 授权采数。

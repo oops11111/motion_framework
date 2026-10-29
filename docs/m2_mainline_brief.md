@@ -467,3 +467,9 @@
 - **2026-10-29 — M3-RIVE-LOST r1：Claude 复核 + r2 DRAFT**
   - 复核：`docs/m3_rive_lost_result_claude_review.md`。同意非 PASS、未采用；更正三处事实：① 闸门已 LOCK（`753c0a6c…f27d`，tip 上复算 MATCH）且 APPROVED；② 应用没有崩溃，`CRASHED_NO_VERDICT` 是 runner 先结束进程再判断造成的误标；③ `dxcap -forcetdr` 退出码 0 但没有产生 TDR（0 条 4101），注入未生效 → 按 LOCKED G2 属 INVALID
   - r2 DRAFT：`docs/m3_rive_lost_gate_r2_DRAFT.md`；L1–L5 待裁决（建议改用 `pnputil /restart-device` 重启显卡驱动、采数前注入自检、修 runner 标注）；不授权采数
+
+- **2026-10-29 18:13:07 AWST — M3-RIVE-LOST r2 LOCKED（L1–L5 按建议）**
+  - LOCKED：`docs/m3_rive_lost_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`dc0770c1f6a6819a5f6cffeb6bea2ef828b93045ec8e75f39910ee9537d29d10`（复算 MATCH）；代码 `05f7576`
+  - 注入改为 `pnputil /restart-device`；采数前自检；runner 崩溃标注已修；DLL 不变
+  - r1 标签按 L5 更正为 `RIVE-LOST-INVALID`（附录写在 `docs/m3_rive_lost_result.md` 末尾，正文不改）
+  - 派工单：`docs/workbuddy_m3_rive_lost_r2_dispatch.md`；**未 APPROVED，不授权采数**
