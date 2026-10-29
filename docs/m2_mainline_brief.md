@@ -473,3 +473,6 @@
   - 注入改为 `pnputil /restart-device`；采数前自检；runner 崩溃标注已修；DLL 不变
   - r1 标签按 L5 更正为 `RIVE-LOST-INVALID`（附录写在 `docs/m3_rive_lost_result.md` 末尾，正文不改）
   - 派工单：`docs/workbuddy_m3_rive_lost_r2_dispatch.md`；**未 APPROVED，不授权采数**
+
+- **2026-10-29 18:15:58 AWST — M3-RIVE-LOST r2 APPROVED（pidan）**
+  - approved：`docs/m3_rive_lost_r2_approved.md`；gate r2 `dc0770c1…9d10` 不变；采数=是（自检 1 次 + 3 会话 × 2 次 `pnputil /restart-device`，先模拟冒烟）；派工单 `docs/workbuddy_m3_rive_lost_r2_dispatch.md`；结果进 `m3/results_lost_r2/`

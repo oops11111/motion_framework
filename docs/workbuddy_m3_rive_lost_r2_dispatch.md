@@ -1,7 +1,7 @@
 # 派题 · M3-RIVE-LOST r2（DESKTOP-IJI1KJG）
 
 闸门：`docs/m3_rive_lost_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`dc0770c1f6a6819a5f6cffeb6bea2ef828b93045ec8e75f39910ee9537d29d10`，LOCKED_AT=2026-10-29 18:13:07 AWST。L1–L5 已按建议裁决。
-代码分支：`claude/m3-rive-lost`。**尚未 APPROVED：第 1–3 步可以先做；第 4 步必须等 `docs/m3_rive_lost_r2_approved.md` 落盘后才能执行。**
+代码分支：`claude/m3-rive-lost`。**已 APPROVED（`docs/m3_rive_lost_r2_approved.md`，pidan @ 2026-10-29 18:15:58 AWST）：第 1–5 步都可以执行；第 3 步模拟冒烟通过后再做第 4 步。**
 `<ROOT>` 沿用 `C:\Users\Lh\mf_m0b`；数据目录用新的 `<ROOT>\artifacts_m3lost_r2`。r1 的 `artifacts_m3lost` 和 `m3/results_lost/` 不动、不混用。
 
 ## 和 r1 的区别
@@ -31,7 +31,7 @@ powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_lost.ps1 -DemoExe
 ```
 期望 `verdict=SIM_RECORDED`、`recover_ok=1`、summary 里 `probe=M3-LOST v2`。数据不提交。失败就先停下回报。
 
-## 4. 采数（**必须等 r2 approved 落盘**）
+## 4. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_lost.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3lost_r2 -Sessions 3 [-GpuInstanceId "<ID>"]
 ```
