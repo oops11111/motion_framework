@@ -60,6 +60,35 @@ M0R_API int32_t m0r_resize(uint32_t width, uint32_t height);
 M0R_API int32_t m0r_get_resize(uint32_t* count, double* last_ms, double* max_ms,
                                uint32_t* width, uint32_t* height, int32_t* last_hr);
 
+// M3-RIVE-LOST (surface path only). `graphics_device_unknown` is the IUnknown of the
+// CompositionGraphicsDevice the surface was created on; after a device loss the
+// render thread hands the new D3D11 device to it via SetRenderingDevice, so the
+// surface and its visuals stay and only their content is redrawn.
+M0R_API int32_t m0r_attach_graphics_device(void* graphics_device_unknown);
+
+typedef struct m0r_lost_event {
+    int32_t removed_reason;     // GetDeviceRemovedReason of the old device at detection (S_OK if simulated)
+    int32_t simulated;          // 1 if raised by m0r_simulate_lost
+    int32_t recover_hr;         // HRESULT of the successful recovery attempt
+    uint32_t attempts;          // recovery attempts (one per >= 50 ms) until success
+    double recover_ms;          // detection -> first frame presented on the new device
+    double gap_ms;              // last good frame before the loss -> first good frame after it
+    uint64_t failures_during;   // loop iterations without a frame while lost (not in m0r_stats)
+    uint32_t old_device_refs;   // references left on the old ID3D11Device after our final Release
+    uint32_t seh_caught;        // access violations inside a frame on the removed device (MSVC builds)
+} m0r_lost_event;
+
+// detected: losses seen by the render thread; lost_now: 1 while still recovering;
+// up to `capacity` completed recoveries are copied to `events`, *recovered = their total.
+M0R_API int32_t m0r_get_lost(uint32_t* detected, uint32_t* recovered, int32_t* lost_now,
+                             m0r_lost_event* events, uint32_t capacity);
+// K1 simulation switch: the render thread treats the current device as lost and runs
+// the full recovery path. For local smoke tests only; not counted by the gate.
+M0R_API int32_t m0r_simulate_lost(void);
+// Rive's D3D11 backend calls abort() on a failed D3D call (VERIFY_OK). If that
+// happens, append "rive_abort=1" and "verdict=FAIL_ABORT" to `path` (the summary).
+M0R_API int32_t m0r_set_abort_note(const wchar_t* path);
+
 M0R_API int32_t m0r_stop(void);
 M0R_API int32_t m0r_get_stats(m0r_stats* out);
 // Clears all counters and samples, so a later phase (e.g. M0-1b) is measured on its own.

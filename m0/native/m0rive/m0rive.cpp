@@ -17,6 +17,7 @@
 #include <algorithm>
 #include <atomic>
 #include <chrono>
+#include <csignal>
 #include <cstdio>
 #include <memory>
 #include <mutex>
@@ -54,6 +55,15 @@ ICompositionDrawingSurfaceInteropM0 : public IUnknown {
 };
 static const IID kIidSurfaceInterop = {0x2D6355C2, 0xAD57, 0x4EAE, {0x92, 0xE4, 0x4C, 0x3E, 0xFF, 0x65, 0xD5, 0x78}};
 
+// Same header: ICompositionGraphicsDeviceInterop, used to hand a new D3D11 device
+// to the existing CompositionGraphicsDevice after a device loss (M3-RIVE-LOST).
+MIDL_INTERFACE("4AFA8030-BC70-4B0C-B1C7-6E69F933DC83")
+ICompositionGraphicsDeviceInteropM0 : public IUnknown {
+    virtual HRESULT STDMETHODCALLTYPE GetRenderingDevice(IUnknown** value) = 0;
+    virtual HRESULT STDMETHODCALLTYPE SetRenderingDevice(IUnknown* value) = 0;
+};
+static const IID kIidGraphicsDeviceInterop = {0x4AFA8030, 0xBC70, 0x4B0C, {0xB1, 0xC7, 0x6E, 0x69, 0xF9, 0x33, 0xDC, 0x83}};
+
 namespace {
 
 double Pct(std::vector<double> v, double p) {  // nearest rank
@@ -85,6 +95,8 @@ struct Probe {
     float markerColor[4] = {0, 0, 0, 1};
     ComPtr<ICompositionDrawingSurfaceInteropM0> surface;
     HRESULT interopQiHr = E_PENDING;
+    ComPtr<ICompositionGraphicsDeviceInteropM0> graphicsDevice;
+    std::vector<uint8_t> rivBytes;  // kept so the file can be re-imported on a new device
     ComPtr<IDXGISwapChain1> swapchain;
 
     // GPU timing: a small ring of disjoint + begin/end timestamp queries.
@@ -109,9 +121,49 @@ struct Probe {
     std::vector<double> rerasterMs;  // request -> first frame at the new size (statsMu)
     uint32_t appliedW = 0, appliedH = 0;
     HRESULT lastResizeHr = S_OK;
+
+    // M3-RIVE-LOST: device-loss detection and recovery on the render thread.
+    std::atomic<bool> simLost{false};
+    std::atomic<bool> lostNow{false};
+    std::atomic<uint32_t> sehCaught{0};
+    uint32_t lostDetected = 0;            // statsMu
+    std::vector<m0r_lost_event> lost;     // completed recoveries (statsMu)
 };
 
 Probe* g = nullptr;
+
+// Hardware device at feature level 11_1 (Rive's D3D11 backend requires it) with
+// BGRA support (required for a device behind a CompositionGraphicsDevice).
+HRESULT MakeDevice(ComPtr<ID3D11Device>& dev, ComPtr<ID3D11DeviceContext>& ctx) {
+    D3D_FEATURE_LEVEL levels[] = {D3D_FEATURE_LEVEL_11_1};
+    HRESULT hr = D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, D3D11_CREATE_DEVICE_BGRA_SUPPORT,
+                                   levels, 1, D3D11_SDK_VERSION, &dev, nullptr, &ctx);
+    if (FAILED(hr)) return hr;
+    // The composition graphics device uses the device from its own thread too.
+    ComPtr<ID3D11Multithread> mt;
+    if (SUCCEEDED(ctx.As(&mt))) mt->SetMultithreadProtected(TRUE);
+    return S_OK;
+}
+
+// Rive render context on p.dev, then imports p.rivBytes (default artboard, default
+// state machine, else animation 0). The scene starts from t = 0 (K6).
+HRESULT MakeRive(Probe& p) {
+    ComPtr<IDXGIDevice> dxgiDev;
+    ComPtr<IDXGIAdapter> adapter;
+    DXGI_ADAPTER_DESC ad{};
+    if (SUCCEEDED(p.dev.As(&dxgiDev)) && SUCCEEDED(dxgiDev->GetAdapter(&adapter))) adapter->GetDesc(&ad);
+    rive::gpu::D3DContextOptions opts;
+    opts.isIntel = ad.VendorId == 0x163C || ad.VendorId == 0x8086 || ad.VendorId == 0x8087;
+    p.rc = rive::gpu::RenderContextD3DImpl::MakeContext(p.dev, p.ctx, opts);
+    if (!p.rc) return E_FAIL;
+    p.file = rive::File::import(rive::Span<const uint8_t>(p.rivBytes.data(), p.rivBytes.size()), p.rc.get());
+    if (!p.file) return HRESULT_FROM_WIN32(ERROR_INVALID_DATA);
+    p.artboard = p.file->artboardDefault();
+    if (!p.artboard) return HRESULT_FROM_WIN32(ERROR_INVALID_DATA);
+    if (p.artboard->stateMachineCount() > 0) p.scene = p.artboard->defaultStateMachine();
+    if (!p.scene && p.artboard->animationCount() > 0) p.scene = p.artboard->animationAt(0);
+    return S_OK;
+}
 
 HRESULT MakeOffscreen(Probe& p) {
     D3D11_TEXTURE2D_DESC d{};
@@ -169,6 +221,8 @@ void MakeQueries(Probe& p) {
 // the oldest set is waited for by polling. Sets that still fail are dropped and
 // counted in gpuDropped.
 void DrainQueries(Probe& p, std::vector<double>& out) {
+    // On a removed device GetData never returns S_OK; waiting would delay recovery by 2 s.
+    if (p.dev->GetDeviceRemovedReason() != S_OK) return;
     while (p.qRead < p.qIssued) {
         const int i = static_cast<int>(p.qRead % Probe::kQ);
         D3D11_QUERY_DATA_TIMESTAMP_DISJOINT dj{};
@@ -256,11 +310,132 @@ HRESULT Frame(Probe& p, float dt, std::vector<double>& gpuOut) {
     return hr;
 }
 
+// Replaces a lost device: new device -> SetRenderingDevice on the existing
+// CompositionGraphicsDevice -> release everything built on the old device -> new
+// Rive context, re-imported file, offscreen target, marker RTV and queries at the
+// current size. Render thread only. On failure the old objects may already be gone;
+// the caller retries.
+HRESULT RecoverDevice(Probe& p, uint32_t* oldRefs) {
+    ComPtr<ID3D11Device> nd;
+    ComPtr<ID3D11DeviceContext> nc;
+    HRESULT hr = MakeDevice(nd, nc);
+    if (FAILED(hr)) return hr;
+    if (p.graphicsDevice) {
+        hr = p.graphicsDevice->SetRenderingDevice(nd.Get());
+        if (FAILED(hr)) return hr;
+    }
+    // Rive objects first (the file and the render target hold resources of the
+    // context), then our own views, textures and queries, then the context.
+    p.scene.reset();
+    p.artboard.reset();
+    p.file.reset();
+    p.rt.reset();
+    p.markerRtv.Reset();
+    p.offscreen.Reset();
+    for (int i = 0; i < Probe::kQ; ++i) {
+        p.qDisjoint[i].Reset();
+        p.qBegin[i].Reset();
+        p.qEnd[i].Reset();
+    }
+    p.qIssued = p.qRead = 0;
+    p.rc.reset();
+    p.ctx1.Reset();
+    if (p.ctx) {
+        p.ctx->ClearState();
+        p.ctx->Flush();
+    }
+    p.ctx.Reset();
+    {
+        std::lock_guard<std::mutex> lk(p.statsMu);  // m0r_get_stats reads p.dev on the UI thread
+        if (ID3D11Device* old = p.dev.Detach()) *oldRefs = old->Release();
+        p.dev = nd;
+        p.ctx = nc;
+    }
+    hr = MakeRive(p);
+    if (SUCCEEDED(hr)) hr = MakeOffscreen(p);
+    if (FAILED(hr)) return hr;
+    p.ctx.As(&p.ctx1);
+    p.dev->CreateRenderTargetView(p.offscreen.Get(), nullptr, &p.markerRtv);
+    MakeQueries(p);
+    return S_OK;
+}
+
+bool IsLossHr(HRESULT hr) {
+    return hr == DXGI_ERROR_DEVICE_REMOVED || hr == DXGI_ERROR_DEVICE_RESET || hr == DXGI_ERROR_DEVICE_HUNG ||
+           hr == DXGI_ERROR_DRIVER_INTERNAL_ERROR;
+}
+
+#ifdef _MSC_VER
+// Rive's D3D11 buffer ring writes through the pointer from an unchecked Map
+// (render_context_d3d_impl.cpp onMap at the pinned commit), so a frame that is in
+// flight when the device is removed can fault. Only that case is caught: an access
+// violation while the device reports removal (or a simulated loss) is turned into a
+// loss; anything else still crashes. Objects inside the faulting frame are not
+// unwound (/EHsc); the whole context is rebuilt right after.
+int LossFilter(DWORD code, Probe* p) {
+    if (code != EXCEPTION_ACCESS_VIOLATION) return EXCEPTION_CONTINUE_SEARCH;
+    if (p->dev->GetDeviceRemovedReason() == S_OK && !p->simLost.load()) return EXCEPTION_CONTINUE_SEARCH;
+    return EXCEPTION_EXECUTE_HANDLER;
+}
+
+HRESULT GuardedFrame(Probe* p, float dt, std::vector<double>* gpuOut) {
+    __try {
+        return Frame(*p, dt, *gpuOut);
+    } __except (LossFilter(GetExceptionCode(), p)) {
+        ++p->sehCaught;
+        return DXGI_ERROR_DEVICE_REMOVED;
+    }
+}
+#else
+HRESULT GuardedFrame(Probe* p, float dt, std::vector<double>* gpuOut) { return Frame(*p, dt, *gpuOut); }
+#endif
+
 void RenderLoop(Probe* p) {
     double last = NowMs();
+    double lastGood = last;      // end of the last frame presented
+    bool lost = false, awaitFirstGood = false, forceLost = false;
+    m0r_lost_event ev{};
+    double lostAt = 0, lastAttempt = -1e9;
     while (p->running.load()) {
-        DwmFlush();  // one iteration per DWM composition (verified ~vsync on DESKTOP-K93N3P8)
+        if (FAILED(DwmFlush())) Sleep(15);  // DWM can fail while the GPU resets; don't spin
         const double t0 = NowMs();
+
+        // M3-RIVE-LOST: detect, then retry recovery every >= 50 ms until it succeeds.
+        // Nothing is drawn (and no Rive call is made) while the device is lost.
+        if (!lost) {
+            const HRESULT reason = p->dev->GetDeviceRemovedReason();
+            const bool sim = p->simLost.exchange(false);
+            if (reason != S_OK || sim || forceLost) {
+                lost = true;
+                forceLost = false;
+                lostAt = t0;
+                lastAttempt = -1e9;
+                ev = {};
+                ev.removed_reason = reason;
+                ev.simulated = (sim && reason == S_OK) ? 1 : 0;
+                p->sehCaught.store(0);
+                p->lostNow.store(true);
+                std::lock_guard<std::mutex> lk(p->statsMu);
+                ++p->lostDetected;
+            }
+        }
+        if (lost) {
+            if (t0 - lastAttempt >= 50) {
+                lastAttempt = t0;
+                ++ev.attempts;
+                ev.recover_hr = RecoverDevice(*p, &ev.old_device_refs);
+                if (SUCCEEDED(ev.recover_hr)) {
+                    lost = false;
+                    awaitFirstGood = true;
+                }
+            }
+            if (lost) {
+                ++ev.failures_during;
+                last = t0;
+                continue;
+            }
+        }
+
         bool resized = false;
         double reqMs = 0;
         HRESULT resizeHr = S_OK;
@@ -276,8 +451,13 @@ void RenderLoop(Probe* p) {
             }
         }
         std::vector<double> gpu;
-        const HRESULT hr = SUCCEEDED(resizeHr) ? Frame(*p, static_cast<float>((t0 - last) / 1000.0), gpu) : resizeHr;
+        // Checked again right before Rive touches the device (see GuardedFrame).
+        HRESULT hr = resizeHr;
+        if (SUCCEEDED(resizeHr))
+            hr = p->dev->GetDeviceRemovedReason() != S_OK ? DXGI_ERROR_DEVICE_REMOVED
+                                                          : GuardedFrame(p, static_cast<float>((t0 - last) / 1000.0), &gpu);
         const double t1 = NowMs();
+        if (IsLossHr(hr)) forceLost = true;  // picked up at the top of the next iteration
         std::lock_guard<std::mutex> lk(p->statsMu);
         if (resized) {
             p->lastResizeHr = resizeHr;
@@ -287,6 +467,15 @@ void RenderLoop(Probe* p) {
                 p->appliedH = p->h;
             }
         }
+        if (awaitFirstGood && SUCCEEDED(hr)) {
+            ev.recover_ms = t1 - lostAt;
+            ev.gap_ms = t1 - lastGood;
+            ev.seh_caught = p->sehCaught.load();
+            p->lost.push_back(ev);
+            awaitFirstGood = false;
+            p->lostNow.store(false);
+        }
+        if (SUCCEEDED(hr)) lastGood = t1;
         p->intervalMs.push_back(t0 - last);
         p->cpuMs.push_back(t1 - t0);
         p->gpuMs.insert(p->gpuMs.end(), gpu.begin(), gpu.end());
@@ -303,37 +492,16 @@ M0R_API int32_t m0r_create(const wchar_t* riv_path, uint32_t width, uint32_t hei
     auto p = std::make_unique<Probe>();
     p->w = width;
     p->h = height;
-    // Rive's D3D11 backend requires feature level 11_1; BGRA support is required
-    // for a device that backs a CompositionGraphicsDevice.
-    D3D_FEATURE_LEVEL levels[] = {D3D_FEATURE_LEVEL_11_1};
-    HRESULT hr = D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, D3D11_CREATE_DEVICE_BGRA_SUPPORT,
-                                   levels, 1, D3D11_SDK_VERSION, &p->dev, nullptr, &p->ctx);
+    HRESULT hr = MakeDevice(p->dev, p->ctx);
     if (FAILED(hr)) return hr;
-    // The composition graphics device uses the device from its own thread too.
-    ComPtr<ID3D11Multithread> mt;
-    if (SUCCEEDED(p->ctx.As(&mt))) mt->SetMultithreadProtected(TRUE);
-
-    ComPtr<IDXGIDevice> dxgiDev;
-    ComPtr<IDXGIAdapter> adapter;
-    DXGI_ADAPTER_DESC ad{};
-    if (SUCCEEDED(p->dev.As(&dxgiDev)) && SUCCEEDED(dxgiDev->GetAdapter(&adapter))) adapter->GetDesc(&ad);
-    rive::gpu::D3DContextOptions opts;
-    opts.isIntel = ad.VendorId == 0x163C || ad.VendorId == 0x8086 || ad.VendorId == 0x8087;
-    p->rc = rive::gpu::RenderContextD3DImpl::MakeContext(p->dev, p->ctx, opts);
-    if (!p->rc) return E_FAIL;
 
     FILE* f = _wfopen(riv_path, L"rb");
     if (!f) return HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND);
-    std::vector<uint8_t> bytes;
     uint8_t buf[65536];
-    for (size_t n; (n = std::fread(buf, 1, sizeof buf, f)) > 0;) bytes.insert(bytes.end(), buf, buf + n);
+    for (size_t n; (n = std::fread(buf, 1, sizeof buf, f)) > 0;) p->rivBytes.insert(p->rivBytes.end(), buf, buf + n);
     std::fclose(f);
-    p->file = rive::File::import(rive::Span<const uint8_t>(bytes.data(), bytes.size()), p->rc.get());
-    if (!p->file) return HRESULT_FROM_WIN32(ERROR_INVALID_DATA);
-    p->artboard = p->file->artboardDefault();
-    if (!p->artboard) return HRESULT_FROM_WIN32(ERROR_INVALID_DATA);
-    if (p->artboard->stateMachineCount() > 0) p->scene = p->artboard->defaultStateMachine();
-    if (!p->scene && p->artboard->animationCount() > 0) p->scene = p->artboard->animationAt(0);
+    hr = MakeRive(*p);
+    if (FAILED(hr)) return hr;
 
     hr = MakeOffscreen(*p);
     if (FAILED(hr)) return hr;
@@ -414,6 +582,52 @@ M0R_API int32_t m0r_get_resize(uint32_t* count, double* last_ms, double* max_ms,
     *width = g->appliedW;
     *height = g->appliedH;
     *last_hr = g->lastResizeHr;
+    return S_OK;
+}
+
+M0R_API int32_t m0r_attach_graphics_device(void* graphics_device_unknown) {
+    if (!g || !graphics_device_unknown) return E_INVALIDARG;
+    if (g->running.load()) return E_NOT_VALID_STATE;
+    return static_cast<IUnknown*>(graphics_device_unknown)->QueryInterface(
+        kIidGraphicsDeviceInterop, reinterpret_cast<void**>(g->graphicsDevice.ReleaseAndGetAddressOf()));
+}
+
+M0R_API int32_t m0r_get_lost(uint32_t* detected, uint32_t* recovered, int32_t* lost_now,
+                             m0r_lost_event* events, uint32_t capacity) {
+    if (!g || !detected || !recovered || !lost_now || (capacity && !events)) return E_INVALIDARG;
+    std::lock_guard<std::mutex> lk(g->statsMu);
+    *detected = g->lostDetected;
+    *recovered = static_cast<uint32_t>(g->lost.size());
+    *lost_now = g->lostNow.load() ? 1 : 0;
+    const size_t n = std::min<size_t>(capacity, g->lost.size());
+    std::copy(g->lost.begin(), g->lost.begin() + static_cast<std::ptrdiff_t>(n), events);
+    return S_OK;
+}
+
+M0R_API int32_t m0r_simulate_lost(void) {
+    if (!g) return E_NOT_VALID_STATE;
+    if (g->swapchain) return E_NOTIMPL;  // M3 F1: surface path only
+    if (!g->running.load()) return E_NOT_VALID_STATE;
+    g->simLost.store(true);
+    return S_OK;
+}
+
+namespace {
+wchar_t g_abortNote[MAX_PATH] = {};
+extern "C" void OnAbort(int) {
+    if (g_abortNote[0]) {
+        if (FILE* f = _wfopen(g_abortNote, L"ab")) {
+            std::fputs("rive_abort=1\nverdict=FAIL_ABORT\n", f);
+            std::fclose(f);
+        }
+    }
+}
+}  // namespace
+
+M0R_API int32_t m0r_set_abort_note(const wchar_t* path) {
+    if (!path || wcslen(path) >= MAX_PATH) return E_INVALIDARG;
+    wcscpy(g_abortNote, path);
+    std::signal(SIGABRT, OnAbort);
     return S_OK;
 }
 
