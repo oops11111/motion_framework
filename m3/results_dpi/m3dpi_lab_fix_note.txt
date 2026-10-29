@@ -1,0 +1,12 @@
+﻿M3-RIVE-DPI recapture after CLASSNOTREG fix
+Date: 2026-10-29 09:50:50 Asia/Shanghai
+Machine: DESKTOP-IJI1KJG
+
+Lab fix (NOT a Rive hack) applied to MotionSoftDemo.csproj:
+  <WindowsPackageType>None</WindowsPackageType>
+  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+
+Prior failure: REGDB_E_CLASSNOTREG in DeploymentManager AutoInitialize; all 3 sessions INVALID_NO_SUMMARY.
+Smoke --m3-dpi-probe stayed alive after rebuild; recapture RUN_DONE.
+
+composition.h PRE=POST a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418

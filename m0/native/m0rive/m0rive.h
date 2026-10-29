@@ -51,6 +51,15 @@ M0R_API int32_t m0r_start(void);
 // follow content that lives inside the Rive surface. w == 0 turns the marker off.
 M0R_API int32_t m0r_set_marker(uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint8_t red, uint8_t green, uint8_t blue);
 
+// M3-RIVE-DPI (surface path only): resize the drawing surface and the offscreen
+// render target to width x height pixels. While rendering, the render thread applies
+// it at the start of its next frame; m0r_get_resize then reports, per resize, the
+// time from this call to the end of the first frame drawn at the new size.
+// E_NOTIMPL once a swapchain has been created.
+M0R_API int32_t m0r_resize(uint32_t width, uint32_t height);
+M0R_API int32_t m0r_get_resize(uint32_t* count, double* last_ms, double* max_ms,
+                               uint32_t* width, uint32_t* height, int32_t* last_hr);
+
 M0R_API int32_t m0r_stop(void);
 M0R_API int32_t m0r_get_stats(m0r_stats* out);
 // Clears all counters and samples, so a later phase (e.g. M0-1b) is measured on its own.

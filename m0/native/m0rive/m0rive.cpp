@@ -99,6 +99,16 @@ struct Probe {
     std::vector<double> cpuMs, gpuMs, intervalMs;
     uint64_t frames = 0, drawFailures = 0;
     HRESULT lastHr = S_OK;
+
+    // M3-RIVE-DPI: a resize requested by the UI thread is applied by the render
+    // thread at the start of its next frame (resizeMu guards the request).
+    std::mutex resizeMu;
+    bool resizePending = false;
+    uint32_t pendW = 0, pendH = 0;
+    double resizeReqMs = 0;
+    std::vector<double> rerasterMs;  // request -> first frame at the new size (statsMu)
+    uint32_t appliedW = 0, appliedH = 0;
+    HRESULT lastResizeHr = S_OK;
 };
 
 Probe* g = nullptr;
@@ -123,6 +133,23 @@ HRESULT MakeOffscreen(Probe& p) {
         p.rt = p.rc->static_impl_cast<rive::gpu::RenderContextD3DImpl>()->makeRenderTarget(p.w, p.h);
         p.rt->setTargetTexture(p.offscreen);
     }
+    return hr;
+}
+
+// Resizes the drawing surface and rebuilds the offscreen texture, the Rive render
+// target and the marker RTV at w x h. Render thread only (or while it is stopped).
+HRESULT ApplyResize(Probe& p, uint32_t w, uint32_t h) {
+    if (p.surface) {
+        const HRESULT hr = p.surface->Resize(SIZE{static_cast<LONG>(w), static_cast<LONG>(h)});
+        if (FAILED(hr)) return hr;
+    }
+    p.w = w;
+    p.h = h;
+    p.markerRtv.Reset();
+    p.rt.reset();
+    p.offscreen.Reset();
+    HRESULT hr = MakeOffscreen(p);
+    if (SUCCEEDED(hr)) p.dev->CreateRenderTargetView(p.offscreen.Get(), nullptr, &p.markerRtv);
     return hr;
 }
 
@@ -234,10 +261,32 @@ void RenderLoop(Probe* p) {
     while (p->running.load()) {
         DwmFlush();  // one iteration per DWM composition (verified ~vsync on DESKTOP-K93N3P8)
         const double t0 = NowMs();
+        bool resized = false;
+        double reqMs = 0;
+        HRESULT resizeHr = S_OK;
+        {
+            std::unique_lock<std::mutex> rl(p->resizeMu);
+            if (p->resizePending) {
+                const uint32_t w = p->pendW, h = p->pendH;
+                reqMs = p->resizeReqMs;
+                p->resizePending = false;
+                rl.unlock();
+                resizeHr = ApplyResize(*p, w, h);
+                resized = true;
+            }
+        }
         std::vector<double> gpu;
-        const HRESULT hr = Frame(*p, static_cast<float>((t0 - last) / 1000.0), gpu);
+        const HRESULT hr = SUCCEEDED(resizeHr) ? Frame(*p, static_cast<float>((t0 - last) / 1000.0), gpu) : resizeHr;
         const double t1 = NowMs();
         std::lock_guard<std::mutex> lk(p->statsMu);
+        if (resized) {
+            p->lastResizeHr = resizeHr;
+            if (SUCCEEDED(resizeHr) && SUCCEEDED(hr)) {
+                p->rerasterMs.push_back(t1 - reqMs);
+                p->appliedW = p->w;
+                p->appliedH = p->h;
+            }
+        }
         p->intervalMs.push_back(t0 - last);
         p->cpuMs.push_back(t1 - t0);
         p->gpuMs.insert(p->gpuMs.end(), gpu.begin(), gpu.end());
@@ -329,6 +378,42 @@ M0R_API int32_t m0r_start(void) {
     if (!g || (!g->surface && !g->swapchain)) return E_NOT_VALID_STATE;
     if (g->running.exchange(true)) return S_FALSE;
     g->thread = std::thread(RenderLoop, g);
+    return S_OK;
+}
+
+M0R_API int32_t m0r_resize(uint32_t width, uint32_t height) {
+    if (!g || !width || !height) return E_INVALIDARG;
+    if (g->swapchain) return E_NOTIMPL;  // M3 F1: only the surface path resizes here
+    if (!g->running.load()) {
+        const double t0 = NowMs();
+        const HRESULT hr = ApplyResize(*g, width, height);
+        std::lock_guard<std::mutex> lk(g->statsMu);
+        g->lastResizeHr = hr;
+        if (SUCCEEDED(hr)) {
+            g->rerasterMs.push_back(NowMs() - t0);
+            g->appliedW = width;
+            g->appliedH = height;
+        }
+        return hr;
+    }
+    std::lock_guard<std::mutex> rl(g->resizeMu);
+    g->pendW = width;
+    g->pendH = height;
+    g->resizeReqMs = NowMs();
+    g->resizePending = true;
+    return S_OK;
+}
+
+M0R_API int32_t m0r_get_resize(uint32_t* count, double* last_ms, double* max_ms,
+                               uint32_t* width, uint32_t* height, int32_t* last_hr) {
+    if (!g || !count || !last_ms || !max_ms || !width || !height || !last_hr) return E_INVALIDARG;
+    std::lock_guard<std::mutex> lk(g->statsMu);
+    *count = static_cast<uint32_t>(g->rerasterMs.size());
+    *last_ms = g->rerasterMs.empty() ? 0 : g->rerasterMs.back();
+    *max_ms = g->rerasterMs.empty() ? 0 : *std::max_element(g->rerasterMs.begin(), g->rerasterMs.end());
+    *width = g->appliedW;
+    *height = g->appliedH;
+    *last_hr = g->lastResizeHr;
     return S_OK;
 }
 

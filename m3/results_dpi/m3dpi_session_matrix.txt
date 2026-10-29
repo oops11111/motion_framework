@@ -1,0 +1,4 @@
+﻿session,pid,verdict,switches_detected,size_ok,reraster_max_ms,budget_ok,stability_ok,private_mb_delta_100
+1,8004,RECORDED,4,1,12.31,1,1,2
+2,5924,RECORDED,4,1,11.16,1,1,0
+3,14252,RECORDED,4,1,13.33,1,1,2

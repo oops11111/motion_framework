@@ -403,6 +403,22 @@
   - F1 默认走合成表面，交换链可选；F2 撕裂默认关；F3 首次显示前离屏预热；F4 按未来 WinMD 的形状冻结 C# API，试点绑定它；F5 试点期按 B_v 发布，速度不连续写进设计约束，另请设计师盲测；F6 真机票保留闸门，代码和文档走 PR
   - 记录在 `docs/m3_plan_DRAFT.md` §6；PERF-CI 的 Q1–Q8 仍待裁决（PR #5 未合并）
 
+- **2026-10-28 — PR #4 合入 main（M3 规划，F1–F6 已裁决；runner 收尾）；开 M3-RIVE-DPI DRAFT**
+  - DRAFT：`docs/m3_rive_dpi_gate_DRAFT.md`（分支 `claude/m3-rive-dpi`）；待裁决 G1–G4；代码在裁决后写
+  - 注意：两台测试机都是 1280×1024，Windows 通常只提供 100%/125% 缩放；150%/200% 留给 M3-MATRIX
+
 - **2026-10-28 20:31:11 AWST — PERF-CI Q1–Q8 按建议裁决（pidan）→ 合入 PR #5**
   - 裁决记录在 `docs/m2_perf_ci_tooling_gate_DRAFT.md`；Q1/Q2/Q3/Q7 改变判据，写入新版 PERF-CI 闸门 r2（另开 DRAFT），原 LOCKED `5b007dd4…282a` 不改
   - 采数前提：Q4 真实 PresentStats、Q6 WPA 导出口径；PERF-CI 仍 HOLD（缺 GPU 档不同的第二台机器）
+
+- **2026-10-28 20:39:58 AWST — M3-RIVE-DPI LOCKED（G1–G4 按建议）**
+  - LOCKED：`docs/m3_rive_dpi_gate_LOCKED.md`，hash=`92e6b4e9fd1014faf74714eb6cb20fc7e998169dc1171785bb8ea43f68d97bf5`
+  - 代码：`m0r_resize`/`m0r_get_resize`、`M3DpiProbe.cs`（`--m3-dpi-probe`）、`m3/run_m3_dpi.ps1`、`m3/mainpage_m3_hook.patch`；派工单 `docs/workbuddy_m3_rive_dpi_dispatch.md`；采数等 approved
+  - PERF-CI r2：H1–H3 按建议裁决（Idle 0.1%；第三台机器由 pidan 安排；Q4 由 Claude 实现，Q6 由懂 WPA 的人做）
+
+- **2026-10-28 21:28:50 AWST — M3-RIVE-DPI APPROVED by pidan → 派 workbuddy**
+  - approved：`docs/m3_rive_dpi_approved.md`；gate `92e6b4e9…97bf5` 不变；采数=是（3 会话，操作员手动切换 100%↔125%）；派工单 `docs/workbuddy_m3_rive_dpi_dispatch.md`；结果进 `m3/results_dpi/`
+
+- **2026-10-29 11:42:31 AWST — M3-RIVE-DPI：Claude 独立复核，与权威结题一致**
+  - 权威结题：`docs/m3_rive_dpi_result.md`（notion ai，RIVE-DPI-PASS，有条件采用，csproj 不回灌主线）
+  - 复核：`docs/m3_rive_dpi_result_claude_review.md`；补充 ⑥ 像素宽度核对（125% 时 Rive 区域 500 px，清晰重绘）、125% 截图被截断、每次切换的延迟 0.65–13.33 ms
