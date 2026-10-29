@@ -1,0 +1,52 @@
+[2026-10-29 09:41:36] M3-DPI run: host=DESKTOP-IJI1KJG sessions=3 exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe
+[2026-10-29 09:41:36] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-10-29 09:41:36] os=Microsoft Windows 11 专业版 build=26200
+[2026-10-29 09:41:36] gpu=AMD Radeon RX 7800 XT refresh=75Hz mode=1280x1024
+[2026-10-29 09:41:36] composition.h sha256 PRE=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+[2026-10-29 09:41:41] session 1 pid=5204; start at 100% and follow the prompts in the app window
+[2026-10-29 09:41:46] WARN session 1 app exited early
+[2026-10-29 09:41:48] session 1 verdict=INVALID_NO_SUMMARY switches=0 size_ok=0
+[2026-10-29 09:41:50] session 2 pid=14360; start at 100% and follow the prompts in the app window
+[2026-10-29 09:41:50] WARN session 2 app exited early
+[2026-10-29 09:41:52] session 2 verdict=INVALID_NO_SUMMARY switches=0 size_ok=0
+[2026-10-29 09:41:54] session 3 pid=8524; start at 100% and follow the prompts in the app window
+[2026-10-29 09:41:55] WARN session 3 app exited early
+[2026-10-29 09:41:57] session 3 verdict=INVALID_NO_SUMMARY switches=0 size_ok=0
+[2026-10-29 09:41:57] composition.h sha256 POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+[2026-10-29 09:41:57] RUN_DONE
+
+==== 2026-10-29 09:46:09 Asia/Shanghai ====
+RECAPTURE after CLASSNOTREG fix.
+Lab fix (not a Rive hack): MotionSoftDemo.csproj now has
+  <WindowsPackageType>None</WindowsPackageType>
+  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+Prior run: all 3 sessions INVALID_NO_SUMMARY (Demo crashed REGDB_E_CLASSNOTREG in DeploymentManager AutoInitialize).
+Smoke --m3-dpi-probe stayed alive >=10s after rebuild. Starting 3-session DPI capture.
+[2026-10-29 09:46:25] M3-DPI run: host=DESKTOP-IJI1KJG sessions=3 exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe
+[2026-10-29 09:46:25] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-10-29 09:46:25] os=Microsoft Windows 11 专业版 build=26200
+[2026-10-29 09:46:25] gpu=AMD Radeon RX 7800 XT refresh=75Hz mode=1280x1024
+[2026-10-29 09:46:26] composition.h sha256 PRE=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+[2026-10-29 09:46:28] session 1 pid=8004; start at 100% and follow the prompts in the app window
+[2026-10-29 09:46:40] session 1 screenshot m3dpi_s1_seg0.png
+[2026-10-29 09:46:59] session 1 screenshot m3dpi_s1_seg1.png
+[2026-10-29 09:47:16] session 1 screenshot m3dpi_s1_seg2.png
+[2026-10-29 09:47:29] session 1 screenshot m3dpi_s1_seg3.png
+[2026-10-29 09:47:42] session 1 screenshot m3dpi_s1_seg4.png
+[2026-10-29 09:47:44] session 1 verdict=RECORDED switches=4 size_ok=1
+[2026-10-29 09:47:46] session 2 pid=5924; start at 100% and follow the prompts in the app window
+[2026-10-29 09:47:56] session 2 screenshot m3dpi_s2_seg0.png
+[2026-10-29 09:48:09] session 2 screenshot m3dpi_s2_seg1.png
+[2026-10-29 09:48:22] session 2 screenshot m3dpi_s2_seg2.png
+[2026-10-29 09:48:35] session 2 screenshot m3dpi_s2_seg3.png
+[2026-10-29 09:48:48] session 2 screenshot m3dpi_s2_seg4.png
+[2026-10-29 09:48:50] session 2 verdict=RECORDED switches=4 size_ok=1
+[2026-10-29 09:48:53] session 3 pid=14252; start at 100% and follow the prompts in the app window
+[2026-10-29 09:49:02] session 3 screenshot m3dpi_s3_seg0.png
+[2026-10-29 09:49:13] session 3 screenshot m3dpi_s3_seg1.png
+[2026-10-29 09:50:03] session 3 screenshot m3dpi_s3_seg2.png
+[2026-10-29 09:50:17] session 3 screenshot m3dpi_s3_seg3.png
+[2026-10-29 09:50:34] session 3 screenshot m3dpi_s3_seg4.png
+[2026-10-29 09:50:36] session 3 verdict=RECORDED switches=4 size_ok=1
+[2026-10-29 09:50:36] composition.h sha256 POST=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+[2026-10-29 09:50:36] RUN_DONE
