@@ -1,7 +1,7 @@
 # 派题 · M3-RIVE-LOST（DESKTOP-IJI1KJG）
 
 闸门：`docs/m3_rive_lost_gate_LOCKED.md`，GATE_BODY_SHA256=`753c0a6c82f06c81cf741eecba278b926127771befa2a51b515a925a7873f27d`，LOCKED_AT=2026-10-29 12:31:48 AWST。K1–K7 已按建议裁决。
-代码分支：`claude/m3-rive-lost`。**尚未 APPROVED：第 1–3 步（取代码、构建、模拟冒烟）可以先做；第 4 步真实注入，必须等 `docs/m3_rive_lost_approved.md` 落盘后才能执行。**
+代码分支：`claude/m3-rive-lost`。**已 APPROVED（`docs/m3_rive_lost_approved.md`，pidan @ 2026-10-29 12:48:46 AWST）：第 1–5 步都可以执行；第 3 步模拟冒烟通过后再做第 4 步。**
 `<ROOT>` 沿用 `C:\Users\Lh\mf_m0b`；数据目录用新的 `<ROOT>\artifacts_m3lost`。
 
 ## 0. 前提
@@ -28,7 +28,7 @@ git -C <ROOT>\repo log -1 --format=%H
 4. 按 DPI 票的方式重新构建 MotionSoftDemo（Debug，直接启动 exe），确认新的 `m0rive.dll` 在 exe 旁边。
 5. 失败时记 BLOCKED_TOOLCHAIN，回报 `m0\out\build_m0.log` 的最后 80 行；不要改 Rive 源码、Rive 参数或 m0rive.cpp 去凑（K7：本票不改 Rive）。
 
-## 3. 模拟冒烟（不采数，不注入，可在 APPROVED 前做）
+## 3. 模拟冒烟（不采数，不注入）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_lost.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3lost_sim -Sessions 1 -Simulate
 ```
@@ -36,7 +36,7 @@ powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_lost.ps1 -DemoExe
 - 期望：`m3lostsim_s1_summary.txt` 里 `verdict=SIM_RECORDED`、`recover_ok=1`，两张恢复后截图里有 Rive 画面。
 - 回报这三项即可；模拟数据**不提交、不计入**判据（K1）。如果模拟就失败，先停下回报，不要进第 4 步。
 
-## 4. 采数（真实注入；**必须等 approved 落盘**）
+## 4. 采数（真实注入；已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_lost.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3lost -Sessions 3
 ```
