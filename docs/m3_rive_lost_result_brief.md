@@ -28,3 +28,10 @@ M3-RIVE-LOST | commit=82a53ccee2dd7ed6456c635421e70eb18902694d @ claude/m3-rive-
 
 ## 禁令核对
 不改 composition.h；不重开 S1/R-3/R-2；成功≠采用；PERF-CI HOLD；当日不重跑；不把非 PASS 写成 PASS。
+
+## 更正附录（pidan 裁决 r2 L5，2026-10-29；正文不改）
+- **标签按 r1 LOCKED G2 记为 `RIVE-LOST-INVALID`**（“注入命令执行了但探针 30 s 内没检测到丢失”）。与正文的 INCONCLUSIVE 同为非 PASS、未采用，结论不变。
+- **闸门已 LOCK 且 APPROVED**：`docs/m3_rive_lost_gate_LOCKED.md`，GATE_BODY_SHA256=`753c0a6c82f06c81cf741eecba278b926127771befa2a51b515a925a7873f27d`（LOCKED_AT 2026-10-29 12:31:48 AWST；在 tip `82a53cc` 上复算 MATCH）；`docs/m3_rive_lost_approved.md`（pidan @ 2026-10-29 12:48:46 AWST）。正文“本地无 LOCKED / approved”是协调侧本地副本过旧所致。
+- **应用没有崩溃**：`CRASHED_NO_VERDICT` 是 runner 先结束进程、再判断是否退出造成的误标（r2 L3 已修）。
+- **注入未生效**：`dxcap -forcetdr` 退出码 0、无输出、0 条 4101 事件。r2 改用 `pnputil /restart-device`（L1）。
+- 详见 `docs/m3_rive_lost_result_claude_review.md`。

@@ -1,6 +1,6 @@
-// M3-RIVE-LOST probe (docs/m3_rive_lost_gate_DRAFT.md). The Rive surface (M3 F1:
-// drawing-surface path) renders at a fixed size while the runner forces a real GPU
-// timeout recovery (dxcap -forcetdr, K1) when the probe asks for one. The DLL's
+// M3-RIVE-LOST probe (docs/m3_rive_lost_gate_r2_LOCKED.md). The Rive surface (M3 F1:
+// drawing-surface path) renders at a fixed size while the runner restarts the display
+// driver (pnputil /restart-device, r2 L1) when the probe asks for it. The DLL's
 // render thread detects the loss and recovers on its own (new device, Rive context,
 // re-imported .riv, SetRenderingDevice); the probe only records what it reports and
 // measures a segment after each recovery. --m3-lost-sim raises the loss in-process
@@ -89,8 +89,8 @@ public sealed partial class MainPage
             double refreshHz = 0;
             try { MfProbe.mf_dwm_timing(out _, out _, out _, out _, out var rn, out var rd, out _); if (rd > 0) refreshHz = (double)rn / rd; } catch { }
             double T = refreshHz > 0 ? 1000.0 / refreshHz : double.NaN;
-            Kv("probe", "M3-LOST v1");
-            Kv("mode", simulate ? "simulated" : "dxcap-forcetdr");
+            Kv("probe", "M3-LOST v2");
+            Kv("mode", simulate ? "simulated" : "pnputil-restart");
             Kv("session", sess);
             Kv("pid", Environment.ProcessId);
             Kv("host", Environment.MachineName);
@@ -178,7 +178,7 @@ public sealed partial class MainPage
                 }
                 else
                 {
-                    prompt!.Text = $"等待第 {k}/{M3LostInjections} 次注入（runner 会执行 dxcap -forcetdr，屏幕会黑一两秒）。请勿操作。";
+                    prompt!.Text = $"等待第 {k}/{M3LostInjections} 次注入（runner 会重启显卡驱动，屏幕会黑几秒）。请勿操作。";
                     File.WriteAllText($"{pre}_inject{k}.req", DateTime.Now.ToString("o", CultureInfo.InvariantCulture));
                 }
                 uint det = det0, rec = rec0; int lostNow = 0;

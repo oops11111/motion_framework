@@ -1,18 +1,21 @@
-# M3-RIVE-LOST runner (docs/m3_rive_lost_gate_LOCKED.md). Collects data: run only after
-# the gate is LOCKED and APPROVED. Needs an elevated PowerShell, dxcap.exe (Settings >
-# Optional features > Graphics Tools), m0rive.dll (built by m0\build_m0.ps1, with the
-# device-loss recovery) beside the exe and the Rive asset under <ArtDir>\m0_assets.
-#   powershell -ExecutionPolicy Bypass -File m3\run_m3_lost.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <dir> [-Sessions 3]
-#   ... -Simulate   # local smoke test: in-process simulated loss, no dxcap, no admin; never counts (K1)
-# Each injection (dxcap -forcetdr) resets the whole GPU: close other GPU programs and save
-# your work first. The runner enforces K4/K5: >= 45 s between injections, >= 120 s between
-# sessions, at most 8 injections per run, and it stops at once if an injection is not
-# detected by the probe within 30 s. Don't touch mouse or keyboard while it runs.
+# M3-RIVE-LOST runner (docs/m3_rive_lost_gate_r2_LOCKED.md). Collects data: run only after
+# the gate is LOCKED and APPROVED. Needs an elevated PowerShell, m0rive.dll (built by
+# m0\build_m0.ps1, with the device-loss recovery) beside the exe and the Rive asset under
+# <ArtDir>\m0_assets.
+#   powershell -ExecutionPolicy Bypass -File m3\run_m3_lost.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <dir> [-Sessions 3] [-GpuInstanceId <id>]
+#   ... -Simulate   # local smoke test: in-process simulated loss, no driver restart, no admin; never counts (K1)
+# Each injection restarts the display driver (pnputil /restart-device, r2 L1), which removes
+# every D3D device on the machine: close other GPU programs and save your work first. Before
+# session 1 the runner restarts the driver once with no app running (L2 self-test). It
+# enforces L4: >= 45 s between injections, >= 120 s before each session, at most 8
+# injections per run; it stops at once if the adapter is not back to OK within 30 s or an
+# injection is not detected by the probe within 30 s. Don't touch mouse or keyboard.
 param(
     [Parameter(Mandatory = $true)][string]$DemoExe,
     [Parameter(Mandatory = $true)][string]$ArtDir,
     [int]$Sessions = 3,
     [switch]$Simulate,
+    [string]$GpuInstanceId = "",
     [int]$MinGapSec = 45,
     [int]$CooldownSec = 120,
     [int]$MaxInjections = 8,
@@ -64,19 +67,51 @@ foreach ($n in "TdrLevel", "TdrDelay", "TdrLimitCount", "TdrLimitTime") {
     Say ("registry {0}={1}" -f $n, $(if ($null -eq $v) { "default" } else { $v }))
 }
 
-if (-not $Simulate) {
-    $admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-    if (-not $admin) { Say "BLOCKED: needs an elevated PowerShell (dxcap -forcetdr)"; exit 2 }
-    $dxcap = Get-Command dxcap.exe -ErrorAction SilentlyContinue
-    if (-not $dxcap) { Say "BLOCKED: dxcap.exe not found; install Settings > Optional features > Graphics Tools"; exit 2 }
-    Say "dxcap=$($dxcap.Source)"
-}
-
 $runStart = Get-Date
 $lastInject = [datetime]::MinValue
 $injections = 0
 $stopAll = $false
-$matrix = @("session,pid,verdict,lost_detected,recovered,recover_ok,recover_max_ms,budget_ok,stability_ok,frames_missed,private_mb_delta,event4101")
+
+function AdapterStatus($id) { (Get-PnpDevice -InstanceId $id -ErrorAction SilentlyContinue).Status }
+# One injection (L1): restart the display driver, then wait up to 30 s for the adapter to
+# report OK again (L4). Logs pnputil's output and exit code and the adapter status (L3).
+# Returns $true when pnputil exited 0 and the adapter is back to OK.
+function Inject($tag) {
+    $script:lastInject = Get-Date
+    $script:injections++
+    $out = & pnputil.exe /restart-device "$GpuInstanceId" 2>&1
+    $code = $LASTEXITCODE
+    Say ("$tag pnputil /restart-device exit=$code out=" + (($out | Out-String).Trim() -replace '\s+', ' '))
+    $st = $null
+    $until = (Get-Date).AddSeconds(30)
+    do { Start-Sleep -Milliseconds 500; $st = AdapterStatus $GpuInstanceId } while ($st -ne 'OK' -and (Get-Date) -lt $until)
+    Say ("$tag adapter status=$st after {0:N1} s" -f ((Get-Date) - $script:lastInject).TotalSeconds)
+    return ($code -eq 0 -and $st -eq 'OK')
+}
+
+if (-not $Simulate) {
+    $admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+    if (-not $admin) { Say "BLOCKED: needs an elevated PowerShell (pnputil /restart-device)"; exit 2 }
+    if (-not $GpuInstanceId) {
+        $cand = @(Get-PnpDevice -Class Display -PresentOnly -ErrorAction SilentlyContinue | Where-Object { $_.Status -eq 'OK' -and $_.FriendlyName -notmatch 'Basic Display|Basic Render|Remote|Indirect' })
+        $cand | ForEach-Object { Say "display adapter: $($_.FriendlyName) id=$($_.InstanceId) status=$($_.Status)" }
+        if ($cand.Count -ne 1) { Say "BLOCKED: found $($cand.Count) display adapters; pass -GpuInstanceId with the one the app renders on"; exit 2 }
+        $GpuInstanceId = $cand[0].InstanceId
+    }
+    Say "gpu instance id=$GpuInstanceId status=$(AdapterStatus $GpuInstanceId)"
+    if ((AdapterStatus $GpuInstanceId) -ne 'OK') { Say "BLOCKED: adapter status is not OK before the run"; exit 2 }
+    # L2: injection self-test with no app running; counts toward the cap.
+    Get-Process -Name MotionSoftDemo -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+    Say "self-test: restarting the display driver once with no app running (L2)"
+    if (-not (Inject "self-test")) {
+        Say "STOP: BLOCKED_INJECT (self-test: driver restart failed or adapter not OK within 30 s)"
+        "session,pid,verdict`n0,,BLOCKED_INJECT" | Out-File (Join-Path $ArtDir "${prefix}_session_matrix.txt") -Encoding utf8
+        Say "RUN_DONE"
+        exit 3
+    }
+    Say "self-test OK"
+}
+$matrix = @("session,pid,verdict,lost_detected,recovered,recover_ok,recover_max_ms,budget_ok,stability_ok,frames_missed,private_mb_delta,injections_ok")
 for ($s = 1; $s -le $Sessions -and -not $stopAll; $s++) {
     # K4: cooldown between sessions, counted from the last injection.
     if ($lastInject -ne [datetime]::MinValue) {
@@ -88,7 +123,7 @@ for ($s = 1; $s -le $Sessions -and -not $stopAll; $s++) {
     Remove-Item $sum, "${pre}_*.shotreq", "${pre}_inject*.req" -ErrorAction SilentlyContinue
     Get-Process -Name MotionSoftDemo -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
     Start-Sleep 2
-    $sessStart = Get-Date
+    $sessInjOk = $true
     $env:MF_M3_LOST_PROBE = "1"; $env:MF_M3_SESSION = "$s"; $env:MF_M0_ARTDIR = $ArtDir
     if ($Simulate) { $env:MF_M3_LOST_SIM = "1" } else { Remove-Item env:MF_M3_LOST_SIM -ErrorAction SilentlyContinue }
     $probeArg = if ($Simulate) { '--m3-lost-sim' } else { '--m3-lost-probe' }
@@ -108,10 +143,12 @@ for ($s = 1; $s -le $Sessions -and -not $stopAll; $s++) {
             if ($injections -ge $MaxInjections) { Say "STOP: injection cap $MaxInjections reached (K4)"; $stopAll = $true; return }
             $wait = $MinGapSec - ((Get-Date) - $lastInject).TotalSeconds
             if ($wait -gt 0) { Say ("session $s inject$k waits {0:N0} s (K5 spacing)" -f $wait); Start-Sleep -Seconds ([math]::Ceiling($wait)) }
-            $lastInject = Get-Date
-            $injections++
-            $out = & dxcap.exe -forcetdr 2>&1
-            Say ("session $s inject$k dxcap -forcetdr exit=$LASTEXITCODE out=" + (($out | Out-String).Trim() -replace '\s+', ' '))
+            if (-not (Inject "session $s inject$k")) {
+                $sessInjOk = $false
+                Say "STOP: session $s inject$k driver restart failed or adapter not OK within 30 s (L4); INVALID_SYSTEM"
+                $stopAll = $true
+                return
+            }
             $detected = $false
             $until = (Get-Date).AddSeconds($DetectTimeoutSec)
             while ((Get-Date) -lt $until) {
@@ -128,15 +165,15 @@ for ($s = 1; $s -le $Sessions -and -not $stopAll; $s++) {
         Start-Sleep -Milliseconds 200
     }
     Start-Sleep 2
-    if (-not $p.HasExited) { Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue }
+    # L3: decide whether the app exited on its own BEFORE the runner ends it; a process the
+    # runner killed is KILLED_BY_RUNNER, never a crash.
+    $exitedOnOwn = $p.HasExited
+    if (-not $exitedOnOwn) { Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue }
     $kv = ReadKv $sum
-    $v = if ($kv.ContainsKey("verdict")) { $kv["verdict"] } elseif ($p.HasExited -and (Test-Path $sum)) { "CRASHED_NO_VERDICT" } else { "INVALID_NO_SUMMARY" }
+    $v = if ($kv.ContainsKey("verdict")) { $kv["verdict"] } elseif (-not (Test-Path $sum)) { "INVALID_NO_SUMMARY" } elseif ($exitedOnOwn) { "CRASHED_NO_VERDICT" } else { "KILLED_BY_RUNNER" }
     if ($stopAll -and $v -notmatch '^(FAIL|CRASHED)') { $v = "STOPPED_" + $v }
-    # Injection evidence: "display driver stopped responding and has recovered".
-    $ev = @(Get-WinEvent -FilterHashtable @{ LogName = 'System'; Id = 4101; StartTime = $sessStart } -ErrorAction SilentlyContinue)
-    $ev | ForEach-Object { Say ("session $s event4101 at {0:yyyy-MM-dd HH:mm:ss} {1}" -f $_.TimeCreated, $_.ProviderName) }
-    $matrix += "$s,$($p.Id),$v,$($kv['lost_detected']),$($kv['recovered']),$($kv['recover_ok']),$($kv['recover_max_ms']),$($kv['budget_ok']),$($kv['stability_ok']),$($kv['frames_missed']),$($kv['private_mb_delta']),$($ev.Count)"
-    Say "session $s verdict=$v recover_ok=$($kv['recover_ok']) recover_max_ms=$($kv['recover_max_ms']) event4101=$($ev.Count)"
+    $matrix += "$s,$($p.Id),$v,$($kv['lost_detected']),$($kv['recovered']),$($kv['recover_ok']),$($kv['recover_max_ms']),$($kv['budget_ok']),$($kv['stability_ok']),$($kv['frames_missed']),$($kv['private_mb_delta']),$([int]$sessInjOk)"
+    Say "session $s verdict=$v recover_ok=$($kv['recover_ok']) recover_max_ms=$($kv['recover_max_ms']) exited_on_own=$exitedOnOwn injections_ok=$([int]$sessInjOk)"
 }
 Remove-Item env:MF_M3_LOST_PROBE, env:MF_M3_LOST_SIM, env:MF_M3_SESSION, env:MF_M0_ARTDIR -ErrorAction SilentlyContinue
 $matrix | Out-File (Join-Path $ArtDir "${prefix}_session_matrix.txt") -Encoding utf8
