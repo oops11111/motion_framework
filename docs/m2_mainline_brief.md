@@ -431,3 +431,8 @@
   - 实现：`m0rive` 设备丢失检测与自动恢复（SetRenderingDevice）、`M3LostProbe.cs`、`m3/run_m3_lost.ps1`（强制注入间隔与次数上限）、`m3/mainpage_m3lost_hook.patch`
   - K7：钉住版本的 Rive D3D11 后端在设备丢失时可能崩溃（`onMap` 不检查 Map 返回值，`VERIFY_OK` 直接 abort）；建议本票不改 Rive，崩溃判 FAIL 并另开补丁票
   - K7 裁决后 LOCK；仍不授权采数
+
+- **2026-10-29 12:31:48 AWST — M3-RIVE-LOST LOCKED（K1–K7 全部按建议）**
+  - LOCKED：`docs/m3_rive_lost_gate_LOCKED.md`，GATE_BODY_SHA256=`753c0a6c82f06c81cf741eecba278b926127771befa2a51b515a925a7873f27d`（已复算 MATCH）；代码 = `claude/m3-rive-lost` `23e08de`
+  - 派工单草稿：`docs/workbuddy_m3_rive_lost_dispatch.md`（第 1–3 步构建和模拟冒烟可先做；第 4 步真实注入等 approved）
+  - **未 APPROVED，不授权采数**
