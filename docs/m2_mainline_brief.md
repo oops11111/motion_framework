@@ -439,3 +439,7 @@
 
 - **2026-10-29 12:48:46 AWST — M3-RIVE-LOST APPROVED（pidan）**
   - approved：`docs/m3_rive_lost_approved.md`；gate `753c0a6c…f27d` 不变；采数=是（3 会话 × 2 次 `dxcap -forcetdr`，先模拟冒烟）；派工单 `docs/workbuddy_m3_rive_lost_dispatch.md`；结果进 `m3/results_lost/`
+
+- **2026-10-29 13:46:44 AWST — PR #6 合并（pidan 同意）：M3-RIVE-DPI 代码进 main**
+  - main `c2a1c7f`；不含 csproj 本机补丁；composition.h 未改
+  - `claude/m3-rive-lost` 基于已合并的 DPI 分支，之后的 LOST PR 只含恢复代码
