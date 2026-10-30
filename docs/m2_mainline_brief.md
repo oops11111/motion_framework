@@ -503,3 +503,10 @@
 
 - **2026-10-30 11:47:20 AWST — M3-RIVE-LOST-RECOVER APPROVED（pidan）**
   - approved：`docs/m3_rive_lost_recover_approved.md`；gate `16202071…84ce` 不变；采数=是（重建 DLL；模拟冒烟 → 自检 → 3 会话 × 2 次驱动重启）；派工单 `docs/workbuddy_m3_rive_lost_recover_dispatch.md`；结果进 `m3/results_lost_recover/`
+
+- **2026-10-30 — M3-RIVE-LOST-RECOVER 真机结果：Claude 复核 → 判据全部满足（RIVE-LOST-PASS，待协调结题和采用决断）**
+  - 数据 `m3/results_lost_recover/`（`68ce59d`）；gate `16202071…84ce` 复算 MATCH；approved 在先；composition.h PRE=POST
+  - 3 会话 × 2 次驱动重启：6/6 检测、6/6 恢复（2.06–2.32 s ≤ 5 s），0 abort；恢复后段 600–601 帧、0 失败、CPU ≤ 0.096·T、GPU 0.013·T；内存 −23～−25 MB，旧设备引用全为 0
+  - r2 abort 的原因已证实：驱动重启初期没有硬件适配器（DXGI_ERROR_NOT_FOUND），r2 在不可用设备上建了 Rive 对象
+  - **新发现**：每次驱动重启后应用自身的 XAML 界面全部消失且不再重画（Rive 视觉正常）；疑似 WinUI 3 问题，未证实；建议下一票做无 Rive 的对照
+  - 复核：`docs/m3_rive_lost_recover_result_claude_review.md`
