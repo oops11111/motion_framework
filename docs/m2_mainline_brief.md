@@ -560,3 +560,9 @@
   - Q2：后续诊断 DRAFT `docs/m3_xaml_rebuild_gate_DRAFT.md`（分支 `claude/m3-xaml-rebuild`）：重启前已开的窗口、重启后新建的窗口能否画文字；打包部署是否一样；R1–R4 待裁决；不授权采数
   - Q3：有最小复现后，由 pidan 决定是否向 microsoft-ui-xaml 报告
   - Q4：FOLLOW 与此无关，可并行；P1–P6 仍待裁决
+
+- **2026-10-30 17:35:36 AWST — M3-XAML-REBUILD LOCKED（R1–R4 按建议；K93N3P8 有管理员权限，纳入）**
+  - LOCKED：`docs/m3_xaml_rebuild_gate_LOCKED.md`，GATE_BODY_SHA256=`3ea74c371ae983cebe480e1b4dea99e61aec92cfbe9646fb87b91b7a1d456fdc`（复算 MATCH）；分支 `claude/m3-xaml-rebuild`，代码 `12c720d`
+  - A：IJI1KJG unpackaged 3 会话；B：IJI1KJG 打包 1 会话（启动不了记 BLOCKED_PACKAGED）；C：K93N3P8 1 会话
+  - 派工单 `docs/workbuddy_m3_xaml_rebuild_dispatch.md`；**未 APPROVED，不授权采数**
+  - P1–P6（FOLLOW）已按建议裁决，实现在 `claude/m3-follow`
