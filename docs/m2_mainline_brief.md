@@ -536,3 +536,6 @@
 
 - **2026-10-30 13:42:56 AWST — M3-XAML-LOST APPROVED（pidan）**
   - approved：`docs/m3_xaml_lost_approved.md`；gate `69a52e2d…1f55` 不变；采数=是（走流程 → 自检 → 3 普通 + 1 带 Rive，各重启驱动 1 次）；派工单 `docs/workbuddy_m3_xaml_lost_dispatch.md`；结果进 `m3/results_xaml_lost/`（分支 `claude/m3-xaml-lost`）
+
+- **2026-10-30 — M3-RIVE-FOLLOW DRAFT（plan §7 第 3 张）**
+  - `docs/m3_rive_follow_gate_DRAFT.md`（分支 `claude/m3-follow`，从 `claude/m3-xaml-lost` 拉出）：四条跟随路径（表面内 UI 线程转交 / 表面内渲染线程读取 / 拆出 visual 表达式驱动 / 拆出 visual UI 线程写入）的指针延迟和拆分接缝；P1–P6 待裁决；真机排在 XAML-LOST 之后（N1）；不授权采数
