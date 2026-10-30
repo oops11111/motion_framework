@@ -495,3 +495,8 @@
   - 复核：`docs/m3_rive_lost_r2_result_claude_review.md`。同意 FAIL、未采用；注入已生效（自检 OK，3/3 检测到丢失）；abort 发生在恢复过程中（检测后不再画帧），Rive 的 `VERIFY_OK` 全在建资源路径上，最可能是驱动重启期间就在新设备上建 Rive 对象
   - 更正：本次对应 r2 LOCKED `dc0770c1…9d10` 且有 approved；权威结题引用的“PROBE 闸门 7afbcd98”不在仓库
   - RECOVER DRAFT：`docs/m3_rive_lost_recover_gate_DRAFT.md`；M1–M5 待裁决（诊断、恢复前确认新设备可用、本票暂不改 Rive）；不授权采数
+
+- **2026-10-30 11:31:47 AWST — M3-RIVE-LOST-RECOVER LOCKED（M1–M5 按建议）**
+  - LOCKED：`docs/m3_rive_lost_recover_gate_LOCKED.md`，GATE_BODY_SHA256=`16202071fd08d091d0a0d825eda2297297ae19227d72a6cf981d4ed8b25484ce`（复算 MATCH）；代码 `90c4180`
+  - 恢复前先确认新设备可用（硬件适配器、检查过返回值的小资源、稳定 500 ms）；abort 时记录恢复阶段并保存 stderr；本票不改 Rive
+  - r2 结题已附更正（M5）；派工单 `docs/workbuddy_m3_rive_lost_recover_dispatch.md`（需重建 DLL）；**未 APPROVED，不授权采数**
