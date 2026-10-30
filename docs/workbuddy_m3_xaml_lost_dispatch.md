@@ -1,7 +1,7 @@
 # 派题 · M3-XAML-LOST（DESKTOP-IJI1KJG，诊断票）
 
 闸门：`docs/m3_xaml_lost_gate_LOCKED.md`，GATE_BODY_SHA256=`69a52e2de66153348bff5197dbb037dd2650c26055b834173abde6ae6a1e1f55`，LOCKED_AT=2026-10-30 13:36:05 AWST。N1–N5 已按建议裁决。
-代码分支：**`claude/m3-xaml-lost`**（新分支）。**尚未 APPROVED：第 1–3 步可以先做；第 4 步必须等 `docs/m3_xaml_lost_approved.md` 落盘后才能执行。**
+代码分支：**`claude/m3-xaml-lost`**（新分支）。**已 APPROVED（`docs/m3_xaml_lost_approved.md`，pidan @ 2026-10-30 13:42:56 AWST）：第 1–5 步都可以执行；第 3 步走流程通过后再做第 4 步。**
 `<ROOT>` 沿用 `C:\Users\Lh\mf_m0b`；数据目录用新的 `<ROOT>\artifacts_m3xaml`。
 
 ## 要做什么
@@ -30,7 +30,7 @@ powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_xaml_lost.ps1 -De
 ```
 期望两个会话都是 `verdict=RECORDED`，每个会话 14 张截图（7 个观测点 × 2）。数据不提交。失败就先停下回报。
 
-## 4. 采数（**必须等 approved 落盘**）
+## 4. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_xaml_lost.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3xaml
 ```

@@ -533,3 +533,6 @@
   - LOCKED：`docs/m3_xaml_lost_gate_LOCKED.md`，GATE_BODY_SHA256=`69a52e2de66153348bff5197dbb037dd2650c26055b834173abde6ae6a1e1f55`（复算 MATCH）；分支 `claude/m3-xaml-lost`，代码 `4c04450`
   - 普通窗口 3 会话 + 带 Rive 1 会话，各重启驱动 1 次，加自检共 5 次；观测 +5/+15/+30 s 和三种恢复操作
   - RECOVER 结题已附更正（N5）；派工单 `docs/workbuddy_m3_xaml_lost_dispatch.md`；**未 APPROVED，不授权采数**
+
+- **2026-10-30 13:42:56 AWST — M3-XAML-LOST APPROVED（pidan）**
+  - approved：`docs/m3_xaml_lost_approved.md`；gate `69a52e2d…1f55` 不变；采数=是（走流程 → 自检 → 3 普通 + 1 带 Rive，各重启驱动 1 次）；派工单 `docs/workbuddy_m3_xaml_lost_dispatch.md`；结果进 `m3/results_xaml_lost/`（分支 `claude/m3-xaml-lost`）
