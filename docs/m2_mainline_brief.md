@@ -500,3 +500,6 @@
   - LOCKED：`docs/m3_rive_lost_recover_gate_LOCKED.md`，GATE_BODY_SHA256=`16202071fd08d091d0a0d825eda2297297ae19227d72a6cf981d4ed8b25484ce`（复算 MATCH）；代码 `90c4180`
   - 恢复前先确认新设备可用（硬件适配器、检查过返回值的小资源、稳定 500 ms）；abort 时记录恢复阶段并保存 stderr；本票不改 Rive
   - r2 结题已附更正（M5）；派工单 `docs/workbuddy_m3_rive_lost_recover_dispatch.md`（需重建 DLL）；**未 APPROVED，不授权采数**
+
+- **2026-10-30 11:47:20 AWST — M3-RIVE-LOST-RECOVER APPROVED（pidan）**
+  - approved：`docs/m3_rive_lost_recover_approved.md`；gate `16202071…84ce` 不变；采数=是（重建 DLL；模拟冒烟 → 自检 → 3 会话 × 2 次驱动重启）；派工单 `docs/workbuddy_m3_rive_lost_recover_dispatch.md`；结果进 `m3/results_lost_recover/`
