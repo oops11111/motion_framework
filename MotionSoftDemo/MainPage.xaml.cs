@@ -135,7 +135,7 @@ public sealed partial class MainPage : Page
         why = "none"; return false;
     }
 
-    private bool _lifecycle, _shutdownDone, _inject, _align, _maptest, _zetaProbe, _s3Probe, _s4Probe, _s5Probe, _k5Probe, _k1Probe, _k2Probe, _k4Probe, _k3Probe, _zetaTrajProbe, _rateFoldProbe, _interruptSeedProbe, _periodMinProbe, _ivNullProbe, _k3RestProbe, _startingValueProbe, _harnessNoiseProbe, _pointerPsProbe, _r2PostProbe, _r2P1Probe, _r2P4Probe, _r2P2Probe, _r2P3Probe, _r2P6Probe, _r2P7Probe, _s1v2Probe, _r2P8Probe, _r2P9Probe, _r2P10Probe, _r2P11Probe, _r3P12Probe, _r3E3Probe, _r350Probe, _r350Full, _m201NoiseProbe, _m2H5SeedProbe, _m202Probe, _m2DeltaVProbe, _m2DeltaVPrimeProbe, _m2WgcSeedAbsProbe, _m2WgcSeedCalibProbe, _m2WgcSeedPathBPrimeProbe, _m2WgcSeedPathAPrimeProbe, _m2H5DenomVerifyProbe, _m0Probe, _m3DpiProbe, _m3LostProbe, _m3LostSim, _m3XamlLostProbe, _m3XamlWithRive;
+    private bool _lifecycle, _shutdownDone, _inject, _align, _maptest, _zetaProbe, _s3Probe, _s4Probe, _s5Probe, _k5Probe, _k1Probe, _k2Probe, _k4Probe, _k3Probe, _zetaTrajProbe, _rateFoldProbe, _interruptSeedProbe, _periodMinProbe, _ivNullProbe, _k3RestProbe, _startingValueProbe, _harnessNoiseProbe, _pointerPsProbe, _r2PostProbe, _r2P1Probe, _r2P4Probe, _r2P2Probe, _r2P3Probe, _r2P6Probe, _r2P7Probe, _s1v2Probe, _r2P8Probe, _r2P9Probe, _r2P10Probe, _r2P11Probe, _r3P12Probe, _r3E3Probe, _r350Probe, _r350Full, _m201NoiseProbe, _m2H5SeedProbe, _m202Probe, _m2DeltaVProbe, _m2DeltaVPrimeProbe, _m2WgcSeedAbsProbe, _m2WgcSeedCalibProbe, _m2WgcSeedPathBPrimeProbe, _m2WgcSeedPathAPrimeProbe, _m2H5DenomVerifyProbe, _m0Probe, _m3DpiProbe, _m3LostProbe, _m3LostSim, _m3XamlLostProbe, _m3XamlWithRive, _m3XamlRebuild;
     private int _injectFrameLogs;
     private string _dwmFlushVerdict = "not-run";
     private double _dwmFlushTimerFrac, _dwmFlushVsyncFrac, _dwmFlushP95;
@@ -197,7 +197,8 @@ public sealed partial class MainPage : Page
         _m3DpiProbe = args0.Any(a => a.Equals("--m3-dpi-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_DPI_PROBE") == "1";
         _m3LostSim = args0.Any(a => a.Equals("--m3-lost-sim", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_LOST_SIM") == "1";
         _m3XamlWithRive = args0.Any(a => a.Equals("--m3-xaml-with-rive", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_WITH_RIVE") == "1";
-        _m3XamlLostProbe = _m3XamlWithRive || args0.Any(a => a.Equals("--m3-xaml-lost-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_LOST_PROBE") == "1";
+        _m3XamlRebuild = args0.Any(a => a.Equals("--m3-xaml-rebuild", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_REBUILD") == "1";
+        _m3XamlLostProbe = _m3XamlWithRive || _m3XamlRebuild || args0.Any(a => a.Equals("--m3-xaml-lost-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_LOST_PROBE") == "1";
         _m3LostProbe = _m3LostSim || args0.Any(a => a.Equals("--m3-lost-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_LOST_PROBE") == "1";
         _sw.Start();
         OpenLog();
@@ -363,9 +364,9 @@ public sealed partial class MainPage : Page
             }
             else if (_m3XamlLostProbe)
             {
-                Log($"M3-XAML-LOST probe (--m3-xaml-lost-probe / MF_M3_XAML_LOST_PROBE; with_rive={_m3XamlWithRive}); starts in 800 ms; the runner restarts the display driver when asked");
+                Log($"M3-XAML-LOST probe (--m3-xaml-lost-probe / MF_M3_XAML_LOST_PROBE; with_rive={_m3XamlWithRive}; rebuild={_m3XamlRebuild}); starts in 800 ms; the runner restarts the display driver when asked");
                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
-                t.Tick += async (_, __) => await RunM3XamlLostProbe(_m3XamlWithRive);
+                t.Tick += async (_, __) => await RunM3XamlLostProbe(_m3XamlWithRive, _m3XamlRebuild);
                 t.Start();
             }
             else if (_m3LostProbe)

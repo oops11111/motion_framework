@@ -6,9 +6,13 @@
 // by 1 px, minimise and restore, reset the page content), with screenshots after each.
 // Plain sessions load no Rive and create no composition graphics device; with
 // --m3-xaml-with-rive (N3 comparison) the Rive surface of M3-RIVE-LOST-RECOVER runs too.
+// --m3-xaml-rebuild (docs/m3_xaml_rebuild_gate_LOCKED.md) instead opens a second window
+// before the restart (W_pre) and a new one after it (W_post), to tell a per-window loss
+// from a process-wide one; screenshot requests then name the window handle.
 // composition.h is not used or touched.
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Globalization;
 using System.IO;
 using System.Numerics;
@@ -23,6 +27,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Hosting;
 using Microsoft.UI.Xaml.Media;
+using Windows.Graphics;
 using WinRT;
 
 namespace MotionSoftDemo;
@@ -33,6 +38,7 @@ internal static class M3XamlNative
     [DllImport("user32.dll")] internal static extern bool GetWindowRect(IntPtr hwnd, out RECT r);
     [DllImport("user32.dll")] internal static extern bool SetWindowPos(IntPtr hwnd, IntPtr after, int x, int y, int cx, int cy, uint flags);
     internal const uint SWP_NOMOVE = 0x0002, SWP_NOZORDER = 0x0004, SWP_NOACTIVATE = 0x0010;
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode)] internal static extern int GetCurrentPackageFullName(ref uint length, System.Text.StringBuilder? name);
 }
 
 public sealed partial class MainPage
@@ -40,16 +46,24 @@ public sealed partial class MainPage
     const int M3XamlTickMs = 250;
     const int M3XamlWaitRestartMs = 300000;  // runner spacing and cooldown fit in 5 min
 
-    private async Task RunM3XamlLostProbe(bool withRive)
+    // A packaged (MSIX) launch may not see the runner's environment, so these can come as
+    // arguments too (--m3-artdir=<dir>, --m3-session=<n>; XAML-REBUILD R2).
+    private static string? M3Arg(string name) =>
+        Environment.GetCommandLineArgs().FirstOrDefault(a => a.StartsWith(name + "=", StringComparison.OrdinalIgnoreCase))?.Substring(name.Length + 1);
+
+    // APPMODEL_ERROR_NO_PACKAGE (15700) when the process has no package identity.
+    private static bool IsPackaged() { uint n = 0; return M3XamlNative.GetCurrentPackageFullName(ref n, null) != 15700; }
+
+    private async Task RunM3XamlLostProbe(bool withRive, bool rebuild = false)
     {
         if (_suiteRunning || _comp is null || XamlRoot is null) return;
         _suiteRunning = true;
         try { MeasureButton.IsEnabled = false; } catch { }
 
-        string artDir = Environment.GetEnvironmentVariable("MF_M0_ARTDIR") ?? @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = M3Arg("--m3-artdir") ?? Environment.GetEnvironmentVariable("MF_M0_ARTDIR") ?? @"C:\Users\admin\motion_framework\artifacts";
         Directory.CreateDirectory(artDir);
-        string sess = Environment.GetEnvironmentVariable("MF_M3_SESSION") ?? "1";
-        string pre = Path.Combine(artDir, $"m3xaml_s{sess}");
+        string sess = M3Arg("--m3-session") ?? Environment.GetEnvironmentVariable("MF_M3_SESSION") ?? "1";
+        string pre = Path.Combine(artDir, rebuild ? $"m3xrb_s{sess}" : $"m3xaml_s{sess}");
         var raw = new StreamWriter(pre + "_raw.txt", false, new UTF8Encoding(false));
         // Shared for writing: with Rive, the DLL's abort handler appends to this file.
         var sum = new StreamWriter(new FileStream(pre + "_summary.txt", FileMode.Create, FileAccess.Write, FileShare.ReadWrite),
@@ -65,6 +79,7 @@ public sealed partial class MainPage
         SpriteVisual? sprite = null;
         CompositionGraphicsDevice? gd = null;
         bool riveCreated = false;
+        var testWindows = new System.Collections.Generic.List<Window>();
         long ticks = 0, renderingEvents = 0;
         var sw = Stopwatch.StartNew();
         var renderTimes = new System.Collections.Generic.Queue<double>();
@@ -81,6 +96,9 @@ public sealed partial class MainPage
             ShowWindow(hwnd, 9); SetForegroundWindow(hwnd);
             Kv("probe", "M3-XAML v1");
             Kv("with_rive", withRive ? 1 : 0);
+            Kv("rebuild", rebuild ? 1 : 0);
+            Kv("packaged", IsPackaged() ? 1 : 0);
+            Kv("art_dir", artDir);
             Kv("session", sess);
             Kv("pid", Environment.ProcessId);
             Kv("host", Environment.MachineName);
@@ -133,6 +151,9 @@ public sealed partial class MainPage
             }
 
             // Two screenshots 1 s apart per observation point; the counter must differ if XAML is alive.
+            // Rebuild mode: every window open at that point (main, W_pre, W_post) is captured,
+            // each by handle; the request is "<png path>|<hwnd>".
+            var extra = new System.Collections.Generic.List<(string tag, IntPtr hwnd)>();
             async Task Obs(string name)
             {
                 M3XamlNative.GetWindowRect(hwnd, out var r);
@@ -140,16 +161,50 @@ public sealed partial class MainPage
                 Kv($"obs.{name}.ticks", ticks);
                 Kv($"obs.{name}.rendering_events_1s", renderTimes.Count);
                 Kv($"obs.{name}.window", $"{r.Right - r.Left}x{r.Bottom - r.Top}");
+                var wins = new System.Collections.Generic.List<(string tag, IntPtr hwnd)> { ("main", hwnd) };
+                wins.AddRange(extra);
                 foreach (var part in new[] { "a", "b" })
                 {
-                    string shot = $"{pre}_{name}_{part}.png";
-                    File.WriteAllText($"{pre}_{name}_{part}.shotreq", shot);
-                    for (int i = 0; i < 50 && !File.Exists(shot); i++) await Task.Delay(100);
-                    Kv($"obs.{name}.{part}", File.Exists(shot) ? Path.GetFileName(shot) : "MISSING");
+                    foreach (var (tag, h) in wins)
+                    {
+                        string stem = rebuild ? $"{pre}_{name}_{tag}_{part}" : $"{pre}_{name}_{part}";
+                        string shot = stem + ".png";
+                        File.WriteAllText(stem + ".shotreq", rebuild ? $"{shot}|{h.ToInt64()}" : shot);
+                        for (int i = 0; i < 50 && !File.Exists(shot); i++) await Task.Delay(100);
+                        Kv(rebuild ? $"obs.{name}.{tag}.{part}" : $"obs.{name}.{part}", File.Exists(shot) ? Path.GetFileName(shot) : "MISSING");
+                    }
                     if (part == "a") await Task.Delay(1000);
                 }
             }
 
+            // A test window with the content that disappeared in XAML-LOST: text, a button, a
+            // rounded block and a counter driven by the same ticker.
+            IntPtr MakeTestWindow(string tag, int x, int y)
+            {
+                var label = new TextBlock { FontSize = 36, Text = tag };
+                var count = new TextBlock { FontSize = 36, Text = "0", Margin = new Thickness(24, 0, 0, 0) };
+                var row = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(24) };
+                row.Children.Add(label);
+                row.Children.Add(count);
+                row.Children.Add(new Button { Content = "Button", Margin = new Thickness(24, 0, 0, 0) });
+                row.Children.Add(new Border { Width = 120, Height = 80, CornerRadius = new CornerRadius(16),
+                                              Background = new SolidColorBrush(Colors.DodgerBlue), Margin = new Thickness(24, 0, 0, 0) });
+                var win = new Window { Title = tag, Content = new Grid { Children = { row } } };
+                ticker!.Tick += (_, __) => count.Text = ticks.ToString(CultureInfo.InvariantCulture);
+                win.AppWindow.MoveAndResize(new RectInt32(x, y, 620, 240));
+                win.Activate();
+                testWindows.Add(win);
+                var h = WinRT.Interop.WindowNative.GetWindowHandle(win);
+                Kv($"window.{tag}.hwnd", h.ToInt64());
+                return h;
+            }
+
+            if (rebuild)
+            {
+                // Keep the windows apart: screenshots copy screen pixels.
+                M3XamlNative.SetWindowPos(hwnd, IntPtr.Zero, 0, 0, 0, 0, 0x0001 | M3XamlNative.SWP_NOZORDER);  // SWP_NOSIZE
+                extra.Add(("wpre", MakeTestWindow("W_pre", 0, 720)));
+            }
             await Task.Delay(2000);
             await Obs("base");
 
@@ -160,6 +215,21 @@ public sealed partial class MainPage
             if (!File.Exists(done)) { Kv("inject1.done", 0); Kv("verdict", File.Exists(failed) ? "STOPPED_INJECT_FAILED" : "INVALID_NO_RESTART"); return; }
             Kv("inject1.done", 1);
             var since = Stopwatch.StartNew();  // adapter back to OK (the runner writes .done then)
+            if (rebuild)
+            {
+                while (since.ElapsedMilliseconds < 5000) await Task.Delay(50);
+                await Obs("t05");
+                extra.Add(("wpost", MakeTestWindow("W_post", 640, 720)));
+                Kv("window.wpost.created_ms_after_restart", since.ElapsedMilliseconds);
+                foreach (var (name, atMs) in new[] { ("t10", 12000), ("t30", 30000) })
+                {
+                    while (since.ElapsedMilliseconds < atMs) await Task.Delay(50);
+                    await Obs(name);
+                }
+                Kv("rendering_events_total", renderingEvents);
+                Kv("verdict", "RECORDED");
+                return;
+            }
             foreach (var (name, atMs) in new[] { ("t05", 5000), ("t15", 15000), ("t30", 30000) })
             {
                 while (since.ElapsedMilliseconds < atMs) await Task.Delay(50);
@@ -212,6 +282,7 @@ public sealed partial class MainPage
             if (!verdictWritten) Kv("verdict", "INVALID_INCOMPLETE");
             CompositionTarget.Rendering -= OnRendering;
             ticker?.Stop();
+            foreach (var w in testWindows) { try { w.Close(); } catch { } }
             if (riveCreated)
             {
                 M0Native.m0r_stop();
