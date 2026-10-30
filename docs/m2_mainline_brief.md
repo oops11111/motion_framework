@@ -554,3 +554,9 @@
   - 普通窗口（无 Rive）3/3 与带 Rive 1/1 表现一致：驱动重启后所有文字、圆角元素、开关、按钮、标题栏图标和标题消失，等待、改大小、最小化还原、重设内容都不恢复；XAML 仍在出帧（Rendering 75–76/s，纯色块持续变色）→ 平台问题，不是我们的代码
   - 闸门 `69a52e2d…1f55` 复算 MATCH、approved 在先（协调结题“无闸门、无 approved”是旧副本所致）
   - 复核：`docs/m3_xaml_lost_result_claude_review.md`；下一步待 pidan 决定（Q1–Q4）
+
+- **2026-10-30 — Q1–Q4 按建议（pidan）**
+  - Q1：XAML-LOST 结题已附更正（标签 `XAML-LOST`，平台问题；闸门 LOCKED 且 APPROVED）
+  - Q2：后续诊断 DRAFT `docs/m3_xaml_rebuild_gate_DRAFT.md`（分支 `claude/m3-xaml-rebuild`）：重启前已开的窗口、重启后新建的窗口能否画文字；打包部署是否一样；R1–R4 待裁决；不授权采数
+  - Q3：有最小复现后，由 pidan 决定是否向 microsoft-ui-xaml 报告
+  - Q4：FOLLOW 与此无关，可并行；P1–P6 仍待裁决
