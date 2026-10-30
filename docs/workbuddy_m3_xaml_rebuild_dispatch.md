@@ -30,7 +30,7 @@ git -C <ROOT>\repo log -1 --format=%H
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_xaml_lost.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3xrb_dry -Rebuild -PlainSessions 1 -RiveSessions 0 -DryRun
 ```
-（打包方式再加 `-LaunchMode Package -DemoProj <工程目录>`。）期望 `verdict=RECORDED`，截图 16 张（base 2 窗口×2、t05 2×2、t10 3×2、t30 3×2… 共 20 张左右），文件前缀 `m3xrbdry_`。数据不提交。
+（打包方式再加 `-LaunchMode Package -DemoProj <工程目录>`。）期望 `verdict=RECORDED`，截图 20 张（base、t05 各 2 个窗口 × 2 张；t10、t30 各 3 个窗口 × 2 张），文件前缀 `m3xrbdry_`。数据不提交。
 
 ## 4. 采数（**必须等 approved 落盘**）
 - **A：IJI1KJG，unpackaged（R1）**
