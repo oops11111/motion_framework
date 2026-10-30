@@ -93,6 +93,10 @@ struct Probe {
     ComPtr<ID3D11RenderTargetView> markerRtv;
     D3D11_RECT marker{};  // guarded by statsMu; right == left means off
     float markerColor[4] = {0, 0, 0, 1};
+    // M3-RIVE-FOLLOW path B (statsMu): the render thread reads the cursor itself.
+    HWND followHwnd = nullptr;
+    POINT followOrigin{};
+    LONG followW = 0, followH = 0;
     ComPtr<ICompositionDrawingSurfaceInteropM0> surface;
     HRESULT interopQiHr = E_PENDING;
     ComPtr<ICompositionGraphicsDeviceInteropM0> graphicsDevice;
@@ -264,6 +268,20 @@ void DrainQueries(Probe& p, std::vector<double>& out) {
 
 // Advances the scene by dt and draws it into the offscreen texture.
 void RenderRive(Probe& p, float dt) {
+    {
+        // FOLLOW path B: latch the cursor as late as possible, right before this frame.
+        std::lock_guard<std::mutex> lk(p.statsMu);
+        if (p.followHwnd) {
+            POINT c{};
+            if (GetCursorPos(&c) && ScreenToClient(p.followHwnd, &c)) {
+                const LONG cx = c.x - p.followOrigin.x, cy = c.y - p.followOrigin.y;
+                p.marker = {cx - p.followW / 2, cy - p.followH / 2, cx - p.followW / 2 + p.followW, cy - p.followH / 2 + p.followH};
+            }
+        }
+        // P1: hand the follower's centre to Rive as a pointer move (surface pixels).
+        if (p.scene && p.marker.right > p.marker.left)
+            p.scene->pointerMove(rive::Vec2D((p.marker.left + p.marker.right) * 0.5f, (p.marker.top + p.marker.bottom) * 0.5f));
+    }
     if (p.scene) p.scene->advanceAndApply(dt);
     rive::gpu::RenderContext::FrameDescriptor fd;
     fd.renderTargetWidth = p.w;
@@ -762,6 +780,22 @@ M0R_API int32_t m0r_set_marker(uint32_t x, uint32_t y, uint32_t w, uint32_t h, u
     g->markerColor[0] = red / 255.f;
     g->markerColor[1] = green / 255.f;
     g->markerColor[2] = blue / 255.f;
+    return S_OK;
+}
+
+M0R_API int32_t m0r_set_follow_cursor(void* hwnd, int32_t origin_x, int32_t origin_y, uint32_t w, uint32_t h,
+                                      uint8_t red, uint8_t green, uint8_t blue) {
+    if (!g) return E_NOT_VALID_STATE;
+    if (!g->ctx1 || !g->markerRtv) return E_NOTIMPL;
+    std::lock_guard<std::mutex> lk(g->statsMu);
+    g->followHwnd = static_cast<HWND>(hwnd);
+    g->followOrigin = {origin_x, origin_y};
+    g->followW = static_cast<LONG>(w);
+    g->followH = static_cast<LONG>(h);
+    g->markerColor[0] = red / 255.f;
+    g->markerColor[1] = green / 255.f;
+    g->markerColor[2] = blue / 255.f;
+    if (!hwnd) g->marker = {};
     return S_OK;
 }
 

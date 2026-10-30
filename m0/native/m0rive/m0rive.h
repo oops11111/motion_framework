@@ -51,6 +51,15 @@ M0R_API int32_t m0r_start(void);
 // follow content that lives inside the Rive surface. w == 0 turns the marker off.
 M0R_API int32_t m0r_set_marker(uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint8_t red, uint8_t green, uint8_t blue);
 
+// M3-RIVE-FOLLOW path B: the render thread itself reads the cursor (GetCursorPos ->
+// ScreenToClient(hwnd)) at the start of every frame and centres a w x h marker on it.
+// (origin_x, origin_y) is the surface's top-left in client pixels. Replaces any marker
+// set by m0r_set_marker; hwnd == NULL turns it off. While a marker follows the pointer
+// (this mode or m0r_set_marker), its centre is also passed to the Rive scene as a
+// pointer move, so Rive's own pointer handling is part of the frame cost (P1).
+M0R_API int32_t m0r_set_follow_cursor(void* hwnd, int32_t origin_x, int32_t origin_y, uint32_t w, uint32_t h,
+                                      uint8_t red, uint8_t green, uint8_t blue);
+
 // M3-RIVE-DPI (surface path only): resize the drawing surface and the offscreen
 // render target to width x height pixels. While rendering, the render thread applies
 // it at the start of its next frame; m0r_get_resize then reports, per resize, the
