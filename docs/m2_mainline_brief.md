@@ -528,3 +528,8 @@
 
 - **2026-10-30 — M3-XAML-LOST DRAFT（诊断票）**
   - `docs/m3_xaml_lost_gate_DRAFT.md`：弄清驱动重启后 XAML 界面不恢复是 WinUI 3 本身的问题还是我们的代码；普通窗口 vs 带 Rive 窗口同日对照，并尝试 4 种恢复操作；N1–N5 待裁决（建议先于 FOLLOW 真机）；不授权采数
+
+- **2026-10-30 13:36:05 AWST — M3-XAML-LOST LOCKED（N1–N5 按建议）**
+  - LOCKED：`docs/m3_xaml_lost_gate_LOCKED.md`，GATE_BODY_SHA256=`69a52e2de66153348bff5197dbb037dd2650c26055b834173abde6ae6a1e1f55`（复算 MATCH）；分支 `claude/m3-xaml-lost`，代码 `4c04450`
+  - 普通窗口 3 会话 + 带 Rive 1 会话，各重启驱动 1 次，加自检共 5 次；观测 +5/+15/+30 s 和三种恢复操作
+  - RECOVER 结题已附更正（N5）；派工单 `docs/workbuddy_m3_xaml_lost_dispatch.md`；**未 APPROVED，不授权采数**
