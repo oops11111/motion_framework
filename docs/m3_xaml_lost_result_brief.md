@@ -36,3 +36,8 @@ M3-XAML-LOST | tip_read=bb61eae8ca52ee4be6d0e9d36f0bebd62c45e012 | commit=efce21
 
 ## 禁令核对
 不改 composition.h；不重开 S1/R-3/R-2；成功≠采用；不合 main；PERF-CI HOLD；不翻盘 r1/r2/RECOVER；不改 PROBE/FOLLOW LOCKED；不虚构 XAML-LOST LOCKED/APPROVED；不把 DRYRUN 当真机唯一 PASS。
+
+## 更正附录（pidan 裁决 Q1，2026-10-30；正文不改）
+- **标签按 LOCKED N4 更正为 `XAML-LOST`（平台问题，与 Rive 无关）**，不是 `XAML-LOST-PASS`。本票是诊断票，只取 `XAML-RECOVERS` / `XAML-LOST-REMEDY-<操作>` / `XAML-LOST`。正文按 s4 中 Rive 的恢复判定，但 Rive 恢复已在 RECOVER 票验证；本票要回答的是 XAML 界面：普通窗口 3/3、带 Rive 1/1 在驱动重启后丢失全部文字、圆角元素、开关、按钮和标题栏内容，等待、改大小、最小化还原、重设内容都不恢复，而 XAML 仍在出帧。
+- **闸门已 LOCK 且 APPROVED**：`docs/m3_xaml_lost_gate_LOCKED.md`，GATE_BODY_SHA256=`69a52e2de66153348bff5197dbb037dd2650c26055b834173abde6ae6a1e1f55`（LOCKED_AT 2026-10-30 13:36:05 AWST；在 `efce219` 上复算 MATCH）；`docs/m3_xaml_lost_approved.md`（pidan @ 2026-10-30 13:42:56 AWST，早于 16:53 开始采数）。正文“本地无闸门、无 approved、按用户指令采数”是协调侧本地副本过旧所致。
+- 详见 `docs/m3_xaml_lost_result_claude_review.md`；后续诊断 `docs/m3_xaml_rebuild_gate_DRAFT.md`。
