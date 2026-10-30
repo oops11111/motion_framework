@@ -569,3 +569,8 @@
   - A：IJI1KJG unpackaged 3 会话；B：IJI1KJG 打包 1 会话（启动不了记 BLOCKED_PACKAGED）；C：K93N3P8 1 会话
   - 派工单 `docs/workbuddy_m3_xaml_rebuild_dispatch.md`；**未 APPROVED，不授权采数**
   - P1–P6（FOLLOW）已按建议裁决，实现在 `claude/m3-follow`
+
+- **2026-10-30 17:40:39 AWST — M3-RIVE-FOLLOW LOCKED（P1–P6 按建议）**
+  - LOCKED：`docs/m3_rive_follow_gate_LOCKED.md`，GATE_BODY_SHA256=`285e39dc9c1100f92ddddc5560a3631b94129a9b56c561c9803c8cbee57eaab3`（复算 MATCH）；分支 `claude/m3-follow`（含 XAML-REBUILD 代码），代码 `b9e6f32`
+  - 四条跟随路径 × 3 会话，每路径 40 次阶跃 + 40 次拖动；需重建 m0rive.dll；`SendInput` 仅限本票
+  - 派工单 `docs/workbuddy_m3_rive_follow_dispatch.md`（建议在 XAML-REBUILD 之后做）；**未 APPROVED，不授权采数**
