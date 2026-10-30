@@ -537,5 +537,35 @@
 - **2026-10-30 13:42:56 AWST — M3-XAML-LOST APPROVED（pidan）**
   - approved：`docs/m3_xaml_lost_approved.md`；gate `69a52e2d…1f55` 不变；采数=是（走流程 → 自检 → 3 普通 + 1 带 Rive，各重启驱动 1 次）；派工单 `docs/workbuddy_m3_xaml_lost_dispatch.md`；结果进 `m3/results_xaml_lost/`（分支 `claude/m3-xaml-lost`）
 
+- **2026-10-30 — 第四次恢复本 brief（Claude）**：协调提交 `d5d8300` 仍基于旧的本地副本，覆盖了 `bb61eae` 之前的记录。已恢复，协调新增的 XAML-LOST 结题条目原样保留在下面。
+
+- **2026-10-30 17:05:00 Asia/Shanghai — M3-XAML-LOST CLOSED XAML-LOST-PASS（METRICS_PASS 有条件；有条件采用验证结论；不合 main）**
+  - 权威：docs/m3_xaml_lost_result.md；pack：docs/notion_m3_xaml_lost_pack.md；next：docs/notion_m3_xaml_lost_next.md；brief：docs/m3_xaml_lost_result_brief.md
+  - 闸门：**本地无 XAML-LOST LOCKED**（无 DRAFT/LOCKED/APPROVED 可引用）；采数口径=**按用户指令采数**（pidan 2026-10-30 16:43 四步直接下令；无 APPROVED 文件）
+  - tip_read=`bb61eae8ca52ee4be6d0e9d36f0bebd62c45e012`；commit=`efce2195904ad9acf77fafb2ea5c0d8e4d81f556`；tip_after_push=同 commit @ **claude/m3-xaml-lost**（tip 曾误写 claude/m3-rive-lost）
+  - BUILD_OK；dll 复用 RECOVER `d3aef01a0e410c30a147588cbc3dab6be18f0fdf50ba2674d1223e9ca1f0b840`；DRYRUN=PASS；selftest=OK（~1.6s）；push=IJI1KJG direct
+  - s1/s2/s3=RECORDED plain inject_ok=1；s4=RECORDED with_rive=1 inject_ok=1 lost_detected=1 recovered=1 recover_ms=2004.58 rive_abort=none
+  - results=`m3/results_xaml_lost/`（ONELINE 72 files；本根本地无矩阵可读）
+  - composition.h PRE=POST CRLF=`33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97` LF=`a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418` edited=False
+  - 成功≠采用；有条件采用验证结论；**不合 main**；PERF-CI 仍 HOLD；不重开 S1/R-3/R-2；不翻盘 r1/r2/RECOVER
+  - next：**M3-RIVE-FOLLOW**（已 LOCKED hash `0f85a95277dd279e51085a42cd491b55db332ba49077055d045f794fc6b30a13`；APPROVED 空；等 pidan）；**本 next 不授权采数**
+
+- **2026-10-30 — M3-XAML-LOST：Claude 复核 → `XAML-LOST`（不同意协调的 `XAML-LOST-PASS`）**
+  - 普通窗口（无 Rive）3/3 与带 Rive 1/1 表现一致：驱动重启后所有文字、圆角元素、开关、按钮、标题栏图标和标题消失，等待、改大小、最小化还原、重设内容都不恢复；XAML 仍在出帧（Rendering 75–76/s，纯色块持续变色）→ 平台问题，不是我们的代码
+  - 闸门 `69a52e2d…1f55` 复算 MATCH、approved 在先（协调结题“无闸门、无 approved”是旧副本所致）
+  - 复核：`docs/m3_xaml_lost_result_claude_review.md`；下一步待 pidan 决定（Q1–Q4）
+
 - **2026-10-30 — M3-RIVE-FOLLOW DRAFT（plan §7 第 3 张）**
   - `docs/m3_rive_follow_gate_DRAFT.md`（分支 `claude/m3-follow`，从 `claude/m3-xaml-lost` 拉出）：四条跟随路径（表面内 UI 线程转交 / 表面内渲染线程读取 / 拆出 visual 表达式驱动 / 拆出 visual UI 线程写入）的指针延迟和拆分接缝；P1–P6 待裁决；真机排在 XAML-LOST 之后（N1）；不授权采数
+
+- **2026-10-30 — Q1–Q4 按建议（pidan）**
+  - Q1：XAML-LOST 结题已附更正（标签 `XAML-LOST`，平台问题；闸门 LOCKED 且 APPROVED）
+  - Q2：后续诊断 DRAFT `docs/m3_xaml_rebuild_gate_DRAFT.md`（分支 `claude/m3-xaml-rebuild`）：重启前已开的窗口、重启后新建的窗口能否画文字；打包部署是否一样；R1–R4 待裁决；不授权采数
+  - Q3：有最小复现后，由 pidan 决定是否向 microsoft-ui-xaml 报告
+  - Q4：FOLLOW 与此无关，可并行；P1–P6 仍待裁决
+
+- **2026-10-30 17:35:36 AWST — M3-XAML-REBUILD LOCKED（R1–R4 按建议；K93N3P8 有管理员权限，纳入）**
+  - LOCKED：`docs/m3_xaml_rebuild_gate_LOCKED.md`，GATE_BODY_SHA256=`3ea74c371ae983cebe480e1b4dea99e61aec92cfbe9646fb87b91b7a1d456fdc`（复算 MATCH）；分支 `claude/m3-xaml-rebuild`，代码 `12c720d`
+  - A：IJI1KJG unpackaged 3 会话；B：IJI1KJG 打包 1 会话（启动不了记 BLOCKED_PACKAGED）；C：K93N3P8 1 会话
+  - 派工单 `docs/workbuddy_m3_xaml_rebuild_dispatch.md`；**未 APPROVED，不授权采数**
+  - P1–P6（FOLLOW）已按建议裁决，实现在 `claude/m3-follow`

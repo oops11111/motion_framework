@@ -4,6 +4,8 @@
 # <ArtDir>\m0_assets.
 #   powershell -ExecutionPolicy Bypass -File m3\run_m3_xaml_lost.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <dir> [-GpuInstanceId <id>]
 #   ... -DryRun   # walk through the flow without restarting the driver; no admin; never counts
+#   ... -Rebuild -RiveSessions 0   # M3-XAML-REBUILD (docs/m3_xaml_rebuild_gate_LOCKED.md): W_pre / W_post windows
+#   ... -LaunchMode Package -DemoProj <project dir>   # packaged (MSIX) launch via dotnet run, as m0\run_m0.ps1 (R2)
 # Sessions 1..PlainSessions run the plain probe (no Rive); the next RiveSessions run the same
 # probe with the Rive surface (N3). Each session restarts the display driver once
 # (pnputil /restart-device) when the probe asks. Injection rules are those of r2: self-test
@@ -15,6 +17,9 @@ param(
     [int]$PlainSessions = 3,
     [int]$RiveSessions = 1,
     [switch]$DryRun,
+    [switch]$Rebuild,
+    [ValidateSet("Exe", "Package")][string]$LaunchMode = "Exe",
+    [string]$DemoProj = "",
     [string]$GpuInstanceId = "",
     [int]$MinGapSec = 45,
     [int]$CooldownSec = 120,
@@ -24,7 +29,8 @@ param(
 # Continue, not Stop: PowerShell 5.1 turns a native tool's stderr into a terminating
 # error under Stop. Native exit codes are checked explicitly.
 $ErrorActionPreference = "Continue"
-$prefix = if ($DryRun) { "m3xamldry" } else { "m3xaml" }
+$stem = if ($Rebuild) { "m3xrb" } else { "m3xaml" }
+$prefix = if ($DryRun) { "${stem}dry" } else { $stem }
 New-Item -ItemType Directory -Force $ArtDir | Out-Null
 $Log = Join-Path $ArtDir "${prefix}_run.log"
 function Say($m) { $l = "[{0:yyyy-MM-dd HH:mm:ss}] {1}" -f (Get-Date), $m; Write-Host $l; Add-Content $Log $l }
@@ -33,12 +39,15 @@ Add-Type -Namespace M3X -Name Win -MemberDefinition @'
 [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
 public struct RECT { public int Left, Top, Right, Bottom; }
 [System.Runtime.InteropServices.DllImport("user32.dll")] public static extern bool GetWindowRect(System.IntPtr h, out RECT r);
+[System.Runtime.InteropServices.DllImport("user32.dll")] public static extern bool IsWindow(System.IntPtr h);
 '@
 # App window only (same reason as m0\run_m0.ps1: no desktop contents in the repo).
-function Shot($path, $proc) {
+# $hwnd (optional) names the window; otherwise the process's main window (XAML-REBUILD).
+function Shot($path, $proc, $hwnd = [IntPtr]::Zero) {
     $proc.Refresh()
+    $h = if ($hwnd -ne [IntPtr]::Zero) { $hwnd } else { $proc.MainWindowHandle }
     $r = New-Object M3X.Win+RECT
-    if ($proc.MainWindowHandle -eq [IntPtr]::Zero -or -not [M3X.Win]::GetWindowRect($proc.MainWindowHandle, [ref]$r)) { Say "WARN screenshot: no window"; return }
+    if ($h -eq [IntPtr]::Zero -or -not [M3X.Win]::IsWindow($h) -or -not [M3X.Win]::GetWindowRect($h, [ref]$r)) { Say "WARN screenshot: no window"; return }
     $b = New-Object System.Drawing.Rectangle $r.Left, $r.Top, ($r.Right - $r.Left), ($r.Bottom - $r.Top)
     $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
     $g = [System.Drawing.Graphics]::FromImage($bmp)
@@ -118,22 +127,43 @@ for ($s = 1; $s -le $total -and -not $stopAll; $s++) {
         $wait = $CooldownSec - ((Get-Date) - $lastInject).TotalSeconds
         if ($wait -gt 0) { Say ("cooldown {0:N0} s before session $s" -f $wait); Start-Sleep -Seconds ([math]::Ceiling($wait)) }
     }
-    $pre = Join-Path $ArtDir "m3xaml_s${s}"
+    $pre = Join-Path $ArtDir "${stem}_s${s}"
     $sum = "${pre}_summary.txt"
     Remove-Item $sum, "${pre}_stderr.txt", "${pre}_*.shotreq", "${pre}_inject1.*" -ErrorAction SilentlyContinue
     Get-Process -Name MotionSoftDemo -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
     Start-Sleep 2
     $env:MF_M3_SESSION = "$s"; $env:MF_M0_ARTDIR = $ArtDir
-    $probeArg = if ($withRive) { '--m3-xaml-with-rive' } else { '--m3-xaml-lost-probe' }
-    $p = Start-Process -FilePath $DemoExe -ArgumentList @($probeArg) -WorkingDirectory (Split-Path $DemoExe -Parent) -PassThru -WindowStyle Normal
-    Say "session $s pid=$($p.Id) with_rive=$withRive"
+    $probeArg = if ($Rebuild) { '--m3-xaml-rebuild' } elseif ($withRive) { '--m3-xaml-with-rive' } else { '--m3-xaml-lost-probe' }
+    # A packaged launch may not see the environment, so the probe also takes these as arguments.
+    $appArgs = @($probeArg, "--m3-artdir=$ArtDir", "--m3-session=$s")
+    if ($withRive -and $Rebuild) { $appArgs += '--m3-xaml-with-rive' }
+    if ($LaunchMode -eq "Exe") {
+        $p = Start-Process -FilePath $DemoExe -ArgumentList $appArgs -WorkingDirectory (Split-Path $DemoExe -Parent) -PassThru -WindowStyle Normal
+    } else {
+        # Same as m0\run_m0.ps1 -LaunchMode Package: MSIX launch profile through dotnet run.
+        $json = @{ profiles = @{ "MotionSoftDemo (Package)" = @{ commandName = "MsixPackage"; commandLineArgs = ($appArgs -join ' ') } } } | ConvertTo-Json -Depth 4
+        Set-Content (Join-Path $DemoProj "Properties\launchSettings.json") -Value $json -Encoding utf8
+        $dotnetArgs = @('run', '-c', 'Debug', '-p:Platform=x64', '--no-build', '--launch-profile', 'MotionSoftDemo (Package)')
+        $dn = Start-Process -FilePath 'dotnet' -ArgumentList $dotnetArgs -WorkingDirectory $DemoProj -PassThru -WindowStyle Normal
+        Say "session $s dotnetPid=$($dn.Id) (packaged launch)"
+        $p = $null
+        for ($i = 0; $i -lt 90 -and -not $p; $i++) { Start-Sleep 1; $p = Get-Process -Name MotionSoftDemo -ErrorAction SilentlyContinue | Select-Object -First 1 }
+        if (-not $p) {
+            Say "session $s BLOCKED_PACKAGED: no MotionSoftDemo process after 90 s (R2: record and skip)"
+            $matrix += "$s,,$([int]$withRive),BLOCKED_PACKAGED,0,,0"
+            continue
+        }
+    }
+    Say "session $s pid=$($p.Id) with_rive=$withRive rebuild=$Rebuild launch=$LaunchMode"
     $injOk = $false
     $shots = 0
     $deadline = (Get-Date).AddSeconds($SessionTimeoutSec)
     while ((Get-Date) -lt $deadline) {
-        Get-ChildItem $ArtDir -Filter "m3xaml_s${s}_*.shotreq" -ErrorAction SilentlyContinue | ForEach-Object {
-            $target = (Get-Content $_.FullName -Raw).Trim()
-            Shot $target $p
+        Get-ChildItem $ArtDir -Filter "${stem}_s${s}_*.shotreq" -ErrorAction SilentlyContinue | ForEach-Object {
+            $req = (Get-Content $_.FullName -Raw).Trim()
+            $target = $req; $hw = [IntPtr]::Zero
+            if ($req -match '^(.*)\|(\d+)$') { $target = $Matches[1]; $hw = [IntPtr][long]$Matches[2] }
+            Shot $target $p $hw
             $shots++
             Say "session $s screenshot $(Split-Path $target -Leaf)"
             Remove-Item $_.FullName -ErrorAction SilentlyContinue

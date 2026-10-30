@@ -1,0 +1,98 @@
+[2026-10-30 16:53:05] M3-XAML-LOST run: host=DESKTOP-IJI1KJG plain=3 rive=1 dryrun=False exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe
+[2026-10-30 16:53:05] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-10-30 16:53:05] os=Microsoft Windows 11 专业版 build=26300
+[2026-10-30 16:53:05] gpu=AMD Radeon RX 7800 XT driver=32.0.12033.1030 refresh=75Hz mode=1280x1024
+[2026-10-30 16:53:05] composition.h sha256 PRE=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-10-30 16:53:05] registry TdrLevel=default
+[2026-10-30 16:53:05] registry TdrDelay=default
+[2026-10-30 16:53:05] registry TdrLimitCount=default
+[2026-10-30 16:53:05] registry TdrLimitTime=default
+[2026-10-30 16:53:06] display adapter: AMD Radeon RX 7800 XT id=PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002FB&0&00000008 status=OK
+[2026-10-30 16:53:06] gpu instance id=PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002FB&0&00000008 status=OK
+[2026-10-30 16:53:06] self-test: restarting the display driver once with no app running (L2)
+[2026-10-30 16:53:07] self-test pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 16:53:08] self-test adapter status=OK after 1.6 s
+[2026-10-30 16:53:08] self-test OK
+[2026-10-30 16:53:08] cooldown 118 s before session 1
+[2026-10-30 16:55:09] session 1 pid=6556 with_rive=False
+[2026-10-30 16:55:12] session 1 screenshot m3xaml_s1_base_a.png
+[2026-10-30 16:55:13] session 1 screenshot m3xaml_s1_base_b.png
+[2026-10-30 16:55:16] session 1 inject1 pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 16:55:17] session 1 inject1 adapter status=OK after 3.2 s
+[2026-10-30 16:55:22] session 1 screenshot m3xaml_s1_t05_a.png
+[2026-10-30 16:55:23] session 1 screenshot m3xaml_s1_t05_b.png
+[2026-10-30 16:55:32] session 1 screenshot m3xaml_s1_t15_a.png
+[2026-10-30 16:55:33] session 1 screenshot m3xaml_s1_t15_b.png
+[2026-10-30 16:55:47] session 1 screenshot m3xaml_s1_t30_a.png
+[2026-10-30 16:55:48] session 1 screenshot m3xaml_s1_t30_b.png
+[2026-10-30 16:55:51] session 1 screenshot m3xaml_s1_resize_a.png
+[2026-10-30 16:55:52] session 1 screenshot m3xaml_s1_resize_b.png
+[2026-10-30 16:55:55] session 1 screenshot m3xaml_s1_minrestore_a.png
+[2026-10-30 16:55:56] session 1 screenshot m3xaml_s1_minrestore_b.png
+[2026-10-30 16:55:59] session 1 screenshot m3xaml_s1_content_a.png
+[2026-10-30 16:56:00] session 1 screenshot m3xaml_s1_content_b.png
+[2026-10-30 16:56:02] session 1 verdict=RECORDED with_rive=False inject_ok=1 shots=14 exited_on_own=False
+[2026-10-30 16:56:02] cooldown 72 s before session 2
+[2026-10-30 16:57:16] session 2 pid=16484 with_rive=False
+[2026-10-30 16:57:19] session 2 screenshot m3xaml_s2_base_a.png
+[2026-10-30 16:57:21] session 2 screenshot m3xaml_s2_base_b.png
+[2026-10-30 16:57:23] session 2 inject1 pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 16:57:24] session 2 inject1 adapter status=OK after 3.2 s
+[2026-10-30 16:57:29] session 2 screenshot m3xaml_s2_t05_a.png
+[2026-10-30 16:57:30] session 2 screenshot m3xaml_s2_t05_b.png
+[2026-10-30 16:57:39] session 2 screenshot m3xaml_s2_t15_a.png
+[2026-10-30 16:57:40] session 2 screenshot m3xaml_s2_t15_b.png
+[2026-10-30 16:57:54] session 2 screenshot m3xaml_s2_t30_a.png
+[2026-10-30 16:57:55] session 2 screenshot m3xaml_s2_t30_b.png
+[2026-10-30 16:57:58] session 2 screenshot m3xaml_s2_resize_a.png
+[2026-10-30 16:57:59] session 2 screenshot m3xaml_s2_resize_b.png
+[2026-10-30 16:58:02] session 2 screenshot m3xaml_s2_minrestore_a.png
+[2026-10-30 16:58:03] session 2 screenshot m3xaml_s2_minrestore_b.png
+[2026-10-30 16:58:06] session 2 screenshot m3xaml_s2_content_a.png
+[2026-10-30 16:58:07] session 2 screenshot m3xaml_s2_content_b.png
+[2026-10-30 16:58:09] session 2 verdict=RECORDED with_rive=False inject_ok=1 shots=14 exited_on_own=False
+[2026-10-30 16:58:09] cooldown 72 s before session 3
+[2026-10-30 16:59:23] session 3 pid=17220 with_rive=False
+[2026-10-30 16:59:27] session 3 screenshot m3xaml_s3_base_a.png
+[2026-10-30 16:59:28] session 3 screenshot m3xaml_s3_base_b.png
+[2026-10-30 16:59:31] session 3 inject1 pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 16:59:31] session 3 inject1 adapter status=OK after 3.2 s
+[2026-10-30 16:59:36] session 3 screenshot m3xaml_s3_t05_a.png
+[2026-10-30 16:59:38] session 3 screenshot m3xaml_s3_t05_b.png
+[2026-10-30 16:59:46] session 3 screenshot m3xaml_s3_t15_a.png
+[2026-10-30 16:59:48] session 3 screenshot m3xaml_s3_t15_b.png
+[2026-10-30 17:00:02] session 3 screenshot m3xaml_s3_t30_a.png
+[2026-10-30 17:00:03] session 3 screenshot m3xaml_s3_t30_b.png
+[2026-10-30 17:00:05] session 3 screenshot m3xaml_s3_resize_a.png
+[2026-10-30 17:00:06] session 3 screenshot m3xaml_s3_resize_b.png
+[2026-10-30 17:00:10] session 3 screenshot m3xaml_s3_minrestore_a.png
+[2026-10-30 17:00:11] session 3 screenshot m3xaml_s3_minrestore_b.png
+[2026-10-30 17:00:13] session 3 screenshot m3xaml_s3_content_a.png
+[2026-10-30 17:00:14] session 3 screenshot m3xaml_s3_content_b.png
+[2026-10-30 17:00:17] session 3 verdict=RECORDED with_rive=False inject_ok=1 shots=14 exited_on_own=False
+[2026-10-30 17:00:17] cooldown 72 s before session 4
+[2026-10-30 17:01:31] session 4 pid=13524 with_rive=True
+[2026-10-30 17:01:34] session 4 screenshot m3xaml_s4_base_a.png
+[2026-10-30 17:01:35] session 4 screenshot m3xaml_s4_base_b.png
+[2026-10-30 17:01:38] session 4 inject1 pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 17:01:38] session 4 inject1 adapter status=OK after 3.2 s
+[2026-10-30 17:01:44] session 4 screenshot m3xaml_s4_t05_a.png
+[2026-10-30 17:01:45] session 4 screenshot m3xaml_s4_t05_b.png
+[2026-10-30 17:01:54] session 4 screenshot m3xaml_s4_t15_a.png
+[2026-10-30 17:01:55] session 4 screenshot m3xaml_s4_t15_b.png
+[2026-10-30 17:02:09] session 4 screenshot m3xaml_s4_t30_a.png
+[2026-10-30 17:02:10] session 4 screenshot m3xaml_s4_t30_b.png
+[2026-10-30 17:02:12] session 4 screenshot m3xaml_s4_resize_a.png
+[2026-10-30 17:02:13] session 4 screenshot m3xaml_s4_resize_b.png
+[2026-10-30 17:02:17] session 4 screenshot m3xaml_s4_minrestore_a.png
+[2026-10-30 17:02:18] session 4 screenshot m3xaml_s4_minrestore_b.png
+[2026-10-30 17:02:20] session 4 screenshot m3xaml_s4_content_a.png
+[2026-10-30 17:02:21] session 4 screenshot m3xaml_s4_content_b.png
+[2026-10-30 17:02:24] session 4 stderr| [m0r] lost reason=0x887A0005 simulated=0
+[2026-10-30 17:02:24] session 4 stderr| [m0r] recover attempt=1 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[2026-10-30 17:02:24] session 4 stderr| [m0r] recover attempt=2 new hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:03EB57BA
+[2026-10-30 17:02:24] session 4 stderr| [m0r] recover attempt=4 recover hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:03EB57BA
+[2026-10-30 17:02:24] session 4 verdict=RECORDED with_rive=True inject_ok=1 shots=14 exited_on_own=False
+[2026-10-30 17:02:24] injections=5 bugcheck_events=0
+[2026-10-30 17:02:24] composition.h sha256 POST=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-10-30 17:02:24] RUN_DONE
