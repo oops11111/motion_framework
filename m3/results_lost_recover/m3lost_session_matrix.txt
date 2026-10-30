@@ -1,0 +1,4 @@
+﻿session,pid,verdict,lost_detected,recovered,recover_ok,recover_max_ms,budget_ok,stability_ok,frames_missed,private_mb_delta,injections_ok
+1,1512,RECORDED,2,2,1,2319.99,1,1,331/347,-23,1
+2,15008,RECORDED,2,2,1,2206.54,1,1,341/342,-25,1
+3,16804,RECORDED,2,2,1,2160.70,1,1,340/331,-25,1
