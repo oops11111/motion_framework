@@ -330,7 +330,124 @@
   - H5-ABS-RESOLVE-PASS ≠ VERIFY-PASS 改写 ≠ Δv-PASS ≠ 落地；`H5-DENOM-VERIFY-FAIL` 仍 FAIL 归档；八 hash 不翻盘
   - next：**无新票；主线旁路确认后待命**；Δv″ / PERF-CI 继续 HOLD；composition.h 未触
 
-- STATUS（追加，2026-10-26 20:49:27 Australia/Perth）：用户指示 **开发停止、后续任务停止**。协调侧已停五方派工；取消未决（含 PERF-CI HOLD 等待）；**不再派新票/真机/结题**，直至用户再开。GitHub 已推 [oops11111/motion_framework](https://github.com/oops11111/motion_framework) `137c52e`；本地 `/workspace/motion_framework` 保留。
+- **2026-10-26 — 协调点名 M2-PERF-CI-TOOLING（plan.md §8 第 8 项；offline-tooling；采数=否）**
+  - Claude 接手会话落盘：`tools/perf_ci/perf_ci_grade.py` + 单测 29/29 + `tools/perf_ci/README.md`；DRAFT `docs/m2_perf_ci_tooling_gate_DRAFT.md`（未 LOCK）
+  - 实现 LOCKED PERF-CI 闸门时发现开放问题 Q1–Q8，其中 Q1（Idle 与 ≥1000 帧冲突）、Q2（替代路径 P95≤T 无法满足）、Q7（基线不存在）会阻断首轮 PERF-CI，须在第二台机器就绪前裁决
+  - PERF-CI `5b007dd4…282a` 不改，仍 HOLD；composition.h 未触；引擎单测复验全绿（timeline 422 / tokens 743 / controller 236 / composition 2305 / capi 23 / soft-demo 10）
+
+- **2026-10-26 — 协调「按建议 1 开始做 M0」→ 开 M0-A DRAFT（分支 `claude/m0-tech-validation`）**
+  - DRAFT：`docs/m0_tech_validation_gate_DRAFT.md`（未 LOCK；不授权采数）；待裁决 D1–D7（D1 = 是否允许 SendInput）
+  - 代码：`m0/`（tear 探针、Rive 表面 DLL、构建和运行脚本）+ `MotionSoftDemo/M0Probe.cs`（MainPage 加 11 行入口）；composition.h 未触
+  - 本地核实：WinAppSDK 2.5.1 的合成 interop IID 与系统版不同，已按头文件写入；Rive 钉 `runtime-v0.1.545`
+
+- **2026-10-26 21:38:45 AWST — M0-A LOCKED（D1–D7 按建议）**
+  - LOCKED：`docs/m0_tech_validation_gate_LOCKED.md`，hash=`942d6965dae1aa41f3b853923d08a11aac9714d60018888a5c486bfde5809768`
+  - 派工单：`docs/workbuddy_m0_dispatch.md`（构建可先行；采数等 approved 留证）；MainPage 补丁 `m0/mainpage_m0_hook.patch`
+
+- **2026-10-26 21:43:10 AWST — M0-A APPROVED by pidan → 派 workbuddy**
+  - approved：`docs/m0_tech_validation_approved.md`；gate `942d6965…9768` 不变；采数=是（-Inject，3 会话）；派工单 `docs/workbuddy_m0_dispatch.md`
+
+- **2026-10-26 23:50:32 AWST — M0-A CLOSED M0-A-PASS（3 会话，D1 注入）**
+  - 结果：`docs/m0_tech_validation_result.md`；数据 `m0/results/`（commit fac309a5）；gate `942d6965…9768` 复算 MATCH；composition.h PRE=POST
+  - M0-1a PASS 3/3（CPU P95 ≈0.03·T，GPU P95 0.04–0.19·T）；M0-2@60Hz 层间错位 ≤0.19 ms；表达式跟随比 UI 线程快约 45 ms；合成交换链接受 ALLOW_TEARING（API 层）
+  - 偏离：参考图全空（异步着色器编译，探针缺陷，已修）→ 第④条改以截图确认，待协调确认
+  - Go：Rive 路径继续；M0-B 等第二台机器（≥120Hz、Win11、有管理员权限）
+
+- **2026-10-27 — M0-A 合入 main（PR #1）；开 M0-B DRAFT（分支 `claude/m0b-win11`）**
+  - M0-A 第④条偏离：pidan 以「开pr合并」确认
+  - M0-B DRAFT：`docs/m0b_win11_gate_DRAFT.md`（Win11 复核：M0-2 在 ≥120Hz 下正式判定、M0-1a 回归、M0-4 用 PresentMon）；待裁决 E1–E4；不授权采数
+
+- **2026-10-27 00:19:21 AWST — M0-B LOCKED（E1–E4 按建议）**
+  - LOCKED：`docs/m0b_win11_gate_LOCKED.md`，hash=`5e1bbb6d517babf6f04a94ee9af93cc17f208f5ea9e5bdcf7ac47c8cd49df203`
+  - 分支 `claude/m0b-win11-run`（从 main `513dd5e` 拉出）；派工单 `docs/workbuddy_m0b_dispatch.md`（预检和构建可先做；采数等 approved）
+
+- **2026-10-28 09:16:57 AWST — M0-B 闸门 r2 LOCKED（pidan：「修改120hz为75hz」）**
+  - r2：`docs/m0b_win11_gate_r2_LOCKED.md`，hash=`fd3acfc787564137532cc52adb64066427a88b159f0c6b4312dfd9dece40505c`；取代 r1 `5e1bbb6d…f203`（r1 未 APPROVED、未采数，文件不改）
+  - M0-2 判定所需刷新率改为 ≥75Hz，门槛 2 ms 不变；与 plan.md「120Hz 拖动错位测试」的偏离已记录，120Hz 结论转 M3 混合刷新率矩阵
+  - 派工单已改指向 r2；采数仍等 approved
+
+- **2026-10-28 09:18:00 AWST — M0-B APPROVED by pidan → 派 workbuddy**
+  - approved：`docs/m0b_win11_approved.md`；gate r2 `fd3acfc7…505c` 不变；采数=是（-Inject，3 会话）；派工单 `docs/workbuddy_m0b_dispatch.md`
+
+- **2026-10-28 09:36:54 AWST — plan.md 的 120Hz 全部改为 75Hz（pidan）**
+  - 共 5 处：目标“60/75Hz 以上保持流畅”；M-0 任务与 M0 验收门槛“75Hz 拖动错位测试”；多屏矩阵“60+75Hz、60+144Hz 混合”；试点指标“60/75Hz 下”
+  - 因此 M0-B r2（`fd3acfc7…505c`）的 ≥75Hz 判定与 plan.md 一致；r2 中“与 plan.md 的偏离 / 120Hz 结论转 M3”一条已不再适用（r2 已 LOCK，正文不改，以本条为准）
+  - summary.md、disputes.md 中“120Hz 下 ≤1ms”是按比例换算的预算示例，未改
+
+- **2026-10-28 12:01:34 AWST — M0-B CLOSED M0-B-INCONCLUSIVE（DESKTOP-IJI1KJG，Win11 26200，RX 7800 XT，75Hz，未提权）**
+  - 结果：`docs/m0b_win11_result.md`；数据 `m0/results_m0b/`（commit 6096c411）；gate r2 `fd3acfc7…505c` 复算 MATCH；composition.h PRE=POST
+  - M0-2：错位 0.06/0.08/0.01 ms（≤2 ms），但每条路径样本只有 161–163（要求 ≥200）→ INCONCLUSIVE
+  - M0-1a：①②④ 和 CPU（≤0.073·T）都满足；GPU P95 因探针时间戳读取 bug（AMD 上触发）无效 → INCONCLUSIVE
+  - 已修：探针 v3（GPU 查询读取、拖动 16→40 次）；建议出 r3 并整票重跑，待 pidan 决定
+
+- **2026-10-28 14:53:18 AWST — M0-B 闸门 r3 LOCKED（pidan：「按建议出 r3」）**
+  - r3：`docs/m0b_win11_gate_r3_LOCKED.md`，hash=`741729784693893dedb6190b5d2768617045554ae90a58dfe00fd52855f48ede`；取代 r2 `fd3acfc7…505c`（r2 文件不改，r2 结论 INCONCLUSIVE 保留）
+  - 判据不变；要求探针 M0 v3、同一台 DESKTOP-IJI1KJG 整票重跑 3 个会话、结果放 `m0/results_m0b_r3/`、不混用 r2 数据；GPU 丢弃样本超过 10% 时 GPU P95 视为无效
+  - 派工单：`docs/workbuddy_m0b_r3_dispatch.md`；采数等 r3 approved
+
+- **2026-10-28 15:26:25 AWST — M0-B r3 APPROVED by pidan（提权 + PresentMon）→ 采数**
+  - approved：`docs/m0b_win11_r3_approved.md`；gate r3 `74172978…8ede` 不变；派工单 `docs/workbuddy_m0b_r3_dispatch.md`；数据进 `m0/results_m0b_r3/`
+
+- **2026-10-28 17:11:40 AWST — M0-B r3 CLOSED M0-B-PASS → M0 关闭**
+  - 结果：`docs/m0b_win11_r3_result.md`；数据 `m0/results_m0b_r3/`（commit c3491a87）；gate r3 `74172978…8ede` 复算 MATCH；composition.h PRE=POST
+  - M0-2 PASS：错位 −0.04/0.06/−0.06 ms，每条路径样本 404–408；M0-1a PASS：CPU P95 ≤0.096·T，GPU P95 0.014·T，丢弃 0，参考图非空且一致
+  - M0-4：合成交换链 + ALLOW_TEARING 在 Win11/AMD 上为 Hardware: Independent Flip，AllowsTearing=1（屏幕层面可撕裂）
+  - 偏离：执行方用了未提交的本地 runner（直接启动 Debug exe）；PresentMon 只覆盖 60 s，没抓到 hwnd 对照组。均不影响判据
+  - Go：Rive 路径进入 M3 规划；Skia 备选不启用
+
+- **2026-10-28 — M3 规划 DRAFT + M0 工具收尾（分支 `claude/m3-plan`）**
+  - `docs/m3_plan_DRAFT.md`：WP1–WP5、票序、硬件需求；待裁决 F1–F6
+  - `m0/run_m0.ps1`：新增 `-LaunchMode Exe`（并回 M0-B r3 执行方的直接启动方式）；PresentMon 改为随探针进程退出；探针也接受 `--m0-inject` 参数
+
+- **2026-10-28 20:26:23 AWST — M3 规划 F1–F6 按建议裁决（pidan）**
+  - F1 默认走合成表面，交换链可选；F2 撕裂默认关；F3 首次显示前离屏预热；F4 按未来 WinMD 的形状冻结 C# API，试点绑定它；F5 试点期按 B_v 发布，速度不连续写进设计约束，另请设计师盲测；F6 真机票保留闸门，代码和文档走 PR
+  - 记录在 `docs/m3_plan_DRAFT.md` §6；PERF-CI 的 Q1–Q8 仍待裁决（PR #5 未合并）
+
+- **2026-10-28 — PR #4 合入 main（M3 规划，F1–F6 已裁决；runner 收尾）；开 M3-RIVE-DPI DRAFT**
+  - DRAFT：`docs/m3_rive_dpi_gate_DRAFT.md`（分支 `claude/m3-rive-dpi`）；待裁决 G1–G4；代码在裁决后写
+  - 注意：两台测试机都是 1280×1024，Windows 通常只提供 100%/125% 缩放；150%/200% 留给 M3-MATRIX
+
+- **2026-10-28 20:31:11 AWST — PERF-CI Q1–Q8 按建议裁决（pidan）→ 合入 PR #5**
+  - 裁决记录在 `docs/m2_perf_ci_tooling_gate_DRAFT.md`；Q1/Q2/Q3/Q7 改变判据，写入新版 PERF-CI 闸门 r2（另开 DRAFT），原 LOCKED `5b007dd4…282a` 不改
+  - 采数前提：Q4 真实 PresentStats、Q6 WPA 导出口径；PERF-CI 仍 HOLD（缺 GPU 档不同的第二台机器）
+
+- **2026-10-28 20:39:58 AWST — M3-RIVE-DPI LOCKED（G1–G4 按建议）**
+  - LOCKED：`docs/m3_rive_dpi_gate_LOCKED.md`，hash=`92e6b4e9fd1014faf74714eb6cb20fc7e998169dc1171785bb8ea43f68d97bf5`
+  - 代码：`m0r_resize`/`m0r_get_resize`、`M3DpiProbe.cs`（`--m3-dpi-probe`）、`m3/run_m3_dpi.ps1`、`m3/mainpage_m3_hook.patch`；派工单 `docs/workbuddy_m3_rive_dpi_dispatch.md`；采数等 approved
+  - PERF-CI r2：H1–H3 按建议裁决（Idle 0.1%；第三台机器由 pidan 安排；Q4 由 Claude 实现，Q6 由懂 WPA 的人做）
+
+- **2026-10-28 21:28:50 AWST — M3-RIVE-DPI APPROVED by pidan → 派 workbuddy**
+  - approved：`docs/m3_rive_dpi_approved.md`；gate `92e6b4e9…97bf5` 不变；采数=是（3 会话，操作员手动切换 100%↔125%）；派工单 `docs/workbuddy_m3_rive_dpi_dispatch.md`；结果进 `m3/results_dpi/`
+
+- **2026-10-29 11:42:31 AWST — M3-RIVE-DPI：Claude 独立复核，与权威结题一致**
+  - 权威结题：`docs/m3_rive_dpi_result.md`（notion ai，RIVE-DPI-PASS，有条件采用，csproj 不回灌主线）
+  - 复核：`docs/m3_rive_dpi_result_claude_review.md`；补充 ⑥ 像素宽度核对（125% 时 Rive 区域 500 px，清晰重绘）、125% 截图被截断、每次切换的延迟 0.65–13.33 ms
+
+- **2026-10-29 11:54:00 AWST — PR #6（DPI 代码进 main）已开，待 pidan 评审；M3-RIVE-LOST DRAFT 起草**
+  - PR：https://github.com/oops11111/motion_framework/pull/6（`claude/m3-rive-dpi` → main，未合并；不含 csproj 本机补丁）
+  - DRAFT：`docs/m3_rive_lost_gate_DRAFT.md`（分支 `claude/m3-rive-lost`，从 DPI 分支拉出）；K1–K6 待裁决；未 LOCK，不授权采数
+
+- **2026-10-29 12:30:02 AWST — M3-RIVE-LOST：K1–K6 按建议裁决，实现已写；新增 K7 待裁决**
+  - 实现：`m0rive` 设备丢失检测与自动恢复（SetRenderingDevice）、`M3LostProbe.cs`、`m3/run_m3_lost.ps1`（强制注入间隔与次数上限）、`m3/mainpage_m3lost_hook.patch`
+  - K7：钉住版本的 Rive D3D11 后端在设备丢失时可能崩溃（`onMap` 不检查 Map 返回值，`VERIFY_OK` 直接 abort）；建议本票不改 Rive，崩溃判 FAIL 并另开补丁票
+  - K7 裁决后 LOCK；仍不授权采数
+
+- **2026-10-29 12:31:48 AWST — M3-RIVE-LOST LOCKED（K1–K7 全部按建议）**
+  - LOCKED：`docs/m3_rive_lost_gate_LOCKED.md`，GATE_BODY_SHA256=`753c0a6c82f06c81cf741eecba278b926127771befa2a51b515a925a7873f27d`（已复算 MATCH）；代码 = `claude/m3-rive-lost` `23e08de`
+  - 派工单草稿：`docs/workbuddy_m3_rive_lost_dispatch.md`（第 1–3 步构建和模拟冒烟可先做；第 4 步真实注入等 approved）
+  - **未 APPROVED，不授权采数**
+
+- **2026-10-29 12:48:46 AWST — M3-RIVE-LOST APPROVED（pidan）**
+  - approved：`docs/m3_rive_lost_approved.md`；gate `753c0a6c…f27d` 不变；采数=是（3 会话 × 2 次 `dxcap -forcetdr`，先模拟冒烟）；派工单 `docs/workbuddy_m3_rive_lost_dispatch.md`；结果进 `m3/results_lost/`
+
+- **2026-10-29 13:46:44 AWST — PR #6 合并（pidan 同意）：M3-RIVE-DPI 代码进 main**
+  - main `c2a1c7f`；不含 csproj 本机补丁；composition.h 未改
+  - `claude/m3-rive-lost` 基于已合并的 DPI 分支，之后的 LOST PR 只含恢复代码
+
+- **2026-10-29 — 恢复本 brief（Claude）**：协调提交 `5a8825f` 基于旧的本地副本（`/workspace/motion_framework`，初始导入 `137c52e`），覆盖掉了 2026-10-26 至 2026-10-29 13:46 的 30 余条记录。已按 `1110e81` 的版本恢复，协调新增的条目原样保留在下面。
+  - 协调副本带入的历史条目（原文）：
+    STATUS（追加，2026-10-26 20:49:27 Australia/Perth）：用户指示 **开发停止、后续任务停止**。协调侧已停五方派工；取消未决（含 PERF-CI HOLD 等待）；**不再派新票/真机/结题**，直至用户再开。GitHub 已推 [oops11111/motion_framework](https://github.com/oops11111/motion_framework) `137c52e`；本地 `/workspace/motion_framework` 保留。
+    - 这条是 2026-10-26 的旧状态；之后 pidan 已恢复开发（“接收开发项目，继续”），本条不再有效。
 
 - **2026-10-29 10:00:00 Asia/Shanghai — M3-RIVE-DPI CLOSED RIVE-DPI-PASS（METRICS_PASS；有条件采用）**
   - 权威：docs/m3_rive_dpi_result.md；pack：docs/notion_m3_rive_dpi_pack.md；next：docs/notion_m3_rive_dpi_next.md
@@ -347,6 +464,20 @@
   - 成功≠采用；未采用；PERF-CI 仍 HOLD；不重开 S1/R-3/R-2
   - next：**新 DRAFT 修探针/检测窗/注入探测**（须 LOCK+APPROVED 才采数）；禁当日重跑；禁插队 FOLLOW/MATRIX 真机
 
+- **2026-10-29 — M3-RIVE-LOST r1：Claude 复核 + r2 DRAFT**
+  - 复核：`docs/m3_rive_lost_result_claude_review.md`。同意非 PASS、未采用；更正三处事实：① 闸门已 LOCK（`753c0a6c…f27d`，tip 上复算 MATCH）且 APPROVED；② 应用没有崩溃，`CRASHED_NO_VERDICT` 是 runner 先结束进程再判断造成的误标；③ `dxcap -forcetdr` 退出码 0 但没有产生 TDR（0 条 4101），注入未生效 → 按 LOCKED G2 属 INVALID
+  - r2 DRAFT：`docs/m3_rive_lost_gate_r2_DRAFT.md`；L1–L5 待裁决（建议改用 `pnputil /restart-device` 重启显卡驱动、采数前注入自检、修 runner 标注）；不授权采数
+
+- **2026-10-29 18:13:07 AWST — M3-RIVE-LOST r2 LOCKED（L1–L5 按建议）**
+  - LOCKED：`docs/m3_rive_lost_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`dc0770c1f6a6819a5f6cffeb6bea2ef828b93045ec8e75f39910ee9537d29d10`（复算 MATCH）；代码 `05f7576`
+  - 注入改为 `pnputil /restart-device`；采数前自检；runner 崩溃标注已修；DLL 不变
+  - r1 标签按 L5 更正为 `RIVE-LOST-INVALID`（附录写在 `docs/m3_rive_lost_result.md` 末尾，正文不改）
+  - 派工单：`docs/workbuddy_m3_rive_lost_r2_dispatch.md`；**未 APPROVED，不授权采数**
+
+- **2026-10-29 18:15:58 AWST — M3-RIVE-LOST r2 APPROVED（pidan）**
+  - approved：`docs/m3_rive_lost_r2_approved.md`；gate r2 `dc0770c1…9d10` 不变；采数=是（自检 1 次 + 3 会话 × 2 次 `pnputil /restart-device`，先模拟冒烟）；派工单 `docs/workbuddy_m3_rive_lost_r2_dispatch.md`；结果进 `m3/results_lost_r2/`
+
+- **2026-10-30 — 再次恢复本 brief（Claude）**：协调提交 `a67b142` 又基于旧的本地副本写入，覆盖了 2026-10-29 恢复后的记录。已按 `0aea9d1` 的版本恢复，协调新增的 r2 结题条目原样保留在下面。**协调侧需要先从 origin 同步（`git pull origin claude/m3-rive-lost`）再写文档。**
 
 - **2026-10-30 08:50:00 Asia/Shanghai — M3-RIVE-LOST r2 CLOSED RIVE-LOST-FAIL（非 METRICS_PASS；未采用）**
   - 权威：docs/m3_rive_lost_r2_result.md；pack：docs/notion_m3_rive_lost_r2_pack.md；next：docs/notion_m3_rive_lost_r2_next.md；brief：docs/m3_rive_lost_r2_result_brief.md
@@ -359,3 +490,8 @@
   - composition.h PRE=POST CRLF=`33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97` LF=`a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418` edited=False
   - 成功≠采用；未采用；PERF-CI 仍 HOLD；不重开 S1/R-3/R-2；禁当日重跑；禁插队 FOLLOW/MATRIX
   - next：**新 DRAFT `M3-RIVE-LOST-RECOVER`**（专攻 abort/重建）；PROBE 探测能力已由 r2 实证（挂账关闭探针残差 / 保留前置）；须 LOCK+APPROVED 才采数
+
+- **2026-10-30 — M3-RIVE-LOST r2：Claude 复核 + RECOVER DRAFT**
+  - 复核：`docs/m3_rive_lost_r2_result_claude_review.md`。同意 FAIL、未采用；注入已生效（自检 OK，3/3 检测到丢失）；abort 发生在恢复过程中（检测后不再画帧），Rive 的 `VERIFY_OK` 全在建资源路径上，最可能是驱动重启期间就在新设备上建 Rive 对象
+  - 更正：本次对应 r2 LOCKED `dc0770c1…9d10` 且有 approved；权威结题引用的“PROBE 闸门 7afbcd98”不在仓库
+  - RECOVER DRAFT：`docs/m3_rive_lost_recover_gate_DRAFT.md`；M1–M5 待裁决（诊断、恢复前确认新设备可用、本票暂不改 Rive）；不授权采数
