@@ -39,3 +39,8 @@ M3-RIVE-LOST-RECOVER | tip_read=c954696470849f8f466d3c5d7f7dd57159cd8cbd | commi
 
 ## 禁令核对
 不改 composition.h；不重开 S1/R-3/R-2；成功≠采用；不合 main；PERF-CI HOLD；不翻盘 r1/r2；不改 PROBE；不把 DRAFT 写成 LOCKED；不把 SIM_SMOKE 当真机唯一 PASS；不伪造 approved。
+
+## 更正附录（pidan 裁决 XAML-LOST N5，2026-10-30；正文不改，PASS 结论不变）
+- **闸门已 LOCK 且 APPROVED，不需要“补 LOCK 归档”**：`docs/m3_rive_lost_recover_gate_LOCKED.md`，GATE_BODY_SHA256=`16202071fd08d091d0a0d825eda2297297ae19227d72a6cf981d4ed8b25484ce`（LOCKED_AT 2026-10-30 11:31:47 AWST；在 `68ce59d` 上复算 MATCH）；`docs/m3_rive_lost_recover_approved.md`（pidan @ 2026-10-30 11:47:20 AWST，早于 11:52:46 开始采数）。正文“DRAFT 未 LOCK、无 approved、按用户指令采数”是协调侧本地副本过旧所致。
+- **补充发现（正文遗漏）**：三个会话、六次驱动重启后，应用自己的 XAML 界面（标题、开关、按钮、提示文字、标题栏图标和标题）全部消失且不再重画，只有 Rive 视觉在画（标题区亮像素 1518 → 0，提示区 506 → 0）。不在本票判据内，但会影响试点接入；诊断票 `docs/m3_xaml_lost_gate_*.md`。详见 `docs/m3_rive_lost_recover_result_claude_review.md`。
+- r1、r2 的更正见各自结题末尾附录（r1 = INVALID；r2 对应 r2 LOCKED `dc0770c1…9d10`）。
