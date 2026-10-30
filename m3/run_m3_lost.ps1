@@ -1,4 +1,4 @@
-# M3-RIVE-LOST runner (docs/m3_rive_lost_gate_r2_LOCKED.md). Collects data: run only after
+# M3-RIVE-LOST runner (docs/m3_rive_lost_recover_gate_LOCKED.md; r2 rules). Collects data: run only after
 # the gate is LOCKED and APPROVED. Needs an elevated PowerShell, m0rive.dll (built by
 # m0\build_m0.ps1, with the device-loss recovery) beside the exe and the Rive asset under
 # <ArtDir>\m0_assets.
@@ -120,7 +120,7 @@ for ($s = 1; $s -le $Sessions -and -not $stopAll; $s++) {
     }
     $pre = Join-Path $ArtDir "${prefix}_s${s}"
     $sum = "${pre}_summary.txt"
-    Remove-Item $sum, "${pre}_*.shotreq", "${pre}_inject*.req" -ErrorAction SilentlyContinue
+    Remove-Item $sum, "${pre}_stderr.txt", "${pre}_*.shotreq", "${pre}_inject*.req" -ErrorAction SilentlyContinue
     Get-Process -Name MotionSoftDemo -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
     Start-Sleep 2
     $sessInjOk = $true
@@ -172,6 +172,10 @@ for ($s = 1; $s -le $Sessions -and -not $stopAll; $s++) {
     $kv = ReadKv $sum
     $v = if ($kv.ContainsKey("verdict")) { $kv["verdict"] } elseif (-not (Test-Path $sum)) { "INVALID_NO_SUMMARY" } elseif ($exitedOnOwn) { "CRASHED_NO_VERDICT" } else { "KILLED_BY_RUNNER" }
     if ($stopAll -and $v -notmatch '^(FAIL|CRASHED)') { $v = "STOPPED_" + $v }
+    # M1: the DLL's stderr (recovery log; Rive's VERIFY_OK message if it aborted).
+    $errFile = "${pre}_stderr.txt"
+    if (Test-Path $errFile) { Get-Content $errFile -Tail 20 | ForEach-Object { Say "session $s stderr| $_" } }
+    if ($kv.ContainsKey("abort_stage")) { Say "session $s abort_stage=$($kv['abort_stage'])" }
     $matrix += "$s,$($p.Id),$v,$($kv['lost_detected']),$($kv['recovered']),$($kv['recover_ok']),$($kv['recover_max_ms']),$($kv['budget_ok']),$($kv['stability_ok']),$($kv['frames_missed']),$($kv['private_mb_delta']),$([int]$sessInjOk)"
     Say "session $s verdict=$v recover_ok=$($kv['recover_ok']) recover_max_ms=$($kv['recover_max_ms']) exited_on_own=$exitedOnOwn injections_ok=$([int]$sessInjOk)"
 }

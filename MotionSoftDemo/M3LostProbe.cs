@@ -1,4 +1,4 @@
-// M3-RIVE-LOST probe (docs/m3_rive_lost_gate_r2_LOCKED.md). The Rive surface (M3 F1:
+// M3-RIVE-LOST probe (docs/m3_rive_lost_recover_gate_LOCKED.md; r2 injection). The Rive surface (M3 F1:
 // drawing-surface path) renders at a fixed size while the runner restarts the display
 // driver (pnputil /restart-device, r2 L1) when the probe asks for it. The DLL's
 // render thread detects the loss and recovers on its own (new device, Rive context,
@@ -36,7 +36,7 @@ internal static class M3LostNative
         public uint Attempts;
         public double RecoverMs, GapMs;
         public ulong FailuresDuring;
-        public uint OldDeviceRefs, SehCaught;
+        public uint OldDeviceRefs, SehCaught, AdapterVendor, Rejected;
     }
 
     [DllImport(Dll)] internal static extern int m0r_attach_graphics_device(IntPtr graphicsDeviceUnknown);
@@ -89,7 +89,7 @@ public sealed partial class MainPage
             double refreshHz = 0;
             try { MfProbe.mf_dwm_timing(out _, out _, out _, out _, out var rn, out var rd, out _); if (rd > 0) refreshHz = (double)rn / rd; } catch { }
             double T = refreshHz > 0 ? 1000.0 / refreshHz : double.NaN;
-            Kv("probe", "M3-LOST v2");
+            Kv("probe", "M3-LOST v3");
             Kv("mode", simulate ? "simulated" : "pnputil-restart");
             Kv("session", sess);
             Kv("pid", Environment.ProcessId);
@@ -227,6 +227,8 @@ public sealed partial class MainPage
                 Kv(p + ".failures_during", ev.FailuresDuring);
                 Kv(p + ".old_device_refs", ev.OldDeviceRefs);
                 Kv(p + ".seh_caught", ev.SehCaught);
+                Kv(p + ".adapter_vendor", "0x" + ev.AdapterVendor.ToString("X4", CultureInfo.InvariantCulture));
+                Kv(p + ".rejected_devices", ev.Rejected);
                 Kv(p + ".recover_ok", ok ? 1 : 0);
                 await Task.Delay(M3LostSettleMs);
                 await Segment(k);

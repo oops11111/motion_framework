@@ -124,3 +124,9 @@ M3-RIVE-LOST r2 | commit=382683cfa369f789a8f926ee7c0eba0a581a04ec @ claude/m3-ri
 
 - written_at: 2026-10-30 08:50:00 Asia/Shanghai
 - notion ai（动效框架执行助手）结题；**本任务未采数、未派 workbuddy、未改 composition.h、未改 r1 CLOSED、未改 ONELINE 事实字段、未改 PROBE/LOST gate body**；依据 workbuddy ONELINE + PROBE LOCKED + LOST DRAFT + DPI/r1 结题样式对照
+
+## 更正附录（pidan 裁决 RECOVER M5，2026-10-30；正文不改，FAIL 结论不变）
+- **本次运行对应的闸门是 r2 LOCKED**：`docs/m3_rive_lost_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`dc0770c1f6a6819a5f6cffeb6bea2ef828b93045ec8e75f39910ee9537d29d10`（LOCKED_AT 2026-10-29 18:13:07 AWST；在 `382683c` 上复算 MATCH）。正文引用的 `docs/m3_rive_lost_probe_gate_LOCKED.md`（`7afbcd98…6b54`）**不在仓库中**，是协调侧本地副本另起的文件。
+- **采数有授权**：`docs/m3_rive_lost_r2_approved.md`（pidan @ 2026-10-29 18:15:58 AWST）。
+- **r1 标签**已按 L5 更正为 `RIVE-LOST-INVALID`（见 `docs/m3_rive_lost_result.md` 末尾附录）。
+- abort 位置分析见 `docs/m3_rive_lost_r2_result_claude_review.md`；下一票 `docs/m3_rive_lost_recover_gate_LOCKED.md`。

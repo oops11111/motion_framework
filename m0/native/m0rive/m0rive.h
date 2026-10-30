@@ -76,6 +76,8 @@ typedef struct m0r_lost_event {
     uint64_t failures_during;   // loop iterations without a frame while lost (not in m0r_stats)
     uint32_t old_device_refs;   // references left on the old ID3D11Device after our final Release
     uint32_t seh_caught;        // access violations inside a frame on the removed device (MSVC builds)
+    uint32_t adapter_vendor;    // PCI vendor of the adapter the new device was created on
+    uint32_t rejected;          // candidate devices discarded by the health check before success
 } m0r_lost_event;
 
 // detected: losses seen by the render thread; lost_now: 1 while still recovering;
@@ -86,7 +88,11 @@ M0R_API int32_t m0r_get_lost(uint32_t* detected, uint32_t* recovered, int32_t* l
 // the full recovery path. For local smoke tests only; not counted by the gate.
 M0R_API int32_t m0r_simulate_lost(void);
 // Rive's D3D11 backend calls abort() on a failed D3D call (VERIFY_OK). If that
-// happens, append "rive_abort=1" and "verdict=FAIL_ABORT" to `path` (the summary).
+// happens, append "abort_stage=<recovery step>", "rive_abort=1" and
+// "verdict=FAIL_ABORT" to `path` (the summary). Also redirects this DLL's stderr to
+// the same name with "_summary.txt" replaced by "_stderr.txt" (else path +
+// ".stderr.txt"): VERIFY_OK writes the failing call and HRESULT there before
+// aborting, and recovery attempts are logged there too.
 M0R_API int32_t m0r_set_abort_note(const wchar_t* path);
 
 M0R_API int32_t m0r_stop(void);

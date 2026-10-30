@@ -132,6 +132,18 @@ struct Probe {
 
 Probe* g = nullptr;
 
+// M3-RIVE-LOST-RECOVER M1: the step the render thread is in, written to the summary
+// if Rive aborts. Index into kStageNames.
+enum Stage : int {
+    kStageFrame, kStageDetected, kStageMakeDevice, kStageCheckDevice, kStageSetRenderingDevice,
+    kStageReleaseOld, kStageMakeRiveContext, kStageImportFile, kStageMakeOffscreen, kStageFirstFrame,
+};
+const char* const kStageNames[] = {
+    "frame", "detected", "make_device", "check_device", "set_rendering_device",
+    "release_old", "make_rive_context", "import_file", "make_offscreen", "first_frame",
+};
+std::atomic<int> g_stage{kStageFrame};
+
 // Hardware device at feature level 11_1 (Rive's D3D11 backend requires it) with
 // BGRA support (required for a device behind a CompositionGraphicsDevice).
 HRESULT MakeDevice(ComPtr<ID3D11Device>& dev, ComPtr<ID3D11DeviceContext>& ctx) {
@@ -154,8 +166,10 @@ HRESULT MakeRive(Probe& p) {
     if (SUCCEEDED(p.dev.As(&dxgiDev)) && SUCCEEDED(dxgiDev->GetAdapter(&adapter))) adapter->GetDesc(&ad);
     rive::gpu::D3DContextOptions opts;
     opts.isIntel = ad.VendorId == 0x163C || ad.VendorId == 0x8086 || ad.VendorId == 0x8087;
+    g_stage = kStageMakeRiveContext;
     p.rc = rive::gpu::RenderContextD3DImpl::MakeContext(p.dev, p.ctx, opts);
     if (!p.rc) return E_FAIL;
+    g_stage = kStageImportFile;
     p.file = rive::File::import(rive::Span<const uint8_t>(p.rivBytes.data(), p.rivBytes.size()), p.rc.get());
     if (!p.file) return HRESULT_FROM_WIN32(ERROR_INVALID_DATA);
     p.artboard = p.file->artboardDefault();
@@ -310,20 +324,77 @@ HRESULT Frame(Probe& p, float dt, std::vector<double>& gpuOut) {
     return hr;
 }
 
+// M2: a device on a hardware adapter picked from a fresh DXGI factory, skipping
+// software adapters and Microsoft's Basic Display / Basic Render adapter (vendor
+// 0x1414), which can stand in while the real driver restarts. DXGI_ERROR_NOT_FOUND
+// when no such adapter exists yet.
+HRESULT MakeHardwareDevice(ComPtr<ID3D11Device>& dev, ComPtr<ID3D11DeviceContext>& ctx, DXGI_ADAPTER_DESC1* desc) {
+    ComPtr<IDXGIFactory1> factory;
+    HRESULT hr = CreateDXGIFactory1(IID_PPV_ARGS(&factory));
+    if (FAILED(hr)) return hr;
+    ComPtr<IDXGIAdapter1> adapter;
+    for (UINT i = 0; factory->EnumAdapters1(i, adapter.ReleaseAndGetAddressOf()) != DXGI_ERROR_NOT_FOUND; ++i) {
+        DXGI_ADAPTER_DESC1 d{};
+        if (FAILED(adapter->GetDesc1(&d)) || (d.Flags & DXGI_ADAPTER_FLAG_SOFTWARE) || d.VendorId == 0x1414) continue;
+        D3D_FEATURE_LEVEL levels[] = {D3D_FEATURE_LEVEL_11_1};
+        hr = D3D11CreateDevice(adapter.Get(), D3D_DRIVER_TYPE_UNKNOWN, nullptr, D3D11_CREATE_DEVICE_BGRA_SUPPORT,
+                               levels, 1, D3D11_SDK_VERSION, &dev, nullptr, &ctx);
+        if (FAILED(hr)) return hr;
+        ComPtr<ID3D11Multithread> mt;
+        if (SUCCEEDED(ctx.As(&mt))) mt->SetMultithreadProtected(TRUE);
+        *desc = d;
+        return S_OK;
+    }
+    return DXGI_ERROR_NOT_FOUND;
+}
+
+// M2: creates a small render-target texture and a buffer with checked HRESULTs (Rive
+// would abort on the same failure) and confirms the device is not removed.
+HRESULT CheckDevice(ID3D11Device* dev) {
+    D3D11_TEXTURE2D_DESC td{};
+    td.Width = td.Height = 16;
+    td.MipLevels = td.ArraySize = 1;
+    td.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+    td.SampleDesc.Count = 1;
+    td.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+    ComPtr<ID3D11Texture2D> tex;
+    HRESULT hr = dev->CreateTexture2D(&td, nullptr, &tex);
+    if (FAILED(hr)) return hr;
+    D3D11_BUFFER_DESC bd{};
+    bd.ByteWidth = 256;
+    bd.Usage = D3D11_USAGE_DYNAMIC;
+    bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+    bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+    ComPtr<ID3D11Buffer> buf;
+    hr = dev->CreateBuffer(&bd, nullptr, &buf);
+    if (FAILED(hr)) return hr;
+    return dev->GetDeviceRemovedReason();
+}
+
+// stderr is redirected to a file by m0r_set_abort_note (M1); before that it goes nowhere.
+void LogAttempt(uint32_t attempt, const char* what, HRESULT hr, const DXGI_ADAPTER_DESC1* d) {
+    char name[128] = {};
+    if (d) WideCharToMultiByte(CP_UTF8, 0, d->Description, -1, name, sizeof name - 1, nullptr, nullptr);
+    std::fprintf(stderr, "[m0r] recover attempt=%u %s hr=0x%08lX adapter=\"%s\" vendor=0x%04X luid=%08lX:%08lX\n",
+                 attempt, what, static_cast<unsigned long>(hr), name, d ? d->VendorId : 0u,
+                 d ? static_cast<unsigned long>(d->AdapterLuid.HighPart) : 0ul, d ? d->AdapterLuid.LowPart : 0ul);
+    std::fflush(stderr);
+}
+
 // Replaces a lost device: new device -> SetRenderingDevice on the existing
 // CompositionGraphicsDevice -> release everything built on the old device -> new
 // Rive context, re-imported file, offscreen target, marker RTV and queries at the
 // current size. Render thread only. On failure the old objects may already be gone;
 // the caller retries.
-HRESULT RecoverDevice(Probe& p, uint32_t* oldRefs) {
-    ComPtr<ID3D11Device> nd;
-    ComPtr<ID3D11DeviceContext> nc;
-    HRESULT hr = MakeDevice(nd, nc);
-    if (FAILED(hr)) return hr;
+// The new device comes from the caller, already through the M2 health check.
+HRESULT RecoverDevice(Probe& p, ComPtr<ID3D11Device> nd, ComPtr<ID3D11DeviceContext> nc, uint32_t* oldRefs) {
+    HRESULT hr = S_OK;
     if (p.graphicsDevice) {
+        g_stage = kStageSetRenderingDevice;
         hr = p.graphicsDevice->SetRenderingDevice(nd.Get());
         if (FAILED(hr)) return hr;
     }
+    g_stage = kStageReleaseOld;
     // Rive objects first (the file and the render target hold resources of the
     // context), then our own views, textures and queries, then the context.
     p.scene.reset();
@@ -352,6 +423,7 @@ HRESULT RecoverDevice(Probe& p, uint32_t* oldRefs) {
         p.ctx = nc;
     }
     hr = MakeRive(p);
+    g_stage = kStageMakeOffscreen;
     if (SUCCEEDED(hr)) hr = MakeOffscreen(p);
     if (FAILED(hr)) return hr;
     p.ctx.As(&p.ctx1);
@@ -396,11 +468,17 @@ void RenderLoop(Probe* p) {
     bool lost = false, awaitFirstGood = false, forceLost = false;
     m0r_lost_event ev{};
     double lostAt = 0, lastAttempt = -1e9;
+    // M2: a new device must pass CheckDevice for kStableMs before Rive gets it.
+    constexpr double kRetryMs = 100, kStableMs = 500;
+    ComPtr<ID3D11Device> cand;
+    ComPtr<ID3D11DeviceContext> candCtx;
+    DXGI_ADAPTER_DESC1 candDesc{};
+    double candSince = 0;
     while (p->running.load()) {
         if (FAILED(DwmFlush())) Sleep(15);  // DWM can fail while the GPU resets; don't spin
         const double t0 = NowMs();
 
-        // M3-RIVE-LOST: detect, then retry recovery every >= 50 ms until it succeeds.
+        // M3-RIVE-LOST: detect, then retry recovery every >= 100 ms until it succeeds.
         // Nothing is drawn (and no Rive call is made) while the device is lost.
         if (!lost) {
             const HRESULT reason = p->dev->GetDeviceRemovedReason();
@@ -410,6 +488,12 @@ void RenderLoop(Probe* p) {
                 forceLost = false;
                 lostAt = t0;
                 lastAttempt = -1e9;
+                cand.Reset();
+                candCtx.Reset();
+                g_stage = kStageDetected;
+                std::fprintf(stderr, "[m0r] lost reason=0x%08lX simulated=%d\n", static_cast<unsigned long>(reason),
+                             (sim && reason == S_OK) ? 1 : 0);
+                std::fflush(stderr);
                 ev = {};
                 ev.removed_reason = reason;
                 ev.simulated = (sim && reason == S_OK) ? 1 : 0;
@@ -420,14 +504,41 @@ void RenderLoop(Probe* p) {
             }
         }
         if (lost) {
-            if (t0 - lastAttempt >= 50) {
+            if (t0 - lastAttempt >= kRetryMs) {
                 lastAttempt = t0;
                 ++ev.attempts;
-                ev.recover_hr = RecoverDevice(*p, &ev.old_device_refs);
-                if (SUCCEEDED(ev.recover_hr)) {
-                    lost = false;
-                    awaitFirstGood = true;
+                HRESULT hr = S_OK;
+                if (!cand) {
+                    g_stage = kStageMakeDevice;
+                    hr = MakeHardwareDevice(cand, candCtx, &candDesc);
+                    if (SUCCEEDED(hr)) {
+                        g_stage = kStageCheckDevice;
+                        hr = CheckDevice(cand.Get());
+                    }
+                    candSince = t0;
+                    LogAttempt(ev.attempts, "new", hr, SUCCEEDED(hr) || cand ? &candDesc : nullptr);
+                } else {
+                    g_stage = kStageCheckDevice;
+                    hr = CheckDevice(cand.Get());
+                    if (FAILED(hr)) LogAttempt(ev.attempts, "recheck", hr, &candDesc);
                 }
+                if (FAILED(hr)) {
+                    if (cand) ++ev.rejected;
+                    cand.Reset();
+                    candCtx.Reset();
+                } else if (t0 - candSince >= kStableMs) {
+                    ev.adapter_vendor = candDesc.VendorId;
+                    ev.recover_hr = RecoverDevice(*p, cand, candCtx, &ev.old_device_refs);
+                    LogAttempt(ev.attempts, "recover", ev.recover_hr, &candDesc);
+                    cand.Reset();
+                    candCtx.Reset();
+                    if (SUCCEEDED(ev.recover_hr)) {
+                        lost = false;
+                        awaitFirstGood = true;
+                        g_stage = kStageFirstFrame;
+                    }
+                }
+                if (FAILED(hr)) ev.recover_hr = hr;
             }
             if (lost) {
                 ++ev.failures_during;
@@ -467,6 +578,7 @@ void RenderLoop(Probe* p) {
                 p->appliedH = p->h;
             }
         }
+        if (!awaitFirstGood) g_stage = kStageFrame;
         if (awaitFirstGood && SUCCEEDED(hr)) {
             ev.recover_ms = t1 - lostAt;
             ev.gap_ms = t1 - lastGood;
@@ -474,6 +586,7 @@ void RenderLoop(Probe* p) {
             p->lost.push_back(ev);
             awaitFirstGood = false;
             p->lostNow.store(false);
+            g_stage = kStageFrame;
         }
         if (SUCCEEDED(hr)) lastGood = t1;
         p->intervalMs.push_back(t0 - last);
@@ -615,9 +728,12 @@ M0R_API int32_t m0r_simulate_lost(void) {
 namespace {
 wchar_t g_abortNote[MAX_PATH] = {};
 extern "C" void OnAbort(int) {
+    std::fflush(stderr);
     if (g_abortNote[0]) {
         if (FILE* f = _wfopen(g_abortNote, L"ab")) {
-            std::fputs("rive_abort=1\nverdict=FAIL_ABORT\n", f);
+            const int st = g_stage.load();
+            std::fprintf(f, "abort_stage=%s\nrive_abort=1\nverdict=FAIL_ABORT\n",
+                         st >= 0 && st < static_cast<int>(sizeof kStageNames / sizeof *kStageNames) ? kStageNames[st] : "unknown");
             std::fclose(f);
         }
     }
@@ -628,6 +744,13 @@ M0R_API int32_t m0r_set_abort_note(const wchar_t* path) {
     if (!path || wcslen(path) >= MAX_PATH) return E_INVALIDARG;
     wcscpy(g_abortNote, path);
     std::signal(SIGABRT, OnAbort);
+    // M1: keep VERIFY_OK's message (failing call, HRESULT) and the recovery log.
+    wchar_t err[MAX_PATH + 16];
+    wcscpy(err, path);
+    const size_t n = wcslen(err), k = wcslen(L"_summary.txt");
+    if (n >= k && _wcsicmp(err + n - k, L"_summary.txt") == 0) wcscpy(err + n - k, L"_stderr.txt");
+    else wcscat(err, L".stderr.txt");
+    if (_wfreopen(err, L"a", stderr)) setvbuf(stderr, nullptr, _IONBF, 0);
     return S_OK;
 }
 
