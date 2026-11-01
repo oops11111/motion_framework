@@ -1,7 +1,9 @@
 # 派题 · M3-XAML-REBUILD（DESKTOP-IJI1KJG + DESKTOP-K93N3P8，诊断票）
 
+> **APPROVED 生效**：`docs/m3_xaml_rebuild_approved.md` — pidan @ 2026-11-01 16:26:53 Asia/Shanghai。第 1–4 步均可执行。
+
 闸门：`docs/m3_xaml_rebuild_gate_LOCKED.md`，GATE_BODY_SHA256=`3ea74c371ae983cebe480e1b4dea99e61aec92cfbe9646fb87b91b7a1d456fdc`，LOCKED_AT=2026-10-30 17:35:36 AWST。R1–R4 已按建议裁决；K93N3P8 有管理员权限，纳入 1 个会话。
-代码分支：**`claude/m3-xaml-rebuild`**。**尚未 APPROVED：第 1–3 步可以先做；第 4 步必须等 `docs/m3_xaml_rebuild_approved.md` 落盘后才能执行。**
+代码分支：**`claude/m3-xaml-rebuild`**。**已 APPROVED**：见 `docs/m3_xaml_rebuild_approved.md`；第 1–4 步均可执行。
 
 ## 要做什么
 驱动重启后，**重启前就开着的第二个窗口（W_pre）**和**重启后新建的窗口（W_post）**能不能画文字。运行时屏幕上会出现主窗口和下方两个小窗口（W_pre 在左下，W_post 后出现在右下），**都是正常的，不要动它们**。
