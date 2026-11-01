@@ -226,6 +226,17 @@ public sealed partial class MainPage
                     while (since.ElapsedMilliseconds < atMs) await Task.Delay(50);
                     await Obs(name);
                 }
+                if (withRive)
+                {
+                    // S2: Rive's own loss detection proves the restart reached this process.
+                    var rev = new M3LostNative.LostEvent[4];
+                    M3LostNative.m0r_get_lost(out var rdet, out var rrec, out var rlostNow, rev, (uint)rev.Length);
+                    Kv("rive.lost_detected", rdet);
+                    Kv("rive.recovered", rrec);
+                    Kv("rive.lost_now", rlostNow);
+                    if (rrec > 0) Kv("rive.removed_reason", "0x" + rev[rrec - 1].RemovedReason.ToString("X8", CultureInfo.InvariantCulture));
+                    if (rrec > 0) Kv("rive.recover_ms", F(rev[rrec - 1].RecoverMs, 2));
+                }
                 Kv("rendering_events_total", renderingEvents);
                 Kv("verdict", "RECORDED");
                 return;

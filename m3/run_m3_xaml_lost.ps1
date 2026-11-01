@@ -40,18 +40,30 @@ Add-Type -Namespace M3X -Name Win -MemberDefinition @'
 public struct RECT { public int Left, Top, Right, Bottom; }
 [System.Runtime.InteropServices.DllImport("user32.dll")] public static extern bool GetWindowRect(System.IntPtr h, out RECT r);
 [System.Runtime.InteropServices.DllImport("user32.dll")] public static extern bool IsWindow(System.IntPtr h);
+[System.Runtime.InteropServices.DllImport("user32.dll")] public static extern bool PrintWindow(System.IntPtr h, System.IntPtr hdc, uint flags);
+[System.Runtime.InteropServices.DllImport("user32.dll")] public static extern bool SetProcessDpiAwarenessContext(System.IntPtr ctx);
+[System.Runtime.InteropServices.DllImport("user32.dll")] public static extern System.IntPtr SetThreadDpiAwarenessContext(System.IntPtr ctx);
 '@
+# S1: physical-pixel window rects on scaled displays (K93N3P8 runs at 125%); without this,
+# GetWindowRect returns virtualised coordinates. -4 = DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2.
+# If the host already fixed its process awareness, the per-thread call in Shot still applies.
+if (-not [M3X.Win]::SetProcessDpiAwarenessContext([IntPtr]-4)) { Say "note: process DPI awareness already set; using per-thread awareness for screenshots" }
 # App window only (same reason as m0\run_m0.ps1: no desktop contents in the repo).
 # $hwnd (optional) names the window; otherwise the process's main window (XAML-REBUILD).
+# S1: PrintWindow with PW_RENDERFULLCONTENT (2) asks the window for its own content,
+# including DirectComposition/XAML output, so windows on top of it are never captured.
 function Shot($path, $proc, $hwnd = [IntPtr]::Zero) {
     $proc.Refresh()
+    [void][M3X.Win]::SetThreadDpiAwarenessContext([IntPtr]-4)
     $h = if ($hwnd -ne [IntPtr]::Zero) { $hwnd } else { $proc.MainWindowHandle }
     $r = New-Object M3X.Win+RECT
     if ($h -eq [IntPtr]::Zero -or -not [M3X.Win]::IsWindow($h) -or -not [M3X.Win]::GetWindowRect($h, [ref]$r)) { Say "WARN screenshot: no window"; return }
-    $b = New-Object System.Drawing.Rectangle $r.Left, $r.Top, ($r.Right - $r.Left), ($r.Bottom - $r.Top)
-    $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+    $bmp = New-Object System.Drawing.Bitmap ($r.Right - $r.Left), ($r.Bottom - $r.Top)
     $g = [System.Drawing.Graphics]::FromImage($bmp)
-    $g.CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
+    $hdc = $g.GetHdc()
+    $ok = [M3X.Win]::PrintWindow($h, $hdc, 2)
+    $g.ReleaseHdc($hdc)
+    if (-not $ok) { Say "WARN PrintWindow failed for $(Split-Path $path -Leaf)" }
     $bmp.Save($path, [System.Drawing.Imaging.ImageFormat]::Png)
     $g.Dispose(); $bmp.Dispose()
 }
@@ -143,6 +155,11 @@ for ($s = 1; $s -le $total -and -not $stopAll; $s++) {
         # Same as m0\run_m0.ps1 -LaunchMode Package: MSIX launch profile through dotnet run.
         $json = @{ profiles = @{ "MotionSoftDemo (Package)" = @{ commandName = "MsixPackage"; commandLineArgs = ($appArgs -join ' ') } } } | ConvertTo-Json -Depth 4
         Set-Content (Join-Path $DemoProj "Properties\launchSettings.json") -Value $json -Encoding utf8
+        # The packaged app loads m0rive.dll from its AppX folder (as m0\run_m0.ps1 Stage-NativeDll).
+        $dll = Join-Path (Split-Path $DemoExe -Parent) "m0rive.dll"
+        if (Test-Path $dll) {
+            Get-ChildItem (Join-Path $DemoProj "bin") -Directory -Recurse -Filter AppX -ErrorAction SilentlyContinue | ForEach-Object { Copy-Item $dll $_.FullName -Force; Say "staged m0rive.dll -> $($_.FullName)" }
+        }
         $dotnetArgs = @('run', '-c', 'Debug', '-p:Platform=x64', '--no-build', '--launch-profile', 'MotionSoftDemo (Package)')
         $dn = Start-Process -FilePath 'dotnet' -ArgumentList $dotnetArgs -WorkingDirectory $DemoProj -PassThru -WindowStyle Normal
         Say "session $s dotnetPid=$($dn.Id) (packaged launch)"
