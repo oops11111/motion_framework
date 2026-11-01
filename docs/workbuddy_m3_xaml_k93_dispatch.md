@@ -1,7 +1,7 @@
 # 派题 · M3-XAML-K93（DESKTOP-K93N3P8，诊断票）
 
 闸门：`docs/m3_xaml_k93_gate_LOCKED.md`，GATE_BODY_SHA256=`22fb8b92d8703619215ffaae3f0d5d9efea003951bb44b42d790d488ac28b657`，LOCKED_AT=2026-11-01 18:37:27 AWST。范围由 pidan S2 裁定。
-代码分支：**`claude/m3-xaml-rebuild`**（最新提交含 S1 截图修正）。**尚未 APPROVED：第 1–3 步可以先做；第 4 步必须等 `docs/m3_xaml_k93_approved.md` 落盘后才能执行。**
+代码分支：**`claude/m3-xaml-rebuild`**（最新提交含 S1 截图修正）。**已 APPROVED（`docs/m3_xaml_k93_approved.md`，pidan @ 2026-11-01 20:58:26 AWST）：第 1–5 步都可以执行；第 3 步走流程通过后再做第 4 步。**
 
 ## 要做什么
 在 K93N3P8 上带 Rive 再跑 1 个会话，确认驱动重启是否真的让应用的图形设备丢失，以及丢失后界面文字是否还在。截图方式已改为直接向窗口取内容，**不会再截到别的窗口**；但仍请**开始前关闭聊天软件、打开“请勿打扰”**。
@@ -32,7 +32,7 @@ powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_xaml_lost.ps1 -De
 ```
 期望 `verdict=RECORDED`、主窗口截图里能看到 Rive 画面、W_pre / W_post 截图是这两个小窗口本身（不是桌面其他部分）。数据不提交；有问题先停下回报。
 
-## 4. 采数（**必须等 approved 落盘**）
+## 4. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_xaml_lost.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3xaml_k93 -Rebuild -PlainSessions 0 -RiveSessions 1 -LaunchMode Package -DemoProj <工程目录>
 ```
