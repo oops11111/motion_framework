@@ -1,7 +1,7 @@
 # 派题 · M3-RIVE-FOLLOW（DESKTOP-IJI1KJG）
 
 闸门：`docs/m3_rive_follow_gate_LOCKED.md`，GATE_BODY_SHA256=`285e39dc9c1100f92ddddc5560a3631b94129a9b56c561c9803c8cbee57eaab3`，LOCKED_AT=2026-10-30 17:40:39 AWST。P1–P6 已按建议裁决。
-代码分支：**`claude/m3-follow`**（已包含 XAML-REBUILD 的代码）。**尚未 APPROVED：第 1–2 步可以先做；第 3 步必须等 `docs/m3_rive_follow_approved.md` 落盘后才能执行。**
+代码分支：**`claude/m3-follow`**（已包含 XAML-REBUILD 的代码）。**已 APPROVED（`docs/m3_rive_follow_approved.md`，pidan @ 2026-11-01 16:26:53 Asia/Shanghai）：第 1–4 步都可以执行。**
 `<ROOT>` 沿用 `C:\Users\Lh\mf_m0b`；数据目录用新的 `<ROOT>\artifacts_m3follow`。**建议先做完 XAML-REBUILD 再做本票**（两票的 MainPage 补丁有先后顺序）。
 
 ## 要做什么
@@ -28,11 +28,11 @@ git -C <ROOT>\repo log -1 --format=%H
 4. 重新构建 MotionSoftDemo（Debug，直接启动 exe），确认新的 `m0rive.dll` 在 exe 旁边。
 5. 失败记 BLOCKED_TOOLCHAIN 并回报 `m0\out\build_m0.log` 的最后 80 行；不改代码去凑。
 
-## 3. 采数（**必须等 approved 落盘**）
+## 3. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_follow.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3follow -Sessions 3
 ```
-- 每个会话约 3–4 分钟（四条路径 × 40 次阶跃 + 40 次拖动）。全程不碰鼠标键盘，屏幕保持常亮，应用窗口保持在最前、不被遮挡。
+- 每个会话约 3–4 分钟（四条路径 × 40 次阶跃 + 40 次拖动）。全程不碰鼠标键盘，屏幕保持常亮，应用窗口保持在最前、不被遮挡。**开始前关闭或最小化聊天软件，并打开系统“请勿打扰”**：本票的 WGC 只捕获应用窗口，但弹出的通知若盖在追踪块上会干扰追踪。
 - 某个会话 `INVALID_FEW_STEPS`（检出不足）照常交付，不重跑凑数；回报里写明。
 
 ## 4. 交付
