@@ -590,3 +590,9 @@
   - K93N3P8：主窗口完整，但该会话不带 Rive，无法证明设备确实丢失；需带 Rive 复测
   - runner 截图两处缺陷（被遮挡、不感知 DPI）；B 的 7 张截图拍到了执行方的私人聊天和通知，待 pidan 决定是否删除
   - 复核：`docs/m3_xaml_rebuild_result_claude_review.md`
+
+- **2026-11-01 18:37:27 AWST — S1–S4 按建议（pidan）；M3-XAML-K93 LOCKED**
+  - S1：`m3/run_m3_xaml_lost.ps1` 截图改为 `PrintWindow`（按窗口取内容，不受遮挡）+ 每显示器 DPI 感知；打包启动时复制 `m0rive.dll` 进 AppX（`104e5f9`）
+  - S2：`docs/m3_xaml_k93_gate_LOCKED.md`，GATE_BODY_SHA256=`22fb8b92d8703619215ffaae3f0d5d9efea003951bb44b42d790d488ac28b657`（复算 MATCH）；K93N3P8 带 Rive 1 会话；派工单 `docs/workbuddy_m3_xaml_k93_dispatch.md`；**未 APPROVED，不授权采数**
+  - S3：B 组 7 张拍到私人内容的截图已从分支最新版本删除（历史未改写），见 `m3/results_xaml_rebuild/b/REMOVED.md`
+  - S4：对外报告等 K93 结果；已知限制草稿 `docs/m3_known_limits.md`
