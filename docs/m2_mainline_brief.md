@@ -646,3 +646,9 @@
   - 解释：表面内多出的约 2 帧来自绘制表面管线本身，不在 UI 线程；WP2 设计约束草稿写在复核里（松耦合部件拆出 + 弹簧阻尼，严格对齐的部件留在 Rive 里）
   - 流程：FOLLOW 与 REBUILD 的 approved 留证都是采数之后才落盘（批准本身在先）；以后应先落留证
   - 复核：`docs/m3_rive_follow_result_claude_review.md`
+
+- **2026-11-02 — T1–T4 按建议（pidan；M3-MATRIX 的开放问题交 Claude 定）**
+  - T1：WP2 指针跟随设计约束已采用：`docs/m3_wp2_follow_guidelines.md`
+  - T2：外部问题报告草稿 `docs/m3_xaml_device_lost_report_draft.md`（英文，未提交到任何外部渠道；由谁在哪里提交由 pidan 决定）
+  - T3：`claude/m3-follow` 已合入 XAML-REBUILD / K93 的最新内容，开 PR 到 main（不合并，待评审）
+  - T4：M3-MATRIX DRAFT 另开分支
