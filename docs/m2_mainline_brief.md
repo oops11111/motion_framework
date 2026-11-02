@@ -652,3 +652,11 @@
   - T2：外部问题报告草稿 `docs/m3_xaml_device_lost_report_draft.md`（英文，未提交到任何外部渠道；由谁在哪里提交由 pidan 决定）
   - T3：`claude/m3-follow` 已合入 XAML-REBUILD / K93 的最新内容，开 PR 到 main（不合并，待评审）
   - T4：M3-MATRIX DRAFT 另开分支
+
+- **2026-11-02 — PR #7 已开（M3 LOST / XAML 诊断 / FOLLOW 代码进 main），待 pidan 评审，未合并**
+  - https://github.com/oops11111/motion_framework/pull/7（`claude/m3-follow` → main；不含 csproj 本机补丁；composition.h 未改）
+
+- **2026-11-02 09:34:33 AWST — M3-MATRIX LOCKED（开放问题 X1–X7 由 Claude 代定，pidan 授权）**
+  - LOCKED：`docs/m3_matrix_gate_LOCKED.md`，GATE_BODY_SHA256=`d8c21d0304931c42d805ceef35fccf4df50b5f2931fd916b81a13eea5db1963f`（复算 MATCH）；分支 `claude/m3-matrix`，代码 `fe81db8`
+  - IJI1KJG（75 Hz，100%）+ 一块外接显示器（60 Hz，125% 或 150%）；探针自己移动窗口跨屏，测每屏节奏、跨屏卡顿、重新光栅化、预算；144 Hz、200%、DRR、RDP、GPU 切换、热插拔留作后续
+  - 派工单 `docs/workbuddy_m3_matrix_dispatch.md`；**未 APPROVED，不授权采数**
