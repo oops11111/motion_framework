@@ -1,0 +1,13 @@
+[2026-11-01 17:56:43] M3-FOLLOW run: host=DESKTOP-IJI1KJG sessions=3 exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe
+[2026-11-01 17:56:43] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-11-01 17:56:44] os=Microsoft Windows 11 ×¨Òµ°æ build=26300
+[2026-11-01 17:56:44] gpu=AMD Radeon RX 7800 XT driver=32.0.12033.1030 refresh=75Hz mode=1280x1024
+[2026-11-01 17:56:44] composition.h sha256 PRE=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-11-01 17:56:46] session 1 pid=18324
+[2026-11-01 17:59:40] session 1 verdict=RECORDED c_vs_a=1.80 b_vs_a=0.09 seam=-1.93 budget_ok=1
+[2026-11-01 17:59:42] session 2 pid=4868
+[2026-11-01 18:02:34] session 2 verdict=RECORDED c_vs_a=1.89 b_vs_a=0.20 seam=-1.93 budget_ok=1
+[2026-11-01 18:02:36] session 3 pid=13872
+[2026-11-01 18:05:27] session 3 verdict=RECORDED c_vs_a=2.00 b_vs_a=0.20 seam=-1.95 budget_ok=1
+[2026-11-01 18:05:27] composition.h sha256 POST=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-11-01 18:05:27] RUN_DONE

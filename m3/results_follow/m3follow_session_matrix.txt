@@ -1,0 +1,4 @@
+﻿session,pid,verdict,A_surface_ui_p50_ms,A_surface_ui_hit,B_surface_latch_p50_ms,B_surface_latch_hit,C_split_expr_p50_ms,C_split_expr_hit,D_split_ui_p50_ms,D_split_ui_hit,c_vs_a_frames,b_vs_a_frames,seam_frames,split_default,latch_default,seam_ok,budget_ok
+1,18324,RECORDED,64.72,40/40,63.48,40/40,40.78,40/40,54.62,40/40,1.80,0.09,-1.93,1,0,0,1
+2,4868,RECORDED,65.84,40/40,63.18,40/40,40.70,40/40,54.52,40/40,1.89,0.20,-1.93,1,0,0,1
+3,13872,RECORDED,67.16,40/40,64.53,40/40,40.47,40/40,54.13,40/40,2.00,0.20,-1.95,1,0,0,1
