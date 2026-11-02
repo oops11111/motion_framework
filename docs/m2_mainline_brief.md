@@ -555,9 +555,6 @@
   - 闸门 `69a52e2d…1f55` 复算 MATCH、approved 在先（协调结题“无闸门、无 approved”是旧副本所致）
   - 复核：`docs/m3_xaml_lost_result_claude_review.md`；下一步待 pidan 决定（Q1–Q4）
 
-- **2026-10-30 — M3-RIVE-FOLLOW DRAFT（plan §7 第 3 张）**
-  - `docs/m3_rive_follow_gate_DRAFT.md`（分支 `claude/m3-follow`，从 `claude/m3-xaml-lost` 拉出）：四条跟随路径（表面内 UI 线程转交 / 表面内渲染线程读取 / 拆出 visual 表达式驱动 / 拆出 visual UI 线程写入）的指针延迟和拆分接缝；P1–P6 待裁决；真机排在 XAML-LOST 之后（N1）；不授权采数
-
 - **2026-10-30 — Q1–Q4 按建议（pidan）**
   - Q1：XAML-LOST 结题已附更正（标签 `XAML-LOST`，平台问题；闸门 LOCKED 且 APPROVED）
   - Q2：后续诊断 DRAFT `docs/m3_xaml_rebuild_gate_DRAFT.md`（分支 `claude/m3-xaml-rebuild`）：重启前已开的窗口、重启后新建的窗口能否画文字；打包部署是否一样；R1–R4 待裁决；不授权采数
@@ -570,15 +567,7 @@
   - 派工单 `docs/workbuddy_m3_xaml_rebuild_dispatch.md`；**未 APPROVED，不授权采数**
   - P1–P6（FOLLOW）已按建议裁决，实现在 `claude/m3-follow`
 
-- **2026-10-30 17:40:39 AWST — M3-RIVE-FOLLOW LOCKED（P1–P6 按建议）**
-  - LOCKED：`docs/m3_rive_follow_gate_LOCKED.md`，GATE_BODY_SHA256=`285e39dc9c1100f92ddddc5560a3631b94129a9b56c561c9803c8cbee57eaab3`（复算 MATCH）；分支 `claude/m3-follow`（含 XAML-REBUILD 代码），代码 `b9e6f32`
-  - 四条跟随路径 × 3 会话，每路径 40 次阶跃 + 40 次拖动；需重建 m0rive.dll；`SendInput` 仅限本票
-  - 派工单 `docs/workbuddy_m3_rive_follow_dispatch.md`（建议在 XAML-REBUILD 之后做）；**未 APPROVED，不授权采数**
-
-- **2026-11-01 — M3-RIVE-FOLLOW APPROVED 留证补记**
-  - pidan 在 2026-11-01 16:26:53（UTC+8）同时批准了 XAML-REBUILD 和 RIVE-FOLLOW；当时只落了 REBUILD 的留证，现补 `docs/m3_rive_follow_approved.md`；gate `285e39dc…eaab3` 复算 MATCH；FOLLOW 尚未采数
-
-- **2026-11-02 — 再次恢复本 brief（Claude）**：协调提交 `c4cf6be` 又整体改写了 brief（−194 行）。已按 `c4cf6be~1` 恢复，协调新增的条目原样保留在下面。**请协调侧只在 brief 末尾追加，不要整体重写。**
+- **2026-11-01 — 第五次恢复本 brief（Claude）**：协调提交 `0ef414e` 这次已经对照了正确的闸门和 approved，但 brief 仍被整体改写，丢了 164 行历史。已按 `0ef414e~1` 恢复，协调新增的两条原样保留在下面。
 
 - **2026-11-01 16:26:53 Asia/Shanghai — 双票 APPROVED（XAML-REBUILD + RIVE-FOLLOW）**（文档归档；本行≠派 workbuddy）
   - pidan 明文：`APPROVED M3-XAML-REBUILD` + `APPROVED M3-RIVE-FOLLOW`
@@ -596,6 +585,23 @@
   - R4=**KNOWN_LIMIT**（建议重启应用；宿主重建窗口不充分）；Success≠adopt；composition.h 未触；PERF-CI HOLD
   - next：**M3-RIVE-FOLLOW 已 APPROVED（SendInput `285e39dc…aab3`）且已派 — 待命/并行；本结题不授权新采数、不阻拦 workbuddy**
 
+- **2026-11-01 — M3-XAML-REBUILD：Claude 复核（同意协调的逐窗口判读）**
+  - IJI1KJG：进程级丢失（W_post 也全黑），打包同样 → 已知限制、建议重启应用
+  - K93N3P8：主窗口完整，但该会话不带 Rive，无法证明设备确实丢失；需带 Rive 复测
+  - runner 截图两处缺陷（被遮挡、不感知 DPI）；B 的 7 张截图拍到了执行方的私人聊天和通知，待 pidan 决定是否删除
+  - 复核：`docs/m3_xaml_rebuild_result_claude_review.md`
+
+- **2026-11-01 18:37:27 AWST — S1–S4 按建议（pidan）；M3-XAML-K93 LOCKED**
+  - S1：`m3/run_m3_xaml_lost.ps1` 截图改为 `PrintWindow`（按窗口取内容，不受遮挡）+ 每显示器 DPI 感知；打包启动时复制 `m0rive.dll` 进 AppX（`104e5f9`）
+  - S2：`docs/m3_xaml_k93_gate_LOCKED.md`，GATE_BODY_SHA256=`22fb8b92d8703619215ffaae3f0d5d9efea003951bb44b42d790d488ac28b657`（复算 MATCH）；K93N3P8 带 Rive 1 会话；派工单 `docs/workbuddy_m3_xaml_k93_dispatch.md`；**未 APPROVED，不授权采数**
+  - S3：B 组 7 张拍到私人内容的截图已从分支最新版本删除（历史未改写），见 `m3/results_xaml_rebuild/b/REMOVED.md`
+  - S4：对外报告等 K93 结果；已知限制草稿 `docs/m3_known_limits.md`
+
+- **2026-11-01 20:58:26 AWST — M3-XAML-K93 APPROVED（pidan）**
+  - approved：`docs/m3_xaml_k93_approved.md`；gate `22fb8b92…b657` 不变；采数=是（K93N3P8，自检 + 1 会话带 Rive）；派工单 `docs/workbuddy_m3_xaml_k93_dispatch.md`；结果进 `m3/results_xaml_k93/`
+
+- **2026-11-02 — 再次恢复本 brief（Claude）**：协调提交 `58cc1a4` 又整体改写了 brief（−200 行）。已按 `58cc1a4~1` 恢复，协调新增的条目原样保留在下面。**请协调侧只在 brief 末尾追加，不要整体重写。**
+
 - **2026-11-02 08:11:19 Australia/Perth — M3-RIVE-FOLLOW CLOSED RIVE-FOLLOW-PASS（METRICS_PASS；有条件采用 WP2 设计约束；不合 main）**
   - 权威：docs/m3_rive_follow_result.md；pack：docs/notion_m3_rive_follow_pack.md；next：docs/notion_m3_rive_follow_next.md；brief：docs/m3_rive_follow_result_brief.md
   - gate MATCH `285e39dc9c1100f92ddddc5560a3631b94129a9b56c561c9803c8cbee57eaab3`（SendInput 现行；PropertySet bak 勿用）；APPROVED pidan @ 2026-11-01 16:26:53 Asia/Shanghai
@@ -606,6 +612,34 @@
   - results=`m3/results_follow/`（9 files）；composition.h PRE=POST CRLF=`33d826c7…6e97` edited=False
   - 成功≠采用；有条件采用设计约束（C默认拆分；B不升默认；接缝阻尼）；**不合 main**；PERF-CI 仍 HOLD
   - next：**M3-XAML-K93 已 APPROVED 且 K93 在跑 — 待命/并行；本结题不授权新采数、不阻拦**
+
+- **2026-11-02 09:20:00 Australia/Perth — M3-XAML-K93 CLOSED XAML-K93-PASS（METRICS_PASS 有条件；有条件采用验证结论；构建路径非 K93 原生；不合 main）**
+  - 权威：docs/m3_xaml_k93_result.md；pack：docs/notion_m3_xaml_k93_pack.md；next：docs/notion_m3_xaml_k93_next.md；brief：docs/m3_xaml_k93_result_brief.md
+  - gate MATCH `22fb8b92d8703619215ffaae3f0d5d9efea003951bb44b42d790d488ac28b657`（协调/workbuddy + tip 旁证；**本地未见 LOCK 文件**）；decision_doc=HIT Decision C；原 APPROVED 仍有效
+  - tip_read=`cbc5fdb285570fde7d71fb7f3782d02f1663f8fd`；commit=`bfd76c3660b157ca3c903bb9f2afae07339c6f55` @ claude/m3-xaml-rebuild；results=`m3/results_xaml_k93/` 26 files
+  - build_path=**IJI_BYPASS_COPY**；k93_native=**BLOCKED_TOOLCHAIN**；dll_sha256=`70ed8d14ff0e73793d36dd6799e8972f9877cd652eee54401f35b444de6da15f`
+  - dryrun=RECORDED；sessions=1×RECORDED（with_rive=1 packaged=1 inject_ok=1 shots=20）；lost_detected=1 recovered=1 lost_now=0 recover_ms=4504.25 rive_abort=none reason=0x887A0005
+  - W_pre=1440x756 W_post=1153x605（**缺 TEXT-OK/LOST 目视字段**）；composition.h PRE=POST 未触；Success≠adopt；PERF-CI HOLD
+  - 工具链 A/B **挂账不挡本票**；next：**M3-MATRIX DRAFT（纯文档）— 不授权真机**；本结题不授权新采数
+
+- **2026-11-02 — M3-XAML-K93：Claude 复核 → XAML 在 K93N3P8 上能恢复（问题限于 IJI1KJG 环境）**
+  - Rive 证实设备确实丢失（`0x887A0005`，恢复 4.50 s）；主窗口、W_pre、W_post 全部 TEXT-OK，计数器持续前进
+  - 结论：XAML-LOST 是 Windows 11 预览版 26300 和/或 AMD 驱动的问题，不是 WinUI 3 普遍问题；按 S4 向反馈中心 / AMD 报告（由 pidan 决定）
+  - 构建在 IJI1KJG 完成后复制到 K93（协调 Decision C），代码与锁定提交一致，记为执行偏离
+  - 复核：`docs/m3_xaml_k93_result_claude_review.md`；已知限制已更新：`docs/m3_known_limits.md`
+
+- **2026-10-30 — M3-RIVE-FOLLOW DRAFT（plan §7 第 3 张）**
+  - `docs/m3_rive_follow_gate_DRAFT.md`（分支 `claude/m3-follow`，从 `claude/m3-xaml-lost` 拉出）：四条跟随路径（表面内 UI 线程转交 / 表面内渲染线程读取 / 拆出 visual 表达式驱动 / 拆出 visual UI 线程写入）的指针延迟和拆分接缝；P1–P6 待裁决；真机排在 XAML-LOST 之后（N1）；不授权采数
+
+- **2026-10-30 17:40:39 AWST — M3-RIVE-FOLLOW LOCKED（P1–P6 按建议）**
+  - LOCKED：`docs/m3_rive_follow_gate_LOCKED.md`，GATE_BODY_SHA256=`285e39dc9c1100f92ddddc5560a3631b94129a9b56c561c9803c8cbee57eaab3`（复算 MATCH）；分支 `claude/m3-follow`（含 XAML-REBUILD 代码），代码 `b9e6f32`
+  - 四条跟随路径 × 3 会话，每路径 40 次阶跃 + 40 次拖动；需重建 m0rive.dll；`SendInput` 仅限本票
+  - 派工单 `docs/workbuddy_m3_rive_follow_dispatch.md`（建议在 XAML-REBUILD 之后做）；**未 APPROVED，不授权采数**
+
+- **2026-11-01 — M3-RIVE-FOLLOW APPROVED 留证补记**
+  - pidan 在 2026-11-01 16:26:53（UTC+8）同时批准了 XAML-REBUILD 和 RIVE-FOLLOW；当时只落了 REBUILD 的留证，现补 `docs/m3_rive_follow_approved.md`；gate `285e39dc…eaab3` 复算 MATCH；FOLLOW 尚未采数
+
+- **2026-11-02 — 再次恢复本 brief（Claude）**：协调提交 `c4cf6be` 又整体改写了 brief（−194 行）。已按 `c4cf6be~1` 恢复，协调新增的条目原样保留在下面。**请协调侧只在 brief 末尾追加，不要整体重写。**
 
 - **2026-11-02 — M3-RIVE-FOLLOW：Claude 复核（同意 RIVE-FOLLOW-PASS 的数字和规则判读）**
   - C（拆出 + 表达式）40.5–40.8 ms，比 A（表面内）快 1.8–2.0 帧；B（渲染线程读光标）只比 A 快 0.1–0.2 帧；接缝 −1.93 帧（拆出的部件领先 Rive 主体约 26 ms）

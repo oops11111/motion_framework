@@ -1,0 +1,2 @@
+﻿session,pid,with_rive,verdict,inject_ok,rive_recovered,shots
+1,8268,0,RECORDED,1,,20
