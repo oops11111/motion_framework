@@ -838,6 +838,15 @@ M0R_API int32_t m0r_reset_stats(void) {
     return S_OK;
 }
 
+M0R_API int32_t m0r_get_intervals(double* out, uint32_t capacity, uint32_t* count) {
+    if (!g || !count || (capacity && !out)) return E_INVALIDARG;
+    std::lock_guard<std::mutex> lk(g->statsMu);
+    *count = static_cast<uint32_t>(g->intervalMs.size());
+    const size_t n = std::min<size_t>(capacity, g->intervalMs.size());
+    std::copy(g->intervalMs.begin(), g->intervalMs.begin() + static_cast<std::ptrdiff_t>(n), out);
+    return S_OK;
+}
+
 M0R_API int32_t m0r_write_reference(const wchar_t* path, double t_sec) {
     if (!g || !path) return E_INVALIDARG;
     if (g->running.load()) return E_NOT_VALID_STATE;  // the immediate context is single-threaded here

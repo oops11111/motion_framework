@@ -108,6 +108,9 @@ M0R_API int32_t m0r_stop(void);
 M0R_API int32_t m0r_get_stats(m0r_stats* out);
 // Clears all counters and samples, so a later phase (e.g. M0-1b) is measured on its own.
 M0R_API int32_t m0r_reset_stats(void);
+// M3-MATRIX: copies up to `capacity` render-loop intervals (ms, oldest first) recorded
+// since the last m0r_reset_stats; *count receives the total recorded.
+M0R_API int32_t m0r_get_intervals(double* out, uint32_t capacity, uint32_t* count);
 
 // Renders one frame headless at `t_sec` and writes raw BGRA (premultiplied) to
 // `path`: 8-byte header (uint32 width, uint32 height) then rows top to bottom.
