@@ -1,0 +1,28 @@
+[2026-10-29 17:34:26] M3-LOST run: host=DESKTOP-IJI1KJG sessions=3 simulate=False exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe
+[2026-10-29 17:34:26] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-10-29 17:34:27] os=Microsoft Windows 11 专业版 build=26300
+[2026-10-29 17:34:27] gpu=AMD Radeon RX 7800 XT driver=32.0.12033.1030 refresh=75Hz mode=1280x1024
+[2026-10-29 17:34:27] composition.h sha256 PRE=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-10-29 17:34:27] registry TdrLevel=default
+[2026-10-29 17:34:27] registry TdrDelay=default
+[2026-10-29 17:34:27] registry TdrLimitCount=default
+[2026-10-29 17:34:27] registry TdrLimitTime=default
+[2026-10-29 17:34:27] BLOCKED: needs an elevated PowerShell (dxcap -forcetdr)
+[2026-10-29 17:35:26] M3-LOST run: host=DESKTOP-IJI1KJG sessions=3 simulate=False exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe
+[2026-10-29 17:35:26] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-10-29 17:35:26] os=Microsoft Windows 11 专业版 build=26300
+[2026-10-29 17:35:26] gpu=AMD Radeon RX 7800 XT driver=32.0.12033.1030 refresh=75Hz mode=1280x1024
+[2026-10-29 17:35:26] composition.h sha256 PRE=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-10-29 17:35:26] registry TdrLevel=default
+[2026-10-29 17:35:26] registry TdrDelay=default
+[2026-10-29 17:35:26] registry TdrLimitCount=default
+[2026-10-29 17:35:26] registry TdrLimitTime=default
+[2026-10-29 17:35:26] dxcap=C:\WINDOWS\system32\DXCap.exe
+[2026-10-29 17:35:28] session 1 pid=20248
+[2026-10-29 17:35:37] session 1 screenshot m3lost_s1_seg0.png
+[2026-10-29 17:35:38] session 1 inject1 dxcap -forcetdr exit=0 out=
+[2026-10-29 17:36:08] STOP: session 1 inject1 not detected within 30 s (K5); no further injections
+[2026-10-29 17:36:10] session 1 verdict=CRASHED_NO_VERDICT recover_ok= recover_max_ms= event4101=0
+[2026-10-29 17:36:10] injections=1 bugcheck_events=0
+[2026-10-29 17:36:10] composition.h sha256 POST=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-10-29 17:36:10] RUN_DONE

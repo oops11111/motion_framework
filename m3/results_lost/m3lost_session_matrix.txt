@@ -1,0 +1,2 @@
+﻿session,pid,verdict,lost_detected,recovered,recover_ok,recover_max_ms,budget_ok,stability_ok,frames_missed,private_mb_delta,event4101
+1,20248,CRASHED_NO_VERDICT,,,,,,,,,0

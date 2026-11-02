@@ -1,0 +1,5 @@
+﻿session,pid,with_rive,verdict,inject_ok,rive_recovered,shots
+1,6556,0,RECORDED,1,,14
+2,16484,0,RECORDED,1,,14
+3,17220,0,RECORDED,1,,14
+4,13524,1,RECORDED,1,1,14

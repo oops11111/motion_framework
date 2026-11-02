@@ -1,0 +1,50 @@
+[2026-11-02 09:12:36] M3-XAML-LOST run: host=DESKTOP-K93N3P8 plain=0 rive=1 dryrun=False exe=C:\Users\admin\motion_framework\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe
+[2026-11-02 09:12:37] machineId(SMBIOS UUID)=03000200-0400-0500-0006-000700080009
+[2026-11-02 09:12:37] os=Microsoft Windows 10 ÆóÒµ°æ build=19045
+[2026-11-02 09:12:37] gpu=NVIDIA GeForce GTX 970 driver=32.0.15.8278 refresh=60Hz mode=1920x1080
+[2026-11-02 09:12:37] composition.h sha256 PRE=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-11-02 09:12:37] registry TdrLevel=default
+[2026-11-02 09:12:37] registry TdrDelay=default
+[2026-11-02 09:12:37] registry TdrLimitCount=default
+[2026-11-02 09:12:37] registry TdrLimitTime=default
+[2026-11-02 09:12:38] display adapter: NVIDIA GeForce GTX 970 id=PCI\VEN_10DE&DEV_13C2&SUBSYS_13C210DE&REV_A1\4&31024D2F&0&0018 status=OK
+[2026-11-02 09:12:39] gpu instance id=PCI\VEN_10DE&DEV_13C2&SUBSYS_13C210DE&REV_A1\4&31024D2F&0&0018 status=OK
+[2026-11-02 09:12:40] self-test: restarting the display driver once with no app running (L2)
+[2026-11-02 09:12:42] self-test pnputil /restart-device exit=0 out=Microsoft PnP Utility Restarting device: PCI\VEN_10DE&DEV_13C2&SUBSYS_13C210DE&REV_A1\4&31024D2F&0&0018 Device restarted successfully.
+[2026-11-02 09:12:44] self-test adapter status=OK after 3.6 s
+[2026-11-02 09:12:44] self-test OK
+[2026-11-02 09:12:44] cooldown 116 s before session 1
+[2026-11-02 09:14:43] staged m0rive.dll -> C:\Users\admin\motion_framework\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppX
+[2026-11-02 09:14:43] session 1 dotnetPid=20608 (packaged launch)
+[2026-11-02 09:14:48] session 1 pid=16964 with_rive=True rebuild=True launch=Package
+[2026-11-02 09:14:52] session 1 screenshot m3xrb_s1_base_main_a.png
+[2026-11-02 09:14:52] session 1 screenshot m3xrb_s1_base_wpre_a.png
+[2026-11-02 09:14:53] session 1 screenshot m3xrb_s1_base_main_b.png
+[2026-11-02 09:14:53] session 1 screenshot m3xrb_s1_base_wpre_b.png
+[2026-11-02 09:14:55] session 1 inject1 pnputil /restart-device exit=0 out=Microsoft PnP Utility Restarting device: PCI\VEN_10DE&DEV_13C2&SUBSYS_13C210DE&REV_A1\4&31024D2F&0&0018 Device restarted successfully.
+[2026-11-02 09:14:57] session 1 inject1 adapter status=OK after 3.1 s
+[2026-11-02 09:15:02] session 1 screenshot m3xrb_s1_t05_main_a.png
+[2026-11-02 09:15:02] session 1 screenshot m3xrb_s1_t05_wpre_a.png
+[2026-11-02 09:15:04] session 1 screenshot m3xrb_s1_t05_main_b.png
+[2026-11-02 09:15:04] session 1 screenshot m3xrb_s1_t05_wpre_b.png
+[2026-11-02 09:15:09] session 1 screenshot m3xrb_s1_t10_main_a.png
+[2026-11-02 09:15:09] session 1 screenshot m3xrb_s1_t10_wpre_a.png
+[2026-11-02 09:15:10] session 1 screenshot m3xrb_s1_t10_wpost_a.png
+[2026-11-02 09:15:11] session 1 screenshot m3xrb_s1_t10_main_b.png
+[2026-11-02 09:15:11] session 1 screenshot m3xrb_s1_t10_wpre_b.png
+[2026-11-02 09:15:11] session 1 screenshot m3xrb_s1_t10_wpost_b.png
+[2026-11-02 09:15:27] session 1 screenshot m3xrb_s1_t30_main_a.png
+[2026-11-02 09:15:27] session 1 screenshot m3xrb_s1_t30_wpre_a.png
+[2026-11-02 09:15:28] session 1 screenshot m3xrb_s1_t30_wpost_a.png
+[2026-11-02 09:15:29] session 1 screenshot m3xrb_s1_t30_main_b.png
+[2026-11-02 09:15:29] session 1 screenshot m3xrb_s1_t30_wpre_b.png
+[2026-11-02 09:15:29] session 1 screenshot m3xrb_s1_t30_wpost_b.png
+[2026-11-02 09:15:32] session 1 stderr| [m0r] lost reason=0x887A0005 simulated=0
+[2026-11-02 09:15:32] session 1 stderr| [m0r] recover attempt=1 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[2026-11-02 09:15:32] session 1 stderr| [m0r] recover attempt=2 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[2026-11-02 09:15:32] session 1 stderr| [m0r] recover attempt=3 new hr=0x00000000 adapter="NVIDIA GeForce GTX 970" vendor=0x10DE luid=00000000:49085129
+[2026-11-02 09:15:32] session 1 stderr| [m0r] recover attempt=7 recover hr=0x00000000 adapter="NVIDIA GeForce GTX 970" vendor=0x10DE luid=00000000:49085129
+[2026-11-02 09:15:32] session 1 verdict=RECORDED with_rive=True inject_ok=1 shots=20 exited_on_own=False
+[2026-11-02 09:15:32] injections=2 bugcheck_events=0
+[2026-11-02 09:15:32] composition.h sha256 POST=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-11-02 09:15:32] RUN_DONE

@@ -1,0 +1,1924 @@
+KV probe=M3-FOLLOW v1
+KV session=3
+KV pid=13872
+KV host=DESKTOP-IJI1KJG
+KV os=Microsoft Windows NT 10.0.26300.0
+KV scale=1.000
+KV refresh_hz=75.029
+KV create_hr=0x00000000
+KV surface_interop_qi_hr=0x00000000
+KV start_hr=0x00000000
+KV start_screen=238,497
+KV step_px=120
+KV block_px=120x120
+KV box_color=59,130,246
+KV wgc_start_hr=0x00000000
+KV x0_used_dip=100.00
+M0 A_surface_ui: rest cx=100.45
+M0F A_surface_ui step=0 rel_ms=34.32 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=0 rel_ms=60.98 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=87.63 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=114.29 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=140.95 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=167.61 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=194.26 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=220.92 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=247.58 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=274.24 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=300.90 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=327.55 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=354.21 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=380.87 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=407.52 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=434.18 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=0 rel_ms=460.83 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=0 dir=+ sent=1 latency_ms=60.98
+M0F A_surface_ui step=1 rel_ms=24.03 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=1 rel_ms=50.69 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=77.35 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=104.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=130.66 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=157.31 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=183.97 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=210.63 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=237.28 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=263.94 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=290.60 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=317.26 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=343.92 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=370.57 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=397.23 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=423.89 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=1 rel_ms=450.55 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=1 dir=- sent=1 latency_ms=50.69
+M0F A_surface_ui step=2 rel_ms=19.85 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=2 rel_ms=46.51 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=2 rel_ms=73.17 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=99.83 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=126.48 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=153.14 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=179.80 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=206.46 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=233.11 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=259.77 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=286.43 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=313.08 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=339.74 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=366.40 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=393.05 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=419.71 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=2 rel_ms=446.37 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=2 dir=+ sent=1 latency_ms=73.17
+M0F A_surface_ui step=3 rel_ms=12.06 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=3 rel_ms=38.72 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=3 rel_ms=65.37 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=92.03 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=118.68 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=145.34 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=172.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=198.65 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=225.31 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=251.97 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=278.62 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=305.28 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=331.94 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=358.59 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=385.25 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=411.90 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=438.56 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=3 rel_ms=465.22 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=3 dir=- sent=1 latency_ms=65.37
+M0F A_surface_ui step=4 rel_ms=31.46 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=4 rel_ms=58.11 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=84.77 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=111.43 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=138.08 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=164.74 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=191.40 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=218.05 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=244.71 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=271.37 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=298.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=324.68 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=351.34 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=378.00 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=404.66 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=431.31 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=4 rel_ms=457.97 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=4 dir=+ sent=1 latency_ms=58.11
+M0F A_surface_ui step=5 rel_ms=22.59 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=5 rel_ms=49.25 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=5 rel_ms=75.90 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=102.56 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=129.21 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=155.87 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=182.52 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=209.18 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=235.83 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=262.49 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=289.15 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=315.81 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=342.46 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=369.12 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=395.78 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=422.44 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=5 rel_ms=449.09 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=5 dir=- sent=1 latency_ms=75.90
+M0F A_surface_ui step=6 rel_ms=14.64 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=6 rel_ms=41.30 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=6 rel_ms=67.96 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=94.62 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=121.27 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=147.93 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=174.59 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=201.25 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=227.90 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=254.56 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=281.22 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=307.87 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=334.53 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=361.19 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=387.84 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=414.50 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=441.16 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=6 rel_ms=467.82 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=6 dir=+ sent=1 latency_ms=67.96
+M0F A_surface_ui step=7 rel_ms=32.47 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=7 rel_ms=59.13 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=85.78 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=112.44 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=139.09 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=165.75 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=192.41 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=219.06 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=245.72 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=272.37 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=299.03 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=325.69 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=352.34 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=379.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=405.66 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=432.31 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=7 rel_ms=458.97 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=7 dir=- sent=1 latency_ms=59.13
+M0F A_surface_ui step=8 rel_ms=25.09 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=8 rel_ms=51.75 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=8 rel_ms=78.41 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=105.06 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=131.72 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=158.37 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=185.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=211.69 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=238.34 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=265.00 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=291.66 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=318.31 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=344.97 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=371.63 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=398.28 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=424.94 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=8 rel_ms=451.59 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=8 dir=+ sent=1 latency_ms=78.41
+M0F A_surface_ui step=9 rel_ms=17.68 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=9 rel_ms=44.33 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=9 rel_ms=70.99 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=97.65 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=124.31 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=150.96 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=177.62 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=204.27 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=230.93 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=257.58 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=284.24 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=310.89 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=337.55 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=364.21 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=390.87 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=417.53 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=9 rel_ms=444.18 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=9 dir=- sent=1 latency_ms=70.99
+M0F A_surface_ui step=10 rel_ms=9.71 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=10 rel_ms=36.37 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=10 rel_ms=63.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=89.68 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=116.34 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=143.00 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=169.66 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=196.31 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=222.97 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=249.63 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=276.28 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=302.94 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=329.60 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=356.26 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=382.91 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=409.57 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=436.23 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=10 rel_ms=462.89 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=10 dir=+ sent=1 latency_ms=63.03
+M0F A_surface_ui step=11 rel_ms=28.43 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=11 rel_ms=55.09 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=81.75 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=108.40 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=135.06 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=161.71 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=188.37 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=215.03 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=241.68 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=268.34 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=295.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=321.65 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=348.31 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=374.97 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=401.62 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=428.28 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=11 rel_ms=454.94 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=11 dir=- sent=1 latency_ms=55.09
+M0F A_surface_ui step=12 rel_ms=19.67 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=12 rel_ms=46.32 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=12 rel_ms=72.98 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=99.64 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=126.29 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=152.95 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=179.61 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=206.26 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=232.92 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=259.57 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=286.23 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=312.88 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=339.54 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=366.20 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=392.86 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=419.51 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=12 rel_ms=446.17 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=12 dir=+ sent=1 latency_ms=72.98
+M0F A_surface_ui step=13 rel_ms=13.50 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=13 rel_ms=40.16 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=13 rel_ms=66.81 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=93.47 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=120.13 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=146.78 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=173.44 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=200.10 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=226.76 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=253.41 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=280.07 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=306.73 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=333.38 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=360.04 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=386.69 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=413.35 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=440.01 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=13 rel_ms=466.66 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=13 dir=- sent=1 latency_ms=66.81
+M0F A_surface_ui step=14 rel_ms=31.32 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=14 rel_ms=57.98 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=84.64 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=111.29 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=137.95 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=164.61 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=191.26 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=217.92 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=244.58 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=271.23 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=297.89 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=324.55 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=351.21 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=377.86 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=404.52 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=431.18 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=14 rel_ms=457.83 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=14 dir=+ sent=1 latency_ms=57.98
+M0F A_surface_ui step=15 rel_ms=23.95 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=15 rel_ms=50.61 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=15 rel_ms=77.27 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=103.92 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=130.58 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=157.24 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=183.89 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=210.55 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=237.21 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=263.86 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=290.52 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=317.18 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=343.83 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=370.49 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=397.15 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=423.80 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=15 rel_ms=450.46 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=15 dir=- sent=1 latency_ms=77.27
+M0F A_surface_ui step=16 rel_ms=15.58 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=16 rel_ms=42.24 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=16 rel_ms=68.90 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=95.56 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=122.22 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=148.87 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=175.53 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=202.19 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=228.85 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=255.50 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=282.16 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=308.82 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=335.47 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=362.13 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=388.78 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=415.44 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=442.10 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=16 rel_ms=468.75 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=16 dir=+ sent=1 latency_ms=68.90
+M0F A_surface_ui step=17 rel_ms=33.03 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=17 rel_ms=59.68 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=86.34 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=113.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=139.65 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=166.31 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=192.96 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=219.62 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=246.28 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=272.94 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=299.60 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=326.25 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=352.91 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=379.56 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=406.22 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=432.88 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=17 rel_ms=459.54 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=17 dir=- sent=1 latency_ms=59.68
+M0F A_surface_ui step=18 rel_ms=24.57 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=18 rel_ms=51.23 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=18 rel_ms=77.88 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=104.54 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=131.20 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=157.86 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=184.51 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=211.17 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=237.82 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=264.48 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=291.13 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=317.79 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=344.45 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=371.11 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=397.76 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=424.42 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=18 rel_ms=451.07 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=18 dir=+ sent=1 latency_ms=77.88
+M0F A_surface_ui step=19 rel_ms=17.66 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=19 rel_ms=44.31 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=19 rel_ms=70.97 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=97.63 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=124.29 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=150.94 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=177.60 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=204.26 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=230.91 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=257.57 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=284.22 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=310.88 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=337.54 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=364.19 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=390.85 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=417.51 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=444.16 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=19 rel_ms=470.82 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=19 dir=- sent=1 latency_ms=70.97
+M0F A_surface_ui step=20 rel_ms=35.00 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=20 rel_ms=61.65 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=88.31 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=114.97 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=141.62 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=168.28 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=194.94 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=221.59 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=248.25 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=274.90 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=301.56 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=328.22 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=354.88 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=381.53 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=408.19 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=434.85 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=20 rel_ms=461.50 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=20 dir=+ sent=1 latency_ms=61.65
+M0F A_surface_ui step=21 rel_ms=28.51 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=21 rel_ms=55.17 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=81.82 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=108.48 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=135.14 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=161.79 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=188.45 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=215.11 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=241.77 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=268.43 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=295.08 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=321.74 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=348.40 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=375.06 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=401.71 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=428.37 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=21 rel_ms=455.02 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=21 dir=- sent=1 latency_ms=55.17
+M0F A_surface_ui step=22 rel_ms=19.54 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=22 rel_ms=46.20 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=22 rel_ms=72.86 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=99.51 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=126.17 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=152.83 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=179.48 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=206.14 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=232.80 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=259.45 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=286.11 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=312.77 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=339.42 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=366.08 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=392.74 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=419.39 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=22 rel_ms=446.05 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=22 dir=+ sent=1 latency_ms=72.86
+M0F A_surface_ui step=23 rel_ms=11.73 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=23 rel_ms=38.38 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=23 rel_ms=65.04 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=91.69 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=118.35 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=145.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=171.66 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=198.32 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=224.97 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=251.63 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=278.29 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=304.95 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=331.60 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=358.26 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=384.92 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=411.57 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=438.23 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=23 rel_ms=464.89 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=23 dir=- sent=1 latency_ms=65.04
+M0F A_surface_ui step=24 rel_ms=30.96 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=24 rel_ms=57.62 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=84.27 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=110.93 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=137.59 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=164.24 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=190.90 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=217.56 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=244.21 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=270.87 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=297.53 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=324.18 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=350.84 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=377.50 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=404.15 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=430.81 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=24 rel_ms=457.47 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=24 dir=+ sent=1 latency_ms=57.62
+M0F A_surface_ui step=25 rel_ms=21.99 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=25 rel_ms=48.64 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=25 rel_ms=75.30 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=101.96 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=128.61 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=155.27 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=181.93 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=208.58 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=235.24 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=261.90 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=288.55 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=315.21 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=341.87 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=368.52 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=395.18 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=421.84 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=25 rel_ms=448.50 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=25 dir=- sent=1 latency_ms=75.30
+M0F A_surface_ui step=26 rel_ms=13.85 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=26 rel_ms=40.50 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=26 rel_ms=67.16 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=93.82 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=120.47 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=147.13 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=173.79 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=200.44 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=227.10 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=253.75 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=280.41 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=307.07 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=333.72 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=360.38 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=387.04 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=413.69 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=440.35 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=26 rel_ms=467.00 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=26 dir=+ sent=1 latency_ms=67.16
+M0F A_surface_ui step=27 rel_ms=32.64 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=27 rel_ms=59.30 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=85.96 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=112.61 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=139.27 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=165.93 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=192.59 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=219.25 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=245.90 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=272.56 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=299.22 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=325.87 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=352.53 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=379.19 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=405.84 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=432.50 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=27 rel_ms=459.15 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=27 dir=- sent=1 latency_ms=59.30
+M0F A_surface_ui step=28 rel_ms=24.87 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=28 rel_ms=51.52 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=28 rel_ms=78.18 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=104.84 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=131.50 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=158.15 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=184.81 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=211.47 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=238.12 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=264.78 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=291.44 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=318.10 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=344.76 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=371.42 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=398.07 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=424.73 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=28 rel_ms=451.39 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=28 dir=+ sent=1 latency_ms=78.18
+M0F A_surface_ui step=29 rel_ms=17.79 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=29 rel_ms=44.45 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=29 rel_ms=71.11 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=97.76 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=124.42 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=151.07 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=177.73 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=204.39 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=231.04 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=257.70 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=284.36 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=311.01 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=337.67 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=364.33 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=390.98 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=417.64 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=444.30 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=29 rel_ms=470.95 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=29 dir=- sent=1 latency_ms=71.11
+M0F A_surface_ui step=30 rel_ms=34.95 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=30 rel_ms=61.60 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=88.26 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=114.92 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=141.58 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=168.24 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=194.89 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=221.55 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=248.20 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=274.86 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=301.52 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=328.17 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=354.83 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=381.48 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=408.14 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=434.80 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=30 rel_ms=461.45 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=30 dir=+ sent=1 latency_ms=61.60
+M0F A_surface_ui step=31 rel_ms=24.15 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=31 rel_ms=50.80 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=31 rel_ms=77.46 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=104.12 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=130.77 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=157.43 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=184.09 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=210.75 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=237.40 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=264.06 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=290.71 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=317.37 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=344.03 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=370.69 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=397.34 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=424.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=31 rel_ms=450.66 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=31 dir=- sent=1 latency_ms=77.46
+M0F A_surface_ui step=32 rel_ms=18.44 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=32 rel_ms=45.10 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=32 rel_ms=71.76 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=98.41 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=125.07 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=151.72 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=178.38 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=205.04 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=231.69 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=258.35 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=285.01 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=311.66 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=338.32 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=364.98 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=391.64 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=418.29 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=32 rel_ms=444.95 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=32 dir=+ sent=1 latency_ms=71.76
+M0F A_surface_ui step=33 rel_ms=11.05 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=33 rel_ms=37.71 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=33 rel_ms=64.36 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=91.02 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=117.68 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=144.33 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=170.99 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=197.64 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=224.30 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=250.96 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=277.61 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=304.27 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=330.93 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=357.58 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=384.24 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=410.90 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=437.55 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=33 rel_ms=464.21 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=33 dir=- sent=1 latency_ms=64.36
+M0F A_surface_ui step=34 rel_ms=28.80 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=34 rel_ms=55.46 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=82.12 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=108.77 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=135.43 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=162.09 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=188.74 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=215.40 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=242.06 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=268.71 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=295.37 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=322.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=348.68 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=375.34 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=402.00 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=428.65 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=34 rel_ms=455.31 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=34 dir=+ sent=1 latency_ms=55.46
+M0F A_surface_ui step=35 rel_ms=22.50 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=35 rel_ms=49.16 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=35 rel_ms=75.81 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=102.47 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=129.13 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=155.79 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=182.44 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=209.10 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=235.76 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=262.41 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=289.07 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=315.72 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=342.38 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=369.04 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=395.70 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=422.36 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=35 rel_ms=449.01 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=35 dir=- sent=1 latency_ms=75.81
+M0F A_surface_ui step=36 rel_ms=14.07 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=36 rel_ms=40.73 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=36 rel_ms=67.39 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=94.05 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=120.71 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=147.36 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=174.02 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=200.67 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=227.33 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=253.98 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=280.64 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=307.30 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=333.95 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=360.61 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=387.27 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=413.92 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=440.58 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=36 rel_ms=467.23 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=36 dir=+ sent=1 latency_ms=67.39
+M0F A_surface_ui step=37 rel_ms=32.46 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=37 rel_ms=59.12 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=85.77 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=112.43 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=139.09 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=165.74 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=192.40 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=219.06 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=245.71 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=272.37 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=299.03 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=325.68 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=352.34 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=379.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=405.65 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=432.31 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=37 rel_ms=458.97 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=37 dir=- sent=1 latency_ms=59.12
+M0F A_surface_ui step=38 rel_ms=23.84 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=38 rel_ms=50.50 cx=100.50 minx=41 maxx=160 n=14400
+M0F A_surface_ui step=38 rel_ms=77.16 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=103.81 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=130.47 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=157.13 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=183.79 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=210.44 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=237.10 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=263.76 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=290.41 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=317.07 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=343.73 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=370.39 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=397.04 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=423.70 cx=220.45 minx=161 maxx=280 n=14257
+M0F A_surface_ui step=38 rel_ms=450.36 cx=220.45 minx=161 maxx=280 n=14257
+M0 A_surface_ui step=38 dir=+ sent=1 latency_ms=77.16
+M0F A_surface_ui step=39 rel_ms=16.67 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=39 rel_ms=43.33 cx=220.50 minx=161 maxx=280 n=14400
+M0F A_surface_ui step=39 rel_ms=69.99 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=96.65 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=123.30 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=149.96 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=176.62 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=203.27 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=229.93 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=256.59 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=283.24 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=309.90 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=336.56 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=363.21 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=389.87 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=416.53 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=443.18 cx=100.45 minx=41 maxx=160 n=14257
+M0F A_surface_ui step=39 rel_ms=469.84 cx=100.45 minx=41 maxx=160 n=14257
+M0 A_surface_ui step=39 dir=- sent=1 latency_ms=69.99
+KV follow.A_surface_ui.steps_hit=40/40
+KV follow.A_surface_ui.steps_hit_fwd_bwd=20/20
+KV follow.A_surface_ui.latency_p50_ms=67.16
+KV follow.A_surface_ui.latency_p95_ms=77.88
+KV follow.A_surface_ui.clock_offset_min_ms=-11.902
+M0 drag_A_surface_ui drag=0 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=1 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=2 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=3 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=4 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=5 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=6 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=7 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=8 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=9 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=10 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=11 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=12 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=13 dir=- moves=121 frames_used=11
+M0 drag_A_surface_ui drag=14 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=15 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=16 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=17 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=18 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=19 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=20 dir=+ moves=121 frames_used=11
+M0 drag_A_surface_ui drag=21 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=22 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=23 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=24 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=25 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=26 dir=+ moves=121 frames_used=11
+M0 drag_A_surface_ui drag=27 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=28 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=29 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=30 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=31 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=32 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=33 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=34 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=35 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=36 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=37 dir=- moves=121 frames_used=10
+M0 drag_A_surface_ui drag=38 dir=+ moves=121 frames_used=10
+M0 drag_A_surface_ui drag=39 dir=- moves=121 frames_used=11
+KV follow.drag_A_surface_ui.samples=404
+KV follow.drag_A_surface_ui.lag_p50_ms=56.41
+KV follow.drag_A_surface_ui.lag_p95_ms=57.56
+KV follow.A_surface_ui.cpu_p95_frac_T=0.071
+KV follow.A_surface_ui.gpu_p95_frac_T=0.015
+KV follow.A_surface_ui.draw_failures=0
+KV follow.A_surface_ui.budget_ok=1
+M0 B_surface_latch: rest cx=100.45
+M0F B_surface_latch step=0 rel_ms=16.97 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=0 rel_ms=43.63 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=0 rel_ms=70.28 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=96.94 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=123.59 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=150.25 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=176.91 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=203.56 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=230.22 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=256.88 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=283.53 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=310.19 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=336.85 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=363.50 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=390.16 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=416.82 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=0 rel_ms=443.48 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=0 dir=+ sent=1 latency_ms=70.28
+M0F B_surface_latch step=1 rel_ms=8.73 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=1 rel_ms=35.39 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=1 rel_ms=62.05 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=88.70 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=115.36 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=142.02 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=168.68 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=195.33 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=221.99 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=248.65 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=275.30 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=301.96 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=328.61 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=355.27 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=381.93 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=408.59 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=435.24 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=1 rel_ms=461.90 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=1 dir=- sent=1 latency_ms=62.05
+M0F B_surface_latch step=2 rel_ms=27.58 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=2 rel_ms=54.23 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=80.89 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=107.55 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=134.20 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=160.86 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=187.51 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=214.17 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=240.83 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=267.48 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=294.14 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=320.80 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=347.45 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=374.11 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=400.77 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=427.42 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=2 rel_ms=454.08 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=2 dir=+ sent=1 latency_ms=54.23
+M0F B_surface_latch step=3 rel_ms=21.12 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=3 rel_ms=47.77 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=3 rel_ms=74.43 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=101.09 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=127.74 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=154.40 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=181.06 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=207.71 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=234.37 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=261.03 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=287.68 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=314.34 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=340.99 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=367.65 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=394.30 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=420.96 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=3 rel_ms=447.62 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=3 dir=- sent=1 latency_ms=74.43
+M0F B_surface_latch step=4 rel_ms=13.04 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=4 rel_ms=39.70 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=4 rel_ms=66.36 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=93.01 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=119.67 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=146.32 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=172.98 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=199.64 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=226.30 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=252.96 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=279.61 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=306.27 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=332.93 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=359.59 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=386.24 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=412.90 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=439.56 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=4 rel_ms=466.21 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=4 dir=+ sent=1 latency_ms=66.36
+M0F B_surface_latch step=5 rel_ms=31.38 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=5 rel_ms=58.03 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=84.69 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=111.34 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=138.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=164.65 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=191.31 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=217.97 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=244.62 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=271.28 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=297.94 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=324.59 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=351.25 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=377.91 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=404.56 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=431.22 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=5 rel_ms=457.88 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=5 dir=- sent=1 latency_ms=58.03
+M0F B_surface_latch step=6 rel_ms=22.66 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=6 rel_ms=49.32 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=6 rel_ms=75.97 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=102.63 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=129.29 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=155.94 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=182.60 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=209.26 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=235.92 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=262.57 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=289.23 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=315.89 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=342.54 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=369.20 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=395.86 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=422.52 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=6 rel_ms=449.17 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=6 dir=+ sent=1 latency_ms=75.97
+M0F B_surface_latch step=7 rel_ms=15.03 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=7 rel_ms=41.69 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=7 rel_ms=68.35 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=95.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=121.66 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=148.32 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=174.97 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=201.63 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=228.29 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=254.95 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=281.60 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=308.26 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=334.92 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=361.57 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=388.23 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=414.89 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=441.55 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=7 rel_ms=468.21 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=7 dir=- sent=1 latency_ms=68.35
+M0F B_surface_latch step=8 rel_ms=34.05 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=8 rel_ms=60.71 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=87.36 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=114.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=140.68 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=167.34 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=193.99 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=220.65 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=247.30 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=273.96 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=300.62 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=327.28 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=353.93 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=380.59 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=407.24 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=433.90 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=8 rel_ms=460.56 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=8 dir=+ sent=1 latency_ms=60.71
+M0F B_surface_latch step=9 rel_ms=27.77 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=9 rel_ms=54.44 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=81.09 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=107.75 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=134.41 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=161.07 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=187.72 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=214.38 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=241.04 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=267.69 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=294.35 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=321.01 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=347.66 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=374.32 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=400.98 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=427.63 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=9 rel_ms=454.29 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=9 dir=- sent=1 latency_ms=54.44
+M0F B_surface_latch step=10 rel_ms=19.37 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=10 rel_ms=46.02 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=10 rel_ms=72.68 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=99.34 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=125.99 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=152.65 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=179.31 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=205.96 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=232.62 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=259.27 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=285.93 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=312.59 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=339.24 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=365.90 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=392.56 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=419.21 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=10 rel_ms=445.87 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=10 dir=+ sent=1 latency_ms=72.68
+M0F B_surface_latch step=11 rel_ms=11.93 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=11 rel_ms=38.58 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=11 rel_ms=65.24 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=91.90 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=118.55 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=145.21 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=171.86 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=198.52 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=225.18 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=251.83 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=278.49 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=305.14 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=331.80 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=358.46 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=385.11 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=411.77 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=438.42 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=11 rel_ms=465.08 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=11 dir=- sent=1 latency_ms=65.24
+M0F B_surface_latch step=12 rel_ms=29.09 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=12 rel_ms=55.75 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=82.41 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=109.06 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=135.72 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=162.38 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=189.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=215.69 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=242.35 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=269.00 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=295.66 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=322.32 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=348.97 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=375.63 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=402.28 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=428.94 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=12 rel_ms=455.59 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=12 dir=+ sent=1 latency_ms=55.75
+M0F B_surface_latch step=13 rel_ms=22.29 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=13 rel_ms=48.95 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=13 rel_ms=75.60 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=102.26 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=128.91 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=155.57 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=182.23 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=208.89 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=235.55 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=262.20 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=288.86 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=315.52 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=342.17 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=368.83 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=395.49 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=422.15 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=13 rel_ms=448.80 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=13 dir=- sent=1 latency_ms=75.60
+M0F B_surface_latch step=14 rel_ms=14.66 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=14 rel_ms=41.32 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=14 rel_ms=67.97 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=94.63 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=121.29 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=147.94 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=174.60 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=201.25 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=227.91 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=254.57 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=281.22 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=307.88 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=334.54 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=361.20 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=387.85 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=414.51 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=14 rel_ms=441.16 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=14 dir=+ sent=1 latency_ms=67.97
+M0F B_surface_latch step=15 rel_ms=6.57 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=15 rel_ms=33.23 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=15 rel_ms=59.89 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=86.54 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=113.20 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=139.86 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=166.52 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=193.17 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=219.83 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=246.49 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=273.14 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=299.80 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=326.46 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=353.11 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=379.77 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=406.43 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=433.08 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=15 rel_ms=459.74 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=15 dir=- sent=1 latency_ms=59.89
+M0F B_surface_latch step=16 rel_ms=25.18 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=16 rel_ms=51.84 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=78.49 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=105.15 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=131.81 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=158.47 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=185.12 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=211.78 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=238.44 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=265.10 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=291.75 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=318.41 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=345.07 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=371.73 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=398.38 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=425.04 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=16 rel_ms=451.69 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=16 dir=+ sent=1 latency_ms=51.84
+M0F B_surface_latch step=17 rel_ms=17.17 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=17 rel_ms=43.83 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=17 rel_ms=70.49 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=97.15 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=123.80 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=150.46 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=177.12 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=203.77 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=230.43 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=257.09 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=283.75 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=310.40 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=337.06 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=363.72 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=390.38 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=417.03 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=17 rel_ms=443.69 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=17 dir=- sent=1 latency_ms=70.49
+M0F B_surface_latch step=18 rel_ms=9.80 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=18 rel_ms=36.46 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=18 rel_ms=63.12 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=89.77 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=116.43 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=143.08 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=169.74 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=196.40 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=223.05 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=249.71 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=276.37 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=303.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=329.68 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=356.34 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=382.99 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=409.65 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=436.31 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=18 rel_ms=462.96 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=18 dir=+ sent=1 latency_ms=63.12
+M0F B_surface_latch step=19 rel_ms=29.07 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=19 rel_ms=55.73 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=82.38 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=109.04 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=135.70 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=162.35 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=189.01 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=215.66 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=242.32 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=268.98 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=295.63 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=322.29 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=348.95 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=375.60 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=402.26 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=428.92 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=19 rel_ms=455.58 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=19 dir=- sent=1 latency_ms=55.73
+M0F B_surface_latch step=20 rel_ms=19.99 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=20 rel_ms=46.65 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=20 rel_ms=73.30 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=99.96 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=126.62 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=153.27 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=179.93 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=206.59 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=233.24 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=259.90 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=286.56 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=313.22 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=339.87 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=366.53 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=393.19 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=419.84 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=20 rel_ms=446.50 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=20 dir=+ sent=1 latency_ms=73.30
+M0F B_surface_latch step=21 rel_ms=11.58 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=21 rel_ms=38.24 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=21 rel_ms=64.90 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=91.56 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=118.21 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=144.87 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=171.53 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=198.18 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=224.84 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=251.49 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=278.15 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=304.81 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=331.46 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=358.12 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=384.78 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=411.43 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=438.09 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=21 rel_ms=464.74 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=21 dir=- sent=1 latency_ms=64.90
+M0F B_surface_latch step=22 rel_ms=30.50 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=22 rel_ms=57.16 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=83.82 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=110.47 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=137.13 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=163.78 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=190.44 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=217.09 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=243.75 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=270.40 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=297.06 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=323.72 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=350.37 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=377.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=403.69 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=430.34 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=22 rel_ms=457.00 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=22 dir=+ sent=1 latency_ms=57.16
+M0F B_surface_latch step=23 rel_ms=22.73 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=23 rel_ms=49.38 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=23 rel_ms=76.04 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=102.70 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=129.35 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=156.01 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=182.67 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=209.33 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=235.98 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=262.64 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=289.29 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=315.95 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=342.61 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=369.26 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=395.92 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=422.58 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=23 rel_ms=449.23 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=23 dir=- sent=1 latency_ms=76.04
+M0F B_surface_latch step=24 rel_ms=14.47 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=24 rel_ms=41.13 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=24 rel_ms=67.78 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=94.44 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=121.10 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=147.75 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=174.41 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=201.06 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=227.72 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=254.38 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=281.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=307.69 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=334.35 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=361.00 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=387.66 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=414.32 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=440.97 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=24 rel_ms=467.63 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=24 dir=+ sent=1 latency_ms=67.78
+M0F B_surface_latch step=25 rel_ms=33.05 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=25 rel_ms=59.70 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=86.36 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=113.02 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=139.68 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=166.33 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=192.99 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=219.65 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=246.30 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=272.96 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=299.61 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=326.27 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=352.93 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=379.59 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=406.24 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=432.90 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=25 rel_ms=459.56 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=25 dir=- sent=1 latency_ms=59.70
+M0F B_surface_latch step=26 rel_ms=26.13 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=26 rel_ms=52.78 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=79.44 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=106.10 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=132.76 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=159.42 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=186.07 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=212.73 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=239.39 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=266.04 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=292.70 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=319.35 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=346.01 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=372.67 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=399.32 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=425.98 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=26 rel_ms=452.64 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=26 dir=+ sent=1 latency_ms=52.78
+M0F B_surface_latch step=27 rel_ms=18.60 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=27 rel_ms=45.25 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=27 rel_ms=71.91 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=98.57 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=125.23 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=151.88 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=178.54 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=205.20 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=231.86 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=258.51 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=285.17 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=311.83 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=338.48 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=365.14 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=391.79 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=418.45 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=27 rel_ms=445.11 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=27 dir=- sent=1 latency_ms=71.91
+M0F B_surface_latch step=28 rel_ms=10.70 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=28 rel_ms=37.35 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=28 rel_ms=64.01 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=90.67 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=117.32 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=143.98 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=170.64 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=197.29 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=223.95 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=250.61 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=277.26 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=303.92 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=330.58 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=357.24 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=383.89 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=410.55 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=437.21 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=28 rel_ms=463.86 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=28 dir=+ sent=1 latency_ms=64.01
+M0F B_surface_latch step=29 rel_ms=31.20 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=29 rel_ms=57.86 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=84.52 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=111.17 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=137.83 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=164.48 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=191.14 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=217.80 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=244.45 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=271.11 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=297.77 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=324.42 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=351.08 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=377.74 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=404.39 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=431.05 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=29 rel_ms=457.71 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=29 dir=- sent=1 latency_ms=57.86
+M0F B_surface_latch step=30 rel_ms=24.23 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=30 rel_ms=50.88 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=30 rel_ms=77.54 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=104.20 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=130.85 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=157.51 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=184.17 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=210.82 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=237.48 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=264.14 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=290.79 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=317.45 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=344.11 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=370.76 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=397.42 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=424.08 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=30 rel_ms=450.73 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=30 dir=+ sent=1 latency_ms=77.54
+M0F B_surface_latch step=31 rel_ms=16.16 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=31 rel_ms=42.82 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=31 rel_ms=69.47 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=96.13 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=122.79 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=149.44 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=176.10 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=202.75 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=229.41 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=256.07 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=282.72 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=309.38 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=336.03 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=362.69 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=389.35 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=416.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=442.66 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=31 rel_ms=469.32 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=31 dir=- sent=1 latency_ms=69.47
+M0F B_surface_latch step=32 rel_ms=34.11 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=32 rel_ms=60.77 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=87.43 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=114.08 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=140.74 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=167.40 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=194.05 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=220.71 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=247.37 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=274.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=300.68 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=327.34 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=354.00 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=380.65 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=407.31 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=433.96 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=32 rel_ms=460.62 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=32 dir=+ sent=1 latency_ms=60.77
+M0F B_surface_latch step=33 rel_ms=26.88 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=33 rel_ms=53.53 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=80.19 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=106.85 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=133.50 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=160.16 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=186.82 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=213.47 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=240.13 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=266.78 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=293.45 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=320.10 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=346.76 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=373.42 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=400.07 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=426.73 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=33 rel_ms=453.39 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=33 dir=- sent=1 latency_ms=53.53
+M0F B_surface_latch step=34 rel_ms=19.08 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=34 rel_ms=45.73 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=34 rel_ms=72.39 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=99.05 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=125.71 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=152.36 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=179.02 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=205.68 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=232.33 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=258.99 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=285.65 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=312.30 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=338.96 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=365.62 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=392.28 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=418.93 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=34 rel_ms=445.59 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=34 dir=+ sent=1 latency_ms=72.39
+M0F B_surface_latch step=35 rel_ms=11.21 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=35 rel_ms=37.87 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=35 rel_ms=64.53 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=91.19 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=117.84 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=144.50 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=171.16 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=197.81 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=224.47 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=251.13 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=277.78 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=304.44 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=331.10 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=357.76 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=384.41 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=411.07 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=437.73 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=35 rel_ms=464.38 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=35 dir=- sent=1 latency_ms=64.53
+M0F B_surface_latch step=36 rel_ms=30.09 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=36 rel_ms=56.75 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=83.41 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=110.06 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=136.72 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=163.38 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=190.03 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=216.69 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=243.35 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=270.00 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=296.66 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=323.32 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=349.98 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=376.63 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=403.29 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=429.95 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=36 rel_ms=456.60 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=36 dir=+ sent=1 latency_ms=56.75
+M0F B_surface_latch step=37 rel_ms=21.06 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=37 rel_ms=47.71 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=37 rel_ms=74.37 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=101.03 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=127.69 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=154.35 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=181.00 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=207.66 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=234.32 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=260.98 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=287.63 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=314.29 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=340.95 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=367.61 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=394.27 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=420.92 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=37 rel_ms=447.58 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=37 dir=- sent=1 latency_ms=74.37
+M0F B_surface_latch step=38 rel_ms=12.95 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=38 rel_ms=39.61 cx=100.50 minx=41 maxx=160 n=14400
+M0F B_surface_latch step=38 rel_ms=66.26 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=92.92 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=119.58 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=146.23 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=172.89 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=199.54 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=226.20 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=252.86 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=279.52 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=306.17 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=332.83 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=359.48 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=386.14 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=412.80 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=439.45 cx=220.45 minx=161 maxx=280 n=14257
+M0F B_surface_latch step=38 rel_ms=466.11 cx=220.45 minx=161 maxx=280 n=14257
+M0 B_surface_latch step=38 dir=+ sent=1 latency_ms=66.26
+M0F B_surface_latch step=39 rel_ms=30.57 cx=220.50 minx=161 maxx=280 n=14400
+M0F B_surface_latch step=39 rel_ms=57.23 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=83.89 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=110.54 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=137.20 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=163.85 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=190.51 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=217.17 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=243.82 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=270.48 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=297.14 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=323.79 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=350.45 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=377.11 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=403.76 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=430.42 cx=100.45 minx=41 maxx=160 n=14257
+M0F B_surface_latch step=39 rel_ms=457.07 cx=100.45 minx=41 maxx=160 n=14257
+M0 B_surface_latch step=39 dir=- sent=1 latency_ms=57.23
+KV follow.B_surface_latch.steps_hit=40/40
+KV follow.B_surface_latch.steps_hit_fwd_bwd=20/20
+KV follow.B_surface_latch.latency_p50_ms=64.53
+KV follow.B_surface_latch.latency_p95_ms=75.97
+KV follow.B_surface_latch.clock_offset_min_ms=-11.893
+M0 drag_B_surface_latch drag=0 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=1 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=2 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=3 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=4 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=5 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=6 dir=+ moves=121 frames_used=11
+M0 drag_B_surface_latch drag=7 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=8 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=9 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=10 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=11 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=12 dir=+ moves=121 frames_used=11
+M0 drag_B_surface_latch drag=13 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=14 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=15 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=16 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=17 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=18 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=19 dir=- moves=121 frames_used=11
+M0 drag_B_surface_latch drag=20 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=21 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=22 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=23 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=24 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=25 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=26 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=27 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=28 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=29 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=30 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=31 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=32 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=33 dir=- moves=121 frames_used=11
+M0 drag_B_surface_latch drag=34 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=35 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=36 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=37 dir=- moves=121 frames_used=10
+M0 drag_B_surface_latch drag=38 dir=+ moves=121 frames_used=10
+M0 drag_B_surface_latch drag=39 dir=- moves=121 frames_used=11
+KV follow.drag_B_surface_latch.samples=405
+KV follow.drag_B_surface_latch.lag_p50_ms=56.27
+KV follow.drag_B_surface_latch.lag_p95_ms=57.47
+KV follow.B_surface_latch.cpu_p95_frac_T=0.070
+KV follow.B_surface_latch.gpu_p95_frac_T=0.015
+KV follow.B_surface_latch.draw_failures=0
+KV follow.B_surface_latch.budget_ok=1
+M0 C_split_expr: rest cx=100.45
+M0F C_split_expr step=0 rel_ms=19.01 cx=100.50 minx=41 maxx=160 n=14040
+M0F C_split_expr step=0 rel_ms=45.66 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=0 dir=+ sent=1 latency_ms=45.66
+M0F C_split_expr step=1 rel_ms=35.78 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=1 dir=- sent=1 latency_ms=35.78
+M0F C_split_expr step=2 rel_ms=28.26 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=2 dir=+ sent=1 latency_ms=28.26
+M0F C_split_expr step=3 rel_ms=20.68 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=3 rel_ms=47.33 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=3 dir=- sent=1 latency_ms=47.33
+M0F C_split_expr step=4 rel_ms=38.41 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=4 dir=+ sent=1 latency_ms=38.41
+M0F C_split_expr step=5 rel_ms=32.65 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=5 dir=- sent=1 latency_ms=32.65
+M0F C_split_expr step=6 rel_ms=24.89 cx=100.50 minx=41 maxx=160 n=14040
+M0F C_split_expr step=6 rel_ms=51.55 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=6 dir=+ sent=1 latency_ms=51.55
+M0F C_split_expr step=7 rel_ms=17.59 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=7 rel_ms=44.25 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=7 dir=- sent=1 latency_ms=44.25
+M0F C_split_expr step=8 rel_ms=34.63 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=8 dir=+ sent=1 latency_ms=34.63
+M0F C_split_expr step=9 rel_ms=24.64 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=9 rel_ms=51.29 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=9 dir=- sent=1 latency_ms=51.29
+M0F C_split_expr step=10 rel_ms=17.70 cx=100.50 minx=41 maxx=160 n=14040
+M0F C_split_expr step=10 rel_ms=44.36 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=10 dir=+ sent=1 latency_ms=44.36
+M0F C_split_expr step=11 rel_ms=36.30 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=11 dir=- sent=1 latency_ms=36.30
+M0F C_split_expr step=12 rel_ms=28.24 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=12 dir=+ sent=1 latency_ms=28.24
+M0F C_split_expr step=13 rel_ms=20.47 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=13 rel_ms=47.13 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=13 dir=- sent=1 latency_ms=47.13
+M0F C_split_expr step=14 rel_ms=13.81 cx=100.50 minx=41 maxx=160 n=14040
+M0F C_split_expr step=14 rel_ms=40.47 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=14 dir=+ sent=1 latency_ms=40.47
+M0F C_split_expr step=15 rel_ms=32.79 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=15 dir=- sent=1 latency_ms=32.79
+M0F C_split_expr step=16 rel_ms=24.83 cx=100.50 minx=41 maxx=160 n=14040
+M0F C_split_expr step=16 rel_ms=51.49 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=16 dir=+ sent=1 latency_ms=51.49
+M0F C_split_expr step=17 rel_ms=16.07 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=17 rel_ms=42.72 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=17 dir=- sent=1 latency_ms=42.72
+M0F C_split_expr step=18 rel_ms=34.68 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=18 dir=+ sent=1 latency_ms=34.68
+M0F C_split_expr step=19 rel_ms=27.12 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=19 rel_ms=53.77 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=19 dir=- sent=1 latency_ms=53.77
+M0F C_split_expr step=20 rel_ms=19.10 cx=100.50 minx=41 maxx=160 n=14040
+M0F C_split_expr step=20 rel_ms=45.75 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=20 dir=+ sent=1 latency_ms=45.75
+M0F C_split_expr step=21 rel_ms=37.01 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=21 dir=- sent=1 latency_ms=37.01
+M0F C_split_expr step=22 rel_ms=28.87 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=22 dir=+ sent=1 latency_ms=28.87
+M0F C_split_expr step=23 rel_ms=20.43 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=23 rel_ms=47.09 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=23 dir=- sent=1 latency_ms=47.09
+M0F C_split_expr step=24 rel_ms=39.68 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=24 dir=+ sent=1 latency_ms=39.68
+M0F C_split_expr step=25 rel_ms=32.32 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=25 dir=- sent=1 latency_ms=32.32
+M0F C_split_expr step=26 rel_ms=23.56 cx=100.50 minx=41 maxx=160 n=14040
+M0F C_split_expr step=26 rel_ms=50.22 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=26 dir=+ sent=1 latency_ms=50.22
+M0F C_split_expr step=27 rel_ms=15.89 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=27 rel_ms=42.54 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=27 dir=- sent=1 latency_ms=42.54
+M0F C_split_expr step=28 rel_ms=34.09 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=28 dir=+ sent=1 latency_ms=34.09
+M0F C_split_expr step=29 rel_ms=25.36 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=29 rel_ms=52.01 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=29 dir=- sent=1 latency_ms=52.01
+M0F C_split_expr step=30 rel_ms=16.87 cx=100.50 minx=41 maxx=160 n=14040
+M0F C_split_expr step=30 rel_ms=43.52 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=30 dir=+ sent=1 latency_ms=43.52
+M0F C_split_expr step=31 rel_ms=34.95 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=31 dir=- sent=1 latency_ms=34.95
+M0F C_split_expr step=32 rel_ms=26.88 cx=100.50 minx=41 maxx=160 n=14040
+M0F C_split_expr step=32 rel_ms=53.54 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=32 dir=+ sent=1 latency_ms=53.54
+M0F C_split_expr step=33 rel_ms=19.85 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=33 rel_ms=46.51 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=33 dir=- sent=1 latency_ms=46.51
+M0F C_split_expr step=34 rel_ms=38.08 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=34 dir=+ sent=1 latency_ms=38.08
+M0F C_split_expr step=35 rel_ms=29.27 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=35 dir=- sent=1 latency_ms=29.27
+M0F C_split_expr step=36 rel_ms=20.26 cx=100.50 minx=41 maxx=160 n=14040
+M0F C_split_expr step=36 rel_ms=46.92 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=36 dir=+ sent=1 latency_ms=46.92
+M0F C_split_expr step=37 rel_ms=39.02 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=37 dir=- sent=1 latency_ms=39.02
+M0F C_split_expr step=38 rel_ms=31.31 cx=220.45 minx=161 maxx=280 n=13918
+M0 C_split_expr step=38 dir=+ sent=1 latency_ms=31.31
+M0F C_split_expr step=39 rel_ms=25.04 cx=220.50 minx=161 maxx=280 n=14040
+M0F C_split_expr step=39 rel_ms=51.69 cx=100.45 minx=41 maxx=160 n=13918
+M0 C_split_expr step=39 dir=- sent=1 latency_ms=51.69
+KV follow.C_split_expr.steps_hit=40/40
+KV follow.C_split_expr.steps_hit_fwd_bwd=20/20
+KV follow.C_split_expr.latency_p50_ms=40.47
+KV follow.C_split_expr.latency_p95_ms=52.01
+KV follow.C_split_expr.clock_offset_min_ms=-11.588
+M0 drag_C_split_expr drag=0 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=1 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=2 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=3 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=4 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=5 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=6 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=7 dir=- moves=121 frames_used=11
+M0 drag_C_split_expr drag=8 dir=+ moves=121 frames_used=11
+M0 drag_C_split_expr drag=9 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=10 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=11 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=12 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=13 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=14 dir=+ moves=121 frames_used=11
+M0 drag_C_split_expr drag=15 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=16 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=17 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=18 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=19 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=20 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=21 dir=- moves=121 frames_used=11
+M0 drag_C_split_expr drag=22 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=23 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=24 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=25 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=26 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=27 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=28 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=29 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=30 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=31 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=32 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=33 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=34 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=35 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=36 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=37 dir=- moves=121 frames_used=10
+M0 drag_C_split_expr drag=38 dir=+ moves=121 frames_used=10
+M0 drag_C_split_expr drag=39 dir=- moves=121 frames_used=10
+KV follow.drag_C_split_expr.samples=404
+KV follow.drag_C_split_expr.lag_p50_ms=30.42
+KV follow.drag_C_split_expr.lag_p95_ms=31.58
+KV follow.C_split_expr.cpu_p95_frac_T=0.099
+KV follow.C_split_expr.gpu_p95_frac_T=0.014
+KV follow.C_split_expr.draw_failures=0
+KV follow.C_split_expr.budget_ok=1
+M0 D_split_ui: rest cx=100.45
+M0F D_split_ui step=0 rel_ms=35.06 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=0 rel_ms=61.72 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=0 dir=+ sent=1 latency_ms=61.72
+M0F D_split_ui step=1 rel_ms=27.18 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=1 rel_ms=53.84 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=1 dir=- sent=1 latency_ms=53.84
+M0F D_split_ui step=2 rel_ms=19.68 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=2 rel_ms=46.34 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=2 dir=+ sent=1 latency_ms=46.34
+M0F D_split_ui step=3 rel_ms=38.29 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=3 rel_ms=64.95 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=3 dir=- sent=1 latency_ms=64.95
+M0F D_split_ui step=4 rel_ms=31.05 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=4 rel_ms=57.71 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=4 dir=+ sent=1 latency_ms=57.71
+M0F D_split_ui step=5 rel_ms=22.96 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=5 rel_ms=49.62 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=5 dir=- sent=1 latency_ms=49.62
+M0F D_split_ui step=6 rel_ms=17.08 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=6 rel_ms=43.74 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=6 dir=+ sent=1 latency_ms=43.74
+M0F D_split_ui step=7 rel_ms=37.01 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=7 rel_ms=63.67 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=7 dir=- sent=1 latency_ms=63.67
+M0F D_split_ui step=8 rel_ms=29.91 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=8 rel_ms=56.56 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=8 dir=+ sent=1 latency_ms=56.56
+M0F D_split_ui step=9 rel_ms=22.09 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=9 rel_ms=48.74 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=9 dir=- sent=1 latency_ms=48.74
+M0F D_split_ui step=10 rel_ms=13.76 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=10 rel_ms=67.08 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=10 dir=+ sent=1 latency_ms=67.08
+M0F D_split_ui step=11 rel_ms=32.87 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=11 rel_ms=59.52 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=11 dir=- sent=1 latency_ms=59.52
+M0F D_split_ui step=12 rel_ms=24.02 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=12 rel_ms=50.68 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=12 dir=+ sent=1 latency_ms=50.68
+M0F D_split_ui step=13 rel_ms=16.59 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=13 rel_ms=43.24 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=13 dir=- sent=1 latency_ms=43.24
+M0F D_split_ui step=14 rel_ms=34.79 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=14 rel_ms=61.45 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=14 dir=+ sent=1 latency_ms=61.45
+M0F D_split_ui step=15 rel_ms=25.52 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=15 rel_ms=52.17 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=15 dir=- sent=1 latency_ms=52.17
+M0F D_split_ui step=16 rel_ms=17.34 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=16 rel_ms=44.00 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=16 dir=+ sent=1 latency_ms=44.00
+M0F D_split_ui step=17 rel_ms=35.40 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=17 rel_ms=62.06 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=17 dir=- sent=1 latency_ms=62.06
+M0F D_split_ui step=18 rel_ms=26.34 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=18 rel_ms=52.99 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=18 dir=+ sent=1 latency_ms=52.99
+M0F D_split_ui step=19 rel_ms=18.84 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=19 rel_ms=45.50 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=19 dir=- sent=1 latency_ms=45.50
+M0F D_split_ui step=20 rel_ms=38.29 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=20 rel_ms=64.95 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=20 dir=+ sent=1 latency_ms=64.95
+M0F D_split_ui step=21 rel_ms=30.64 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=21 rel_ms=57.29 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=21 dir=- sent=1 latency_ms=57.29
+M0F D_split_ui step=22 rel_ms=22.05 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=22 rel_ms=48.71 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=22 dir=+ sent=1 latency_ms=48.71
+M0F D_split_ui step=23 rel_ms=15.57 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=23 rel_ms=42.22 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=23 dir=- sent=1 latency_ms=42.22
+M0F D_split_ui step=24 rel_ms=34.63 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=24 rel_ms=61.29 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=24 dir=+ sent=1 latency_ms=61.29
+M0F D_split_ui step=25 rel_ms=27.55 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=25 rel_ms=54.21 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=25 dir=- sent=1 latency_ms=54.21
+M0F D_split_ui step=26 rel_ms=19.82 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=26 rel_ms=46.48 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=26 dir=+ sent=1 latency_ms=46.48
+M0F D_split_ui step=27 rel_ms=38.39 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=27 rel_ms=65.05 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=27 dir=- sent=1 latency_ms=65.05
+M0F D_split_ui step=28 rel_ms=30.89 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=28 rel_ms=57.55 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=28 dir=+ sent=1 latency_ms=57.55
+M0F D_split_ui step=29 rel_ms=22.38 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=29 rel_ms=49.04 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=29 dir=- sent=1 latency_ms=49.04
+M0F D_split_ui step=30 rel_ms=14.35 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=30 rel_ms=67.66 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=30 dir=+ sent=1 latency_ms=67.66
+M0F D_split_ui step=31 rel_ms=33.68 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=31 rel_ms=60.34 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=31 dir=- sent=1 latency_ms=60.34
+M0F D_split_ui step=32 rel_ms=26.32 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=32 rel_ms=52.98 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=32 dir=+ sent=1 latency_ms=52.98
+M0F D_split_ui step=33 rel_ms=18.29 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=33 rel_ms=44.95 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=33 dir=- sent=1 latency_ms=44.95
+M0F D_split_ui step=34 rel_ms=35.55 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=34 rel_ms=62.21 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=34 dir=+ sent=1 latency_ms=62.21
+M0F D_split_ui step=35 rel_ms=27.48 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=35 rel_ms=54.13 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=35 dir=- sent=1 latency_ms=54.13
+M0F D_split_ui step=36 rel_ms=19.02 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=36 rel_ms=45.68 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=36 dir=+ sent=1 latency_ms=45.68
+M0F D_split_ui step=37 rel_ms=37.13 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=37 rel_ms=63.78 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=37 dir=- sent=1 latency_ms=63.78
+M0F D_split_ui step=38 rel_ms=29.34 cx=100.50 minx=41 maxx=160 n=14040
+M0F D_split_ui step=38 rel_ms=56.00 cx=220.45 minx=161 maxx=280 n=13918
+M0 D_split_ui step=38 dir=+ sent=1 latency_ms=56.00
+M0F D_split_ui step=39 rel_ms=21.99 cx=220.50 minx=161 maxx=280 n=14040
+M0F D_split_ui step=39 rel_ms=48.64 cx=100.45 minx=41 maxx=160 n=13918
+M0 D_split_ui step=39 dir=- sent=1 latency_ms=48.64
+KV follow.D_split_ui.steps_hit=40/40
+KV follow.D_split_ui.steps_hit_fwd_bwd=20/20
+KV follow.D_split_ui.latency_p50_ms=54.13
+KV follow.D_split_ui.latency_p95_ms=65.05
+KV follow.D_split_ui.clock_offset_min_ms=-12.155
+M0 drag_D_split_ui drag=0 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=1 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=2 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=3 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=4 dir=+ moves=121 frames_used=11
+M0 drag_D_split_ui drag=5 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=6 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=7 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=8 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=9 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=10 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=11 dir=- moves=121 frames_used=11
+M0 drag_D_split_ui drag=12 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=13 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=14 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=15 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=16 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=17 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=18 dir=+ moves=121 frames_used=11
+M0 drag_D_split_ui drag=19 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=20 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=21 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=22 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=23 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=24 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=25 dir=- moves=121 frames_used=11
+M0 drag_D_split_ui drag=26 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=27 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=28 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=29 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=30 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=31 dir=- moves=121 frames_used=11
+M0 drag_D_split_ui drag=32 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=33 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=34 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=35 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=36 dir=+ moves=121 frames_used=10
+M0 drag_D_split_ui drag=37 dir=- moves=121 frames_used=10
+M0 drag_D_split_ui drag=38 dir=+ moves=121 frames_used=11
+M0 drag_D_split_ui drag=39 dir=- moves=121 frames_used=10
+KV follow.drag_D_split_ui.samples=406
+KV follow.drag_D_split_ui.lag_p50_ms=43.92
+KV follow.drag_D_split_ui.lag_p95_ms=45.01
+KV follow.D_split_ui.cpu_p95_frac_T=0.096
+KV follow.D_split_ui.gpu_p95_frac_T=0.014
+KV follow.D_split_ui.draw_failures=0
+KV follow.D_split_ui.budget_ok=1
+KV rule.c_vs_a_ms=26.69
+KV rule.c_vs_a_frames=2.00
+KV rule.split_default=1
+KV rule.b_vs_a_ms=2.63
+KV rule.b_vs_a_frames=0.20
+KV rule.latch_default=0
+KV rule.seam_ms=-26.00
+KV rule.seam_frames=-1.95
+KV rule.seam_ok=0
+KV budget_ok=1
+KV verdict=RECORDED

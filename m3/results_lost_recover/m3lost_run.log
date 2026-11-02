@@ -1,0 +1,81 @@
+[2026-10-30 11:52:46] M3-LOST run: host=DESKTOP-IJI1KJG sessions=3 simulate=False exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe
+[2026-10-30 11:52:47] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-10-30 11:52:47] os=Microsoft Windows 11 专业版 build=26300
+[2026-10-30 11:52:47] gpu=AMD Radeon RX 7800 XT driver=32.0.12033.1030 refresh=75Hz mode=1280x1024
+[2026-10-30 11:52:47] composition.h sha256 PRE=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-10-30 11:52:47] registry TdrLevel=default
+[2026-10-30 11:52:47] registry TdrDelay=default
+[2026-10-30 11:52:47] registry TdrLimitCount=default
+[2026-10-30 11:52:47] registry TdrLimitTime=default
+[2026-10-30 11:52:47] display adapter: AMD Radeon RX 7800 XT id=PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002FB&0&00000008 status=OK
+[2026-10-30 11:52:47] gpu instance id=PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002FB&0&00000008 status=OK
+[2026-10-30 11:52:47] self-test: restarting the display driver once with no app running (L2)
+[2026-10-30 11:52:50] self-test pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 11:52:51] self-test adapter status=OK after 3.3 s
+[2026-10-30 11:52:51] self-test OK
+[2026-10-30 11:52:51] cooldown 117 s before session 1
+[2026-10-30 11:54:50] session 1 pid=1512
+[2026-10-30 11:54:59] session 1 screenshot m3lost_s1_seg0.png
+[2026-10-30 11:55:02] session 1 inject1 pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 11:55:02] session 1 inject1 adapter status=OK after 3.2 s
+[2026-10-30 11:55:02] session 1 inject1 detected after 3.2 s
+[2026-10-30 11:55:12] session 1 screenshot m3lost_s1_seg1.png
+[2026-10-30 11:55:13] session 1 inject2 waits 32 s (K5 spacing)
+[2026-10-30 11:55:47] session 1 inject2 pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 11:55:48] session 1 inject2 adapter status=OK after 3.2 s
+[2026-10-30 11:55:48] session 1 inject2 detected after 3.2 s
+[2026-10-30 11:55:58] session 1 screenshot m3lost_s1_seg2.png
+[2026-10-30 11:56:00] session 1 stderr| [m0r] lost reason=0x887A0005 simulated=0
+[2026-10-30 11:56:00] session 1 stderr| [m0r] recover attempt=1 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[2026-10-30 11:56:00] session 1 stderr| [m0r] recover attempt=2 new hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:034600C1
+[2026-10-30 11:56:00] session 1 stderr| [m0r] recover attempt=4 recover hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:034600C1
+[2026-10-30 11:56:00] session 1 stderr| [m0r] lost reason=0x887A0005 simulated=0
+[2026-10-30 11:56:00] session 1 stderr| [m0r] recover attempt=1 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[2026-10-30 11:56:00] session 1 stderr| [m0r] recover attempt=2 new hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:034A65D1
+[2026-10-30 11:56:00] session 1 stderr| [m0r] recover attempt=7 recover hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:034A65D1
+[2026-10-30 11:56:00] session 1 verdict=RECORDED recover_ok=1 recover_max_ms=2319.99 exited_on_own=False injections_ok=1
+[2026-10-30 11:56:00] cooldown 105 s before session 2
+[2026-10-30 11:57:47] session 2 pid=15008
+[2026-10-30 11:57:56] session 2 screenshot m3lost_s2_seg0.png
+[2026-10-30 11:57:59] session 2 inject1 pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 11:58:00] session 2 inject1 adapter status=OK after 3.2 s
+[2026-10-30 11:58:00] session 2 inject1 detected after 3.2 s
+[2026-10-30 11:58:10] session 2 screenshot m3lost_s2_seg1.png
+[2026-10-30 11:58:10] session 2 inject2 waits 31 s (K5 spacing)
+[2026-10-30 11:58:45] session 2 inject2 pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 11:58:45] session 2 inject2 adapter status=OK after 3.2 s
+[2026-10-30 11:58:45] session 2 inject2 detected after 3.2 s
+[2026-10-30 11:58:55] session 2 screenshot m3lost_s2_seg2.png
+[2026-10-30 11:58:58] session 2 stderr| [m0r] lost reason=0x887A0005 simulated=0
+[2026-10-30 11:58:58] session 2 stderr| [m0r] recover attempt=1 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[2026-10-30 11:58:58] session 2 stderr| [m0r] recover attempt=2 new hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:034FFDE4
+[2026-10-30 11:58:58] session 2 stderr| [m0r] recover attempt=6 recover hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:034FFDE4
+[2026-10-30 11:58:58] session 2 stderr| [m0r] lost reason=0x887A0005 simulated=0
+[2026-10-30 11:58:58] session 2 stderr| [m0r] recover attempt=1 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[2026-10-30 11:58:58] session 2 stderr| [m0r] recover attempt=2 new hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:03547671
+[2026-10-30 11:58:58] session 2 stderr| [m0r] recover attempt=6 recover hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:03547671
+[2026-10-30 11:58:58] session 2 verdict=RECORDED recover_ok=1 recover_max_ms=2206.54 exited_on_own=False injections_ok=1
+[2026-10-30 11:58:58] cooldown 104 s before session 3
+[2026-10-30 12:00:45] session 3 pid=16804
+[2026-10-30 12:00:54] session 3 screenshot m3lost_s3_seg0.png
+[2026-10-30 12:00:57] session 3 inject1 pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 12:00:58] session 3 inject1 adapter status=OK after 3.3 s
+[2026-10-30 12:00:58] session 3 inject1 detected after 3.3 s
+[2026-10-30 12:01:08] session 3 screenshot m3lost_s3_seg1.png
+[2026-10-30 12:01:08] session 3 inject2 waits 31 s (K5 spacing)
+[2026-10-30 12:01:42] session 3 inject2 pnputil /restart-device exit=0 out=Microsoft PnP 工具 正在重启设备: PCI\VEN_1002&DEV_747E&SUBSYS_24271ED3&REV_C8\6&281002fb&0&00000008 已成功重启设备。
+[2026-10-30 12:01:43] session 3 inject2 adapter status=OK after 3.1 s
+[2026-10-30 12:01:43] session 3 inject2 detected after 3.1 s
+[2026-10-30 12:01:53] session 3 screenshot m3lost_s3_seg2.png
+[2026-10-30 12:01:55] session 3 stderr| [m0r] lost reason=0x887A0005 simulated=0
+[2026-10-30 12:01:55] session 3 stderr| [m0r] recover attempt=1 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[2026-10-30 12:01:55] session 3 stderr| [m0r] recover attempt=2 new hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:035ADAB3
+[2026-10-30 12:01:55] session 3 stderr| [m0r] recover attempt=5 recover hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:035ADAB3
+[2026-10-30 12:01:55] session 3 stderr| [m0r] lost reason=0x887A0005 simulated=0
+[2026-10-30 12:01:55] session 3 stderr| [m0r] recover attempt=1 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[2026-10-30 12:01:55] session 3 stderr| [m0r] recover attempt=2 new hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:035F24A6
+[2026-10-30 12:01:55] session 3 stderr| [m0r] recover attempt=4 recover hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:035F24A6
+[2026-10-30 12:01:55] session 3 verdict=RECORDED recover_ok=1 recover_max_ms=2160.70 exited_on_own=False injections_ok=1
+[2026-10-30 12:01:55] injections=7 bugcheck_events=0
+[2026-10-30 12:01:55] composition.h sha256 POST=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-10-30 12:01:55] RUN_DONE

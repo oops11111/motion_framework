@@ -1,0 +1,8 @@
+[m0r] lost reason=0x887A0005 simulated=0
+[m0r] recover attempt=1 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[m0r] recover attempt=2 new hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:035ADAB3
+[m0r] recover attempt=5 recover hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:035ADAB3
+[m0r] lost reason=0x887A0005 simulated=0
+[m0r] recover attempt=1 new hr=0x887A0002 adapter="" vendor=0x0000 luid=00000000:00000000
+[m0r] recover attempt=2 new hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:035F24A6
+[m0r] recover attempt=4 recover hr=0x00000000 adapter="AMD Radeon RX 7800 XT" vendor=0x1002 luid=00000000:035F24A6

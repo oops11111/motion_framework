@@ -363,8 +363,9 @@ public sealed partial class MainPage
 
     /// Injects M0Steps alternating +step/-step jumps and records, per step, the time
     /// from injection to the first WGC frame past the half-step point (M0-3/M0-5).
-    private async Task M0RunSteps(string name, int sx, int sy, int stepPx,
-        Action setup, Action teardown, Action<string, object> Kv, Action<string> Raw)
+    private async Task<List<double>> M0RunSteps(string name, int sx, int sy, int stepPx,
+        Action setup, Action teardown, Action<string, object> Kv, Action<string> Raw,
+        int steps = M0Steps, string kv = "m0_35")
     {
         double qpcMs(long q) => q * 1000.0 / Stopwatch.Frequency;
         var lat = new List<double>();
@@ -378,7 +379,7 @@ public sealed partial class MainPage
             if (MfProbe.mf_cap_get(i, out _, out _, out _, out _, out _, out _, out _, out _, out var n, out var cx) == 1 && n > 50) cxRest = cx;
         Raw($"M0 {name}: rest cx={F(cxRest, 2)}");
         double offsetMin = double.MaxValue;  // min(qpcArrive - srt): sanity check of the shared clock
-        for (int k = 0; k < M0Steps; k++)
+        for (int k = 0; k < steps; k++)
         {
             bool fwd = k % 2 == 0;
             int x = sx + (fwd ? stepPx : 0);
@@ -406,17 +407,21 @@ public sealed partial class MainPage
         teardown();
         var ok = lat.Where(v => !double.IsNaN(v)).OrderBy(v => v).ToList();
         double P(double q) => ok.Count == 0 ? double.NaN : ok[Math.Min(ok.Count - 1, (int)Math.Ceiling(q * ok.Count) - 1)];
-        Kv($"m0_35.{name}.steps_hit", $"{ok.Count}/{M0Steps}");
-        Kv($"m0_35.{name}.latency_p50_ms", F(P(0.5), 2));
-        Kv($"m0_35.{name}.latency_p95_ms", F(P(0.95), 2));
-        Kv($"m0_35.{name}.clock_offset_min_ms", F(offsetMin == double.MaxValue ? double.NaN : offsetMin, 3));
+        // Forward and backward steps counted separately (M0-A missed all backward steps once).
+        int fwdHit = lat.Where((v, i) => i % 2 == 0 && !double.IsNaN(v)).Count();
+        Kv($"{kv}.{name}.steps_hit", $"{ok.Count}/{steps}");
+        Kv($"{kv}.{name}.steps_hit_fwd_bwd", $"{fwdHit}/{ok.Count - fwdHit}");
+        Kv($"{kv}.{name}.latency_p50_ms", F(P(0.5), 2));
+        Kv($"{kv}.{name}.latency_p95_ms", F(P(0.95), 2));
+        Kv($"{kv}.{name}.clock_offset_min_ms", F(offsetMin == double.MaxValue ? double.NaN : offsetMin, 3));
+        return lat;
     }
 
     /// M0-2: injects M0Drags constant-speed drags (alternating direction) from a
     /// dedicated thread at ~1 kHz, then for every WGC frame inside a drag computes
     /// how long ago the cursor was where the tracked object is now (ms).
     private async Task<List<double>> M0RunDrags(string name, int sx, int sy, int stepPx,
-        Action setup, Action teardown, Action<string, object> Kv, Action<string> Raw)
+        Action setup, Action teardown, Action<string, object> Kv, Action<string> Raw, string kv = "m0_2")
     {
         double qpcMs(long q) => q * 1000.0 / Stopwatch.Frequency;
         var lags = new List<double>();
@@ -466,9 +471,9 @@ public sealed partial class MainPage
         teardown();
         var o = lags.OrderBy(v => v).ToList();
         double P(double q) => o.Count == 0 ? double.NaN : o[Math.Min(o.Count - 1, (int)Math.Ceiling(q * o.Count) - 1)];
-        Kv($"m0_2.{name}.samples", o.Count);
-        Kv($"m0_2.{name}.lag_p50_ms", F(P(0.5), 2));
-        Kv($"m0_2.{name}.lag_p95_ms", F(P(0.95), 2));
+        Kv($"{kv}.{name}.samples", o.Count);
+        Kv($"{kv}.{name}.lag_p50_ms", F(P(0.5), 2));
+        Kv($"{kv}.{name}.lag_p95_ms", F(P(0.95), 2));
         return lags;
     }
 }

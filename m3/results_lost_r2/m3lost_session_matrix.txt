@@ -1,0 +1,4 @@
+﻿session,pid,verdict,lost_detected,recovered,recover_ok,recover_max_ms,budget_ok,stability_ok,frames_missed,private_mb_delta,injections_ok
+1,12532,FAIL_ABORT,,,,,,,,,1
+2,13052,FAIL_ABORT,,,,,,,,,1
+3,6264,FAIL_ABORT,,,,,,,,,1
