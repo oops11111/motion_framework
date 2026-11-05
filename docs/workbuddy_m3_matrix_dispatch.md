@@ -1,7 +1,7 @@
 # 派题 · M3-MATRIX（DESKTOP-IJI1KJG + 第二块显示器）
 
 闸门：`docs/m3_matrix_gate_LOCKED.md`，GATE_BODY_SHA256=`d8c21d0304931c42d805ceef35fccf4df50b5f2931fd916b81a13eea5db1963f`，LOCKED_AT=2026-11-02 09:34:33 AWST。开放问题 X1–X7 由 Claude 代定（pidan 授权）。
-代码分支：**`claude/m3-matrix`**。**尚未 APPROVED：第 0–2 步可以先做；第 3 步必须等 `docs/m3_matrix_approved.md` 落盘后才能执行。**
+代码分支：**`claude/m3-matrix`**。**已 APPROVED（`docs/m3_matrix_approved.md`，pidan；留证落盘 2026-11-05 14:41:43 AWST）：第 0–4 步都可以执行。**
 `<ROOT>` 沿用 `C:\Users\Lh\mf_m0b`；数据目录 `<ROOT>\artifacts_m3mx`。
 
 ## 要做什么
@@ -30,7 +30,7 @@ git -C <ROOT>\repo log -1 --format=%H
 2. 复制**新文件** `MotionSoftDemo\M3MatrixProbe.cs` 到工程目录；MainPage 在已打过 FOLLOW 补丁的基础上打 `m3\mainpage_m3matrix_hook.patch`（先 `--check`）。打不上就照补丁手工加，并在回报里写明。
 3. 重新构建 MotionSoftDemo（Debug，直接启动 exe）。失败记 BLOCKED_TOOLCHAIN 并回报日志；不改代码去凑。
 
-## 3. 采数（**必须等 approved 落盘**）
+## 3. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_matrix.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3mx -Sessions 3
 ```

@@ -660,3 +660,6 @@
   - LOCKED：`docs/m3_matrix_gate_LOCKED.md`，GATE_BODY_SHA256=`d8c21d0304931c42d805ceef35fccf4df50b5f2931fd916b81a13eea5db1963f`（复算 MATCH）；分支 `claude/m3-matrix`，代码 `fe81db8`
   - IJI1KJG（75 Hz，100%）+ 一块外接显示器（60 Hz，125% 或 150%）；探针自己移动窗口跨屏，测每屏节奏、跨屏卡顿、重新光栅化、预算；144 Hz、200%、DRR、RDP、GPU 切换、热插拔留作后续
   - 派工单 `docs/workbuddy_m3_matrix_dispatch.md`；**未 APPROVED，不授权采数**
+
+- **2026-11-05 14:41:43 AWST — M3-MATRIX APPROVED（pidan）**
+  - approved：`docs/m3_matrix_approved.md`；gate `d8c21d03…963f` 不变；采数=是（IJI1KJG + 一块外接显示器，3 会话）；派工单 `docs/workbuddy_m3_matrix_dispatch.md`；结果进 `m3/results_matrix/`
