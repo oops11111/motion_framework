@@ -437,3 +437,16 @@
   - lab备注：UseShellExecute=false→MF_M0_ARTDIR；probe After()；pacing 失败未重跑（未入库）
   - Success≠adopt；**不采用**；不合 main；PERF-CI 仍 HOLD
   - next：**建议 M3-MATRIX-PACING 新 DRAFT（纯文档；NOT LOCK；不授权真机）— 勿自动 LOCK**；本结题不授权新采数
+
+- **2026-11-06 09:50:00 Asia/Shanghai — M3-MATRIX-PACING DRAFT 已落（纯文档；NOT LOCKED；不授权真机）**
+  - DRAFT：`docs/m3_matrix_pacing_gate_DRAFT.md`（sha256=`569695033907ec981b1fb7dddd54571f7f7991228ad370442be8402c172ef427`；APPROVED_* 空；LOCK≠采数；不派 workbuddy；**勿擅自 LOCK**）
+  - 依据：`docs/notion_m3_matrix_next.md`；消化 MATRIX CLOSED `RIVE-MATRIX-FAIL` 残差 `pacing_ok=0`（hitch/size/budget/stability=1；3×RECORDED；scale_changes=4；双屏 75Hz@100%+180Hz@150%）
+  - 结果目录建议：`m3/results_matrix_pacing/`（勿覆写 `m3/results_matrix/`）；标签建议 `RIVE-MATRIX-PACING-*`
+  - 开放问题：pacing 定义/硬vs记录型/混刷双列/同拓扑复测/hitch 分立/计时器/是否禁改判 MATRIX — 供 pidan 拍板
+  - composition.h 未触；Success≠adopt；不合 main；**PERF-CI 仍 HOLD**；**本行不授权真机/采数**；**不暗示可采数**
+
+- **2026-11-06 09:55:00 Asia/Shanghai（UTC+8） — M3-MATRIX-PACING 已 LOCK（LOCK≠采数；不授权真机；APPROVED_* 空）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_LOCKED.md`；GATE_BODY_SHA256=`2543e424cd71eea2959fe942ce0bfe7d7118ea6ee5c28b31da7902bce904812c`；LOCKED_AT=2026-11-06 09:55:00 Asia/Shanghai（UTC+8）
+  - DRAFT 保留并 SUPERSEDED：`docs/m3_matrix_pacing_gate_DRAFT.md`（原 sha `569695033907ec981b1fb7dddd54571f7f7991228ad370442be8402c172ef427`）
+  - 写死：硬 pacing；混刷双列均过；瞬态 N=2.0s/M=120；强制 IJI 同拓扑；≥3；只测 pacing；dir=`m3/results_matrix_pacing/`；hitch 分立；After()/QPC；GC→INVALID；禁回改 CLOSED MATRIX；标签 `RIVE-MATRIX-PACING-*`
+  - **不派 workbuddy**；**不暗示可采数**；composition.h 未触；Success≠adopt；不合 main；**PERF-CI 仍 HOLD**
