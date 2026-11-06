@@ -4,7 +4,7 @@ STATUS=DRAFT（规划文档，非真机闸门；不授权采数）
 
 > 起草：Claude，2026-11-06（pidan Y3：Rive 层视为完成，下一步启动 WP4）。依据：plan.md §7（试点选择与指标）、`docs/m3_plan_DRAFT.md` WP4 与 F4（按未来 WinMD 的形状冻结 C# API，试点绑定它；底层先走 C ABI）、`docs/api.md`（现有 C++ 公开接口与 `fm_capi.h`）、`docs/m3_wp1_rive_host_requirements.md`。
 
-## 1. 要定下来的事（Z1–Z4，附建议）
+## 1. 要定下来的事（Z1–Z4，附建议；pidan 2026-11-06：Z2–Z4 按建议，Z1 待提名）
 | # | 问题 | 建议 | 理由 |
 |---|---|---|---|
 | **Z1** | 选哪个应用做试点 1 | **需要 pidan 提名候选应用**（Claude 无法从仓库得知团队和产品）。按 plan.md §7 的标准打分：团队配合度高、中等规模、确有动效痛点（列表、导航、引导页）、带遥测、WinUI 3、非关键业务、设计师愿意写 token。请给出 1–3 个候选，Claude 出评分表 | 选型是 WP4 的前置 |

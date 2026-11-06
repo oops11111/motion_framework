@@ -817,3 +817,7 @@
   - Y2：PR #7 已合入 main（`db5de87`）；MATRIX / PACING 另开 PR
   - Y3：M3 Rive 层在现有硬件上完成，推迟项与下一步见 `docs/m3_status.md`；WP4 启动草案 `docs/m3_wp4_pilot_DRAFT.md`（Z1 需要 pidan 提名候选应用）
   - Y4：协作约定 `docs/COORDINATION.md`（先同步再写；brief 只追加；先落 approved 再采数）
+
+- **2026-11-06 — WP4：Z2–Z4 按建议（pidan），Z1 待提名；C# API v0 草案**
+  - `docs/api_v0_DRAFT.md`（形状规则、类型与底层映射、v0 不含项、冻结规则 Z3、试点指标 Z4）；形状文件 `code/csharp/FluidMotion/FluidMotion.Api.v0.cs`（只有签名，对照 WinAppSDK 2.5.1 编译 0 错误 0 警告）
+  - 分支 `claude/m3-wp4-api`（从 `claude/m3-matrix` 拉出）；待 pidan 评审后冻结
