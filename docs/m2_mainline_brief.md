@@ -811,3 +811,9 @@
   - 两列偏差 P95 < 0.2 ms；180 Hz 屏 Rive 渲染 GPU 0.040·T（r3 约 1.06·T）；CPU ≤ 0.122·T；跨屏 ≤ 13.5 ms
   - 做法：按窗口所在屏的垂直同步出帧，垂直同步后约 0.3·T 再提交；建议写进 WP1 产品化作为多屏默认节奏（是否默认开启由 pidan 决定）
   - 复核：`docs/m3_matrix_pacing_r4_result_claude_review.md`
+
+- **2026-11-06 — Y1–Y4 按建议（pidan）**
+  - Y1：WP1 Rive 宿主产品化要求已采用：`docs/m3_wp1_rive_host_requirements.md`（H6：默认按窗口所在屏的垂直同步出帧，垂直同步后约 0.3·T 再提交）
+  - Y2：PR #7 已合入 main（`db5de87`）；MATRIX / PACING 另开 PR
+  - Y3：M3 Rive 层在现有硬件上完成，推迟项与下一步见 `docs/m3_status.md`；WP4 启动草案 `docs/m3_wp4_pilot_DRAFT.md`（Z1 需要 pidan 提名候选应用）
+  - Y4：协作约定 `docs/COORDINATION.md`（先同步再写；brief 只追加；先落 approved 再采数）
