@@ -489,7 +489,7 @@ HRESULT GuardedFrame(Probe* p, float dt, std::vector<double>* gpuOut) { return F
 #endif
 
 // M3-MATRIX-PACING: waits for the next frame boundary. With a pacing window, that is the
-// vertical blank of the window's monitor (output found on our adapter by HMONITOR, looked
+// vertical blank of the window's monitor followed by the next DWM composition (r2) (output found on our adapter by HMONITOR, looked
 // up again when the monitor or the device changes); otherwise, or when no output matches,
 // the next DWM composition (DwmFlush), as before.
 void WaitFrame(Probe& p) {
@@ -515,6 +515,11 @@ void WaitFrame(Probe& p) {
             p.pacingMonitorOut.store(mon);
         }
         if (p.pacingOutput && SUCCEEDED(p.pacingOutput->WaitForVBlank())) {
+            // PACING r2: then wait for the composition that starts on this vblank to finish.
+            // Drawing right at the vblank made our copy into the surface wait for DWM to read
+            // it (GPU time ~1.06 T on a 180 Hz monitor in r1); after DwmFlush it does not,
+            // and there is still one frame per vblank of the window's monitor.
+            DwmFlush();
             p.pacingVblank.store(1);
             return;
         }

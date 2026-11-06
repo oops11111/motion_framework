@@ -128,7 +128,7 @@ public sealed partial class MainPage
         {
             var hwnd = Process.GetCurrentProcess().MainWindowHandle;
             ShowWindow(hwnd, 9); SetForegroundWindow(hwnd);
-            Kv("probe", pacingMode ? "M3-MATRIX-PACING v1" : "M3-MATRIX v1");
+            Kv("probe", pacingMode ? "M3-MATRIX-PACING v2" : "M3-MATRIX v1");
             Kv("session", sess);
             Kv("pid", Environment.ProcessId);
             Kv("host", Environment.MachineName);
@@ -234,7 +234,7 @@ public sealed partial class MainPage
                     colDev[m.Primary].AddRange(devs);
                     colIv[m.Primary].AddRange(iv);
                     M3MatrixNative.m0r_get_pacing(out var vb, out var pmon, out var looks);
-                    Kv(p + ".pacing_source", vb == 1 ? "vblank" : "dwmflush");
+                    Kv(p + ".pacing_source", vb == 1 ? "vblank+dwmflush" : "dwmflush");
                     Kv(p + ".pacing_monitor_matches", pmon == m.Handle ? 1 : 0);
                     Kv(p + ".interval_p95_ms", F(Pct(iv, 0.95), 3));
                     Kv(p + ".dev_p95_ms", F(Pct(devs, 0.95), 3));

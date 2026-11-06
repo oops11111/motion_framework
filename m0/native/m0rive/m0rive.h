@@ -113,7 +113,8 @@ M0R_API int32_t m0r_reset_stats(void);
 M0R_API int32_t m0r_get_intervals(double* out, uint32_t capacity, uint32_t* count);
 
 // M3-MATRIX-PACING: pace the render loop to the vertical blank of the monitor `hwnd` is on
-// (IDXGIOutput::WaitForVBlank on that monitor's output) instead of DwmFlush. With monitors
+// (IDXGIOutput::WaitForVBlank on that monitor's output, then DwmFlush so the frame is
+// drawn after the composition that vblank starts; r2) instead of DwmFlush alone. With monitors
 // of different refresh rates the compositor runs at the fastest one, so DwmFlush pacing
 // over-draws on a slower monitor (M3-MATRIX: 180 Hz on a 75 Hz monitor). The output is
 // looked up again whenever the window's monitor changes or the device is replaced; if the
