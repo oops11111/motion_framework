@@ -57,6 +57,7 @@
 
 | 时间 | 变更 |
 |---|---|
+| 2026-11-06 AWST | Claude：Wave B 第一步——Z3a 彩排派工单 `docs/workbuddy_z3a_rehearsal_dispatch.md`（K93N3P8；用现有 M2-02 探针跑 Play → Retarget → Cancel + ETW 6 事件；不采数、不提交、先备份后还原 `artifacts/m2_02_*`） |
 | 2026-11-06 16:32:43 AWST | API v0 L1 冻结：契约 LOCKED `77416e8b…3a0f`（DRAFT 标 SUPERSEDED_BY_LOCKED）；`api_v0_frozen.md` 改为已冻结；新建 `api_changelog.md` |
 | 2026-11-06 AWST | Claude 按 pidan 意见：删除 4 个文件中的个人邮箱；契约补“implemented vs missing”附录；Z4 写死四条 INVALID 与边界句；记录后端路径 = C-ABI 先通；r4 有条件采用、两份预算 DRAFT SUPERSEDED |
 | 2026-11-06 AWST | Claude：Z4 DRAFT `docs/z4_etw_l1_smoke_gate_DRAFT.md`（L1 序列、连续性、减少动效、空闲、线程、ETW 六条判据；E1 建议冻结 ETW 名字与 GUID）；`claude/m3-wp4-api` 上的 `docs/api_v0_DRAFT.md` 与 `FluidMotion.Api.v0.cs` 由 Z2 契约取代，仅作参考（L1 名字一致；RiveView / PointerFollow 部分对应另票） |

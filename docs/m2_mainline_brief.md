@@ -834,3 +834,7 @@
   - LOCKED：`docs/api_surface_m2_alpha_contract_LOCKED.md`，GATE_BODY_SHA256=`77416e8bbc700238b42a940a2f93d4466edec1ebd79352b007f86c267a663a0f`（复算 MATCH）；冻结面 = MotionSystem / AnimationHandle / MotionTokens
   - 规则 `docs/api_v0_frozen.md`（试点期只许新增；改名 / 删除 / 改签名或语义走闸门）；变更日志 `docs/api_changelog.md`
   - 冻结 ≠ 合 main ≠ adopt；**编码仍须另票「开 API v0」**（在 Z3a 彩排之后）；Z4 采数仍须 LOCK + APPROVED
+
+- **2026-11-06 — Wave B：Z3a 彩排派工单（Claude）**
+  - `docs/workbuddy_z3a_rehearsal_dispatch.md`：K93N3P8 上用现有 C ABI 桥和 M2-02 探针跑 Play → Retarget → Cancel 与 ETW 6 事件；**彩排不采数、不提交**，runner 会覆盖入库的 `artifacts/m2_02_*`，须先备份后还原；只回一行
+  - 彩排通过后，由 pidan 开“开 API v0”另票
