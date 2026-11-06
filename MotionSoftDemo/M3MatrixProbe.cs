@@ -3,6 +3,11 @@
 // keeps animating (no pointer injection), and measures per monitor segment the render-loop
 // pacing, frame gaps, CPU/GPU budget and the surface's re-rasterisation at the new scale,
 // plus the longest render-loop gap while crossing. composition.h is not used or touched.
+// --m3-matrix-pacing (docs/m3_matrix_pacing_gate_LOCKED.md) runs the same flow with the
+// render loop paced to the window's monitor (m0r_set_pacing_window), starts each steady
+// segment only after the gate's transient window (>= 2.0 s and >= 120 frames after the
+// move or scale change, whichever ends later), and judges pacing per monitor column:
+// P95(|dt - T|) <= 0.25 T and share(|dt - T| > 0.5 T) <= 5 %.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,6 +30,8 @@ namespace MotionSoftDemo;
 internal static class M3MatrixNative
 {
     [DllImport("m0rive")] internal static extern int m0r_get_intervals([Out] double[] buf, uint capacity, out uint count);
+    [DllImport("m0rive")] internal static extern int m0r_set_pacing_window(IntPtr hwnd);
+    [DllImport("m0rive")] internal static extern int m0r_get_pacing(out int vblank, out IntPtr monitor, out uint lookups);
 
     [StructLayout(LayoutKind.Sequential)] internal struct RECT { public int Left, Top, Right, Bottom; }
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
@@ -83,17 +90,18 @@ public sealed partial class MainPage
     const int M3MxCrossings = 4;         // drag, jump, drag, jump (G2)
     const int M3MxDragStepPx = 40;       // animated move: 40 px per 16 ms (~2.5 px/ms, a brisk drag)
 
-    private async Task RunM3MatrixProbe()
+    private async Task RunM3MatrixProbe(bool pacingMode = false)
     {
         if (_suiteRunning || _comp is null || XamlRoot is null) return;
         _suiteRunning = true;
         try { MeasureButton.IsEnabled = false; } catch { }
 
-        string artDir = Environment.GetEnvironmentVariable("MF_M0_ARTDIR") ?? @"C:\Users\admin\motion_framework\artifacts";
+        // Arguments first: the lab found the runner's environment did not reach the app (M3-MATRIX lab note 1).
+        string artDir = M3Arg("--m3-artdir") ?? Environment.GetEnvironmentVariable("MF_M0_ARTDIR") ?? @"C:\Users\admin\motion_framework\artifacts";
         Directory.CreateDirectory(artDir);
-        string sess = Environment.GetEnvironmentVariable("MF_M3_SESSION") ?? "1";
+        string sess = M3Arg("--m3-session") ?? Environment.GetEnvironmentVariable("MF_M3_SESSION") ?? "1";
         string rivPath = Environment.GetEnvironmentVariable("MF_M0_RIV") ?? Path.Combine(artDir, "m0_assets", "Knight_square_2.riv");
-        string pre = Path.Combine(artDir, $"m3mx_s{sess}");
+        string pre = Path.Combine(artDir, pacingMode ? $"m3matrixpacing_s{sess}" : $"m3mx_s{sess}");
         var raw = new StreamWriter(pre + "_raw.txt", false, new UTF8Encoding(false));
         var sum = new StreamWriter(new FileStream(pre + "_summary.txt", FileMode.Create, FileAccess.Write, FileShare.ReadWrite), new UTF8Encoding(false));
         bool verdictWritten = false;  // the runner waits for a verdict= line
@@ -120,7 +128,7 @@ public sealed partial class MainPage
         {
             var hwnd = Process.GetCurrentProcess().MainWindowHandle;
             ShowWindow(hwnd, 9); SetForegroundWindow(hwnd);
-            Kv("probe", "M3-MATRIX v1");
+            Kv("probe", pacingMode ? "M3-MATRIX-PACING v1" : "M3-MATRIX v1");
             Kv("session", sess);
             Kv("pid", Environment.ProcessId);
             Kv("host", Environment.MachineName);
@@ -165,6 +173,11 @@ public sealed partial class MainPage
             RootGrid.Children.Add(prompt);
             XamlRoot.Changed += OnXamlRootChanged;
             Kv("start_hr", Hx(M0Native.m0r_start()));
+            if (pacingMode) Kv("pacing_window_hr", Hx(M3MatrixNative.m0r_set_pacing_window(hwnd)));
+            // Steady-state |dt - T| samples per monitor column (pacing mode).
+            var colDev = new Dictionary<bool, List<double>> { [true] = new(), [false] = new() };
+            var colIv = new Dictionary<bool, List<double>> { [true] = new(), [false] = new() };
+            double lastEventMs = 0;
 
             // Window placement helpers: top-left of a monitor's work area (+40 px margin).
             (int x, int y) Spot(M3MatrixNative.Monitor m) => (m.Work.Left + 40, m.Work.Top + 40);
@@ -183,6 +196,13 @@ public sealed partial class MainPage
                 double T = m.Hz > 0 ? 1000.0 / m.Hz : double.NaN;
                 prompt!.Text = $"M3-MATRIX 第 {k} 段：{(m.Primary ? "主" : "副")}显示器 {F(m.Hz, 0)}Hz / {F(m.Scale * 100, 0)}%";
                 await Task.Delay(500);   // let a pending re-raster land before measuring
+                if (pacingMode)
+                {
+                    // G2 ⑦: steady samples start only after the transient window.
+                    double settle = Math.Max(2000, 120 * T);
+                    double wait = lastEventMs + settle - sw.Elapsed.TotalMilliseconds;
+                    if (wait > 0) await Task.Delay((int)Math.Ceiling(wait));
+                }
                 M0Native.m0r_reset_stats();
                 ulong fid0 = 0; try { MfProbe.mf_dcomp_frame_id(2, out fid0); } catch { }
                 await Task.Delay(M3MxSegmentMs);
@@ -208,7 +228,22 @@ public sealed partial class MainPage
                 Kv(p + ".gpu_samples_dropped", st.GpuSamplesDropped);
                 Kv(p + ".dcomp_frames", fid1 >= fid0 ? (fid1 - fid0).ToString(CultureInfo.InvariantCulture) : "NaN");   // record only
                 Kv(p + ".dcomp_frame_period_raw", period);                                                               // record only (units as reported)
-                pacingOk &= cur == m.Handle && Math.Abs(p50 / T - 1) <= 0.10 && drops <= 0.01 * Math.Max(1, iv.Count);
+                if (pacingMode)
+                {
+                    var devs = iv.Select(x => Math.Abs(x - T)).ToList();
+                    colDev[m.Primary].AddRange(devs);
+                    colIv[m.Primary].AddRange(iv);
+                    M3MatrixNative.m0r_get_pacing(out var vb, out var pmon, out var looks);
+                    Kv(p + ".pacing_source", vb == 1 ? "vblank" : "dwmflush");
+                    Kv(p + ".pacing_monitor_matches", pmon == m.Handle ? 1 : 0);
+                    Kv(p + ".interval_p95_ms", F(Pct(iv, 0.95), 3));
+                    Kv(p + ".dev_p95_ms", F(Pct(devs, 0.95), 3));
+                    Kv(p + ".dev_over_half_T_share", F(devs.Count == 0 ? double.NaN : devs.Count(x => x > 0.5 * T) / (double)devs.Count, 4));
+                    Kv(p + ".pacing_lookups", looks);
+                    pacingOk &= cur == m.Handle;
+                }
+                else
+                    pacingOk &= cur == m.Handle && Math.Abs(p50 / T - 1) <= 0.10 && drops <= 0.01 * Math.Max(1, iv.Count);
                 budgetOk &= st.CpuP95 <= 0.35 * T && st.GpuP95 <= 0.35 * T && st.GpuSamplesDropped <= 0.10 * Math.Max(1, st.Frames);
                 stableOk &= st.BeginDrawFailures == 0 && st.Frames >= 300;
                 // Surface size must follow the monitor's scale (M3-RIVE-DPI path).
@@ -248,6 +283,7 @@ public sealed partial class MainPage
                 else M3MatrixNative.SetWindowPos(hwnd, IntPtr.Zero, target.x, target.y, 0, 0, flags);
                 var moveMs = sw.Elapsed.TotalMilliseconds - t0;
                 await Task.Delay(1000);
+                lock (scaleEvents) lastEventMs = Math.Max(t0 + moveMs, scaleEvents.Count > seen ? scaleEvents[^1].ms : 0);
                 var iv = Intervals();
                 double gap = iv.Count == 0 ? double.NaN : iv.Max();
                 double scaleMs = double.NaN;
@@ -271,6 +307,28 @@ public sealed partial class MainPage
             {
                 await Cross(k, mon[k - 1], animated: k % 2 == 1);
                 await Segment(k, mon[k - 1]);
+            }
+            if (pacingMode)
+            {
+                // G2 ②: each column passes on its steady samples; pacing_ok = both columns.
+                foreach (var (primary, m) in new[] { (true, home), (false, other) })
+                {
+                    double T = 1000.0 / m.Hz;
+                    var cdev = colDev[primary];
+                    string c = primary ? "col_primary" : "col_external";
+                    double p95 = Pct(cdev, 0.95), share = cdev.Count == 0 ? double.NaN : cdev.Count(x => x > 0.5 * T) / (double)cdev.Count;
+                    bool ok = cdev.Count > 0 && p95 <= 0.25 * T && share <= 0.05;
+                    Kv(c + ".hz", F(m.Hz, 2));
+                    Kv(c + ".samples", cdev.Count);
+                    Kv(c + ".interval_p50_ms", F(Pct(colIv[primary], 0.5), 3));
+                    Kv(c + ".interval_p95_ms", F(Pct(colIv[primary], 0.95), 3));
+                    Kv(c + ".interval_max_ms", F(colIv[primary].Count == 0 ? double.NaN : colIv[primary].Max(), 3));
+                    Kv(c + ".dev_p95_ms", F(p95, 3));
+                    Kv(c + ".dev_p95_over_T", F(p95 / T, 3));
+                    Kv(c + ".dev_over_half_T_share", F(share, 4));
+                    Kv(c + ".ok", ok ? 1 : 0);
+                    pacingOk &= ok;
+                }
             }
             Kv("pacing_ok", pacingOk ? 1 : 0);
             Kv("budget_ok", budgetOk ? 1 : 0);

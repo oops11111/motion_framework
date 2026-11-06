@@ -3,16 +3,20 @@
 # asset under <ArtDir>\m0_assets. No admin rights, no driver restarts, no pointer injection:
 # the probe moves its own window between the monitors.
 #   powershell -ExecutionPolicy Bypass -File m3\run_m3_matrix.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <dir> [-Sessions 3]
+#   ... -Pacing   # M3-MATRIX-PACING (docs/m3_matrix_pacing_gate_LOCKED.md): render loop paced to the
+#                 # window's monitor; files m3matrixpacing_*; results go to m3/results_matrix_pacing/
 param(
     [Parameter(Mandatory = $true)][string]$DemoExe,
     [Parameter(Mandatory = $true)][string]$ArtDir,
     [int]$Sessions = 3,
+    [switch]$Pacing,
     [int]$SessionTimeoutSec = 600
 )
 # Continue, not Stop: PowerShell 5.1 turns a native tool's stderr into a terminating error.
 $ErrorActionPreference = "Continue"
 New-Item -ItemType Directory -Force $ArtDir | Out-Null
-$Log = Join-Path $ArtDir "m3mx_run.log"
+$stem = if ($Pacing) { "m3matrixpacing" } else { "m3mx" }
+$Log = Join-Path $ArtDir "${stem}_run.log"
 function Say($m) { $l = "[{0:yyyy-MM-dd HH:mm:ss}] {1}" -f (Get-Date), $m; Write-Host $l; Add-Content $Log $l }
 Add-Type -AssemblyName System.Drawing, System.Windows.Forms
 Add-Type -Namespace M3X -Name Win -MemberDefinition @'
@@ -53,7 +57,7 @@ function ReadKv($sum) {
     return $kv
 }
 
-Say "M3-MATRIX run: host=$env:COMPUTERNAME sessions=$Sessions exe=$DemoExe"
+Say "M3-MATRIX run: host=$env:COMPUTERNAME sessions=$Sessions pacing=$Pacing exe=$DemoExe"
 Say "machineId(SMBIOS UUID)=$((Get-CimInstance Win32_ComputerSystemProduct).UUID)"
 $os = Get-CimInstance Win32_OperatingSystem
 Say "os=$($os.Caption) build=$($os.BuildNumber)"
@@ -63,19 +67,22 @@ Add-Type -AssemblyName System.Windows.Forms
 $composition = Join-Path (Split-Path $PSScriptRoot -Parent) "code\composition.h"
 if (Test-Path $composition) { Say ("composition.h sha256 PRE=" + (Get-FileHash $composition -Algorithm SHA256).Hash.ToLower()) }
 
-$matrix = @("session,pid,verdict,monitors,mixed_refresh,mixed_scale,pacing_ok,budget_ok,stability_ok,size_ok,hitch_ok,scale_changes")
+$matrix = @("session,pid,verdict,monitors,mixed_refresh,mixed_scale,pacing_ok,budget_ok,stability_ok,size_ok,hitch_ok,scale_changes,col_primary_ok,col_primary_dev_p95_ms,col_primary_share,col_external_ok,col_external_dev_p95_ms,col_external_share")
 for ($s = 1; $s -le $Sessions; $s++) {
-    $pre = Join-Path $ArtDir "m3mx_s${s}"
+    $pre = Join-Path $ArtDir "${stem}_s${s}"
     $sum = "${pre}_summary.txt"
     Remove-Item $sum, "${pre}_stderr.txt", "${pre}_*.shotreq" -ErrorAction SilentlyContinue
     Get-Process -Name MotionSoftDemo -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
     Start-Sleep 2
     $env:MF_M3_MATRIX_PROBE = "1"; $env:MF_M3_SESSION = "$s"; $env:MF_M0_ARTDIR = $ArtDir
-    $p = Start-Process -FilePath $DemoExe -ArgumentList @('--m3-matrix-probe') -WorkingDirectory (Split-Path $DemoExe -Parent) -PassThru -WindowStyle Normal
+    # The data folder and session also go as arguments: the lab found the environment did not
+    # reach the app (M3-MATRIX lab note 1).
+    $appArgs = @($(if ($Pacing) { '--m3-matrix-pacing' } else { '--m3-matrix-probe' }), "--m3-artdir=$ArtDir", "--m3-session=$s")
+    $p = Start-Process -FilePath $DemoExe -ArgumentList $appArgs -WorkingDirectory (Split-Path $DemoExe -Parent) -PassThru -WindowStyle Normal
     Say "session $s pid=$($p.Id)"
     $deadline = (Get-Date).AddSeconds($SessionTimeoutSec)
     while ((Get-Date) -lt $deadline) {
-        Get-ChildItem $ArtDir -Filter "m3mx_s${s}_*.shotreq" -ErrorAction SilentlyContinue | ForEach-Object {
+        Get-ChildItem $ArtDir -Filter "${stem}_s${s}_*.shotreq" -ErrorAction SilentlyContinue | ForEach-Object {
             $target = (Get-Content $_.FullName -Raw).Trim()
             Shot $target $p
             Say "session $s screenshot $(Split-Path $target -Leaf)"
@@ -91,11 +98,11 @@ for ($s = 1; $s -le $Sessions; $s++) {
     if (-not $exitedOnOwn) { Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue }
     $kv = ReadKv $sum
     $v = if ($kv.ContainsKey("verdict")) { $kv["verdict"] } elseif (-not (Test-Path $sum)) { "INVALID_NO_SUMMARY" } elseif ($exitedOnOwn) { "CRASHED_NO_VERDICT" } else { "KILLED_BY_RUNNER" }
-    $matrix += "$s,$($p.Id),$v,$($kv['monitors']),$($kv['mixed_refresh']),$($kv['mixed_scale']),$($kv['pacing_ok']),$($kv['budget_ok']),$($kv['stability_ok']),$($kv['size_ok']),$($kv['hitch_ok']),$($kv['scale_changes'])"
+    $matrix += "$s,$($p.Id),$v,$($kv['monitors']),$($kv['mixed_refresh']),$($kv['mixed_scale']),$($kv['pacing_ok']),$($kv['budget_ok']),$($kv['stability_ok']),$($kv['size_ok']),$($kv['hitch_ok']),$($kv['scale_changes']),$($kv['col_primary.ok']),$($kv['col_primary.dev_p95_ms']),$($kv['col_primary.dev_over_half_T_share']),$($kv['col_external.ok']),$($kv['col_external.dev_p95_ms']),$($kv['col_external.dev_over_half_T_share'])"
     Say "session $s verdict=$v pacing_ok=$($kv['pacing_ok']) hitch_ok=$($kv['hitch_ok']) size_ok=$($kv['size_ok']) budget_ok=$($kv['budget_ok'])"
     if ($v -eq "BLOCKED_HARDWARE") { Say "STOP: the probe needs exactly two monitors (X1)"; break }
 }
 Remove-Item env:MF_M3_MATRIX_PROBE, env:MF_M3_SESSION, env:MF_M0_ARTDIR -ErrorAction SilentlyContinue
-$matrix | Out-File (Join-Path $ArtDir "m3mx_session_matrix.txt") -Encoding utf8
+$matrix | Out-File (Join-Path $ArtDir "${stem}_session_matrix.txt") -Encoding utf8
 if (Test-Path $composition) { Say ("composition.h sha256 POST=" + (Get-FileHash $composition -Algorithm SHA256).Hash.ToLower()) }
 Say "RUN_DONE"

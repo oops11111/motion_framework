@@ -112,6 +112,18 @@ M0R_API int32_t m0r_reset_stats(void);
 // since the last m0r_reset_stats; *count receives the total recorded.
 M0R_API int32_t m0r_get_intervals(double* out, uint32_t capacity, uint32_t* count);
 
+// M3-MATRIX-PACING: pace the render loop to the vertical blank of the monitor `hwnd` is on
+// (IDXGIOutput::WaitForVBlank on that monitor's output) instead of DwmFlush. With monitors
+// of different refresh rates the compositor runs at the fastest one, so DwmFlush pacing
+// over-draws on a slower monitor (M3-MATRIX: 180 Hz on a 75 Hz monitor). The output is
+// looked up again whenever the window's monitor changes or the device is replaced; if the
+// monitor has no output on our adapter, the loop falls back to DwmFlush. NULL restores
+// DwmFlush pacing (the default).
+M0R_API int32_t m0r_set_pacing_window(void* hwnd);
+// Pacing state for the probe: 1 = vblank of the window's monitor, 0 = DwmFlush; the
+// HMONITOR the current output belongs to; number of output lookups so far.
+M0R_API int32_t m0r_get_pacing(int32_t* vblank, void** monitor, uint32_t* lookups);
+
 // Renders one frame headless at `t_sec` and writes raw BGRA (premultiplied) to
 // `path`: 8-byte header (uint32 width, uint32 height) then rows top to bottom.
 // Used as the reference image for comparing against the WGC capture. Retries for

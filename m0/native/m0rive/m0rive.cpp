@@ -111,6 +111,14 @@ struct Probe {
 
     std::thread thread;
     std::atomic<bool> running{false};
+    // M3-MATRIX-PACING (render thread, except pacingHwnd).
+    std::atomic<HWND> pacingHwnd{nullptr};
+    HMONITOR pacingMonitor = nullptr;
+    ComPtr<IDXGIOutput> pacingOutput;
+    ID3D11Device* pacingDevice = nullptr;   // device the output was looked up on (not owned)
+    std::atomic<int32_t> pacingVblank{0};
+    std::atomic<void*> pacingMonitorOut{nullptr};
+    std::atomic<uint32_t> pacingLookups{0};
     std::mutex statsMu;
     std::vector<double> cpuMs, gpuMs, intervalMs;
     uint64_t frames = 0, drawFailures = 0;
@@ -480,6 +488,41 @@ HRESULT GuardedFrame(Probe* p, float dt, std::vector<double>* gpuOut) {
 HRESULT GuardedFrame(Probe* p, float dt, std::vector<double>* gpuOut) { return Frame(*p, dt, *gpuOut); }
 #endif
 
+// M3-MATRIX-PACING: waits for the next frame boundary. With a pacing window, that is the
+// vertical blank of the window's monitor (output found on our adapter by HMONITOR, looked
+// up again when the monitor or the device changes); otherwise, or when no output matches,
+// the next DWM composition (DwmFlush), as before.
+void WaitFrame(Probe& p) {
+    if (HWND hwnd = p.pacingHwnd.load()) {
+        HMONITOR mon = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
+        if (mon != p.pacingMonitor || p.pacingDevice != p.dev.Get()) {
+            p.pacingMonitor = mon;
+            p.pacingDevice = p.dev.Get();
+            p.pacingOutput.Reset();
+            ComPtr<IDXGIDevice> dxgiDev;
+            ComPtr<IDXGIAdapter> adapter;
+            if (SUCCEEDED(p.dev.As(&dxgiDev)) && SUCCEEDED(dxgiDev->GetAdapter(&adapter))) {
+                ComPtr<IDXGIOutput> out;
+                for (UINT i = 0; adapter->EnumOutputs(i, out.ReleaseAndGetAddressOf()) != DXGI_ERROR_NOT_FOUND; ++i) {
+                    DXGI_OUTPUT_DESC d{};
+                    if (SUCCEEDED(out->GetDesc(&d)) && d.Monitor == mon) {
+                        p.pacingOutput = out;
+                        break;
+                    }
+                }
+            }
+            ++p.pacingLookups;
+            p.pacingMonitorOut.store(mon);
+        }
+        if (p.pacingOutput && SUCCEEDED(p.pacingOutput->WaitForVBlank())) {
+            p.pacingVblank.store(1);
+            return;
+        }
+    }
+    p.pacingVblank.store(0);
+    if (FAILED(DwmFlush())) Sleep(15);  // DWM can fail while the GPU resets; don't spin
+}
+
 void RenderLoop(Probe* p) {
     double last = NowMs();
     double lastGood = last;      // end of the last frame presented
@@ -493,7 +536,7 @@ void RenderLoop(Probe* p) {
     DXGI_ADAPTER_DESC1 candDesc{};
     double candSince = 0;
     while (p->running.load()) {
-        if (FAILED(DwmFlush())) Sleep(15);  // DWM can fail while the GPU resets; don't spin
+        WaitFrame(*p);
         const double t0 = NowMs();
 
         // M3-RIVE-LOST: detect, then retry recovery every >= 100 ms until it succeeds.
@@ -844,6 +887,20 @@ M0R_API int32_t m0r_get_intervals(double* out, uint32_t capacity, uint32_t* coun
     *count = static_cast<uint32_t>(g->intervalMs.size());
     const size_t n = std::min<size_t>(capacity, g->intervalMs.size());
     std::copy(g->intervalMs.begin(), g->intervalMs.begin() + static_cast<std::ptrdiff_t>(n), out);
+    return S_OK;
+}
+
+M0R_API int32_t m0r_set_pacing_window(void* hwnd) {
+    if (!g) return E_NOT_VALID_STATE;
+    g->pacingHwnd.store(static_cast<HWND>(hwnd));
+    return S_OK;
+}
+
+M0R_API int32_t m0r_get_pacing(int32_t* vblank, void** monitor, uint32_t* lookups) {
+    if (!g || !vblank || !monitor || !lookups) return E_INVALIDARG;
+    *vblank = g->pacingVblank.load();
+    *monitor = g->pacingMonitorOut.load();
+    *lookups = g->pacingLookups.load();
     return S_OK;
 }
 
