@@ -1,7 +1,7 @@
 # 派题 · M3-MATRIX-PACING r3（DESKTOP-IJI1KJG，同 MATRIX 双屏）
 
 闸门：`docs/m3_matrix_pacing_gate_r3_LOCKED.md`，GATE_BODY_SHA256=`90f9356bf2739ea2a95a56619fc73af561b0c34e4ebd097be05442f8c5719476`，LOCKED_AT=2026-11-06 11:14:15 AWST。出帧时机回到 r1（只等垂直同步）；GPU 计时拆成“Rive 渲染”和“拷贝进表面”，预算只按渲染判定。
-代码分支：**`claude/m3-matrix`**（提交 `878892d` 起）。**尚未 APPROVED：第 0–2 步可以先做；第 3 步必须等 `docs/m3_matrix_pacing_r3_approved.md` 落盘后才能执行。**
+代码分支：**`claude/m3-matrix`**（提交 `878892d` 起）。**已 APPROVED（`docs/m3_matrix_pacing_r3_approved.md`，pidan @ 2026-11-06 11:15:19 AWST）：第 0–4 步都可以执行。**
 数据目录 `<ROOT>\artifacts_m3matrixpacing_r3`（新目录，不要和 r1、r2 混用）。
 
 ## 0. 硬件
@@ -20,7 +20,7 @@ git -C <ROOT>\repo log -1 --format=%H
 2. 复制 `MotionSoftDemo\M3MatrixProbe.cs`（覆盖），重新构建 MotionSoftDemo。MainPage 不用动。
 3. 失败记 BLOCKED_TOOLCHAIN 并回报日志；不改代码去凑。
 
-## 3. 采数（**必须等 approved 落盘**）
+## 3. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_matrix.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3matrixpacing_r3 -Sessions 3 -Pacing
 ```

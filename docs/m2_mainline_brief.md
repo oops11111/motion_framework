@@ -752,3 +752,6 @@
   - LOCKED：`docs/m3_matrix_pacing_gate_r3_LOCKED.md`，GATE_BODY_SHA256=`90f9356bf2739ea2a95a56619fc73af561b0c34e4ebd097be05442f8c5719476`（复算 MATCH）；代码 `878892d`
   - 出帧时机回到 r1（只等垂直同步）；GPU 计时拆成 Rive 渲染 / 拷贝进表面；预算的 GPU 项只按渲染判定，拷贝（含等 DWM）单独记录；其余判据同 r1
   - 派工单 `docs/workbuddy_m3_matrix_pacing_r3_dispatch.md`；结果进 `m3/results_matrix_pacing_r3/`；**未 APPROVED，不授权采数**
+
+- **2026-11-06 11:15:19 AWST — M3-MATRIX-PACING r3 APPROVED（pidan）**
+  - approved：`docs/m3_matrix_pacing_r3_approved.md`；gate r3 `90f9356b…9476` 不变；采数=是（同拓扑，3 会话，`-Pacing`）；派工单 `docs/workbuddy_m3_matrix_pacing_r3_dispatch.md`；结果进 `m3/results_matrix_pacing_r3/`
