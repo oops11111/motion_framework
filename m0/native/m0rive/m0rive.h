@@ -123,6 +123,12 @@ M0R_API int32_t m0r_set_pacing_window(void* hwnd);
 // Pacing state for the probe: 1 = vblank of the window's monitor, 0 = DwmFlush; the
 // HMONITOR the current output belongs to; number of output lookups so far.
 M0R_API int32_t m0r_get_pacing(int32_t* vblank, void** monitor, uint32_t* lookups);
+// PACING r4: with vblank pacing, the render thread waits `fraction` (0 <= f < 1, default
+// 0.3) of the monitor's refresh period after the vblank before drawing; the animation clock
+// and the recorded intervals still use the vblank time. m0r_get_pacing_offset returns the
+// last offset actually waited (ms).
+M0R_API int32_t m0r_set_pacing_offset(double fraction);
+M0R_API int32_t m0r_get_pacing_offset(double* last_ms);
 // PACING r3: GPU time per frame split into Rive rendering (frame start -> after Rive's
 // flush) and the copy into the composition surface (which can include waiting for DWM to
 // finish reading it), P50/P95 in ms since the last m0r_reset_stats. m0r_stats' gpu_* keep

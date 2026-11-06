@@ -32,6 +32,8 @@ internal static class M3MatrixNative
     [DllImport("m0rive")] internal static extern int m0r_get_intervals([Out] double[] buf, uint capacity, out uint count);
     [DllImport("m0rive")] internal static extern int m0r_set_pacing_window(IntPtr hwnd);
     [DllImport("m0rive")] internal static extern int m0r_get_pacing(out int vblank, out IntPtr monitor, out uint lookups);
+    [DllImport("m0rive")] internal static extern int m0r_set_pacing_offset(double fraction);
+    [DllImport("m0rive")] internal static extern int m0r_get_pacing_offset(out double lastMs);
     [DllImport("m0rive")] internal static extern int m0r_get_gpu_split(out double renderP50, out double renderP95, out double copyP50, out double copyP95);
 
     [StructLayout(LayoutKind.Sequential)] internal struct RECT { public int Left, Top, Right, Bottom; }
@@ -129,7 +131,7 @@ public sealed partial class MainPage
         {
             var hwnd = Process.GetCurrentProcess().MainWindowHandle;
             ShowWindow(hwnd, 9); SetForegroundWindow(hwnd);
-            Kv("probe", pacingMode ? "M3-MATRIX-PACING v3" : "M3-MATRIX v1");
+            Kv("probe", pacingMode ? "M3-MATRIX-PACING v4" : "M3-MATRIX v1");
             Kv("session", sess);
             Kv("pid", Environment.ProcessId);
             Kv("host", Environment.MachineName);
@@ -174,7 +176,12 @@ public sealed partial class MainPage
             RootGrid.Children.Add(prompt);
             XamlRoot.Changed += OnXamlRootChanged;
             Kv("start_hr", Hx(M0Native.m0r_start()));
-            if (pacingMode) Kv("pacing_window_hr", Hx(M3MatrixNative.m0r_set_pacing_window(hwnd)));
+            if (pacingMode)
+            {
+                Kv("pacing_window_hr", Hx(M3MatrixNative.m0r_set_pacing_window(hwnd)));
+                Kv("pacing_offset_fraction", "0.30");  // r4 (W2): draw 0.3 T after the vblank
+                Kv("pacing_offset_hr", Hx(M3MatrixNative.m0r_set_pacing_offset(0.30)));
+            }
             // Steady-state |dt - T| samples per monitor column (pacing mode).
             var colDev = new Dictionary<bool, List<double>> { [true] = new(), [false] = new() };
             var colIv = new Dictionary<bool, List<double>> { [true] = new(), [false] = new() };
@@ -241,6 +248,9 @@ public sealed partial class MainPage
                     Kv(p + ".dev_p95_ms", F(Pct(devs, 0.95), 3));
                     Kv(p + ".dev_over_half_T_share", F(devs.Count == 0 ? double.NaN : devs.Count(x => x > 0.5 * T) / (double)devs.Count, 4));
                     Kv(p + ".pacing_lookups", looks);
+                    M3MatrixNative.m0r_get_pacing_offset(out var offMs);
+                    Kv(p + ".pacing_offset_last_ms", F(offMs, 3));
+                    Kv(p + ".pacing_offset_last_over_T", F(offMs / T, 3));
                     pacingOk &= cur == m.Handle;
                 }
                 else

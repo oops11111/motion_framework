@@ -118,6 +118,9 @@ struct Probe {
     // M3-MATRIX-PACING (render thread, except pacingHwnd).
     std::atomic<HWND> pacingHwnd{nullptr};
     HMONITOR pacingMonitor = nullptr;
+    double pacingPeriodMs = 0;                  // refresh period of pacingMonitor (r4)
+    std::atomic<double> pacingOffset{0.3};      // r4: draw this fraction of a period after the vblank
+    std::atomic<double> pacingOffsetLastMs{0};  // last offset actually waited
     ComPtr<IDXGIOutput> pacingOutput;
     ID3D11Device* pacingDevice = nullptr;   // device the output was looked up on (not owned)
     std::atomic<int32_t> pacingVblank{0};
@@ -522,6 +525,15 @@ void WaitFrame(Probe& p) {
                     }
                 }
             }
+            // r4: the monitor's refresh period, for the post-vblank offset.
+            p.pacingPeriodMs = 0;
+            MONITORINFOEXW mi{};
+            mi.cbSize = sizeof mi;
+            DEVMODEW dm{};
+            dm.dmSize = sizeof dm;
+            if (GetMonitorInfoW(mon, &mi) && EnumDisplaySettingsW(mi.szDevice, ENUM_CURRENT_SETTINGS, &dm) &&
+                dm.dmDisplayFrequency > 1)
+                p.pacingPeriodMs = 1000.0 / dm.dmDisplayFrequency;
             ++p.pacingLookups;
             p.pacingMonitorOut.store(mon);
         }
@@ -548,9 +560,26 @@ void RenderLoop(Probe* p) {
     ComPtr<ID3D11DeviceContext> candCtx;
     DXGI_ADAPTER_DESC1 candDesc{};
     double candSince = 0;
+    // PACING r4: high-resolution timer for the post-vblank offset (Windows 10 1803+),
+    // else an ordinary waitable timer.
+    HANDLE offsetTimer = CreateWaitableTimerExW(nullptr, nullptr, 0x00000002 /* CREATE_WAITABLE_TIMER_HIGH_RESOLUTION */,
+                                                TIMER_ALL_ACCESS);
+    if (!offsetTimer) offsetTimer = CreateWaitableTimerW(nullptr, TRUE, nullptr);
     while (p->running.load()) {
         WaitFrame(*p);
-        const double t0 = NowMs();
+        const double t0 = NowMs();  // frame time: the vblank (animation dt, pacing intervals)
+        // PACING r4: in vblank pacing, start drawing a fixed fraction of the monitor's period
+        // after the vblank. In r3, work submitted right at a 180 Hz vblank queued behind DWM's
+        // composition for about a frame; the animation clock still reads at the vblank.
+        if (p->pacingVblank.load() == 1 && p->pacingPeriodMs > 0 && offsetTimer && !lost) {
+            const double off = p->pacingOffset.load() * p->pacingPeriodMs;
+            LARGE_INTEGER due{};
+            due.QuadPart = -static_cast<LONGLONG>(off * 10000.0);  // relative, 100 ns units
+            if (off > 0 && SetWaitableTimer(offsetTimer, &due, 0, nullptr, nullptr, FALSE))
+                WaitForSingleObject(offsetTimer, INFINITE);
+            p->pacingOffsetLastMs.store(NowMs() - t0);
+        }
+        const double tWork = NowMs();  // CPU frame time is measured from here
 
         // M3-RIVE-LOST: detect, then retry recovery every >= 100 ms until it succeeds.
         // Nothing is drawn (and no Rive call is made) while the device is lost.
@@ -664,7 +693,7 @@ void RenderLoop(Probe* p) {
         }
         if (SUCCEEDED(hr)) lastGood = t1;
         p->intervalMs.push_back(t0 - last);
-        p->cpuMs.push_back(t1 - t0);
+        p->cpuMs.push_back(t1 - tWork);
         p->gpuMs.insert(p->gpuMs.end(), gpu.begin(), gpu.end());
         p->gpuRenderMs.insert(p->gpuRenderMs.end(), p->pendGpuRender.begin(), p->pendGpuRender.end());
         p->gpuCopyMs.insert(p->gpuCopyMs.end(), p->pendGpuCopy.begin(), p->pendGpuCopy.end());
@@ -674,6 +703,7 @@ void RenderLoop(Probe* p) {
         if (FAILED(hr)) ++p->drawFailures; else ++p->frames;
         last = t0;
     }
+    if (offsetTimer) CloseHandle(offsetTimer);
 }
 
 }  // namespace
@@ -922,6 +952,18 @@ M0R_API int32_t m0r_get_gpu_split(double* render_p50, double* render_p95, double
 M0R_API int32_t m0r_set_pacing_window(void* hwnd) {
     if (!g) return E_NOT_VALID_STATE;
     g->pacingHwnd.store(static_cast<HWND>(hwnd));
+    return S_OK;
+}
+
+M0R_API int32_t m0r_set_pacing_offset(double fraction) {
+    if (!g || fraction < 0 || fraction >= 1) return E_INVALIDARG;
+    g->pacingOffset.store(fraction);
+    return S_OK;
+}
+
+M0R_API int32_t m0r_get_pacing_offset(double* last_ms) {
+    if (!g || !last_ms) return E_INVALIDARG;
+    *last_ms = g->pacingOffsetLastMs.load();
     return S_OK;
 }
 
