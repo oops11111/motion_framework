@@ -1,6 +1,6 @@
 # FluidMotion C# API v0（api_v0_DRAFT.md）
 
-STATUS=DRAFT（**待 pidan 评审后冻结**；冻结后改名为 `docs/api_v0_frozen.md`）
+STATUS=SUPERSEDED（2026-11-06：由协调的 Z2 契约 `docs/api_surface_m2_alpha_contract_DRAFT.md`（分支 `claude/m3-matrix`）取代；本文件仅作参考。L1 只冻 MotionSystem / AnimationHandle / MotionTokens；RiveView、PointerFollow 另票；0.3·T 不作 API 默认）
 
 > 起草：Claude，2026-11-06（pidan：WP4 的 Z2–Z4 先定，按建议）。依据：`docs/m3_wp4_pilot_DRAFT.md`（Z2–Z4）、`docs/m3_plan_DRAFT.md` F4（按未来 WinMD 的形状冻结 C# API，底层先走 C ABI）、`docs/api.md`（现有 C++ 接口和 `fm_capi.h`）、`docs/m3_wp1_rive_host_requirements.md`（H1–H9）、`docs/m3_wp2_follow_guidelines.md`。
 > 形状文件：`code/csharp/FluidMotion/FluidMotion.Api.v0.cs`（只有签名，不含实现；对照 WinAppSDK 2.5.1 编译 0 错误 0 警告）。
