@@ -713,3 +713,12 @@
   - LOCKED：`docs/m3_matrix_pacing_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`a1fa4590285f52948ecf51bc9c32629d4d2c3bc42efc7f5bb4e4922bd2be2883`（复算 MATCH）；代码 `53cedde`
   - 判据与 r1 完全相同；唯一改动：垂直同步之后再 `DwmFlush` 再画
   - 派工单 `docs/workbuddy_m3_matrix_pacing_r2_dispatch.md`；结果进 `m3/results_matrix_pacing_r2/`；**未 APPROVED，不授权采数**
+
+- **2026-11-06 — 再次合并本 brief（Claude）**：协调提交 `1f22889` 又整体改写了 brief（−265 行）。合并时保留完整历史，协调新增的条目原样附在下面。
+
+- **2026-11-06 10:55:00 Asia/Shanghai — M3-MATRIX-PACING CLOSED RIVE-MATRIX-PACING-FAIL（纯文档结题；不采用；不合 main）**
+  - result：`docs/m3_matrix_pacing_result.md` sha=`55154fcd358b36c52045b9c11d2fc910c9409093df3fcf139a09631db1477199`
+  - pack/brief/next/mainline：close_pack=`4b393057c04a…`；next 主推 **M3-MATRIX-BUDGET DRAFT**（勿擅自 LOCK）
+  - gate MATCH `2543e424cd71eea2959fe942ce0bfe7d7118ea6ee5c28b31da7902bce904812c`；approved pidan@2026-11-06 10:40:00 Asia/Shanghai（UTC+8）；tip `fd05c6c058022c233f1cd896338e03d665c43d0f`；results `7d5f545c7a3af0b7410421006a3683ce64c93f07` @ claude/m3-matrix
+  - **budget_ok=0**；pacing_ok=1（节奏修复已验证）；hitch/size/stability=1；3×RECORDED；dir=`m3/results_matrix_pacing/`
+  - composition.h 未触；Success≠adopt；**PERF-CI 仍 HOLD**；不授权新采数/真机；禁回改 CLOSED MATRIX
