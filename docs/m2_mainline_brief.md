@@ -747,3 +747,8 @@
   - r2 预算恢复（180 Hz 屏 GPU 0.07·T），但节奏坏了：75 Hz 列偏差 P95 5.1–5.3 ms（门槛 3.33），180 Hz 列约一半帧被跳过（122 fps）；原因是 `DwmFlush` 在垂直同步之后的等待长短不一，且常常越过下一次垂直同步
   - 结论：出帧必须只锚定垂直同步（r1 的做法）；r1 的预算失败来自拷贝时等 DWM 读表面，需要把 GPU 计时拆开才能判断
   - 复核：`docs/m3_matrix_pacing_r2_result_claude_review.md`；下一步待 pidan 决定（V1–V3）
+
+- **2026-11-06 11:14:15 AWST — M3-MATRIX-PACING r3 LOCKED（pidan：V1 按建议）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_r3_LOCKED.md`，GATE_BODY_SHA256=`90f9356bf2739ea2a95a56619fc73af561b0c34e4ebd097be05442f8c5719476`（复算 MATCH）；代码 `878892d`
+  - 出帧时机回到 r1（只等垂直同步）；GPU 计时拆成 Rive 渲染 / 拷贝进表面；预算的 GPU 项只按渲染判定，拷贝（含等 DWM）单独记录；其余判据同 r1
+  - 派工单 `docs/workbuddy_m3_matrix_pacing_r3_dispatch.md`；结果进 `m3/results_matrix_pacing_r3/`；**未 APPROVED，不授权采数**
