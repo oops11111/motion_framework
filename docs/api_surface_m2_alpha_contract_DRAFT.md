@@ -1,5 +1,9 @@
 # M2 Alpha · Public L1 API surface contract (DRAFT)
 
+> **SUPERSEDED_BY_LOCKED**: `docs/api_surface_m2_alpha_contract_LOCKED.md`
+> GATE_BODY_SHA256=`77416e8bbc700238b42a940a2f93d4466edec1ebd79352b007f86c267a663a0f`
+> LOCKED_AT=2026-11-06 16:32:43 AWST · API v0 L1 frozen by pidan. This DRAFT is kept unchanged otherwise.
+
 - **STATUS:** DRAFT · **NOT FROZEN** · NOT LOCKED · 2026-11-06 15:25 AWST (Australia/Perth)
 - **Source:** coordinator change list (pidan forwarded) reviewing `m3_wp4_pilot_DRAFT` Z2 + `deepseek_m2_02_api_draft` §3 L1 + `fm_capi` / `docs/api.md`
 - **Authoring bot:** Claude 网页 (Wave A / Z2 doc)

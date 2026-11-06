@@ -1,7 +1,9 @@
-# API v0 freeze rules (DRAFT — freeze NOT declared)
+# API v0 freeze rules — **L1 FROZEN**
 
-- **STATUS:** Rules document only · **API v0 is NOT frozen** as of 2026-11-06 15:25 AWST (Australia/Perth)
-- **Contract under review:** `docs/api_surface_m2_alpha_contract_DRAFT.md`
+- **STATUS:** **API v0 L1 FROZEN** — pidan 「冻结 API v0 L1」, 2026-11-06 16:32:43 AWST (Australia/Perth)
+- **Frozen contract:** `docs/api_surface_m2_alpha_contract_LOCKED.md`, GATE_BODY_SHA256=`77416e8bbc700238b42a940a2f93d4466edec1ebd79352b007f86c267a663a0f`
+- **Frozen surface:** `MotionSystem` / `AnimationHandle` / `MotionTokens` only (RiveView / PointerFollow parked on separate tickets; PACING r4 0.3·T is not an API default)
+- **Changelog:** `docs/api_changelog.md`
 - **Hard bounds:** Success≠adopt; no merge to `main`; composition.h untouched unless separately LOCKED; Y4 approval-before-collection
 
 ## When pidan replies 「冻结 API v0」
@@ -13,7 +15,7 @@
 5. Do **not** encode PACING r4 `0.3·T` / tip `69094ee` as API defaults.
 6. Coding still requires the separate 「开 API v0」 ticket after Wave A + Z3a dry-run (see `docs/Z_SERIES_CONVERGE.md`).
 
-## Until freeze
+## Still not authorized by the freeze
 
-- Review/change-list iterations allowed on the DRAFT contract.
-- No implementation claim; no 「API v0 frozen」 badge in mainline logs.
+- Coding: needs the separate 「开 API v0」 ticket after Wave A + Z3a dry run.
+- Merge to `main`; adopt; any data collection (Z4 still needs LOCK + APPROVED).

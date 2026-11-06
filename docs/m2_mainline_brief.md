@@ -829,3 +829,8 @@
   - 后端路径：C-ABI 先通（Z3a）；真实合成器后端另排
   - r4 有条件采用（实验分支 + 产品化模块默认开启；不进 L1 默认；不合 main）；两份预算 DRAFT SUPERSEDED：`docs/m3_matrix_pacing_r4_adoption.md`
   - Z1：待 pidan 填 B 的真实应用名
+
+- **2026-11-06 16:32:43 AWST — API v0 L1 冻结（pidan「冻结 API v0 L1」）**
+  - LOCKED：`docs/api_surface_m2_alpha_contract_LOCKED.md`，GATE_BODY_SHA256=`77416e8bbc700238b42a940a2f93d4466edec1ebd79352b007f86c267a663a0f`（复算 MATCH）；冻结面 = MotionSystem / AnimationHandle / MotionTokens
+  - 规则 `docs/api_v0_frozen.md`（试点期只许新增；改名 / 删除 / 改签名或语义走闸门）；变更日志 `docs/api_changelog.md`
+  - 冻结 ≠ 合 main ≠ adopt；**编码仍须另票「开 API v0」**（在 Z3a 彩排之后）；Z4 采数仍须 LOCK + APPROVED

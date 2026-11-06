@@ -46,7 +46,7 @@
 
 ## 待 pidan（开放）
 
-- [ ] 审 `api_surface_m2_alpha_contract_DRAFT.md`：pidan 2026-11-06 意见 = 小修订后冻 L1、先不开编码。已补“implemented vs missing”附录（C++ 有但 C ABI 未导出的成员，不入冻结面）。**待 pidan 回「冻结 API v0 L1」**；冻结 ≠ 合 main ≠ adopt；仍须另票才编码。
+- [x] Z2：**API v0 L1 已冻结**（pidan「冻结 API v0 L1」，2026-11-06 16:32:43 AWST）：`docs/api_surface_m2_alpha_contract_LOCKED.md`，GATE_BODY_SHA256=`77416e8b…3a0f`；规则 `docs/api_v0_frozen.md`；变更日志 `docs/api_changelog.md`。冻结 ≠ 合 main ≠ adopt；编码仍须另票「开 API v0」（在 Z3a 彩排之后）。
 - [ ] Z1：**待 pidan 填 B 的真实应用名**（C 无合适对照可先空，只打 A + B）；A = MotionSoftDemo 只作内部狗粮（33/50），不当试点赢家。
 - [x] Wave A 的 Z4 ETW/L1 smoke DRAFT 已交：`docs/z4_etw_l1_smoke_gate_DRAFT.md`（E1–E4 待裁决）
 - [x] 后端路径：**A = C-ABI 先通**（pidan 2026-11-06）。Z3a 用现有软件 / C ABI 桥在 MotionSoftDemo 跑 Play → Retarget → Cancel；真实 WinRT 合成器后端是诚实非目标，另排；试点不被合成器卡住。
@@ -57,6 +57,7 @@
 
 | 时间 | 变更 |
 |---|---|
+| 2026-11-06 16:32:43 AWST | API v0 L1 冻结：契约 LOCKED `77416e8b…3a0f`（DRAFT 标 SUPERSEDED_BY_LOCKED）；`api_v0_frozen.md` 改为已冻结；新建 `api_changelog.md` |
 | 2026-11-06 AWST | Claude 按 pidan 意见：删除 4 个文件中的个人邮箱；契约补“implemented vs missing”附录；Z4 写死四条 INVALID 与边界句；记录后端路径 = C-ABI 先通；r4 有条件采用、两份预算 DRAFT SUPERSEDED |
 | 2026-11-06 AWST | Claude：Z4 DRAFT `docs/z4_etw_l1_smoke_gate_DRAFT.md`（L1 序列、连续性、减少动效、空闲、线程、ETW 六条判据；E1 建议冻结 ETW 名字与 GUID）；`claude/m3-wp4-api` 上的 `docs/api_v0_DRAFT.md` 与 `FluidMotion.Api.v0.cs` 由 Z2 契约取代，仅作参考（L1 名字一致；RiveView / PointerFollow 部分对应另票） |
 | 2026-11-06 15:28 Asia/Shanghai | 写入 remaining_effort_ESTIMATE；准备推 GitHub |
