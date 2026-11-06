@@ -105,7 +105,11 @@ struct Probe {
 
     // GPU timing: a small ring of disjoint + begin/end timestamp queries.
     static constexpr int kQ = 4;
-    ComPtr<ID3D11Query> qDisjoint[kQ], qBegin[kQ], qEnd[kQ];
+    ComPtr<ID3D11Query> qDisjoint[kQ], qBegin[kQ], qMid[kQ], qEnd[kQ];
+    // PACING r3: GPU time split at qMid (after Rive's flush): Rive rendering vs the copy into
+    // the composition surface, which can wait for DWM to finish reading it. Render thread
+    // fills the pending vectors; the loop moves them into the stats under statsMu.
+    std::vector<double> pendGpuRender, pendGpuCopy;
     uint64_t qIssued = 0, qRead = 0;
     std::atomic<uint64_t> gpuDropped{0};  // query sets that never became valid (render thread writes)
 
@@ -120,7 +124,7 @@ struct Probe {
     std::atomic<void*> pacingMonitorOut{nullptr};
     std::atomic<uint32_t> pacingLookups{0};
     std::mutex statsMu;
-    std::vector<double> cpuMs, gpuMs, intervalMs;
+    std::vector<double> cpuMs, gpuMs, intervalMs, gpuRenderMs, gpuCopyMs;
     uint64_t frames = 0, drawFailures = 0;
     HRESULT lastHr = S_OK;
 
@@ -236,6 +240,7 @@ void MakeQueries(Probe& p) {
     for (int i = 0; i < Probe::kQ; ++i) {
         p.dev->CreateQuery(&dj, &p.qDisjoint[i]);
         p.dev->CreateQuery(&ts, &p.qBegin[i]);
+        p.dev->CreateQuery(&ts, &p.qMid[i]);
         p.dev->CreateQuery(&ts, &p.qEnd[i]);
     }
 }
@@ -252,10 +257,11 @@ void DrainQueries(Probe& p, std::vector<double>& out) {
     while (p.qRead < p.qIssued) {
         const int i = static_cast<int>(p.qRead % Probe::kQ);
         D3D11_QUERY_DATA_TIMESTAMP_DISJOINT dj{};
-        UINT64 b = 0, e = 0;
+        UINT64 b = 0, m = 0, e = 0;
         auto ready = [&] {
             return p.ctx->GetData(p.qDisjoint[i].Get(), &dj, sizeof dj, 0) == S_OK &&
                    p.ctx->GetData(p.qBegin[i].Get(), &b, sizeof b, 0) == S_OK &&
+                   p.ctx->GetData(p.qMid[i].Get(), &m, sizeof m, 0) == S_OK &&
                    p.ctx->GetData(p.qEnd[i].Get(), &e, sizeof e, 0) == S_OK;
         };
         bool ok = ready();
@@ -266,9 +272,12 @@ void DrainQueries(Probe& p, std::vector<double>& out) {
                 ok = ready();
             }
         }
-        if (ok && !dj.Disjoint && dj.Frequency && e >= b)
-            out.push_back(1000.0 * static_cast<double>(e - b) / static_cast<double>(dj.Frequency));
-        else
+        if (ok && !dj.Disjoint && dj.Frequency && e >= m && m >= b) {
+            const double f = 1000.0 / static_cast<double>(dj.Frequency);
+            out.push_back(f * static_cast<double>(e - b));
+            p.pendGpuRender.push_back(f * static_cast<double>(m - b));
+            p.pendGpuCopy.push_back(f * static_cast<double>(e - m));
+        } else
             ++p.gpuDropped;
         ++p.qRead;
     }
@@ -327,6 +336,7 @@ HRESULT Frame(Probe& p, float dt, std::vector<double>& gpuOut) {
     p.ctx->Begin(p.qDisjoint[qi].Get());
     p.ctx->End(p.qBegin[qi].Get());
     RenderRive(p, dt);
+    p.ctx->End(p.qMid[qi].Get());
     HRESULT hr = S_OK;
     if (p.swapchain) {
         ComPtr<ID3D11Texture2D> bb;
@@ -432,6 +442,7 @@ HRESULT RecoverDevice(Probe& p, ComPtr<ID3D11Device> nd, ComPtr<ID3D11DeviceCont
     for (int i = 0; i < Probe::kQ; ++i) {
         p.qDisjoint[i].Reset();
         p.qBegin[i].Reset();
+        p.qMid[i].Reset();
         p.qEnd[i].Reset();
     }
     p.qIssued = p.qRead = 0;
@@ -489,7 +500,7 @@ HRESULT GuardedFrame(Probe* p, float dt, std::vector<double>* gpuOut) { return F
 #endif
 
 // M3-MATRIX-PACING: waits for the next frame boundary. With a pacing window, that is the
-// vertical blank of the window's monitor followed by the next DWM composition (r2) (output found on our adapter by HMONITOR, looked
+// vertical blank of the window's monitor (output found on our adapter by HMONITOR, looked
 // up again when the monitor or the device changes); otherwise, or when no output matches,
 // the next DWM composition (DwmFlush), as before.
 void WaitFrame(Probe& p) {
@@ -515,11 +526,8 @@ void WaitFrame(Probe& p) {
             p.pacingMonitorOut.store(mon);
         }
         if (p.pacingOutput && SUCCEEDED(p.pacingOutput->WaitForVBlank())) {
-            // PACING r2: then wait for the composition that starts on this vblank to finish.
-            // Drawing right at the vblank made our copy into the surface wait for DWM to read
-            // it (GPU time ~1.06 T on a 180 Hz monitor in r1); after DwmFlush it does not,
-            // and there is still one frame per vblank of the window's monitor.
-            DwmFlush();
+            // PACING r3: the vblank alone. r2 added DwmFlush here, whose wait varies with the
+            // phase of the compositor clock and often ran past the next vblank (pacing broke).
             p.pacingVblank.store(1);
             return;
         }
@@ -658,6 +666,10 @@ void RenderLoop(Probe* p) {
         p->intervalMs.push_back(t0 - last);
         p->cpuMs.push_back(t1 - t0);
         p->gpuMs.insert(p->gpuMs.end(), gpu.begin(), gpu.end());
+        p->gpuRenderMs.insert(p->gpuRenderMs.end(), p->pendGpuRender.begin(), p->pendGpuRender.end());
+        p->gpuCopyMs.insert(p->gpuCopyMs.end(), p->pendGpuCopy.begin(), p->pendGpuCopy.end());
+        p->pendGpuRender.clear();
+        p->pendGpuCopy.clear();
         p->lastHr = hr;
         if (FAILED(hr)) ++p->drawFailures; else ++p->frames;
         last = t0;
@@ -879,6 +891,8 @@ M0R_API int32_t m0r_reset_stats(void) {
     std::lock_guard<std::mutex> lk(g->statsMu);
     g->cpuMs.clear();
     g->gpuMs.clear();
+    g->gpuRenderMs.clear();
+    g->gpuCopyMs.clear();
     g->intervalMs.clear();
     g->frames = 0;
     g->drawFailures = 0;
@@ -892,6 +906,16 @@ M0R_API int32_t m0r_get_intervals(double* out, uint32_t capacity, uint32_t* coun
     *count = static_cast<uint32_t>(g->intervalMs.size());
     const size_t n = std::min<size_t>(capacity, g->intervalMs.size());
     std::copy(g->intervalMs.begin(), g->intervalMs.begin() + static_cast<std::ptrdiff_t>(n), out);
+    return S_OK;
+}
+
+M0R_API int32_t m0r_get_gpu_split(double* render_p50, double* render_p95, double* copy_p50, double* copy_p95) {
+    if (!g || !render_p50 || !render_p95 || !copy_p50 || !copy_p95) return E_INVALIDARG;
+    std::lock_guard<std::mutex> lk(g->statsMu);
+    *render_p50 = Pct(g->gpuRenderMs, 0.50);
+    *render_p95 = Pct(g->gpuRenderMs, 0.95);
+    *copy_p50 = Pct(g->gpuCopyMs, 0.50);
+    *copy_p95 = Pct(g->gpuCopyMs, 0.95);
     return S_OK;
 }
 

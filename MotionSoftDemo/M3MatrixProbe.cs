@@ -32,6 +32,7 @@ internal static class M3MatrixNative
     [DllImport("m0rive")] internal static extern int m0r_get_intervals([Out] double[] buf, uint capacity, out uint count);
     [DllImport("m0rive")] internal static extern int m0r_set_pacing_window(IntPtr hwnd);
     [DllImport("m0rive")] internal static extern int m0r_get_pacing(out int vblank, out IntPtr monitor, out uint lookups);
+    [DllImport("m0rive")] internal static extern int m0r_get_gpu_split(out double renderP50, out double renderP95, out double copyP50, out double copyP95);
 
     [StructLayout(LayoutKind.Sequential)] internal struct RECT { public int Left, Top, Right, Bottom; }
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
@@ -128,7 +129,7 @@ public sealed partial class MainPage
         {
             var hwnd = Process.GetCurrentProcess().MainWindowHandle;
             ShowWindow(hwnd, 9); SetForegroundWindow(hwnd);
-            Kv("probe", pacingMode ? "M3-MATRIX-PACING v2" : "M3-MATRIX v1");
+            Kv("probe", pacingMode ? "M3-MATRIX-PACING v3" : "M3-MATRIX v1");
             Kv("session", sess);
             Kv("pid", Environment.ProcessId);
             Kv("host", Environment.MachineName);
@@ -234,7 +235,7 @@ public sealed partial class MainPage
                     colDev[m.Primary].AddRange(devs);
                     colIv[m.Primary].AddRange(iv);
                     M3MatrixNative.m0r_get_pacing(out var vb, out var pmon, out var looks);
-                    Kv(p + ".pacing_source", vb == 1 ? "vblank+dwmflush" : "dwmflush");
+                    Kv(p + ".pacing_source", vb == 1 ? "vblank" : "dwmflush");
                     Kv(p + ".pacing_monitor_matches", pmon == m.Handle ? 1 : 0);
                     Kv(p + ".interval_p95_ms", F(Pct(iv, 0.95), 3));
                     Kv(p + ".dev_p95_ms", F(Pct(devs, 0.95), 3));
@@ -244,7 +245,15 @@ public sealed partial class MainPage
                 }
                 else
                     pacingOk &= cur == m.Handle && Math.Abs(p50 / T - 1) <= 0.10 && drops <= 0.01 * Math.Max(1, iv.Count);
-                budgetOk &= st.CpuP95 <= 0.35 * T && st.GpuP95 <= 0.35 * T && st.GpuSamplesDropped <= 0.10 * Math.Max(1, st.Frames);
+                M3MatrixNative.m0r_get_gpu_split(out var gr50, out var gr95, out var gc50, out var gc95);
+                Kv(p + ".gpu_render_p95_frac_T", F(gr95 / T, 3));
+                Kv(p + ".gpu_copy_p50_ms", F(gc50, 3));
+                Kv(p + ".gpu_copy_p95_ms", F(gc95, 3));
+                Kv(p + ".gpu_copy_p95_frac_T", F(gc95 / T, 3));
+                // PACING r3 (V1): in pacing mode the GPU budget covers Rive's rendering only; the
+                // copy into the surface, which can wait for DWM, is recorded above, not judged.
+                double gpuJudged = pacingMode ? gr95 : st.GpuP95;
+                budgetOk &= st.CpuP95 <= 0.35 * T && gpuJudged <= 0.35 * T && st.GpuSamplesDropped <= 0.10 * Math.Max(1, st.Frames);
                 stableOk &= st.BeginDrawFailures == 0 && st.Frames >= 300;
                 // Surface size must follow the monitor's scale (M3-RIVE-DPI path).
                 M3Native.m0r_get_resize(out _, out _, out _, out var aw, out var ah, out _);

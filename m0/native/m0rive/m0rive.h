@@ -113,8 +113,7 @@ M0R_API int32_t m0r_reset_stats(void);
 M0R_API int32_t m0r_get_intervals(double* out, uint32_t capacity, uint32_t* count);
 
 // M3-MATRIX-PACING: pace the render loop to the vertical blank of the monitor `hwnd` is on
-// (IDXGIOutput::WaitForVBlank on that monitor's output, then DwmFlush so the frame is
-// drawn after the composition that vblank starts; r2) instead of DwmFlush alone. With monitors
+// (IDXGIOutput::WaitForVBlank on that monitor's output) instead of DwmFlush. With monitors
 // of different refresh rates the compositor runs at the fastest one, so DwmFlush pacing
 // over-draws on a slower monitor (M3-MATRIX: 180 Hz on a 75 Hz monitor). The output is
 // looked up again whenever the window's monitor changes or the device is replaced; if the
@@ -124,6 +123,11 @@ M0R_API int32_t m0r_set_pacing_window(void* hwnd);
 // Pacing state for the probe: 1 = vblank of the window's monitor, 0 = DwmFlush; the
 // HMONITOR the current output belongs to; number of output lookups so far.
 M0R_API int32_t m0r_get_pacing(int32_t* vblank, void** monitor, uint32_t* lookups);
+// PACING r3: GPU time per frame split into Rive rendering (frame start -> after Rive's
+// flush) and the copy into the composition surface (which can include waiting for DWM to
+// finish reading it), P50/P95 in ms since the last m0r_reset_stats. m0r_stats' gpu_* keep
+// covering both, as before.
+M0R_API int32_t m0r_get_gpu_split(double* render_p50, double* render_p95, double* copy_p50, double* copy_p95);
 
 // Renders one frame headless at `t_sec` and writes raw BGRA (premultiplied) to
 // `path`: 8-byte header (uint32 width, uint32 height) then rows top to bottom.
