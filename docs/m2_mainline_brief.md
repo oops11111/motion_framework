@@ -817,3 +817,7 @@
   - Y2：PR #7 已合入 main（`db5de87`）；MATRIX / PACING 另开 PR
   - Y3：M3 Rive 层在现有硬件上完成，推迟项与下一步见 `docs/m3_status.md`；WP4 启动草案 `docs/m3_wp4_pilot_DRAFT.md`（Z1 需要 pidan 提名候选应用）
   - Y4：协作约定 `docs/COORDINATION.md`（先同步再写；brief 只追加；先落 approved 再采数）
+
+- **2026-11-06 — Wave A：Z4 ETW + L1 smoke DRAFT（Claude）**
+  - `docs/z4_etw_l1_smoke_gate_DRAFT.md`：L1 冻结名字经 C ABI 在真机端到端冒烟（序列、连续性、减少动效、空闲、线程、ETW 六条）；E1–E4 待裁决；不是 PERF-CI
+  - 我在 `claude/m3-wp4-api` 上的 API v0 草案由协调的 Z2 契约取代，仅作参考

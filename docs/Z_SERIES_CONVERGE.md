@@ -48,7 +48,7 @@
 
 - [ ] 审 `api_surface_m2_alpha_contract_DRAFT.md`：修订 / 或回「冻结 API v0」？（冻结仍须另票才编码）
 - [ ] Z1：填 B/C 真实应用名；审 `z1_pilot_scoring_table_DRAFT.md`（A 初评 33/50；不代选）？
-- [ ] Wave A 还差 Z4 ETW/L1 smoke DRAFT（本批未交）？
+- [x] Wave A 的 Z4 ETW/L1 smoke DRAFT 已交：`docs/z4_etw_l1_smoke_gate_DRAFT.md`（E1–E4 待裁决）
 - [ ] 后端路径 A=C-ABI 先通 / B=等真实 Composition？
 - [ ] M3：r4 WP 条件采用？BUDGET/RENDER-BUDGET 挂账对照 vs SUPERSEDED？
 - [ ] 另票开 API v0？（默认否）
@@ -57,6 +57,7 @@
 
 | 时间 | 变更 |
 |---|---|
+| 2026-11-06 AWST | Claude：Z4 DRAFT `docs/z4_etw_l1_smoke_gate_DRAFT.md`（L1 序列、连续性、减少动效、空闲、线程、ETW 六条判据；E1 建议冻结 ETW 名字与 GUID）；`claude/m3-wp4-api` 上的 `docs/api_v0_DRAFT.md` 与 `FluidMotion.Api.v0.cs` 由 Z2 契约取代，仅作参考（L1 名字一致；RiveView / PointerFollow 部分对应另票） |
 | 2026-11-06 15:28 Asia/Shanghai | 写入 remaining_effort_ESTIMATE；准备推 GitHub |
 | 2026-11-06 15:26 AWST | Claude Wave A：`api_surface_…` / `api_v0_frozen` / `z1_pilot_scoring_table` 已核哈希；指针并入本文件；仍不冻结 |
 | 2026-11-06 15:19:25 AWST | 建档：合并三方收敛；pidan 指示「后续开发后收敛给一个文档」→ 本文件为唯一主文档 |
