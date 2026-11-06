@@ -761,3 +761,8 @@
   - 180 Hz 屏上多出的约一帧 GPU 时间在“Rive 渲染”段（1.05–1.08·T），不是拷贝；75 Hz 屏同样工作只要 0.018·T
   - 推断：垂直同步时刻提交的工作排在 DWM 合成（可能含等待翻转）后面；未证实，需 GPUView / PIX
   - 复核：`docs/m3_matrix_pacing_r3_result_claude_review.md`；下一步待 pidan 决定（W1–W3）
+
+- **2026-11-06 11:27:50 AWST — M3-MATRIX-PACING r4 LOCKED（pidan：W2 按建议）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_r4_LOCKED.md`，GATE_BODY_SHA256=`81fc74ebba270feb818646cd5f5c8c90fd2d3812c3447c642ed126413108934c`（复算 MATCH）；代码 `69094ee`
+  - 判据同 r3；唯一改动：垂直同步后再等 0.3·T 才画（动画时间与帧间隔仍按垂直同步）；若 180 Hz 屏渲染 GPU 仍约 1·T 则转 W1
+  - 派工单 `docs/workbuddy_m3_matrix_pacing_r4_dispatch.md`；结果进 `m3/results_matrix_pacing_r4/`；**未 APPROVED，不授权采数**
