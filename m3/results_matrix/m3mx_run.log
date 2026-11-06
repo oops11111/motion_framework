@@ -1,0 +1,30 @@
+[2026-11-06 09:34:14] M3-MATRIX run(FIXED_ENV): host=DESKTOP-IJI1KJG sessions=3 exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe art=C:\Users\Lh\mf_m0b\artifacts_m3mx
+[2026-11-06 09:34:14] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-11-06 09:34:14] os=Microsoft Windows 11 ×¨Òµ°æ build=26300
+[2026-11-06 09:34:14] gpu=AMD Radeon RX 7800 XT driver=32.0.12033.1030 refresh=180Hz mode=2560x1440
+[2026-11-06 09:34:14] screen \\.\DISPLAY1 primary=False bounds={X=-2560,Y=0,Width=2560,Height=1440}
+[2026-11-06 09:34:14] screen \\.\DISPLAY2 primary=True bounds={X=0,Y=0,Width=1280,Height=1024}
+[2026-11-06 09:34:14] composition.h sha256 PRE=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-11-06 09:34:16] session 1 pid=5464 ARTDIR=C:\Users\Lh\mf_m0b\artifacts_m3mx
+[2026-11-06 09:34:29] session 1 screenshot m3mx_s1_seg0.png
+[2026-11-06 09:34:41] session 1 screenshot m3mx_s1_seg1.png
+[2026-11-06 09:34:51] session 1 screenshot m3mx_s1_seg2.png
+[2026-11-06 09:35:02] session 1 screenshot m3mx_s1_seg3.png
+[2026-11-06 09:35:12] session 1 screenshot m3mx_s1_seg4.png
+[2026-11-06 09:35:14] session 1 verdict=RECORDED pacing_ok=0 hitch_ok=1 size_ok=1 budget_ok=1
+[2026-11-06 09:35:16] session 2 pid=376 ARTDIR=C:\Users\Lh\mf_m0b\artifacts_m3mx
+[2026-11-06 09:35:29] session 2 screenshot m3mx_s2_seg0.png
+[2026-11-06 09:35:41] session 2 screenshot m3mx_s2_seg1.png
+[2026-11-06 09:35:50] session 2 screenshot m3mx_s2_seg2.png
+[2026-11-06 09:36:02] session 2 screenshot m3mx_s2_seg3.png
+[2026-11-06 09:36:12] session 2 screenshot m3mx_s2_seg4.png
+[2026-11-06 09:36:14] session 2 verdict=RECORDED pacing_ok=0 hitch_ok=1 size_ok=1 budget_ok=1
+[2026-11-06 09:36:16] session 3 pid=324 ARTDIR=C:\Users\Lh\mf_m0b\artifacts_m3mx
+[2026-11-06 09:36:29] session 3 screenshot m3mx_s3_seg0.png
+[2026-11-06 09:36:40] session 3 screenshot m3mx_s3_seg1.png
+[2026-11-06 09:36:50] session 3 screenshot m3mx_s3_seg2.png
+[2026-11-06 09:37:02] session 3 screenshot m3mx_s3_seg3.png
+[2026-11-06 09:37:11] session 3 screenshot m3mx_s3_seg4.png
+[2026-11-06 09:37:14] session 3 verdict=RECORDED pacing_ok=0 hitch_ok=1 size_ok=1 budget_ok=1
+[2026-11-06 09:37:14] composition.h sha256 POST=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-11-06 09:37:14] RUN_DONE
