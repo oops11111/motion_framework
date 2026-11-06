@@ -708,3 +708,8 @@
   - 180 Hz 屏上 GPU P95 从 0.041·T 升到约 1.06·T（MATRIX 同屏对照），三会话一致 → `budget_ok=0`；推断为垂直同步时与 DWM 读取同一表面的冲突（GPU 在等待，不是工作量增加）
   - 建议 r2：`WaitForVBlank` 之后再 `DwmFlush` 再画；同一套判据复测
   - 复核：`docs/m3_matrix_pacing_result_claude_review.md`
+
+- **2026-11-06 10:57:03 AWST — M3-MATRIX-PACING r2 LOCKED（pidan：按建议出 r2）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`a1fa4590285f52948ecf51bc9c32629d4d2c3bc42efc7f5bb4e4922bd2be2883`（复算 MATCH）；代码 `53cedde`
+  - 判据与 r1 完全相同；唯一改动：垂直同步之后再 `DwmFlush` 再画
+  - 派工单 `docs/workbuddy_m3_matrix_pacing_r2_dispatch.md`；结果进 `m3/results_matrix_pacing_r2/`；**未 APPROVED，不授权采数**
