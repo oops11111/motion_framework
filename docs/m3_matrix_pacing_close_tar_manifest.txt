@@ -1,0 +1,9 @@
+# M3-MATRIX-PACING closeout docs — tar 清单（协调派 workbuddy/K93 推送；本机只写文档）
+# WRITTEN_AT=2026-11-06 10:55:00 Asia/Shanghai
+
+docs/m3_matrix_pacing_result.md	5329	55154fcd358b36c52045b9c11d2fc910c9409093df3fcf139a09631db1477199
+docs/m3_matrix_pacing_close_brief.md	1203	9fb0355f179afa79faf6ba7a2390d872875acc28ee2999c97da47ac577a2a252
+docs/m3_matrix_pacing_close_pack.md	5218	4b393057c04a14f44e22f135a22a58d685645b9d58c7501e74cb79c802f155c2
+docs/m3_matrix_pacing_next.md	4399	c39bd25cd8136a8667529a3a9263e80214d691f28923c5809d5b4042e6af1bbb
+docs/m3_matrix_pacing_mainline.md	730	a5bb6da9f82b3bcd83119b3a29a26b65af32f898bd5c0d0d06abe40398a340b2
+docs/m2_mainline_brief.md	51368	a846c76f5bd8bdd1f8bfc9fccef3a93cc322b9367b00d69a2ea58c36d50bdbf3
