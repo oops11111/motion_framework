@@ -722,3 +722,6 @@
   - gate MATCH `2543e424cd71eea2959fe942ce0bfe7d7118ea6ee5c28b31da7902bce904812c`；approved pidan@2026-11-06 10:40:00 Asia/Shanghai（UTC+8）；tip `fd05c6c058022c233f1cd896338e03d665c43d0f`；results `7d5f545c7a3af0b7410421006a3683ce64c93f07` @ claude/m3-matrix
   - **budget_ok=0**；pacing_ok=1（节奏修复已验证）；hitch/size/stability=1；3×RECORDED；dir=`m3/results_matrix_pacing/`
   - composition.h 未触；Success≠adopt；**PERF-CI 仍 HOLD**；不授权新采数/真机；禁回改 CLOSED MATRIX
+
+- **2026-11-06 10:57:53 AWST — M3-MATRIX-PACING r2 APPROVED（pidan）**
+  - approved：`docs/m3_matrix_pacing_r2_approved.md`；gate r2 `a1fa4590…2883` 不变；采数=是（同拓扑，3 会话，`-Pacing`）；派工单 `docs/workbuddy_m3_matrix_pacing_r2_dispatch.md`；结果进 `m3/results_matrix_pacing_r2/`
