@@ -330,7 +330,124 @@
   - H5-ABS-RESOLVE-PASS ≠ VERIFY-PASS 改写 ≠ Δv-PASS ≠ 落地；`H5-DENOM-VERIFY-FAIL` 仍 FAIL 归档；八 hash 不翻盘
   - next：**无新票；主线旁路确认后待命**；Δv″ / PERF-CI 继续 HOLD；composition.h 未触
 
-- STATUS（追加，2026-10-26 20:49:27 Australia/Perth）：用户指示 **开发停止、后续任务停止**。协调侧已停五方派工；取消未决（含 PERF-CI HOLD 等待）；**不再派新票/真机/结题**，直至用户再开。GitHub 已推 [oops11111/motion_framework](https://github.com/oops11111/motion_framework) `137c52e`；本地 `/workspace/motion_framework` 保留。
+- **2026-10-26 — 协调点名 M2-PERF-CI-TOOLING（plan.md §8 第 8 项；offline-tooling；采数=否）**
+  - Claude 接手会话落盘：`tools/perf_ci/perf_ci_grade.py` + 单测 29/29 + `tools/perf_ci/README.md`；DRAFT `docs/m2_perf_ci_tooling_gate_DRAFT.md`（未 LOCK）
+  - 实现 LOCKED PERF-CI 闸门时发现开放问题 Q1–Q8，其中 Q1（Idle 与 ≥1000 帧冲突）、Q2（替代路径 P95≤T 无法满足）、Q7（基线不存在）会阻断首轮 PERF-CI，须在第二台机器就绪前裁决
+  - PERF-CI `5b007dd4…282a` 不改，仍 HOLD；composition.h 未触；引擎单测复验全绿（timeline 422 / tokens 743 / controller 236 / composition 2305 / capi 23 / soft-demo 10）
+
+- **2026-10-26 — 协调「按建议 1 开始做 M0」→ 开 M0-A DRAFT（分支 `claude/m0-tech-validation`）**
+  - DRAFT：`docs/m0_tech_validation_gate_DRAFT.md`（未 LOCK；不授权采数）；待裁决 D1–D7（D1 = 是否允许 SendInput）
+  - 代码：`m0/`（tear 探针、Rive 表面 DLL、构建和运行脚本）+ `MotionSoftDemo/M0Probe.cs`（MainPage 加 11 行入口）；composition.h 未触
+  - 本地核实：WinAppSDK 2.5.1 的合成 interop IID 与系统版不同，已按头文件写入；Rive 钉 `runtime-v0.1.545`
+
+- **2026-10-26 21:38:45 AWST — M0-A LOCKED（D1–D7 按建议）**
+  - LOCKED：`docs/m0_tech_validation_gate_LOCKED.md`，hash=`942d6965dae1aa41f3b853923d08a11aac9714d60018888a5c486bfde5809768`
+  - 派工单：`docs/workbuddy_m0_dispatch.md`（构建可先行；采数等 approved 留证）；MainPage 补丁 `m0/mainpage_m0_hook.patch`
+
+- **2026-10-26 21:43:10 AWST — M0-A APPROVED by pidan → 派 workbuddy**
+  - approved：`docs/m0_tech_validation_approved.md`；gate `942d6965…9768` 不变；采数=是（-Inject，3 会话）；派工单 `docs/workbuddy_m0_dispatch.md`
+
+- **2026-10-26 23:50:32 AWST — M0-A CLOSED M0-A-PASS（3 会话，D1 注入）**
+  - 结果：`docs/m0_tech_validation_result.md`；数据 `m0/results/`（commit fac309a5）；gate `942d6965…9768` 复算 MATCH；composition.h PRE=POST
+  - M0-1a PASS 3/3（CPU P95 ≈0.03·T，GPU P95 0.04–0.19·T）；M0-2@60Hz 层间错位 ≤0.19 ms；表达式跟随比 UI 线程快约 45 ms；合成交换链接受 ALLOW_TEARING（API 层）
+  - 偏离：参考图全空（异步着色器编译，探针缺陷，已修）→ 第④条改以截图确认，待协调确认
+  - Go：Rive 路径继续；M0-B 等第二台机器（≥120Hz、Win11、有管理员权限）
+
+- **2026-10-27 — M0-A 合入 main（PR #1）；开 M0-B DRAFT（分支 `claude/m0b-win11`）**
+  - M0-A 第④条偏离：pidan 以「开pr合并」确认
+  - M0-B DRAFT：`docs/m0b_win11_gate_DRAFT.md`（Win11 复核：M0-2 在 ≥120Hz 下正式判定、M0-1a 回归、M0-4 用 PresentMon）；待裁决 E1–E4；不授权采数
+
+- **2026-10-27 00:19:21 AWST — M0-B LOCKED（E1–E4 按建议）**
+  - LOCKED：`docs/m0b_win11_gate_LOCKED.md`，hash=`5e1bbb6d517babf6f04a94ee9af93cc17f208f5ea9e5bdcf7ac47c8cd49df203`
+  - 分支 `claude/m0b-win11-run`（从 main `513dd5e` 拉出）；派工单 `docs/workbuddy_m0b_dispatch.md`（预检和构建可先做；采数等 approved）
+
+- **2026-10-28 09:16:57 AWST — M0-B 闸门 r2 LOCKED（pidan：「修改120hz为75hz」）**
+  - r2：`docs/m0b_win11_gate_r2_LOCKED.md`，hash=`fd3acfc787564137532cc52adb64066427a88b159f0c6b4312dfd9dece40505c`；取代 r1 `5e1bbb6d…f203`（r1 未 APPROVED、未采数，文件不改）
+  - M0-2 判定所需刷新率改为 ≥75Hz，门槛 2 ms 不变；与 plan.md「120Hz 拖动错位测试」的偏离已记录，120Hz 结论转 M3 混合刷新率矩阵
+  - 派工单已改指向 r2；采数仍等 approved
+
+- **2026-10-28 09:18:00 AWST — M0-B APPROVED by pidan → 派 workbuddy**
+  - approved：`docs/m0b_win11_approved.md`；gate r2 `fd3acfc7…505c` 不变；采数=是（-Inject，3 会话）；派工单 `docs/workbuddy_m0b_dispatch.md`
+
+- **2026-10-28 09:36:54 AWST — plan.md 的 120Hz 全部改为 75Hz（pidan）**
+  - 共 5 处：目标“60/75Hz 以上保持流畅”；M-0 任务与 M0 验收门槛“75Hz 拖动错位测试”；多屏矩阵“60+75Hz、60+144Hz 混合”；试点指标“60/75Hz 下”
+  - 因此 M0-B r2（`fd3acfc7…505c`）的 ≥75Hz 判定与 plan.md 一致；r2 中“与 plan.md 的偏离 / 120Hz 结论转 M3”一条已不再适用（r2 已 LOCK，正文不改，以本条为准）
+  - summary.md、disputes.md 中“120Hz 下 ≤1ms”是按比例换算的预算示例，未改
+
+- **2026-10-28 12:01:34 AWST — M0-B CLOSED M0-B-INCONCLUSIVE（DESKTOP-IJI1KJG，Win11 26200，RX 7800 XT，75Hz，未提权）**
+  - 结果：`docs/m0b_win11_result.md`；数据 `m0/results_m0b/`（commit 6096c411）；gate r2 `fd3acfc7…505c` 复算 MATCH；composition.h PRE=POST
+  - M0-2：错位 0.06/0.08/0.01 ms（≤2 ms），但每条路径样本只有 161–163（要求 ≥200）→ INCONCLUSIVE
+  - M0-1a：①②④ 和 CPU（≤0.073·T）都满足；GPU P95 因探针时间戳读取 bug（AMD 上触发）无效 → INCONCLUSIVE
+  - 已修：探针 v3（GPU 查询读取、拖动 16→40 次）；建议出 r3 并整票重跑，待 pidan 决定
+
+- **2026-10-28 14:53:18 AWST — M0-B 闸门 r3 LOCKED（pidan：「按建议出 r3」）**
+  - r3：`docs/m0b_win11_gate_r3_LOCKED.md`，hash=`741729784693893dedb6190b5d2768617045554ae90a58dfe00fd52855f48ede`；取代 r2 `fd3acfc7…505c`（r2 文件不改，r2 结论 INCONCLUSIVE 保留）
+  - 判据不变；要求探针 M0 v3、同一台 DESKTOP-IJI1KJG 整票重跑 3 个会话、结果放 `m0/results_m0b_r3/`、不混用 r2 数据；GPU 丢弃样本超过 10% 时 GPU P95 视为无效
+  - 派工单：`docs/workbuddy_m0b_r3_dispatch.md`；采数等 r3 approved
+
+- **2026-10-28 15:26:25 AWST — M0-B r3 APPROVED by pidan（提权 + PresentMon）→ 采数**
+  - approved：`docs/m0b_win11_r3_approved.md`；gate r3 `74172978…8ede` 不变；派工单 `docs/workbuddy_m0b_r3_dispatch.md`；数据进 `m0/results_m0b_r3/`
+
+- **2026-10-28 17:11:40 AWST — M0-B r3 CLOSED M0-B-PASS → M0 关闭**
+  - 结果：`docs/m0b_win11_r3_result.md`；数据 `m0/results_m0b_r3/`（commit c3491a87）；gate r3 `74172978…8ede` 复算 MATCH；composition.h PRE=POST
+  - M0-2 PASS：错位 −0.04/0.06/−0.06 ms，每条路径样本 404–408；M0-1a PASS：CPU P95 ≤0.096·T，GPU P95 0.014·T，丢弃 0，参考图非空且一致
+  - M0-4：合成交换链 + ALLOW_TEARING 在 Win11/AMD 上为 Hardware: Independent Flip，AllowsTearing=1（屏幕层面可撕裂）
+  - 偏离：执行方用了未提交的本地 runner（直接启动 Debug exe）；PresentMon 只覆盖 60 s，没抓到 hwnd 对照组。均不影响判据
+  - Go：Rive 路径进入 M3 规划；Skia 备选不启用
+
+- **2026-10-28 — M3 规划 DRAFT + M0 工具收尾（分支 `claude/m3-plan`）**
+  - `docs/m3_plan_DRAFT.md`：WP1–WP5、票序、硬件需求；待裁决 F1–F6
+  - `m0/run_m0.ps1`：新增 `-LaunchMode Exe`（并回 M0-B r3 执行方的直接启动方式）；PresentMon 改为随探针进程退出；探针也接受 `--m0-inject` 参数
+
+- **2026-10-28 20:26:23 AWST — M3 规划 F1–F6 按建议裁决（pidan）**
+  - F1 默认走合成表面，交换链可选；F2 撕裂默认关；F3 首次显示前离屏预热；F4 按未来 WinMD 的形状冻结 C# API，试点绑定它；F5 试点期按 B_v 发布，速度不连续写进设计约束，另请设计师盲测；F6 真机票保留闸门，代码和文档走 PR
+  - 记录在 `docs/m3_plan_DRAFT.md` §6；PERF-CI 的 Q1–Q8 仍待裁决（PR #5 未合并）
+
+- **2026-10-28 — PR #4 合入 main（M3 规划，F1–F6 已裁决；runner 收尾）；开 M3-RIVE-DPI DRAFT**
+  - DRAFT：`docs/m3_rive_dpi_gate_DRAFT.md`（分支 `claude/m3-rive-dpi`）；待裁决 G1–G4；代码在裁决后写
+  - 注意：两台测试机都是 1280×1024，Windows 通常只提供 100%/125% 缩放；150%/200% 留给 M3-MATRIX
+
+- **2026-10-28 20:31:11 AWST — PERF-CI Q1–Q8 按建议裁决（pidan）→ 合入 PR #5**
+  - 裁决记录在 `docs/m2_perf_ci_tooling_gate_DRAFT.md`；Q1/Q2/Q3/Q7 改变判据，写入新版 PERF-CI 闸门 r2（另开 DRAFT），原 LOCKED `5b007dd4…282a` 不改
+  - 采数前提：Q4 真实 PresentStats、Q6 WPA 导出口径；PERF-CI 仍 HOLD（缺 GPU 档不同的第二台机器）
+
+- **2026-10-28 20:39:58 AWST — M3-RIVE-DPI LOCKED（G1–G4 按建议）**
+  - LOCKED：`docs/m3_rive_dpi_gate_LOCKED.md`，hash=`92e6b4e9fd1014faf74714eb6cb20fc7e998169dc1171785bb8ea43f68d97bf5`
+  - 代码：`m0r_resize`/`m0r_get_resize`、`M3DpiProbe.cs`（`--m3-dpi-probe`）、`m3/run_m3_dpi.ps1`、`m3/mainpage_m3_hook.patch`；派工单 `docs/workbuddy_m3_rive_dpi_dispatch.md`；采数等 approved
+  - PERF-CI r2：H1–H3 按建议裁决（Idle 0.1%；第三台机器由 pidan 安排；Q4 由 Claude 实现，Q6 由懂 WPA 的人做）
+
+- **2026-10-28 21:28:50 AWST — M3-RIVE-DPI APPROVED by pidan → 派 workbuddy**
+  - approved：`docs/m3_rive_dpi_approved.md`；gate `92e6b4e9…97bf5` 不变；采数=是（3 会话，操作员手动切换 100%↔125%）；派工单 `docs/workbuddy_m3_rive_dpi_dispatch.md`；结果进 `m3/results_dpi/`
+
+- **2026-10-29 11:42:31 AWST — M3-RIVE-DPI：Claude 独立复核，与权威结题一致**
+  - 权威结题：`docs/m3_rive_dpi_result.md`（notion ai，RIVE-DPI-PASS，有条件采用，csproj 不回灌主线）
+  - 复核：`docs/m3_rive_dpi_result_claude_review.md`；补充 ⑥ 像素宽度核对（125% 时 Rive 区域 500 px，清晰重绘）、125% 截图被截断、每次切换的延迟 0.65–13.33 ms
+
+- **2026-10-29 11:54:00 AWST — PR #6（DPI 代码进 main）已开，待 pidan 评审；M3-RIVE-LOST DRAFT 起草**
+  - PR：https://github.com/oops11111/motion_framework/pull/6（`claude/m3-rive-dpi` → main，未合并；不含 csproj 本机补丁）
+  - DRAFT：`docs/m3_rive_lost_gate_DRAFT.md`（分支 `claude/m3-rive-lost`，从 DPI 分支拉出）；K1–K6 待裁决；未 LOCK，不授权采数
+
+- **2026-10-29 12:30:02 AWST — M3-RIVE-LOST：K1–K6 按建议裁决，实现已写；新增 K7 待裁决**
+  - 实现：`m0rive` 设备丢失检测与自动恢复（SetRenderingDevice）、`M3LostProbe.cs`、`m3/run_m3_lost.ps1`（强制注入间隔与次数上限）、`m3/mainpage_m3lost_hook.patch`
+  - K7：钉住版本的 Rive D3D11 后端在设备丢失时可能崩溃（`onMap` 不检查 Map 返回值，`VERIFY_OK` 直接 abort）；建议本票不改 Rive，崩溃判 FAIL 并另开补丁票
+  - K7 裁决后 LOCK；仍不授权采数
+
+- **2026-10-29 12:31:48 AWST — M3-RIVE-LOST LOCKED（K1–K7 全部按建议）**
+  - LOCKED：`docs/m3_rive_lost_gate_LOCKED.md`，GATE_BODY_SHA256=`753c0a6c82f06c81cf741eecba278b926127771befa2a51b515a925a7873f27d`（已复算 MATCH）；代码 = `claude/m3-rive-lost` `23e08de`
+  - 派工单草稿：`docs/workbuddy_m3_rive_lost_dispatch.md`（第 1–3 步构建和模拟冒烟可先做；第 4 步真实注入等 approved）
+  - **未 APPROVED，不授权采数**
+
+- **2026-10-29 12:48:46 AWST — M3-RIVE-LOST APPROVED（pidan）**
+  - approved：`docs/m3_rive_lost_approved.md`；gate `753c0a6c…f27d` 不变；采数=是（3 会话 × 2 次 `dxcap -forcetdr`，先模拟冒烟）；派工单 `docs/workbuddy_m3_rive_lost_dispatch.md`；结果进 `m3/results_lost/`
+
+- **2026-10-29 13:46:44 AWST — PR #6 合并（pidan 同意）：M3-RIVE-DPI 代码进 main**
+  - main `c2a1c7f`；不含 csproj 本机补丁；composition.h 未改
+  - `claude/m3-rive-lost` 基于已合并的 DPI 分支，之后的 LOST PR 只含恢复代码
+
+- **2026-10-29 — 恢复本 brief（Claude）**：协调提交 `5a8825f` 基于旧的本地副本（`/workspace/motion_framework`，初始导入 `137c52e`），覆盖掉了 2026-10-26 至 2026-10-29 13:46 的 30 余条记录。已按 `1110e81` 的版本恢复，协调新增的条目原样保留在下面。
+  - 协调副本带入的历史条目（原文）：
+    STATUS（追加，2026-10-26 20:49:27 Australia/Perth）：用户指示 **开发停止、后续任务停止**。协调侧已停五方派工；取消未决（含 PERF-CI HOLD 等待）；**不再派新票/真机/结题**，直至用户再开。GitHub 已推 [oops11111/motion_framework](https://github.com/oops11111/motion_framework) `137c52e`；本地 `/workspace/motion_framework` 保留。
+    - 这条是 2026-10-26 的旧状态；之后 pidan 已恢复开发（“接收开发项目，继续”），本条不再有效。
 
 - **2026-10-29 10:00:00 Asia/Shanghai — M3-RIVE-DPI CLOSED RIVE-DPI-PASS（METRICS_PASS；有条件采用）**
   - 权威：docs/m3_rive_dpi_result.md；pack：docs/notion_m3_rive_dpi_pack.md；next：docs/notion_m3_rive_dpi_next.md
@@ -347,6 +464,20 @@
   - 成功≠采用；未采用；PERF-CI 仍 HOLD；不重开 S1/R-3/R-2
   - next：**新 DRAFT 修探针/检测窗/注入探测**（须 LOCK+APPROVED 才采数）；禁当日重跑；禁插队 FOLLOW/MATRIX 真机
 
+- **2026-10-29 — M3-RIVE-LOST r1：Claude 复核 + r2 DRAFT**
+  - 复核：`docs/m3_rive_lost_result_claude_review.md`。同意非 PASS、未采用；更正三处事实：① 闸门已 LOCK（`753c0a6c…f27d`，tip 上复算 MATCH）且 APPROVED；② 应用没有崩溃，`CRASHED_NO_VERDICT` 是 runner 先结束进程再判断造成的误标；③ `dxcap -forcetdr` 退出码 0 但没有产生 TDR（0 条 4101），注入未生效 → 按 LOCKED G2 属 INVALID
+  - r2 DRAFT：`docs/m3_rive_lost_gate_r2_DRAFT.md`；L1–L5 待裁决（建议改用 `pnputil /restart-device` 重启显卡驱动、采数前注入自检、修 runner 标注）；不授权采数
+
+- **2026-10-29 18:13:07 AWST — M3-RIVE-LOST r2 LOCKED（L1–L5 按建议）**
+  - LOCKED：`docs/m3_rive_lost_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`dc0770c1f6a6819a5f6cffeb6bea2ef828b93045ec8e75f39910ee9537d29d10`（复算 MATCH）；代码 `05f7576`
+  - 注入改为 `pnputil /restart-device`；采数前自检；runner 崩溃标注已修；DLL 不变
+  - r1 标签按 L5 更正为 `RIVE-LOST-INVALID`（附录写在 `docs/m3_rive_lost_result.md` 末尾，正文不改）
+  - 派工单：`docs/workbuddy_m3_rive_lost_r2_dispatch.md`；**未 APPROVED，不授权采数**
+
+- **2026-10-29 18:15:58 AWST — M3-RIVE-LOST r2 APPROVED（pidan）**
+  - approved：`docs/m3_rive_lost_r2_approved.md`；gate r2 `dc0770c1…9d10` 不变；采数=是（自检 1 次 + 3 会话 × 2 次 `pnputil /restart-device`，先模拟冒烟）；派工单 `docs/workbuddy_m3_rive_lost_r2_dispatch.md`；结果进 `m3/results_lost_r2/`
+
+- **2026-10-30 — 再次恢复本 brief（Claude）**：协调提交 `a67b142` 又基于旧的本地副本写入，覆盖了 2026-10-29 恢复后的记录。已按 `0aea9d1` 的版本恢复，协调新增的 r2 结题条目原样保留在下面。**协调侧需要先从 origin 同步（`git pull origin claude/m3-rive-lost`）再写文档。**
 
 - **2026-10-30 08:50:00 Asia/Shanghai — M3-RIVE-LOST r2 CLOSED RIVE-LOST-FAIL（非 METRICS_PASS；未采用）**
   - 权威：docs/m3_rive_lost_r2_result.md；pack：docs/notion_m3_rive_lost_r2_pack.md；next：docs/notion_m3_rive_lost_r2_next.md；brief：docs/m3_rive_lost_r2_result_brief.md
@@ -359,6 +490,28 @@
   - composition.h PRE=POST CRLF=`33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97` LF=`a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418` edited=False
   - 成功≠采用；未采用；PERF-CI 仍 HOLD；不重开 S1/R-3/R-2；禁当日重跑；禁插队 FOLLOW/MATRIX
   - next：**新 DRAFT `M3-RIVE-LOST-RECOVER`**（专攻 abort/重建）；PROBE 探测能力已由 r2 实证（挂账关闭探针残差 / 保留前置）；须 LOCK+APPROVED 才采数
+
+- **2026-10-30 — M3-RIVE-LOST r2：Claude 复核 + RECOVER DRAFT**
+  - 复核：`docs/m3_rive_lost_r2_result_claude_review.md`。同意 FAIL、未采用；注入已生效（自检 OK，3/3 检测到丢失）；abort 发生在恢复过程中（检测后不再画帧），Rive 的 `VERIFY_OK` 全在建资源路径上，最可能是驱动重启期间就在新设备上建 Rive 对象
+  - 更正：本次对应 r2 LOCKED `dc0770c1…9d10` 且有 approved；权威结题引用的“PROBE 闸门 7afbcd98”不在仓库
+  - RECOVER DRAFT：`docs/m3_rive_lost_recover_gate_DRAFT.md`；M1–M5 待裁决（诊断、恢复前确认新设备可用、本票暂不改 Rive）；不授权采数
+
+- **2026-10-30 11:31:47 AWST — M3-RIVE-LOST-RECOVER LOCKED（M1–M5 按建议）**
+  - LOCKED：`docs/m3_rive_lost_recover_gate_LOCKED.md`，GATE_BODY_SHA256=`16202071fd08d091d0a0d825eda2297297ae19227d72a6cf981d4ed8b25484ce`（复算 MATCH）；代码 `90c4180`
+  - 恢复前先确认新设备可用（硬件适配器、检查过返回值的小资源、稳定 500 ms）；abort 时记录恢复阶段并保存 stderr；本票不改 Rive
+  - r2 结题已附更正（M5）；派工单 `docs/workbuddy_m3_rive_lost_recover_dispatch.md`（需重建 DLL）；**未 APPROVED，不授权采数**
+
+- **2026-10-30 11:47:20 AWST — M3-RIVE-LOST-RECOVER APPROVED（pidan）**
+  - approved：`docs/m3_rive_lost_recover_approved.md`；gate `16202071…84ce` 不变；采数=是（重建 DLL；模拟冒烟 → 自检 → 3 会话 × 2 次驱动重启）；派工单 `docs/workbuddy_m3_rive_lost_recover_dispatch.md`；结果进 `m3/results_lost_recover/`
+
+- **2026-10-30 — M3-RIVE-LOST-RECOVER 真机结果：Claude 复核 → 判据全部满足（RIVE-LOST-PASS，待协调结题和采用决断）**
+  - 数据 `m3/results_lost_recover/`（`68ce59d`）；gate `16202071…84ce` 复算 MATCH；approved 在先；composition.h PRE=POST
+  - 3 会话 × 2 次驱动重启：6/6 检测、6/6 恢复（2.06–2.32 s ≤ 5 s），0 abort；恢复后段 600–601 帧、0 失败、CPU ≤ 0.096·T、GPU 0.013·T；内存 −23～−25 MB，旧设备引用全为 0
+  - r2 abort 的原因已证实：驱动重启初期没有硬件适配器（DXGI_ERROR_NOT_FOUND），r2 在不可用设备上建了 Rive 对象
+  - **新发现**：每次驱动重启后应用自身的 XAML 界面全部消失且不再重画（Rive 视觉正常）；疑似 WinUI 3 问题，未证实；建议下一票做无 Rive 的对照
+  - 复核：`docs/m3_rive_lost_recover_result_claude_review.md`
+
+- **2026-10-30 — 第三次恢复本 brief（Claude）**：协调提交 `94886fb` 仍基于旧的本地副本，覆盖了 `cb5a2f1` 之前的记录。已恢复，协调新增的 RECOVER 结题条目原样保留在下面。协调副本仍未从 origin 同步，所以它的结题里写“闸门未 LOCK、无 approved”，也没有看到 XAML 界面消失的发现。
 
 - **2026-10-30 12:10:00 Asia/Shanghai — M3-RIVE-LOST-RECOVER CLOSED RIVE-LOST-RECOVER-PASS（METRICS_PASS 有条件；有条件采用验证结论；不合 main）**
   - 权威：docs/m3_rive_lost_recover_result.md；pack：docs/notion_m3_rive_lost_recover_pack.md；next：docs/notion_m3_rive_lost_recover_next.md；brief：docs/m3_rive_lost_recover_result_brief.md
@@ -373,6 +526,19 @@
   - 成功≠采用；有条件采用验证结论；**不合 main**；PERF-CI 仍 HOLD；不重开 S1/R-3/R-2
   - next：**M3-RIVE-FOLLOW 新 DRAFT（文档）**；建议补 RECOVER LOCK 归档（≠采数授权）；FOLLOW/MATRIX 不再因恢复未成立硬挡，但仍须各自 LOCK+APPROVED；**不授权采数**
 
+- **2026-10-30 — M3-XAML-LOST DRAFT（诊断票）**
+  - `docs/m3_xaml_lost_gate_DRAFT.md`：弄清驱动重启后 XAML 界面不恢复是 WinUI 3 本身的问题还是我们的代码；普通窗口 vs 带 Rive 窗口同日对照，并尝试 4 种恢复操作；N1–N5 待裁决（建议先于 FOLLOW 真机）；不授权采数
+
+- **2026-10-30 13:36:05 AWST — M3-XAML-LOST LOCKED（N1–N5 按建议）**
+  - LOCKED：`docs/m3_xaml_lost_gate_LOCKED.md`，GATE_BODY_SHA256=`69a52e2de66153348bff5197dbb037dd2650c26055b834173abde6ae6a1e1f55`（复算 MATCH）；分支 `claude/m3-xaml-lost`，代码 `4c04450`
+  - 普通窗口 3 会话 + 带 Rive 1 会话，各重启驱动 1 次，加自检共 5 次；观测 +5/+15/+30 s 和三种恢复操作
+  - RECOVER 结题已附更正（N5）；派工单 `docs/workbuddy_m3_xaml_lost_dispatch.md`；**未 APPROVED，不授权采数**
+
+- **2026-10-30 13:42:56 AWST — M3-XAML-LOST APPROVED（pidan）**
+  - approved：`docs/m3_xaml_lost_approved.md`；gate `69a52e2d…1f55` 不变；采数=是（走流程 → 自检 → 3 普通 + 1 带 Rive，各重启驱动 1 次）；派工单 `docs/workbuddy_m3_xaml_lost_dispatch.md`；结果进 `m3/results_xaml_lost/`（分支 `claude/m3-xaml-lost`）
+
+- **2026-10-30 — 第四次恢复本 brief（Claude）**：协调提交 `d5d8300` 仍基于旧的本地副本，覆盖了 `bb61eae` 之前的记录。已恢复，协调新增的 XAML-LOST 结题条目原样保留在下面。
+
 - **2026-10-30 17:05:00 Asia/Shanghai — M3-XAML-LOST CLOSED XAML-LOST-PASS（METRICS_PASS 有条件；有条件采用验证结论；不合 main）**
   - 权威：docs/m3_xaml_lost_result.md；pack：docs/notion_m3_xaml_lost_pack.md；next：docs/notion_m3_xaml_lost_next.md；brief：docs/m3_xaml_lost_result_brief.md
   - 闸门：**本地无 XAML-LOST LOCKED**（无 DRAFT/LOCKED/APPROVED 可引用）；采数口径=**按用户指令采数**（pidan 2026-10-30 16:43 四步直接下令；无 APPROVED 文件）
@@ -383,6 +549,25 @@
   - composition.h PRE=POST CRLF=`33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97` LF=`a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418` edited=False
   - 成功≠采用；有条件采用验证结论；**不合 main**；PERF-CI 仍 HOLD；不重开 S1/R-3/R-2；不翻盘 r1/r2/RECOVER
   - next：**M3-RIVE-FOLLOW**（已 LOCKED hash `0f85a95277dd279e51085a42cd491b55db332ba49077055d045f794fc6b30a13`；APPROVED 空；等 pidan）；**本 next 不授权采数**
+
+- **2026-10-30 — M3-XAML-LOST：Claude 复核 → `XAML-LOST`（不同意协调的 `XAML-LOST-PASS`）**
+  - 普通窗口（无 Rive）3/3 与带 Rive 1/1 表现一致：驱动重启后所有文字、圆角元素、开关、按钮、标题栏图标和标题消失，等待、改大小、最小化还原、重设内容都不恢复；XAML 仍在出帧（Rendering 75–76/s，纯色块持续变色）→ 平台问题，不是我们的代码
+  - 闸门 `69a52e2d…1f55` 复算 MATCH、approved 在先（协调结题“无闸门、无 approved”是旧副本所致）
+  - 复核：`docs/m3_xaml_lost_result_claude_review.md`；下一步待 pidan 决定（Q1–Q4）
+
+- **2026-10-30 — Q1–Q4 按建议（pidan）**
+  - Q1：XAML-LOST 结题已附更正（标签 `XAML-LOST`，平台问题；闸门 LOCKED 且 APPROVED）
+  - Q2：后续诊断 DRAFT `docs/m3_xaml_rebuild_gate_DRAFT.md`（分支 `claude/m3-xaml-rebuild`）：重启前已开的窗口、重启后新建的窗口能否画文字；打包部署是否一样；R1–R4 待裁决；不授权采数
+  - Q3：有最小复现后，由 pidan 决定是否向 microsoft-ui-xaml 报告
+  - Q4：FOLLOW 与此无关，可并行；P1–P6 仍待裁决
+
+- **2026-10-30 17:35:36 AWST — M3-XAML-REBUILD LOCKED（R1–R4 按建议；K93N3P8 有管理员权限，纳入）**
+  - LOCKED：`docs/m3_xaml_rebuild_gate_LOCKED.md`，GATE_BODY_SHA256=`3ea74c371ae983cebe480e1b4dea99e61aec92cfbe9646fb87b91b7a1d456fdc`（复算 MATCH）；分支 `claude/m3-xaml-rebuild`，代码 `12c720d`
+  - A：IJI1KJG unpackaged 3 会话；B：IJI1KJG 打包 1 会话（启动不了记 BLOCKED_PACKAGED）；C：K93N3P8 1 会话
+  - 派工单 `docs/workbuddy_m3_xaml_rebuild_dispatch.md`；**未 APPROVED，不授权采数**
+  - P1–P6（FOLLOW）已按建议裁决，实现在 `claude/m3-follow`
+
+- **2026-11-01 — 第五次恢复本 brief（Claude）**：协调提交 `0ef414e` 这次已经对照了正确的闸门和 approved，但 brief 仍被整体改写，丢了 164 行历史。已按 `0ef414e~1` 恢复，协调新增的两条原样保留在下面。
 
 - **2026-11-01 16:26:53 Asia/Shanghai — 双票 APPROVED（XAML-REBUILD + RIVE-FOLLOW）**（文档归档；本行≠派 workbuddy）
   - pidan 明文：`APPROVED M3-XAML-REBUILD` + `APPROVED M3-RIVE-FOLLOW`
@@ -399,6 +584,23 @@
   - TEXT：A/B W_pre=TEXT-LOST、W_post=TEXT-LOST（进程级；打包同向）；C main=TEXT-OK、W_*=INCONCLUSIVE（DPI 截窗挂账）
   - R4=**KNOWN_LIMIT**（建议重启应用；宿主重建窗口不充分）；Success≠adopt；composition.h 未触；PERF-CI HOLD
   - next：**M3-RIVE-FOLLOW 已 APPROVED（SendInput `285e39dc…aab3`）且已派 — 待命/并行；本结题不授权新采数、不阻拦 workbuddy**
+
+- **2026-11-01 — M3-XAML-REBUILD：Claude 复核（同意协调的逐窗口判读）**
+  - IJI1KJG：进程级丢失（W_post 也全黑），打包同样 → 已知限制、建议重启应用
+  - K93N3P8：主窗口完整，但该会话不带 Rive，无法证明设备确实丢失；需带 Rive 复测
+  - runner 截图两处缺陷（被遮挡、不感知 DPI）；B 的 7 张截图拍到了执行方的私人聊天和通知，待 pidan 决定是否删除
+  - 复核：`docs/m3_xaml_rebuild_result_claude_review.md`
+
+- **2026-11-01 18:37:27 AWST — S1–S4 按建议（pidan）；M3-XAML-K93 LOCKED**
+  - S1：`m3/run_m3_xaml_lost.ps1` 截图改为 `PrintWindow`（按窗口取内容，不受遮挡）+ 每显示器 DPI 感知；打包启动时复制 `m0rive.dll` 进 AppX（`104e5f9`）
+  - S2：`docs/m3_xaml_k93_gate_LOCKED.md`，GATE_BODY_SHA256=`22fb8b92d8703619215ffaae3f0d5d9efea003951bb44b42d790d488ac28b657`（复算 MATCH）；K93N3P8 带 Rive 1 会话；派工单 `docs/workbuddy_m3_xaml_k93_dispatch.md`；**未 APPROVED，不授权采数**
+  - S3：B 组 7 张拍到私人内容的截图已从分支最新版本删除（历史未改写），见 `m3/results_xaml_rebuild/b/REMOVED.md`
+  - S4：对外报告等 K93 结果；已知限制草稿 `docs/m3_known_limits.md`
+
+- **2026-11-01 20:58:26 AWST — M3-XAML-K93 APPROVED（pidan）**
+  - approved：`docs/m3_xaml_k93_approved.md`；gate `22fb8b92…b657` 不变；采数=是（K93N3P8，自检 + 1 会话带 Rive）；派工单 `docs/workbuddy_m3_xaml_k93_dispatch.md`；结果进 `m3/results_xaml_k93/`
+
+- **2026-11-02 — 再次恢复本 brief（Claude）**：协调提交 `58cc1a4` 又整体改写了 brief（−200 行）。已按 `58cc1a4~1` 恢复，协调新增的条目原样保留在下面。**请协调侧只在 brief 末尾追加，不要整体重写。**
 
 - **2026-11-02 08:11:19 Australia/Perth — M3-RIVE-FOLLOW CLOSED RIVE-FOLLOW-PASS（METRICS_PASS；有条件采用 WP2 设计约束；不合 main）**
   - 权威：docs/m3_rive_follow_result.md；pack：docs/notion_m3_rive_follow_pack.md；next：docs/notion_m3_rive_follow_next.md；brief：docs/m3_rive_follow_result_brief.md
@@ -419,6 +621,50 @@
   - dryrun=RECORDED；sessions=1×RECORDED（with_rive=1 packaged=1 inject_ok=1 shots=20）；lost_detected=1 recovered=1 lost_now=0 recover_ms=4504.25 rive_abort=none reason=0x887A0005
   - W_pre=1440x756 W_post=1153x605（**缺 TEXT-OK/LOST 目视字段**）；composition.h PRE=POST 未触；Success≠adopt；PERF-CI HOLD
   - 工具链 A/B **挂账不挡本票**；next：**M3-MATRIX DRAFT（纯文档）— 不授权真机**；本结题不授权新采数
+
+- **2026-11-02 — M3-XAML-K93：Claude 复核 → XAML 在 K93N3P8 上能恢复（问题限于 IJI1KJG 环境）**
+  - Rive 证实设备确实丢失（`0x887A0005`，恢复 4.50 s）；主窗口、W_pre、W_post 全部 TEXT-OK，计数器持续前进
+  - 结论：XAML-LOST 是 Windows 11 预览版 26300 和/或 AMD 驱动的问题，不是 WinUI 3 普遍问题；按 S4 向反馈中心 / AMD 报告（由 pidan 决定）
+  - 构建在 IJI1KJG 完成后复制到 K93（协调 Decision C），代码与锁定提交一致，记为执行偏离
+  - 复核：`docs/m3_xaml_k93_result_claude_review.md`；已知限制已更新：`docs/m3_known_limits.md`
+
+- **2026-10-30 — M3-RIVE-FOLLOW DRAFT（plan §7 第 3 张）**
+  - `docs/m3_rive_follow_gate_DRAFT.md`（分支 `claude/m3-follow`，从 `claude/m3-xaml-lost` 拉出）：四条跟随路径（表面内 UI 线程转交 / 表面内渲染线程读取 / 拆出 visual 表达式驱动 / 拆出 visual UI 线程写入）的指针延迟和拆分接缝；P1–P6 待裁决；真机排在 XAML-LOST 之后（N1）；不授权采数
+
+- **2026-10-30 17:40:39 AWST — M3-RIVE-FOLLOW LOCKED（P1–P6 按建议）**
+  - LOCKED：`docs/m3_rive_follow_gate_LOCKED.md`，GATE_BODY_SHA256=`285e39dc9c1100f92ddddc5560a3631b94129a9b56c561c9803c8cbee57eaab3`（复算 MATCH）；分支 `claude/m3-follow`（含 XAML-REBUILD 代码），代码 `b9e6f32`
+  - 四条跟随路径 × 3 会话，每路径 40 次阶跃 + 40 次拖动；需重建 m0rive.dll；`SendInput` 仅限本票
+  - 派工单 `docs/workbuddy_m3_rive_follow_dispatch.md`（建议在 XAML-REBUILD 之后做）；**未 APPROVED，不授权采数**
+
+- **2026-11-01 — M3-RIVE-FOLLOW APPROVED 留证补记**
+  - pidan 在 2026-11-01 16:26:53（UTC+8）同时批准了 XAML-REBUILD 和 RIVE-FOLLOW；当时只落了 REBUILD 的留证，现补 `docs/m3_rive_follow_approved.md`；gate `285e39dc…eaab3` 复算 MATCH；FOLLOW 尚未采数
+
+- **2026-11-02 — 再次恢复本 brief（Claude）**：协调提交 `c4cf6be` 又整体改写了 brief（−194 行）。已按 `c4cf6be~1` 恢复，协调新增的条目原样保留在下面。**请协调侧只在 brief 末尾追加，不要整体重写。**
+
+- **2026-11-02 — M3-RIVE-FOLLOW：Claude 复核（同意 RIVE-FOLLOW-PASS 的数字和规则判读）**
+  - C（拆出 + 表达式）40.5–40.8 ms，比 A（表面内）快 1.8–2.0 帧；B（渲染线程读光标）只比 A 快 0.1–0.2 帧；接缝 −1.93 帧（拆出的部件领先 Rive 主体约 26 ms）
+  - 解释：表面内多出的约 2 帧来自绘制表面管线本身，不在 UI 线程；WP2 设计约束草稿写在复核里（松耦合部件拆出 + 弹簧阻尼，严格对齐的部件留在 Rive 里）
+  - 流程：FOLLOW 与 REBUILD 的 approved 留证都是采数之后才落盘（批准本身在先）；以后应先落留证
+  - 复核：`docs/m3_rive_follow_result_claude_review.md`
+
+- **2026-11-02 — T1–T4 按建议（pidan；M3-MATRIX 的开放问题交 Claude 定）**
+  - T1：WP2 指针跟随设计约束已采用：`docs/m3_wp2_follow_guidelines.md`
+  - T2：外部问题报告草稿 `docs/m3_xaml_device_lost_report_draft.md`（英文，未提交到任何外部渠道；由谁在哪里提交由 pidan 决定）
+  - T3：`claude/m3-follow` 已合入 XAML-REBUILD / K93 的最新内容，开 PR 到 main（不合并，待评审）
+  - T4：M3-MATRIX DRAFT 另开分支
+
+- **2026-11-02 — PR #7 已开（M3 LOST / XAML 诊断 / FOLLOW 代码进 main），待 pidan 评审，未合并**
+  - https://github.com/oops11111/motion_framework/pull/7（`claude/m3-follow` → main；不含 csproj 本机补丁；composition.h 未改）
+
+- **2026-11-02 09:34:33 AWST — M3-MATRIX LOCKED（开放问题 X1–X7 由 Claude 代定，pidan 授权）**
+  - LOCKED：`docs/m3_matrix_gate_LOCKED.md`，GATE_BODY_SHA256=`d8c21d0304931c42d805ceef35fccf4df50b5f2931fd916b81a13eea5db1963f`（复算 MATCH）；分支 `claude/m3-matrix`，代码 `fe81db8`
+  - IJI1KJG（75 Hz，100%）+ 一块外接显示器（60 Hz，125% 或 150%）；探针自己移动窗口跨屏，测每屏节奏、跨屏卡顿、重新光栅化、预算；144 Hz、200%、DRR、RDP、GPU 切换、热插拔留作后续
+  - 派工单 `docs/workbuddy_m3_matrix_dispatch.md`；**未 APPROVED，不授权采数**
+
+- **2026-11-05 14:41:43 AWST — M3-MATRIX APPROVED（pidan）**
+  - approved：`docs/m3_matrix_approved.md`；gate `d8c21d03…963f` 不变；采数=是（IJI1KJG + 一块外接显示器，3 会话）；派工单 `docs/workbuddy_m3_matrix_dispatch.md`；结果进 `m3/results_matrix/`
+
+- **2026-11-06 — 再次恢复本 brief（Claude）**：协调提交 `feaec91` 又整体改写了 brief（−262 行）。已按 `feaec91~1` 恢复，协调新增的条目原样保留在下面。
 
 - **2026-11-02 09:20:00 Asia/Shanghai — M3-MATRIX DRAFT 已落（纯文档；NOT LOCKED；不授权真机）+ 工具链 A/B 挂账**
   - DRAFT：`docs/m3_matrix_gate_DRAFT.md`（NOT LOCKED；APPROVED_* 空；LOCK≠采数；不派 workbuddy）
@@ -451,12 +697,36 @@
   - 写死：硬 pacing；混刷双列均过；瞬态 N=2.0s/M=120；强制 IJI 同拓扑；≥3；只测 pacing；dir=`m3/results_matrix_pacing/`；hitch 分立；After()/QPC；GC→INVALID；禁回改 CLOSED MATRIX；标签 `RIVE-MATRIX-PACING-*`
   - **不派 workbuddy**；**不暗示可采数**；composition.h 未触；Success≠adopt；不合 main；**PERF-CI 仍 HOLD**
 
+- **2026-11-06 — M3-MATRIX：Claude 复核（同意 RIVE-MATRIX-FAIL）+ PACING 实现**
+  - 原因：混合刷新率下 DWM 按最快的屏（180 Hz）合成，Rive 渲染线程用 `DwmFlush` 跟着 180 Hz 走，在 75 Hz 屏上也每秒画约 178 帧；跨屏、尺寸、预算、稳定都通过
+  - 协调锁定的 M3-MATRIX-PACING（`2543e424…812c`）只规定判读，没有修复；不改代码重跑必然 FAIL
+  - 已实现（`248a2d4`）：`m0r_set_pacing_window` 让渲染线程按窗口所在屏的垂直同步出帧（默认行为不变）；探针 pacing 模式按闸门 G2 做双列判读；修正 MATRIX 执行方备注的两处测试工具缺陷
+  - 复核 `docs/m3_matrix_result_claude_review.md`；实现说明 `docs/m3_matrix_pacing_impl_claude.md`；派工单 `docs/workbuddy_m3_matrix_pacing_dispatch.md`；**未 APPROVED，不授权采数**；批准时需确认渲染器改动在本票范围内
+
+- **2026-11-06 — M3-MATRIX-PACING 真机结果：Claude 复核 → pacing 修好（3/3 `pacing_ok=1`），但按 G2 ④ 判 FAIL（预算回退）**
+  - 75 Hz 列 13.33 ms、180 Hz 列 5.556 ms，偏差 P95 0.11–0.23 ms，0 超长；跨屏最长 13.6 ms
+  - 180 Hz 屏上 GPU P95 从 0.041·T 升到约 1.06·T（MATRIX 同屏对照），三会话一致 → `budget_ok=0`；推断为垂直同步时与 DWM 读取同一表面的冲突（GPU 在等待，不是工作量增加）
+  - 建议 r2：`WaitForVBlank` 之后再 `DwmFlush` 再画；同一套判据复测
+  - 复核：`docs/m3_matrix_pacing_result_claude_review.md`
+
+- **2026-11-06 10:57:03 AWST — M3-MATRIX-PACING r2 LOCKED（pidan：按建议出 r2）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`a1fa4590285f52948ecf51bc9c32629d4d2c3bc42efc7f5bb4e4922bd2be2883`（复算 MATCH）；代码 `53cedde`
+  - 判据与 r1 完全相同；唯一改动：垂直同步之后再 `DwmFlush` 再画
+  - 派工单 `docs/workbuddy_m3_matrix_pacing_r2_dispatch.md`；结果进 `m3/results_matrix_pacing_r2/`；**未 APPROVED，不授权采数**
+
+- **2026-11-06 — 再次合并本 brief（Claude）**：协调提交 `1f22889` 又整体改写了 brief（−265 行）。合并时保留完整历史，协调新增的条目原样附在下面。
+
 - **2026-11-06 10:55:00 Asia/Shanghai — M3-MATRIX-PACING CLOSED RIVE-MATRIX-PACING-FAIL（纯文档结题；不采用；不合 main）**
   - result：`docs/m3_matrix_pacing_result.md` sha=`55154fcd358b36c52045b9c11d2fc910c9409093df3fcf139a09631db1477199`
   - pack/brief/next/mainline：close_pack=`4b393057c04a…`；next 主推 **M3-MATRIX-BUDGET DRAFT**（勿擅自 LOCK）
   - gate MATCH `2543e424cd71eea2959fe942ce0bfe7d7118ea6ee5c28b31da7902bce904812c`；approved pidan@2026-11-06 10:40:00 Asia/Shanghai（UTC+8）；tip `fd05c6c058022c233f1cd896338e03d665c43d0f`；results `7d5f545c7a3af0b7410421006a3683ce64c93f07` @ claude/m3-matrix
   - **budget_ok=0**；pacing_ok=1（节奏修复已验证）；hitch/size/stability=1；3×RECORDED；dir=`m3/results_matrix_pacing/`
   - composition.h 未触；Success≠adopt；**PERF-CI 仍 HOLD**；不授权新采数/真机；禁回改 CLOSED MATRIX
+
+- **2026-11-06 10:57:53 AWST — M3-MATRIX-PACING r2 APPROVED（pidan）**
+  - approved：`docs/m3_matrix_pacing_r2_approved.md`；gate r2 `a1fa4590…2883` 不变；采数=是（同拓扑，3 会话，`-Pacing`）；派工单 `docs/workbuddy_m3_matrix_pacing_r2_dispatch.md`；结果进 `m3/results_matrix_pacing_r2/`
+
+- **2026-11-06 — 再次恢复本 brief（Claude）**：协调提交 `cfa4252` 又整体改写了 brief（−283 行）。已按 `cfa4252~1` 恢复，协调新增的条目原样保留在下面。
 
 - **2026-11-06 11:00:00 Asia/Shanghai — M3-MATRIX-BUDGET DRAFT 已落（纯文档；NOT LOCKED；不授权真机）**
   - DRAFT：`docs/m3_matrix_budget_gate_DRAFT.md`（sha256=`49bbc9757feeade1f5b571c317e01be2c9d14fb9e464fa98438e5f31dba54745`；APPROVED_* 空；LOCK≠采数；不派 workbuddy；**勿擅自 LOCK**）
@@ -472,6 +742,32 @@
   - **pacing_ok=0**；budget_ok=1；hitch/size/stability=1；probe v2；pacing_source=vblank+dwmflush；WaitForVBlank→DwmFlush（`53cedde`）
   - 对照 r1：pacing1/budget0 vs r2 pacing0/budget1；**均 FAIL；禁回改 r1/MATRIX**
   - composition.h 未触；Success≠adopt；**PERF-CI 仍 HOLD**；不授权新采数/真机
+
+- **2026-11-06 — M3-MATRIX-PACING r2：Claude 复核（同意 FAIL）**
+  - r2 预算恢复（180 Hz 屏 GPU 0.07·T），但节奏坏了：75 Hz 列偏差 P95 5.1–5.3 ms（门槛 3.33），180 Hz 列约一半帧被跳过（122 fps）；原因是 `DwmFlush` 在垂直同步之后的等待长短不一，且常常越过下一次垂直同步
+  - 结论：出帧必须只锚定垂直同步（r1 的做法）；r1 的预算失败来自拷贝时等 DWM 读表面，需要把 GPU 计时拆开才能判断
+  - 复核：`docs/m3_matrix_pacing_r2_result_claude_review.md`；下一步待 pidan 决定（V1–V3）
+
+- **2026-11-06 11:14:15 AWST — M3-MATRIX-PACING r3 LOCKED（pidan：V1 按建议）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_r3_LOCKED.md`，GATE_BODY_SHA256=`90f9356bf2739ea2a95a56619fc73af561b0c34e4ebd097be05442f8c5719476`（复算 MATCH）；代码 `878892d`
+  - 出帧时机回到 r1（只等垂直同步）；GPU 计时拆成 Rive 渲染 / 拷贝进表面；预算的 GPU 项只按渲染判定，拷贝（含等 DWM）单独记录；其余判据同 r1
+  - 派工单 `docs/workbuddy_m3_matrix_pacing_r3_dispatch.md`；结果进 `m3/results_matrix_pacing_r3/`；**未 APPROVED，不授权采数**
+
+- **2026-11-06 11:15:19 AWST — M3-MATRIX-PACING r3 APPROVED（pidan）**
+  - approved：`docs/m3_matrix_pacing_r3_approved.md`；gate r3 `90f9356b…9476` 不变；采数=是（同拓扑，3 会话，`-Pacing`）；派工单 `docs/workbuddy_m3_matrix_pacing_r3_dispatch.md`；结果进 `m3/results_matrix_pacing_r3/`
+
+- **2026-11-06 — M3-MATRIX-PACING r3：Claude 复核 → 节奏完美，预算 FAIL；r2 复核中的原因推断不成立**
+  - 75 Hz / 180 Hz 两列偏差 P95 0.06–0.11 ms，0 超长；拷贝进表面只要 6–8 µs
+  - 180 Hz 屏上多出的约一帧 GPU 时间在“Rive 渲染”段（1.05–1.08·T），不是拷贝；75 Hz 屏同样工作只要 0.018·T
+  - 推断：垂直同步时刻提交的工作排在 DWM 合成（可能含等待翻转）后面；未证实，需 GPUView / PIX
+  - 复核：`docs/m3_matrix_pacing_r3_result_claude_review.md`；下一步待 pidan 决定（W1–W3）
+
+- **2026-11-06 11:27:50 AWST — M3-MATRIX-PACING r4 LOCKED（pidan：W2 按建议）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_r4_LOCKED.md`，GATE_BODY_SHA256=`81fc74ebba270feb818646cd5f5c8c90fd2d3812c3447c642ed126413108934c`（复算 MATCH）；代码 `69094ee`
+  - 判据同 r3；唯一改动：垂直同步后再等 0.3·T 才画（动画时间与帧间隔仍按垂直同步）；若 180 Hz 屏渲染 GPU 仍约 1·T 则转 W1
+  - 派工单 `docs/workbuddy_m3_matrix_pacing_r4_dispatch.md`；结果进 `m3/results_matrix_pacing_r4/`；**未 APPROVED，不授权采数**
+
+- **2026-11-06 — 再次恢复本 brief（Claude）**：协调提交 `57d53d4` 又整体改写了 brief（−310 行）。已按 `57d53d4~1` 恢复，协调新增的条目原样保留在下面。
 
 - **2026-11-06 11:10:00 AWST — M3-MATRIX-PACING-R3 DRAFT 已落（纯文档；NOT LOCKED；不授权真机；Australia/Perth（AWST，UTC+8））**
   - DRAFT：`docs/m3_matrix_pacing_r3_gate_DRAFT.md`（sha256=`d0155830dded6833f4cde5623a01429d81dadbe656925429e215c99563e8838f`；APPROVED_* 空；**勿擅自 LOCK**）
@@ -489,6 +785,11 @@
   - 对照：r1 pacing✓/budget✗；r2 pacing✗/budget✓；r3 pacing✓/budget✗（失败在 render 非 copy）；**三票均 FAIL；禁合并洗票；禁回改 r1/r2/MATRIX**
   - composition.h PRE=POST `33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97`（LF `a55d4952…e418`）未触；Success≠adopt；**PERF-CI 仍 HOLD**；不授权新采数/真机；FAIL 照交未重跑
 
+- **2026-11-06 11:36:53 AWST — M3-MATRIX-PACING r4 APPROVED（pidan）**
+  - approved：`docs/m3_matrix_pacing_r4_approved.md`；gate r4 `81fc74eb…934c` 不变；采数=是（同拓扑，3 会话，`-Pacing`）；派工单 `docs/workbuddy_m3_matrix_pacing_r4_dispatch.md`；结果进 `m3/results_matrix_pacing_r4/`
+
+- **2026-11-06 — 再次恢复本 brief（Claude）**：协调提交 `907da1e` 又整体改写了 brief（−316 行）。已按 `907da1e~1` 恢复，协调新增的条目原样保留在下面。
+
 - **2026-11-06 11:30:10 AWST — M3-MATRIX-RENDER-BUDGET DRAFT 已落（纯文档；NOT LOCKED；不授权真机；Australia/Perth（AWST，UTC+8））**
   - DRAFT：`docs/m3_matrix_render_budget_gate_DRAFT.md`（sha256=`e10bf9e5bf2944f13faec600a2db1de914d214a55025714ecc921fb9550b5dd1`；APPROVED_* 空；**勿擅自 LOCK**；LOCK≠采数；不派 workbuddy）
   - 依据：`docs/m3_matrix_pacing_r3_next.md` 主推 A；消化 r3 CLOSED `RIVE-MATRIX-PACING-FAIL` 残差 `budget_ok=0` / **gpu_render_p95_frac_T@180Hz≈1.05–1.08**（gpu_copy≈0.008；pacing_ok=1 旁证；禁回改 CLOSED MATRIX/r1/r2/r3；禁合并洗票）
@@ -505,3 +806,8 @@
   - **gpu_render_p95_frac_T@180Hz≈0.040**（远低于 0.35·T；对照 r3≈1.05–1.08）；代码 **69094ee**（vblank 后再等 0.3·T）
   - 对照：r1 pacing✓/budget✗；r2 pacing✗/budget✓；r3 pacing✓/budget✗；r4 **全绿**（分立 tip；**禁洗票；禁回改 r1/r2/r3/MATRIX**）
   - composition.h PRE=POST `33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97`（LF `a55d4952…e418`）未触；Success≠adopt；**PERF-CI 仍 HOLD**；不授权新采数/真机
+
+- **2026-11-06 — M3-MATRIX-PACING r4：Claude 复核 → PASS（全部判据 3/3）**
+  - 两列偏差 P95 < 0.2 ms；180 Hz 屏 Rive 渲染 GPU 0.040·T（r3 约 1.06·T）；CPU ≤ 0.122·T；跨屏 ≤ 13.5 ms
+  - 做法：按窗口所在屏的垂直同步出帧，垂直同步后约 0.3·T 再提交；建议写进 WP1 产品化作为多屏默认节奏（是否默认开启由 pidan 决定）
+  - 复核：`docs/m3_matrix_pacing_r4_result_claude_review.md`
