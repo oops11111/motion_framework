@@ -108,6 +108,32 @@ M0R_API int32_t m0r_stop(void);
 M0R_API int32_t m0r_get_stats(m0r_stats* out);
 // Clears all counters and samples, so a later phase (e.g. M0-1b) is measured on its own.
 M0R_API int32_t m0r_reset_stats(void);
+// M3-MATRIX: copies up to `capacity` render-loop intervals (ms, oldest first) recorded
+// since the last m0r_reset_stats; *count receives the total recorded.
+M0R_API int32_t m0r_get_intervals(double* out, uint32_t capacity, uint32_t* count);
+
+// M3-MATRIX-PACING: pace the render loop to the vertical blank of the monitor `hwnd` is on
+// (IDXGIOutput::WaitForVBlank on that monitor's output) instead of DwmFlush. With monitors
+// of different refresh rates the compositor runs at the fastest one, so DwmFlush pacing
+// over-draws on a slower monitor (M3-MATRIX: 180 Hz on a 75 Hz monitor). The output is
+// looked up again whenever the window's monitor changes or the device is replaced; if the
+// monitor has no output on our adapter, the loop falls back to DwmFlush. NULL restores
+// DwmFlush pacing (the default).
+M0R_API int32_t m0r_set_pacing_window(void* hwnd);
+// Pacing state for the probe: 1 = vblank of the window's monitor, 0 = DwmFlush; the
+// HMONITOR the current output belongs to; number of output lookups so far.
+M0R_API int32_t m0r_get_pacing(int32_t* vblank, void** monitor, uint32_t* lookups);
+// PACING r4: with vblank pacing, the render thread waits `fraction` (0 <= f < 1, default
+// 0.3) of the monitor's refresh period after the vblank before drawing; the animation clock
+// and the recorded intervals still use the vblank time. m0r_get_pacing_offset returns the
+// last offset actually waited (ms).
+M0R_API int32_t m0r_set_pacing_offset(double fraction);
+M0R_API int32_t m0r_get_pacing_offset(double* last_ms);
+// PACING r3: GPU time per frame split into Rive rendering (frame start -> after Rive's
+// flush) and the copy into the composition surface (which can include waiting for DWM to
+// finish reading it), P50/P95 in ms since the last m0r_reset_stats. m0r_stats' gpu_* keep
+// covering both, as before.
+M0R_API int32_t m0r_get_gpu_split(double* render_p50, double* render_p95, double* copy_p50, double* copy_p95);
 
 // Renders one frame headless at `t_sec` and writes raw BGRA (premultiplied) to
 // `path`: 8-byte header (uint32 width, uint32 height) then rows top to bottom.

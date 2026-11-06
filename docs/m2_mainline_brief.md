@@ -652,3 +652,189 @@
   - T2：外部问题报告草稿 `docs/m3_xaml_device_lost_report_draft.md`（英文，未提交到任何外部渠道；由谁在哪里提交由 pidan 决定）
   - T3：`claude/m3-follow` 已合入 XAML-REBUILD / K93 的最新内容，开 PR 到 main（不合并，待评审）
   - T4：M3-MATRIX DRAFT 另开分支
+
+- **2026-11-02 — PR #7 已开（M3 LOST / XAML 诊断 / FOLLOW 代码进 main），待 pidan 评审，未合并**
+  - https://github.com/oops11111/motion_framework/pull/7（`claude/m3-follow` → main；不含 csproj 本机补丁；composition.h 未改）
+
+- **2026-11-02 09:34:33 AWST — M3-MATRIX LOCKED（开放问题 X1–X7 由 Claude 代定，pidan 授权）**
+  - LOCKED：`docs/m3_matrix_gate_LOCKED.md`，GATE_BODY_SHA256=`d8c21d0304931c42d805ceef35fccf4df50b5f2931fd916b81a13eea5db1963f`（复算 MATCH）；分支 `claude/m3-matrix`，代码 `fe81db8`
+  - IJI1KJG（75 Hz，100%）+ 一块外接显示器（60 Hz，125% 或 150%）；探针自己移动窗口跨屏，测每屏节奏、跨屏卡顿、重新光栅化、预算；144 Hz、200%、DRR、RDP、GPU 切换、热插拔留作后续
+  - 派工单 `docs/workbuddy_m3_matrix_dispatch.md`；**未 APPROVED，不授权采数**
+
+- **2026-11-05 14:41:43 AWST — M3-MATRIX APPROVED（pidan）**
+  - approved：`docs/m3_matrix_approved.md`；gate `d8c21d03…963f` 不变；采数=是（IJI1KJG + 一块外接显示器，3 会话）；派工单 `docs/workbuddy_m3_matrix_dispatch.md`；结果进 `m3/results_matrix/`
+
+- **2026-11-06 — 再次恢复本 brief（Claude）**：协调提交 `feaec91` 又整体改写了 brief（−262 行）。已按 `feaec91~1` 恢复，协调新增的条目原样保留在下面。
+
+- **2026-11-02 09:20:00 Asia/Shanghai — M3-MATRIX DRAFT 已落（纯文档；NOT LOCKED；不授权真机）+ 工具链 A/B 挂账**
+  - DRAFT：`docs/m3_matrix_gate_DRAFT.md`（NOT LOCKED；APPROVED_* 空；LOCK≠采数；不派 workbuddy）
+  - 结果目录建议：`m3/results_matrix/`；标签建议 `RIVE-MATRIX-*`（备选 `M3-MATRIX-*` → LOCK）
+  - 工具链 A（钉/降 DirectX-Headers）/ B（升/对齐 Win SDK）→ 挂账 `docs/side_parked_hang_degrade.md`；源自 K93 `BLOCKED_TOOLCHAIN`；Decision C 旁路已结题；**不挡主线**
+  - 依据 next：`docs/notion_m3_xaml_k93_next.md`；FOLLOW/XAML/LOST 线只读消费；不翻 CLOSED
+  - composition.h 未触；Success≠adopt；不合 main；**PERF-CI 仍 HOLD**；**本行不授权真机/采数**
+
+- **2026-11-06 09:45:00 Asia/Shanghai — M3-MATRIX CLOSED RIVE-MATRIX-FAIL（pacing_ok=0；不采用；不合 main）**
+  - 权威：docs/m3_matrix_result.md；pack：docs/notion_m3_matrix_pack.md；next：docs/notion_m3_matrix_next.md；brief：docs/m3_matrix_result_brief.md
+  - gate MATCH `d8c21d0304931c42d805ceef35fccf4df50b5f2931fd916b81a13eea5db1963f`（workbuddy；**本机未见 LOCK 文件**；不重算 body）
+  - tip_read=`9fe1ffe850162b9eb374d4552bba49462894e4df`；commit=`c0ef236fff3a501bef002fff7db42398f686ed89` @ claude/m3-matrix；dll=`0d7044c7ed9b6fb494ae73194f5775a8c7bd50e713abf8008f9e25d3a67fb6da` BUILD_OK；push=OK
+  - display：Philips17S4 1280x1024@75Hz/100% + VSC-VX2758-2K-PRO 2560x1440@180Hz/150%
+  - sessions=3×RECORDED；pacing_ok=**0**；hitch_ok=1；size_ok=1；budget_ok=1；stability_ok=1；scale_changes=4
+  - composition.h PRE=POST `33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97`（LF `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418` 未改）；results=`m3/results_matrix/`
+  - lab备注：UseShellExecute=false→MF_M0_ARTDIR；probe After()；pacing 失败未重跑（未入库）
+  - Success≠adopt；**不采用**；不合 main；PERF-CI 仍 HOLD
+  - next：**建议 M3-MATRIX-PACING 新 DRAFT（纯文档；NOT LOCK；不授权真机）— 勿自动 LOCK**；本结题不授权新采数
+
+- **2026-11-06 09:50:00 Asia/Shanghai — M3-MATRIX-PACING DRAFT 已落（纯文档；NOT LOCKED；不授权真机）**
+  - DRAFT：`docs/m3_matrix_pacing_gate_DRAFT.md`（sha256=`569695033907ec981b1fb7dddd54571f7f7991228ad370442be8402c172ef427`；APPROVED_* 空；LOCK≠采数；不派 workbuddy；**勿擅自 LOCK**）
+  - 依据：`docs/notion_m3_matrix_next.md`；消化 MATRIX CLOSED `RIVE-MATRIX-FAIL` 残差 `pacing_ok=0`（hitch/size/budget/stability=1；3×RECORDED；scale_changes=4；双屏 75Hz@100%+180Hz@150%）
+  - 结果目录建议：`m3/results_matrix_pacing/`（勿覆写 `m3/results_matrix/`）；标签建议 `RIVE-MATRIX-PACING-*`
+  - 开放问题：pacing 定义/硬vs记录型/混刷双列/同拓扑复测/hitch 分立/计时器/是否禁改判 MATRIX — 供 pidan 拍板
+  - composition.h 未触；Success≠adopt；不合 main；**PERF-CI 仍 HOLD**；**本行不授权真机/采数**；**不暗示可采数**
+
+- **2026-11-06 09:55:00 Asia/Shanghai（UTC+8） — M3-MATRIX-PACING 已 LOCK（LOCK≠采数；不授权真机；APPROVED_* 空）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_LOCKED.md`；GATE_BODY_SHA256=`2543e424cd71eea2959fe942ce0bfe7d7118ea6ee5c28b31da7902bce904812c`；LOCKED_AT=2026-11-06 09:55:00 Asia/Shanghai（UTC+8）
+  - DRAFT 保留并 SUPERSEDED：`docs/m3_matrix_pacing_gate_DRAFT.md`（原 sha `569695033907ec981b1fb7dddd54571f7f7991228ad370442be8402c172ef427`）
+  - 写死：硬 pacing；混刷双列均过；瞬态 N=2.0s/M=120；强制 IJI 同拓扑；≥3；只测 pacing；dir=`m3/results_matrix_pacing/`；hitch 分立；After()/QPC；GC→INVALID；禁回改 CLOSED MATRIX；标签 `RIVE-MATRIX-PACING-*`
+  - **不派 workbuddy**；**不暗示可采数**；composition.h 未触；Success≠adopt；不合 main；**PERF-CI 仍 HOLD**
+
+- **2026-11-06 — M3-MATRIX：Claude 复核（同意 RIVE-MATRIX-FAIL）+ PACING 实现**
+  - 原因：混合刷新率下 DWM 按最快的屏（180 Hz）合成，Rive 渲染线程用 `DwmFlush` 跟着 180 Hz 走，在 75 Hz 屏上也每秒画约 178 帧；跨屏、尺寸、预算、稳定都通过
+  - 协调锁定的 M3-MATRIX-PACING（`2543e424…812c`）只规定判读，没有修复；不改代码重跑必然 FAIL
+  - 已实现（`248a2d4`）：`m0r_set_pacing_window` 让渲染线程按窗口所在屏的垂直同步出帧（默认行为不变）；探针 pacing 模式按闸门 G2 做双列判读；修正 MATRIX 执行方备注的两处测试工具缺陷
+  - 复核 `docs/m3_matrix_result_claude_review.md`；实现说明 `docs/m3_matrix_pacing_impl_claude.md`；派工单 `docs/workbuddy_m3_matrix_pacing_dispatch.md`；**未 APPROVED，不授权采数**；批准时需确认渲染器改动在本票范围内
+
+- **2026-11-06 — M3-MATRIX-PACING 真机结果：Claude 复核 → pacing 修好（3/3 `pacing_ok=1`），但按 G2 ④ 判 FAIL（预算回退）**
+  - 75 Hz 列 13.33 ms、180 Hz 列 5.556 ms，偏差 P95 0.11–0.23 ms，0 超长；跨屏最长 13.6 ms
+  - 180 Hz 屏上 GPU P95 从 0.041·T 升到约 1.06·T（MATRIX 同屏对照），三会话一致 → `budget_ok=0`；推断为垂直同步时与 DWM 读取同一表面的冲突（GPU 在等待，不是工作量增加）
+  - 建议 r2：`WaitForVBlank` 之后再 `DwmFlush` 再画；同一套判据复测
+  - 复核：`docs/m3_matrix_pacing_result_claude_review.md`
+
+- **2026-11-06 10:57:03 AWST — M3-MATRIX-PACING r2 LOCKED（pidan：按建议出 r2）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_r2_LOCKED.md`，GATE_BODY_SHA256=`a1fa4590285f52948ecf51bc9c32629d4d2c3bc42efc7f5bb4e4922bd2be2883`（复算 MATCH）；代码 `53cedde`
+  - 判据与 r1 完全相同；唯一改动：垂直同步之后再 `DwmFlush` 再画
+  - 派工单 `docs/workbuddy_m3_matrix_pacing_r2_dispatch.md`；结果进 `m3/results_matrix_pacing_r2/`；**未 APPROVED，不授权采数**
+
+- **2026-11-06 — 再次合并本 brief（Claude）**：协调提交 `1f22889` 又整体改写了 brief（−265 行）。合并时保留完整历史，协调新增的条目原样附在下面。
+
+- **2026-11-06 10:55:00 Asia/Shanghai — M3-MATRIX-PACING CLOSED RIVE-MATRIX-PACING-FAIL（纯文档结题；不采用；不合 main）**
+  - result：`docs/m3_matrix_pacing_result.md` sha=`55154fcd358b36c52045b9c11d2fc910c9409093df3fcf139a09631db1477199`
+  - pack/brief/next/mainline：close_pack=`4b393057c04a…`；next 主推 **M3-MATRIX-BUDGET DRAFT**（勿擅自 LOCK）
+  - gate MATCH `2543e424cd71eea2959fe942ce0bfe7d7118ea6ee5c28b31da7902bce904812c`；approved pidan@2026-11-06 10:40:00 Asia/Shanghai（UTC+8）；tip `fd05c6c058022c233f1cd896338e03d665c43d0f`；results `7d5f545c7a3af0b7410421006a3683ce64c93f07` @ claude/m3-matrix
+  - **budget_ok=0**；pacing_ok=1（节奏修复已验证）；hitch/size/stability=1；3×RECORDED；dir=`m3/results_matrix_pacing/`
+  - composition.h 未触；Success≠adopt；**PERF-CI 仍 HOLD**；不授权新采数/真机；禁回改 CLOSED MATRIX
+
+- **2026-11-06 10:57:53 AWST — M3-MATRIX-PACING r2 APPROVED（pidan）**
+  - approved：`docs/m3_matrix_pacing_r2_approved.md`；gate r2 `a1fa4590…2883` 不变；采数=是（同拓扑，3 会话，`-Pacing`）；派工单 `docs/workbuddy_m3_matrix_pacing_r2_dispatch.md`；结果进 `m3/results_matrix_pacing_r2/`
+
+- **2026-11-06 — 再次恢复本 brief（Claude）**：协调提交 `cfa4252` 又整体改写了 brief（−283 行）。已按 `cfa4252~1` 恢复，协调新增的条目原样保留在下面。
+
+- **2026-11-06 11:00:00 Asia/Shanghai — M3-MATRIX-BUDGET DRAFT 已落（纯文档；NOT LOCKED；不授权真机）**
+  - DRAFT：`docs/m3_matrix_budget_gate_DRAFT.md`（sha256=`49bbc9757feeade1f5b571c317e01be2c9d14fb9e464fa98438e5f31dba54745`；APPROVED_* 空；LOCK≠采数；不派 workbuddy；**勿擅自 LOCK**）
+  - 依据：`docs/m3_matrix_pacing_next.md`；消化 PACING CLOSED `RIVE-MATRIX-PACING-FAIL` 残差 `budget_ok=0`（pacing_ok=1 已验证；禁回改 CLOSED）
+  - 结果目录建议：`m3/results_matrix_budget/`；标签建议 `RIVE-MATRIX-BUDGET-*`
+  - 开放问题：票名/T与双列/硬vs放宽/同拓扑/与pacing边界/节奏修复必含/FAIL照交/标签/doc-only旁路 — 供 pidan 拍板
+  - composition.h 未触；Success≠adopt；不合 main；**PERF-CI 仍 HOLD**；**本行不授权真机/采数**；**不暗示可采数**
+
+- **2026-11-06 11:08:00 AWST — M3-MATRIX-PACING r2 CLOSED RIVE-MATRIX-PACING-FAIL（纯文档结题；不采用；不合 main；Australia/Perth（AWST，UTC+8））**
+  - result：`docs/m3_matrix_pacing_r2_result.md` sha=`fda913e489c0b04e5badc986b18bb475f88736a4fc2aa6048930835f844cb589`
+  - pack/brief/next/mainline 已落；next 主推 **PACING 残差新 DRAFT**；重排相对 BUDGET DRAFT 优先级；**勿擅自 LOCK**
+  - gate MATCH `a1fa4590285f52948ecf51bc9c32629d4d2c3bc42efc7f5bb4e4922bd2be2883` @ 2026-11-06 10:57:03 AWST；approved pidan@2026-11-06 10:57:53 AWST；tip `27ad82395e3eed94c40ad99feba6aed46eeca715`；results `e3feb5cde7441e1855727dd0468275a6254e56bc`；dir=`m3/results_matrix_pacing_r2/`
+  - **pacing_ok=0**；budget_ok=1；hitch/size/stability=1；probe v2；pacing_source=vblank+dwmflush；WaitForVBlank→DwmFlush（`53cedde`）
+  - 对照 r1：pacing1/budget0 vs r2 pacing0/budget1；**均 FAIL；禁回改 r1/MATRIX**
+  - composition.h 未触；Success≠adopt；**PERF-CI 仍 HOLD**；不授权新采数/真机
+
+- **2026-11-06 — M3-MATRIX-PACING r2：Claude 复核（同意 FAIL）**
+  - r2 预算恢复（180 Hz 屏 GPU 0.07·T），但节奏坏了：75 Hz 列偏差 P95 5.1–5.3 ms（门槛 3.33），180 Hz 列约一半帧被跳过（122 fps）；原因是 `DwmFlush` 在垂直同步之后的等待长短不一，且常常越过下一次垂直同步
+  - 结论：出帧必须只锚定垂直同步（r1 的做法）；r1 的预算失败来自拷贝时等 DWM 读表面，需要把 GPU 计时拆开才能判断
+  - 复核：`docs/m3_matrix_pacing_r2_result_claude_review.md`；下一步待 pidan 决定（V1–V3）
+
+- **2026-11-06 11:14:15 AWST — M3-MATRIX-PACING r3 LOCKED（pidan：V1 按建议）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_r3_LOCKED.md`，GATE_BODY_SHA256=`90f9356bf2739ea2a95a56619fc73af561b0c34e4ebd097be05442f8c5719476`（复算 MATCH）；代码 `878892d`
+  - 出帧时机回到 r1（只等垂直同步）；GPU 计时拆成 Rive 渲染 / 拷贝进表面；预算的 GPU 项只按渲染判定，拷贝（含等 DWM）单独记录；其余判据同 r1
+  - 派工单 `docs/workbuddy_m3_matrix_pacing_r3_dispatch.md`；结果进 `m3/results_matrix_pacing_r3/`；**未 APPROVED，不授权采数**
+
+- **2026-11-06 11:15:19 AWST — M3-MATRIX-PACING r3 APPROVED（pidan）**
+  - approved：`docs/m3_matrix_pacing_r3_approved.md`；gate r3 `90f9356b…9476` 不变；采数=是（同拓扑，3 会话，`-Pacing`）；派工单 `docs/workbuddy_m3_matrix_pacing_r3_dispatch.md`；结果进 `m3/results_matrix_pacing_r3/`
+
+- **2026-11-06 — M3-MATRIX-PACING r3：Claude 复核 → 节奏完美，预算 FAIL；r2 复核中的原因推断不成立**
+  - 75 Hz / 180 Hz 两列偏差 P95 0.06–0.11 ms，0 超长；拷贝进表面只要 6–8 µs
+  - 180 Hz 屏上多出的约一帧 GPU 时间在“Rive 渲染”段（1.05–1.08·T），不是拷贝；75 Hz 屏同样工作只要 0.018·T
+  - 推断：垂直同步时刻提交的工作排在 DWM 合成（可能含等待翻转）后面；未证实，需 GPUView / PIX
+  - 复核：`docs/m3_matrix_pacing_r3_result_claude_review.md`；下一步待 pidan 决定（W1–W3）
+
+- **2026-11-06 11:27:50 AWST — M3-MATRIX-PACING r4 LOCKED（pidan：W2 按建议）**
+  - LOCKED：`docs/m3_matrix_pacing_gate_r4_LOCKED.md`，GATE_BODY_SHA256=`81fc74ebba270feb818646cd5f5c8c90fd2d3812c3447c642ed126413108934c`（复算 MATCH）；代码 `69094ee`
+  - 判据同 r3；唯一改动：垂直同步后再等 0.3·T 才画（动画时间与帧间隔仍按垂直同步）；若 180 Hz 屏渲染 GPU 仍约 1·T 则转 W1
+  - 派工单 `docs/workbuddy_m3_matrix_pacing_r4_dispatch.md`；结果进 `m3/results_matrix_pacing_r4/`；**未 APPROVED，不授权采数**
+
+- **2026-11-06 — 再次恢复本 brief（Claude）**：协调提交 `57d53d4` 又整体改写了 brief（−310 行）。已按 `57d53d4~1` 恢复，协调新增的条目原样保留在下面。
+
+- **2026-11-06 11:10:00 AWST — M3-MATRIX-PACING-R3 DRAFT 已落（纯文档；NOT LOCKED；不授权真机；Australia/Perth（AWST，UTC+8））**
+  - DRAFT：`docs/m3_matrix_pacing_r3_gate_DRAFT.md`（sha256=`d0155830dded6833f4cde5623a01429d81dadbe656925429e215c99563e8838f`；APPROVED_* 空；**勿擅自 LOCK**）
+  - 依据：`docs/m3_matrix_pacing_r2_next.md` P1；消化 r2 `pacing_ok=0`（budget_ok=1 旁证；禁回改 r1/r2/MATRIX）
+  - BUDGET DRAFT（`docs/m3_matrix_budget_gate_DRAFT.md`）**挂账/对照**；本票专吃 pacing
+  - 建议 dir=`m3/results_matrix_pacing_r3/`；标签建议 `RIVE-MATRIX-PACING-*`；票名暂用 R3（开放 VBLANK 等）
+  - 开放问题：票名/BUDGET关系/门槛vs r2 p95/探针source/复测/budget旁证/FAIL照交/标签/doc-only — 供 pidan 拍板
+  - composition.h 未触；Success≠adopt；不合 main；**PERF-CI 仍 HOLD**；**不暗示可采数**
+
+- **2026-11-06 11:26:00 AWST — M3-MATRIX-PACING r3 CLOSED RIVE-MATRIX-PACING-FAIL（纯文档结题；不采用；不合 main；Australia/Perth（AWST，UTC+8））**
+  - result：`docs/m3_matrix_pacing_r3_result.md`；pack/brief/next/mainline 已落；next 主推 **RENDER-BUDGET / GPU-RENDER 新 DRAFT**（或重排 `docs/m3_matrix_budget_gate_DRAFT.md`）；pacing 残差可挂账；**勿擅自 LOCK**
+  - gate MATCH `90f9356bf2739ea2a95a56619fc73af561b0c34e4ebd097be05442f8c5719476` @ 2026-11-06 11:14:15 AWST；approved pidan@2026-11-06 11:15:19 AWST；tip `82eacb0b59e1bab7ee809b4b62c8a100545b4073`；results `39cdcf42e7758555b223c8058cc8a2e9e3793aff`；dir=`m3/results_matrix_pacing_r3/`；push_exit=0
+  - **budget_ok=0**；pacing_ok=1；hitch/size/stability=1；probe v3；pacing_source=vblank；pacing_p95_ms primary=0.060/0.065/0.064；external=0.111/0.107/0.114
+  - gpu_render_p95_frac_T(180Hz seg1/3)≈1.05–1.08（超 0.35·T）；gpu_copy_p95_ms≈0.008（可忽略）；代码 878892d（只等 WaitForVBlank；GPU 拆分 render/copy；预算按 render）
+  - 对照：r1 pacing✓/budget✗；r2 pacing✗/budget✓；r3 pacing✓/budget✗（失败在 render 非 copy）；**三票均 FAIL；禁合并洗票；禁回改 r1/r2/MATRIX**
+  - composition.h PRE=POST `33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97`（LF `a55d4952…e418`）未触；Success≠adopt；**PERF-CI 仍 HOLD**；不授权新采数/真机；FAIL 照交未重跑
+
+- **2026-11-06 11:36:53 AWST — M3-MATRIX-PACING r4 APPROVED（pidan）**
+  - approved：`docs/m3_matrix_pacing_r4_approved.md`；gate r4 `81fc74eb…934c` 不变；采数=是（同拓扑，3 会话，`-Pacing`）；派工单 `docs/workbuddy_m3_matrix_pacing_r4_dispatch.md`；结果进 `m3/results_matrix_pacing_r4/`
+
+- **2026-11-06 — 再次恢复本 brief（Claude）**：协调提交 `907da1e` 又整体改写了 brief（−316 行）。已按 `907da1e~1` 恢复，协调新增的条目原样保留在下面。
+
+- **2026-11-06 11:30:10 AWST — M3-MATRIX-RENDER-BUDGET DRAFT 已落（纯文档；NOT LOCKED；不授权真机；Australia/Perth（AWST，UTC+8））**
+  - DRAFT：`docs/m3_matrix_render_budget_gate_DRAFT.md`（sha256=`e10bf9e5bf2944f13faec600a2db1de914d214a55025714ecc921fb9550b5dd1`；APPROVED_* 空；**勿擅自 LOCK**；LOCK≠采数；不派 workbuddy）
+  - 依据：`docs/m3_matrix_pacing_r3_next.md` 主推 A；消化 r3 CLOSED `RIVE-MATRIX-PACING-FAIL` 残差 `budget_ok=0` / **gpu_render_p95_frac_T@180Hz≈1.05–1.08**（gpu_copy≈0.008；pacing_ok=1 旁证；禁回改 CLOSED MATRIX/r1/r2/r3；禁合并洗票）
+  - 既有 `docs/m3_matrix_budget_gate_DRAFT.md` **挂账/对照或待 SUPERSEDED**；本票专吃 **render 预算残差**；pacing 相对 r2 可挂账闭合（只读旁证）
+  - 建议 dir=`m3/results_matrix_render_budget/`（勿覆写 r1/r2/r3/matrix/budget）；标签建议 `RIVE-MATRIX-RENDER-*`；票名暂用 RENDER-BUDGET（开放 GPU-RENDER）
+  - 开放问题：票名/BUDGET关系/0.35·T硬vs调整/只计render/探针v3+vblank/复测拓扑dir/pacing旁证/FAIL照交/标签/doc-only/APPROVED_*空 — 供 pidan 拍板
+  - composition.h 未触；Success≠adopt；不合 main；**PERF-CI 仍 HOLD**；**本行不授权真机/采数**；**不暗示可采数**
+
+- **2026-11-06 11:58:00 AWST — M3-MATRIX-PACING r4 CLOSED RIVE-MATRIX-PACING-PASS（纯文档结题；Success≠adopt；不合 main；Australia/Perth（AWST，UTC+8））**
+  - result：`docs/m3_matrix_pacing_r4_result.md`；pack/brief/next/mainline 已落；next 主推 **归档 r4 PASS**；**挂账/SUPERSEDED 候选** RENDER-BUDGET + BUDGET DRAFT；有条件采用 WP（offset=0.3·T）须 pidan；**勿擅自 LOCK**；不授权新采数
+  - gate MATCH `81fc74ebba270feb818646cd5f5c8c90fd2d3812c3447c642ed126413108934c` @ 2026-11-06 11:27:50 AWST；approved pidan@2026-11-06 11:36:53 AWST（`docs/m3_matrix_pacing_r4_approved.md`）；tip `e94600332307e4482cf0ff91d4e16d3b60deefc5`；results `6b7a290864ef58ff8b908f8d46532e449c8e4530`；dir=`m3/results_matrix_pacing_r4/`
+  - **全判据绿**：pacing_ok=1；hitch=1；size=1；budget_ok=1；stability=1；sessions=3×RECORDED；scale_changes=4；probe v4；pacing_source=vblank；pacing_offset_fraction=0.30
+  - pacing_p95_ms primary≈13.38–13.39；external≈5.63–5.69；offset_last_ms @75Hz≈4.06–4.52 / @180Hz≈1.79–2.19
+  - **gpu_render_p95_frac_T@180Hz≈0.040**（远低于 0.35·T；对照 r3≈1.05–1.08）；代码 **69094ee**（vblank 后再等 0.3·T）
+  - 对照：r1 pacing✓/budget✗；r2 pacing✗/budget✓；r3 pacing✓/budget✗；r4 **全绿**（分立 tip；**禁洗票；禁回改 r1/r2/r3/MATRIX**）
+  - composition.h PRE=POST `33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97`（LF `a55d4952…e418`）未触；Success≠adopt；**PERF-CI 仍 HOLD**；不授权新采数/真机
+
+- **2026-11-06 — M3-MATRIX-PACING r4：Claude 复核 → PASS（全部判据 3/3）**
+  - 两列偏差 P95 < 0.2 ms；180 Hz 屏 Rive 渲染 GPU 0.040·T（r3 约 1.06·T）；CPU ≤ 0.122·T；跨屏 ≤ 13.5 ms
+  - 做法：按窗口所在屏的垂直同步出帧，垂直同步后约 0.3·T 再提交；建议写进 WP1 产品化作为多屏默认节奏（是否默认开启由 pidan 决定）
+  - 复核：`docs/m3_matrix_pacing_r4_result_claude_review.md`
+
+- **2026-11-06 — Y1–Y4 按建议（pidan）**
+  - Y1：WP1 Rive 宿主产品化要求已采用：`docs/m3_wp1_rive_host_requirements.md`（H6：默认按窗口所在屏的垂直同步出帧，垂直同步后约 0.3·T 再提交）
+  - Y2：PR #7 已合入 main（`db5de87`）；MATRIX / PACING 另开 PR
+  - Y3：M3 Rive 层在现有硬件上完成，推迟项与下一步见 `docs/m3_status.md`；WP4 启动草案 `docs/m3_wp4_pilot_DRAFT.md`（Z1 需要 pidan 提名候选应用）
+  - Y4：协作约定 `docs/COORDINATION.md`（先同步再写；brief 只追加；先落 approved 再采数）
+
+- **2026-11-06 — Wave A：Z4 ETW + L1 smoke DRAFT（Claude）**
+  - `docs/z4_etw_l1_smoke_gate_DRAFT.md`：L1 冻结名字经 C ABI 在真机端到端冒烟（序列、连续性、减少动效、空闲、线程、ETW 六条）；E1–E4 待裁决；不是 PERF-CI
+  - 我在 `claude/m3-wp4-api` 上的 API v0 草案由协调的 Z2 契约取代，仅作参考
+
+- **2026-11-06 — pidan 意见落实（Claude）**
+  - 删除个人邮箱：`docs/collab_roster.md`、`claude_docs_diff.md`、`claude_explore.md`、`api_surface_m2_alpha_contract_DRAFT.md`（本分支最新版本；main 和旧分支、git 历史中仍有）
+  - Z2 契约小修订（implemented vs missing 附录）；**待 pidan「冻结 API v0 L1」**，冻结后仍须另票编码
+  - Z4 DRAFT 写死四条 INVALID（未 LOCK/APPROVED 采数、改 composition.h、影子 IV / 未声明 tip、把 PERF-CI HOLD 当绿）和边界句
+  - 后端路径：C-ABI 先通（Z3a）；真实合成器后端另排
+  - r4 有条件采用（实验分支 + 产品化模块默认开启；不进 L1 默认；不合 main）；两份预算 DRAFT SUPERSEDED：`docs/m3_matrix_pacing_r4_adoption.md`
+  - Z1：待 pidan 填 B 的真实应用名
+
+- **2026-11-06 16:32:43 AWST — API v0 L1 冻结（pidan「冻结 API v0 L1」）**
+  - LOCKED：`docs/api_surface_m2_alpha_contract_LOCKED.md`，GATE_BODY_SHA256=`77416e8bbc700238b42a940a2f93d4466edec1ebd79352b007f86c267a663a0f`（复算 MATCH）；冻结面 = MotionSystem / AnimationHandle / MotionTokens
+  - 规则 `docs/api_v0_frozen.md`（试点期只许新增；改名 / 删除 / 改签名或语义走闸门）；变更日志 `docs/api_changelog.md`
+  - 冻结 ≠ 合 main ≠ adopt；**编码仍须另票「开 API v0」**（在 Z3a 彩排之后）；Z4 采数仍须 LOCK + APPROVED
+
+- **2026-11-06 — Wave B：Z3a 彩排派工单（Claude）**
+  - `docs/workbuddy_z3a_rehearsal_dispatch.md`：K93N3P8 上用现有 C ABI 桥和 M2-02 探针跑 Play → Retarget → Cancel 与 ETW 6 事件；**彩排不采数、不提交**，runner 会覆盖入库的 `artifacts/m2_02_*`，须先备份后还原；只回一行
+  - 彩排通过后，由 pidan 开“开 API v0”另票

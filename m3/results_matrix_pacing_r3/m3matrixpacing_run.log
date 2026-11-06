@@ -1,0 +1,30 @@
+[2026-11-06 11:20:38] M3-MATRIX run: host=DESKTOP-IJI1KJG sessions=3 pacing=True exe=C:\Users\Lh\mf_m0b\MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe
+[2026-11-06 11:20:38] machineId(SMBIOS UUID)=03FF0210-04E0-057F-E006-E90700080009
+[2026-11-06 11:20:38] os=Microsoft Windows 11 ×¨Òµ°æ build=26300
+[2026-11-06 11:20:38] gpu=AMD Radeon RX 7800 XT driver=32.0.12033.1030 refresh=180Hz mode=2560x1440
+[2026-11-06 11:20:38] screen \\.\DISPLAY1 primary=False bounds={X=-2560,Y=0,Width=2560,Height=1440}
+[2026-11-06 11:20:38] screen \\.\DISPLAY2 primary=True bounds={X=0,Y=0,Width=1280,Height=1024}
+[2026-11-06 11:20:38] composition.h sha256 PRE=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-11-06 11:20:40] session 1 pid=16576
+[2026-11-06 11:20:51] session 1 screenshot m3matrixpacing_s1_seg0.png
+[2026-11-06 11:21:03] session 1 screenshot m3matrixpacing_s1_seg1.png
+[2026-11-06 11:21:13] session 1 screenshot m3matrixpacing_s1_seg2.png
+[2026-11-06 11:21:25] session 1 screenshot m3matrixpacing_s1_seg3.png
+[2026-11-06 11:21:36] session 1 screenshot m3matrixpacing_s1_seg4.png
+[2026-11-06 11:21:38] session 1 verdict=RECORDED pacing_ok=1 hitch_ok=1 size_ok=1 budget_ok=0
+[2026-11-06 11:21:40] session 2 pid=18416
+[2026-11-06 11:21:51] session 2 screenshot m3matrixpacing_s2_seg0.png
+[2026-11-06 11:22:03] session 2 screenshot m3matrixpacing_s2_seg1.png
+[2026-11-06 11:22:13] session 2 screenshot m3matrixpacing_s2_seg2.png
+[2026-11-06 11:22:25] session 2 screenshot m3matrixpacing_s2_seg3.png
+[2026-11-06 11:22:35] session 2 screenshot m3matrixpacing_s2_seg4.png
+[2026-11-06 11:22:37] session 2 verdict=RECORDED pacing_ok=1 hitch_ok=1 size_ok=1 budget_ok=0
+[2026-11-06 11:22:40] session 3 pid=2756
+[2026-11-06 11:22:51] session 3 screenshot m3matrixpacing_s3_seg0.png
+[2026-11-06 11:23:03] session 3 screenshot m3matrixpacing_s3_seg1.png
+[2026-11-06 11:23:13] session 3 screenshot m3matrixpacing_s3_seg2.png
+[2026-11-06 11:23:25] session 3 screenshot m3matrixpacing_s3_seg3.png
+[2026-11-06 11:23:35] session 3 screenshot m3matrixpacing_s3_seg4.png
+[2026-11-06 11:23:37] session 3 verdict=RECORDED pacing_ok=1 hitch_ok=1 size_ok=1 budget_ok=0
+[2026-11-06 11:23:37] composition.h sha256 POST=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+[2026-11-06 11:23:37] RUN_DONE

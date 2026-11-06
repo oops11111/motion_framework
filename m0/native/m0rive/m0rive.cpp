@@ -105,14 +105,29 @@ struct Probe {
 
     // GPU timing: a small ring of disjoint + begin/end timestamp queries.
     static constexpr int kQ = 4;
-    ComPtr<ID3D11Query> qDisjoint[kQ], qBegin[kQ], qEnd[kQ];
+    ComPtr<ID3D11Query> qDisjoint[kQ], qBegin[kQ], qMid[kQ], qEnd[kQ];
+    // PACING r3: GPU time split at qMid (after Rive's flush): Rive rendering vs the copy into
+    // the composition surface, which can wait for DWM to finish reading it. Render thread
+    // fills the pending vectors; the loop moves them into the stats under statsMu.
+    std::vector<double> pendGpuRender, pendGpuCopy;
     uint64_t qIssued = 0, qRead = 0;
     std::atomic<uint64_t> gpuDropped{0};  // query sets that never became valid (render thread writes)
 
     std::thread thread;
     std::atomic<bool> running{false};
+    // M3-MATRIX-PACING (render thread, except pacingHwnd).
+    std::atomic<HWND> pacingHwnd{nullptr};
+    HMONITOR pacingMonitor = nullptr;
+    double pacingPeriodMs = 0;                  // refresh period of pacingMonitor (r4)
+    std::atomic<double> pacingOffset{0.3};      // r4: draw this fraction of a period after the vblank
+    std::atomic<double> pacingOffsetLastMs{0};  // last offset actually waited
+    ComPtr<IDXGIOutput> pacingOutput;
+    ID3D11Device* pacingDevice = nullptr;   // device the output was looked up on (not owned)
+    std::atomic<int32_t> pacingVblank{0};
+    std::atomic<void*> pacingMonitorOut{nullptr};
+    std::atomic<uint32_t> pacingLookups{0};
     std::mutex statsMu;
-    std::vector<double> cpuMs, gpuMs, intervalMs;
+    std::vector<double> cpuMs, gpuMs, intervalMs, gpuRenderMs, gpuCopyMs;
     uint64_t frames = 0, drawFailures = 0;
     HRESULT lastHr = S_OK;
 
@@ -228,6 +243,7 @@ void MakeQueries(Probe& p) {
     for (int i = 0; i < Probe::kQ; ++i) {
         p.dev->CreateQuery(&dj, &p.qDisjoint[i]);
         p.dev->CreateQuery(&ts, &p.qBegin[i]);
+        p.dev->CreateQuery(&ts, &p.qMid[i]);
         p.dev->CreateQuery(&ts, &p.qEnd[i]);
     }
 }
@@ -244,10 +260,11 @@ void DrainQueries(Probe& p, std::vector<double>& out) {
     while (p.qRead < p.qIssued) {
         const int i = static_cast<int>(p.qRead % Probe::kQ);
         D3D11_QUERY_DATA_TIMESTAMP_DISJOINT dj{};
-        UINT64 b = 0, e = 0;
+        UINT64 b = 0, m = 0, e = 0;
         auto ready = [&] {
             return p.ctx->GetData(p.qDisjoint[i].Get(), &dj, sizeof dj, 0) == S_OK &&
                    p.ctx->GetData(p.qBegin[i].Get(), &b, sizeof b, 0) == S_OK &&
+                   p.ctx->GetData(p.qMid[i].Get(), &m, sizeof m, 0) == S_OK &&
                    p.ctx->GetData(p.qEnd[i].Get(), &e, sizeof e, 0) == S_OK;
         };
         bool ok = ready();
@@ -258,9 +275,12 @@ void DrainQueries(Probe& p, std::vector<double>& out) {
                 ok = ready();
             }
         }
-        if (ok && !dj.Disjoint && dj.Frequency && e >= b)
-            out.push_back(1000.0 * static_cast<double>(e - b) / static_cast<double>(dj.Frequency));
-        else
+        if (ok && !dj.Disjoint && dj.Frequency && e >= m && m >= b) {
+            const double f = 1000.0 / static_cast<double>(dj.Frequency);
+            out.push_back(f * static_cast<double>(e - b));
+            p.pendGpuRender.push_back(f * static_cast<double>(m - b));
+            p.pendGpuCopy.push_back(f * static_cast<double>(e - m));
+        } else
             ++p.gpuDropped;
         ++p.qRead;
     }
@@ -319,6 +339,7 @@ HRESULT Frame(Probe& p, float dt, std::vector<double>& gpuOut) {
     p.ctx->Begin(p.qDisjoint[qi].Get());
     p.ctx->End(p.qBegin[qi].Get());
     RenderRive(p, dt);
+    p.ctx->End(p.qMid[qi].Get());
     HRESULT hr = S_OK;
     if (p.swapchain) {
         ComPtr<ID3D11Texture2D> bb;
@@ -424,6 +445,7 @@ HRESULT RecoverDevice(Probe& p, ComPtr<ID3D11Device> nd, ComPtr<ID3D11DeviceCont
     for (int i = 0; i < Probe::kQ; ++i) {
         p.qDisjoint[i].Reset();
         p.qBegin[i].Reset();
+        p.qMid[i].Reset();
         p.qEnd[i].Reset();
     }
     p.qIssued = p.qRead = 0;
@@ -480,6 +502,52 @@ HRESULT GuardedFrame(Probe* p, float dt, std::vector<double>* gpuOut) {
 HRESULT GuardedFrame(Probe* p, float dt, std::vector<double>* gpuOut) { return Frame(*p, dt, *gpuOut); }
 #endif
 
+// M3-MATRIX-PACING: waits for the next frame boundary. With a pacing window, that is the
+// vertical blank of the window's monitor (output found on our adapter by HMONITOR, looked
+// up again when the monitor or the device changes); otherwise, or when no output matches,
+// the next DWM composition (DwmFlush), as before.
+void WaitFrame(Probe& p) {
+    if (HWND hwnd = p.pacingHwnd.load()) {
+        HMONITOR mon = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
+        if (mon != p.pacingMonitor || p.pacingDevice != p.dev.Get()) {
+            p.pacingMonitor = mon;
+            p.pacingDevice = p.dev.Get();
+            p.pacingOutput.Reset();
+            ComPtr<IDXGIDevice> dxgiDev;
+            ComPtr<IDXGIAdapter> adapter;
+            if (SUCCEEDED(p.dev.As(&dxgiDev)) && SUCCEEDED(dxgiDev->GetAdapter(&adapter))) {
+                ComPtr<IDXGIOutput> out;
+                for (UINT i = 0; adapter->EnumOutputs(i, out.ReleaseAndGetAddressOf()) != DXGI_ERROR_NOT_FOUND; ++i) {
+                    DXGI_OUTPUT_DESC d{};
+                    if (SUCCEEDED(out->GetDesc(&d)) && d.Monitor == mon) {
+                        p.pacingOutput = out;
+                        break;
+                    }
+                }
+            }
+            // r4: the monitor's refresh period, for the post-vblank offset.
+            p.pacingPeriodMs = 0;
+            MONITORINFOEXW mi{};
+            mi.cbSize = sizeof mi;
+            DEVMODEW dm{};
+            dm.dmSize = sizeof dm;
+            if (GetMonitorInfoW(mon, &mi) && EnumDisplaySettingsW(mi.szDevice, ENUM_CURRENT_SETTINGS, &dm) &&
+                dm.dmDisplayFrequency > 1)
+                p.pacingPeriodMs = 1000.0 / dm.dmDisplayFrequency;
+            ++p.pacingLookups;
+            p.pacingMonitorOut.store(mon);
+        }
+        if (p.pacingOutput && SUCCEEDED(p.pacingOutput->WaitForVBlank())) {
+            // PACING r3: the vblank alone. r2 added DwmFlush here, whose wait varies with the
+            // phase of the compositor clock and often ran past the next vblank (pacing broke).
+            p.pacingVblank.store(1);
+            return;
+        }
+    }
+    p.pacingVblank.store(0);
+    if (FAILED(DwmFlush())) Sleep(15);  // DWM can fail while the GPU resets; don't spin
+}
+
 void RenderLoop(Probe* p) {
     double last = NowMs();
     double lastGood = last;      // end of the last frame presented
@@ -492,9 +560,26 @@ void RenderLoop(Probe* p) {
     ComPtr<ID3D11DeviceContext> candCtx;
     DXGI_ADAPTER_DESC1 candDesc{};
     double candSince = 0;
+    // PACING r4: high-resolution timer for the post-vblank offset (Windows 10 1803+),
+    // else an ordinary waitable timer.
+    HANDLE offsetTimer = CreateWaitableTimerExW(nullptr, nullptr, 0x00000002 /* CREATE_WAITABLE_TIMER_HIGH_RESOLUTION */,
+                                                TIMER_ALL_ACCESS);
+    if (!offsetTimer) offsetTimer = CreateWaitableTimerW(nullptr, TRUE, nullptr);
     while (p->running.load()) {
-        if (FAILED(DwmFlush())) Sleep(15);  // DWM can fail while the GPU resets; don't spin
-        const double t0 = NowMs();
+        WaitFrame(*p);
+        const double t0 = NowMs();  // frame time: the vblank (animation dt, pacing intervals)
+        // PACING r4: in vblank pacing, start drawing a fixed fraction of the monitor's period
+        // after the vblank. In r3, work submitted right at a 180 Hz vblank queued behind DWM's
+        // composition for about a frame; the animation clock still reads at the vblank.
+        if (p->pacingVblank.load() == 1 && p->pacingPeriodMs > 0 && offsetTimer && !lost) {
+            const double off = p->pacingOffset.load() * p->pacingPeriodMs;
+            LARGE_INTEGER due{};
+            due.QuadPart = -static_cast<LONGLONG>(off * 10000.0);  // relative, 100 ns units
+            if (off > 0 && SetWaitableTimer(offsetTimer, &due, 0, nullptr, nullptr, FALSE))
+                WaitForSingleObject(offsetTimer, INFINITE);
+            p->pacingOffsetLastMs.store(NowMs() - t0);
+        }
+        const double tWork = NowMs();  // CPU frame time is measured from here
 
         // M3-RIVE-LOST: detect, then retry recovery every >= 100 ms until it succeeds.
         // Nothing is drawn (and no Rive call is made) while the device is lost.
@@ -608,12 +693,17 @@ void RenderLoop(Probe* p) {
         }
         if (SUCCEEDED(hr)) lastGood = t1;
         p->intervalMs.push_back(t0 - last);
-        p->cpuMs.push_back(t1 - t0);
+        p->cpuMs.push_back(t1 - tWork);
         p->gpuMs.insert(p->gpuMs.end(), gpu.begin(), gpu.end());
+        p->gpuRenderMs.insert(p->gpuRenderMs.end(), p->pendGpuRender.begin(), p->pendGpuRender.end());
+        p->gpuCopyMs.insert(p->gpuCopyMs.end(), p->pendGpuCopy.begin(), p->pendGpuCopy.end());
+        p->pendGpuRender.clear();
+        p->pendGpuCopy.clear();
         p->lastHr = hr;
         if (FAILED(hr)) ++p->drawFailures; else ++p->frames;
         last = t0;
     }
+    if (offsetTimer) CloseHandle(offsetTimer);
 }
 
 }  // namespace
@@ -831,10 +921,57 @@ M0R_API int32_t m0r_reset_stats(void) {
     std::lock_guard<std::mutex> lk(g->statsMu);
     g->cpuMs.clear();
     g->gpuMs.clear();
+    g->gpuRenderMs.clear();
+    g->gpuCopyMs.clear();
     g->intervalMs.clear();
     g->frames = 0;
     g->drawFailures = 0;
     g->gpuDropped.store(0);
+    return S_OK;
+}
+
+M0R_API int32_t m0r_get_intervals(double* out, uint32_t capacity, uint32_t* count) {
+    if (!g || !count || (capacity && !out)) return E_INVALIDARG;
+    std::lock_guard<std::mutex> lk(g->statsMu);
+    *count = static_cast<uint32_t>(g->intervalMs.size());
+    const size_t n = std::min<size_t>(capacity, g->intervalMs.size());
+    std::copy(g->intervalMs.begin(), g->intervalMs.begin() + static_cast<std::ptrdiff_t>(n), out);
+    return S_OK;
+}
+
+M0R_API int32_t m0r_get_gpu_split(double* render_p50, double* render_p95, double* copy_p50, double* copy_p95) {
+    if (!g || !render_p50 || !render_p95 || !copy_p50 || !copy_p95) return E_INVALIDARG;
+    std::lock_guard<std::mutex> lk(g->statsMu);
+    *render_p50 = Pct(g->gpuRenderMs, 0.50);
+    *render_p95 = Pct(g->gpuRenderMs, 0.95);
+    *copy_p50 = Pct(g->gpuCopyMs, 0.50);
+    *copy_p95 = Pct(g->gpuCopyMs, 0.95);
+    return S_OK;
+}
+
+M0R_API int32_t m0r_set_pacing_window(void* hwnd) {
+    if (!g) return E_NOT_VALID_STATE;
+    g->pacingHwnd.store(static_cast<HWND>(hwnd));
+    return S_OK;
+}
+
+M0R_API int32_t m0r_set_pacing_offset(double fraction) {
+    if (!g || fraction < 0 || fraction >= 1) return E_INVALIDARG;
+    g->pacingOffset.store(fraction);
+    return S_OK;
+}
+
+M0R_API int32_t m0r_get_pacing_offset(double* last_ms) {
+    if (!g || !last_ms) return E_INVALIDARG;
+    *last_ms = g->pacingOffsetLastMs.load();
+    return S_OK;
+}
+
+M0R_API int32_t m0r_get_pacing(int32_t* vblank, void** monitor, uint32_t* lookups) {
+    if (!g || !vblank || !monitor || !lookups) return E_INVALIDARG;
+    *vblank = g->pacingVblank.load();
+    *monitor = g->pacingMonitorOut.load();
+    *lookups = g->pacingLookups.load();
     return S_OK;
 }
 
