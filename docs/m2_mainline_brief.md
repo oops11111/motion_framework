@@ -702,3 +702,9 @@
   - 协调锁定的 M3-MATRIX-PACING（`2543e424…812c`）只规定判读，没有修复；不改代码重跑必然 FAIL
   - 已实现（`248a2d4`）：`m0r_set_pacing_window` 让渲染线程按窗口所在屏的垂直同步出帧（默认行为不变）；探针 pacing 模式按闸门 G2 做双列判读；修正 MATRIX 执行方备注的两处测试工具缺陷
   - 复核 `docs/m3_matrix_result_claude_review.md`；实现说明 `docs/m3_matrix_pacing_impl_claude.md`；派工单 `docs/workbuddy_m3_matrix_pacing_dispatch.md`；**未 APPROVED，不授权采数**；批准时需确认渲染器改动在本票范围内
+
+- **2026-11-06 — M3-MATRIX-PACING 真机结果：Claude 复核 → pacing 修好（3/3 `pacing_ok=1`），但按 G2 ④ 判 FAIL（预算回退）**
+  - 75 Hz 列 13.33 ms、180 Hz 列 5.556 ms，偏差 P95 0.11–0.23 ms，0 超长；跨屏最长 13.6 ms
+  - 180 Hz 屏上 GPU P95 从 0.041·T 升到约 1.06·T（MATRIX 同屏对照），三会话一致 → `budget_ok=0`；推断为垂直同步时与 DWM 读取同一表面的冲突（GPU 在等待，不是工作量增加）
+  - 建议 r2：`WaitForVBlank` 之后再 `DwmFlush` 再画；同一套判据复测
+  - 复核：`docs/m3_matrix_pacing_result_claude_review.md`
