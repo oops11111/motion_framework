@@ -2,7 +2,7 @@
 
 - **STATUS:** DRAFT · **NOT FROZEN** · NOT LOCKED · 2026-11-06 15:25 AWST (Australia/Perth)
 - **Source:** coordinator change list (pidan forwarded) reviewing `m3_wp4_pilot_DRAFT` Z2 + `deepseek_m2_02_api_draft` §3 L1 + `fm_capi` / `docs/api.md`
-- **Authoring bot:** Claude网页miitwo.e@gmail.com (Wave A / Z2 doc)
+- **Authoring bot:** Claude 网页 (Wave A / Z2 doc)
 - **Hard bounds:** Success≠adopt; no merge to `main`; no `composition.h` change unless separately LOCKED; no sampling without APPROVED; PERF-CI HOLD; Y4 `docs/COORDINATION.md`
 - **Related:** `docs/Z_SERIES_CONVERGE.md` (unique Z master); freeze rules → `docs/api_v0_frozen.md` (rules only; freeze not declared)
 

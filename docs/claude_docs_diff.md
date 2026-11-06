@@ -2,7 +2,7 @@ timestamp: 2026-10-19 18:28:46 +0800 Asia/Taipei
 chat URL: https://claude.ai/chat/5b0701a6-cbce-4ee5-a392-87e8d3c95643
 prompt=docs-diff follow-up (api.md + usage.md + MotionSoftDemo plug-in notes)
 status: complete — Free plan still available; full reply captured
-account: miitwo.e@gmail.com (Free)
+account: (Claude 网页，Free)
 artifacts: fm_capi.h, fm_capi.cpp, fm_capi_test.cpp, demo_motion.json, csharp_pinvoke_sketch.cs
   (in /workspace/claude_docs_diff_artifacts/)
 
