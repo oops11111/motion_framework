@@ -59,6 +59,8 @@ Wave A (this Z2 contract ∥ Z4 ETW/L1 smoke DRAFT) + **Z3a** C-ABI dry-run on M
 
 **Missing for a future public WinMD L1 (not freeze blockers for C-ABI dogfood):** WinRT/WinMD types; compositor-backed dispatcher; any RiveView/PointerFollow exports; formal `SnapToEnd` public API (reduced-motion uses internal snap).
 
+**Implemented in C++ but not exported through the C ABI (outside the L1 freeze; add later as add-only members if the pilot needs them):** `AnimationHandle::State` (no C getter), `AnimationHandle::OnEnd` (no C callback → no C# end event), `MotionSystem::ActiveCount` (only `fm_is_running`), reading the reduced-motion flag (setter only), `Pause / Seek / Reverse / SetRate / SetLoops`, markers. Listing them here is an inventory, not part of the freeze (revision 2026-11-06, Claude).
+
 ---
 
 ## Table 2 — Thread-affinity hard sentences

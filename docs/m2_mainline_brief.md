@@ -821,3 +821,11 @@
 - **2026-11-06 — Wave A：Z4 ETW + L1 smoke DRAFT（Claude）**
   - `docs/z4_etw_l1_smoke_gate_DRAFT.md`：L1 冻结名字经 C ABI 在真机端到端冒烟（序列、连续性、减少动效、空闲、线程、ETW 六条）；E1–E4 待裁决；不是 PERF-CI
   - 我在 `claude/m3-wp4-api` 上的 API v0 草案由协调的 Z2 契约取代，仅作参考
+
+- **2026-11-06 — pidan 意见落实（Claude）**
+  - 删除个人邮箱：`docs/collab_roster.md`、`claude_docs_diff.md`、`claude_explore.md`、`api_surface_m2_alpha_contract_DRAFT.md`（本分支最新版本；main 和旧分支、git 历史中仍有）
+  - Z2 契约小修订（implemented vs missing 附录）；**待 pidan「冻结 API v0 L1」**，冻结后仍须另票编码
+  - Z4 DRAFT 写死四条 INVALID（未 LOCK/APPROVED 采数、改 composition.h、影子 IV / 未声明 tip、把 PERF-CI HOLD 当绿）和边界句
+  - 后端路径：C-ABI 先通（Z3a）；真实合成器后端另排
+  - r4 有条件采用（实验分支 + 产品化模块默认开启；不进 L1 默认；不合 main）；两份预算 DRAFT SUPERSEDED：`docs/m3_matrix_pacing_r4_adoption.md`
+  - Z1：待 pidan 填 B 的真实应用名
