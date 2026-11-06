@@ -1,7 +1,7 @@
 # 派题 · M3-MATRIX-PACING r4（DESKTOP-IJI1KJG，同 MATRIX 双屏）
 
 闸门：`docs/m3_matrix_pacing_gate_r4_LOCKED.md`，GATE_BODY_SHA256=`81fc74ebba270feb818646cd5f5c8c90fd2d3812c3447c642ed126413108934c`，LOCKED_AT=2026-11-06 11:27:50 AWST。判据同 r3；唯一改动：垂直同步之后再等 0.3·T 才开始画（动画时间仍按垂直同步）。
-代码分支：**`claude/m3-matrix`**（提交 `69094ee` 起）。**尚未 APPROVED：第 0–2 步可以先做；第 3 步必须等 `docs/m3_matrix_pacing_r4_approved.md` 落盘后才能执行。**
+代码分支：**`claude/m3-matrix`**（提交 `69094ee` 起）。**已 APPROVED（`docs/m3_matrix_pacing_r4_approved.md`，pidan @ 2026-11-06 11:36:53 AWST）：第 0–4 步都可以执行。**
 数据目录 `<ROOT>\artifacts_m3matrixpacing_r4`（新目录，不要和 r1–r3 混用）。
 
 ## 0. 硬件
@@ -20,7 +20,7 @@ git -C <ROOT>\repo log -1 --format=%H
 2. 复制 `MotionSoftDemo\M3MatrixProbe.cs`（覆盖），重新构建 MotionSoftDemo。MainPage 不用动。
 3. 失败记 BLOCKED_TOOLCHAIN 并回报日志；不改代码去凑。
 
-## 3. 采数（**必须等 approved 落盘**）
+## 3. 采数（已 APPROVED）
 ```powershell
 powershell -ExecutionPolicy Bypass -File <ROOT>\repo\m3\run_m3_matrix.ps1 -DemoExe <...\MotionSoftDemo.exe> -ArtDir <ROOT>\artifacts_m3matrixpacing_r4 -Sessions 3 -Pacing
 ```
