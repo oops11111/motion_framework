@@ -755,3 +755,9 @@
 
 - **2026-11-06 11:15:19 AWST — M3-MATRIX-PACING r3 APPROVED（pidan）**
   - approved：`docs/m3_matrix_pacing_r3_approved.md`；gate r3 `90f9356b…9476` 不变；采数=是（同拓扑，3 会话，`-Pacing`）；派工单 `docs/workbuddy_m3_matrix_pacing_r3_dispatch.md`；结果进 `m3/results_matrix_pacing_r3/`
+
+- **2026-11-06 — M3-MATRIX-PACING r3：Claude 复核 → 节奏完美，预算 FAIL；r2 复核中的原因推断不成立**
+  - 75 Hz / 180 Hz 两列偏差 P95 0.06–0.11 ms，0 超长；拷贝进表面只要 6–8 µs
+  - 180 Hz 屏上多出的约一帧 GPU 时间在“Rive 渲染”段（1.05–1.08·T），不是拷贝；75 Hz 屏同样工作只要 0.018·T
+  - 推断：垂直同步时刻提交的工作排在 DWM 合成（可能含等待翻转）后面；未证实，需 GPUView / PIX
+  - 复核：`docs/m3_matrix_pacing_r3_result_claude_review.md`；下一步待 pidan 决定（W1–W3）
