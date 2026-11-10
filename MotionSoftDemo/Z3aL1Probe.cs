@@ -10,9 +10,7 @@ public sealed partial class MainPage
 {
     private async Task RunZ3aL1DevSmoke()
     {
-        string dir = Path.Combine(Path.GetTempPath(), "z3a_cabi_l1_dev");
-        Directory.CreateDirectory(dir);
-        string logPath = Path.Combine(dir, "z3a_l1_dev_smoke.txt");
+        string logPath = Path.Combine(DevLog.Directory(), "z3a_l1_dev_smoke.txt");
         string jsonPath = Path.Combine(AppContext.BaseDirectory, "demo_motion.json");
         int code;
         using (var buffer = new StringWriter())

@@ -17,6 +17,31 @@ using Microsoft.UI.Xaml.Media;
 
 namespace MotionSoftDemo;
 
+/// <summary>
+/// Directory for WinUI UI and probe logs. Existing <c>MF_M0_ARTDIR</c> wins when set.
+/// Otherwise <c>%TEMP%\z3a_cabi_l1_dev</c> (created if missing), then the exe directory.
+/// </summary>
+internal static class DevLog
+{
+    internal static string Directory()
+    {
+        string? over = Environment.GetEnvironmentVariable("MF_M0_ARTDIR");
+        if (!string.IsNullOrWhiteSpace(over))
+        {
+            try { System.IO.Directory.CreateDirectory(over); return over; }
+            catch { }
+        }
+        try
+        {
+            string dir = Path.Combine(Path.GetTempPath(), "z3a_cabi_l1_dev");
+            System.IO.Directory.CreateDirectory(dir);
+            return dir;
+        }
+        catch { }
+        return AppContext.BaseDirectory;
+    }
+}
+
 /// <summary>mfprobe.dll (MotionNative/mf_probe.cpp): spring.h shadow state, DComp/DWM clock probes, WGC capture.</summary>
 internal static class MfProbe
 {
@@ -112,7 +137,7 @@ public sealed partial class MainPage : Page
 
     private void OpenLog()
     {
-        foreach (var get in new Func<string>[] { () => @"C:\Users\admin\motion_framework\MotionSoftDemo", () => Path.GetTempPath(), () => Windows.Storage.ApplicationData.Current.LocalFolder.Path })
+        foreach (var get in new Func<string>[] { DevLog.Directory, () => AppContext.BaseDirectory })
         {
             try
             {
@@ -1034,7 +1059,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k3_controller_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -1292,7 +1317,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k4_hold_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -1436,7 +1461,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k2_overshoot_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -1630,7 +1655,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k1_easing_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -1844,7 +1869,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k5_stop_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -2032,7 +2057,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_s5_settle_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -2238,7 +2263,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_s4_delay_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -2437,7 +2462,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_interrupt_seed_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -2713,7 +2738,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_rate_fold_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -2891,7 +2916,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_s3_velocity_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -3142,7 +3167,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_zeta_gt1_traj_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -3384,7 +3409,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_pointer_ps_probe.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_pointer_ps_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         Both("# win_pointer_ps_probe.txt — 派题 #32 WinUI3 pointer-position PropertySet availability");
@@ -3543,7 +3568,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p11_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p11_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;
@@ -3683,7 +3708,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p10_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p10_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;
@@ -3819,7 +3844,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p9_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p9_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;
@@ -3950,7 +3975,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p8_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p8_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;
@@ -4092,7 +4117,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p7_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p7_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78, period = rr / (2 * Math.PI), TAU = 0.032, LEAD_A2 = -0.020;
@@ -4205,7 +4230,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p2_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p2_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double period = 0.32, zeta = 0.78;
@@ -4317,7 +4342,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_s1v2_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_s1v2_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double TWO_PI = 2 * Math.PI;
@@ -4383,7 +4408,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p6_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p6_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double TWO_PI = 2 * Math.PI;
@@ -4472,7 +4497,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p3_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p3_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         Both("# win_r2_p3_raw.txt — 派题 #36 P3 compositor timebase & start decomposition (uninterrupted); raw WGC per trial (programmatic only, NO synthetic input)");
@@ -4536,7 +4561,7 @@ public sealed partial class MainPage : Page
         // Does NOT touch composition.h. Does NOT use mf_spring_at / spring.h closed-form v as compositor IV.
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string sessFile = Path.Combine(artDir, "m2_h5_seed_session.txt");
         string sessEnv = File.Exists(sessFile) ? File.ReadAllText(sessFile).Trim() : (Environment.GetEnvironmentVariable("MF_M2_H5_SEED_SESSION") ?? "1");
@@ -4729,7 +4754,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p4_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p4_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double period = 0.32, zeta = 0.78;
@@ -4806,7 +4831,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p1_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p1_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         Both("# win_r2_p1_raw.txt — 派题 #34 P1 IV=null replacement; raw WGC per trial (programmatic only, NO synthetic input)");
@@ -4895,7 +4920,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_post_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_post_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double period = 0.32, zeta = 0.78, from = 0, target1 = 240, target2 = 0;
@@ -4971,7 +4996,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_harness_noise_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -5128,7 +5153,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_starting_value_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -5301,7 +5326,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k3_rest_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -5557,7 +5582,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_iv_null_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -5749,7 +5774,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_period_min_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -5924,7 +5949,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_zeta_gt1_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));

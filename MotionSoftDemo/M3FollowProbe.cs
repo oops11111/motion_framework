@@ -42,7 +42,7 @@ public sealed partial class MainPage
         _suiteRunning = true;
         try { MeasureButton.IsEnabled = false; } catch { }
 
-        string artDir = Environment.GetEnvironmentVariable("MF_M0_ARTDIR") ?? @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = Environment.GetEnvironmentVariable("MF_M0_ARTDIR") ?? DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string sess = Environment.GetEnvironmentVariable("MF_M3_SESSION") ?? "1";
         string rivPath = Environment.GetEnvironmentVariable("MF_M0_RIV") ?? Path.Combine(artDir, "m0_assets", "Knight_square_2.riv");

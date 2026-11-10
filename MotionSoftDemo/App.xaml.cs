@@ -21,7 +21,7 @@ public partial class App : Application
         UnhandledException += (s, ev) =>
         {
             UnhandledCount++;
-            try { File.AppendAllText(Path.Combine(Path.GetTempPath(), "MotionSoftDemo_crash.txt"), DateTime.Now + " " + ev.Exception + Environment.NewLine); } catch { }
+            try { File.AppendAllText(Path.Combine(DevLog.Directory(), "MotionSoftDemo_crash.txt"), DateTime.Now + " " + ev.Exception + Environment.NewLine); } catch { }
             try { Unhandled?.Invoke(ev.Exception); } catch { }
         };
     }

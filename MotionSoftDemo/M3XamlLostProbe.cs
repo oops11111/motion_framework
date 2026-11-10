@@ -60,7 +60,7 @@ public sealed partial class MainPage
         _suiteRunning = true;
         try { MeasureButton.IsEnabled = false; } catch { }
 
-        string artDir = M3Arg("--m3-artdir") ?? Environment.GetEnvironmentVariable("MF_M0_ARTDIR") ?? @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = M3Arg("--m3-artdir") ?? Environment.GetEnvironmentVariable("MF_M0_ARTDIR") ?? DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string sess = M3Arg("--m3-session") ?? Environment.GetEnvironmentVariable("MF_M3_SESSION") ?? "1";
         string pre = Path.Combine(artDir, rebuild ? $"m3xrb_s{sess}" : $"m3xaml_s{sess}");

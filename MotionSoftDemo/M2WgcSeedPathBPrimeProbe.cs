@@ -43,7 +43,7 @@ public sealed partial class MainPage
         _suiteRunning = true;
         try { MeasureButton.IsEnabled = false; } catch { }
 
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string sessFile = Path.Combine(artDir, "m2_wgc_seed_path_b_prime_session.txt");
         string sessEnv = File.Exists(sessFile) ? File.ReadAllText(sessFile).Trim() : (Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_PATH_B_PRIME_SESSION") ?? "1");
