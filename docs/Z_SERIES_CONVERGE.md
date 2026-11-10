@@ -1,10 +1,10 @@
 # Z 序列收敛文档（唯一主文档）
 
 - **STATUS**：DRAFT · NOT LOCKED · 唯一维护入口
-- **UPDATED**：2026-11-10 22:59 AWST（Australia/Perth）
-- **FILE_SHA256**：`f546d3834b691916ff2c7943e34e20e2243aa92d9199cb1f9920f32a06240420`（对落盘全文做 SHA-256，**排除**以「- **FILE_SHA256**」开头的那一行）
+- **UPDATED**：2026-11-10 23:09:00 AWST（Australia/Perth）
+- **FILE_SHA256**：`9ffbb6289f643784024a28560eabff69fdaf33879b49baccecc63bec6bcaa2e2`（对落盘全文做 SHA-256，**排除**以「- **FILE_SHA256**」开头的那一行）
 - **规则**：后续 Z1–Z4 / API v0 前置的开发与审议，**只追加或修订本文件**；三方原文归档在 `docs/_out/`，不另开平行主文档。
-- **硬边界**：Success≠adopt；不合 main；不改 composition.h（除非另 LOCK）；无 APPROVED 不采数；PERF-CI HOLD；Y4 见 `docs/COORDINATION.md`；冻结 L1 合同 ≠ 授权编码；另票「开 API v0」之前不开 C# API v0 实现。
+- **硬边界**：Success≠adopt；不合 main；不改 composition.h（除非另 LOCK）；无 APPROVED 不采数；PERF-CI HOLD；Y4 见 `docs/COORDINATION.md`；冻结 L1 合同 ≠ 授权编码；C# API v0 实现仅限已开票 `docs/z3a_cabi_l1_ticket.md`（分支 `claude/z3a-cabi-l1`）。
 
 ## 指针
 
@@ -18,7 +18,11 @@
 | `docs/api_surface_m2_alpha_contract_DRAFT.md` | L1 合同起草稿（SUPERSEDED_BY_LOCKED） |
 | `docs/api_v0_frozen.md` | 冻结规则（STATUS=**L1 FROZEN**） |
 | `docs/api_changelog.md` | 冻结后变更日志 |
-| `docs/z4_etw_l1_smoke_gate_DRAFT.md` | Z4 ETW + L1 smoke 闸门（DRAFT · NOT LOCKED；E1–E4 已由协调裁决；无真机授权；仍须 pidan LOCK+APPROVED 才采数） |
+| `docs/z4_etw_l1_smoke_gate_r1_LOCKED.md` | Z4 ETW + L1 smoke 闸门 r1（**LOCKED**；GATE_BODY_SHA256=`acb89d1b0cb975e5d63ae2c6fc47adcbc74dddd959b63089b2546b692cadab14`；APPROVED_* 为空；采数须「APPROVED Z4 r1」+ Z3a L1 构建） |
+| `docs/z4_etw_l1_smoke_gate_DRAFT.md` | Z4 闸门起草稿（**SUPERSEDED_BY_LOCKED**；保留不删） |
+| `docs/z3a_cabi_l1_ticket.md` | Z3a C-ABI L1 编码票（已开；MotionSoftDemo；不合 main） |
+| `docs/claude_z3a_cabi_l1_dispatch.md` | Claude 编码派工（英文；CloudAgent 不可用） |
+| `docs/workbuddy_z3a_cabi_l1_dispatch.md` | workbuddy K93 构建 / 开发冒烟派工（不算 Z4） |
 | `docs/z1_pilot_scoring_table_DRAFT.md` | Z1 打分表（B/C **APPROVED BY PIDAN** 已入席；侧叉本地；不代选 Winner；试点编码另票） |
 | `docs/m3_matrix_pacing_r4_adoption.md` | r4 条件采用记录（WP；不合 main；非 API v0 默认） |
 | `docs/m3_matrix_budget_gate_DRAFT.md` | 预算闸门 DRAFT（**SUPERSEDED**；勿再 LOCK / 采数） |
@@ -40,10 +44,10 @@
    - **B · 0x5bfa/FluentHub**（真试点席，**APPROVED BY PIDAN**，34/50）：MIT；中等体量 WinUI 3 GitHub 客户端；列表/页面导航。侧叉本地；不向上游提 PR。备份（未入席）：Gaoyifei1011/GetStoreApp（30/50）。
    - **C · files-community/Files**（对照席，**APPROVED BY PIDAN**，32/50）：MIT；重体量、活跃的 WinUI 3 文件管理器。侧叉本地；不向上游提 PR。备份（未入席）：bkaankose/Wino-Mail（32/50，GPL-3.0，仅侧叉）。详见 `docs/z1_pilot_scoring_table_DRAFT.md`。
    - 入席 ≠ 选定 Winner ≠ 授权试点编码（试点编码仍须另票）。Success≠adopt。
-2. **Z2 / API v0 L1 合同已冻结**（pidan「冻结 API v0 L1」，2026-11-06 16:32:43 AWST；2026-11-10 22:35 AWST 再确认）：权威文本 `docs/api_surface_m2_alpha_contract_LOCKED.md`（GATE_BODY_SHA256=`77416e8b…3a0f`）；L1=MotionSystem / AnimationHandle / MotionTokens 三表 + 诚实非目标；RiveView / PointerFollow 另票；**禁默认 0.3·T**。冻结 = 合同仅冻结；**仍须另票才编码**；不合 main；Success≠adopt。规则见 `docs/api_v0_frozen.md`。
-3. **Z3a** 用现有软件 / C-ABI 桥在 MotionSoftDemo 跑 Play→Retarget→Cancel（可并行；Wave B 彩排派工已落）；**Z3b** WinMD 狗粮（须 L1 冻结 + 另票开 API v0）。真实 WinRT Composition 后端为诚实非目标，另排。
-4. **Z4** ETW + L1 smoke 闸门 DRAFT 已交 `docs/z4_etw_l1_smoke_gate_DRAFT.md`（NOT LOCKED；无真机授权）。L1 smoke ≠ PERF-CI；不折进 M3 budget；不解冻 Bv；不重开 S1/R-3。四条 INVALID 已写死。**E1–E4 已由协调按 pidan 2026-11-10 委托裁决**（采纳 G3 原建议，不扩张）；**裁决 ≠ LOCK ≠ APPROVED ≠ 授权采数**。
-5. **顺序**：Wave A（Z2∥Z4 文档，已完成）→ Wave B（Z3a 彩排）→ Gate → **另票**才开 API v0。
+2. **Z2 / API v0 L1 合同已冻结**（pidan「冻结 API v0 L1」，2026-11-06 16:32:43 AWST；2026-11-10 22:35 AWST 再确认）：权威文本 `docs/api_surface_m2_alpha_contract_LOCKED.md`（GATE_BODY_SHA256=`77416e8b…3a0f`）；L1=MotionSystem / AnimationHandle / MotionTokens 三表 + 诚实非目标；RiveView / PointerFollow 另票；**禁默认 0.3·T**。冻结 = 合同仅冻结；不合 main；Success≠adopt。规则见 `docs/api_v0_frozen.md`。编码已另开票（见下条）。
+3. **Z3a 编码票已开**（pidan 2026-11-10 23:07 AWST「继续，按建议进行」）：`docs/z3a_cabi_l1_ticket.md`。用现有软件 / C-ABI 桥在 MotionSoftDemo 实现 L1 名字并跑 Play→Retarget→Cancel；建议分支 `claude/z3a-cabi-l1`（起点 `dabd5b78` / 文档落地后的 m3-matrix tip）。Claude 写代码（CloudAgent 不可用）；workbuddy 在 K93 构建与开发冒烟（不算 Z4）。不写 FluentHub/Files。Wave B 彩排派工仍在 `docs/workbuddy_z3a_rehearsal_dispatch.md`，结果待回报，不阻断开写。**Z3b** WinMD 狗粮另票。真实 WinRT Composition 后端为诚实非目标，另排。
+4. **Z4 r1 已 LOCK**：`docs/z4_etw_l1_smoke_gate_r1_LOCKED.md`（LOCKED_AT=2026-11-10 23:09:00 AWST；GATE_BODY_SHA256=`acb89d1b0cb975e5d63ae2c6fc47adcbc74dddd959b63089b2546b692cadab14`）。E1–E4 已折入。APPROVED_* 为空。**LOCK ≠ 采数**。采数须 pidan 在对话中发送「APPROVED Z4 r1」，且 Z3a L1 构建已存在。L1 smoke ≠ PERF-CI；不折进 M3 budget；不解冻 Bv；不重开 S1/R-3。四条 INVALID 已写死。DRAFT 标 SUPERSEDED_BY_LOCKED。
+5. **顺序**：Wave A（已完成）→ Wave B 彩排（派工已落，结果待回报）→ Z3a 编码票（已开）→ Z4 r1 LOCK（已完成）→ 待「APPROVED Z4 r1」+ L1 构建后才采数。
 6. **人日估计**：本窗 8–14 人日；API v0 实现另计（plan 模块7：5–7 人周）。
 7. **M3 r4**：条件采用为产品 Rive 宿主工作路径（实验分支 + 产品化模块默认开启；仍不合 main；非 API v0 默认）。两份预算 DRAFT **SUPERSEDED**。PERF-CI 仍 HOLD。
 
@@ -51,9 +55,9 @@
 
 pidan 于 2026-11-10 22:35 AWST（Australia/Perth）对协调五条建议回复「确认」。下列与 2026-11-06 已落盘口径一致，本次为**书面再确认**；不以本确认重开编码、采数、LOCK 或合 main。
 
-1. **API v0 L1 合同 — 已冻结。** 冻结面仅 `MotionSystem` / `AnimationHandle` / `MotionTokens`；RiveView / PointerFollow 另票；不把 0.3·T 写成 API 默认；三表 + 诚实非目标以 LOCKED 合同为准。冻结 = 合同仅冻结；编码仍须另票「开 API v0」；不合 main；Success≠adopt。权威：`docs/api_surface_m2_alpha_contract_LOCKED.md`（`77416e8b…3a0f`，LOCKED_AT=2026-11-06 16:32:43 AWST）；规则：`docs/api_v0_frozen.md`。
+1. **API v0 L1 合同 — 已冻结。** 冻结面仅 `MotionSystem` / `AnimationHandle` / `MotionTokens`；RiveView / PointerFollow 另票；不把 0.3·T 写成 API 默认；三表 + 诚实非目标以 LOCKED 合同为准。冻结 = 合同仅冻结；不合 main；Success≠adopt。权威：`docs/api_surface_m2_alpha_contract_LOCKED.md`（`77416e8b…3a0f`，LOCKED_AT=2026-11-06 16:32:43 AWST）；规则：`docs/api_v0_frozen.md`。编码票已开：`docs/z3a_cabi_l1_ticket.md`。
 2. **Z1。** A=MotionSoftDemo 只作内部狗粮（33/50），不当试点赢家。协调不代选 Winner。2026-11-10 22:56 AWST 提案 B=`0x5bfa/FluentHub`、C=`files-community/Files`（备份 GetStoreApp / Wino-Mail）。**2026-11-10 22:59 AWST pidan 书面「同意 B=FluentHub、C=Files，推上去」：B/C 已入席（APPROVED BY PIDAN）**。范围：侧叉本地；不向上游提 PR；Success≠adopt；未选 Winner；试点编码仍须另票。备份仍为备份、未入席。
-3. **E1–E4 按主文档开放项，解释为 Z4 ETW + L1 smoke。** 已开 `docs/z4_etw_l1_smoke_gate_DRAFT.md`（**NOT LOCKED**，无真机授权）：最小 ETW 事件集 +「C# API usable」L1 smoke PASS 判据。INVALID 写死：(a) 未 LOCK+APPROVED 就采数；(b) 改 `composition.h`；(c) 影子 / 未声明 tip；(d) 把 PERF-CI HOLD 当绿。L1 smoke ≠ PERF-CI；不折进 M3 budget；不解冻 Bv；不重开 S1/R-3。2026-11-10 22:35 确认的是 DRAFT 路径与四条 INVALID。**2026-11-10 22:56 AWST：pidan 委托「E1–E4 你来定」，协调已按 G3 建议作保守裁决**（见下文专节与 Z4 DRAFT G3）；**仍 NOT LOCKED**，不授权采数。
+3. **E1–E4 按主文档开放项，解释为 Z4 ETW + L1 smoke。** 2026-11-10 22:56 AWST 协调已按委托裁决；**2026-11-10 23:09:00 AWST 随 Z4 r1 一并 LOCK**（`docs/z4_etw_l1_smoke_gate_r1_LOCKED.md`，`acb89d1b…ab14`）。INVALID 仍写死。L1 smoke ≠ PERF-CI。**LOCK ≠ 采数**：须「APPROVED Z4 r1」+ Z3a L1 构建。
 4. **后端路径 — C-interface 先通（Z3a）。** 用现有软件 / C-ABI 桥在 MotionSoftDemo 跑 Play→Retarget→Cancel；真实 WinRT Composition 后端是诚实非目标，另排；试点不被 compositor 卡住。
 5. **r4 节奏 — 条件采用为产品 Rive 宿主工作路径。** 代码 `69094ee`（vblank + offset=0.3·T）；PASS 闸门 `81fc74ebba270feb818646cd5f5c8c90fd2d3812c3447c642ed126413108934c`；结果 `m3/results_matrix_pacing_r4/`。范围 = 实验分支 + 产品化模块默认开启；**仍不合 main**；**不写成 API v0 默认**。`docs/m3_matrix_budget_gate_DRAFT.md`（文首前 sha `49bbc975…4745`）与 `docs/m3_matrix_render_budget_gate_DRAFT.md`（文首前 sha `e10bf9e5…5dd1`）正式标 **SUPERSEDED**（正文保留不删；勿再 LOCK、勿再采数）。PERF-CI 仍 HOLD。记录：`docs/m3_matrix_pacing_r4_adoption.md`。
 
@@ -61,26 +65,28 @@ pidan 于 2026-11-10 22:35 AWST（Australia/Perth）对协调五条建议回复�
 
 1. pidan 书面同意本收敛（或后继修订）— **已满足**（2026-11-06 冻结 + 2026-11-10 22:35 AWST 再确认）
 2. Z2 可 LOCK 文本（含三表）— **已满足**（LOCKED `77416e8b…3a0f`）
-3. Z4 评审版 DRAFT — **已交**；E1–E4 **已由协调裁决**（2026-11-10 22:56 AWST）；本项 ≠ LOCK 采数，仍须 pidan LOCK+APPROVED
-4. Z3a 跑法 + lab 彩排一次 — **派工已落** `docs/workbuddy_z3a_rehearsal_dispatch.md`；彩排结果仍待回报
-5. **另票**「开 API v0 实现」— **未开**（默认否）
+3. Z4 评审版 — **r1 已 LOCK**（2026-11-10 23:09:00 AWST，`acb89d1b…ab14`）；APPROVED_* 仍空；采数须「APPROVED Z4 r1」+ Z3a L1 构建
+4. Z3a 跑法 + lab 彩排一次 — **派工已落** `docs/workbuddy_z3a_rehearsal_dispatch.md`；彩排结果仍待回报（不阻断编码）
+5. **另票**「开 API v0 实现」— **已开** `docs/z3a_cabi_l1_ticket.md`（pidan 2026-11-10 23:07 AWST）；实现仅限该票 / `claude/z3a-cabi-l1`；不合 main
 6. 基线 tip/branch 声明；PERF-CI HOLD；Y4 — 持续有效
 
 ## 待 pidan（开放）
 
-- [x] Z2：**API v0 L1 已冻结**（pidan「冻结 API v0 L1」，2026-11-06 16:32:43 AWST；2026-11-10 22:35 AWST 再确认）：`docs/api_surface_m2_alpha_contract_LOCKED.md`，GATE_BODY_SHA256=`77416e8b…3a0f`；规则 `docs/api_v0_frozen.md`；变更日志 `docs/api_changelog.md`。冻结 ≠ 合 main ≠ adopt；编码仍须另票「开 API v0」（在 Z3a 彩排之后）。
+- [x] Z2：**API v0 L1 已冻结**（pidan「冻结 API v0 L1」，2026-11-06 16:32:43 AWST；2026-11-10 22:35 AWST 再确认）：`docs/api_surface_m2_alpha_contract_LOCKED.md`，GATE_BODY_SHA256=`77416e8b…3a0f`；规则 `docs/api_v0_frozen.md`；变更日志 `docs/api_changelog.md`。冻结 ≠ 合 main ≠ adopt。编码票已开：`docs/z3a_cabi_l1_ticket.md`。
 - [x] Z1：**B/C 已入席（APPROVED BY PIDAN，2026-11-10 22:59 AWST，「同意 B=FluentHub、C=Files，推上去」）**。B=`0x5bfa/FluentHub`（34/50），C=`files-community/Files`（32/50）；备份 GetStoreApp / Wino-Mail 仍为备份、未入席。A = MotionSoftDemo 只作内部狗粮（33/50），不当试点赢家。协调不代选 Winner。入席 = 侧叉本地；不向上游提 PR；Success≠adopt；**未选 Winner**；试点编码仍须另票。
-- [x] Wave A 的 Z4 ETW/L1 smoke DRAFT 已交：`docs/z4_etw_l1_smoke_gate_DRAFT.md`（**NOT LOCKED**；无真机授权；四条 INVALID 与边界句已写死）。
-- [x] Z4 **E1–E4 已由协调裁决**（pidan 2026-11-10 委托「E1–E4 你来定」；2026-11-10 22:56 AWST；正文见下节与 `docs/z4_etw_l1_smoke_gate_DRAFT.md` G3）。
-- [ ] Z4 闸门仍 **NOT LOCKED**：E1–E4 裁决 ≠ LOCK ≠ APPROVED ≠ 授权采数 / 真机。采数前须 pidan 书面 LOCK+APPROVED。
+- [x] Wave A 的 Z4 ETW/L1 smoke DRAFT 已交（现标 SUPERSEDED_BY_LOCKED）。
+- [x] Z4 **E1–E4 已由协调裁决**（2026-11-10 22:56 AWST）并随 r1 **LOCK**（2026-11-10 23:09:00 AWST）。
+- [x] Z4 r1 **已 LOCK**：`docs/z4_etw_l1_smoke_gate_r1_LOCKED.md`（GATE_BODY_SHA256=`acb89d1b0cb975e5d63ae2c6fc47adcbc74dddd959b63089b2546b692cadab14`）。LOCK ≠ 采数。
+- [ ] Z4 采数：待 pidan 在对话中发送「**APPROVED Z4 r1**」，且 Z3a L1 构建已存在，再填 APPROVED_*。
 - [x] 后端路径：**A = C-ABI 先通**（pidan 2026-11-06；2026-11-10 22:35 AWST 再确认）。Z3a 用现有软件 / C-ABI 桥在 MotionSoftDemo 跑 Play→Retarget→Cancel；真实 WinRT Composition 后端是诚实非目标，另排；试点不被合成器卡住。
 - [x] M3：r4 **有条件采用（WP）**（pidan 2026-11-06；2026-11-10 22:35 AWST 再确认），范围 = 实验分支 + 产品化 Rive 宿主默认开启，不进 API v0 L1 默认、不合 main；两份预算 DRAFT **SUPERSEDED**（本次把正文纳入仓库并加文首横幅；见 `docs/m3_matrix_pacing_r4_adoption.md`）。PERF-CI 仍 HOLD。
-- [ ] 另票开 API v0？（默认否）
+- [x] 另票开 API v0：**已开** `docs/z3a_cabi_l1_ticket.md`（pidan 2026-11-10 23:07 AWST「继续，按建议进行」）。实现仅限 MotionSoftDemo + C-ABI；建议分支 `claude/z3a-cabi-l1`；不合 main；不算 Z4 采数；不写 FluentHub/Files。
 
 ## 变更日志
 
 | 时间 | 变更 |
 |---|---|
+| 2026-11-10 23:09:00 AWST | pidan「继续，按建议进行」（23:07 AWST）：开 Z3a C-ABI L1 编码票 `docs/z3a_cabi_l1_ticket.md`（Claude 写代码，workbuddy 在 K93 构建；建议分支 `claude/z3a-cabi-l1`）；Z4 r1 **LOCK** `docs/z4_etw_l1_smoke_gate_r1_LOCKED.md`（`acb89d1b…ab14`；APPROVED_* 空；采数须「APPROVED Z4 r1」+ Z3a L1 构建）。DRAFT 标 SUPERSEDED_BY_LOCKED。 |
 | 2026-11-10 22:59 AWST | pidan 书面「同意 B=FluentHub、C=Files，推上去」：Z1 B/C **APPROVED BY PIDAN，已入席**（侧叉本地；不向上游提 PR；Success≠adopt；未选 Winner；试点编码仍须另票）。备份 GetStoreApp / Wino-Mail 仍为备份。 |
 | 2026-11-10 22:56 AWST | pidan 无自有 WinUI 3 项目，委托 GitHub 选 B/C，并委托「E1–E4 你来定」。Z1：当时 B/C **PROPOSED**（FluentHub / Files；备份 GetStoreApp / Wino-Mail）；已由 22:59 条目入席。E1–E4：协调按 Z4 DRAFT G3 原建议作保守裁决（不扩张）；Z4 仍 NOT LOCKED，不授权采数。 |
 | 2026-11-10 22:35 AWST | pidan 书面「确认」五条裁定（再确认 2026-11-06 已落口径）：L1 合同冻结仍有效；Z4 DRAFT 路径与四条 INVALID 再确认（当时 E1–E4 仍开，已由 22:56 条目关闭裁决但仍不 LOCK）；C-interface / Z3a 先通；r4 条件采用 WP；两份预算 DRAFT 正式标 SUPERSEDED 并入仓加横幅；PERF-CI 仍 HOLD。 |

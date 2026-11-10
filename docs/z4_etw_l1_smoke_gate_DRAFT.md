@@ -1,5 +1,10 @@
 # Z4 · ETW + L1 smoke 门槛闸门（z4_etw_l1_smoke_gate_DRAFT.md）
 
+> **SUPERSEDED_BY_LOCKED**：`docs/z4_etw_l1_smoke_gate_r1_LOCKED.md`
+> GATE_BODY_SHA256=`acb89d1b0cb975e5d63ae2c6fc47adcbc74dddd959b63089b2546b692cadab14`
+> LOCKED_AT=2026-11-10 23:09:00 AWST
+> 本 DRAFT 保留不删；以 LOCKED 为准。采数须 pidan 发送「APPROVED Z4 r1」且 Z3a L1 构建已存在；本 DRAFT 不授权采数。
+
 STATUS=DRAFT（**NOT LOCKED**；不授权采数；不授权编码）
 LOCKED_AT: （LOCK 时填）
 GATE_BODY_SHA256: （LOCK 时算；约定同其他闸门）
