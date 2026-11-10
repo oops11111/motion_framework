@@ -10,7 +10,7 @@
 
 ## Declared collection tip
 
-The declared collection tip is the commit that contains this file, `docs/workbuddy_z4_etw_l1_smoke_r1_dispatch.md`, on `claude/z3a-cabi-l1`. After this fix push that commit is HEAD. `8892735c0098abeb99dba6ba4e1433df0cb3bba6` is the previous fix and is not the collection tip. Confirm before building:
+The declared collection tip is the commit that contains this file, `docs/workbuddy_z4_etw_l1_smoke_r1_dispatch.md`, on `claude/z3a-cabi-l1`. After this fix push that commit is HEAD. `0d91255e36e16c6f9e4d292b4e0acf02fbb230e1` is the previous fix and is not the collection tip. Confirm before building:
 
 ```powershell
 git rev-parse HEAD
@@ -53,6 +53,10 @@ G2 numbers are the locked gate, not a renumbering:
 E3 is that nettrace. Provider `FluidMotion-Motion`, GUID `8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d`, level Verbose so `FrameTick` is included. `logman` is not required for PASS.
 
 Spring used by the session: response 0.32 s, damping 0.78 (`demo_motion.json` `springs.snappy`). That is not 0.3·T. `PresentStats` uses a 16.666 ms frame interval so the sixth event name exists. It is not a pacing offset.
+
+`FrameTick` payload, in write order: `sessionId`, `deltaUs`, `engineTickUs`, `activeCount`. `deltaUs` is the second field. It is microseconds from the end of the previous `OnFrame` to the end of this one (`Stopwatch` after `fm_on_frame` returns). A steady 30000–32000 is a ~31 ms callback, not a dropped frame. `engineTickUs` is only the time inside `fm_on_frame`. The same fields are on `FrameTickAccept` (event id 103, emitted every 8th tick). Read a packaged trace the same way. Nothing in the packaged or loose-layout path changes the clock or the frame source; both subscribe to `CompositionTarget.Rendering`.
+
+`verdict.json` `g2.2.max_frame_step_dip` is the locked limit 80. It is not the measured step and it is not clamped. The measured poll delta is `probe_max_step_dip`. `frame_max_step_dip` is the largest `|ΔCurrent|` between consecutive `OnFrame` callbacks and does not decide pass/fail. `frame_dt_ms` is that session's callback spacing (min, p50, p95, max, mean). The pass/fail value is still the poll: `Current` immediately after `Retarget`, then five `Task.Delay(16)` reads. `Current` does not move between callbacks, so one poll that covers two callbacks reports the sum. The limits stay `step < 80` and `dynTol = max(2, |vel|*0.040+1)`. `velB` on the `RETARGET` line is `Current` immediately before `Retarget`, which is the same sample the Retarget ETW velocity field writes. `|vel|` of 17.467 produces `17.467*0.040+1 = 1.70`, and the floor makes `dynTol` 2.0.
 
 `verdict.json` `status` is `PASS` only when ①–⑥ all pass and no INVALID reason is set. `FAIL` means the session ran and a criterion missed. `INVALID` means the session must not be counted.
 
@@ -199,8 +203,12 @@ Loose layout, no machine trust. This is the path that avoids UAC. Developer Mode
 
 ```powershell
 dotnet build MotionSoftDemo\MotionSoftDemo.csproj -c Debug -p:Platform=x64 -p:Z4LooseLayout=true -p:AppxPackageSigningEnabled=false -p:GenerateAppxPackageOnBuild=false -p:AppxSymbolPackageEnabled=false
-Add-AppxPackage -Register "MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppX\AppxManifest.xml"
+$layout = "MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64"
+$manifest = Get-ChildItem -Path $layout -Filter AppxManifest.xml -Recurse | Select-Object -First 1
+Add-AppxPackage -Register $manifest.FullName
 ```
+
+On K93 the layout wrote `AppxManifest.xml` directly in that `win-x64` directory, not in an `AppX` subdirectory. The search above registers whichever of those the build produced. `Add-AppxPackage -Register` can warn `0x8007010B` (`ERROR_DIRECTORY`) on the `AppExecutionAlias`. That warning is the alias directory at register time. The alias `MotionSoftDemo.exe` still launches; do not treat the warning as a failed registration.
 
 A loose-registered app has package identity. `GetCurrentPackageFullName` succeeds, so the session records `packaged=true` and a non-empty `package_full_name`. It is a packaged process in that sense. It is not a signed MSIX container. The coordinator decides whether that identity satisfies the gate's packaged session. Do not claim it is a signed sideload.
 

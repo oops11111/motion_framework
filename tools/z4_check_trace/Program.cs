@@ -40,6 +40,18 @@ static int SelfTest()
     Ok(!bigStep.Ok && !bigStep.SeqOk && bigStep.MaxStep >= 80, "step of 80 DIP fails");
     var under = Z4SessionCore.Evaluate(0, 0, 0, 0, 10, new[] { 79.9 });
     Ok(under.SeqOk && under.MaxStep < 80, "step under 80 DIP passes");
+    const double u1Vel = 17.467030932093856;
+    Ok(Math.Abs(Z4SessionCore.DynTol(u1Vel) - 2.0) < 1e-9 && Math.Abs(Z4SessionCore.DynTol(0) - 2.0) < 1e-9,
+        "vel 17.467 and vel 0 both floor dynTol at 2");
+    double p0 = SpringPos(0);
+    double p33 = SpringPos(0.033);
+    double p66 = SpringPos(0.066);
+    var oneFrame = Z4SessionCore.Evaluate(p0, u1Vel, p0, u1Vel, 40, new[] { p33, p66 });
+    Ok(oneFrame.SeqOk && oneFrame.MaxStep < 80 && oneFrame.MaxStep > 50 && oneFrame.MaxStep < 60,
+        "successive 33 ms spring samples stay under the locked 80");
+    var collapsed = Z4SessionCore.Evaluate(p0, u1Vel, p0, u1Vel, 40, new[] { p66 });
+    Ok(!collapsed.SeqOk && collapsed.MaxStep >= 80 && collapsed.MaxStep < 90,
+        "one poll spanning 66 ms fails the locked 80 without changing it");
 
     string argsLine = Z4SessionCore.TraceArguments(4242, @"C:\s\trace.nettrace");
     Ok(argsLine.Contains("FluidMotion-Motion:0xFFFFFFFFFFFFFFFF:5", StringComparison.Ordinal)
@@ -134,6 +146,18 @@ static byte[] ToCrlf(byte[] lf)
         list.Add(b);
     }
     return list.ToArray();
+}
+
+static double SpringPos(double t)
+{
+    const double response = 0.32, z = 0.78, target = 40.0, from = 244.71180310234942, v0 = 17.467030932093856;
+    double w0 = 2.0 * Math.PI / response;
+    double a = z * w0;
+    double wd = w0 * Math.Sqrt(1.0 - z * z);
+    double x0 = from - target;
+    double b = (v0 + a * x0) / wd;
+    double e = Math.Exp(-a * t);
+    return target + e * (x0 * Math.Cos(wd * t) + b * Math.Sin(wd * t));
 }
 
 static byte[] V5Fixture(bool includePresent)

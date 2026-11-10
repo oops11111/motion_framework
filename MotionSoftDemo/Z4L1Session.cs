@@ -140,6 +140,9 @@ public sealed partial class MainPage
 
         bool g1 = false, g2 = false, g3 = false, g4 = false, g5 = false, g6 = false;
         int retargets = 0, jumpFails = 0, idleEvents = 0, crossHits = 0, framesToStop = -1, callbacksIn5s = -1;
+        var sessionDtMs = new List<double>();
+        double frameMaxStep = 0, frameMaxDt = 0, probeMaxStep = 0;
+        int frameMaxIndex = -1;
         string badDiagnostic = "";
         var categories = new List<string>();
         bool cancelSeen = false, releaseContinued = false;
@@ -189,11 +192,43 @@ public sealed partial class MainPage
                 bool pumpOn = false;
                 EventHandler<object>? onRendering = null;
                 MotionSystem? bound = system;
+                long prevFrameTs = 0;
+                double prevFrameX = double.NaN;
+                int frameWatch = 0;
+                var watchedFrames = new List<string>();
                 onRendering = (_, __) =>
                 {
                     renders++;
+                    long ts = Stopwatch.GetTimestamp();
                     try { bound?.OnFrame(); }
                     catch (Exception ex) { Write("ONFRAME " + ex.Message); }
+                    double dtMs = prevFrameTs == 0 ? 0 : (ts - prevFrameTs) * 1000.0 / Stopwatch.Frequency;
+                    prevFrameTs = ts;
+                    double x = double.NaN, vel = double.NaN, step = double.NaN;
+                    try
+                    {
+                        if (bound?.Current(BoxId, "offsetX") is MotionSample sample)
+                        {
+                            x = sample.Value;
+                            vel = sample.Velocity;
+                        }
+                    }
+                    catch { }
+                    if (!double.IsNaN(prevFrameX) && !double.IsNaN(x)) step = Math.Abs(x - prevFrameX);
+                    if (dtMs > 0) sessionDtMs.Add(dtMs);
+                    if (!double.IsNaN(step) && step >= frameMaxStep)
+                    {
+                        frameMaxStep = step;
+                        frameMaxDt = dtMs;
+                        frameMaxIndex = renders;
+                    }
+                    if (frameWatch > 0)
+                    {
+                        watchedFrames.Add("FRAME n=" + renders.ToString(CultureInfo.InvariantCulture)
+                            + " dt_ms=" + F(dtMs) + " x=" + F(x) + " vel=" + F(vel) + " step=" + F(step));
+                        frameWatch--;
+                    }
+                    if (!double.IsNaN(x)) prevFrameX = x;
                 };
                 system.FramePumpChanged += on =>
                 {
@@ -241,29 +276,55 @@ public sealed partial class MainPage
                 bool started = false;
                 async Task<bool> Retarget(AnimationHandle anim, double to, string tag, string category)
                 {
+                    // maxStep stays the poll delta Evaluate already uses. FRAME lines are the
+                    // CompositionTarget callbacks in this window and do not decide pass/fail.
+                    watchedFrames.Clear();
+                    frameWatch = 8;
                     var beforeSample = system.Current(BoxId, "offsetX");
                     double before = beforeSample is MotionSample bs ? bs.Value : double.NaN;
                     double velB = beforeSample is MotionSample bv ? bv.Velocity : double.NaN;
+                    long mark = Stopwatch.GetTimestamp();
                     bool api = anim.Retarget("offsetX", to, spring);
                     retargets++;
                     var afterSample = system.Current(BoxId, "offsetX");
                     double after = afterSample is MotionSample af ? af.Value : double.NaN;
                     double velA = afterSample is MotionSample av ? av.Velocity : double.NaN;
                     var steps = new List<double>();
+                    var polls = new List<string>();
+                    double prevPoll = after;
+                    void NotePoll(int i, double x, double v)
+                    {
+                        long now = Stopwatch.GetTimestamp();
+                        double dtMs = (now - mark) * 1000.0 / Stopwatch.Frequency;
+                        mark = now;
+                        double step = double.IsNaN(x) || double.IsNaN(prevPoll) ? double.NaN : Math.Abs(x - prevPoll);
+                        polls.Add("POLL tag=" + tag + " i=" + i.ToString(CultureInfo.InvariantCulture)
+                            + " dt_ms=" + F(dtMs) + " x=" + F(x) + " vel=" + F(v) + " step=" + F(step));
+                        if (!double.IsNaN(x)) prevPoll = x;
+                    }
+                    NotePoll(0, after, velA);
                     for (int i = 0; i < 5; i++)
                     {
                         await Task.Delay(16);
                         NoteThread();
                         var stepSample = system.Current(BoxId, "offsetX");
-                        steps.Add(stepSample is MotionSample ss ? ss.Value : double.NaN);
+                        double x = stepSample is MotionSample ss ? ss.Value : double.NaN;
+                        double v = stepSample is MotionSample sv ? sv.Velocity : double.NaN;
+                        steps.Add(x);
+                        NotePoll(i + 1, x, v);
                     }
+                    frameWatch = 0;
                     Z4Continuity c = Z4SessionCore.Evaluate(before, velB, after, velA, to, steps);
+                    if (c.MaxStep > probeMaxStep) probeMaxStep = c.MaxStep;
                     if (!api || !c.Ok) jumpFails++;
                     if (!categories.Contains(category)) categories.Add(category);
                     Write("RETARGET tag=" + tag + " cat=" + category + " api=" + api
                         + " before=" + F(before) + " after=" + F(after) + " to=" + F(to, 1)
+                        + " velB=" + F(velB) + " velA=" + F(velA) + " velSource=current_before_retarget"
                         + " jump=" + F(c.Jump) + " dynTol=" + F(c.DynTol)
                         + " maxStep=" + F(c.MaxStep) + " ok=" + c.Ok);
+                    foreach (string poll in polls) Write(poll);
+                    foreach (string frame in watchedFrames) Write(frame);
                     return api && c.Ok;
                 }
 
@@ -366,6 +427,7 @@ public sealed partial class MainPage
                 bool categoriesOk = categories.Contains("mid_interrupt") && categories.Contains("same_prop") && categories.Contains("cross_anim");
                 g1 = pointer && goodErr == null && enter.Id != 0 && started && retargets >= 5 && categoriesOk && cancelSeen && releaseContinued;
                 g2 = jumpFails == 0 && retargets >= 5;
+                Write("FRAME_SUMMARY " + FrameSummaryText(sessionDtMs, frameMaxStep, frameMaxDt, frameMaxIndex, probeMaxStep));
                 Write("G2 g1=" + g1 + " g2=" + g2 + " g3=" + g3 + " g4=" + g4 + " g5=" + g5
                     + " retargets=" + retargets.ToString(CultureInfo.InvariantCulture)
                     + " jumpFails=" + jumpFails.ToString(CultureInfo.InvariantCulture)
@@ -435,6 +497,12 @@ public sealed partial class MainPage
                     ["pass"] = g2,
                     ["jumpFails"] = jumpFails,
                     ["max_frame_step_dip"] = Z4SessionCore.MaxFrameStepDip,
+                    ["max_frame_step_dip_is"] = "locked_limit",
+                    ["probe_max_step_dip"] = probeMaxStep,
+                    ["frame_max_step_dip"] = frameMaxStep,
+                    ["frame_max_step_dt_ms"] = frameMaxDt,
+                    ["frame_max_step_index"] = frameMaxIndex,
+                    ["frame_dt_ms"] = FrameDtSummary(sessionDtMs),
                     ["dynTol"] = "max(2, |vel|*0.040+1)",
                 },
                 ["3_reduced_motion"] = new Dictionary<string, object?> { ["pass"] = g3 },
@@ -602,6 +670,61 @@ public sealed partial class MainPage
         {
             return "";
         }
+    }
+
+    static Dictionary<string, object?> FrameDtSummary(List<double> dts)
+    {
+        if (dts.Count == 0)
+        {
+            return new Dictionary<string, object?>
+            {
+                ["count"] = 0,
+                ["min"] = null,
+                ["p50"] = null,
+                ["p95"] = null,
+                ["max"] = null,
+                ["mean"] = null,
+            };
+        }
+        var ordered = dts.OrderBy(v => v).ToList();
+        double mean = dts.Average();
+        return new Dictionary<string, object?>
+        {
+            ["count"] = ordered.Count,
+            ["min"] = ordered[0],
+            ["p50"] = Percentile(ordered, 0.50),
+            ["p95"] = Percentile(ordered, 0.95),
+            ["max"] = ordered[^1],
+            ["mean"] = mean,
+        };
+    }
+
+    static string FrameSummaryText(List<double> dts, double frameMaxStep, double frameMaxDt, int frameMaxIndex, double probeMaxStep)
+    {
+        if (dts.Count == 0)
+            return "n=0 probe_max_step=" + frameMaxStep.ToString("F4", CultureInfo.InvariantCulture);
+        var ordered = dts.OrderBy(v => v).ToList();
+        string N(double v) => v.ToString("F3", CultureInfo.InvariantCulture);
+        return "n=" + ordered.Count.ToString(CultureInfo.InvariantCulture)
+            + " dt_ms_min=" + N(ordered[0])
+            + " dt_ms_p50=" + N(Percentile(ordered, 0.50))
+            + " dt_ms_p95=" + N(Percentile(ordered, 0.95))
+            + " dt_ms_max=" + N(ordered[^1])
+            + " dt_ms_mean=" + N(dts.Average())
+            + " frame_max_step=" + frameMaxStep.ToString("F4", CultureInfo.InvariantCulture)
+            + " frame_max_dt_ms=" + N(frameMaxDt)
+            + " frame_max_index=" + frameMaxIndex.ToString(CultureInfo.InvariantCulture)
+            + " probe_max_step=" + probeMaxStep.ToString("F4", CultureInfo.InvariantCulture);
+    }
+
+    static double Percentile(IReadOnlyList<double> ordered, double p)
+    {
+        if (ordered.Count == 0) return double.NaN;
+        double idx = (ordered.Count - 1) * p;
+        int i = (int)idx;
+        double f = idx - i;
+        if (i >= ordered.Count - 1) return ordered[^1];
+        return ordered[i] * (1.0 - f) + ordered[i + 1] * f;
     }
 
     static bool TryPackageFullName(out string fullName)
