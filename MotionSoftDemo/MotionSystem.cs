@@ -48,6 +48,7 @@ public sealed class MotionSystem : IDisposable
     readonly FmAbi.RenderFn _render;
     readonly int _ownerThread;
     readonly ulong _sessionId;
+    int _crossThreadHits;
     IntPtr _sys;
     int _nativeDepth;
     bool _disposeRequested;
@@ -58,6 +59,9 @@ public sealed class MotionSystem : IDisposable
 
     /// <summary>ETW session correlation. Not a Table 1 motion operation.</summary>
     internal ulong SessionId => _sessionId;
+
+    /// <summary>Table 2 probe counter. Incremented when an API call arrives off the creating thread.</summary>
+    internal int CrossThreadHits => _crossThreadHits;
 
     /// <summary>Also emit frozen event id 103 (name remapped to FrameTick) while a listener is attached.</summary>
     internal bool EmitFrameTickAccept { get; set; }
@@ -272,7 +276,10 @@ public sealed class MotionSystem : IDisposable
     void Affinity()
     {
         if (Environment.CurrentManagedThreadId != _ownerThread)
+        {
+            _crossThreadHits++;
             throw new InvalidOperationException("MotionSystem is bound to the thread that created it (Table 2).");
+        }
     }
 
     T Call<T>(Func<IntPtr, T> f, T fallback)

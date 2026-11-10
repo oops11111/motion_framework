@@ -141,7 +141,7 @@ public sealed partial class MainPage : Page
         {
             try
             {
-                string name = _z3aL1Dev ? "z3a_l1_dev_ui.txt" : _lifecycle ? "m8_lifecycle_log.txt" : _m3MatrixProbe ? "m3matrix_ui.txt" : _m3FollowProbe ? "m3follow_ui.txt" : _m3XamlLostProbe ? "m3xaml_ui.txt" : _m3LostProbe ? "m3lost_ui.txt" : _m3DpiProbe ? "m3dpi_ui.txt" : _m0Probe ? "m0_ui.txt" : (_m2H5DenomVerifyProbe ? "m2_h5_denom_verify_ui.txt" : (_m2WgcSeedPathAPrimeProbe ? "m2_wgc_seed_path_a_prime_ui.txt" : (_m2WgcSeedPathBPrimeProbe ? "m2_wgc_seed_path_b_prime_ui.txt" : (_m2WgcSeedCalibProbe ? "m2_wgc_seed_calib_ui.txt" : (_m2WgcSeedAbsProbe ? "m2_wgc_seed_abs_ui.txt" : (_m2DeltaVPrimeProbe ? "m2_delta_v_prime_ui.txt" : (_m2DeltaVProbe ? "m2_delta_v_ui.txt" : (_m202Probe ? "m2_02_ui.txt" : (_m2H5SeedProbe ? "m2_h5_seed_ui.txt" : (_m201NoiseProbe ? "m2_01_noise_ui.txt" : (_r350Full ? "m50_r3_full_ui.txt" : (_r350Probe ? "m50_r3_50_ui.txt" : (_r3E3Probe ? "m49_r3_e3_ui.txt" : (_r3P12Probe ? "m48_r3_p12_ui.txt" : (_r2P11Probe ? "m47_r2_p11_ui.txt" : (_r2P10Probe ? "m46_r2_p10_ui.txt" : (_r2P9Probe ? "m45_r2_p9_ui.txt" : (_r2P8Probe ? "m43_r2_p8_ui.txt" : (_s1v2Probe ? "m44_s1v2_ui.txt" : (_r2P7Probe ? "m42_r2_p7_ui.txt" : (_r2P6Probe ? "m41_r2_p6_ui.txt" : (_r2P3Probe ? "m36_r2_p3_ui.txt" : (_r2P2Probe ? "m35_r2_p2_ui.txt" : (_r2P4Probe ? "m37_r2_p4_ui.txt" : (_r2P1Probe ? "m34_r2_p1_ui.txt" : (_r2PostProbe ? "m33_r2_post_ui.txt" : (_pointerPsProbe ? "m32_pointer_ps_ui.txt" : (_harnessNoiseProbe ? "m30_harness_noise_ui.txt" : (_startingValueProbe ? "m29_starting_value_ui.txt" : (_k3RestProbe ? "m28_k3_rest_ui.txt" : (_ivNullProbe ? "m27_iv_null_ui.txt" : (_periodMinProbe ? "m26_period_min_ui.txt" : (_interruptSeedProbe ? "m25_interrupt_ui.txt" : (_rateFoldProbe ? "m24_rate_fold_ui.txt" : (_zetaTrajProbe ? "m23_zeta_traj_ui.txt" : (_k3Probe ? "m22_k3_probe_ui.txt" : (_k4Probe ? "m21_k4_probe_ui.txt" : (_k2Probe ? "m20_k2_probe_ui.txt" : (_k1Probe ? "m19_k1_probe_ui.txt" : (_k5Probe ? "m18_k5_probe_ui.txt" : (_s5Probe ? "m17_s5_probe_ui.txt" : (_s4Probe ? "m16_s4_probe_ui.txt" : (_s3Probe ? "m15_s3_probe_ui.txt" : (_zetaProbe ? "m14_zeta_probe_ui.txt" : (_maptest ? "m13_maptest_log.txt" : (_align ? "m9_align_log.txt" : "comp_pilot_log.txt"))))))))))))))))))))))))))))))))))))))))))))));
+                string name = _z4OutDir != null ? "z4_l1_session_ui.txt" : _z3aL1Dev ? "z3a_l1_dev_ui.txt" : _lifecycle ? "m8_lifecycle_log.txt" : _m3MatrixProbe ? "m3matrix_ui.txt" : _m3FollowProbe ? "m3follow_ui.txt" : _m3XamlLostProbe ? "m3xaml_ui.txt" : _m3LostProbe ? "m3lost_ui.txt" : _m3DpiProbe ? "m3dpi_ui.txt" : _m0Probe ? "m0_ui.txt" : (_m2H5DenomVerifyProbe ? "m2_h5_denom_verify_ui.txt" : (_m2WgcSeedPathAPrimeProbe ? "m2_wgc_seed_path_a_prime_ui.txt" : (_m2WgcSeedPathBPrimeProbe ? "m2_wgc_seed_path_b_prime_ui.txt" : (_m2WgcSeedCalibProbe ? "m2_wgc_seed_calib_ui.txt" : (_m2WgcSeedAbsProbe ? "m2_wgc_seed_abs_ui.txt" : (_m2DeltaVPrimeProbe ? "m2_delta_v_prime_ui.txt" : (_m2DeltaVProbe ? "m2_delta_v_ui.txt" : (_m202Probe ? "m2_02_ui.txt" : (_m2H5SeedProbe ? "m2_h5_seed_ui.txt" : (_m201NoiseProbe ? "m2_01_noise_ui.txt" : (_r350Full ? "m50_r3_full_ui.txt" : (_r350Probe ? "m50_r3_50_ui.txt" : (_r3E3Probe ? "m49_r3_e3_ui.txt" : (_r3P12Probe ? "m48_r3_p12_ui.txt" : (_r2P11Probe ? "m47_r2_p11_ui.txt" : (_r2P10Probe ? "m46_r2_p10_ui.txt" : (_r2P9Probe ? "m45_r2_p9_ui.txt" : (_r2P8Probe ? "m43_r2_p8_ui.txt" : (_s1v2Probe ? "m44_s1v2_ui.txt" : (_r2P7Probe ? "m42_r2_p7_ui.txt" : (_r2P6Probe ? "m41_r2_p6_ui.txt" : (_r2P3Probe ? "m36_r2_p3_ui.txt" : (_r2P2Probe ? "m35_r2_p2_ui.txt" : (_r2P4Probe ? "m37_r2_p4_ui.txt" : (_r2P1Probe ? "m34_r2_p1_ui.txt" : (_r2PostProbe ? "m33_r2_post_ui.txt" : (_pointerPsProbe ? "m32_pointer_ps_ui.txt" : (_harnessNoiseProbe ? "m30_harness_noise_ui.txt" : (_startingValueProbe ? "m29_starting_value_ui.txt" : (_k3RestProbe ? "m28_k3_rest_ui.txt" : (_ivNullProbe ? "m27_iv_null_ui.txt" : (_periodMinProbe ? "m26_period_min_ui.txt" : (_interruptSeedProbe ? "m25_interrupt_ui.txt" : (_rateFoldProbe ? "m24_rate_fold_ui.txt" : (_zetaTrajProbe ? "m23_zeta_traj_ui.txt" : (_k3Probe ? "m22_k3_probe_ui.txt" : (_k4Probe ? "m21_k4_probe_ui.txt" : (_k2Probe ? "m20_k2_probe_ui.txt" : (_k1Probe ? "m19_k1_probe_ui.txt" : (_k5Probe ? "m18_k5_probe_ui.txt" : (_s5Probe ? "m17_s5_probe_ui.txt" : (_s4Probe ? "m16_s4_probe_ui.txt" : (_s3Probe ? "m15_s3_probe_ui.txt" : (_zetaProbe ? "m14_zeta_probe_ui.txt" : (_maptest ? "m13_maptest_log.txt" : (_align ? "m9_align_log.txt" : "comp_pilot_log.txt"))))))))))))))))))))))))))))))))))))))))))))));
                 var path = Path.Combine(get(), name);
                 _log = new StreamWriter(path, _lifecycle || _align || _maptest || _zetaProbe || _s3Probe || _s4Probe || _s5Probe || _k5Probe || _k1Probe || _k2Probe || _k4Probe || _k3Probe || _zetaTrajProbe || _rateFoldProbe || _interruptSeedProbe || _periodMinProbe || _ivNullProbe || _k3RestProbe || _startingValueProbe || _harnessNoiseProbe || _m201NoiseProbe || _m2H5SeedProbe || _pointerPsProbe || _r2PostProbe || _r2P1Probe || _r2P4Probe || _r2P2Probe || _r2P3Probe || _r2P6Probe || _r2P7Probe || _s1v2Probe || _r2P8Probe || _r2P9Probe || _r2P10Probe || _r2P11Probe || _r3P12Probe || _r3E3Probe || _r350Probe || _r350Full || _m201NoiseProbe || _m2H5SeedProbe || _m202Probe || _m2DeltaVProbe || _m2DeltaVPrimeProbe || _m2WgcSeedAbsProbe || _m2WgcSeedCalibProbe || _m2WgcSeedPathBPrimeProbe || _m2WgcSeedPathAPrimeProbe || _m2H5DenomVerifyProbe || _m0Probe || _m3DpiProbe || _m3LostProbe || _m3XamlLostProbe || _m3FollowProbe || _m3MatrixProbe, new UTF8Encoding(false)); _logPath = path; return;
             }
@@ -164,6 +164,7 @@ public sealed partial class MainPage : Page
     // M3 probes start from a one-shot timer; a timer held only in a local can be collected
     // before it fires (M3-MATRIX lab note 2), so the field keeps it alive.
     private Microsoft.UI.Dispatching.DispatcherQueueTimer? _m3StartTimer;
+    private string? _z4OutDir;
     private int _injectFrameLogs;
     private string _dwmFlushVerdict = "not-run";
     private double _dwmFlushTimerFrac, _dwmFlushVsyncFrac, _dwmFlushP95;
@@ -215,6 +216,7 @@ public sealed partial class MainPage : Page
         _m2H5SeedProbe = args0.Any(a => a.Equals("--m2-h5-seed", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_H5_SEED") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_h5_seed.flag");
         _m202Probe = args0.Any(a => a.Equals("--m2-02", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_02") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_02.flag");
         _z3aL1Dev = args0.Any(a => a.Equals("--z3a-l1-dev", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_Z3A_L1_DEV") == "1";
+        _z4OutDir = Z4SessionCore.OutDirFromArgs(args0);
         _m2DeltaVProbe = args0.Any(a => a.Equals("--m2-delta-v", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_DELTA_V") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_delta_v.flag");
         _m2DeltaVPrimeProbe = args0.Any(a => a.Equals("--m2-delta-v-prime", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_DELTA_V_PRIME") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_delta_v_prime.flag");
         _m2WgcSeedAbsProbe = args0.Any(a => a.Equals("--m2-wgc-seed-abs", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_ABS") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_wgc_seed_abs.flag");
@@ -261,7 +263,17 @@ public sealed partial class MainPage : Page
             StatusText.Text = "MotionSoftDemo — 软件路径 / 合成器路径 (M1b #7); click anywhere to retarget";
 
             DeferredDisposeSelfTest();
-            if (_lifecycle)
+            if (_z4OutDir != null)
+            {
+                string z4Dir = _z4OutDir ?? "";
+                Log("Z4 L1 session (--z4-l1-session / MF_Z4_L1_SESSION) out=" + z4Dir + "; not Z3a dev; PERF-CI HOLD; starts in 800 ms");
+                var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
+                _m3StartTimer = t;
+                bool devAlso = _z3aL1Dev;
+                t.Tick += async (_, __) => await RunZ4L1Session(z4Dir, devAlso);
+                t.Start();
+            }
+            else if (_lifecycle)
             {
                 // long spring (response 3 s) so the window is closed while Rendering is still subscribed
                 bool ok = _fm.Retarget(_drag, "offsetX", 240, 3.0, 1.0);

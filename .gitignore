@@ -7,3 +7,6 @@ __pycache__/
 .venv/
 m0/ext/
 m0/out/
+# Z4 r1 collection output. Tooling stays in git; session results do not.
+z4/results_etw_l1_smoke_r1/
+MotionSoftDemo/Z4Dev.pfx

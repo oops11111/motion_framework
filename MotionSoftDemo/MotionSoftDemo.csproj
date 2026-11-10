@@ -13,8 +13,11 @@
     <UseWinUI>true</UseWinUI>
     <WinUISDKReferences>false</WinUISDKReferences>
     <EnableMsixTooling>true</EnableMsixTooling>
-    <!-- Unpackaged dogfood exe. Logo PNGs were never in git; packaging would require them. -->
-    <WindowsPackageType>None</WindowsPackageType>
+    <!-- Default is unpackaged. -p:Z4Package=true or -p:WindowsPackageType=MSIX builds the MSIX. -->
+    <WindowsPackageType Condition="'$(WindowsPackageType)' == '' and '$(Z4Package)' != 'true'">None</WindowsPackageType>
+    <WindowsPackageType Condition="'$(Z4Package)' == 'true'">MSIX</WindowsPackageType>
+    <GenerateAppxPackageOnBuild Condition="'$(WindowsPackageType)' == 'MSIX'">true</GenerateAppxPackageOnBuild>
+    <AppxBundle Condition="'$(WindowsPackageType)' == 'MSIX'">Never</AppxBundle>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
@@ -46,6 +49,7 @@
     <Content Include="..\MotionNative\mfprobe.dll" Link="mfprobe.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\MotionNative\mfprobe.dll')" />
     <Content Include="mfprobe.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('mfprobe.dll')" />
     <Content Include="..\code\capi\demo_motion.json" Link="demo_motion.json" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Include="..\tools\z4_check_trace\Z4TraceCheck.cs" Link="Z4TraceCheck.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,4 +76,19 @@
     <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
     <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
   </PropertyGroup>
+
+  <Target Name="WriteZ4BuildInfo" BeforeTargets="BeforeCompile">
+    <Exec Command="git rev-parse HEAD" WorkingDirectory="$(MSBuildThisFileDirectory)" ConsoleToMSBuild="true" IgnoreExitCode="true" StandardOutputImportance="low">
+      <Output TaskParameter="ConsoleOutput" PropertyName="Z4GitTip" />
+    </Exec>
+    <GetFileHash Files="$(MSBuildThisFileDirectory)..\code\composition.h" Algorithm="SHA256">
+      <Output TaskParameter="Items" ItemName="Z4CompItem" />
+    </GetFileHash>
+    <PropertyGroup>
+      <Z4CompSha>%(Z4CompItem.FileHash)</Z4CompSha>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(IntermediateOutputPath)z4_build_info.txt" Overwrite="true" Lines="tip=$(Z4GitTip);composition_sha256=$(Z4CompSha)" />
+    <MakeDir Directories="$(TargetDir)" />
+    <Copy SourceFiles="$(IntermediateOutputPath)z4_build_info.txt" DestinationFiles="$(TargetDir)z4_build_info.txt" SkipUnchangedFiles="false" />
+  </Target>
 </Project>
