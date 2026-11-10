@@ -9,7 +9,8 @@ APPROVED_AT: ＿＿＿＿
 
 > 起草：Claude，2026-11-06。Wave A 中 Z2 的配套文件（`docs/Z_SERIES_CONVERGE.md` 待办“Wave A 还差 Z4 ETW/L1 smoke DRAFT”）。依据：`docs/api_surface_m2_alpha_contract_DRAFT.md`（L1 = `MotionSystem` / `AnimationHandle` / `MotionTokens`，三张表）、`docs/m2_02_gate_LOCKED.md` 与 `docs/m2_02_result.md`（M2-02 已在 K93N3P8 上跑通 L1 smoke 与 ETW 最小 6 事件，当时名字是 `MotionEngine`）、`MotionSoftDemo/MotionEtw.cs`。
 > 定位：L1 冻结并实现之后、交给试点之前的真机冒烟。**不是 PERF-CI**（不判帧预算）；与 M3 的 Rive 预算无关；不涉及 `RiveView` / `PointerFollow`。
-> **pidan 再确认**：2026-11-10 22:35 AWST（Australia/Perth）书面确认本 DRAFT 路径与四条 INVALID / 边界句。**仍 NOT LOCKED**；**不授权采数 / 真机**；G3 的 E1–E4 **仍待裁决**（本次确认 ≠ 关闭 E1–E4）。
+> **pidan 再确认**：2026-11-10 22:35 AWST（Australia/Perth）书面确认本 DRAFT 路径与四条 INVALID / 边界句。**仍 NOT LOCKED**；**不授权采数 / 真机**。
+> **E1–E4 裁决**：2026-11-10 22:56 AWST，pidan 书面委托「E1–E4 你来定」，由协调按 G3 既有建议作保守、不扩张裁决（见下表「裁决」列）。**本裁决 ≠ LOCK ≠ APPROVED ≠ 授权采数 / 编码**；闸门仍须 pidan 书面 LOCK + APPROVED 后才能采数。
 
 ## G0 硬边界
 Success ≠ adopt；不合 main；不改 `composition.h`；无 LOCK + APPROVED 不采数；PERF-CI 仍 HOLD；不解冻 Bv；不重开 S1 / R-3 / R-2；禁影子 IV；Y4（`docs/COORDINATION.md`）；不把 PACING r4 的 0.3·T 写成 API 默认。
@@ -40,19 +41,21 @@ Success ≠ adopt；不合 main；不改 `composition.h`；无 LOCK + APPROVED �
   另：缺产物、闸门 hash 不符，同样 INVALID。
 - **边界（写死）**：L1 smoke PASS ≠ PERF-CI；不折进 M3 的 Rive 预算判定；不解冻 Bv；不重开 S1 / R-3 / R-2；任何新采数仍须本闸门 LOCK + APPROVED。
 
-## G3 待裁决（E1–E4，附建议）
-| # | 问题 | 建议 | 理由 |
-|---|---|---|---|
-| **E1** | ETW 事件名、provider 名和 GUID 要不要随 L1 一起冻结 | **冻结事件名、provider 名（`FluidMotion-Motion`）和 GUID（`8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d`）**；字段只许在末尾追加；事件 id 冻结 | 试点遥测和 WPA 配置会依赖它们；M2-02 闸门当时写明“不冻结”，试点前需要定下来 |
-| **E2** | 在哪些机器上跑 | **K93N3P8（Win10）和 IJI1KJG（Win11）各 3 个会话**，unpackaged 和打包各至少 1 个会话 | 试点应用多为打包部署；两种系统都要覆盖 |
-| **E3** | ETW 怎么采 | **EventPipe（不需要管理员）为主**；有管理员权限时另用 `logman` 采 ETL 进 WPA 作为对照 | M2-02 在 K93 上 `logman` 被拒；两条路都留 |
-| **E4** | 由谁、在哪个宿主上跑 | **Z3a：MotionSoftDemo 作为狗粮宿主**，经现有软件 / C ABI 桥跑 Play → Retarget → Cancel，探针改用 L1 名字（`MotionEngine` 改名）；不在试点应用里跑；真实 WinRT 合成器后端不是本票目标（pidan 2026-11-06：C-interface 先通） | 与契约“Z3a C-ABI 狗粮”一致；试点应用尚未选定（Z1） |
+## G3 E1–E4（原待裁决；2026-11-10 22:56 AWST 协调已裁，仍待 LOCK）
+下表「建议」为 2026-11-06 起草原文，保留不改。「裁决」为协调按 pidan 委托于 2026-11-10 22:56 AWST 写下的正式裁定：采纳原建议，不扩机台、不增事件、不改 GUID、不解冻 PERF-CI、不把本票开进试点应用或真实合成器后端。
+
+| # | 问题 | 建议（起草） | 理由 | 裁决（协调 · 2026-11-10 22:56 AWST） |
+|---|---|---|---|---|
+| **E1** | ETW 事件名、provider 名和 GUID 要不要随 L1 一起冻结 | **冻结事件名、provider 名（`FluidMotion-Motion`）和 GUID（`8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d`）**；字段只许在末尾追加；事件 id 冻结 | 试点遥测和 WPA 配置会依赖它们；M2-02 闸门当时写明“不冻结”，试点前需要定下来 | **采纳建议。** 事件名 / provider 名 `FluidMotion-Motion` / GUID `8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d` / 事件 id 随本 DRAFT 文本冻结，供日后 LOCK 引用；字段只许在末尾追加，不得改名、删字段、换 GUID。本冻结是闸门合同文字，**不是** LOCK 本文件，也**不**授权采数或改 `composition.h`。 |
+| **E2** | 在哪些机器上跑 | **K93N3P8（Win10）和 IJI1KJG（Win11）各 3 个会话**，unpackaged 和打包各至少 1 个会话 | 试点应用多为打包部署；两种系统都要覆盖 | **采纳建议，不扩机台。** 仅 K93N3P8（Win10）与 IJI1KJG（Win11）；每台 ≥ 3 个独立进程会话；unpackaged 与打包各至少 1 个会话。未点名的机器不得采数。 |
+| **E3** | ETW 怎么采 | **EventPipe（不需要管理员）为主**；有管理员权限时另用 `logman` 采 ETL 进 WPA 作为对照 | M2-02 在 K93 上 `logman` 被拒；两条路都留 | **采纳建议。** EventPipe（无需管理员）为唯一主路径；`logman` ETL→WPA 仅为有管理员时的可选对照，**不**作为 PASS 必要条件（K93 上 `logman` 曾被拒）。 |
+| **E4** | 由谁、在哪个宿主上跑 | **Z3a：MotionSoftDemo 作为狗粮宿主**，经现有软件 / C ABI 桥跑 Play → Retarget → Cancel，探针改用 L1 名字（`MotionEngine` 改名）；不在试点应用里跑；真实 WinRT 合成器后端不是本票目标（pidan 2026-11-06：C-interface 先通） | 与契约“Z3a C-ABI 狗粮”一致；试点应用尚未选定（Z1） | **采纳建议。** 宿主仅 MotionSoftDemo；经现有软件 / C-ABI 桥跑 Play→Retarget→Cancel；探针改用 L1 名字。不在 Z1 试点应用内跑本闸门；真实 WinRT Composition 后端仍为诚实非目标。本裁决不授权编码（编码仍须另票「开 API v0」）。 |
 
 ## G4 前置与顺序
 1. pidan 同意 Z2 契约修订稿并冻结 L1（`docs/api_v0_frozen.md` 规则）。
 2. 另票“开 API v0 实现”：Claude 把 MotionSoftDemo 中的 `MotionEngine` / `FmBridge` 包装改成 L1 名字，补 `fm_*` 中缺的 C ABI（如契约附录所列），单测 + `fm_capi_test` 回归。
 3. Z3a 彩排一次（不采数）。
-4. 本闸门 E1–E4 裁决 → LOCK → APPROVED → 采数。
+4. 本闸门 E1–E4 **已裁决**（2026-11-10 22:56 AWST）→ 仍须 pidan 书面 **LOCK + APPROVED** → 才可采数。裁决本身 ≠ LOCK。
 
 ## G5 禁令
 同 G0；本 DRAFT ≠ 授权采数 ≠ 授权编码；L1 smoke PASS ≠ PERF-CI ≠ 采用。
