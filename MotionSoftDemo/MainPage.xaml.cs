@@ -489,10 +489,8 @@ public sealed partial class MainPage : Page
             }
             else if (_m201NoiseProbe)
             {
-                Log("M2-01 static noise probe (--m2-01-noise-probe); starts in 800 ms");
-                var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
-                t.Tick += async (_, __) => await RunM201NoiseProbe();
-                t.Start();
+                // RunM201NoiseProbe has no definition in git history (call only). Do not invent the probe.
+                Log("M2-01 noise probe requested, but RunM201NoiseProbe is not in this repo. Skipping.");
             }
             else if (_r350Full)
             {

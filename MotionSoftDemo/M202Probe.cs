@@ -304,15 +304,30 @@ public sealed partial class MainPage
             await Task.Delay(30);
             system.SetReducedMotion(true);
             await Task.Delay(80);
+            // MotionSample? .Value is Nullable<T>.Value (the struct). Unwrap with a pattern first.
             var reducedNow = system.Current(BoxId, "offsetX");
-            bool reducedSnap = reducedNow != null && Math.Abs(reducedNow.Value - 90) < 1.5 && Math.Abs(reducedNow.Velocity) < 1.0;
+            double reducedX = double.NaN, reducedVel = double.NaN;
+            bool reducedSnap = false;
+            if (reducedNow is MotionSample reducedSample)
+            {
+                reducedX = reducedSample.Value;
+                reducedVel = reducedSample.Velocity;
+                reducedSnap = Math.Abs(reducedX - 90) < 1.5 && Math.Abs(reducedVel) < 1.0;
+            }
             var reduceJump = system.CreateAnimation(BoxId, null);
             reduceJump.Play();
             bool reduceRetarget = reduceJump.Retarget("offsetX", 15, new SpringParams(M202SpringR, M202SpringZ), 0);
             await Task.Delay(50);
             var reducedJumpNow = system.Current(BoxId, "offsetX");
-            bool reducedJumpOk = reducedJumpNow != null && Math.Abs(reducedJumpNow.Value - 15) < 1.0 && Math.Abs(reducedJumpNow.Velocity) < 1.0;
-            Both($"REDUCED start={reduceStart} snap={reducedSnap} x={F(reducedNow?.Value ?? double.NaN, 3)} vel={F(reducedNow?.Velocity ?? double.NaN, 2)} retarget={reduceRetarget} jumpOk={reducedJumpOk}");
+            double jumpX = double.NaN, jumpVel = double.NaN;
+            bool reducedJumpOk = false;
+            if (reducedJumpNow is MotionSample jumpSample)
+            {
+                jumpX = jumpSample.Value;
+                jumpVel = jumpSample.Velocity;
+                reducedJumpOk = Math.Abs(jumpX - 15) < 1.0 && Math.Abs(jumpVel) < 1.0;
+            }
+            Both($"REDUCED start={reduceStart} snap={reducedSnap} x={F(reducedX, 3)} vel={F(reducedVel, 2)} retarget={reduceRetarget} jumpOk={reducedJumpOk} jumpX={F(jumpX, 3)} jumpVel={F(jumpVel, 2)}");
             system.SetReducedMotion(false);
             reduceAnim.Cancel();
             reduceJump.Cancel();
