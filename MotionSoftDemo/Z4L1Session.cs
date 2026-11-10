@@ -101,7 +101,10 @@ public sealed partial class MainPage
         Write("REQUESTED_OUTDIR=" + requested);
         Write("TRACE_PATH=" + Path.Combine(sessionDir, "trace.nettrace"));
         if (!string.IsNullOrEmpty(localStateError)) Write("LOCALSTATE " + localStateError);
-        Write("provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d");
+        Write("provider=FluidMotion-Motion runtime_guid=" + MotionEtw.Log.Guid
+            + " frozen_guid=" + Z4TraceCheck.FrozenGuid
+            + " match=" + (MotionEtw.Log.Guid == Z4TraceCheck.FrozenGuid)
+            + " name_hash_guid=" + Z4TraceCheck.NameHashGuid(Z4TraceCheck.ProviderName));
 
         var env = new Dictionary<string, object?>
         {
@@ -114,6 +117,10 @@ public sealed partial class MainPage
             ["tip"] = tip,
             ["composition_sha256"] = compositionSha,
             ["composition_sha256_raw"] = compositionRaw,
+            ["runtime_eventsource_guid"] = MotionEtw.Log.Guid.ToString(),
+            ["frozen_guid"] = Z4TraceCheck.FrozenGuid.ToString(),
+            ["runtime_matches_frozen"] = MotionEtw.Log.Guid == Z4TraceCheck.FrozenGuid,
+            ["name_hash_guid"] = Z4TraceCheck.NameHashGuid(Z4TraceCheck.ProviderName).ToString(),
             ["composition_expected"] = Z4SessionCore.ExpectedCompositionSha,
             ["composition_header"] = header ?? "",
             ["outdir"] = sessionDir,
@@ -138,6 +145,9 @@ public sealed partial class MainPage
         bool cancelSeen = false, releaseContinued = false;
         string traceDetail = "not_started";
         var traceNames = new List<string>();
+        string guidStatus = Z4TraceCheck.GuidAbsent;
+        string guidInFile = "";
+        string guidReason = "";
         string tracePath = Path.Combine(sessionDir, "trace.nettrace");
 
         if (invalid.Count == 0)
@@ -146,7 +156,13 @@ public sealed partial class MainPage
             try
             {
                 (bool startedTrace, traceDetail) = await StartTrace(tracePath, traceLog, Write);
-                if (!startedTrace) invalid.Add("eventpipe_not_started");
+                if (!startedTrace)
+                {
+                    invalid.Add("eventpipe_not_started");
+                    Write("TRACE not attached (" + traceDetail + "); E1 scenario not started");
+                }
+                else
+                {
                 var seen = new HashSet<string>(StringComparer.Ordinal);
                 using var mirror = new MotionEtwMirror(line =>
                 {
@@ -357,6 +373,7 @@ public sealed partial class MainPage
 
                 bound = null;
                 system.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -382,8 +399,13 @@ public sealed partial class MainPage
                 Z4TraceReport traceReport = Z4TraceCheck.Check(tracePath);
                 Write(Z4TraceCheck.Format(traceReport).TrimEnd());
                 traceNames.AddRange(Z4TraceCheck.RequiredNames.Where(n => traceReport.Names.TryGetValue(n, out bool ok) && ok));
-                g6 = traceReport.Pass;
-                if (!traceReport.Pass) Write("G2_6 missing=" + string.Join(",", traceReport.MissingNames));
+                guidStatus = traceReport.GuidStatus;
+                guidInFile = traceReport.GuidInFile;
+                bool runtimeMatch = MotionEtw.Log.Guid == Z4TraceCheck.FrozenGuid;
+                if (!runtimeMatch || traceReport.GuidStatus == Z4TraceCheck.GuidMismatchFrozen)
+                    guidReason = Z4TraceCheck.GuidMismatchFrozen;
+                g6 = traceReport.Pass && runtimeMatch && traceReport.GuidStatus != Z4TraceCheck.GuidMismatchFrozen;
+                if (!g6) Write("G2_6 missing=" + string.Join(",", traceReport.MissingNames) + " guid_reason=" + guidReason + " guid_status=" + guidStatus);
             }
         }
 
@@ -431,6 +453,13 @@ public sealed partial class MainPage
                     ["trace"] = tracePath,
                     ["collector"] = traceDetail,
                     ["names_found"] = traceNames,
+                    ["runtime_eventsource_guid"] = MotionEtw.Log.Guid.ToString(),
+                    ["frozen_guid"] = Z4TraceCheck.FrozenGuid.ToString(),
+                    ["runtime_matches_frozen"] = MotionEtw.Log.Guid == Z4TraceCheck.FrozenGuid,
+                    ["name_hash_guid"] = Z4TraceCheck.NameHashGuid(Z4TraceCheck.ProviderName).ToString(),
+                    ["trace_guid_status"] = guidStatus,
+                    ["trace_guid"] = guidInFile,
+                    ["guid_reason"] = guidReason,
                 },
             },
         };
@@ -475,14 +504,11 @@ public sealed partial class MainPage
         try { proc = Process.Start(psi) ?? throw new InvalidOperationException("Process.Start returned null"); }
         catch (Exception ex) { return (false, ex.GetType().Name + ": " + ex.Message); }
         traceProcHeld = proc;
-        var ready = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
         void OnLine(string? line)
         {
             if (string.IsNullOrEmpty(line)) return;
             traceLog.Add(line);
             write("TRACE " + line);
-            if (line.Contains("Recording", StringComparison.OrdinalIgnoreCase))
-                ready.TrySetResult(true);
         }
         proc.OutputDataReceived += (_, e) => OnLine(e.Data);
         proc.ErrorDataReceived += (_, e) => OnLine(e.Data);
@@ -495,9 +521,34 @@ public sealed partial class MainPage
         {
             write("TRACE read " + ex.Message);
         }
-        Task finished = await Task.WhenAny(ready.Task, Task.Delay(20000));
+        // dotnet-trace 10 buffers its banner when stdout is not a TTY. The nettrace header is the attach signal.
+        var deadline = DateTime.UtcNow.AddSeconds(20);
+        long lastLength = -1;
+        while (DateTime.UtcNow < deadline)
+        {
+            if (proc.HasExited) return (false, "dotnet-trace exited " + proc.ExitCode.ToString(CultureInfo.InvariantCulture));
+            if (File.Exists(tracePath))
+            {
+                long length = 0;
+                try { length = new FileInfo(tracePath).Length; } catch { }
+                if (length >= 8)
+                {
+                    try
+                    {
+                        using var stream = new FileStream(tracePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                        var magic = new byte[8];
+                        if (stream.Read(magic, 0, 8) == 8 && Encoding.ASCII.GetString(magic) == "Nettrace")
+                            return (true, length > lastLength && lastLength >= 0 ? "file_growing" : "nettrace_header");
+                    }
+                    catch { }
+                }
+                lastLength = length;
+            }
+            await Task.Delay(200);
+        }
         if (proc.HasExited) return (false, "dotnet-trace exited " + proc.ExitCode.ToString(CultureInfo.InvariantCulture));
-        return (true, finished == ready.Task ? "recording" : "started_without_ready_line");
+        if (!File.Exists(tracePath)) return (false, "process_alive_no_file");
+        return (true, "process_alive_file_present");
     }
 
     static string MirrorSession(string resolved, string requested, bool packaged)

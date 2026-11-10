@@ -10,14 +10,14 @@
 
 ## Declared collection tip
 
-The declared collection tip is the commit that contains this file, `docs/workbuddy_z4_etw_l1_smoke_r1_dispatch.md`, on `claude/z3a-cabi-l1`. After this fix push that commit is HEAD. Confirm before building:
+The declared collection tip is the commit that contains this file, `docs/workbuddy_z4_etw_l1_smoke_r1_dispatch.md`, on `claude/z3a-cabi-l1`. After this fix push that commit is HEAD. `8892735c0098abeb99dba6ba4e1433df0cb3bba6` is the previous fix and is not the collection tip. Confirm before building:
 
 ```powershell
 git rev-parse HEAD
 git log -1 --format=%H -- docs/workbuddy_z4_etw_l1_smoke_r1_dispatch.md
 ```
 
-Those two SHAs must be the same. That SHA is the collection tip. `33c42c52f0c21522463fd5fb03fc11d0c56a792d` is the parent tooling commit and is not the collection tip. Do not collect from an ancestor, a descendant, or a dirty tree.
+Those two SHAs must be the same. That SHA is the collection tip. Do not collect from an ancestor, a descendant, or a dirty tree.
 
 `MotionSoftDemo` stamps `git rev-parse HEAD` into `z4_build_info.txt` next to the exe. The tip is a commit id, not a file hash, so `core.autocrlf` does not change it. The same file stamps `composition.h` twice: `composition_sha256` is the CRLF→LF normalized digest (the PASS value) and `composition_sha256_raw` is the on-disk bytes. The session copies both into `env.json`. If `env.json` `tip` is empty or differs from the declared HEAD, the session is **INVALID**. Optional check: set `MF_Z4_EXPECTED_TIP` to the declared SHA before launch; a mismatch is `tip_mismatch`.
 
@@ -186,11 +186,25 @@ Pfx fallback, only if the thumbprint build cannot see the cert. The pfx is `%USE
 dotnet build MotionSoftDemo\MotionSoftDemo.csproj -c Debug -p:Platform=x64 -p:Z4Package=true -p:AppxPackageSigningEnabled=true -p:PackageCertificateKeyFile=%USERPROFILE%\z4_dev_cert\Z4Dev.pfx -p:PackageCertificatePassword=z4-dev -p:AppxSymbolPackageEnabled=false
 ```
 
-Install (sideload) the signed msix printed by the build (under `MotionSoftDemo\AppPackages` or the bin `AppX` layout). Developer Mode must be on.
+Signed install. On Win10 19045, `Add-AppxPackage` of this self-signed MSIX returns `0x800B0109` (`CERT_E_UNTRUSTEDROOT`) when the cert is only in `CurrentUser\My` and `CurrentUser\TrustedPeople`. The root has to be trusted for the machine. That import needs UAC. Developer Mode alone does not satisfy this check.
 
 ```powershell
+$cer = Join-Path $env:USERPROFILE "z4_dev_cert\Z4Dev.cer"
+Export-Certificate -Cert $cert -FilePath $cer
+Start-Process powershell -Verb RunAs -Wait -ArgumentList "-NoProfile -Command Import-Certificate -FilePath '$cer' -CertStoreLocation Cert:\LocalMachine\TrustedPeople"
 Add-AppxPackage -Path <path-to-signed.msix>
 ```
+
+Loose layout, no machine trust. This is the path that avoids UAC. Developer Mode must be on. The build does not sign and does not produce an MSIX; it lays the package out for `Add-AppxPackage -Register`.
+
+```powershell
+dotnet build MotionSoftDemo\MotionSoftDemo.csproj -c Debug -p:Platform=x64 -p:Z4LooseLayout=true -p:AppxPackageSigningEnabled=false -p:GenerateAppxPackageOnBuild=false -p:AppxSymbolPackageEnabled=false
+Add-AppxPackage -Register "MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppX\AppxManifest.xml"
+```
+
+A loose-registered app has package identity. `GetCurrentPackageFullName` succeeds, so the session records `packaged=true` and a non-empty `package_full_name`. It is a packaged process in that sense. It is not a signed MSIX container. The coordinator decides whether that identity satisfies the gate's packaged session. Do not claim it is a signed sideload.
+
+The signed `Add-AppxPackage` path after the LocalMachine trust import is the other option. Use one of them for the packaged session on each machine.
 
 The manifest registers the execution alias `MotionSoftDemo.exe`. Open a new console after install so the alias is on PATH. Launch one packaged session with the flag (the Start menu tile does not forward arguments):
 
@@ -227,10 +241,14 @@ Get-Content (Join-Path $dst "env.json")
 This is the command the session starts. Level 5 is Verbose.
 
 ```bat
-dotnet-trace collect --process-id <pid> --providers FluidMotion-Motion:0xFFFFFFFFFFFFFFFF:5 --duration 00:00:50 --output <session>\trace.nettrace
+dotnet-trace collect --process-id <pid> --providers FluidMotion-Motion:0xFFFFFFFFFFFFFFFF:5,8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d:0xFFFFFFFFFFFFFFFF:5 --duration 00:00:50 --output <session>\trace.nettrace
 ```
 
-`<pid>` is the MotionSoftDemo process (unpackaged or packaged). The app passes its own pid. `--output` is `<resolved_outdir>\trace.nettrace`: the requested directory when unpackaged, and the package LocalState directory when packaged. Override the duration with `MF_Z4_TRACE_DURATION` in `hh:mm:ss` form only if 50 s is not enough. Do not stop the process early; the nettrace is finished when `dotnet-trace` exits.
+`<pid>` is the MotionSoftDemo process (unpackaged or packaged). The app passes its own pid and enables both the provider name and the frozen GUID. `--output` is `<resolved_outdir>\trace.nettrace`: the requested directory when unpackaged, and the package LocalState directory when packaged. The app treats the collector as attached when that file exists and starts with the `Nettrace` magic. It does not wait for a "Recording" banner, because dotnet-trace 10 buffers that text when stdout is not a console. Override the duration with `MF_Z4_TRACE_DURATION` in `hh:mm:ss` form only if 50 s is not enough. Do not stop the process early; the nettrace is finished when `dotnet-trace` exits.
+
+`MotionEtw` is an `EventSource` with both `Name = FluidMotion-Motion` and `Guid = 8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d`. `EventSource.GetGuid` returns the Guid attribute. It is not a name-hash GUID. The name hash, used only when the Guid attribute is absent, is `367c0a5e-9a10-5a09-16fb-80d0a4f845d8`. Neither the attribute nor the name is changed here.
+
+The runtime's EventPipe file (the shape K93 captured) stores metadata as `uint32 id`, UTF-16Z provider name, `uint32 event id`, UTF-16Z event name. That record has no GUID field, so a byte scan reports the GUID as absent even when `EventSource.Guid` is the frozen value. `guid=absent_from_metadata` means that. It is not a missing provider and it is not `guid=MISSING`. A NetTrace V6 metadata row can also carry optional-metadata kind 7, a 16-byte provider GUID. `z4_check_trace` reads that field when it is present. `guid=match_frozen` means the metadata GUID is the frozen value. `guid=guid_mismatch_frozen` means the metadata GUID is some other value, including the name hash. `env.json` and `verdict.json` record `runtime_eventsource_guid`, `frozen_guid`, `runtime_matches_frozen`, and `name_hash_guid`. ⑥ fails with `guid_reason=guid_mismatch_frozen` when `MotionEtw.Log.Guid` or a GUID read from the trace is not the frozen value. The scenario starts only after the nettrace header is readable.
 
 Check the trace (also done inside the session before `verdict.json` is written):
 

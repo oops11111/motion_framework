@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using System.Text;
 using MotionSoftDemo;
 
@@ -42,20 +43,34 @@ static int SelfTest()
 
     string argsLine = Z4SessionCore.TraceArguments(4242, @"C:\s\trace.nettrace");
     Ok(argsLine.Contains("FluidMotion-Motion:0xFFFFFFFFFFFFFFFF:5", StringComparison.Ordinal)
+        && argsLine.Contains("8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d:0xFFFFFFFFFFFFFFFF:5", StringComparison.Ordinal)
         && argsLine.Contains("--process-id 4242", StringComparison.Ordinal)
         && argsLine.Contains("--duration 00:00:50", StringComparison.Ordinal),
-        "eventpipe arguments");
+        "eventpipe arguments enable name and frozen GUID");
 
     string dir = Path.Combine(Path.GetTempPath(), "z4-check-" + Guid.NewGuid().ToString("n"));
     Directory.CreateDirectory(dir);
     try
     {
         string good = Path.Combine(dir, "good.nettrace");
-        File.WriteAllBytes(good, Fixture(includePresent: true));
+        File.WriteAllBytes(good, V5Fixture(includePresent: true));
         var goodReport = Z4TraceCheck.Check(good);
-        Ok(goodReport.Pass, "synthetic nettrace passes");
+        Ok(goodReport.Pass && goodReport.GuidStatus == Z4TraceCheck.GuidAbsent, "metadata without a GUID field is not guid=MISSING");
+        Guid nameHash = Z4TraceCheck.NameHashGuid(Z4TraceCheck.ProviderName);
+        string withGuid = Path.Combine(dir, "guid.nettrace");
+        File.WriteAllBytes(withGuid, V6Fixture(includePresent: true, providerGuid: Z4TraceCheck.FrozenGuid, decoy: nameHash));
+        var guidReport = Z4TraceCheck.Check(withGuid);
+        Ok(guidReport.Pass && guidReport.GuidStatus == Z4TraceCheck.GuidMatchFrozen
+            && guidReport.GuidInFile == Z4TraceCheck.FrozenGuid.ToString(),
+            "ProviderGuid in V6 metadata matches frozen, ignoring a decoy name-hash");
+        string mismatch = Path.Combine(dir, "mismatch.nettrace");
+        File.WriteAllBytes(mismatch, V6Fixture(includePresent: true, providerGuid: nameHash, decoy: Z4TraceCheck.FrozenGuid));
+        var mismatchReport = Z4TraceCheck.Check(mismatch);
+        Ok(!mismatchReport.Pass && mismatchReport.GuidStatus == Z4TraceCheck.GuidMismatchFrozen
+            && mismatchReport.GuidInFile == nameHash.ToString(),
+            "name-hash ProviderGuid in metadata is guid_mismatch_frozen");
         string bad = Path.Combine(dir, "bad.nettrace");
-        File.WriteAllBytes(bad, Fixture(includePresent: false));
+        File.WriteAllBytes(bad, V5Fixture(includePresent: false));
         var badReport = Z4TraceCheck.Check(bad);
         Ok(!badReport.Pass && badReport.MissingNames.Contains("PresentStats"), "missing PresentStats fails");
         string text = Path.Combine(dir, "dev.txt");
@@ -93,6 +108,13 @@ static int SelfTest()
             @"C:\Users\admin\motion_framework\z4\results_etw_l1_smoke_r1\K93N3P8\s3-packaged");
         Ok(virt != null && virt.Contains(@"Packages\MotionSoftDemo_abc\LocalCache\Local\motion_framework"),
             "virtualized mirror guess");
+        Ok(Z4TraceCheck.NameHashGuid("FluidMotion-Motion") == new Guid("367c0a5e-9a10-5a09-16fb-80d0a4f845d8"),
+            "name-hash GUID");
+        Ok(Z4GuidProbe.Log.Guid == Z4TraceCheck.FrozenGuid
+            && EventSource.GetGuid(typeof(Z4GuidProbe)) == Z4TraceCheck.FrozenGuid,
+            "EventSource.GetGuid returns the Guid attribute");
+        Ok(Z4NameProbe.Log.Guid == new Guid("367c0a5e-9a10-5a09-16fb-80d0a4f845d8"),
+            "name-only EventSource.Guid is the name hash");
     }
     finally
     {
@@ -114,17 +136,65 @@ static byte[] ToCrlf(byte[] lf)
     return list.ToArray();
 }
 
-static byte[] Fixture(bool includePresent)
+static byte[] V5Fixture(bool includePresent)
 {
     var blob = new List<byte>();
     blob.AddRange(Encoding.ASCII.GetBytes("Nettrace"));
     blob.AddRange(new byte[16]);
-    blob.AddRange(Encoding.Unicode.GetBytes("FluidMotion-Motion"));
-    blob.AddRange(Z4TraceCheck.ProviderGuid.ToByteArray());
+    int meta = 1;
+    int id = 1;
     foreach (string name in Z4TraceCheck.RequiredNames)
     {
         if (!includePresent && name == "PresentStats") continue;
+        blob.AddRange(BitConverter.GetBytes(meta++));
+        blob.AddRange(Encoding.Unicode.GetBytes(Z4TraceCheck.ProviderName));
+        blob.Add(0);
+        blob.Add(0);
+        blob.AddRange(BitConverter.GetBytes(id++));
         blob.AddRange(Encoding.Unicode.GetBytes(name));
+        blob.Add(0);
+        blob.Add(0);
     }
     return blob.ToArray();
+}
+
+static byte[] V6Fixture(bool includePresent, Guid providerGuid, Guid decoy)
+{
+    var blob = new List<byte>();
+    blob.AddRange(Encoding.ASCII.GetBytes("Nettrace"));
+    blob.AddRange(new byte[16]);
+    blob.AddRange(decoy.ToByteArray());
+    int id = 1;
+    foreach (string name in Z4TraceCheck.RequiredNames)
+    {
+        if (!includePresent && name == "PresentStats") continue;
+        var row = new List<byte> { (byte)id };
+        row.Add((byte)Z4TraceCheck.ProviderName.Length);
+        row.AddRange(Encoding.UTF8.GetBytes(Z4TraceCheck.ProviderName));
+        row.Add((byte)id);
+        row.Add((byte)name.Length);
+        row.AddRange(Encoding.UTF8.GetBytes(name));
+        row.Add(0);
+        row.Add(0);
+        row.Add(17);
+        row.Add(0);
+        row.Add(7);
+        row.AddRange(providerGuid.ToByteArray());
+        blob.AddRange(BitConverter.GetBytes((ushort)row.Count));
+        blob.AddRange(row);
+        id++;
+    }
+    return blob.ToArray();
+}
+
+[EventSource(Name = "FluidMotion-Motion", Guid = "8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d")]
+sealed class Z4GuidProbe : EventSource
+{
+    public static readonly Z4GuidProbe Log = new();
+}
+
+[EventSource(Name = "FluidMotion-Motion")]
+sealed class Z4NameProbe : EventSource
+{
+    public static readonly Z4NameProbe Log = new();
 }

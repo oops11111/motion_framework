@@ -14,9 +14,11 @@
     <WinUISDKReferences>false</WinUISDKReferences>
     <EnableMsixTooling>true</EnableMsixTooling>
     <!-- Default is unpackaged. -p:Z4Package=true or -p:WindowsPackageType=MSIX builds the MSIX. -->
-    <WindowsPackageType Condition="'$(WindowsPackageType)' == '' and '$(Z4Package)' != 'true'">None</WindowsPackageType>
-    <WindowsPackageType Condition="'$(Z4Package)' == 'true'">MSIX</WindowsPackageType>
-    <GenerateAppxPackageOnBuild Condition="'$(WindowsPackageType)' == 'MSIX'">true</GenerateAppxPackageOnBuild>
+    <WindowsPackageType Condition="'$(WindowsPackageType)' == '' and '$(Z4Package)' != 'true' and '$(Z4LooseLayout)' != 'true'">None</WindowsPackageType>
+    <WindowsPackageType Condition="'$(Z4Package)' == 'true' or '$(Z4LooseLayout)' == 'true'">MSIX</WindowsPackageType>
+    <AppxPackageSigningEnabled Condition="'$(Z4LooseLayout)' == 'true'">false</AppxPackageSigningEnabled>
+    <GenerateAppxPackageOnBuild Condition="'$(Z4LooseLayout)' != 'true' and '$(WindowsPackageType)' == 'MSIX'">true</GenerateAppxPackageOnBuild>
+    <GenerateAppxPackageOnBuild Condition="'$(Z4LooseLayout)' == 'true'">false</GenerateAppxPackageOnBuild>
     <AppxBundle Condition="'$(WindowsPackageType)' == 'MSIX'">Never</AppxBundle>
     <!-- mspdbcmf.exe is only used to build the Store .appxsym package. Not required to sideload or run. -->
     <AppxSymbolPackageEnabled Condition="'$(WindowsPackageType)' == 'MSIX'">false</AppxSymbolPackageEnabled>

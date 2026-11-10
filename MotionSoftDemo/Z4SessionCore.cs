@@ -14,7 +14,9 @@ public static class Z4SessionCore
     public const string Flag = "--z4-l1-session";
     public const string EnvVar = "MF_Z4_L1_SESSION";
     public const string ExpectedTipEnv = "MF_Z4_EXPECTED_TIP";
-    public const string ProviderSpec = "FluidMotion-Motion:0xFFFFFFFFFFFFFFFF:5";
+    // Name plus the frozen GUID. EventPipe enables either identity. The attribute GUID is what EventSource.Guid returns.
+    public const string ProviderSpec =
+        "FluidMotion-Motion:0xFFFFFFFFFFFFFFFF:5,8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d:0xFFFFFFFFFFFFFFFF:5";
     public const string DefaultTraceDuration = "00:00:50";
     public const string ExpectedCompositionSha =
         "a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418";
