@@ -1,5 +1,6 @@
-// M2-02 probe: C# API interruptible retarget + ETW emit + preview host v0.
-// Software path only via FmBridge Retarget (from current state). NO shadow IV. NO synthetic input.
+// M2-02 probe, retargeted onto API v0 L1 names (MotionSystem / AnimationHandle / MotionTokens).
+// Software path only. Retarget from current state (hasFrom=0). NO shadow IV. NO synthetic input.
+// This probe is the existing WinUI host path. It is not a Z4 session.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -57,9 +58,11 @@ public sealed partial class MainPage
         void EtwLine(string s) { etwWriter.WriteLine(s); etwWriter.Flush(); Both(s); }
         void Prev(string s) { previewWriter.WriteLine(s); previewWriter.Flush(); Both("PREVIEW " + s); }
 
-        ulong sessionId = MotionEngine.NewSessionId();
+        ulong sessionId = 0;
         var seenEvents = new HashSet<string>(StringComparer.Ordinal);
         MotionEtwMirror? mirror = null;
+        EventHandler<object>? onRendering = null;
+        MotionSystem? boundSystem = null;
 
         bool csharpPass = false, etwPass = false, previewPass = false;
         int retargetOk = 0, retargetTotal = 0;
@@ -68,14 +71,14 @@ public sealed partial class MainPage
         string tokenJsonPath = Path.Combine(AppContext.BaseDirectory, "demo_motion.json");
 
         Both($"# m2_02_s{sessEnv}_raw.txt — M2-02 csharp+etw+preview smoke");
-        Both($"# wall={DateTime.Now:yyyy-MM-dd HH:mm:ss} AWST; pid={Environment.ProcessId}; sessionId=0x{sessionId:X16}");
+        Both($"# wall={DateTime.Now:yyyy-MM-dd HH:mm:ss} AWST; pid={Environment.ProcessId}; sessionId=assigned-after-MotionSystem.Create");
         Both($"# gate=ce147d212d31910b84c6c8e5566fbf50e740efcaadb27747cde827db2ec0a180 LOCKED_AT=2026-10-25 00:42:43 AWST");
         Both($"# approved=pidan@2026-10-25 01:11:43 AWST");
-        Both("# path=SOFTWARE FmBridge Retarget (from current); NO shadow IV; NO compositor InitialVelocity; NO synthetic input");
+        Both("# path=SOFTWARE L1 MotionSystem/AnimationHandle Retarget (from current, hasFrom=0); NO shadow IV; NO compositor InitialVelocity; NO synthetic input");
         Both($"# jump_criteria: dynTol=max({M202BaseJumpDip.ToString(CultureInfo.InvariantCulture)},|vel|*{M202FrameSlackSec.ToString(CultureInfo.InvariantCulture)}+1); no teleport snap to target; frame step <{M202MaxFrameStepDip.ToString(CultureInfo.InvariantCulture)} DIP; if |vel_before|>{M202VelZeroFloor} then |vel_after| must not be <0.5; fm_current=last-tick (api §3.5)");
         Both($"# provider=FluidMotion-Motion guid={MotionEtw.ProviderGuid}");
 
-        MotionEngine? engine = null;
+        MotionSystem? system = null;
         try
         {
             // Ensure EventSource is constructed before listener (and before emits).
@@ -93,7 +96,32 @@ public sealed partial class MainPage
             }, enableVerbose: true);
 
             if (_fm == null) throw new InvalidOperationException("MotionBridge not ready");
-            engine = new MotionEngine(_fm, sessionId) { EmitFrameTickAccept = true };
+            system = MotionSystem.Create();
+            system.EmitFrameTickAccept = true;
+            sessionId = system.SessionId;
+            boundSystem = system;
+            Both($"# l1 sessionId=0x{sessionId:X16} type=MotionSystem");
+            onRendering = (_, __) =>
+            {
+                try { boundSystem?.OnFrame(); } catch (Exception ex) { Both("ONFRAME " + ex.Message); }
+            };
+            system.FramePumpChanged += on =>
+            {
+                if (onRendering == null) return;
+                if (on) CompositionTarget.Rendering += onRendering;
+                else CompositionTarget.Rendering -= onRendering;
+            };
+            system.ValueChanged += (t, prop, v) =>
+            {
+                // Sink: do not call back into MotionSystem / fm_*.
+                if (t != BoxId || _compMode) return;
+                try
+                {
+                    if (prop == "offsetX") BoxTranslate.X = v;
+                    else if (prop == "opacity") AnimBox.Opacity = v;
+                }
+                catch { }
+            };
 
             // Force software path (no compositor IV).
             SetMode(false, "m2-02-software");
@@ -107,26 +135,31 @@ public sealed partial class MainPage
             Prev($"step3_select tokens=[{string.Join(",", tokenNames)}] pick={(tokenNames.FirstOrDefault() ?? "demo.enter")}");
             string pick = tokenNames.FirstOrDefault() ?? "demo.enter";
 
-            string? loadErr = engine.LoadTokens(json, "demo_motion.json");
+            string? loadErr = new MotionTokens(system).Load(json);
+            if (loadErr == null) loadErr = system.LoadTokens(json, "demo_motion.json");
             Prev($"step4_load err={(loadErr ?? "ok")} session=0x{sessionId:X}");
             if (loadErr != null) throw new Exception("LoadTokens failed: " + loadErr);
 
-            var previewAnim = engine.Create(BoxId, pick);
+            var previewAnim = system.CreateAnimation(BoxId, pick);
             // Bind visual: already bound via OnValue -> AnimBox in soft path
-            Prev($"step5_bind animId={previewAnim.AnimId} target={BoxId} transition={pick}");
+            Prev($"step5_bind animId={previewAnim.Id} target={BoxId} transition={pick}");
             previewAnim.Play(); playHits++;
             Prev("step6_play started; observing ~600ms for no crash");
             await Task.Delay(600);
             bool crashed = false;
             try
             {
-                _fm.Current(BoxId, "offsetX", out var pv, out var pvel);
-                Prev($"observe offsetX={F(pv,3)} vel={F(pvel,2)} running={_fm.Running} exceptions={_exceptions}");
+                var previewSample = system.Current(BoxId, "offsetX");
+                double pv = previewSample?.Value ?? double.NaN;
+                double pvel = previewSample?.Velocity ?? double.NaN;
+                Prev($"observe offsetX={F(pv,3)} vel={F(pvel,2)} running={system.IsRunning} exceptions={_exceptions}");
                 // Sample a few frames via app-side current
                 for (int i = 0; i < 5; i++)
                 {
                     await Task.Delay(40);
-                    _fm.Current(BoxId, "offsetX", out pv, out pvel);
+                    previewSample = system.Current(BoxId, "offsetX");
+                    pv = previewSample?.Value ?? double.NaN;
+                    pvel = previewSample?.Velocity ?? double.NaN;
                     Prev($"frame_sample i={i} x={F(pv,3)} vel={F(pvel,2)}");
                 }
             }
@@ -145,31 +178,35 @@ public sealed partial class MainPage
             // ---------- G1-1 C# interruptible retarget (>=5, cover 3 categories) ----------
             Both("===== CSHARP_SMOKE START =====");
             // Reload tokens (TokenLoad again ok)
-            loadErr = engine.LoadTokens(json, "demo_motion.json");
+            loadErr = system.LoadTokens(json, "demo_motion.json");
             Both($"LoadTokens2 err={(loadErr ?? "ok")}");
 
-            var animA = engine.Create(BoxId, pick);
-            var animB = engine.Create(BoxId, null); // free retarget anim for cross-switch
-            Both($"Create animA={animA.AnimId} animB={animB.AnimId}");
+            var animA = system.CreateAnimation(BoxId, pick);
+            var animB = system.CreateAnimation(BoxId, null); // free retarget anim for cross-switch
+            Both($"Create animA={animA.Id} animB={animB.Id}");
 
             // Start motion on soft path via Retarget (Play alone may need tracks; Retarget drives spring)
             SetSoftBox(0);
             animA.Play(); playHits++;
-            bool startOk = animA.RetargetTo("offsetX", 240, M202SpringR, M202SpringZ);
+            bool startOk = animA.Retarget("offsetX", 240, new SpringParams(M202SpringR, M202SpringZ));
             retargetHits++; retargetTotal++;
-            Both($"START Play+RetargetTo(240) ok={startOk}");
+            Both($"START Play+Retarget(240) ok={startOk}");
             await Task.Delay(120); // mid-flight
 
             // Helper local
             // Continuity from current state (software path Retarget hasFrom=0).
             // Primary evidence = app-side rendering sequence (no hard cut / no snap-to-target).
             async Task<(bool ok, double before, double after, double velB, double velA)> DoRetarget(
-                MotionAnimation anim, string prop, double to, string tag, string category)
+                AnimationHandle anim, string prop, double to, string tag, string category)
             {
-                _fm!.Current(BoxId, prop, out var before, out var velB);
-                bool ok = anim.RetargetTo(prop, to, M202SpringR, M202SpringZ);
+                var beforeSample = system.Current(BoxId, prop);
+                double before = beforeSample?.Value ?? double.NaN;
+                double velB = beforeSample?.Velocity ?? double.NaN;
+                bool ok = anim.Retarget(prop, to, new SpringParams(M202SpringR, M202SpringZ));
                 retargetHits++;
-                _fm.Current(BoxId, prop, out var after, out var velA);
+                var afterSample = system.Current(BoxId, prop);
+                double after = afterSample?.Value ?? double.NaN;
+                double velA = afterSample?.Velocity ?? double.NaN;
                 double jump = Math.Abs(after - before);
                 double dynTol = Math.Max(M202BaseJumpDip, Math.Abs(velB) * M202FrameSlackSec + 1.0);
                 bool jumpOk = jump <= dynTol;
@@ -183,7 +220,8 @@ public sealed partial class MainPage
                 for (int si = 0; si < 5; si++)
                 {
                     await Task.Delay(16);
-                    _fm.Current(BoxId, prop, out var sx, out _);
+                    var stepSample = system.Current(BoxId, prop);
+                    double sx = stepSample?.Value ?? double.NaN;
                     double step = Math.Abs(sx - prev);
                     if (step > maxStep) maxStep = step;
                     if (step > M202MaxFrameStepDip) seqOk = false;
@@ -213,7 +251,9 @@ public sealed partial class MainPage
             await Task.Delay(80);
 
             // 4) cross-animation switch: cancel A mid-flight, drive B from current
-            _fm.Current(BoxId, "offsetX", out var crossX, out var crossV);
+            var crossSample = system.Current(BoxId, "offsetX");
+            double crossX = crossSample?.Value ?? double.NaN;
+            double crossV = crossSample?.Velocity ?? double.NaN;
             Both($"CROSS_PREP x={F(crossX,3)} vel={F(crossV,2)}");
             animA.Cancel(); cancelHits++;
             animB.Play(); playHits++;
@@ -239,16 +279,46 @@ public sealed partial class MainPage
             if (!seenEvents.Contains("IdleTransition"))
             {
                 Both("IdleTransition missing — force play/cancel pulse");
-                var pulse = engine.Create(BoxId, null);
+                var pulse = system.CreateAnimation(BoxId, null);
                 pulse.Play();
-                pulse.RetargetTo("offsetX", 50, M202SpringR, M202SpringZ);
+                pulse.Retarget("offsetX", 50, new SpringParams(M202SpringR, M202SpringZ));
                 await Task.Delay(100);
                 pulse.Cancel();
                 await Task.Delay(200);
             }
 
-            // PresentStats at session end (placeholder 0 ok; event name must appear)
-            engine.EmitPresentStats(0, 16.666);
+            // Release: drop the handle; a later Retarget must fail. Not a Z4 sample.
+            var releaseAnim = system.CreateAnimation(BoxId, null);
+            releaseAnim.Play();
+            bool releaseStart = releaseAnim.Retarget("offsetX", 120, new SpringParams(M202SpringR, M202SpringZ));
+            await Task.Delay(40);
+            releaseAnim.Release();
+            bool releaseBlocked = !releaseAnim.Retarget("offsetX", 10, new SpringParams(M202SpringR, M202SpringZ));
+            Both($"RELEASE start={releaseStart} retargetAfterReleaseBlocked={releaseBlocked}");
+
+            // Reduced motion: in-flight snap, then a Retarget that lands on the target.
+            system.SetReducedMotion(false);
+            var reduceAnim = system.CreateAnimation(BoxId, null);
+            reduceAnim.Play();
+            bool reduceStart = reduceAnim.Retarget("offsetX", 90, new SpringParams(M202SpringR, M202SpringZ));
+            await Task.Delay(30);
+            system.SetReducedMotion(true);
+            await Task.Delay(80);
+            var reducedNow = system.Current(BoxId, "offsetX");
+            bool reducedSnap = reducedNow != null && Math.Abs(reducedNow.Value - 90) < 1.5 && Math.Abs(reducedNow.Velocity) < 1.0;
+            var reduceJump = system.CreateAnimation(BoxId, null);
+            reduceJump.Play();
+            bool reduceRetarget = reduceJump.Retarget("offsetX", 15, new SpringParams(M202SpringR, M202SpringZ), 0);
+            await Task.Delay(50);
+            var reducedJumpNow = system.Current(BoxId, "offsetX");
+            bool reducedJumpOk = reducedJumpNow != null && Math.Abs(reducedJumpNow.Value - 15) < 1.0 && Math.Abs(reducedJumpNow.Velocity) < 1.0;
+            Both($"REDUCED start={reduceStart} snap={reducedSnap} x={F(reducedNow?.Value ?? double.NaN, 3)} vel={F(reducedNow?.Velocity ?? double.NaN, 2)} retarget={reduceRetarget} jumpOk={reducedJumpOk}");
+            system.SetReducedMotion(false);
+            reduceAnim.Cancel();
+            reduceJump.Cancel();
+
+            // PresentStats at session end (placeholder 0 ok; event name must appear). 16.666 ms is a frame interval, not 0.3·T.
+            MotionEtw.Log.PresentStats(sessionId, 0, 16.666);
             await Task.Delay(50);
 
             bool coverMid = true; // R1/R5
@@ -315,8 +385,9 @@ public sealed partial class MainPage
         }
         finally
         {
+            try { if (onRendering != null) CompositionTarget.Rendering -= onRendering; } catch { }
             try { mirror?.Dispose(); } catch { }
-            try { engine?.Dispose(); } catch { }
+            try { system?.Dispose(); } catch { }
             try { art.Close(); } catch { }
             try { etwWriter.Close(); } catch { }
             try { previewWriter.Close(); } catch { }
