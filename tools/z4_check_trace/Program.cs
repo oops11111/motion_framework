@@ -61,6 +61,38 @@ static int SelfTest()
         string text = Path.Combine(dir, "dev.txt");
         File.WriteAllText(text, "AnimationLifecycle Retarget FrameTick PresentStats IdleTransition TokenLoad");
         Ok(!Z4TraceCheck.Check(text).Pass, "a dev log is not a nettrace");
+
+        string? header = Z4SessionCore.FindCompositionHeader(AppContext.BaseDirectory)
+            ?? Z4SessionCore.FindCompositionHeader(Directory.GetCurrentDirectory());
+        Ok(header != null, "found composition.h");
+        if (header != null)
+        {
+            Z4TextHash lf = Z4SessionCore.HashTextFile(header);
+            Ok(lf.Normalized == Z4SessionCore.ExpectedCompositionSha, "LF normalized hash is a55d4952");
+            Ok(lf.Raw == Z4SessionCore.ExpectedCompositionSha, "git blob is LF so raw matches");
+            byte[] crlf = ToCrlf(File.ReadAllBytes(header));
+            string crlfPath = Path.Combine(dir, "composition.h");
+            File.WriteAllBytes(crlfPath, crlf);
+            Z4TextHash cr = Z4SessionCore.HashTextFile(crlfPath);
+            Ok(cr.Normalized == Z4SessionCore.ExpectedCompositionSha, "CRLF normalized hash is a55d4952");
+            Ok(cr.Raw == "33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97", "CRLF raw hash is the autocrlf working-tree digest");
+        }
+
+        string leaf = Z4SessionCore.SessionLeaf(@"C:\repo\z4\results_etw_l1_smoke_r1\K93N3P8\s3-packaged");
+        Ok(leaf.Contains("K93N3P8") && leaf.Contains("s3-packaged"), "session leaf keeps machine and session");
+        string resolved = Z4SessionCore.ResolveSessionDirectory(
+            @"C:\repo\z4\results_etw_l1_smoke_r1\K93N3P8\s3-packaged",
+            packaged: true,
+            @"C:\Users\admin\AppData\Local\Packages\MotionSoftDemo_abc\LocalState");
+        Ok(resolved.Contains("LocalState") && resolved.Contains("K93N3P8") && resolved.Contains("s3-packaged"),
+            "packaged session dir is under LocalState");
+        string? virt = Z4SessionCore.PredictVirtualizedMirror(
+            @"C:\Users\admin\AppData\Local",
+            @"C:\Users\admin",
+            "MotionSoftDemo_abc",
+            @"C:\Users\admin\motion_framework\z4\results_etw_l1_smoke_r1\K93N3P8\s3-packaged");
+        Ok(virt != null && virt.Contains(@"Packages\MotionSoftDemo_abc\LocalCache\Local\motion_framework"),
+            "virtualized mirror guess");
     }
     finally
     {
@@ -69,6 +101,17 @@ static int SelfTest()
 
     Console.WriteLine(fails == 0 ? "SELF_TEST PASS" : "SELF_TEST FAIL " + fails.ToString());
     return fails == 0 ? 0 : 1;
+}
+
+static byte[] ToCrlf(byte[] lf)
+{
+    var list = new List<byte>(lf.Length + 64);
+    foreach (byte b in lf)
+    {
+        if (b == (byte)'\n') list.Add((byte)'\r');
+        list.Add(b);
+    }
+    return list.ToArray();
 }
 
 static byte[] Fixture(bool includePresent)

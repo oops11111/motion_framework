@@ -118,10 +118,11 @@ public static class Z4SessionCore
         return null;
     }
 
-    public static (string tip, string compositionSha) ReadBuildInfo(string baseDir)
+    public static Z4BuildInfo ReadBuildInfo(string baseDir)
     {
         string tip = "";
         string composition = "";
+        string rawHash = "";
         string path = Path.Combine(baseDir ?? "", "z4_build_info.txt");
         if (File.Exists(path))
         {
@@ -130,12 +131,114 @@ public static class Z4SessionCore
                 int eq = raw.IndexOf('=');
                 if (eq <= 0) continue;
                 string key = raw[..eq].Trim();
-                string value = raw[(eq + 1)..].Trim();
+                string value = raw[(eq + 1)..].Trim().Trim('\r');
                 if (key == "tip") tip = value;
                 else if (key == "composition_sha256") composition = value;
+                else if (key == "composition_sha256_raw") rawHash = value;
             }
         }
-        return (tip, composition);
+        return new Z4BuildInfo(tip, composition, rawHash);
+    }
+
+    /// <summary>
+    /// SHA-256 of the file bytes, and of those bytes after CR/CRLF are turned into LF.
+    /// Git autocrlf changes the working-tree bytes and not the blob. PASS compares the normalized digest.
+    /// The git tip is a commit id from <c>git rev-parse</c>, not a file hash, so line endings do not apply to it.
+    /// </summary>
+    public static Z4TextHash HashTextFile(string path)
+    {
+        byte[] raw = File.ReadAllBytes(path);
+        return HashTextBytes(raw);
+    }
+
+    public static Z4TextHash HashTextBytes(byte[] raw)
+    {
+        raw ??= Array.Empty<byte>();
+        return new Z4TextHash(Sha256(raw), Sha256(NormalizeNewlines(raw)));
+    }
+
+    public static byte[] NormalizeNewlines(byte[] raw)
+    {
+        if (raw == null || raw.Length == 0) return Array.Empty<byte>();
+        var lf = new byte[raw.Length];
+        int n = 0;
+        for (int i = 0; i < raw.Length; i++)
+        {
+            byte b = raw[i];
+            if (b == (byte)'\r')
+            {
+                lf[n++] = (byte)'\n';
+                if (i + 1 < raw.Length && raw[i + 1] == (byte)'\n') i++;
+            }
+            else lf[n++] = b;
+        }
+        if (n == lf.Length) return lf;
+        var trimmed = new byte[n];
+        Buffer.BlockCopy(lf, 0, trimmed, 0, n);
+        return trimmed;
+    }
+
+    /// <summary>Last two path segments, so a packaged LocalState folder keeps machine/session.</summary>
+    public static string SessionLeaf(string requestedPath)
+    {
+        string trimmed = (requestedPath ?? "").Trim().TrimEnd('\\', '/');
+        if (trimmed.Length == 0) return "session";
+        int slash = Math.Max(trimmed.LastIndexOf('\\'), trimmed.LastIndexOf('/'));
+        string leaf = slash >= 0 ? trimmed[(slash + 1)..] : trimmed;
+        if (leaf.Length == 0) leaf = "session";
+        string rest = slash >= 0 ? trimmed[..slash] : "";
+        int slash2 = Math.Max(rest.LastIndexOf('\\'), rest.LastIndexOf('/'));
+        string parent = slash2 >= 0 ? rest[(slash2 + 1)..] : rest;
+        if (parent.Length == 0) return leaf;
+        return parent + Path.DirectorySeparatorChar + leaf;
+    }
+
+    /// <summary>
+    /// Unpackaged: the requested directory. Packaged: ApplicationData LocalState, which is a real
+    /// user-writable path (not the virtualized view of the repo).
+    /// </summary>
+    public static string ResolveSessionDirectory(string requestedPath, bool packaged, string? localState)
+    {
+        if (!packaged || string.IsNullOrWhiteSpace(localState))
+            return requestedPath ?? "";
+        return Path.Combine(localState, "z4", "results_etw_l1_smoke_r1", SessionLeaf(requestedPath ?? ""));
+    }
+
+    /// <summary>
+    /// Where a packaged write under the user profile is stored on disk:
+    /// %LOCALAPPDATA%\Packages\&lt;PackageFamilyName&gt;\LocalCache\Local\&lt;rest of profile path&gt;.
+    /// </summary>
+    public static string? PredictVirtualizedMirror(string localAppData, string userProfile, string packageFamilyName, string requestedPath)
+    {
+        if (string.IsNullOrWhiteSpace(localAppData) || string.IsNullOrWhiteSpace(userProfile) || string.IsNullOrWhiteSpace(packageFamilyName))
+            return null;
+        string profile = userProfile.Trim().TrimEnd('\\', '/');
+        string req = (requestedPath ?? "").Trim();
+        if (req.Length < profile.Length || !req.StartsWith(profile, StringComparison.OrdinalIgnoreCase)) return null;
+        if (req.Length > profile.Length && req[profile.Length] != '\\' && req[profile.Length] != '/') return null;
+        string rest = req.Length > profile.Length ? req[(profile.Length + 1)..] : "";
+        char sep = localAppData.Contains('\\') ? '\\' : '/';
+        string root = localAppData.Trim().TrimEnd('\\', '/')
+            + sep + "Packages" + sep + packageFamilyName + sep + "LocalCache" + sep + "Local";
+        if (rest.Length == 0) return root;
+        return root + sep + rest.Replace('\\', sep).Replace('/', sep);
+    }
+
+    public static void CopyDirectoryFiles(string source, string dest)
+    {
+        Directory.CreateDirectory(dest);
+        foreach (string file in Directory.GetFiles(source))
+        {
+            string target = Path.Combine(dest, Path.GetFileName(file));
+            if (string.Equals(Path.GetFullPath(file), Path.GetFullPath(target), StringComparison.OrdinalIgnoreCase)) continue;
+            File.Copy(file, target, overwrite: true);
+        }
+    }
+
+    static string Sha256(byte[] data)
+    {
+        using var sha = SHA256.Create();
+        return Convert.ToHexString(sha.ComputeHash(data)).ToLowerInvariant();
     }
 
     public static string? FindCompositionHeader(string startDir)
@@ -149,12 +252,7 @@ public static class Z4SessionCore
         return null;
     }
 
-    public static string Sha256File(string path)
-    {
-        using var sha = SHA256.Create();
-        using var stream = File.OpenRead(path);
-        return Convert.ToHexString(sha.ComputeHash(stream)).ToLowerInvariant();
-    }
+    public static string Sha256File(string path) => HashTextFile(path).Raw;
 
     public static string WriteEnv(string path, IReadOnlyDictionary<string, object?> values)
     {
@@ -175,6 +273,10 @@ public static class Z4SessionCore
         WriteIndented = true,
     };
 }
+
+public readonly record struct Z4BuildInfo(string Tip, string CompositionSha, string CompositionShaRaw);
+
+public readonly record struct Z4TextHash(string Raw, string Normalized);
 
 public readonly record struct Z4Continuity(
     bool Ok,

@@ -1,5 +1,6 @@
 // Z4 r1 session tooling. One process, one session. Not Z3a dev smoke. Not PERF-CI.
-// Output is only the directory passed to --z4-l1-session / MF_Z4_L1_SESSION.
+// Unpackaged output is the requested directory. Packaged output is ApplicationData LocalState
+// (a real path). The requested directory is only a mirror, and may be virtualized.
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
@@ -15,11 +16,21 @@ public sealed partial class MainPage
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
     static extern int GetCurrentPackageFullName(ref int length, StringBuilder? packageFullName);
 
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+    static extern int GetCurrentPackageFamilyName(ref int length, StringBuilder? packageFamilyName);
+
     async Task RunZ4L1Session(string outDirArg, bool devAlsoSet)
     {
-        string sessionDir = string.IsNullOrWhiteSpace(outDirArg)
+        bool packaged = TryPackageFullName(out string packageFullName);
+        string packageFamily = packaged ? TryPackageFamilyName() : "";
+        string localStateError = "";
+        string? localState = packaged ? TryLocalState(out localStateError) : null;
+        string requested = string.IsNullOrWhiteSpace(outDirArg)
             ? Path.Combine(Path.GetTempPath(), "z4_missing_outdir")
             : Path.GetFullPath(outDirArg);
+        string sessionDir = packaged && !string.IsNullOrWhiteSpace(localState)
+            ? Z4SessionCore.ResolveSessionDirectory(requested, packaged: true, localState)
+            : requested;
         try { Directory.CreateDirectory(sessionDir); } catch { }
         string logPath = Path.Combine(sessionDir, "session.log");
         var log = new StringBuilder();
@@ -34,23 +45,32 @@ public sealed partial class MainPage
             invalid.Add(twice ?? "session_run_in_process_twice");
         if (devAlsoSet) invalid.Add("dev_mode_instead_of_z4");
         if (string.IsNullOrWhiteSpace(outDirArg)) invalid.Add("missing_outdir");
+        if (packaged && string.IsNullOrWhiteSpace(localState)) invalid.Add("packaged_localstate_unavailable");
 
-        bool packaged = TryPackageFullName(out string packageFullName);
-        var (stampedTip, stampedSha) = Z4SessionCore.ReadBuildInfo(AppContext.BaseDirectory);
+        Z4BuildInfo stamped = Z4SessionCore.ReadBuildInfo(AppContext.BaseDirectory);
         string? header = Z4SessionCore.FindCompositionHeader(AppContext.BaseDirectory)
             ?? Z4SessionCore.FindCompositionHeader(Directory.GetCurrentDirectory());
         string compositionSha = "";
+        string compositionRaw = "";
         if (header != null)
         {
-            try { compositionSha = Z4SessionCore.Sha256File(header); }
+            try
+            {
+                Z4TextHash hashed = Z4SessionCore.HashTextFile(header);
+                compositionSha = hashed.Normalized;
+                compositionRaw = hashed.Raw;
+            }
             catch (Exception ex) { Write("composition hash failed: " + ex.Message); }
         }
-        else if (!string.IsNullOrWhiteSpace(stampedSha))
-            compositionSha = stampedSha.ToLowerInvariant();
+        else
+        {
+            compositionSha = stamped.CompositionSha.ToLowerInvariant();
+            compositionRaw = stamped.CompositionShaRaw.ToLowerInvariant();
+        }
         if (!string.Equals(compositionSha, Z4SessionCore.ExpectedCompositionSha, StringComparison.OrdinalIgnoreCase))
             invalid.Add("composition_h_mismatch");
 
-        string tip = stampedTip;
+        string tip = stamped.Tip;
         if (string.IsNullOrWhiteSpace(tip)) tip = GitTip() ?? "";
         if (string.IsNullOrWhiteSpace(tip)) invalid.Add("undeclared_tip");
         string? expectedTip = Environment.GetEnvironmentVariable(Z4SessionCore.ExpectedTipEnv);
@@ -67,9 +87,20 @@ public sealed partial class MainPage
         Write("machine=" + Environment.MachineName);
         Write("packaged=" + (packaged ? "1" : "0") + " package=" + packageFullName);
         Write("tip=" + tip);
+        string virtualGuess = packaged
+            ? (Z4SessionCore.PredictVirtualizedMirror(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                packageFamily,
+                requested) ?? "")
+            : "";
         Write("composition_sha256=" + compositionSha);
+        Write("composition_sha256_raw=" + compositionRaw);
         Write("composition_header=" + (header ?? ""));
-        Write("outdir=" + sessionDir);
+        Write("RESOLVED_OUTDIR=" + sessionDir);
+        Write("REQUESTED_OUTDIR=" + requested);
+        Write("TRACE_PATH=" + Path.Combine(sessionDir, "trace.nettrace"));
+        if (!string.IsNullOrEmpty(localStateError)) Write("LOCALSTATE " + localStateError);
         Write("provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d");
 
         var env = new Dictionary<string, object?>
@@ -78,17 +109,24 @@ public sealed partial class MainPage
             ["os"] = Environment.OSVersion.VersionString,
             ["packaged"] = packaged,
             ["package_full_name"] = packageFullName,
+            ["package_family_name"] = packageFamily,
             ["process_id"] = Environment.ProcessId,
             ["tip"] = tip,
             ["composition_sha256"] = compositionSha,
+            ["composition_sha256_raw"] = compositionRaw,
             ["composition_expected"] = Z4SessionCore.ExpectedCompositionSha,
             ["composition_header"] = header ?? "",
             ["outdir"] = sessionDir,
+            ["resolved_outdir"] = sessionDir,
+            ["requested_outdir"] = requested,
+            ["trace"] = Path.Combine(sessionDir, "trace.nettrace"),
+            ["virtualized_mirror_guess"] = virtualGuess,
+            ["mirror_note"] = "pending",
             ["argv"] = string.Join(" ", Environment.GetCommandLineArgs()),
             ["windows_package_type"] = packaged ? "msix" : "unpackaged",
             ["virtualization_note"] = packaged
-                ? "Manifest excludes %USERPROFILE%\\motion_framework\\z4 and %LOCALAPPDATA%\\MotionSoftDemoZ4 from file-system write virtualization. Other paths may appear under %LOCALAPPDATA%\\Packages\\<package>\\LocalCache."
-                : "Unpackaged writes are not virtualized.",
+                ? "Canonical files are in resolved_outdir (package LocalState). dotnet-trace writes trace.nettrace there; same user, no admin. A copy into requested_outdir may be virtualized to virtualized_mirror_guess. Collect with an external Copy-Item from resolved_outdir."
+                : "Unpackaged writes are not virtualized. resolved_outdir is the requested directory.",
         };
         try { Z4SessionCore.WriteEnv(Path.Combine(sessionDir, "env.json"), env); }
         catch (Exception ex) { Write("env.json failed: " + ex.Message); invalid.Add("env_write_failed"); }
@@ -399,7 +437,19 @@ public sealed partial class MainPage
         try { Z4SessionCore.WriteVerdict(Path.Combine(sessionDir, "verdict.json"), verdict); }
         catch (Exception ex) { Write("verdict.json failed: " + ex.Message); }
         Write("Z4_SESSION status=" + status);
+        Write("RESOLVED_OUTDIR=" + sessionDir);
+        Write("REQUESTED_OUTDIR=" + requested);
+        string mirrorNote = MirrorSession(sessionDir, requested, packaged);
+        env["mirror_note"] = mirrorNote;
+        Write("MIRROR " + mirrorNote);
+        try { Z4SessionCore.WriteEnv(Path.Combine(sessionDir, "env.json"), env); }
+        catch (Exception ex) { Write("env.json final failed: " + ex.Message); }
         try { File.WriteAllText(logPath, log.ToString(), new UTF8Encoding(false)); } catch { }
+        if (packaged && !string.Equals(Path.GetFullPath(sessionDir), Path.GetFullPath(requested), StringComparison.OrdinalIgnoreCase))
+        {
+            try { Z4SessionCore.CopyDirectoryFiles(sessionDir, requested); }
+            catch { }
+        }
         FlushLog();
         try { CloseMainWindowSoon(); } catch { }
         await Task.CompletedTask;
@@ -448,6 +498,59 @@ public sealed partial class MainPage
         Task finished = await Task.WhenAny(ready.Task, Task.Delay(20000));
         if (proc.HasExited) return (false, "dotnet-trace exited " + proc.ExitCode.ToString(CultureInfo.InvariantCulture));
         return (true, finished == ready.Task ? "recording" : "started_without_ready_line");
+    }
+
+    static string MirrorSession(string resolved, string requested, bool packaged)
+    {
+        if (!packaged) return "unpackaged_requested_is_resolved";
+        try
+        {
+            if (string.Equals(Path.GetFullPath(resolved), Path.GetFullPath(requested), StringComparison.OrdinalIgnoreCase))
+                return "resolved_equals_requested";
+            Z4SessionCore.CopyDirectoryFiles(resolved, requested);
+            return "copied_to_requested_from_inside_package";
+        }
+        catch (Exception ex)
+        {
+            return "copy_failed: " + ex.GetType().Name + ": " + ex.Message;
+        }
+    }
+
+    static string? TryLocalState(out string error)
+    {
+        error = "";
+        try
+        {
+            string path = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                error = "LocalFolder.Path empty";
+                return null;
+            }
+            return path;
+        }
+        catch (Exception ex)
+        {
+            error = ex.GetType().Name + ": " + ex.Message;
+            return null;
+        }
+    }
+
+    static string TryPackageFamilyName()
+    {
+        try
+        {
+            int length = 0;
+            int rc = GetCurrentPackageFamilyName(ref length, null);
+            if (rc == AppModelErrorNoPackage || length <= 1) return "";
+            var sb = new StringBuilder(length);
+            rc = GetCurrentPackageFamilyName(ref length, sb);
+            return rc == 0 ? sb.ToString() : "";
+        }
+        catch
+        {
+            return "";
+        }
     }
 
     static bool TryPackageFullName(out string fullName)

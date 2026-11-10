@@ -10,9 +10,16 @@
 
 ## Declared collection tip
 
-The declared collection tip is the final tip of the Z4 tooling push on `claude/z3a-cabi-l1`: the HEAD commit that contains this dispatch. The push report states that full SHA. Build that commit and no other. Do not collect from an ancestor, a descendant, or a dirty tree.
+The declared collection tip is the commit that contains this file, `docs/workbuddy_z4_etw_l1_smoke_r1_dispatch.md`, on `claude/z3a-cabi-l1`. After this fix push that commit is HEAD. Confirm before building:
 
-`MotionSoftDemo` stamps `git rev-parse HEAD` and the `code/composition.h` SHA-256 into `z4_build_info.txt` next to the exe. The session copies that tip into `env.json`. If `env.json` `tip` is empty or differs from the declared HEAD, the session is **INVALID**. Optional check: set `MF_Z4_EXPECTED_TIP` to the declared SHA before launch; a mismatch is `tip_mismatch`.
+```powershell
+git rev-parse HEAD
+git log -1 --format=%H -- docs/workbuddy_z4_etw_l1_smoke_r1_dispatch.md
+```
+
+Those two SHAs must be the same. That SHA is the collection tip. `33c42c52f0c21522463fd5fb03fc11d0c56a792d` is the parent tooling commit and is not the collection tip. Do not collect from an ancestor, a descendant, or a dirty tree.
+
+`MotionSoftDemo` stamps `git rev-parse HEAD` into `z4_build_info.txt` next to the exe. The tip is a commit id, not a file hash, so `core.autocrlf` does not change it. The same file stamps `composition.h` twice: `composition_sha256` is the CRLF→LF normalized digest (the PASS value) and `composition_sha256_raw` is the on-disk bytes. The session copies both into `env.json`. If `env.json` `tip` is empty or differs from the declared HEAD, the session is **INVALID**. Optional check: set `MF_Z4_EXPECTED_TIP` to the declared SHA before launch; a mismatch is `tip_mismatch`.
 
 ## What a session is
 
@@ -62,7 +69,7 @@ z4/results_etw_l1_smoke_r1/<machine>/<session>/
 
 `<machine>` is `K93N3P8` or `IJI1KJG`. `<session>` is a new name per process (`s1-unpackaged`, `s2-unpackaged`, `s3-packaged`, …).
 
-`env.json` records machine, OS, packaged or unpackaged, package full name when packaged, process id, tip SHA, `composition.h` SHA, the expected SHA, and the resolved outdir.
+`env.json` records machine, OS, packaged or unpackaged, package full name and package family name, process id, tip SHA, normalized `composition_sha256`, raw `composition_sha256_raw`, the expected SHA, `requested_outdir`, and `resolved_outdir` (the real directory the process wrote). `outdir` is the same path as `resolved_outdir`.
 
 Do not commit this tree. `.gitignore` already excludes `z4/results_etw_l1_smoke_r1/`. Do not write `artifacts/m2_02_*` or `m3/results_*`.
 
@@ -77,13 +84,23 @@ z4\results_etw_l1_smoke_r1\IJI1KJG\s2-unpackaged
 z4\results_etw_l1_smoke_r1\IJI1KJG\s3-packaged
 ```
 
-Those paths sit under `%USERPROFILE%\motion_framework\z4`, which the package manifest excludes from file-system write virtualization. A packaged session that uses a path outside that exclusion (and outside `%LOCALAPPDATA%\MotionSoftDemoZ4`) can be redirected to:
+Unpackaged: the app writes exactly to the path you passed. `resolved_outdir` equals `requested_outdir`.
+
+Packaged: the manifest does not disable filesystem virtualization (Win10 19045 MakeAppx rejects `windows.fileSystemWriteVirtualization`). The canonical files are written to package LocalState, which is a real directory the same user can read:
 
 ```
-%LOCALAPPDATA%\Packages\<PackageFamilyName>\LocalCache\
+%LOCALAPPDATA%\Packages\<PackageFamilyName>\LocalState\z4\results_etw_l1_smoke_r1\<machine>\<session>\
 ```
 
-`env.json` `package_full_name` is the `<PackageFamilyName>` source. If the files are not at the path you passed, look there before calling the session missing.
+`env.json` `resolved_outdir` and `session.log` line `RESOLVED_OUTDIR=` are that path. `dotnet-trace` is started by the app against its own pid and writes `trace.nettrace` into that same directory. Attach needs no admin. The trace path is the LocalState path, which the user can write.
+
+The app also tries to copy the same files to `requested_outdir`. A packaged process may only see that copy through virtualization. The on-disk place for a profile path is then:
+
+```
+%LOCALAPPDATA%\Packages\<PackageFamilyName>\LocalCache\Local\<path under the user profile>
+```
+
+`env.json` `virtualized_mirror_guess` is that prediction. Do not collect the packaged session from the repo path or from LocalCache. Copy from `resolved_outdir` with an external PowerShell after the process exits (see Packaged collect below).
 
 ## Per-machine plan
 
@@ -134,31 +151,42 @@ Run one session (new process, new directory):
 MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.exe --z4-l1-session z4\results_etw_l1_smoke_r1\K93N3P8\s1-unpackaged
 ```
 
-The process stays up until `dotnet-trace` finishes its 50 s capture (`--duration 00:00:50`), then writes `verdict.json` and closes. Repeat from a new console for the next session. Unpackaged writes are not virtualized; the directory you passed is the directory on disk.
+The process stays up until `dotnet-trace` finishes its 50 s capture (`--duration 00:00:50`), then writes `verdict.json` and closes. Repeat from a new console for the next session. Unpackaged writes are not virtualized; `resolved_outdir` is the directory you passed.
 
-## Packaged build, cert, install, run
+## Packaged build, cert, install, run, collect
 
-Placeholder logos are `MotionSoftDemo\Assets\StoreLogo.png` (50×50), `Square44x44Logo.png` (44×44), `Square150x150Logo.png` (150×150), `Wide310x150Logo.png` (310×150), and `SplashScreen.png` (620×300). Identity publisher is `CN=MotionSoftDemo Z4 Dev`. The manifest is `MotionSoftDemo\Package.appxmanifest`. It is not used by the default unpackaged build.
+Placeholder logos are `MotionSoftDemo\Assets\StoreLogo.png` (50×50), `Square44x44Logo.png` (44×44), `Square150x150Logo.png` (150×150), `Wide310x150Logo.png` (310×150), and `SplashScreen.png` (620×300). Identity publisher is `CN=MotionSoftDemo Z4 Dev`. The manifest is `MotionSoftDemo\Package.appxmanifest`. `MinVersion` stays `10.0.17763.0`, which covers Win10 19045 and Win11. The manifest has no `desktop6` filesystem-virtualization extension; that category is not in the Win10 19045 MakeAppx allow-list (`windows.service`, `windows.mutablePackageDirectories`, `windows.customInstall`) and fails with C00CE169 / 0x80080204. The manifest is not used by the default unpackaged build.
 
-Create a self-signed cert whose subject matches that publisher, trust it for sideload, and do not commit the pfx:
+`mspdbcmf.exe` converts PDBs for the Store symbol package (`.appxsym`). It is not used to compile, sign, install, or run the MSIX. The project sets `AppxSymbolPackageEnabled=false` for the MSIX build so a missing `mspdbcmf.exe` does not fail the package. Pass the same property on the command line as well.
+
+Do not reuse the cert that failed APPX0107 (thumbprint `8FD7A7D4…89F2`). Create a new one. Subject must be exactly the manifest Publisher. EKU is code signing `1.3.6.1.5.5.7.3.3`, basic constraints are not a CA, the key is exportable, and `KeySpec Signature` uses the legacy CSP so Win10 19045 can import a pfx (APPX0105). The pfx lives outside the repo.
 
 ```powershell
-$cert = New-SelfSignedCertificate -Type Custom -Subject "CN=MotionSoftDemo Z4 Dev" -KeyUsage DigitalSignature -FriendlyName "MotionSoftDemo Z4 Dev" -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
+$cert = New-SelfSignedCertificate -Type Custom -Subject "CN=MotionSoftDemo Z4 Dev" -KeyUsage DigitalSignature -KeyAlgorithm RSA -KeyLength 2048 -HashAlgorithm SHA256 -KeyExportPolicy Exportable -KeySpec Signature -Provider "Microsoft Enhanced RSA and AES Cryptographic Provider" -FriendlyName "MotionSoftDemo Z4 Dev" -CertStoreLocation "Cert:\CurrentUser\My" -NotAfter (Get-Date).AddYears(5) -TextExtension @("2.5.29.37={critical}{text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}false")
 $pwd = ConvertTo-SecureString -String "z4-dev" -Force -AsPlainText
-Export-PfxCertificate -Cert $cert -FilePath MotionSoftDemo\Z4Dev.pfx -Password $pwd
-Import-PfxCertificate -FilePath MotionSoftDemo\Z4Dev.pfx -Password $pwd -CertStoreLocation "Cert:\CurrentUser\TrustedPeople"
+$certDir = Join-Path $env:USERPROFILE "z4_dev_cert"
+New-Item -ItemType Directory -Force -Path $certDir | Out-Null
+Export-PfxCertificate -Cert $cert -FilePath (Join-Path $certDir "Z4Dev.pfx") -Password $pwd
+Import-PfxCertificate -FilePath (Join-Path $certDir "Z4Dev.pfx") -Password $pwd -CertStoreLocation "Cert:\CurrentUser\TrustedPeople"
 $cert.Thumbprint
 ```
 
-Build the MSIX. `fluidmotion.dll` must already be at `MotionNative\fluidmotion.dll`.
+Primary build uses the thumbprint of that cert in `Cert:\CurrentUser\My`. `fluidmotion.dll` must already be at `MotionNative\fluidmotion.dll`. Do not pass a pfx on this command.
 
-```bat
-dotnet build MotionSoftDemo\MotionSoftDemo.csproj -c Debug -p:Platform=x64 -p:Z4Package=true -p:AppxPackageSigningEnabled=true -p:PackageCertificateKeyFile=MotionSoftDemo\Z4Dev.pfx -p:PackageCertificatePassword=z4-dev
+```powershell
+$thumb = $cert.Thumbprint
+dotnet build MotionSoftDemo\MotionSoftDemo.csproj -c Debug -p:Platform=x64 -p:Z4Package=true -p:AppxPackageSigningEnabled=true -p:PackageCertificateThumbprint=$thumb -p:AppxSymbolPackageEnabled=false
 ```
 
 `-p:WindowsPackageType=MSIX` is the same switch as `-p:Z4Package=true`. Omit both for the unpackaged exe.
 
-Install (sideload) the signed msix printed by the build (under `MotionSoftDemo\AppPackages` or the bin `AppX` layout):
+Pfx fallback, only if the thumbprint build cannot see the cert. The pfx is `%USERPROFILE%\z4_dev_cert\Z4Dev.pfx`, not a path inside the repo.
+
+```bat
+dotnet build MotionSoftDemo\MotionSoftDemo.csproj -c Debug -p:Platform=x64 -p:Z4Package=true -p:AppxPackageSigningEnabled=true -p:PackageCertificateKeyFile=%USERPROFILE%\z4_dev_cert\Z4Dev.pfx -p:PackageCertificatePassword=z4-dev -p:AppxSymbolPackageEnabled=false
+```
+
+Install (sideload) the signed msix printed by the build (under `MotionSoftDemo\AppPackages` or the bin `AppX` layout). Developer Mode must be on.
 
 ```powershell
 Add-AppxPackage -Path <path-to-signed.msix>
@@ -170,14 +198,29 @@ The manifest registers the execution alias `MotionSoftDemo.exe`. Open a new cons
 MotionSoftDemo.exe --z4-l1-session %USERPROFILE%\motion_framework\z4\results_etw_l1_smoke_r1\K93N3P8\s3-packaged
 ```
 
-Or, without putting the flag in the alias command:
+Or:
 
 ```bat
 set MF_Z4_L1_SESSION=%USERPROFILE%\motion_framework\z4\results_etw_l1_smoke_r1\K93N3P8\s3-packaged
 MotionSoftDemo.exe
 ```
 
-Use the same pattern on IJI1KJG with `IJI1KJG` in the path. Packaged output is the path you passed when it is under `%USERPROFILE%\motion_framework\z4` or `%LOCALAPPDATA%\MotionSoftDemoZ4`. Otherwise search `LocalCache` as above. `env.json` `windows_package_type` must be `msix` for the packaged session and `unpackaged` for the others.
+Wait until the process exits (the 50 s EventPipe capture). `dotnet-trace` 10.x attaches to that packaged pid as the same user, with no admin, and writes `trace.nettrace` under LocalState. Then collect into the repo from an external PowerShell (this window is not the packaged process):
+
+```powershell
+$envFile = Get-ChildItem "$env:LOCALAPPDATA\Packages" -Directory -Filter "MotionSoftDemo_*" | ForEach-Object {
+  $p = Join-Path $_.FullName "LocalState\z4\results_etw_l1_smoke_r1\K93N3P8\s3-packaged\env.json"
+  if (Test-Path $p) { $p }
+} | Select-Object -First 1
+$info = Get-Content -Raw $envFile | ConvertFrom-Json
+$src = $info.resolved_outdir
+$dst = Join-Path (Get-Location) "z4\results_etw_l1_smoke_r1\K93N3P8\s3-packaged"
+New-Item -ItemType Directory -Force -Path $dst | Out-Null
+Copy-Item -Path (Join-Path $src "*") -Destination $dst -Force
+Get-Content (Join-Path $dst "env.json")
+```
+
+`$info.resolved_outdir` must be the LocalState directory, and the copied `env.json` must show `"packaged": true` and `"windows_package_type": "msix"`. `trace.nettrace` in `$dst` is the file to check. Use `IJI1KJG` and that machine's session name the same way. Do not change git config.
 
 ## EventPipe command
 
@@ -187,7 +230,7 @@ This is the command the session starts. Level 5 is Verbose.
 dotnet-trace collect --process-id <pid> --providers FluidMotion-Motion:0xFFFFFFFFFFFFFFFF:5 --duration 00:00:50 --output <session>\trace.nettrace
 ```
 
-`<pid>` is the MotionSoftDemo process. The app passes its own pid and writes `<outdir>\trace.nettrace`. Override the duration with `MF_Z4_TRACE_DURATION` in `hh:mm:ss` form only if 50 s is not enough. Do not stop the process early; the nettrace is finished when `dotnet-trace` exits.
+`<pid>` is the MotionSoftDemo process (unpackaged or packaged). The app passes its own pid. `--output` is `<resolved_outdir>\trace.nettrace`: the requested directory when unpackaged, and the package LocalState directory when packaged. Override the duration with `MF_Z4_TRACE_DURATION` in `hh:mm:ss` form only if 50 s is not enough. Do not stop the process early; the nettrace is finished when `dotnet-trace` exits.
 
 Check the trace (also done inside the session before `verdict.json` is written):
 
@@ -203,26 +246,40 @@ dotnet run --project tools\z4_check_trace -c Release -- --self-test
 
 ## composition.h PRE / POST
 
-Do this on the collection machine before the first build and again after the last session. Do not edit the file.
+Do this on the collection machine before the first build and again after the last session. Do not edit the file. Do not change `core.autocrlf`. PASS is the CRLF→LF normalized digest. With `core.autocrlf=true` the raw working-tree digest is `33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97` and that raw value is not a mismatch.
 
 ```powershell
-Get-FileHash -Algorithm SHA256 -Path code\composition.h
+$path = "code\composition.h"
+$bytes = [System.IO.File]::ReadAllBytes((Resolve-Path $path))
+$sha = [System.Security.Cryptography.SHA256]::Create()
+$raw = ([System.BitConverter]::ToString($sha.ComputeHash($bytes))).Replace("-", "").ToLowerInvariant()
+$norm = New-Object System.Collections.Generic.List[byte]
+for ($i = 0; $i -lt $bytes.Length; $i++) {
+  if ($bytes[$i] -eq 13) {
+    $norm.Add(10)
+    if (($i + 1) -lt $bytes.Length -and $bytes[$i + 1] -eq 10) { $i++ }
+  } else { $norm.Add($bytes[$i]) }
+}
+$normalized = ([System.BitConverter]::ToString($sha.ComputeHash($norm.ToArray()))).Replace("-", "").ToLowerInvariant()
+$sha.Dispose()
+"raw        $raw"
+"normalized $normalized"
 ```
 
-PRE and POST must both be:
+PRE and POST `normalized` must both be:
 
 ```
 a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
 ```
 
-The session hashes the header when it can see `code\composition.h`, otherwise it uses the stamp in `z4_build_info.txt`, and writes the value to `env.json`. Anything other than the digest above is `composition_h_mismatch` and **INVALID**.
+Record both lines. The session does the same normalization when it can see `code\composition.h`. Otherwise it uses `composition_sha256` / `composition_sha256_raw` from `z4_build_info.txt` (the build stamp is also normalized). `env.json` stores both. A normalized digest other than the value above is `composition_h_mismatch` and **INVALID**. The git tip check is `git rev-parse`, not a file hash, so autocrlf does not apply to it.
 
 ## INVALID (do not count the session)
 
 Any one of these makes the session INVALID:
 
 1. Collected before the gate was LOCKED, or without the recorded `APPROVED Z4 r1`, or with the Z3a L1 build missing.
-2. `composition.h` PRE ≠ POST, or either side differs from `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418`.
+2. `composition.h` normalized PRE ≠ normalized POST, or either normalized digest differs from `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418`. A raw autocrlf digest of `33d826c7…6e97` with that normalized digest is not INVALID.
 3. Shadow initial velocity, or a tip that was not declared, or a tip that does not match the declared HEAD (`undeclared_tip`, `tip_mismatch`).
 4. Treating PERF-CI HOLD as passed, including any claim that this run met a frame budget.
 5. Missing artifacts (`verdict.json`, `session.log`, `trace.nettrace`, `env.json`) or a gate-body hash other than `acb89d1b0cb975e5d63ae2c6fc47adcbc74dddd959b63089b2546b692cadab14`.

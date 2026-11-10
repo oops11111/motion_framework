@@ -18,6 +18,8 @@
     <WindowsPackageType Condition="'$(Z4Package)' == 'true'">MSIX</WindowsPackageType>
     <GenerateAppxPackageOnBuild Condition="'$(WindowsPackageType)' == 'MSIX'">true</GenerateAppxPackageOnBuild>
     <AppxBundle Condition="'$(WindowsPackageType)' == 'MSIX'">Never</AppxBundle>
+    <!-- mspdbcmf.exe is only used to build the Store .appxsym package. Not required to sideload or run. -->
+    <AppxSymbolPackageEnabled Condition="'$(WindowsPackageType)' == 'MSIX'">false</AppxSymbolPackageEnabled>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
@@ -81,13 +83,11 @@
     <Exec Command="git rev-parse HEAD" WorkingDirectory="$(MSBuildThisFileDirectory)" ConsoleToMSBuild="true" IgnoreExitCode="true" StandardOutputImportance="low">
       <Output TaskParameter="ConsoleOutput" PropertyName="Z4GitTip" />
     </Exec>
-    <GetFileHash Files="$(MSBuildThisFileDirectory)..\code\composition.h" Algorithm="SHA256">
-      <Output TaskParameter="Items" ItemName="Z4CompItem" />
-    </GetFileHash>
     <PropertyGroup>
-      <Z4CompSha>%(Z4CompItem.FileHash)</Z4CompSha>
+      <Z4GitTipClean>$([System.String]::Copy('$(Z4GitTip)').Trim())</Z4GitTipClean>
     </PropertyGroup>
-    <WriteLinesToFile File="$(IntermediateOutputPath)z4_build_info.txt" Overwrite="true" Lines="tip=$(Z4GitTip);composition_sha256=$(Z4CompSha)" />
+    <!-- Normalized (CRLF to LF) composition.h hash. Raw autocrlf bytes are recorded beside it. -->
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\tools\z4_stamp_build_info.ps1&quot; -Header &quot;$(MSBuildThisFileDirectory)..\code\composition.h&quot; -OutFile &quot;$(IntermediateOutputPath)z4_build_info.txt&quot; -Tip &quot;$(Z4GitTipClean)&quot;" />
     <MakeDir Directories="$(TargetDir)" />
     <Copy SourceFiles="$(IntermediateOutputPath)z4_build_info.txt" DestinationFiles="$(TargetDir)z4_build_info.txt" SkipUnchangedFiles="false" />
   </Target>

@@ -3,9 +3,8 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
-  xmlns:desktop6="http://schemas.microsoft.com/appx/manifest/desktop/windows10/6"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap uap5 desktop6 rescap">
+  IgnorableNamespaces="uap uap5 rescap">
 
   <Identity
     Name="MotionSoftDemo"
@@ -46,15 +45,6 @@
             <uap5:ExecutionAlias Alias="MotionSoftDemo.exe" />
           </uap5:AppExecutionAlias>
         </uap5:Extension>
-        <!-- These two trees are not redirected into the package LocalCache. -->
-        <desktop6:Extension Category="windows.fileSystemWriteVirtualization">
-          <desktop6:FileSystemWriteVirtualization>
-            <desktop6:ExcludedDirectories>
-              <desktop6:ExcludedDirectory>%USERPROFILE%\motion_framework\z4</desktop6:ExcludedDirectory>
-              <desktop6:ExcludedDirectory>%LOCALAPPDATA%\MotionSoftDemoZ4</desktop6:ExcludedDirectory>
-            </desktop6:ExcludedDirectories>
-          </desktop6:FileSystemWriteVirtualization>
-        </desktop6:Extension>
       </Extensions>
     </Application>
   </Applications>
