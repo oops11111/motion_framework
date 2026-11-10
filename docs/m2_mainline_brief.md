@@ -838,3 +838,12 @@
 - **2026-11-06 — Wave B：Z3a 彩排派工单（Claude）**
   - `docs/workbuddy_z3a_rehearsal_dispatch.md`：K93N3P8 上用现有 C ABI 桥和 M2-02 探针跑 Play → Retarget → Cancel 与 ETW 6 事件；**彩排不采数、不提交**，runner 会覆盖入库的 `artifacts/m2_02_*`，须先备份后还原；只回一行
   - 彩排通过后，由 pidan 开“开 API v0”另票
+
+- **2026-11-10 22:35 AWST — pidan 书面「确认」五条裁定（再确认 2026-11-06 已落口径；协调落盘）**
+  - L1 合同冻结仍有效（LOCKED `77416e8b…3a0f`）；冻结 ≠ 合 main ≠ adopt；编码仍须另票
+  - Z4 DRAFT 路径与四条 INVALID 再确认；**仍 NOT LOCKED**；E1–E4 仍待裁决；L1 smoke ≠ PERF-CI
+  - 后端：C-interface / Z3a 先通；真实 WinRT Composition 后端仍为诚实非目标
+  - r4 条件采用 WP（`69094ee` / 0.3·T；实验分支 + 产品化模块默认开启；不合 main；非 API v0 默认）
+  - 两份预算 DRAFT 正式 SUPERSEDED 并入仓加横幅（文首前 sha `49bbc975…` / `e10bf9e5…`）；勿再 LOCK / 采数；PERF-CI 仍 HOLD
+  - Z1：B/C 真名仍待 pidan；A=MotionSoftDemo 只作内部狗粮（33/50），不当试点赢家
+  - 主文档：`docs/Z_SERIES_CONVERGE.md`；采用记录：`docs/m3_matrix_pacing_r4_adoption.md`

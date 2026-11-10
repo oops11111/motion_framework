@@ -1,5 +1,7 @@
 # M3 下一票决断（M3-MATRIX-PACING r4 CLOSED RIVE-MATRIX-PACING-PASS · 全判据绿 · Success≠adopt · 不合 main · PERF-CI HOLD）
 
+> **已裁定（pidan）**：2026-11-06 条件采用 WP + 两份预算 DRAFT **SUPERSEDED**；2026-11-10 22:35 AWST 书面再确认。权威记录：`docs/m3_matrix_pacing_r4_adoption.md`、`docs/Z_SERIES_CONVERGE.md`。下文开放问题 1 / 3 / 4 / 5 已关闭；**不合 main**（问题 2 默认仍否）；PERF-CI **仍 HOLD**。本文保留为当时 next 快照，不以本文作现行权威。
+
 > DECISION_AT=2026-11-06 11:58:00 AWST（Australia/Perth（AWST，UTC+8））  
 > 依据：`docs/m3_matrix_pacing_r4_close_pack.md`；`docs/m3_matrix_pacing_r4_result.md`；gate MATCH `81fc74ebba270feb818646cd5f5c8c90fd2d3812c3447c642ed126413108934c`  
 > tip/results：`e94600332307e4482cf0ff91d4e16d3b60deefc5` / `6b7a290864ef58ff8b908f8d46532e449c8e4530` @ `claude/m3-matrix`  

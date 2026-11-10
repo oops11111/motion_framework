@@ -9,6 +9,7 @@ APPROVED_AT: ＿＿＿＿
 
 > 起草：Claude，2026-11-06。Wave A 中 Z2 的配套文件（`docs/Z_SERIES_CONVERGE.md` 待办“Wave A 还差 Z4 ETW/L1 smoke DRAFT”）。依据：`docs/api_surface_m2_alpha_contract_DRAFT.md`（L1 = `MotionSystem` / `AnimationHandle` / `MotionTokens`，三张表）、`docs/m2_02_gate_LOCKED.md` 与 `docs/m2_02_result.md`（M2-02 已在 K93N3P8 上跑通 L1 smoke 与 ETW 最小 6 事件，当时名字是 `MotionEngine`）、`MotionSoftDemo/MotionEtw.cs`。
 > 定位：L1 冻结并实现之后、交给试点之前的真机冒烟。**不是 PERF-CI**（不判帧预算）；与 M3 的 Rive 预算无关；不涉及 `RiveView` / `PointerFollow`。
+> **pidan 再确认**：2026-11-10 22:35 AWST（Australia/Perth）书面确认本 DRAFT 路径与四条 INVALID / 边界句。**仍 NOT LOCKED**；**不授权采数 / 真机**；G3 的 E1–E4 **仍待裁决**（本次确认 ≠ 关闭 E1–E4）。
 
 ## G0 硬边界
 Success ≠ adopt；不合 main；不改 `composition.h`；无 LOCK + APPROVED 不采数；PERF-CI 仍 HOLD；不解冻 Bv；不重开 S1 / R-3 / R-2；禁影子 IV；Y4（`docs/COORDINATION.md`）；不把 PACING r4 的 0.3·T 写成 API 默认。

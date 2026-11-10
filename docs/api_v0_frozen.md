@@ -1,6 +1,7 @@
 # API v0 freeze rules — **L1 FROZEN**
 
 - **STATUS:** **API v0 L1 FROZEN** — pidan 「冻结 API v0 L1」, 2026-11-06 16:32:43 AWST (Australia/Perth)
+- **Reaffirmed:** pidan 「确认」 2026-11-10 22:35 AWST (Australia/Perth); the freeze itself remains the 2026-11-06 LOCKED snapshot. Caveats unchanged: freeze = L1 contract only (`MotionSystem` / `AnimationHandle` / `MotionTokens`; RiveView / PointerFollow on separate tickets; no default 0.3·T; three tables + honest non-goals). Coding still needs a separate 「开 API v0」 ticket; not merged to `main`; Success≠adopt.
 - **Frozen contract:** `docs/api_surface_m2_alpha_contract_LOCKED.md`, GATE_BODY_SHA256=`77416e8bbc700238b42a940a2f93d4466edec1ebd79352b007f86c267a663a0f`
 - **Frozen surface:** `MotionSystem` / `AnimationHandle` / `MotionTokens` only (RiveView / PointerFollow parked on separate tickets; PACING r4 0.3·T is not an API default)
 - **Changelog:** `docs/api_changelog.md`
