@@ -141,8 +141,8 @@ public sealed partial class MainPage
         bool g1 = false, g2 = false, g3 = false, g4 = false, g5 = false, g6 = false;
         int retargets = 0, jumpFails = 0, idleEvents = 0, crossHits = 0, framesToStop = -1, callbacksIn5s = -1;
         var sessionDtMs = new List<double>();
-        double frameMaxStep = 0, frameMaxDt = 0, probeMaxStep = 0;
-        int frameMaxIndex = -1;
+        var continuitySteps = new Z4FrameSteps();
+        double probeMaxStep = 0;
         string badDiagnostic = "";
         var categories = new List<string>();
         bool cancelSeen = false, releaseContinued = false;
@@ -195,6 +195,7 @@ public sealed partial class MainPage
                 long prevFrameTs = 0;
                 double prevFrameX = double.NaN;
                 int frameWatch = 0;
+                bool inContinuity = false;
                 var watchedFrames = new List<string>();
                 onRendering = (_, __) =>
                 {
@@ -216,11 +217,16 @@ public sealed partial class MainPage
                     catch { }
                     if (!double.IsNaN(prevFrameX) && !double.IsNaN(x)) step = Math.Abs(x - prevFrameX);
                     if (dtMs > 0) sessionDtMs.Add(dtMs);
-                    if (!double.IsNaN(step) && step >= frameMaxStep)
+                    if (inContinuity)
                     {
-                        frameMaxStep = step;
-                        frameMaxDt = dtMs;
-                        frameMaxIndex = renders;
+                        int beforeFails = continuitySteps.FailCount;
+                        continuitySteps.Observe(renders, dtMs, step);
+                        if (continuitySteps.FailCount > beforeFails)
+                        {
+                            Write("FRAME_STEP n=" + renders.ToString(CultureInfo.InvariantCulture)
+                                + " dt_ms=" + F(dtMs) + " x=" + F(x) + " vel=" + F(vel)
+                                + " step=" + F(step) + " limit=" + F(Z4SessionCore.MaxFrameStepDip, 0));
+                        }
                     }
                     if (frameWatch > 0)
                     {
@@ -276,8 +282,8 @@ public sealed partial class MainPage
                 bool started = false;
                 async Task<bool> Retarget(AnimationHandle anim, double to, string tag, string category)
                 {
-                    // maxStep stays the poll delta Evaluate already uses. FRAME lines are the
-                    // CompositionTarget callbacks in this window and do not decide pass/fail.
+                    // pollMaxStep is the Task.Delay sample sum. It does not decide ②.
+                    // Every OnFrame while inContinuity does, including frames past this 8-line log cap.
                     watchedFrames.Clear();
                     frameWatch = 8;
                     var beforeSample = system.Current(BoxId, "offsetX");
@@ -316,18 +322,20 @@ public sealed partial class MainPage
                     frameWatch = 0;
                     Z4Continuity c = Z4SessionCore.Evaluate(before, velB, after, velA, to, steps);
                     if (c.MaxStep > probeMaxStep) probeMaxStep = c.MaxStep;
-                    if (!api || !c.Ok) jumpFails++;
+                    bool handoffOk = api && c.JumpOk && c.VelOk && c.NoTeleport;
+                    if (!handoffOk) jumpFails++;
                     if (!categories.Contains(category)) categories.Add(category);
                     Write("RETARGET tag=" + tag + " cat=" + category + " api=" + api
                         + " before=" + F(before) + " after=" + F(after) + " to=" + F(to, 1)
                         + " velB=" + F(velB) + " velA=" + F(velA) + " velSource=current_before_retarget"
                         + " jump=" + F(c.Jump) + " dynTol=" + F(c.DynTol)
-                        + " maxStep=" + F(c.MaxStep) + " ok=" + c.Ok);
+                        + " pollMaxStep=" + F(c.MaxStep) + " handoffOk=" + handoffOk);
                     foreach (string poll in polls) Write(poll);
                     foreach (string frame in watchedFrames) Write(frame);
-                    return api && c.Ok;
+                    return handoffOk;
                 }
 
+                inContinuity = true;
                 started = await Retarget(animA, 240, "R0_start", "same_prop");
                 await Task.Delay(120);
                 NoteThread();
@@ -348,6 +356,15 @@ public sealed partial class MainPage
                 await Retarget(animB, 160, "R6_same_prop", "same_prop");
                 await Task.Delay(80);
                 NoteThread();
+                inContinuity = false;
+                jumpFails += continuitySteps.FailCount;
+                Write("CONTINUITY_FRAMES observed=" + continuitySteps.Observed.ToString(CultureInfo.InvariantCulture)
+                    + " max_frame_step_dip=" + F(continuitySteps.MaxStep)
+                    + " dt_ms=" + F(continuitySteps.MaxDtMs)
+                    + " index=" + continuitySteps.MaxIndex.ToString(CultureInfo.InvariantCulture)
+                    + " frame_step_fails=" + continuitySteps.FailCount.ToString(CultureInfo.InvariantCulture)
+                    + " frame_step_limit_dip=" + F(Z4SessionCore.MaxFrameStepDip, 0)
+                    + " probe_max_step_dip=" + F(probeMaxStep));
                 var beforeRelease = system.Current(BoxId, "offsetX");
                 double rel0 = beforeRelease is MotionSample r0 ? r0.Value : double.NaN;
                 animB.Release();
@@ -427,7 +444,7 @@ public sealed partial class MainPage
                 bool categoriesOk = categories.Contains("mid_interrupt") && categories.Contains("same_prop") && categories.Contains("cross_anim");
                 g1 = pointer && goodErr == null && enter.Id != 0 && started && retargets >= 5 && categoriesOk && cancelSeen && releaseContinued;
                 g2 = jumpFails == 0 && retargets >= 5;
-                Write("FRAME_SUMMARY " + FrameSummaryText(sessionDtMs, frameMaxStep, frameMaxDt, frameMaxIndex, probeMaxStep));
+                Write("FRAME_SUMMARY " + FrameSummaryText(sessionDtMs, continuitySteps, probeMaxStep));
                 Write("G2 g1=" + g1 + " g2=" + g2 + " g3=" + g3 + " g4=" + g4 + " g5=" + g5
                     + " retargets=" + retargets.ToString(CultureInfo.InvariantCulture)
                     + " jumpFails=" + jumpFails.ToString(CultureInfo.InvariantCulture)
@@ -496,12 +513,13 @@ public sealed partial class MainPage
                 {
                     ["pass"] = g2,
                     ["jumpFails"] = jumpFails,
-                    ["max_frame_step_dip"] = Z4SessionCore.MaxFrameStepDip,
-                    ["max_frame_step_dip_is"] = "locked_limit",
+                    ["max_frame_step_dip"] = continuitySteps.MaxStep,
+                    ["max_frame_step_dt_ms"] = continuitySteps.MaxDtMs,
+                    ["max_frame_step_index"] = continuitySteps.MaxIndex,
+                    ["frame_steps_observed"] = continuitySteps.Observed,
+                    ["frame_step_fails"] = continuitySteps.FailCount,
+                    ["frame_step_limit_dip"] = Z4SessionCore.MaxFrameStepDip,
                     ["probe_max_step_dip"] = probeMaxStep,
-                    ["frame_max_step_dip"] = frameMaxStep,
-                    ["frame_max_step_dt_ms"] = frameMaxDt,
-                    ["frame_max_step_index"] = frameMaxIndex,
                     ["frame_dt_ms"] = FrameDtSummary(sessionDtMs),
                     ["dynTol"] = "max(2, |vel|*0.040+1)",
                 },
@@ -699,10 +717,10 @@ public sealed partial class MainPage
         };
     }
 
-    static string FrameSummaryText(List<double> dts, double frameMaxStep, double frameMaxDt, int frameMaxIndex, double probeMaxStep)
+    static string FrameSummaryText(List<double> dts, Z4FrameSteps frames, double probeMaxStep)
     {
         if (dts.Count == 0)
-            return "n=0 probe_max_step=" + frameMaxStep.ToString("F4", CultureInfo.InvariantCulture);
+            return "n=0 probe_max_step=" + probeMaxStep.ToString("F4", CultureInfo.InvariantCulture);
         var ordered = dts.OrderBy(v => v).ToList();
         string N(double v) => v.ToString("F3", CultureInfo.InvariantCulture);
         return "n=" + ordered.Count.ToString(CultureInfo.InvariantCulture)
@@ -711,10 +729,11 @@ public sealed partial class MainPage
             + " dt_ms_p95=" + N(Percentile(ordered, 0.95))
             + " dt_ms_max=" + N(ordered[^1])
             + " dt_ms_mean=" + N(dts.Average())
-            + " frame_max_step=" + frameMaxStep.ToString("F4", CultureInfo.InvariantCulture)
-            + " frame_max_dt_ms=" + N(frameMaxDt)
-            + " frame_max_index=" + frameMaxIndex.ToString(CultureInfo.InvariantCulture)
-            + " probe_max_step=" + probeMaxStep.ToString("F4", CultureInfo.InvariantCulture);
+            + " max_frame_step_dip=" + frames.MaxStep.ToString("F4", CultureInfo.InvariantCulture)
+            + " max_frame_step_dt_ms=" + N(frames.MaxDtMs)
+            + " max_frame_step_index=" + frames.MaxIndex.ToString(CultureInfo.InvariantCulture)
+            + " frame_steps_observed=" + frames.Observed.ToString(CultureInfo.InvariantCulture)
+            + " probe_max_step_dip=" + probeMaxStep.ToString("F4", CultureInfo.InvariantCulture);
     }
 
     static double Percentile(IReadOnlyList<double> ordered, double p)

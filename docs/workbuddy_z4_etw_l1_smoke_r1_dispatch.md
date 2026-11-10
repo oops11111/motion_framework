@@ -10,7 +10,7 @@
 
 ## Declared collection tip
 
-The declared collection tip is the commit that contains this file, `docs/workbuddy_z4_etw_l1_smoke_r1_dispatch.md`, on `claude/z3a-cabi-l1`. After this fix push that commit is HEAD. `0d91255e36e16c6f9e4d292b4e0acf02fbb230e1` is the previous fix and is not the collection tip. Confirm before building:
+The declared collection tip is the commit that contains this file, `docs/workbuddy_z4_etw_l1_smoke_r1_dispatch.md`, on `claude/z3a-cabi-l1`. After this fix push that commit is HEAD. `b3f25d5a523f181a769e034de2fe56e3e797eed5` is the previous fix and is not the collection tip. Confirm before building:
 
 ```powershell
 git rev-parse HEAD
@@ -44,7 +44,7 @@ G2 numbers are the locked gate, not a renumbering:
 | Locked G2 | What the session checks |
 |---|---|
 | ① L1 sequence | `MotionSystem` create, one bad token file whose diagnostic contains a JSON Pointer (`/bogus`), `MotionTokens` load of `demo_motion.json`, `CreateAnimation`, `Play`, `Retarget` ≥ 5 covering a mid-play interrupt, a same-property retarget, and a cross-animation switch, then `Cancel`, then `Release` with motion continuing |
-| ② Continuity | every measured `Retarget` continues from `Current`. `dynTol = max(2, abs(vel)*0.040+1)` DIP, no teleport onto the new target, frame step < 80 DIP, `jumpFails = 0` |
+| ② Continuity | every measured `Retarget` continues from `Current`. `dynTol = max(2, abs(vel)*0.040+1)` DIP, no teleport onto the new target, and every consecutive `OnFrame` step in the continuity window is < 80 DIP. `jumpFails = 0`. The `Task.Delay` poll sum is diagnostic only |
 | ③ Reduced motion | in-flight animation snaps to the end; a `Retarget` while reduced motion is on lands on the target with velocity 0 |
 | ④ Idle | after animations end, the frame source stops within ≤ 2 frames, then 0 frame callbacks for 5 s, and `IdleTransition` ≥ 1 |
 | ⑤ Thread | `CrossThreadHits = 0` (creating UI thread only) |
@@ -56,7 +56,12 @@ Spring used by the session: response 0.32 s, damping 0.78 (`demo_motion.json` `s
 
 `FrameTick` payload, in write order: `sessionId`, `deltaUs`, `engineTickUs`, `activeCount`. `deltaUs` is the second field. It is microseconds from the end of the previous `OnFrame` to the end of this one (`Stopwatch` after `fm_on_frame` returns). A steady 30000–32000 is a ~31 ms callback, not a dropped frame. `engineTickUs` is only the time inside `fm_on_frame`. The same fields are on `FrameTickAccept` (event id 103, emitted every 8th tick). Read a packaged trace the same way. Nothing in the packaged or loose-layout path changes the clock or the frame source; both subscribe to `CompositionTarget.Rendering`.
 
-`verdict.json` `g2.2.max_frame_step_dip` is the locked limit 80. It is not the measured step and it is not clamped. The measured poll delta is `probe_max_step_dip`. `frame_max_step_dip` is the largest `|ΔCurrent|` between consecutive `OnFrame` callbacks and does not decide pass/fail. `frame_dt_ms` is that session's callback spacing (min, p50, p95, max, mean). The pass/fail value is still the poll: `Current` immediately after `Retarget`, then five `Task.Delay(16)` reads. `Current` does not move between callbacks, so one poll that covers two callbacks reports the sum. The limits stay `step < 80` and `dynTol = max(2, |vel|*0.040+1)`. `velB` on the `RETARGET` line is `Current` immediately before `Retarget`, which is the same sample the Retarget ETW velocity field writes. `|vel|` of 17.467 produces `17.467*0.040+1 = 1.70`, and the floor makes `dynTol` 2.0.
+Ruling, pidan via the coordinator, 2026-11-11 06:24 AWST. Two points. The thresholds are unchanged: frame step `< 80` DIP, and `dynTol = max(2, |vel|*0.040+1)`.
+
+1. G2② uses option 2. Pass/fail for the step is `|Current|` between consecutive `OnFrame` callbacks, from the first `Retarget` through the delay after `R6`. Every callback in that window counts. The `FRAME` log lines stay capped at 8 per retarget; a step that misses the limit is still logged as `FRAME_STEP` and still counted. `g2.2.max_frame_step_dip` is that measured maximum. `g2.2.max_frame_step_dt_ms` is the callback gap of that same frame. `g2.2.frame_step_limit_dip` is 80. `g2.2.probe_max_step_dip` is the old `Task.Delay(16)` poll sum and does not affect `pass` or `jumpFails`. Handoff `dynTol`, velocity, and no-teleport checks are unchanged. `velB` is `Current` immediately before `Retarget`, the same sample as the Retarget ETW velocity. `|vel|` of 17.467 produces `17.467*0.040+1 = 1.70`, and the floor makes `dynTol` 2.0. The same rule applies to unpackaged and packaged sessions.
+2. The packaged session is the Developer Mode loose layout below (`Z4LooseLayout`, then `Add-AppxPackage -Register`). A registered loose layout has package identity (`packaged=true`, `package_full_name` set, `SignatureKind=None`). The signed MSIX plus a `LocalMachine\TrustedPeople` import is optional and is not required for the packaged session.
+
+`frame_dt_ms` in the same object is the session's callback spacing (min, p50, p95, max, mean), including callbacks outside the continuity window. It does not decide ②.
 
 `verdict.json` `status` is `PASS` only when ①–⑥ all pass and no INVALID reason is set. `FAIL` means the session ran and a criterion missed. `INVALID` means the session must not be counted.
 
@@ -157,11 +162,24 @@ MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\MotionSoftDemo.
 
 The process stays up until `dotnet-trace` finishes its 50 s capture (`--duration 00:00:50`), then writes `verdict.json` and closes. Repeat from a new console for the next session. Unpackaged writes are not virtualized; `resolved_outdir` is the directory you passed.
 
-## Packaged build, cert, install, run, collect
+## Packaged session: Developer Mode loose layout
+
+This is the packaged session for the gate. Developer Mode must be on. The build does not sign and does not produce an MSIX. `Add-AppxPackage -Register` gives the process package identity with `SignatureKind=None`. `GetCurrentPackageFullName` succeeds, so the session records `packaged=true` and a non-empty `package_full_name`. No `LocalMachine` cert import and no UAC prompt.
 
 Placeholder logos are `MotionSoftDemo\Assets\StoreLogo.png` (50×50), `Square44x44Logo.png` (44×44), `Square150x150Logo.png` (150×150), `Wide310x150Logo.png` (310×150), and `SplashScreen.png` (620×300). Identity publisher is `CN=MotionSoftDemo Z4 Dev`. The manifest is `MotionSoftDemo\Package.appxmanifest`. `MinVersion` stays `10.0.17763.0`, which covers Win10 19045 and Win11. The manifest has no `desktop6` filesystem-virtualization extension; that category is not in the Win10 19045 MakeAppx allow-list (`windows.service`, `windows.mutablePackageDirectories`, `windows.customInstall`) and fails with C00CE169 / 0x80080204. The manifest is not used by the default unpackaged build.
 
-`mspdbcmf.exe` converts PDBs for the Store symbol package (`.appxsym`). It is not used to compile, sign, install, or run the MSIX. The project sets `AppxSymbolPackageEnabled=false` for the MSIX build so a missing `mspdbcmf.exe` does not fail the package. Pass the same property on the command line as well.
+```powershell
+dotnet build MotionSoftDemo\MotionSoftDemo.csproj -c Debug -p:Platform=x64 -p:Z4LooseLayout=true -p:AppxPackageSigningEnabled=false -p:GenerateAppxPackageOnBuild=false -p:AppxSymbolPackageEnabled=false
+$layout = "MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64"
+$manifest = Get-ChildItem -Path $layout -Filter AppxManifest.xml -Recurse | Select-Object -First 1
+Add-AppxPackage -Register $manifest.FullName
+```
+
+On K93 the layout wrote `AppxManifest.xml` directly in that `win-x64` directory, not in an `AppX` subdirectory. The search above registers whichever of those the build produced. `Add-AppxPackage -Register` can warn `0x8007010B` (`ERROR_DIRECTORY`) on the `AppExecutionAlias`. That warning is the alias directory at register time. The alias `MotionSoftDemo.exe` still launches; do not treat the warning as a failed registration.
+
+## Optional signed MSIX
+
+Not required for the packaged session. Use it only when a signed container is wanted. `mspdbcmf.exe` converts PDBs for the Store symbol package (`.appxsym`). It is not used to compile, sign, install, or run. The project sets `AppxSymbolPackageEnabled=false` for an MSIX build so a missing `mspdbcmf.exe` does not fail the package. Pass the same property on the command line as well.
 
 Do not reuse the cert that failed APPX0107 (thumbprint `8FD7A7D4…89F2`). Create a new one. Subject must be exactly the manifest Publisher. EKU is code signing `1.3.6.1.5.5.7.3.3`, basic constraints are not a CA, the key is exportable, and `KeySpec Signature` uses the legacy CSP so Win10 19045 can import a pfx (APPX0105). The pfx lives outside the repo.
 
@@ -199,22 +217,7 @@ Start-Process powershell -Verb RunAs -Wait -ArgumentList "-NoProfile -Command Im
 Add-AppxPackage -Path <path-to-signed.msix>
 ```
 
-Loose layout, no machine trust. This is the path that avoids UAC. Developer Mode must be on. The build does not sign and does not produce an MSIX; it lays the package out for `Add-AppxPackage -Register`.
-
-```powershell
-dotnet build MotionSoftDemo\MotionSoftDemo.csproj -c Debug -p:Platform=x64 -p:Z4LooseLayout=true -p:AppxPackageSigningEnabled=false -p:GenerateAppxPackageOnBuild=false -p:AppxSymbolPackageEnabled=false
-$layout = "MotionSoftDemo\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64"
-$manifest = Get-ChildItem -Path $layout -Filter AppxManifest.xml -Recurse | Select-Object -First 1
-Add-AppxPackage -Register $manifest.FullName
-```
-
-On K93 the layout wrote `AppxManifest.xml` directly in that `win-x64` directory, not in an `AppX` subdirectory. The search above registers whichever of those the build produced. `Add-AppxPackage -Register` can warn `0x8007010B` (`ERROR_DIRECTORY`) on the `AppExecutionAlias`. That warning is the alias directory at register time. The alias `MotionSoftDemo.exe` still launches; do not treat the warning as a failed registration.
-
-A loose-registered app has package identity. `GetCurrentPackageFullName` succeeds, so the session records `packaged=true` and a non-empty `package_full_name`. It is a packaged process in that sense. It is not a signed MSIX container. The coordinator decides whether that identity satisfies the gate's packaged session. Do not claim it is a signed sideload.
-
-The signed `Add-AppxPackage` path after the LocalMachine trust import is the other option. Use one of them for the packaged session on each machine.
-
-The manifest registers the execution alias `MotionSoftDemo.exe`. Open a new console after install so the alias is on PATH. Launch one packaged session with the flag (the Start menu tile does not forward arguments):
+After the loose register above, the execution alias is `MotionSoftDemo.exe`. Open a new console so the alias is on PATH. Launch one packaged session with the flag (the Start menu tile does not forward arguments). A signed MSIX, if you built the optional path, uses this same alias:
 
 ```bat
 MotionSoftDemo.exe --z4-l1-session %USERPROFILE%\motion_framework\z4\results_etw_l1_smoke_r1\K93N3P8\s3-packaged

@@ -46,12 +46,24 @@ static int SelfTest()
     double p0 = SpringPos(0);
     double p33 = SpringPos(0.033);
     double p66 = SpringPos(0.066);
-    var oneFrame = Z4SessionCore.Evaluate(p0, u1Vel, p0, u1Vel, 40, new[] { p33, p66 });
-    Ok(oneFrame.SeqOk && oneFrame.MaxStep < 80 && oneFrame.MaxStep > 50 && oneFrame.MaxStep < 60,
-        "successive 33 ms spring samples stay under the locked 80");
+    var frames = new Z4FrameSteps();
+    frames.Observe(1, 33, Math.Abs(p33 - p0));
+    frames.Observe(2, 33, Math.Abs(p66 - p33));
+    Ok(frames.SeqOk && frames.MaxStep > 50 && frames.MaxStep < 60 && frames.Observed == 2,
+        "consecutive 33 ms OnFrame steps pass the locked 80");
+    var limit = new Z4FrameSteps();
+    limit.Observe(1, 33, 79.9);
+    limit.Observe(2, 33, 80.0);
+    Ok(limit.FailCount == 1 && !limit.SeqOk && limit.MaxStep == 80 && limit.MaxDtMs == 33,
+        "an OnFrame step of 80 fails and keeps its dt");
+    var many = new Z4FrameSteps();
+    for (int i = 1; i <= 12; i++) many.Observe(i, 31, 10);
+    many.Observe(13, 31, 90);
+    Ok(many.Observed == 13 && many.FailCount == 1 && many.MaxStep == 90 && many.MaxIndex == 13,
+        "frame steps past the 8-line log cap still count");
     var collapsed = Z4SessionCore.Evaluate(p0, u1Vel, p0, u1Vel, 40, new[] { p66 });
     Ok(!collapsed.SeqOk && collapsed.MaxStep >= 80 && collapsed.MaxStep < 90,
-        "one poll spanning 66 ms fails the locked 80 without changing it");
+        "a 66 ms poll sum is diagnostic and is not the ② step");
 
     string argsLine = Z4SessionCore.TraceArguments(4242, @"C:\s\trace.nettrace");
     Ok(argsLine.Contains("FluidMotion-Motion:0xFFFFFFFFFFFFFFFF:5", StringComparison.Ordinal)

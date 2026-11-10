@@ -60,6 +60,10 @@ public static class Z4SessionCore
     public static double DynTol(double velocityBefore) =>
         Math.Max(BaseJumpDip, Math.Abs(velocityBefore) * FrameSlackSec + 1.0);
 
+    /// <summary>
+    /// Handoff checks plus the poll-sum step. <see cref="Z4Continuity.SeqOk"/> describes that poll.
+    /// The session verdict's frame step is <see cref="Z4FrameSteps"/>, one OnFrame callback at a time.
+    /// </summary>
     public static Z4Continuity Evaluate(double before, double velocityBefore, double after, double velocityAfter, double target, IReadOnlyList<double> stepsAfter)
     {
         double jump = Math.Abs(after - before);
@@ -279,6 +283,33 @@ public static class Z4SessionCore
 public readonly record struct Z4BuildInfo(string Tip, string CompositionSha, string CompositionShaRaw);
 
 public readonly record struct Z4TextHash(string Raw, string Normalized);
+
+/// <summary>
+/// Every consecutive OnFrame step in the continuity window. The logged FRAME lines may be capped;
+/// this count is not. A step fails when it is not strictly below <see cref="Z4SessionCore.MaxFrameStepDip"/>.
+/// </summary>
+public sealed class Z4FrameSteps
+{
+    public double MaxStep { get; private set; }
+    public double MaxDtMs { get; private set; }
+    public int MaxIndex { get; private set; } = -1;
+    public int Observed { get; private set; }
+    public int FailCount { get; private set; }
+    public bool SeqOk => FailCount == 0;
+
+    public void Observe(int index, double dtMs, double step)
+    {
+        if (double.IsNaN(step)) return;
+        Observed++;
+        if (!(step < Z4SessionCore.MaxFrameStepDip)) FailCount++;
+        if (Observed == 1 || step >= MaxStep)
+        {
+            MaxStep = step;
+            MaxDtMs = dtMs;
+            MaxIndex = index;
+        }
+    }
+}
 
 public readonly record struct Z4Continuity(
     bool Ok,
