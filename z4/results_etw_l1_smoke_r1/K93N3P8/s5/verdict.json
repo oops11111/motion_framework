@@ -1,0 +1,77 @@
+{
+  "mode": "Z4",
+  "not_z3a_dev": true,
+  "perf_ci": "HOLD",
+  "gate": "docs/z4_etw_l1_smoke_gate_r1_LOCKED.md",
+  "gate_body_sha256": "acb89d1b0cb975e5d63ae2c6fc47adcbc74dddd959b63089b2546b692cadab14",
+  "status": "PASS",
+  "invalid_reasons": [],
+  "g2": {
+    "1_l1_sequence": {
+      "pass": true,
+      "bad_token_diagnostic": "/bogus: unknown key \u0027bogus\u0027 (allowed: $schema, $comment, version, durations, easing, springs, transitions)\n",
+      "retargets": 7,
+      "categories": [
+        "same_prop",
+        "mid_interrupt",
+        "cross_anim"
+      ],
+      "cancel": true,
+      "release_motion_continued": true
+    },
+    "2_continuity": {
+      "pass": true,
+      "jumpFails": 0,
+      "max_frame_step_dip": 59.30694151773841,
+      "max_frame_step_dt_ms": 30.6259,
+      "max_frame_step_index": 23,
+      "frame_steps_observed": 51,
+      "frame_step_fails": 0,
+      "frame_step_limit_dip": 80,
+      "probe_max_step_dip": 79.32506072134615,
+      "frame_dt_ms": {
+        "count": 88,
+        "min": 26.3233,
+        "p50": 31.274900000000002,
+        "p95": 32.238095,
+        "max": 77.9016,
+        "mean": 32.180117045454544
+      },
+      "dynTol": "max(2, |vel|*0.040\u002B1)"
+    },
+    "3_reduced_motion": {
+      "pass": true
+    },
+    "4_idle": {
+      "pass": true,
+      "frames_to_stop": 0,
+      "callbacks_in_5s": 0,
+      "idle_transition_events": 10
+    },
+    "5_thread": {
+      "pass": true,
+      "cross_thread_hits": 0
+    },
+    "6_etw": {
+      "pass": true,
+      "source": "eventpipe",
+      "trace": "C:\\Users\\admin\\mf_z3a\\z4\\results_etw_l1_smoke_r1\\K93N3P8\\s5\\trace.nettrace",
+      "collector": "process_alive_file_present",
+      "names_found": [
+        "AnimationLifecycle",
+        "Retarget",
+        "FrameTick",
+        "PresentStats",
+        "IdleTransition",
+        "TokenLoad"
+      ],
+      "runtime_eventsource_guid": "8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d",
+      "frozen_guid": "8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d",
+      "runtime_matches_frozen": true,
+      "name_hash_guid": "367c0a5e-9a10-5a09-16fb-80d0a4f845d8",
+      "trace_guid_status": "absent_from_metadata",
+      "trace_guid": "",
+      "guid_reason": ""
+    }
+  }
+}

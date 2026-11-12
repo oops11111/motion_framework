@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    DEV-ONLY runner for Z3A-CABI-L1. Not a Z4 session. Not PERF-CI. Not the WinUI app.
+    Do not import these sources into a second public host. The WinUI project compiles
+    the parent .cs files itself; this project exists so the smoke can be built without WinUI.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>MotionSoftDemo</RootNamespace>
+    <AssemblyName>z3a_l1_devsmoke</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="..\MotionSystem.cs" />
+    <Compile Include="..\MotionEtw.cs" />
+    <Compile Include="..\Z3aL1DevSmoke.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\code\capi\demo_motion.json" Link="demo_motion.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

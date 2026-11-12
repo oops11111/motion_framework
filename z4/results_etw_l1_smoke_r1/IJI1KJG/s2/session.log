@@ -1,0 +1,747 @@
+Z4=YES
+Z3A_DEV_ONLY=0
+PERF_CI=HOLD
+gate=docs/z4_etw_l1_smoke_gate_r1_LOCKED.md
+gate_body_sha256=acb89d1b0cb975e5d63ae2c6fc47adcbc74dddd959b63089b2546b692cadab14
+pid=18604
+machine=DESKTOP-IJI1KJG
+packaged=1 package=MotionSoftDemo_1.0.0.0_x64__zb6e6ksq6rq3m
+tip=fe59c6229784ee7712926e3e0f94bcc0187f9069
+composition_sha256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+composition_sha256_raw=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+composition_header=C:\Users\Lh\mf_z3a\code\composition.h
+RESOLVED_OUTDIR=C:\Users\Lh\AppData\Local\Packages\MotionSoftDemo_zb6e6ksq6rq3m\LocalState\z4\results_etw_l1_smoke_r1\IJI1KJG\s2
+REQUESTED_OUTDIR=C:\Users\Lh\mf_z3a\z4\results_etw_l1_smoke_r1\IJI1KJG\s2
+TRACE_PATH=C:\Users\Lh\AppData\Local\Packages\MotionSoftDemo_zb6e6ksq6rq3m\LocalState\z4\results_etw_l1_smoke_r1\IJI1KJG\s2\trace.nettrace
+provider=FluidMotion-Motion runtime_guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d frozen_guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d match=True name_hash_guid=367c0a5e-9a10-5a09-16fb-80d0a4f845d8
+TRACE Warning: --provider argument 8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d appears to be a GUID which is not supported by dotnet-trace. Providers need to be referenced by their textual name.
+TRACE Provider Name                           Keywords            Level               Enabled By
+TRACE FluidMotion-Motion                      0xFFFFFFFFFFFFFFFF  Verbose(5)          --providers
+TRACE 8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d    0xFFFFFFFFFFFFFFFF  Verbose(5)          --providers
+TRACE Process        : C:\Users\Lh\mf_z3a\_z4_loose_layout\MotionSoftDemo.exe
+TRACE Output File    : C:\Users\Lh\AppData\Local\Packages\MotionSoftDemo_zb6e6ksq6rq3m\LocalState\z4\results_etw_l1_smoke_r1\IJI1KJG\s2\trace.nettrace
+TRACE Trace Duration : 00:00:00:50
+ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose
+ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose
+ETW_EVENT name=TokenLoad id=6 level=Informational payload=79903572443580,bad_tokens.json,1,162
+BAD_TOKEN /bogus: unknown key 'bogus' (allowed: $schema, $comment, version, durations, easing, springs, transitions)
+
+ETW_EVENT name=TokenLoad id=6 level=Informational payload=79903572443580,motion.json,0,46
+TOKENS ok path=C:\Users\Lh\mf_z3a\_z4_loose_layout\demo_motion.json
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,1,1,demo.enter,Created
+ETW_EVENT name=IdleTransition id=5 level=Informational payload=79903572443580,1,1
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,1,1,demo.enter,Played
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,4938,181,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,4938,181,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,1686,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5613,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5535,11,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5437,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5641,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5466,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5662,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5494,18,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5494,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5625,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5494,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5689,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5506,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5533,35,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5598,33,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5557,41,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5550,37,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5550,37,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5490,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5581,34,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5557,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5539,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5512,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5516,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5569,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5633,25,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5633,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5670,109,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5489,32,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5690,34,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5398,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5571,36,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5812,41,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5242,35,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5608,34,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5608,34,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5526,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5463,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5573,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5485,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5630,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5515,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5535,11,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5688,15,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5688,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5423,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5576,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5648,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5554,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5506,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5601,35,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5512,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5578,18,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5578,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5694,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5456,33,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5544,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5556,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5515,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5713,34,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5397,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5567,25,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5567,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5611,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5575,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5499,32,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5537,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5619,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5585,36,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5618,48,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5476,37,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5476,37,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5511,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5543,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5640,35,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5498,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5583,39,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5568,32,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5550,34,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5570,47,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5570,47,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5655,43,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5395,61,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5573,29,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5560,32,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5518,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5511,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5480,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5541,11,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5541,11,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5611,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5496,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5577,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5534,7,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5757,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5364,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5536,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5579,17,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5579,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5528,10,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5682,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5499,11,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5518,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5668,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5498,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5551,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5556,14,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5556,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5516,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5682,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5442,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5552,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5540,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5599,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5591,20,1
+ETW_EVENT name=IdleTransition id=5 level=Informational payload=79903572443580,0,0
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5638,79,0
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5638,79,0
+ENTER id=1 running=False
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,2,1,,Created
+ETW_EVENT name=IdleTransition id=5 level=Informational payload=79903572443580,1,1
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,2,1,,Played
+ETW_EVENT name=Retarget id=2 level=Informational payload=79903572443580,2,offsetX,0,240,0.32,0.78,0,0
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,37953,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,752,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5601,10,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5497,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5621,11,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5547,8,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5583,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5554,16,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5554,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5540,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5641,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5446,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5517,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5662,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5496,8,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5539,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5567,14,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5567,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5561,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5595,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5531,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5594,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5605,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5512,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5619,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5520,19,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5520,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5520,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5563,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5509,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5576,16,1
+RETARGET tag=R0_start cat=same_prop api=True before=0.0000 after=0.0000 to=240.0 velB=0.0000 velA=0.0000 velSource=current_before_retarget jump=0.0000 dynTol=2.0000 pollMaxStep=64.5758 handoffOk=True
+POLL tag=R0_start i=0 dt_ms=1.5893 x=0.0000 vel=0.0000 step=0.0000
+POLL tag=R0_start i=1 dt_ms=26.0406 x=22.2537 vel=1550.9483 step=22.2537
+POLL tag=R0_start i=2 dt_ms=30.6429 x=74.1157 vel=2026.6331 step=51.8620
+POLL tag=R0_start i=3 dt_ms=31.0608 x=138.6915 vel=1755.8844 step=64.5758
+POLL tag=R0_start i=4 dt_ms=30.4602 x=181.3241 vel=1296.8929 step=42.6326
+POLL tag=R0_start i=5 dt_ms=31.0083 x=215.4302 vel=767.9041 step=34.1060
+FRAME n=106 dt_ms=38.0175 x=0.1683 vel=173.0207 step=0.1683
+FRAME n=107 dt_ms=0.7580 x=0.3242 vel=238.2907 step=0.1559
+FRAME n=108 dt_ms=5.6005 x=2.9166 vel=674.0446 step=2.5924
+FRAME n=109 dt_ms=5.4990 x=7.6274 vel=1027.7175 step=4.7108
+FRAME n=110 dt_ms=5.6193 x=14.2576 vel=1321.1805 step=6.6302
+FRAME n=111 dt_ms=5.5505 x=22.2537 vel=1550.9483 step=7.9961
+FRAME n=112 dt_ms=5.5742 x=31.4201 vel=1728.5865 step=9.1664
+FRAME n=113 dt_ms=5.5546 x=41.4030 vel=1858.8815 step=9.9829
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5527,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5543,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5563,11,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5547,20,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5547,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5600,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5734,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5398,49,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5544,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5536,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5542,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5550,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5520,14,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5520,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5684,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5482,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5572,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5514,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5504,10,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5555,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5612,5,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5674,27,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5674,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5393,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5631,16,1
+ETW_EVENT name=Retarget id=2 level=Informational payload=79903572443580,2,offsetX,244.63036897645742,40,0.32,0.78,0,-20.445439026678407
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5666,51,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5448,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5526,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5533,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5532,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5573,18,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5573,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5592,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5560,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5605,32,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5604,61,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5363,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5521,6,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5573,11,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5675,8,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5675,8,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5460,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5652,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5498,7,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5553,10,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5541,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5589,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5555,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5702,20,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5702,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5468,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5641,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5489,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5510,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5550,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5624,30,1
+RETARGET tag=R1_mid_interrupt cat=mid_interrupt api=True before=244.6304 after=244.5314 to=40.0 velB=-20.4454 velA=-25.0751 velSource=current_before_retarget jump=0.0990 dynTol=2.0000 pollMaxStep=53.9877 handoffOk=True
+POLL tag=R1_mid_interrupt i=0 dt_ms=0.0638 x=244.5314 vel=-25.0751 step=0.0000
+POLL tag=R1_mid_interrupt i=1 dt_ms=30.8999 x=219.6050 vel=-1442.4641 step=24.9264
+POLL tag=R1_mid_interrupt i=2 dt_ms=30.5256 x=173.9705 vel=-1727.7275 step=45.6345
+POLL tag=R1_mid_interrupt i=3 dt_ms=31.2390 x=119.9828 vel=-1440.4507 step=53.9877
+POLL tag=R1_mid_interrupt i=4 dt_ms=31.4568 x=79.7811 vel=-962.8216 step=40.2016
+POLL tag=R1_mid_interrupt i=5 dt_ms=30.3872 x=58.1847 vel=-603.0777 step=21.5964
+FRAME n=156 dt_ms=5.6317 x=244.4343 vel=-124.2200 step=0.1961
+FRAME n=157 dt_ms=5.4805 x=242.6896 vel=-501.2734 step=1.7447
+FRAME n=158 dt_ms=5.5287 x=239.0170 vel=-817.1689 step=3.6726
+FRAME n=159 dt_ms=5.5407 x=233.7491 vel=-1075.4930 step=5.2679
+FRAME n=160 dt_ms=5.5306 x=227.2083 vel=-1281.5183 step=6.5408
+FRAME n=161 dt_ms=5.5667 x=219.6050 vel=-1442.4641 step=7.6033
+FRAME n=162 dt_ms=5.5920 x=211.1847 vel=-1562.7795 step=8.4203
+FRAME n=163 dt_ms=5.5600 x=202.2473 vel=-1646.4774 step=8.9374
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5542,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5473,21,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5473,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5573,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5526,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5562,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5706,145,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5380,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5607,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5573,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5528,22,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5528,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5551,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5598,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5543,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5568,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5581,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5547,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5528,22,1
+ETW_EVENT name=Retarget id=2 level=Informational payload=79903572443580,2,offsetX,36.00625587853996,200,0.32,0.78,0,-17.6253819188211
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5531,22,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5531,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5553,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5514,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5515,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5551,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5569,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5633,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5554,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5566,23,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5566,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5528,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5613,35,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5558,26,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5563,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5471,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5599,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5562,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5561,22,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5561,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5622,40,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5492,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5623,26,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5431,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5540,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5562,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5553,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5608,24,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5608,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5524,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5581,29,1
+RETARGET tag=R2_same_prop cat=same_prop api=True before=36.0063 after=35.9903 to=200.0 velB=-17.6254 velA=-15.6545 velSource=current_before_retarget jump=0.0160 dynTol=2.0000 pollMaxStep=43.7897 handoffOk=True
+POLL tag=R2_same_prop i=0 dt_ms=0.0624 x=35.9903 vel=-15.6545 step=0.0000
+POLL tag=R2_same_prop i=1 dt_ms=30.8075 x=52.8286 vel=1096.2656 step=16.8383
+POLL tag=R2_same_prop i=2 dt_ms=30.3941 x=96.6184 vel=1380.3520 step=43.7897
+POLL tag=R2_same_prop i=3 dt_ms=31.0057 x=132.7089 vel=1183.3468 step=36.0906
+POLL tag=R2_same_prop i=4 dt_ms=30.7183 x=165.8834 vel=804.1809 step=33.1745
+POLL tag=R2_same_prop i=5 dt_ms=30.9074 x=184.0244 vel=509.7596 step=18.1410
+FRAME n=201 dt_ms=5.5315 x=36.5539 vel=255.7878 step=0.5477
+FRAME n=202 dt_ms=5.5645 x=38.7810 vel=536.0439 step=2.2271
+FRAME n=203 dt_ms=5.5097 x=42.3856 vel=764.5273 step=3.6046
+FRAME n=204 dt_ms=5.5169 x=47.1322 vel=949.4795 step=4.7467
+FRAME n=205 dt_ms=5.5525 x=52.8286 vel=1096.2656 step=5.6964
+FRAME n=206 dt_ms=5.5662 x=59.2585 vel=1208.3765 step=6.4299
+FRAME n=207 dt_ms=5.6323 x=66.3098 vel=1290.4464 step=7.0513
+FRAME n=208 dt_ms=5.5560 x=73.6409 vel=1344.4526 step=7.3311
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5649,45,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5463,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5535,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5509,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5594,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5622,32,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5622,32,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5560,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5511,26,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5550,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5746,61,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5358,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5558,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5616,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5531,29,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5531,29,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5543,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5535,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5674,39,1
+ETW_EVENT name=Retarget id=2 level=Informational payload=79903572443580,2,offsetX,203.15888637624013,80,0.32,0.78,0,18.728563904283554
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5502,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5495,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5577,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5502,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5762,83,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5762,83,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5385,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5529,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5591,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5527,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5563,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5513,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5578,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5611,27,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5611,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5504,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5544,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5572,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5577,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5478,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5583,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5574,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5507,14,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5507,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5584,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5525,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5510,7,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5607,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5505,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5573,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5586,18,1
+RETARGET tag=R3_same_prop cat=same_prop api=True before=203.1589 after=203.2073 to=80.0 velB=18.7286 velA=13.5609 velSource=current_before_retarget jump=0.0484 dynTol=2.0000 pollMaxStep=32.3907 handoffOk=True
+POLL tag=R3_same_prop i=0 dt_ms=0.0905 x=203.2073 vel=13.5609 step=0.0000
+POLL tag=R3_same_prop i=1 dt_ms=30.8895 x=187.5872 vel=-879.1658 step=15.6201
+POLL tag=R3_same_prop i=2 dt_ms=30.4420 x=159.9817 vel=-1040.1382 step=27.6055
+POLL tag=R3_same_prop i=3 dt_ms=31.2180 x=127.5910 vel=-862.2321 step=32.3907
+POLL tag=R3_same_prop i=4 dt_ms=30.9192 x=106.9601 vel=-622.8970 step=20.6309
+POLL tag=R3_same_prop i=5 dt_ms=30.6489 x=90.7655 vel=-359.6916 step=16.1946
+FRAME n=245 dt_ms=5.5113 x=203.0944 vel=-102.0587 step=0.0645
+FRAME n=246 dt_ms=5.4993 x=201.9011 vel=-325.3699 step=1.1934
+FRAME n=247 dt_ms=5.5738 x=199.5471 vel=-512.9300 step=2.3540
+FRAME n=248 dt_ms=5.5101 x=196.2905 vel=-663.8021 step=3.2565
+FRAME n=249 dt_ms=5.7030 x=192.1369 vel=-787.8089 step=4.1537
+FRAME n=250 dt_ms=5.4453 x=187.5872 vel=-879.1658 step=4.5497
+FRAME n=251 dt_ms=5.5301 x=182.5247 vel=-948.1296 step=5.0625
+FRAME n=252 dt_ms=5.5909 x=177.0786 vel=-996.5061 step=5.4461
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5602,20,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5602,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5563,26,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5544,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5549,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5533,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5551,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5552,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5536,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5639,38,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5639,38,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5564,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5543,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5513,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5600,29,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5529,26,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5506,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5493,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5733,11,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5733,11,1
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,2,1,,Cancelled
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,3,1,,Created
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,3,1,,Played
+ETW_EVENT name=Retarget id=2 level=Informational payload=79903572443580,3,offsetX,77.58273653092013,220,0.32,0.78,0,0
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5362,11,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5554,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5638,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5587,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5570,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5534,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5558,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5562,23,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5562,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5555,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5532,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5782,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5306,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5578,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5515,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5574,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5644,28,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5644,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5454,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5577,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5566,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5552,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5530,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5571,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5611,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5548,27,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5548,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5526,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5595,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5541,26,1
+RETARGET tag=R4_cross_anim cat=cross_anim api=True before=77.5827 after=77.5827 to=220.0 velB=0.0000 velA=0.0000 velSource=current_before_retarget jump=0.0000 dynTol=2.0000 pollMaxStep=38.2765 handoffOk=True
+POLL tag=R4_cross_anim i=0 dt_ms=0.0155 x=77.5827 vel=0.0000 step=0.0000
+POLL tag=R4_cross_anim i=1 dt_ms=30.0379 x=92.8989 vel=966.2066 step=15.3162
+POLL tag=R4_cross_anim i=2 dt_ms=31.1176 x=131.1754 vel=1196.8254 step=38.2765
+POLL tag=R4_cross_anim i=3 dt_ms=30.0488 x=162.2298 vel=1021.7457 step=31.0544
+POLL tag=R4_cross_anim i=4 dt_ms=30.8730 x=190.8063 vel=692.1269 step=28.5765
+POLL tag=R4_cross_anim i=5 dt_ms=30.4270 x=206.4033 vel=437.5179 step=15.5970
+FRAME n=290 dt_ms=5.3621 x=78.1971 vel=247.0671 step=0.6099
+FRAME n=291 dt_ms=5.5564 x=80.2541 vel=485.8531 step=2.0570
+FRAME n=292 dt_ms=5.6322 x=83.5694 vel=684.3812 step=3.3153
+FRAME n=293 dt_ms=5.5830 x=87.8491 vel=842.5313 step=4.2797
+FRAME n=294 dt_ms=5.5671 x=92.8989 vel=966.2066 step=5.0498
+FRAME n=295 dt_ms=5.5329 x=98.5158 vel=1059.3954 step=5.6168
+FRAME n=296 dt_ms=5.5652 x=104.6098 vel=1126.8764 step=6.0940
+FRAME n=297 dt_ms=5.5557 x=111.0048 vel=1171.3788 step=6.3950
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5569,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5506,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5584,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5514,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5682,28,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5682,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5473,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5548,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5610,29,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5543,59,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5512,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5534,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5703,33,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5525,30,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5525,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5538,34,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5509,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5505,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5873,45,1
+ETW_EVENT name=Retarget id=2 level=Informational payload=79903572443580,3,offsetX,222.75540039099337,30,0.32,0.78,0,15.040594289674212
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5226,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5549,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5722,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5446,25,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5446,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5598,29,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5493,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5585,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5589,34,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5557,32,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5508,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5514,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5536,16,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5536,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5574,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5560,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5545,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5614,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5494,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5607,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5515,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5593,28,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5593,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5467,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5635,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5475,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5724,62,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5681,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5344,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5544,28,1
+RETARGET tag=R5_mid_interrupt cat=mid_interrupt api=True before=222.7554 after=222.7710 to=30.0 velB=15.0406 velA=13.3900 velSource=current_before_retarget jump=0.0156 dynTol=2.0000 pollMaxStep=51.0867 handoffOk=True
+POLL tag=R5_mid_interrupt i=0 dt_ms=0.0929 x=222.7710 vel=13.3900 step=0.0000
+POLL tag=R5_mid_interrupt i=1 dt_ms=30.1633 x=203.2212 vel=-1283.3504 step=19.5498
+POLL tag=R5_mid_interrupt i=2 dt_ms=30.1436 x=152.1346 vel=-1623.4622 step=51.0867
+POLL tag=R5_mid_interrupt i=3 dt_ms=30.9566 x=109.5315 vel=-1394.6763 step=42.6031
+POLL tag=R5_mid_interrupt i=4 dt_ms=30.5991 x=70.3721 vel=-949.0893 step=39.1594
+POLL tag=R5_mid_interrupt i=5 dt_ms=30.6930 x=48.9785 vel=-602.8801 step=21.3936
+FRAME n=334 dt_ms=5.2434 x=222.2121 vel=-277.0178 step=0.5433
+FRAME n=335 dt_ms=5.5578 x=219.7179 vel=-610.1471 step=2.4942
+FRAME n=336 dt_ms=5.7178 x=215.3964 vel=-891.5503 step=4.3215
+FRAME n=337 dt_ms=5.4457 x=209.9309 vel=-1107.8379 step=5.4655
+FRAME n=338 dt_ms=5.5940 x=203.2212 vel=-1283.3504 step=6.7096
+FRAME n=339 dt_ms=5.5001 x=195.7840 vel=-1415.0513 step=7.4372
+FRAME n=340 dt_ms=5.5810 x=187.5986 vel=-1512.3527 step=8.1854
+FRAME n=341 dt_ms=5.5830 x=178.9581 vel=-1577.7037 step=8.6405
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5580,28,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5580,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5506,26,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5562,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5558,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5557,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5542,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5574,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5530,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5616,84,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5616,84,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5519,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5523,20,1
+ETW_EVENT name=Retarget id=2 level=Informational payload=79903572443580,3,offsetX,28.646347527604767,160,0.32,0.78,0,-131.28157522433813
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5551,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5554,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5569,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5498,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5560,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5609,25,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5609,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5557,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5603,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5563,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5770,39,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5237,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5549,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5611,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5497,16,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5497,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5612,26,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5474,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5664,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5535,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5565,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5549,26,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5582,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5603,31,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5603,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5469,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5584,29,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5532,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5530,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5595,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5538,24,1
+RETARGET tag=R6_same_prop cat=same_prop api=True before=28.6463 after=28.1068 to=160.0 velB=-131.2816 velA=-111.9635 velSource=current_before_retarget jump=0.5395 dynTol=6.2513 pollMaxStep=35.2910 handoffOk=True
+POLL tag=R6_same_prop i=0 dt_ms=0.0902 x=28.1068 vel=-111.9635 step=0.0000
+POLL tag=R6_same_prop i=1 dt_ms=30.6882 x=41.8100 vel=887.9448 step=13.7032
+POLL tag=R6_same_prop i=2 dt_ms=31.0425 x=70.7609 vel=1115.8655 step=28.9509
+POLL tag=R6_same_prop i=3 dt_ms=30.8799 x=106.0519 vel=950.5971 step=35.2910
+POLL tag=R6_same_prop i=4 dt_ms=30.4063 x=129.0313 vel=695.9447 step=22.9794
+POLL tag=R6_same_prop i=5 dt_ms=30.9752 x=147.2310 vel=408.6366 step=18.1997
+FRAME n=372 dt_ms=5.5496 x=28.0157 vel=-52.7895 step=0.6307
+FRAME n=373 dt_ms=5.5579 x=28.4888 vel=215.2715 step=0.4731
+FRAME n=374 dt_ms=5.5669 x=30.3305 vel=439.3614 step=1.8417
+FRAME n=375 dt_ms=5.5052 x=33.2677 vel=621.6428 step=2.9372
+FRAME n=376 dt_ms=5.5610 x=37.1537 vel=770.3064 step=3.8860
+FRAME n=377 dt_ms=5.5976 x=41.8100 vel=887.9448 step=4.6563
+FRAME n=378 dt_ms=5.5644 x=47.0094 vel=976.7123 step=5.1994
+FRAME n=379 dt_ms=5.5974 x=52.6684 vel=1041.1904 step=5.6590
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5568,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5547,27,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5547,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5490,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5580,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5544,14,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5683,30,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5450,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5671,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5433,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5575,17,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5575,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5497,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5552,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5542,11,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5638,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5571,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5518,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5569,25,1
+CONTINUITY_FRAMES observed=311 max_frame_step_dip=11.4089 dt_ms=5.6636 index=118 frame_step_fails=0 frame_step_limit_dip=80 probe_max_step_dip=64.5758
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,3,1,,Released
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5801,27,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5801,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5338,36,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5599,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5532,32,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5449,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5641,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5513,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5588,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5601,27,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5601,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5525,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5581,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5496,26,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5605,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5488,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5576,26,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5558,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5565,27,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5565,27,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5547,29,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5546,21,1
+RELEASE blocked=True x0=162.5441 x1=160.9749
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5570,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5573,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5582,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5463,24,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5603,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5468,21,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5468,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5582,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5565,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5570,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5555,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5552,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5535,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5619,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5874,63,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5874,63,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5213,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5580,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5588,22,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5636,39,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5571,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5339,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5517,7,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5552,7,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5552,7,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5576,11,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5523,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5694,12,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5520,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5583,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5549,21,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5521,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5531,17,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5531,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5682,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5644,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5450,23,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5393,18,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5559,15,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5586,13,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5589,32,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5584,28,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5584,28,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5563,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5544,25,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5560,31,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5702,46,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5337,19,1
+ETW_EVENT name=IdleTransition id=5 level=Informational payload=79903572443580,0,0
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5562,54,0
+ETW_EVENT name=IdleTransition id=5 level=Informational payload=79903572443580,1,1
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,4,1,,Created
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,4,1,,Played
+ETW_EVENT name=Retarget id=2 level=Informational payload=79903572443580,4,offsetX,160,90,0.32,0.78,0,0
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5827,16,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5209,9,1
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5209,9,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5544,10,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5627,10,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5520,10,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5646,20,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5549,19,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5527,17,1
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5506,13,1
+ETW_EVENT name=IdleTransition id=5 level=Informational payload=79903572443580,0,0
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,5587,61,0
+ETW_EVENT name=FrameTick id=103 level=Informational payload=79903572443580,5587,61,0
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,5,1,,Created
+ETW_EVENT name=IdleTransition id=5 level=Informational payload=79903572443580,1,1
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,5,1,,Played
+ETW_EVENT name=Retarget id=2 level=Informational payload=79903572443580,5,offsetX,0,15,0.32,0.78,1,0
+ETW_EVENT name=IdleTransition id=5 level=Informational payload=79903572443580,0,0
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,88456,60,0
+REDUCED start=True snap=True x=90.0000 vel=0.0000 retarget=True jump=True running=False
+ETW_EVENT name=IdleTransition id=5 level=Informational payload=79903572443580,1,1
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,4,1,,Cancelled
+ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=79903572443580,5,1,,Cancelled
+ETW_EVENT name=IdleTransition id=5 level=Informational payload=79903572443580,0,0
+ETW_EVENT name=FrameTick id=3 level=Verbose payload=79903572443580,61579,42,0
+IDLE pumpOn=False framesToStop=0 callbacksIn5s=0 idleEvents=10
+ETW_EVENT name=PresentStats id=4 level=Informational payload=79903572443580,0,16.666
+MIRROR_NAMES AnimationLifecycle,FrameTick,IdleTransition,PresentStats,Retarget,TokenLoad (not G2-6; G2-6 reads the nettrace)
+FRAME_SUMMARY n=490 dt_ms_min=0.758 dt_ms_p50=5.555 dt_ms_p95=5.684 dt_ms_max=88.458 dt_ms_mean=5.888 max_frame_step_dip=11.4089 max_frame_step_dt_ms=5.664 max_frame_step_index=118 frame_steps_observed=311 probe_max_step_dip=64.5758
+G2 g1=True g2=True g3=True g4=True g5=True retargets=7 jumpFails=0 cross=0
+TRACE Stopping the trace. This may take several minutes depending on the application being traced.
+TRACE Trace completed.
+TRACE exit 0
+TRACE_LINES 9
+trace=C:\Users\Lh\AppData\Local\Packages\MotionSoftDemo_zb6e6ksq6rq3m\LocalState\z4\results_etw_l1_smoke_r1\IJI1KJG\s2\trace.nettrace
+bytes=1958710 magic=ok provider=ok guid=absent_from_metadata
+ok AnimationLifecycle
+ok Retarget
+ok FrameTick
+ok PresentStats
+ok IdleTransition
+ok TokenLoad
+verdict=PASS
+Z4_SESSION status=PASS
+RESOLVED_OUTDIR=C:\Users\Lh\AppData\Local\Packages\MotionSoftDemo_zb6e6ksq6rq3m\LocalState\z4\results_etw_l1_smoke_r1\IJI1KJG\s2
+REQUESTED_OUTDIR=C:\Users\Lh\mf_z3a\z4\results_etw_l1_smoke_r1\IJI1KJG\s2
+MIRROR copied_to_requested_from_inside_package
