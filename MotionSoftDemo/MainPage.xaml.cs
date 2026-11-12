@@ -17,6 +17,31 @@ using Microsoft.UI.Xaml.Media;
 
 namespace MotionSoftDemo;
 
+/// <summary>
+/// Directory for WinUI UI and probe logs. Existing <c>MF_M0_ARTDIR</c> wins when set.
+/// Otherwise <c>%TEMP%\z3a_cabi_l1_dev</c> (created if missing), then the exe directory.
+/// </summary>
+internal static class DevLog
+{
+    internal static string Directory()
+    {
+        string? over = Environment.GetEnvironmentVariable("MF_M0_ARTDIR");
+        if (!string.IsNullOrWhiteSpace(over))
+        {
+            try { System.IO.Directory.CreateDirectory(over); return over; }
+            catch { }
+        }
+        try
+        {
+            string dir = Path.Combine(Path.GetTempPath(), "z3a_cabi_l1_dev");
+            System.IO.Directory.CreateDirectory(dir);
+            return dir;
+        }
+        catch { }
+        return AppContext.BaseDirectory;
+    }
+}
+
 /// <summary>mfprobe.dll (MotionNative/mf_probe.cpp): spring.h shadow state, DComp/DWM clock probes, WGC capture.</summary>
 internal static class MfProbe
 {
@@ -112,13 +137,13 @@ public sealed partial class MainPage : Page
 
     private void OpenLog()
     {
-        foreach (var get in new Func<string>[] { () => @"C:\Users\admin\motion_framework\MotionSoftDemo", () => Path.GetTempPath(), () => Windows.Storage.ApplicationData.Current.LocalFolder.Path })
+        foreach (var get in new Func<string>[] { DevLog.Directory, () => AppContext.BaseDirectory })
         {
             try
             {
-                string name = _lifecycle ? "m8_lifecycle_log.txt" : _m3FollowProbe ? "m3follow_ui.txt" : _m3XamlLostProbe ? "m3xaml_ui.txt" : _m3LostProbe ? "m3lost_ui.txt" : _m3DpiProbe ? "m3dpi_ui.txt" : _m0Probe ? "m0_ui.txt" : (_m2H5DenomVerifyProbe ? "m2_h5_denom_verify_ui.txt" : (_m2WgcSeedPathAPrimeProbe ? "m2_wgc_seed_path_a_prime_ui.txt" : (_m2WgcSeedPathBPrimeProbe ? "m2_wgc_seed_path_b_prime_ui.txt" : (_m2WgcSeedCalibProbe ? "m2_wgc_seed_calib_ui.txt" : (_m2WgcSeedAbsProbe ? "m2_wgc_seed_abs_ui.txt" : (_m2DeltaVPrimeProbe ? "m2_delta_v_prime_ui.txt" : (_m2DeltaVProbe ? "m2_delta_v_ui.txt" : (_m202Probe ? "m2_02_ui.txt" : (_m2H5SeedProbe ? "m2_h5_seed_ui.txt" : (_m201NoiseProbe ? "m2_01_noise_ui.txt" : (_r350Full ? "m50_r3_full_ui.txt" : (_r350Probe ? "m50_r3_50_ui.txt" : (_r3E3Probe ? "m49_r3_e3_ui.txt" : (_r3P12Probe ? "m48_r3_p12_ui.txt" : (_r2P11Probe ? "m47_r2_p11_ui.txt" : (_r2P10Probe ? "m46_r2_p10_ui.txt" : (_r2P9Probe ? "m45_r2_p9_ui.txt" : (_r2P8Probe ? "m43_r2_p8_ui.txt" : (_s1v2Probe ? "m44_s1v2_ui.txt" : (_r2P7Probe ? "m42_r2_p7_ui.txt" : (_r2P6Probe ? "m41_r2_p6_ui.txt" : (_r2P3Probe ? "m36_r2_p3_ui.txt" : (_r2P2Probe ? "m35_r2_p2_ui.txt" : (_r2P4Probe ? "m37_r2_p4_ui.txt" : (_r2P1Probe ? "m34_r2_p1_ui.txt" : (_r2PostProbe ? "m33_r2_post_ui.txt" : (_pointerPsProbe ? "m32_pointer_ps_ui.txt" : (_harnessNoiseProbe ? "m30_harness_noise_ui.txt" : (_startingValueProbe ? "m29_starting_value_ui.txt" : (_k3RestProbe ? "m28_k3_rest_ui.txt" : (_ivNullProbe ? "m27_iv_null_ui.txt" : (_periodMinProbe ? "m26_period_min_ui.txt" : (_interruptSeedProbe ? "m25_interrupt_ui.txt" : (_rateFoldProbe ? "m24_rate_fold_ui.txt" : (_zetaTrajProbe ? "m23_zeta_traj_ui.txt" : (_k3Probe ? "m22_k3_probe_ui.txt" : (_k4Probe ? "m21_k4_probe_ui.txt" : (_k2Probe ? "m20_k2_probe_ui.txt" : (_k1Probe ? "m19_k1_probe_ui.txt" : (_k5Probe ? "m18_k5_probe_ui.txt" : (_s5Probe ? "m17_s5_probe_ui.txt" : (_s4Probe ? "m16_s4_probe_ui.txt" : (_s3Probe ? "m15_s3_probe_ui.txt" : (_zetaProbe ? "m14_zeta_probe_ui.txt" : (_maptest ? "m13_maptest_log.txt" : (_align ? "m9_align_log.txt" : "comp_pilot_log.txt"))))))))))))))))))))))))))))))))))))))))))))));
+                string name = _z4OutDir != null ? "z4_l1_session_ui.txt" : _z3aL1Dev ? "z3a_l1_dev_ui.txt" : _lifecycle ? "m8_lifecycle_log.txt" : _m3MatrixProbe ? "m3matrix_ui.txt" : _m3FollowProbe ? "m3follow_ui.txt" : _m3XamlLostProbe ? "m3xaml_ui.txt" : _m3LostProbe ? "m3lost_ui.txt" : _m3DpiProbe ? "m3dpi_ui.txt" : _m0Probe ? "m0_ui.txt" : (_m2H5DenomVerifyProbe ? "m2_h5_denom_verify_ui.txt" : (_m2WgcSeedPathAPrimeProbe ? "m2_wgc_seed_path_a_prime_ui.txt" : (_m2WgcSeedPathBPrimeProbe ? "m2_wgc_seed_path_b_prime_ui.txt" : (_m2WgcSeedCalibProbe ? "m2_wgc_seed_calib_ui.txt" : (_m2WgcSeedAbsProbe ? "m2_wgc_seed_abs_ui.txt" : (_m2DeltaVPrimeProbe ? "m2_delta_v_prime_ui.txt" : (_m2DeltaVProbe ? "m2_delta_v_ui.txt" : (_m202Probe ? "m2_02_ui.txt" : (_m2H5SeedProbe ? "m2_h5_seed_ui.txt" : (_m201NoiseProbe ? "m2_01_noise_ui.txt" : (_r350Full ? "m50_r3_full_ui.txt" : (_r350Probe ? "m50_r3_50_ui.txt" : (_r3E3Probe ? "m49_r3_e3_ui.txt" : (_r3P12Probe ? "m48_r3_p12_ui.txt" : (_r2P11Probe ? "m47_r2_p11_ui.txt" : (_r2P10Probe ? "m46_r2_p10_ui.txt" : (_r2P9Probe ? "m45_r2_p9_ui.txt" : (_r2P8Probe ? "m43_r2_p8_ui.txt" : (_s1v2Probe ? "m44_s1v2_ui.txt" : (_r2P7Probe ? "m42_r2_p7_ui.txt" : (_r2P6Probe ? "m41_r2_p6_ui.txt" : (_r2P3Probe ? "m36_r2_p3_ui.txt" : (_r2P2Probe ? "m35_r2_p2_ui.txt" : (_r2P4Probe ? "m37_r2_p4_ui.txt" : (_r2P1Probe ? "m34_r2_p1_ui.txt" : (_r2PostProbe ? "m33_r2_post_ui.txt" : (_pointerPsProbe ? "m32_pointer_ps_ui.txt" : (_harnessNoiseProbe ? "m30_harness_noise_ui.txt" : (_startingValueProbe ? "m29_starting_value_ui.txt" : (_k3RestProbe ? "m28_k3_rest_ui.txt" : (_ivNullProbe ? "m27_iv_null_ui.txt" : (_periodMinProbe ? "m26_period_min_ui.txt" : (_interruptSeedProbe ? "m25_interrupt_ui.txt" : (_rateFoldProbe ? "m24_rate_fold_ui.txt" : (_zetaTrajProbe ? "m23_zeta_traj_ui.txt" : (_k3Probe ? "m22_k3_probe_ui.txt" : (_k4Probe ? "m21_k4_probe_ui.txt" : (_k2Probe ? "m20_k2_probe_ui.txt" : (_k1Probe ? "m19_k1_probe_ui.txt" : (_k5Probe ? "m18_k5_probe_ui.txt" : (_s5Probe ? "m17_s5_probe_ui.txt" : (_s4Probe ? "m16_s4_probe_ui.txt" : (_s3Probe ? "m15_s3_probe_ui.txt" : (_zetaProbe ? "m14_zeta_probe_ui.txt" : (_maptest ? "m13_maptest_log.txt" : (_align ? "m9_align_log.txt" : "comp_pilot_log.txt"))))))))))))))))))))))))))))))))))))))))))))));
                 var path = Path.Combine(get(), name);
-                _log = new StreamWriter(path, _lifecycle || _align || _maptest || _zetaProbe || _s3Probe || _s4Probe || _s5Probe || _k5Probe || _k1Probe || _k2Probe || _k4Probe || _k3Probe || _zetaTrajProbe || _rateFoldProbe || _interruptSeedProbe || _periodMinProbe || _ivNullProbe || _k3RestProbe || _startingValueProbe || _harnessNoiseProbe || _m201NoiseProbe || _m2H5SeedProbe || _pointerPsProbe || _r2PostProbe || _r2P1Probe || _r2P4Probe || _r2P2Probe || _r2P3Probe || _r2P6Probe || _r2P7Probe || _s1v2Probe || _r2P8Probe || _r2P9Probe || _r2P10Probe || _r2P11Probe || _r3P12Probe || _r3E3Probe || _r350Probe || _r350Full || _m201NoiseProbe || _m2H5SeedProbe || _m202Probe || _m2DeltaVProbe || _m2DeltaVPrimeProbe || _m2WgcSeedAbsProbe || _m2WgcSeedCalibProbe || _m2WgcSeedPathBPrimeProbe || _m2WgcSeedPathAPrimeProbe || _m2H5DenomVerifyProbe || _m0Probe || _m3DpiProbe || _m3LostProbe || _m3XamlLostProbe || _m3FollowProbe, new UTF8Encoding(false)); _logPath = path; return;
+                _log = new StreamWriter(path, _lifecycle || _align || _maptest || _zetaProbe || _s3Probe || _s4Probe || _s5Probe || _k5Probe || _k1Probe || _k2Probe || _k4Probe || _k3Probe || _zetaTrajProbe || _rateFoldProbe || _interruptSeedProbe || _periodMinProbe || _ivNullProbe || _k3RestProbe || _startingValueProbe || _harnessNoiseProbe || _m201NoiseProbe || _m2H5SeedProbe || _pointerPsProbe || _r2PostProbe || _r2P1Probe || _r2P4Probe || _r2P2Probe || _r2P3Probe || _r2P6Probe || _r2P7Probe || _s1v2Probe || _r2P8Probe || _r2P9Probe || _r2P10Probe || _r2P11Probe || _r3P12Probe || _r3E3Probe || _r350Probe || _r350Full || _m201NoiseProbe || _m2H5SeedProbe || _m202Probe || _m2DeltaVProbe || _m2DeltaVPrimeProbe || _m2WgcSeedAbsProbe || _m2WgcSeedCalibProbe || _m2WgcSeedPathBPrimeProbe || _m2WgcSeedPathAPrimeProbe || _m2H5DenomVerifyProbe || _m0Probe || _m3DpiProbe || _m3LostProbe || _m3XamlLostProbe || _m3FollowProbe || _m3MatrixProbe, new UTF8Encoding(false)); _logPath = path; return;
             }
             catch { }
         }
@@ -135,7 +160,11 @@ public sealed partial class MainPage : Page
         why = "none"; return false;
     }
 
-    private bool _lifecycle, _shutdownDone, _inject, _align, _maptest, _zetaProbe, _s3Probe, _s4Probe, _s5Probe, _k5Probe, _k1Probe, _k2Probe, _k4Probe, _k3Probe, _zetaTrajProbe, _rateFoldProbe, _interruptSeedProbe, _periodMinProbe, _ivNullProbe, _k3RestProbe, _startingValueProbe, _harnessNoiseProbe, _pointerPsProbe, _r2PostProbe, _r2P1Probe, _r2P4Probe, _r2P2Probe, _r2P3Probe, _r2P6Probe, _r2P7Probe, _s1v2Probe, _r2P8Probe, _r2P9Probe, _r2P10Probe, _r2P11Probe, _r3P12Probe, _r3E3Probe, _r350Probe, _r350Full, _m201NoiseProbe, _m2H5SeedProbe, _m202Probe, _m2DeltaVProbe, _m2DeltaVPrimeProbe, _m2WgcSeedAbsProbe, _m2WgcSeedCalibProbe, _m2WgcSeedPathBPrimeProbe, _m2WgcSeedPathAPrimeProbe, _m2H5DenomVerifyProbe, _m0Probe, _m3DpiProbe, _m3LostProbe, _m3LostSim, _m3XamlLostProbe, _m3XamlWithRive, _m3XamlRebuild, _m3FollowProbe;
+    private bool _lifecycle, _shutdownDone, _inject, _align, _maptest, _zetaProbe, _s3Probe, _s4Probe, _s5Probe, _k5Probe, _k1Probe, _k2Probe, _k4Probe, _k3Probe, _zetaTrajProbe, _rateFoldProbe, _interruptSeedProbe, _periodMinProbe, _ivNullProbe, _k3RestProbe, _startingValueProbe, _harnessNoiseProbe, _pointerPsProbe, _r2PostProbe, _r2P1Probe, _r2P4Probe, _r2P2Probe, _r2P3Probe, _r2P6Probe, _r2P7Probe, _s1v2Probe, _r2P8Probe, _r2P9Probe, _r2P10Probe, _r2P11Probe, _r3P12Probe, _r3E3Probe, _r350Probe, _r350Full, _m201NoiseProbe, _m2H5SeedProbe, _m202Probe, _z3aL1Dev, _m2DeltaVProbe, _m2DeltaVPrimeProbe, _m2WgcSeedAbsProbe, _m2WgcSeedCalibProbe, _m2WgcSeedPathBPrimeProbe, _m2WgcSeedPathAPrimeProbe, _m2H5DenomVerifyProbe, _m0Probe, _m3DpiProbe, _m3LostProbe, _m3LostSim, _m3XamlLostProbe, _m3XamlWithRive, _m3XamlRebuild, _m3FollowProbe, _m3MatrixProbe, _m3MatrixPacing;
+    // M3 probes start from a one-shot timer; a timer held only in a local can be collected
+    // before it fires (M3-MATRIX lab note 2), so the field keeps it alive.
+    private Microsoft.UI.Dispatching.DispatcherQueueTimer? _m3StartTimer;
+    private string? _z4OutDir;
     private int _injectFrameLogs;
     private string _dwmFlushVerdict = "not-run";
     private double _dwmFlushTimerFrac, _dwmFlushVsyncFrac, _dwmFlushP95;
@@ -186,6 +215,8 @@ public sealed partial class MainPage : Page
         _m201NoiseProbe = args0.Any(a => a.Equals("--m2-01-noise-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M201_NOISE") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_01_noise.flag");
         _m2H5SeedProbe = args0.Any(a => a.Equals("--m2-h5-seed", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_H5_SEED") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_h5_seed.flag");
         _m202Probe = args0.Any(a => a.Equals("--m2-02", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_02") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_02.flag");
+        _z3aL1Dev = args0.Any(a => a.Equals("--z3a-l1-dev", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_Z3A_L1_DEV") == "1";
+        _z4OutDir = Z4SessionCore.OutDirFromArgs(args0);
         _m2DeltaVProbe = args0.Any(a => a.Equals("--m2-delta-v", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_DELTA_V") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_delta_v.flag");
         _m2DeltaVPrimeProbe = args0.Any(a => a.Equals("--m2-delta-v-prime", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_DELTA_V_PRIME") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_delta_v_prime.flag");
         _m2WgcSeedAbsProbe = args0.Any(a => a.Equals("--m2-wgc-seed-abs", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_ABS") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_wgc_seed_abs.flag");
@@ -197,6 +228,8 @@ public sealed partial class MainPage : Page
         _m3DpiProbe = args0.Any(a => a.Equals("--m3-dpi-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_DPI_PROBE") == "1";
         _m3LostSim = args0.Any(a => a.Equals("--m3-lost-sim", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_LOST_SIM") == "1";
         _m3XamlWithRive = args0.Any(a => a.Equals("--m3-xaml-with-rive", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_WITH_RIVE") == "1";
+        _m3MatrixPacing = args0.Any(a => a.Equals("--m3-matrix-pacing", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_MATRIX_PACING") == "1";
+        _m3MatrixProbe = _m3MatrixPacing || args0.Any(a => a.Equals("--m3-matrix-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_MATRIX_PROBE") == "1";
         _m3FollowProbe = args0.Any(a => a.Equals("--m3-follow-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_FOLLOW_PROBE") == "1";
         _m3XamlRebuild = args0.Any(a => a.Equals("--m3-xaml-rebuild", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_REBUILD") == "1";
         _m3XamlLostProbe = _m3XamlWithRive || _m3XamlRebuild || args0.Any(a => a.Equals("--m3-xaml-lost-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_LOST_PROBE") == "1";
@@ -230,7 +263,17 @@ public sealed partial class MainPage : Page
             StatusText.Text = "MotionSoftDemo — 软件路径 / 合成器路径 (M1b #7); click anywhere to retarget";
 
             DeferredDisposeSelfTest();
-            if (_lifecycle)
+            if (_z4OutDir != null)
+            {
+                string z4Dir = _z4OutDir ?? "";
+                Log("Z4 L1 session (--z4-l1-session / MF_Z4_L1_SESSION) out=" + z4Dir + "; not Z3a dev; PERF-CI HOLD; starts in 800 ms");
+                var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
+                _m3StartTimer = t;
+                bool devAlso = _z3aL1Dev;
+                t.Tick += async (_, __) => await RunZ4L1Session(z4Dir, devAlso);
+                t.Start();
+            }
+            else if (_lifecycle)
             {
                 // long spring (response 3 s) so the window is closed while Rendering is still subscribed
                 bool ok = _fm.Retarget(_drag, "offsetX", 240, 3.0, 1.0);
@@ -363,12 +406,21 @@ public sealed partial class MainPage : Page
                 t.Tick += async (_, __) => await RunStartingValueProbe();
                 t.Start();
             }
+            else if (_m3MatrixProbe)
+            {
+                Log("M3-MATRIX probe (--m3-matrix-probe / MF_M3_MATRIX_PROBE); starts in 800 ms; moves its own window between the two monitors");
+                var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
+                t.Tick += async (_, __) => await RunM3MatrixProbe(_m3MatrixPacing);
+                t.Start();
+                _m3StartTimer = t;
+            }
             else if (_m3FollowProbe)
             {
                 Log("M3-RIVE-FOLLOW probe (--m3-follow-probe / MF_M3_FOLLOW_PROBE); starts in 800 ms; moves the cursor with SendInput (P4)");
                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
                 t.Tick += async (_, __) => await RunM3FollowProbe();
                 t.Start();
+                _m3StartTimer = t;
             }
             else if (_m3XamlLostProbe)
             {
@@ -376,6 +428,7 @@ public sealed partial class MainPage : Page
                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
                 t.Tick += async (_, __) => await RunM3XamlLostProbe(_m3XamlWithRive, _m3XamlRebuild);
                 t.Start();
+                _m3StartTimer = t;
             }
             else if (_m3LostProbe)
             {
@@ -383,6 +436,7 @@ public sealed partial class MainPage : Page
                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
                 t.Tick += async (_, __) => await RunM3LostProbe(_m3LostSim);
                 t.Start();
+                _m3StartTimer = t;
             }
             else if (_m3DpiProbe)
             {
@@ -390,6 +444,7 @@ public sealed partial class MainPage : Page
                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
                 t.Tick += async (_, __) => await RunM3DpiProbe();
                 t.Start();
+                _m3StartTimer = t;
             }
             else if (_m0Probe)
             {
@@ -447,9 +502,17 @@ public sealed partial class MainPage : Page
                 t.Tick += async (_, __) => await RunM2DeltaVProbe();
                 t.Start();
             }
+            else if (_z3aL1Dev)
+            {
+                Log("Z3a L1 dev smoke (--z3a-l1-dev / MF_Z3A_L1_DEV); DEV-ONLY, not Z4, PERF-CI HOLD; starts in 800 ms");
+                var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
+                _m3StartTimer = t;
+                t.Tick += async (_, __) => await RunZ3aL1DevSmoke();
+                t.Start();
+            }
             else if (_m202Probe)
             {
-                Log("M2-02 csharp/etw/preview smoke (--m2-02 / MF_M2_02); starts in 800 ms");
+                Log("M2-02 csharp/etw/preview smoke on L1 names (--m2-02 / MF_M2_02); starts in 800 ms");
                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
                 t.Tick += async (_, __) => await RunM202Probe();
                 t.Start();
@@ -463,10 +526,8 @@ public sealed partial class MainPage : Page
             }
             else if (_m201NoiseProbe)
             {
-                Log("M2-01 static noise probe (--m2-01-noise-probe); starts in 800 ms");
-                var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
-                t.Tick += async (_, __) => await RunM201NoiseProbe();
-                t.Start();
+                // RunM201NoiseProbe has no definition in git history (call only). Do not invent the probe.
+                Log("M2-01 noise probe requested, but RunM201NoiseProbe is not in this repo. Skipping.");
             }
             else if (_r350Full)
             {
@@ -1010,7 +1071,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k3_controller_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -1268,7 +1329,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k4_hold_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -1412,7 +1473,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k2_overshoot_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -1606,7 +1667,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k1_easing_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -1820,7 +1881,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k5_stop_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -2008,7 +2069,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_s5_settle_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -2214,7 +2275,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_s4_delay_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -2413,7 +2474,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_interrupt_seed_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -2689,7 +2750,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_rate_fold_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -2867,7 +2928,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_s3_velocity_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -3118,7 +3179,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_zeta_gt1_traj_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -3360,7 +3421,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_pointer_ps_probe.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_pointer_ps_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         Both("# win_pointer_ps_probe.txt — 派题 #32 WinUI3 pointer-position PropertySet availability");
@@ -3519,7 +3580,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p11_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p11_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;
@@ -3659,7 +3720,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p10_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p10_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;
@@ -3795,7 +3856,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p9_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p9_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;
@@ -3926,7 +3987,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p8_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p8_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;
@@ -4068,7 +4129,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p7_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p7_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78, period = rr / (2 * Math.PI), TAU = 0.032, LEAD_A2 = -0.020;
@@ -4181,7 +4242,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p2_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p2_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double period = 0.32, zeta = 0.78;
@@ -4293,7 +4354,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_s1v2_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_s1v2_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double TWO_PI = 2 * Math.PI;
@@ -4359,7 +4420,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p6_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p6_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double TWO_PI = 2 * Math.PI;
@@ -4448,7 +4509,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p3_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p3_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         Both("# win_r2_p3_raw.txt — 派题 #36 P3 compositor timebase & start decomposition (uninterrupted); raw WGC per trial (programmatic only, NO synthetic input)");
@@ -4512,7 +4573,7 @@ public sealed partial class MainPage : Page
         // Does NOT touch composition.h. Does NOT use mf_spring_at / spring.h closed-form v as compositor IV.
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string sessFile = Path.Combine(artDir, "m2_h5_seed_session.txt");
         string sessEnv = File.Exists(sessFile) ? File.ReadAllText(sessFile).Trim() : (Environment.GetEnvironmentVariable("MF_M2_H5_SEED_SESSION") ?? "1");
@@ -4705,7 +4766,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p4_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p4_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double period = 0.32, zeta = 0.78;
@@ -4782,7 +4843,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_p1_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_p1_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         Both("# win_r2_p1_raw.txt — 派题 #34 P1 IV=null replacement; raw WGC per trial (programmatic only, NO synthetic input)");
@@ -4871,7 +4932,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "win_r2_post_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "win_r2_post_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double period = 0.32, zeta = 0.78, from = 0, target1 = 240, target2 = 0;
@@ -4947,7 +5008,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_harness_noise_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -5104,7 +5165,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_starting_value_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -5277,7 +5338,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_k3_rest_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -5533,7 +5594,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_iv_null_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -5725,7 +5786,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_period_min_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
@@ -5900,7 +5961,7 @@ public sealed partial class MainPage : Page
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artDir = @"C:\Users\admin\motion_framework\artifacts";
+        string artDir = DevLog.Directory();
         Directory.CreateDirectory(artDir);
         string artPath = Path.Combine(artDir, "win_zeta_gt1_probe.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));

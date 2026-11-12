@@ -1,0 +1,7 @@
+﻿host=DESKTOP-IJI1KJG
+tip_read=9fe1ffe850162b9eb374d4552bba49462894e4df
+dll_sha256=0d7044c7ed9b6fb494ae73194f5775a8c7bd50e713abf8008f9e25d3a67fb6da
+display=primary_Philips17S4_1280x1024@75Hz/100% + external_VSC-VX2758-2K-PRO_2560x1440@180Hz/150%
+composition_PRE_CRLF=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+composition_POST_CRLF=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+note=runner used UseShellExecute=false + After(2500) so DispatcherQueueTimer is rooted; local demo MainPage/M3MatrixProbe not committed

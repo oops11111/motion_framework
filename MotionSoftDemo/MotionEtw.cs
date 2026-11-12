@@ -1,6 +1,8 @@
-// M2-02: FluidMotion ETW provider (minimal set of 6 event names).
-// GUID / event ids / payload layout are implementation-chosen (gate does not freeze them).
-// FrameTick is Verbose (default off); enable at accept time via EventListener / MF_M2_02.
+// E1 frozen ETW provider. Do not rename, do not change the GUID, do not renumber events.
+// Provider FluidMotion-Motion, GUID 8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d.
+// Ids 1–6: AnimationLifecycle, Retarget, FrameTick, PresentStats, IdleTransition, TokenLoad.
+// FrameTickAccept stays id 103 (name remapped to FrameTick by MotionEtwMirror). Fields are append-only.
+// FrameTick is Verbose (default off); enable at accept time via EventListener.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;

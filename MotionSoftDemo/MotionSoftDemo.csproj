@@ -1,0 +1,96 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>MotionSoftDemo</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon Condition="Exists('Assets\AppIcon.ico')">Assets\AppIcon.ico</ApplicationIcon>
+    <Platforms>x86;x64;ARM64</Platforms>
+    <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">win-$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString().ToLowerInvariant())</RuntimeIdentifier>
+    <PublishProfile Condition="Exists('Properties\PublishProfiles\win-$(Platform).pubxml')">win-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <WinUISDKReferences>false</WinUISDKReferences>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <!-- Default is unpackaged. -p:Z4Package=true or -p:WindowsPackageType=MSIX builds the MSIX. -->
+    <WindowsPackageType Condition="'$(WindowsPackageType)' == '' and '$(Z4Package)' != 'true' and '$(Z4LooseLayout)' != 'true'">None</WindowsPackageType>
+    <WindowsPackageType Condition="'$(Z4Package)' == 'true' or '$(Z4LooseLayout)' == 'true'">MSIX</WindowsPackageType>
+    <AppxPackageSigningEnabled Condition="'$(Z4LooseLayout)' == 'true'">false</AppxPackageSigningEnabled>
+    <GenerateAppxPackageOnBuild Condition="'$(Z4LooseLayout)' != 'true' and '$(WindowsPackageType)' == 'MSIX'">true</GenerateAppxPackageOnBuild>
+    <GenerateAppxPackageOnBuild Condition="'$(Z4LooseLayout)' == 'true'">false</GenerateAppxPackageOnBuild>
+    <AppxBundle Condition="'$(WindowsPackageType)' == 'MSIX'">Never</AppxBundle>
+    <!-- mspdbcmf.exe is only used to build the Store .appxsym package. Not required to sideload or run. -->
+    <AppxSymbolPackageEnabled Condition="'$(WindowsPackageType)' == 'MSIX'">false</AppxSymbolPackageEnabled>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <!-- The dev-only net8 runner must not be compiled into this WinUI app (CS7022). -->
+  <ItemGroup>
+    <Compile Remove="z3a_l1_devsmoke\**" />
+    <Compile Remove="z3a_l1_devsmoke/**" />
+    <None Remove="z3a_l1_devsmoke\**" />
+    <None Remove="z3a_l1_devsmoke/**" />
+    <Content Remove="z3a_l1_devsmoke\**" />
+    <Content Remove="z3a_l1_devsmoke/**" />
+    <Page Remove="z3a_l1_devsmoke\**" />
+    <Page Remove="z3a_l1_devsmoke/**" />
+    <EmbeddedResource Remove="z3a_l1_devsmoke\**" />
+    <EmbeddedResource Remove="z3a_l1_devsmoke/**" />
+    <ApplicationDefinition Remove="z3a_l1_devsmoke\**" />
+    <ApplicationDefinition Remove="z3a_l1_devsmoke/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\AppIcon.ico" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\MotionNative\fluidmotion.dll" Link="fluidmotion.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\MotionNative\fluidmotion.dll')" />
+    <Content Include="fluidmotion.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('fluidmotion.dll')" />
+    <Content Include="..\MotionNative\mfprobe.dll" Link="mfprobe.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\MotionNative\mfprobe.dll')" />
+    <Content Include="mfprobe.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('mfprobe.dll')" />
+    <Content Include="..\code\capi\demo_motion.json" Link="demo_motion.json" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Include="..\tools\z4_check_trace\Z4TraceCheck.cs" Link="Z4TraceCheck.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools.WinApp" Version="0.7.1" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
+    <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
+    <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+    <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+  </PropertyGroup>
+
+  <Target Name="WriteZ4BuildInfo" BeforeTargets="BeforeCompile">
+    <Exec Command="git rev-parse HEAD" WorkingDirectory="$(MSBuildThisFileDirectory)" ConsoleToMSBuild="true" IgnoreExitCode="true" StandardOutputImportance="low">
+      <Output TaskParameter="ConsoleOutput" PropertyName="Z4GitTip" />
+    </Exec>
+    <PropertyGroup>
+      <Z4GitTipClean>$([System.String]::Copy('$(Z4GitTip)').Trim())</Z4GitTipClean>
+    </PropertyGroup>
+    <!-- Normalized (CRLF to LF) composition.h hash. Raw autocrlf bytes are recorded beside it. -->
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\tools\z4_stamp_build_info.ps1&quot; -Header &quot;$(MSBuildThisFileDirectory)..\code\composition.h&quot; -OutFile &quot;$(IntermediateOutputPath)z4_build_info.txt&quot; -Tip &quot;$(Z4GitTipClean)&quot;" />
+    <MakeDir Directories="$(TargetDir)" />
+    <Copy SourceFiles="$(IntermediateOutputPath)z4_build_info.txt" DestinationFiles="$(TargetDir)z4_build_info.txt" SkipUnchangedFiles="false" />
+  </Target>
+</Project>

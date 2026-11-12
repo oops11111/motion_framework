@@ -27,7 +27,7 @@ public sealed partial class MainPage
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "p12_48_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "p12_48_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;
@@ -346,7 +346,7 @@ public sealed partial class MainPage
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "p13_49_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "p13_49_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;
@@ -576,7 +576,7 @@ public sealed partial class MainPage
     {
         if (_suiteRunning || _comp is null || _visual is null) return;
         _suiteRunning = true; MeasureButton.IsEnabled = false;
-        string artPath = Path.Combine(@"C:\Users\admin\motion_framework\artifacts", "p14_50_raw.txt");
+        string artPath = Path.Combine(DevLog.Directory(), "p14_50_raw.txt");
         var art = new StreamWriter(artPath, false, new UTF8Encoding(false));
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         const double rr = 0.32, zeta = 0.78;

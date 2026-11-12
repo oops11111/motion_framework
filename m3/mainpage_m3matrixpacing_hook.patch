@@ -1,0 +1,69 @@
+diff --git a/MotionSoftDemo/MainPage.xaml.cs b/MotionSoftDemo/MainPage.xaml.cs
+index b963a99..6905e66 100644
+--- a/MotionSoftDemo/MainPage.xaml.cs
++++ b/MotionSoftDemo/MainPage.xaml.cs
+@@ -135,7 +135,10 @@ public sealed partial class MainPage : Page
+         why = "none"; return false;
+     }
+ 
+-    private bool _lifecycle, _shutdownDone, _inject, _align, _maptest, _zetaProbe, _s3Probe, _s4Probe, _s5Probe, _k5Probe, _k1Probe, _k2Probe, _k4Probe, _k3Probe, _zetaTrajProbe, _rateFoldProbe, _interruptSeedProbe, _periodMinProbe, _ivNullProbe, _k3RestProbe, _startingValueProbe, _harnessNoiseProbe, _pointerPsProbe, _r2PostProbe, _r2P1Probe, _r2P4Probe, _r2P2Probe, _r2P3Probe, _r2P6Probe, _r2P7Probe, _s1v2Probe, _r2P8Probe, _r2P9Probe, _r2P10Probe, _r2P11Probe, _r3P12Probe, _r3E3Probe, _r350Probe, _r350Full, _m201NoiseProbe, _m2H5SeedProbe, _m202Probe, _m2DeltaVProbe, _m2DeltaVPrimeProbe, _m2WgcSeedAbsProbe, _m2WgcSeedCalibProbe, _m2WgcSeedPathBPrimeProbe, _m2WgcSeedPathAPrimeProbe, _m2H5DenomVerifyProbe, _m0Probe, _m3DpiProbe, _m3LostProbe, _m3LostSim, _m3XamlLostProbe, _m3XamlWithRive, _m3XamlRebuild, _m3FollowProbe, _m3MatrixProbe;
++    private bool _lifecycle, _shutdownDone, _inject, _align, _maptest, _zetaProbe, _s3Probe, _s4Probe, _s5Probe, _k5Probe, _k1Probe, _k2Probe, _k4Probe, _k3Probe, _zetaTrajProbe, _rateFoldProbe, _interruptSeedProbe, _periodMinProbe, _ivNullProbe, _k3RestProbe, _startingValueProbe, _harnessNoiseProbe, _pointerPsProbe, _r2PostProbe, _r2P1Probe, _r2P4Probe, _r2P2Probe, _r2P3Probe, _r2P6Probe, _r2P7Probe, _s1v2Probe, _r2P8Probe, _r2P9Probe, _r2P10Probe, _r2P11Probe, _r3P12Probe, _r3E3Probe, _r350Probe, _r350Full, _m201NoiseProbe, _m2H5SeedProbe, _m202Probe, _m2DeltaVProbe, _m2DeltaVPrimeProbe, _m2WgcSeedAbsProbe, _m2WgcSeedCalibProbe, _m2WgcSeedPathBPrimeProbe, _m2WgcSeedPathAPrimeProbe, _m2H5DenomVerifyProbe, _m0Probe, _m3DpiProbe, _m3LostProbe, _m3LostSim, _m3XamlLostProbe, _m3XamlWithRive, _m3XamlRebuild, _m3FollowProbe, _m3MatrixProbe, _m3MatrixPacing;
++    // M3 probes start from a one-shot timer; a timer held only in a local can be collected
++    // before it fires (M3-MATRIX lab note 2), so the field keeps it alive.
++    private Microsoft.UI.Dispatching.DispatcherQueueTimer? _m3StartTimer;
+     private int _injectFrameLogs;
+     private string _dwmFlushVerdict = "not-run";
+     private double _dwmFlushTimerFrac, _dwmFlushVsyncFrac, _dwmFlushP95;
+@@ -197,7 +200,8 @@ public sealed partial class MainPage : Page
+         _m3DpiProbe = args0.Any(a => a.Equals("--m3-dpi-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_DPI_PROBE") == "1";
+         _m3LostSim = args0.Any(a => a.Equals("--m3-lost-sim", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_LOST_SIM") == "1";
+         _m3XamlWithRive = args0.Any(a => a.Equals("--m3-xaml-with-rive", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_WITH_RIVE") == "1";
+-        _m3MatrixProbe = args0.Any(a => a.Equals("--m3-matrix-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_MATRIX_PROBE") == "1";
++        _m3MatrixPacing = args0.Any(a => a.Equals("--m3-matrix-pacing", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_MATRIX_PACING") == "1";
++        _m3MatrixProbe = _m3MatrixPacing || args0.Any(a => a.Equals("--m3-matrix-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_MATRIX_PROBE") == "1";
+         _m3FollowProbe = args0.Any(a => a.Equals("--m3-follow-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_FOLLOW_PROBE") == "1";
+         _m3XamlRebuild = args0.Any(a => a.Equals("--m3-xaml-rebuild", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_REBUILD") == "1";
+         _m3XamlLostProbe = _m3XamlWithRive || _m3XamlRebuild || args0.Any(a => a.Equals("--m3-xaml-lost-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_LOST_PROBE") == "1";
+@@ -368,8 +372,9 @@ public sealed partial class MainPage : Page
+             {
+                 Log("M3-MATRIX probe (--m3-matrix-probe / MF_M3_MATRIX_PROBE); starts in 800 ms; moves its own window between the two monitors");
+                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
+-                t.Tick += async (_, __) => await RunM3MatrixProbe();
++                t.Tick += async (_, __) => await RunM3MatrixProbe(_m3MatrixPacing);
+                 t.Start();
++                _m3StartTimer = t;
+             }
+             else if (_m3FollowProbe)
+             {
+@@ -377,6 +382,7 @@ public sealed partial class MainPage : Page
+                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
+                 t.Tick += async (_, __) => await RunM3FollowProbe();
+                 t.Start();
++                _m3StartTimer = t;
+             }
+             else if (_m3XamlLostProbe)
+             {
+@@ -384,6 +390,7 @@ public sealed partial class MainPage : Page
+                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
+                 t.Tick += async (_, __) => await RunM3XamlLostProbe(_m3XamlWithRive, _m3XamlRebuild);
+                 t.Start();
++                _m3StartTimer = t;
+             }
+             else if (_m3LostProbe)
+             {
+@@ -391,6 +398,7 @@ public sealed partial class MainPage : Page
+                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
+                 t.Tick += async (_, __) => await RunM3LostProbe(_m3LostSim);
+                 t.Start();
++                _m3StartTimer = t;
+             }
+             else if (_m3DpiProbe)
+             {
+@@ -398,6 +406,7 @@ public sealed partial class MainPage : Page
+                 var t = DispatcherQueue.CreateTimer(); t.Interval = TimeSpan.FromMilliseconds(800); t.IsRepeating = false;
+                 t.Tick += async (_, __) => await RunM3DpiProbe();
+                 t.Start();
++                _m3StartTimer = t;
+             }
+             else if (_m0Probe)
+             {

@@ -1,0 +1,4 @@
+﻿session,pid,verdict,monitors,mixed_refresh,mixed_scale,pacing_ok,budget_ok,stability_ok,size_ok,hitch_ok,scale_changes
+1,5464,RECORDED,2,1,1,0,1,1,1,1,4
+2,376,RECORDED,2,1,1,0,1,1,1,1,4
+3,324,RECORDED,2,1,1,0,1,1,1,1,4

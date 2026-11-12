@@ -1,0 +1,4 @@
+﻿session,pid,verdict,monitors,mixed_refresh,mixed_scale,pacing_ok,budget_ok,stability_ok,size_ok,hitch_ok,scale_changes,col_primary_ok,col_primary_dev_p95_ms,col_primary_share,col_external_ok,col_external_dev_p95_ms,col_external_share
+1,19428,RECORDED,2,1,1,1,1,1,1,1,4,1,0.089,0.0000,1,0.094,0.0000
+2,9320,RECORDED,2,1,1,1,1,1,1,1,4,1,0.071,0.0000,1,0.117,0.0000
+3,19108,RECORDED,2,1,1,1,1,1,1,1,4,1,0.077,0.0000,1,0.166,0.0007
