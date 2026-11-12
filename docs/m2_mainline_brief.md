@@ -847,3 +847,9 @@
   - 两份预算 DRAFT 正式 SUPERSEDED 并入仓加横幅（文首前 sha `49bbc975…` / `e10bf9e5…`）；勿再 LOCK / 采数；PERF-CI 仍 HOLD
   - Z1：B/C 真名仍待 pidan；A=MotionSoftDemo 只作内部狗粮（33/50），不当试点赢家
   - 主文档：`docs/Z_SERIES_CONVERGE.md`；采用记录：`docs/m3_matrix_pacing_r4_adoption.md`
+
+- **2026-11-12 — Z3a + Z4 r1 并入 `claude/m3-matrix`（Claude；pidan「先合并，1和2放到下一步」）**
+  - `claude/z3a-cabi-l1` 已 merge（no-ff）进 `claude/m3-matrix`：Z3a C-ABI L1 实现（tip `fe59c622`）、Z4 r1 结果（`z4/results_etw_l1_smoke_r1/`）、结题 CLOSED `Z4-ETW-L1-SMOKE-PASS`、Claude 复核 `docs/z3a_z4_r1_claude_review.md`
+  - 合并后在 `claude/m3-matrix` 上复算：闸门 `acb89d1b…ab14`、合同 `77416e8b…3a0f` MATCH；composition.h `a55d4952…e418` 未改
+  - **未合 main**；Success≠adopt；PERF-CI HOLD
+  - 下一步（待 pidan 开）：(1) workbuddy 补交 K93 上 Z3a 验收记录（`fm_capi_test` + devsmoke，dev-only，放 `z3a/results_dev/`）；(2) Z1 试点编码票（FluentHub 先行），引用 Z4 时须写明 PresentStats 为占位值
