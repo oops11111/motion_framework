@@ -72,3 +72,58 @@ Received an unexpected EOF or 0 bytes from the transport stream.
 - NuGet 用户缓存 `%USERPROFILE%\.nuget\packages` 新增 restore 下载的包（含 WASDK 2.0.1、ILCompiler 10.0.8 等）。
 - 构建日志：`%TEMP%\z5_wave1\t4\fluenthub_build_debug_x64.txt`（UTF-16）、`fluenthub_build_exit.txt`。
 - 无包注册、无计划任务、无证书、无系统设置改动、无安装。
+
+---
+
+## 7. 非原样重做（pidan 裁决后）· 2026-11-18 01:19–01:21 AWST — 结果：**FAIL（构建失败，未启动）**
+
+> 本节为**非原样**构建记录；上文第 1–6 节原样 FAIL 记录保持不变。
+> 依据：pidan 2026-11-18 01:18 AWST 原话「T4 用命令行属性重做基线（如 -p:NuGetAudit=false），不改 FluentHub 文件，记非原样；2.6.5 可替代 2.0.x」。
+> 运行时：按该裁决，已装 `Microsoft.WindowsAppRuntime.2` **2.6.5** 视为替代字面 2.0.x（本次未走到运行阶段，未实测）。
+
+### 7.1 尝试 A1（唯一一次）
+
+命令（克隆根目录，FluentHub 任何文件未改）：
+
+```
+dotnet build src\FluentHub\FluentHub.csproj -c Debug -p:Platform=x64 -p:NuGetAudit=false
+```
+
+结果：**BUILD_EXIT=1**（01:19:43–01:20:12 AWST，已用时间 00:00:28.93），0 警告 3 错误。
+
+- NU1903 已不再出现；restore 通过（包已在用户缓存，无新下载；arm64 运行时包下载失败信息本次未出现）。
+- `Octokit.Generators`、`Octokit`、`FluentHub.Core` 三个工程编译成功；`FluentHub` 失败。
+- 错误（去重后）：
+
+```
+EXEC : error : Could not read the Windows SDK's Platform.xml at C:\Program Files (x86)\Windows Kits\10\Platforms\UAP\10.0.26100.0\Platform.xml [...\src\FluentHub\FluentHub.csproj]
+...\microsoft.windows.cswinrt\2.2.0\build\Microsoft.Windows.CsWinRT.targets(293,5): error MSB3073: 命令“cswinrt.exe @...\cswinrt.rsp”已退出，代码为 1。
+...\microsoft.windowsappsdk.winui\2.0.12\buildTransitive\Microsoft.UI.Xaml.Markup.Compiler.interop.targets(845,9): error MSB3073: 命令“XamlCompiler.exe ...input.json ...output.json”已退出，代码为 1。
+```
+
+### 7.2 原因（只读核实，不下修复）
+
+- 工程目标 `net10.0-windows10.0.26100.0` 需要本机 **Windows SDK 10.0.26100.0**（`Platforms\UAP\10.0.26100.0\Platform.xml`）。
+- K93 `C:\Program Files (x86)\Windows Kits\10` 下 `Platforms\UAP`、`Include`、`References` 均只有 **10.0.18362.0**；无 26100。
+- 安装 Windows SDK 属于系统级安装（需管理员 / UAC），按停止条件**未安装，停下请示**。
+- 未尝试 `-p:WarningsNotAsErrors=NU1903`（NU1903 已由 A1 消除，无需）与 `-p:RuntimeIdentifier=win-x64`（与本错误无关）；未尝试改 TargetFramework/TargetPlatformVersion（会改变目标平台，超出本次裁决范围）。
+
+### 7.3 启动 / 包注册 / 截图
+
+- **未启动**；**未执行 `Add-AppxPackage -Register`**，用户级包注册未改；**无截图**；无计划任务。
+- 清理命令（仅供日后注册后使用）：`Get-AppxPackage -Name 49462fluenthub-uwp.FluentHub | Remove-AppxPackage`。本次无需清理。
+
+### 7.4 结论与请示
+
+- **T4 非原样重做 = FAIL**（缺 Windows SDK 10.0.26100.0）。如实记录，不改 FluentHub 文件、不换参数凑数。
+- T4 基线仍未 PASS → **Z5-T5 不启动**（第二波前置顺序）。
+- 请示 pidan（任选或另定）：
+  1. 由 pidan 本人在 K93 安装 Windows SDK 10.0.26100.0（系统级，需 UAC）后再按 A1 命令重跑；
+  2. 允许再加命令行属性改目标平台（如 `-p:TargetFramework=net10.0-windows10.0.18362.0`），风险：FluentHub 可能使用 18362 之后的 API，结果与上游目标平台不同，偏差更大；
+  3. 维持 FAIL，换备选应用另议。
+
+### 7.5 本地副作用
+
+- FluentHub 克隆 `git status` 干净（仅忽略的 `obj/`、`bin/` 产物增加：Octokit.Generators / Octokit / FluentHub.Core 的 Debug x64 输出，及 FluentHub `obj\...\win-x64\` 中间文件）。
+- 日志：`%TEMP%\z5_wave1\t4\rebuild\a1_build.txt`（UTF-8）、`a1_exit.txt`。
+- 无安装、无证书、无包注册、无系统设置改动。
