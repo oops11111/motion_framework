@@ -20,3 +20,9 @@
 
 ## 留给评审 / pidan
 - 草稿 G3 列出的待裁决问题（Q1–Q6）全部未裁决。
+
+## 偏差（2026-11-18 追加，未复核）
+1. **文件名大小写错误与第二提交改正**：提交脚本里两个 PowerShell 变量名只差大小写（PowerShell 变量名不区分大小写），后者覆盖前者，导致首个本地提交把草稿记为 `docs/z6_F8B_gate_DRAFT.md`，并漏收 `z6/f8b/**`。push 前发现，按禁 amend 规则追加第二个提交，用 `git mv` 改回 `docs/z6_f8b_gate_DRAFT.md` 并补收 `z6/f8b/**`，之后才 push。故本分支在 main 之上有多个提交。
+2. **LEDGER 大写行与更正行**：同一原因，LEDGER 中本票首两行的分支名、worktree、文件名写成大写（`wb/z6-F8B`、`%USERPROFILE%\mf_z6\F8B`、`docs/z6_F8B_gate_DRAFT.md`）。LEDGER 只追加，未改原行，另追加一条「更正」行说明实际名称为小写。
+3. **composition_post 标签大写**：`z6/f8b/raw/composition_post.txt` 的 `label=` 写成 `POST F8B`（PRE 为小写 `PRE f8b`）。同一原因；哈希内容不受影响，match=True。
+4. **快照含另一票行**：本机 LEDGER 为 F8a、F8b 共用，本分支的 `z6/LEDGER_snapshot.md` 也含 F8a 的行。
