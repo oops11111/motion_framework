@@ -87,3 +87,24 @@ push 尚未获 pidan 本人许可，本分支仅本地提交。
 - 「Z6 范围内松散包注册和卸载给总许可」
 
 本分支据第一条做普通 push（`git push -u origin <分支>`），不 force、不 amend、不 rebase。合 main、开或合 PR、tag、删远端分支、LOCK、APPROVED、其他系统级步骤、非原样构建开关，都**不在**上述许可内。台账副本见 `z6/LEDGER_snapshot.md`（取自 K93 本地 `%USERPROFILE%\mf_z6\LEDGER.md`，取于本次提交时）。推送前结果状态为「未复核」。
+
+## 8. GUI `--z3a-l1-dev` 补跑（2026-11-18 07:04 AWST，追加）
+
+- **许可**：pidan 原话「Z6 范围内允许用一次性计划任务跑 GUI，用完即删」，来源拍板卡 t206s992（workbuddy cli 会话，07:01 AWST）。这补上了第 4 节偏差 1 里没跑的那一项，上文原样保留。
+- **做法**：与 Z5 T1/T3 相同。宿主是第 1 节已构建的 `_z6f0_build_Debug\`、`_z6f0_build_Release\`（base `7e2feb0e`），没有重新构建。每个配置各建一个一次性计划任务：`schtasks /Create /TN z6f0_gui_<C> /TR "cmd /c \"<worktree>\z6\f0\f0_gui.cmd\" <C>" /SC ONCE /ST 23:59 /IT /RL LIMITED /F`，接着 `/Run`，等 launcher 日志出现 `LAUNCHER_END`（只做编排，等待时长不作结果），然后 `/Delete /F`，再用 `/Query` 确认任务已不存在。原始输出见 `raw_gui/schtasks_gui.txt`，里面 `/Query` 的 "cannot find the file" 就是删除后的确认。
+- **首跑即通过，没有 attempt1。**
+
+| 项 | Debug | Release | 原始输出 |
+|---|---|---|---|
+| launcher | `EXE_EXIT=0` | `EXE_EXIT=0` | `raw_gui/launcher_*.log` |
+| verdict | **`Z3A_DEV_ONLY verdict=PASS fails=0 not_z4=1 perf_ci=HOLD`** | **同左** | `raw_gui/gui_*__z3a_l1_dev_smoke.txt`、`raw_gui/gui_*__z3a_l1_dev_ui.txt` |
+| Z5-T3 用例 | `Z5T3_DISPOSE_IDLE emitted=1 pumpOffCallbacks=1` | 同左 | 同上 |
+| E1 六事件名 | `ETW_SEEN [AnimationLifecycle,FrameTick,IdleTransition,PresentStats,Retarget,TokenLoad]` | 同左 | 同上 |
+| `FAIL` 行 | 0 | 0 | 同上 |
+| 计划任务删除 | 已删，`/Query` 查无 | 已删，`/Query` 查无 | `raw_gui/schtasks_gui.txt` |
+
+- **FrameTick 只计数（r2 第四节）**：入库版本里，每条含 `name=FrameTick` 的事件行的 `payload=` 数值都替换成 `payload=[omitted]`，每个 GUI 日志 235 行；`ok E1 event FrameTick` 和 `ETW_SEEN` 这 2 行不含数值，原样保留。另外把用户目录路径替换成 `%USERPROFILE%`（每个 ui 日志 1 处）。每个文件替换前后的 sha256、替换次数和 FrameTick 行数，都记在 `raw_gui/manifest.txt`。替换前的原件留在 `%TEMP%\z6\f0\gui_*\`，未删除。替换脚本是 `f0_collect_gui.ps1`。
+- ui 日志每行开头的毫秒前缀是程序自身日志格式，本报告不据此作任何计时结论；不采数，不计任何闸门会话。
+- composition.h：本节只运行了已有二进制，没有改动；仍等于期望值（见 `raw_gui/composition_gui.txt`）。
+- **结论更新**：F0 全部验收项 PASS（dev-only），包括 GUI `--z3a-l1-dev` Debug、Release。状态为未复核，待协调或 pidan 复核。
+- **副作用**：建过并已删除两个计划任务 `z6f0_gui_Debug`、`z6f0_gui_Release`；`%TEMP%\z6\f0\gui_Debug\`、`gui_Release\` 里是原始日志（证据入库后才可删）。台账已追加，`z6/LEDGER_snapshot.md` 已更新为本次提交时的副本。

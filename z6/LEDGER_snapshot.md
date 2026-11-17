@@ -22,3 +22,7 @@
 | 2026-11-18 07:01 | Z6 | 许可（常设）：pidan 原话「wb/z6-* 分支可以普通 push（常设许可）」 | 来源：拍板卡 t206s992，workbuddy cli 会话，2026-11-18 07:01 AWST | 无 | — |
 | 2026-11-18 07:01 | Z6 | 许可（总许可）：pidan 原话「Z6 范围内允许用一次性计划任务跑 GUI，用完即删」 | 来源：拍板卡 t206s992，workbuddy cli 会话，2026-11-18 07:01 AWST | 无 | — |
 | 2026-11-18 07:01 | Z6 | 许可（总许可）：pidan 原话「Z6 范围内松散包注册和卸载给总许可」 | 来源：拍板卡 t206s992，workbuddy cli 会话，2026-11-18 07:01 AWST。仍不在许可内的：合 main、开或合 PR、tag、删远端分支、LOCK、APPROVED、其他系统级步骤、非原样构建开关 | 无 | — |
+| 2026-11-18 07:03 | F0 | 普通 push `git push -u origin wb/z6-f0`，ls-remote = `d9e8acc55afa4fe9bb3475e32b11b5d0bf2ca496` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-f0` | 删远端分支须另行请示 |
+| 2026-11-18 07:03 | F12 | 普通 push `git push -u origin wb/z6-f12`，ls-remote = `876b73ac752338fab09b225e227cfde77c1c0c63` | 同上，t206s992 | 远端新分支 `wb/z6-f12` | 同上 |
+| 2026-11-18 07:04 | F0 | **系统级：一次性计划任务** `z6f0_gui_Debug`、`z6f0_gui_Release`（`/IT /RL LIMITED`）跑 `--z3a-l1-dev`，跑完 `/Delete /F`，`/Query` 确认已不存在 | 许可：「Z6 范围内允许用一次性计划任务跑 GUI，用完即删」，t206s992 | `%TEMP%\z6\f0\gui_Debug\`、`gui_Release\`、`launcher_*.log`、`schtasks_gui.txt` | 任务已删；日志在证据入库后才可删 |
+| 2026-11-18 07:06 | F0 | `f0_collect_gui.ps1` 收集到 `z6/f0/raw_gui/`（FrameTick payload 改为 `[omitted]`，路径改为 `%USERPROFILE%`） | 无 | 原件保留在 `%TEMP%\z6\f0\` | 证据入库后才可删 |

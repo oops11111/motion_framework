@@ -1,0 +1,8 @@
+# file | raw_size | raw_sha256 | committed_size | committed_sha256 | path_replacements | frametick_lines | frametick_payloads_omitted
+launcher_Debug.log | 161 | 1d096972f3aab61fe6289cc0db80fe9b232319e86921ba8c3ed12e9f68ddc0d2 | 161 | 1d096972f3aab61fe6289cc0db80fe9b232319e86921ba8c3ed12e9f68ddc0d2 | 0 | 0 | 0
+launcher_Release.log | 163 | b088948ab025715d5dd863283e95105e7fdc75674980cdfed875698fce3fadad | 163 | b088948ab025715d5dd863283e95105e7fdc75674980cdfed875698fce3fadad | 0 | 0 | 0
+schtasks_gui.txt | 1659 | 8d4239b3c8b73e305d4c24da6d5c0f77e675bfce162e0bc8677abd6b6780e1c8 | 1659 | 8d4239b3c8b73e305d4c24da6d5c0f77e675bfce162e0bc8677abd6b6780e1c8 | 0 | 0 | 0
+gui_Debug\z3a_l1_dev_smoke.txt | 25241 | d24eb52d998f9f9bc881b9af6928086db39c39638b4b66cd67d64a52c2506b45 | 22614 | 87f0dac23578782304d2da69fd8379257d7775d9160c1614da45ae8d0d7ca0bc | 0 | 237 | 235
+gui_Debug\z3a_l1_dev_ui.txt | 30052 | c0338d1bddfbbbaeaad97feba22be7ac0be67292d8ad7dad69d08ebdc911e48b | 27424 | 809b3d245fe554750b9d00ca043359b1e7bdea1e8e469531fba3dccebe85169f | 1 | 237 | 235
+gui_Release\z3a_l1_dev_smoke.txt | 25242 | 730e2efaa551693399534e5e1f1f2b96cfa7348f1090f58006a581b173e23657 | 22615 | f8493ae1f47dc9a86196ae53d773b9d70bc051d43e8cbe2b2921060dc38c142e | 0 | 237 | 235
+gui_Release\z3a_l1_dev_ui.txt | 30055 | bebf5bcb4bec8f229428062c1b133ba26c64b31d2e57518cc348cf3d9b8e5d19 | 27427 | c486c78c3df73e599063254decd892726b02b205370e0ef17f734f3e3693515b | 1 | 237 | 235
