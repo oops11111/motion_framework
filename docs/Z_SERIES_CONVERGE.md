@@ -1,8 +1,8 @@
 # Z 序列收敛文档（唯一主文档）
 
 - **STATUS**：DRAFT · NOT LOCKED · 唯一维护入口
-- **UPDATED**：2026-11-10 23:16 AWST（Australia/Perth）
-- **FILE_SHA256**：`ae31c4f9893dcdeee5808b1c4b05a4e7b609123a7eb55c487a61bc599b8799de`（对落盘全文做 SHA-256，**排除**以「- **FILE_SHA256**」开头的那一行）
+- **UPDATED**：2026-11-18 00:50 AWST（Australia/Perth）
+- **FILE_SHA256**：`3e3f5047d7f194db7591179b5b1be1d6e2ed34111129f152c7fc46f6a4a52af7`（对落盘全文做 SHA-256，**排除**以「- **FILE_SHA256**」开头的那一行）
 - **规则**：后续 Z1–Z4 / API v0 前置的开发与审议，**只追加或修订本文件**；三方原文归档在 `docs/_out/`，不另开平行主文档。
 - **硬边界**：Success≠adopt；不合 main；不改 composition.h（除非另 LOCK）；无 APPROVED 不采数；PERF-CI HOLD；Y4 见 `docs/COORDINATION.md`；冻结 L1 合同 ≠ 授权编码；C# API v0 实现仅限已开票 `docs/z3a_cabi_l1_ticket.md`（分支 `claude/z3a-cabi-l1`）。
 
@@ -88,6 +88,7 @@ pidan 于 2026-11-10 22:35 AWST（Australia/Perth）对协调五条建议回复�
 
 | 时间 | 变更 |
 |---|---|
+| 2026-11-18 00:50 AWST | Z5 T2 文档补记：文末追加「闸门口径说明」（G2② 单帧步长 = 相邻 OnFrame 回调间步长，pidan 2026-11-11 06:24 AWST 裁决，Z4 r1 LOCK 原文未写明；80 DIP 与 dynTol 不变；probe_max_step_dip 仅诊断；今后闸门须在 LOCK 正文写明）。不改任何 *_LOCKED.md；不重开 Z4 r1 结论。按文件头规则重算 FILE_SHA256。 |
 | 2026-11-10 23:16 AWST | pidan 发送「APPROVED Z4 r1」。留证 `docs/z4_etw_l1_smoke_r1_approved.md`（不改 LOCKED body）。采数仍阻断：`claude/z3a-cabi-l1` 尚不存在，须 L1 构建通过票内验收并声明采数 tip。结果目录指定为 `z4/results_etw_l1_smoke_r1/`。 |
 | 2026-11-10 23:09:00 AWST | pidan「继续，按建议进行」（23:07 AWST）：开 Z3a C-ABI L1 编码票 `docs/z3a_cabi_l1_ticket.md`（Claude 写代码，workbuddy 在 K93 构建；建议分支 `claude/z3a-cabi-l1`）；Z4 r1 **LOCK** `docs/z4_etw_l1_smoke_gate_r1_LOCKED.md`（`acb89d1b…ab14`）。DRAFT 标 SUPERSEDED_BY_LOCKED。 |
 | 2026-11-10 22:59 AWST | pidan 书面「同意 B=FluentHub、C=Files，推上去」：Z1 B/C **APPROVED BY PIDAN，已入席**（侧叉本地；不向上游提 PR；Success≠adopt；未选 Winner；试点编码仍须另票）。备份 GetStoreApp / Wino-Mail 仍为备份。 |
@@ -150,3 +151,12 @@ LOCK + APPROVED 留证均已落；采数仍待 Z3a L1 构建通过验收，并�
 
 ### 冻结后才允许
 实现今日可工作成员 + 补缺 C-interface + 测试（仍不合 main；Success≠adopt；PERF-CI HOLD）。
+
+## 2026-11-18 AWST · 闸门口径说明
+
+> Z5 T2 文档补记。只追加口径说明；不改 `docs/z4_etw_l1_smoke_gate_r1_LOCKED.md`（GATE_BODY_SHA256=`acb89d1b…ab14`）或任何 *_LOCKED.md；不重开 Z4 r1 结论；不采数；PERF-CI HOLD。
+
+1. **G2② 单帧步长 = 相邻 OnFrame 回调间步长**（verdict.json `g2.2_continuity.max_frame_step_dip`：相邻两次 OnFrame 回调之间的位移）。这是 pidan 2026-11-11 06:24 AWST 的裁决；**Z4 r1 LOCK 原文未写明此口径**。
+2. **80 DIP 上限与 dynTol 不变**（`frame_step_limit_dip=80`；`dynTol = max(2, |vel|*0.040+1)`，以 LOCK 正文与 verdict.json 记录为准）。
+3. **`probe_max_step_dip` 仅诊断**，不进判据。它是轮询探针两次采样间的步长，不是相邻 OnFrame 回调间步长；K93N3P8 s4 = 100.5 DIP（`z4/results_etw_l1_smoke_r1/K93N3P8/s4/verdict.json`，同次 `max_frame_step_dip` = 58.75 DIP、frame_step_fails = 0）。
+4. **今后闸门须在 LOCK 正文写明此口径**（单帧步长的定义、采样点、诊断量与判据量的区分），不再依赖事后裁决。

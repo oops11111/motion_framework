@@ -1,0 +1,458 @@
+diff --git a/src/FluentHub/FluentHub.csproj b/src/FluentHub/FluentHub.csproj
+index 5c9c2027..aa2b5199 100644
+--- a/src/FluentHub/FluentHub.csproj
++++ b/src/FluentHub/FluentHub.csproj
+@@ -76,4 +76,18 @@
+ 		<AdditionalFiles Include="Strings\en-US\Resources.resw" />
+ 	</ItemGroup>
+ 
++	<!-- Z5-T5 PILOT-ONLY (local side fork; never pushed, no upstream PR): consume the prebuilt FluidMotion.L1.dll from Z5-T5-0 (verify against SHA256SUMS). No L1 sources are compiled here. -->
++	<PropertyGroup>
++		<FmL1PackDir>C:\Users\admin\mf_z5\t5pack\pilot\l1pack\bin\x64\Release\net8.0\</FmL1PackDir>
++		<!-- Z5-T5 pilot-only: PublishAot=true makes the SDK write System.Diagnostics.Tracing.EventSource.IsSupported=false into runtimeconfig even for Debug builds, which silences the frozen FluidMotion-Motion provider. Turn the feature switch back on for this local pilot (no publish/AOT is done). -->
++		<EventSourceSupport>true</EventSourceSupport>
++	</PropertyGroup>
++	<ItemGroup>
++		<Reference Include="FluidMotion.L1">
++			<HintPath>$(FmL1PackDir)FluidMotion.L1.dll</HintPath>
++		</Reference>
++		<None Include="$(FmL1PackDir)fluidmotion.dll" Link="fluidmotion.dll" CopyToOutputDirectory="PreserveNewest" />
++		<None Include="$(FmL1PackDir)demo_motion.json" Link="demo_motion.json" CopyToOutputDirectory="PreserveNewest" />
++	</ItemGroup>
++
+ </Project>
+diff --git a/src/FluentHub/Views/RootView.xaml.cs b/src/FluentHub/Views/RootView.xaml.cs
+index 5aa93caf..ecc96575 100644
+--- a/src/FluentHub/Views/RootView.xaml.cs
++++ b/src/FluentHub/Views/RootView.xaml.cs
+@@ -21,6 +21,7 @@ namespace FluentHub.Views
+ 		private InboxView? _currentInboxView;
+ 		private NavigationViewItem? _lastNavigationItem;
+ 		private readonly AppRouteViewFactory _routeViewFactory;
++		private NavMotionPilot? _motionPilot; // Z5-T5 pilot-only
+ 
+ 		public RootView()
+ 		{
+@@ -39,6 +40,8 @@ namespace FluentHub.Views
+ 		private async void OnRootViewLoaded(object sender, RoutedEventArgs e)
+ 		{
+ 			MainWindow.Instance.SetTitleBar(MainTitleBar);
++			// Z5-T5 pilot-only: Loaded re-entry guard; Unloaded disposes first, so a rebuilt RootView creates a fresh system.
++			_motionPilot ??= new NavMotionPilot(NavigationView);
+ 			if (NavigationView.SelectedItem is null && NavigationView.MenuItems.Count > 0)
+ 			{
+ 				NavigationView.SelectedItem = NavigationView.MenuItems[0];
+@@ -56,6 +59,8 @@ namespace FluentHub.Views
+ 		private void OnRootViewUnloaded(object sender, RoutedEventArgs e)
+ 		{
+ 			ViewModel.CancelLoading();
++			_motionPilot?.Dispose(); // Z5-T5 pilot-only
++			_motionPilot = null;
+ 		}
+ 
+ 		private void OnNavigationSelectionChanged(
+diff --git a/src/FluentHub/Views/NavMotionPilot.cs b/src/FluentHub/Views/NavMotionPilot.cs
+new file mode 100644
+index 00000000..b1f77a16
+--- /dev/null
++++ b/src/FluentHub/Views/NavMotionPilot.cs
+@@ -0,0 +1,399 @@
++// Z5-T5 PILOT-ONLY (local side fork C:\Users\admin\pilot\FluentHub; never pushed, no fork, no upstream PR).
++// Consumes the prebuilt FluidMotion.L1.dll from Z5-T5-0 (see SHA256SUMS); FluentHub does not compile L1 sources.
++// No timing judgement anywhere (PresentStats is a placeholder, N/A). PERF-CI HOLD. Success != adopt.
++
++using System.Diagnostics.Tracing;
++using Microsoft.UI.Xaml;
++using Microsoft.UI.Xaml.Controls;
++using Microsoft.UI.Xaml.Input;
++using Microsoft.UI.Xaml.Media;
++using MotionSoftDemo;
++using Windows.UI.ViewManagement;
++
++namespace FluentHub.Views
++{
++	/// <summary>
++	/// Left NavigationView menu items: Loaded → Play "demo.enter" (tokens), PointerEntered → Retarget offsetX=8,
++	/// PointerExited/Canceled/CaptureLost → Retarget the same handle back to 0, Unloaded/Closed → Cancel+Release every handle, then Dispose.
++	/// </summary>
++	internal sealed class NavMotionPilot : IDisposable
++	{
++		private const string OffsetX = "offsetX";
++		private const string OpacityProperty = "opacity";
++		private const string EnterTransition = "demo.enter";
++		private const double HoverOffset = 8;
++
++		// demo_motion.json springs.snappy (320ms, damping 0.78).
++		private static readonly SpringParams Snappy = new(0.32, 0.78);
++
++		private readonly PilotLog _log;
++		private readonly PilotEtwListener _listener;
++		private readonly MotionSystem _system;
++		private readonly Dictionary<NavigationViewItem, ulong> _targets = [];
++		private readonly Dictionary<ulong, NavigationViewItem> _items = [];
++		private readonly Dictionary<ulong, TranslateTransform> _transforms = [];
++		private readonly Dictionary<ulong, AnimationHandle> _enter = [];
++		private readonly Dictionary<ulong, AnimationHandle> _hover = [];
++		private readonly PointerEventHandler _enteredHandler;
++		private readonly PointerEventHandler _leftHandler;
++		private bool _renderingHooked;
++		private bool _windowHooked;
++		private bool _disposed;
++		private int _sinkCount;
++
++		public NavMotionPilot(NavigationView navigationView)
++		{
++			_log = new PilotLog();
++			_log.Line("PILOT start (Z5-T5, pilot-only)");
++			_listener = new PilotEtwListener(_log);
++
++			_system = MotionSystem.Create();
++			_system.FramePumpChanged += OnFramePumpChanged;
++			_system.ValueChanged += OnValueChanged;
++
++			bool animationsEnabled = new UISettings().AnimationsEnabled;
++			_log.Line($"UISettings.AnimationsEnabled={animationsEnabled} -> SetReducedMotion({!animationsEnabled})");
++			_system.SetReducedMotion(!animationsEnabled);
++
++			string tokensPath = Path.Combine(AppContext.BaseDirectory, "demo_motion.json");
++			string? diag = new MotionTokens(_system).Load(File.ReadAllText(tokensPath));
++			_log.Line("MotionTokens.Load demo_motion.json: " + (diag ?? "ok"));
++
++			_enteredHandler = OnItemPointerEntered;
++			_leftHandler = OnItemPointerLeft;
++
++			ulong target = 1;
++			foreach (object menuItem in navigationView.MenuItems)
++			{
++				if (menuItem is not NavigationViewItem item)
++				{
++					continue;
++				}
++
++				var transform = new TranslateTransform();
++				item.RenderTransform = transform;
++				_targets[item] = target;
++				_items[target] = item;
++				_transforms[target] = transform;
++				item.AddHandler(UIElement.PointerEnteredEvent, _enteredHandler, true);
++				item.AddHandler(UIElement.PointerExitedEvent, _leftHandler, true);
++				item.AddHandler(UIElement.PointerCanceledEvent, _leftHandler, true);
++				item.AddHandler(UIElement.PointerCaptureLostEvent, _leftHandler, true);
++				target++;
++			}
++
++			MainWindow.Instance.Closed += OnWindowClosed;
++			_windowHooked = true;
++
++			foreach (var (id, _) in _items)
++			{
++				AnimationHandle enter = _system.CreateAnimation(id, EnterTransition);
++				_enter[id] = enter;
++				enter.Play();
++				_log.Line($"enter target={id} anim={enter.Id}");
++			}
++
++			_log.Flush();
++		}
++
++		private void OnItemPointerEntered(object sender, PointerRoutedEventArgs e)
++		{
++			if (_disposed || sender is not NavigationViewItem item || !_targets.TryGetValue(item, out ulong target))
++			{
++				return;
++			}
++
++			if (!_hover.TryGetValue(target, out AnimationHandle? hover))
++			{
++				// Empty animation (retarget-only) + Play, then Retarget; created once per item and reused.
++				hover = _system.CreateAnimation(target, null);
++				hover.Play();
++				_hover[target] = hover;
++			}
++
++			bool ok = hover.Retarget(OffsetX, HoverOffset, Snappy);
++			_log.Line($"hover-in target={target} anim={hover.Id} retarget({OffsetX}={HoverOffset}) ok={ok}");
++		}
++
++		private void OnItemPointerLeft(object sender, PointerRoutedEventArgs e)
++		{
++			if (_disposed || sender is not NavigationViewItem item || !_targets.TryGetValue(item, out ulong target))
++			{
++				return;
++			}
++
++			if (_hover.TryGetValue(target, out AnimationHandle? hover))
++			{
++				// Same handle back to 0 (no Cancel + new handle: Cancel would freeze the value as rest).
++				bool ok = hover.Retarget(OffsetX, 0, Snappy);
++				_log.Line($"hover-out target={target} anim={hover.Id} retarget({OffsetX}=0) ok={ok}");
++				_log.Flush();
++			}
++		}
++
++		private void OnValueChanged(ulong target, string property, double value)
++		{
++			// Sink: never call back into the motion API from here.
++			if (_disposed)
++			{
++				return;
++			}
++
++			_sinkCount++;
++			if (property == OffsetX && _transforms.TryGetValue(target, out TranslateTransform? transform))
++			{
++				transform.X = value;
++			}
++			else if (property == OpacityProperty && _items.TryGetValue(target, out NavigationViewItem? item))
++			{
++				item.Opacity = Math.Clamp(value, 0, 1);
++			}
++		}
++
++		private void OnFramePumpChanged(bool on)
++		{
++			// Render callback: only bind/unbind the host frame source here.
++			if (on && !_renderingHooked && !_disposed)
++			{
++				CompositionTarget.Rendering += OnRendering;
++				_renderingHooked = true;
++			}
++			else if (!on && _renderingHooked)
++			{
++				CompositionTarget.Rendering -= OnRendering;
++				_renderingHooked = false;
++			}
++		}
++
++		private void OnRendering(object? sender, object e)
++		{
++			if (_disposed)
++			{
++				return;
++			}
++
++			_system.OnFrame();
++		}
++
++		private void OnWindowClosed(object sender, WindowEventArgs args)
++		{
++			_log.Line("MainWindow.Closed -> Dispose");
++			Dispose();
++		}
++
++		public void Dispose()
++		{
++			if (_disposed)
++			{
++				return;
++			}
++
++			_disposed = true;
++			_log.Line("Dispose begin");
++
++			foreach (var (item, _) in _targets)
++			{
++				item.RemoveHandler(UIElement.PointerEnteredEvent, _enteredHandler);
++				item.RemoveHandler(UIElement.PointerExitedEvent, _leftHandler);
++				item.RemoveHandler(UIElement.PointerCanceledEvent, _leftHandler);
++				item.RemoveHandler(UIElement.PointerCaptureLostEvent, _leftHandler);
++			}
++
++			if (_windowHooked)
++			{
++				MainWindow.Instance.Closed -= OnWindowClosed;
++				_windowHooked = false;
++			}
++
++			// Every handle: Cancel, then Release; then Dispose the system.
++			foreach (AnimationHandle handle in _enter.Values.Concat(_hover.Values))
++			{
++				handle.Cancel();
++				handle.Release();
++			}
++
++			_system.Dispose();
++
++			if (_renderingHooked)
++			{
++				CompositionTarget.Rendering -= OnRendering;
++				_renderingHooked = false;
++			}
++
++			_log.Line($"Dispose end handles={_enter.Count + _hover.Count} (enter={_enter.Count}, hover={_hover.Count}) sinkCalls={_sinkCount}");
++			_log.Line(_listener.Summary());
++			_listener.Dispose();
++			_log.Flush();
++		}
++	}
++
++	/// <summary>Bounded in-memory line buffer, written to the package LocalState folder on Flush.</summary>
++	internal sealed class PilotLog
++	{
++		private const int Capacity = 4096;
++		private readonly object _gate = new();
++		private readonly List<string> _lines = [];
++		private readonly string _path;
++		private int _sequence;
++		private int _dropped;
++
++		public PilotLog()
++		{
++			string folder;
++			try
++			{
++				folder = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
++			}
++			catch (Exception)
++			{
++				folder = Path.GetTempPath();
++			}
++
++			_path = Path.Combine(folder, "z5_t5_motion.log");
++		}
++
++		public void Line(string text)
++		{
++			lock (_gate)
++			{
++				_sequence++;
++				if (_lines.Count >= Capacity)
++				{
++					_dropped++;
++					return;
++				}
++
++				_lines.Add($"{_sequence:D5} {text}");
++			}
++		}
++
++		public void Flush()
++		{
++			lock (_gate)
++			{
++				try
++				{
++					var all = new List<string>(_lines) { $"# path={_path} lines={_lines.Count} dropped={_dropped} capacity={Capacity}" };
++					File.WriteAllLines(_path, all);
++				}
++				catch (Exception)
++				{
++					// Pilot logging must never take the app down.
++				}
++			}
++		}
++	}
++
++	/// <summary>
++	/// Host-side EventListener for the frozen FluidMotion-Motion provider. OnEventSourceCreated can run inside the
++	/// base constructor (before this constructor body), so matching sources are cached and enabled afterwards.
++	/// FrameTick is counted only; its payload is not logged (no timing data).
++	/// </summary>
++	internal sealed class PilotEtwListener : EventListener
++	{
++		private const string ProviderName = "FluidMotion-Motion";
++		private readonly object _gate = new();
++		private readonly Dictionary<string, int> _names = [];
++		private readonly Dictionary<string, int> _states = [];
++		private List<EventSource>? _pending;
++		private PilotLog? _log;
++
++		public PilotEtwListener(PilotLog log)
++		{
++			List<EventSource>? pending;
++			lock (_gate)
++			{
++				_log = log;
++				pending = _pending;
++				_pending = null;
++			}
++
++			if (pending is not null)
++			{
++				foreach (EventSource source in pending)
++				{
++					EnableProvider(source);
++				}
++			}
++		}
++
++		protected override void OnEventSourceCreated(EventSource eventSource)
++		{
++			if (eventSource is null || eventSource.Name != ProviderName)
++			{
++				return;
++			}
++
++			// _gate can be null here when called from the base constructor before field initialisers of a derived
++			// class run in some runtimes; field initialisers run first in C#, but stay defensive.
++			object? gate = _gate;
++			if (gate is null)
++			{
++				return;
++			}
++
++			lock (gate)
++			{
++				if (_log is null)
++				{
++					(_pending ??= []).Add(eventSource);
++					return;
++				}
++			}
++
++			EnableProvider(eventSource);
++		}
++
++		private void EnableProvider(EventSource source)
++		{
++			EnableEvents(source, EventLevel.Verbose, EventKeywords.All);
++			_log?.Line($"ETW_LISTENER enabled provider={source.Name} guid={source.Guid} level=Verbose");
++		}
++
++		protected override void OnEventWritten(EventWrittenEventArgs eventData)
++		{
++			if (eventData.EventSource?.Name != ProviderName)
++			{
++				return;
++			}
++
++			string name = eventData.EventId == 103 ? "FrameTick" : (eventData.EventName ?? "Event" + eventData.EventId);
++			var payload = eventData.Payload;
++			string? state = null;
++			lock (_gate)
++			{
++				_names[name] = _names.GetValueOrDefault(name) + 1;
++				if (name == "AnimationLifecycle" && payload is { Count: > 4 })
++				{
++					state = payload[4]?.ToString() ?? "";
++					_states[state] = _states.GetValueOrDefault(state) + 1;
++				}
++			}
++
++			if (name == "FrameTick" || _log is null)
++			{
++				return;
++			}
++
++			string detail = name switch
++			{
++				"AnimationLifecycle" when payload is { Count: > 4 } => $"anim={payload[1]} target={payload[2]} transition={payload[3]} state={state}",
++				"Retarget" when payload is { Count: > 8 } => $"anim={payload[1]} prop={payload[2]} from={payload[3]} to={payload[4]} hasFrom={payload[7]} vel={payload[8]}",
++				"IdleTransition" when payload is { Count: > 2 } => $"activeCount={payload[1]} pumpOn={payload[2]}",
++				"TokenLoad" when payload is { Count: > 2 } => $"name={payload[1]} problemCount={payload[2]}",
++				_ => ""
++			};
++			_log.Line($"ETW_EVENT name={name} id={eventData.EventId} {detail}");
++		}
++
++		public string Summary()
++		{
++			lock (_gate)
++			{
++				string names = string.Join(", ", _names.OrderBy(kv => kv.Key, StringComparer.Ordinal).Select(kv => $"{kv.Key}={kv.Value}"));
++				string states = string.Join(", ", _states.OrderBy(kv => kv.Key, StringComparer.Ordinal).Select(kv => $"{kv.Key}={kv.Value}"));
++				return $"ETW_SUMMARY distinctNames={_names.Count} names[{names}] lifecycle[{states}]";
++			}
++		}
++	}
++}

@@ -1,0 +1,17 @@
+# sha256 (K93N3P8, Z5 T1 rebuild @ worktree C:\Users\admin\mf_z5\t1, HEAD 2e57bff384c771cc972840ca98a1f0bb92aaeb98)
+f3c796c6c1d229de4076fd46a44a81f71f71c8804cece6a618c95b53335b6194  163840  C:\Users\admin\mf_z5\t1\_z5_unpackaged_build\MotionSoftDemo.exe
+3ac3bba7314090274d81b77c750440fabd2d5e31c4721c80576e33b920a9432b  1314816  C:\Users\admin\mf_z5\t1\_z5_unpackaged_build\MotionSoftDemo.dll
+b0c7f91163eb0d41b32f015c9064bbc74e38248557009be44bd525fa10288f6d  438784  C:\Users\admin\mf_z5\t1\_z5_unpackaged_build\fluidmotion.dll
+b0c7f91163eb0d41b32f015c9064bbc74e38248557009be44bd525fa10288f6d  438784  C:\Users\admin\mf_z5\t1\MotionNative\fluidmotion.dll
+036eff8ea1642da20c831c1a7d3dabfd99071b0d8552880c8f4afa858291e2dc  581632  C:\Users\admin\AppData\Local\Temp\z5_wave1\t1\capi_test\fm_capi_test.exe
+
+## z4_build_info.txt (C:\Users\admin\mf_z5\t1\_z5_unpackaged_obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\z4_build_info.txt) sha256 d226f4694d63c9db15cf9ad52910174fbb148e808179d1785ae89d29e77ba27f
+tip=2e57bff384c771cc972840ca98a1f0bb92aaeb98
+composition_sha256=a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+composition_sha256_raw=33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97
+
+## Z4 r1 K93 s4/s5 BUILD_NOTES.md recorded (fe59c622 build, 2026-11-11)
+MotionSoftDemo.exe 50b00fef5aeb25d20570bb1358016987c21471d388ac12df2dd6e84f3b17fd82 (163840)
+MotionSoftDemo.dll 03ffd553d2ef753f38a4931c7af1042a3bbf9431ea5d53513080bd94ab534c48 (1315328)
+fluidmotion.dll    0efac99e8326bfa705a35518ff148ba5a568ff2acfafddce7199e2e9de8e0dea (438784)
+z4_build_info.txt  c7169179725d0acb44833e6b8077d29af00b90a8e19d2a08075950709023f3d7 (tip=fe59c622...)

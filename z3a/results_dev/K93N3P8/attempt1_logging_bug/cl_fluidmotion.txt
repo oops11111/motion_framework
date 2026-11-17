@@ -1,0 +1,2 @@
+fm_capi.cpp
+  正在创建库 MotionNative\fluidmotion.lib 和对象 MotionNative\fluidmotion.exp

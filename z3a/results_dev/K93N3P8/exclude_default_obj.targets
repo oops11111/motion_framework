@@ -1,0 +1,8 @@
+<Project>
+  <Target Name="Z4RemoveDefaultObjCompile" BeforeTargets="BeforeCompile;CoreCompile;XamlMarkupCompilePass1">
+    <ItemGroup>
+      <Compile Remove="$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)\obj'))\**" />
+      <Compile Remove="obj\**" />
+    </ItemGroup>
+  </Target>
+</Project>
