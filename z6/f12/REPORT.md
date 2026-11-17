@@ -66,3 +66,13 @@ push 尚未获 pidan 本人许可，本分支仅本地提交。
 - composition.h：PRE `fd0603c17136c067e89c71e56aef310f2f7e63f4` / `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418`，POST `fd0603c17136c067e89c71e56aef310f2f7e63f4` / `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418`，PRE = POST = 期望值。
 - 状态：**未复核**（本地提交，未推送）。push 尚未获 pidan 本人许可，本分支仅本地提交。
 - 台账：本票动作已记入 K93 本地 `%USERPROFILE%\mf_z6\LEDGER.md`（只追加）。本次不推送，所以没有放 `z6/LEDGER_snapshot.md`。
+
+## 授权留痕（追加，2026-11-18 AWST）
+
+上文「push 尚未获 pidan 本人许可」写于许可之前，原样保留。之后 pidan 本人在拍板卡 **t206s992**（workbuddy cli 会话，2026-11-18 07:01 AWST）上答复，原话逐字如下：
+
+- 「wb/z6-* 分支可以普通 push（常设许可）」
+- 「Z6 范围内允许用一次性计划任务跑 GUI，用完即删」
+- 「Z6 范围内松散包注册和卸载给总许可」
+
+本分支据第一条做普通 push（`git push -u origin <分支>`），不 force、不 amend、不 rebase。合 main、开或合 PR、tag、删远端分支、LOCK、APPROVED、其他系统级步骤、非原样构建开关，都**不在**上述许可内。台账副本见 `z6/LEDGER_snapshot.md`（取自 K93 本地 `%USERPROFILE%\mf_z6\LEDGER.md`，取于本次提交时）。推送前结果状态为「未复核」。
