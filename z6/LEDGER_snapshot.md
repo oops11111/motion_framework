@@ -48,3 +48,4 @@
 | 2026-11-18 07:40 | F8A | 普通提交并 `git push -u origin wb/z6-F8A` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-F8A` | 删远端分支须另行请示 |
 | 2026-11-18 07:40 | F8B | 从 main 7e2feb0e 开 `wb/z6-F8B`，worktree `%USERPROFILE%\mf_z6\F8B`；只写 `docs/z6_F8B_gate_DRAFT.md`（DRAFT，NOT LOCKED，数值全部待定）与 z6/F8B/**；未写探针、未采数；composition PRE/POST match | 无 | 无 | — |
 | 2026-11-18 07:40 | F8B | 普通提交并 `git push -u origin wb/z6-F8B` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-F8B` | 删远端分支须另行请示 |
+| 2026-11-18 07:41 | F8a/F8b | **更正**（未 push 前发现）：上两组 F8A/F8B 行中的分支名、worktree、文件名大写系脚本变量大小写冲突所致；实际分支为 `wb/z6-f8a` / `wb/z6-f8b`，worktree `%USERPROFILE%\mf_z6\f8a` / `f8b`。首个本地提交误把草稿记为 `docs/z6_F8A_gate_DRAFT.md` / `docs/z6_F8B_gate_DRAFT.md` 且漏收 z6/<票号>/**；按禁 amend 规则追加第二个提交改名为小写并补收，未 push 前完成 | 无 | 无 | — |
