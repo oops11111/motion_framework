@@ -1,0 +1,33 @@
+  正在确定要还原的项目…
+%USERPROFILE%\pilot\Files\src\Files.App\Files.App.csproj : warning NU1903: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9
+  已还原 %USERPROFILE%\pilot\Files\src\Files.App.CsWin32\Files.App.CsWin32.csproj (用时 3.05 秒)。
+  已还原 %USERPROFILE%\pilot\Files\src\Files.App.BackgroundTasks\Files.App.BackgroundTasks.csproj (用时 3.05 秒)。
+  已还原 %USERPROFILE%\pilot\Files\src\Files.Core.Storage\Files.Core.Storage.csproj (用时 3.05 秒)。
+  已还原 %USERPROFILE%\pilot\Files\src\Files.Shared\Files.Shared.csproj (用时 3.05 秒)。
+  已还原 %USERPROFILE%\pilot\Files\src\Files.Core.SourceGenerator\Files.Core.SourceGenerator.csproj (用时 3.05 秒)。
+  已还原 %USERPROFILE%\pilot\Files\src\Files.App.Storage\Files.App.Storage.csproj (用时 3.06 秒)。
+  已还原 %USERPROFILE%\pilot\Files\src\Files.App.Controls\Files.App.Controls.csproj (用时 3.19 秒)。
+  已还原 %USERPROFILE%\pilot\Files\src\Files.App\Files.App.csproj (用时 3.26 秒)。
+%USERPROFILE%\pilot\Files\src\Files.App\Files.App.csproj : warning NU1903: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9
+  Files.Core.SourceGenerator -> %USERPROFILE%\pilot\Files\src\Files.Core.SourceGenerator\bin\x64\Debug\netstandard2.0\Files.Core.SourceGenerator.dll
+  Files.Core.Storage -> %USERPROFILE%\pilot\Files\src\Files.Core.Storage\bin\x64\Debug\net10.0\Files.Core.Storage.dll
+  Files.App.BackgroundTasks -> %USERPROFILE%\pilot\Files\src\Files.App.BackgroundTasks\bin\x64\Debug\net10.0-windows10.0.26100.0\Files.App.BackgroundTasks.dll
+  Files.Shared -> %USERPROFILE%\pilot\Files\src\Files.Shared\bin\x64\Debug\net10.0\Files.Shared.dll
+CSC : error CS9057: 无法使用分析器程序集“%USERPROFILE%\pilot\Files\src\Files.Core.SourceGenerator\bin\x64\Debug\netstandard2.0\Files.Core.SourceGenerator.dll”，因为它引用的编译器版本“5.9.0.0”比当前正在运行的版本“5.6.0.0”更新。 [%USERPROFILE%\pilot\Files\src\Files.App.CsWin32\Files.App.CsWin32.csproj]
+CSC : warning CS9057: 无法使用分析器程序集“%USERPROFILE%\pilot\Files\src\Files.Core.SourceGenerator\bin\x64\Debug\netstandard2.0\Files.Core.SourceGenerator.dll”，因为它引用的编译器版本“5.9.0.0”比当前正在运行的版本“5.6.0.0”更新。 [%USERPROFILE%\pilot\Files\src\Files.App.Controls\Files.App.Controls.csproj]
+CSC : warning CS9057: 无法使用分析器程序集“%USERPROFILE%\pilot\Files\src\Files.Core.SourceGenerator\bin\x64\Debug\netstandard2.0\Files.Core.SourceGenerator.dll”，因为它引用的编译器版本“5.9.0.0”比当前正在运行的版本“5.6.0.0”更新。 [%USERPROFILE%\pilot\Files\src\Files.App.Controls\Files.App.Controls.csproj]
+%USERPROFILE%\pilot\Files\src\Files.App.Controls\Sidebar\SidebarItem.cs(544,6): warning CsWinRT1034: Casting to type 'Microsoft.UI.Xaml.UIElement?' is not trim-safe, as it is a WinRT runtime class type. Add the '[DynamicWindowsRuntimeCast]' attribute to the containing method (or field), which will ensure the necessary metadata is kept. This will allow the cast to always work correctly when using trimming. (https://github.com/microsoft/CsWinRT/tree/master/src/Authoring/WinRT.SourceGenerator/AnalyzerReleases.Shipped.md) [%USERPROFILE%\pilot\Files\src\Files.App.Controls\Files.App.Controls.csproj]
+  Files.App.Controls -> %USERPROFILE%\pilot\Files\src\Files.App.Controls\bin\x64\Debug\net10.0-windows10.0.26100.0\Files.App.Controls.dll
+
+生成失败。
+
+%USERPROFILE%\pilot\Files\src\Files.App\Files.App.csproj : warning NU1903: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9
+%USERPROFILE%\pilot\Files\src\Files.App\Files.App.csproj : warning NU1903: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9
+CSC : warning CS9057: 无法使用分析器程序集“%USERPROFILE%\pilot\Files\src\Files.Core.SourceGenerator\bin\x64\Debug\netstandard2.0\Files.Core.SourceGenerator.dll”，因为它引用的编译器版本“5.9.0.0”比当前正在运行的版本“5.6.0.0”更新。 [%USERPROFILE%\pilot\Files\src\Files.App.Controls\Files.App.Controls.csproj]
+CSC : warning CS9057: 无法使用分析器程序集“%USERPROFILE%\pilot\Files\src\Files.Core.SourceGenerator\bin\x64\Debug\netstandard2.0\Files.Core.SourceGenerator.dll”，因为它引用的编译器版本“5.9.0.0”比当前正在运行的版本“5.6.0.0”更新。 [%USERPROFILE%\pilot\Files\src\Files.App.Controls\Files.App.Controls.csproj]
+%USERPROFILE%\pilot\Files\src\Files.App.Controls\Sidebar\SidebarItem.cs(544,6): warning CsWinRT1034: Casting to type 'Microsoft.UI.Xaml.UIElement?' is not trim-safe, as it is a WinRT runtime class type. Add the '[DynamicWindowsRuntimeCast]' attribute to the containing method (or field), which will ensure the necessary metadata is kept. This will allow the cast to always work correctly when using trimming. (https://github.com/microsoft/CsWinRT/tree/master/src/Authoring/WinRT.SourceGenerator/AnalyzerReleases.Shipped.md) [%USERPROFILE%\pilot\Files\src\Files.App.Controls\Files.App.Controls.csproj]
+CSC : error CS9057: 无法使用分析器程序集“%USERPROFILE%\pilot\Files\src\Files.Core.SourceGenerator\bin\x64\Debug\netstandard2.0\Files.Core.SourceGenerator.dll”，因为它引用的编译器版本“5.9.0.0”比当前正在运行的版本“5.6.0.0”更新。 [%USERPROFILE%\pilot\Files\src\Files.App.CsWin32\Files.App.CsWin32.csproj]
+    5 个警告
+    1 个错误
+
+已用时间 00:00:55.14
