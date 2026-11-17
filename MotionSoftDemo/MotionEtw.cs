@@ -59,6 +59,10 @@ public sealed class MotionEtw : EventSource
         if (IsEnabled()) WriteEvent(103, sessionId, deltaUs, engineTickUs, activeCount);
     }
 
+    // Known limitation (Z5 T2, 2026-11-18, docs-only): every current PresentStats emitter passes placeholder
+    // values, not measurements: dropped=0, intervalMs=16.666 (Z4L1Session.cs, Z3aL1DevSmoke.cs; also M202Probe.cs).
+    // Pilot telemetry must not read these field values (K93 measured frame interval p50 is about 31 ms).
+    // Real present statistics need a separate ticket. Event name, id, fields and GUID are unchanged (E1 frozen).
     [Event(IdPresentStats, Level = EventLevel.Informational,
         Message = "PresentStats session={0} dropped={1} intervalMs={2}")]
     public void PresentStats(ulong sessionId, uint dropped, double intervalMs)
