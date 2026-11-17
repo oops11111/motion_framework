@@ -44,9 +44,11 @@ public static class Z3aL1DevSmoke
             string json = File.ReadAllText(tokenJsonPath);
 
             var seen = new HashSet<string>(StringComparer.Ordinal);
+            var idleLines = new List<string>();
             using var mirror = new MotionEtwMirror(line =>
             {
                 log.WriteLine(line);
+                if (line.StartsWith("ETW_EVENT name=IdleTransition ", StringComparison.Ordinal)) idleLines.Add(line);
                 if (!line.StartsWith("ETW_EVENT name=", StringComparison.Ordinal)) return;
                 int a = "ETW_EVENT name=".Length;
                 int b = line.IndexOf(' ', a);
@@ -171,6 +173,29 @@ public static class Z3aL1DevSmoke
             jump.Cancel();
             if (sys.IsRunning) Pump(sys, 5);
             sys.SetReducedMotion(false);
+
+            // Z5-T3 required case: Dispose while the frame pump is on closes the pump and emits one IdleTransition.
+            // Fresh system and target: the first Retarget passes from: 0 (with from=null a never-sampled property is rejected).
+            {
+                var pumpSys = MotionSystem.CreateManual();
+                int pumpOffCallbacks = 0;
+                pumpSys.FramePumpChanged += on => { if (!on) pumpOffCallbacks++; };
+                string? pumpTok = pumpSys.LoadTokens(json, "demo_motion.json");
+                Ok(pumpTok == null, "Z5-T3 dispose-with-pump-on: tokens " + (pumpTok ?? "ok"));
+                var pumpAnim = pumpSys.CreateAnimation(6, null);
+                pumpAnim.Play();
+                Ok(pumpAnim.Retarget("offsetX", 120, Snappy, from: 0), "Z5-T3 dispose-with-pump-on: retarget 0 -> 120");
+                Step(pumpSys, 3);
+                Ok(pumpSys.IsRunning, "Z5-T3 dispose-with-pump-on: pump is on before Dispose");
+                int idleBefore = idleLines.Count;
+                pumpSys.Dispose();
+                var emitted = idleLines.Skip(idleBefore).ToList();
+                log.WriteLine("Z5T3_DISPOSE_IDLE emitted=" + emitted.Count.ToString(CultureInfo.InvariantCulture)
+                    + " pumpOffCallbacks=" + pumpOffCallbacks.ToString(CultureInfo.InvariantCulture));
+                Ok(emitted.Count == 1 && emitted[0].EndsWith(",0,0", StringComparison.Ordinal),
+                    "Z5-T3 Dispose with pump on emits exactly one IdleTransition(activeCount=0, pumpOn=0): " + string.Join(" | ", emitted));
+                Ok(pumpOffCallbacks == 1, "Z5-T3 Dispose with pump on raises FramePumpChanged(false) once");
+            }
 
             MotionEtw.Log.PresentStats(sys.SessionId, 0, 16.666);
             string[] required = { "AnimationLifecycle", "Retarget", "FrameTick", "PresentStats", "IdleTransition", "TokenLoad" };

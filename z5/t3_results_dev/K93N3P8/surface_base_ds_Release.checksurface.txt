@@ -1,0 +1,21 @@
+ok L1 types present
+ok no public-or-otherwise type MotionEngine
+ok no public-or-otherwise type MotionAnimation
+ok no public-or-otherwise type RiveView
+ok no public-or-otherwise type PointerFollow
+ok MotionSystem.Create()
+ok MotionSystem.Dispose()
+ok MotionSystem.LoadTokens(json)
+ok MotionSystem.SetReducedMotion(on)
+ok MotionSystem.IsRunning
+ok MotionSystem.OnFrame()
+ok MotionSystem.Current(target, property)
+ok MotionSystem.CreateAnimation(target, transition?)
+ok AnimationHandle.Play()
+ok AnimationHandle.Cancel()
+ok AnimationHandle.Release()
+ok AnimationHandle.Retarget
+ok Retarget(property, target, spring, from?)
+ok MotionTokens.Load(json)
+ok no 0.3 default on L1 methods
+CHECKSURFACE fails=0

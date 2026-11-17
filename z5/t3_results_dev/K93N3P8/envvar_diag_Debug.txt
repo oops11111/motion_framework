@@ -1,0 +1,41 @@
+FM_FLUIDMOTION_PATH=C:\z5_nonexistent\fluidmotion.dll
+Z3A_DEV_ONLY=1
+Z4=NO
+PERF_CI=HOLD
+provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d
+note=dev smoke only; does not fill Z4 APPROVED and is not a Z4 session
+ok no public-or-otherwise type MotionEngine
+ok no public-or-otherwise type MotionAnimation
+ok no public-or-otherwise type RiveView
+ok no public-or-otherwise type PointerFollow
+ok MotionSystem.Create()
+ok MotionSystem.Dispose()
+ok MotionSystem.LoadTokens(json)
+ok MotionSystem.SetReducedMotion(on)
+ok MotionSystem.IsRunning
+ok MotionSystem.OnFrame()
+ok MotionSystem.Current(target, property)
+ok MotionSystem.CreateAnimation(target, transition?)
+ok AnimationHandle.Play()
+ok AnimationHandle.Cancel()
+ok AnimationHandle.Release()
+ok AnimationHandle.Retarget
+ok Retarget(property, target, spring, from?)
+ok MotionTokens.Load(json)
+ok no 0.3 default on L1 methods
+ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose
+ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose
+ok provider name
+ok provider guid
+ok event ids 1-6
+FAIL exception DllNotFoundException: Unable to load DLL 'C:\z5_nonexistent\fluidmotion.dll' or one of its dependencies: 找不到指定的模块。 (0x8007007E)
+System.DllNotFoundException: Unable to load DLL 'C:\z5_nonexistent\fluidmotion.dll' or one of its dependencies: 找不到指定的模块。 (0x8007007E)
+   at System.Runtime.InteropServices.NativeLibrary.Load(String libraryPath)
+   at MotionSoftDemo.MotionSystem.<>c__DisplayClass26_0.<.cctor>b__0(String name, Assembly _, Nullable`1 _) in C:\Users\admin\mf_z5\t3\MotionSoftDemo\MotionSystem.cs:line 90
+   at System.Runtime.InteropServices.NativeLibrary.LoadLibraryCallbackStub(String libraryName, Assembly assembly, Boolean hasDllImportSearchPathFlags, UInt32 dllImportSearchPathFlags)
+   at MotionSoftDemo.MotionSystem.FmAbi.fm_create(SinkFn sink, RenderFn render, IntPtr user)
+   at MotionSoftDemo.MotionSystem..ctor(Boolean manual) in C:\Users\admin\mf_z5\t3\MotionSoftDemo\MotionSystem.cs:line 107
+   at MotionSoftDemo.MotionSystem.Create() in C:\Users\admin\mf_z5\t3\MotionSoftDemo\MotionSystem.cs:line 114
+   at MotionSoftDemo.Z3aL1DevSmoke.Run(TextWriter log, String tokenJsonPath) in C:\Users\admin\mf_z5\t3\MotionSoftDemo\Z3aL1DevSmoke.cs:line 65
+Z3A_DEV_ONLY verdict=FAIL fails=1 not_z4=1 perf_ci=HOLD
+EXIT=1
