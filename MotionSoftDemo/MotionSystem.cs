@@ -77,6 +77,9 @@ public sealed class MotionSystem : IDisposable
 
     static MotionSystem()
     {
+#if DEBUG
+        // Z5-T3 internal fix: FM_FLUIDMOTION_PATH is read only in Debug builds; Release ignores it
+        // (an env-var DLL path is a DLL-hijack entry point). Public surface / fm_* / E1 unchanged.
         string? path = Environment.GetEnvironmentVariable("FM_FLUIDMOTION_PATH");
         if (string.IsNullOrEmpty(path)) return;
         try
@@ -91,6 +94,7 @@ public sealed class MotionSystem : IDisposable
         {
             // Another resolver already owns this assembly; default probing still applies.
         }
+#endif
     }
 
     MotionSystem(bool manual)
@@ -322,6 +326,9 @@ public sealed class MotionSystem : IDisposable
         {
             _pumpOn = false;
             try { pump?.Invoke(false); } catch { }
+            // Z5-T3 internal fix: Dispose closes the pump here, and OnRender no longer emits once
+            // _disposed is set, so emit the pump-off IdleTransition exactly once (same id/fields as OnRender).
+            try { MotionEtw.Log.IdleTransition(_sessionId, 0u, (byte)0); } catch { }
         }
         if (_sys != IntPtr.Zero)
         {
