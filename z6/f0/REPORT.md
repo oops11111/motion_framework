@@ -77,3 +77,13 @@ push 尚未获 pidan 本人许可，本分支仅本地提交。
 - **状态：未复核**。结果只在本地提交，没有推送。
 - **r2 第四节「FrameTick 只计数，不落 deltaUs 数值」**：`raw/devsmoke_console_Debug.txt`、`raw/devsmoke_console_Release.txt` 是 devsmoke 的原样 stdout。其中 `ETW_EVENT name=FrameTick ... payload=...` 行（两份合计 474 行）带着 devsmoke 自身打印的 payload 字段，与 Z5-T3 已入库的同类输出一样。这两份文件是 r1 下产出并提交的，本报告和上文都没有读取或引用这些字段的数值，也不据此作结论。按「已做的不重做」和「证据不改写」，原样保留不删改；之后是否要对这类原始输出另作处理，由 pidan 或协调决定。
 - 台账：本票动作已记入 K93 本地 `%USERPROFILE%\mf_z6\LEDGER.md`（只追加）。本次不推送，所以没有放 `z6/LEDGER_snapshot.md`。
+
+## 授权留痕（追加，2026-11-18 AWST）
+
+上文「push 尚未获 pidan 本人许可」写于许可之前，原样保留。之后 pidan 本人在拍板卡 **t206s992**（workbuddy cli 会话，2026-11-18 07:01 AWST）上答复，原话逐字如下：
+
+- 「wb/z6-* 分支可以普通 push（常设许可）」
+- 「Z6 范围内允许用一次性计划任务跑 GUI，用完即删」
+- 「Z6 范围内松散包注册和卸载给总许可」
+
+本分支据第一条做普通 push（`git push -u origin <分支>`），不 force、不 amend、不 rebase。合 main、开或合 PR、tag、删远端分支、LOCK、APPROVED、其他系统级步骤、非原样构建开关，都**不在**上述许可内。台账副本见 `z6/LEDGER_snapshot.md`（取自 K93 本地 `%USERPROFILE%\mf_z6\LEDGER.md`，取于本次提交时）。推送前结果状态为「未复核」。
