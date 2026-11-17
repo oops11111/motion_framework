@@ -127,3 +127,64 @@ EXEC : error : Could not read the Windows SDK's Platform.xml at C:\Program Files
 - FluentHub 克隆 `git status` 干净（仅忽略的 `obj/`、`bin/` 产物增加：Octokit.Generators / Octokit / FluentHub.Core 的 Debug x64 输出，及 FluentHub `obj\...\win-x64\` 中间文件）。
 - 日志：`%TEMP%\z5_wave1\t4\rebuild\a1_build.txt`（UTF-8）、`a1_exit.txt`。
 - 无安装、无证书、无包注册、无系统设置改动。
+
+---
+
+## 8. 非原样重做 A1 第二次（pidan 安装 SDK 后）· 2026-11-18 01:35–01:40 AWST — 结果：**PASS（构建通过、启动到未登录主界面）**
+
+> 本节为**非原样**构建记录（`-p:NuGetAudit=false`）；上文第 1–7 节保持不变（标题行的「FAIL」指第 3 节原样构建，最新结论以本节为准）。
+> 依据：pidan 2026-11-18 01:25 AWST 原话「T4 我在 K93 装 Windows SDK 10.0.26100，装完用同一命令重跑」；pidan 随后本人告知「已安装」。SDK 由 pidan 本人安装，本票未装任何东西。
+> 运行时：按 pidan 01:18 AWST 裁决，`Microsoft.WindowsAppRuntime.2` **2.6.5** 替代字面 2.0.x —— 本节已**实测**（见 8.3）。
+
+### 8.1 前置（只读）
+
+- `C:\Program Files (x86)\Windows Kits\10\Platforms\UAP\10.0.26100.0\Platform.xml` 存在；`Platforms\UAP` 与 `Include` 现为 `10.0.18362.0`、`10.0.26100.0`。
+- FluentHub 克隆 HEAD `eb08f0dbcbb43880ab34038b0cb6742f0c0deca5`，`git status --porcelain` 为空（构建前、构建后均为空）。
+
+### 8.2 构建（与 7.1 完全相同的命令，未加任何其他属性，未改任何文件）
+
+```
+dotnet build src\FluentHub\FluentHub.csproj -c Debug -p:Platform=x64 -p:NuGetAudit=false
+```
+
+结果：**BUILD_EXIT=0**（01:35:44–01:36:44 AWST，已用时间 00:00:59.88），**0 警告 0 错误**。restore「所有项目均是最新的」（无新下载）。
+
+```
+Octokit.Generators -> ...\src\Octokit.Generators\bin\x64\Debug\netstandard2.0\Octokit.Generators.dll
+Octokit -> ...\src\Octokit\bin\x64\Debug\net10.0\Octokit.dll
+FluentHub.Core -> ...\src\FluentHub.Core\bin\x64\Debug\net10.0\FluentHub.Core.dll
+FluentHub -> ...\src\FluentHub\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\FluentHub.dll
+```
+
+输出目录 `src\FluentHub\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\` 含 `FluentHub.exe`、`AppxManifest.xml`、`resources.pri`（Debug 松散布局；Debug 下 `GenerateAppxPackageOnBuild` 不生效，未生成 .msix）。
+
+### 8.3 包注册与运行时（用户级）
+
+- 注册（开发者模式松散注册，用户级，无 UAC、无证书）：
+  `Add-AppxPackage -Register <输出目录>\AppxManifest.xml` → 成功。
+- 注册结果：`49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm`，PFN `49462fluenthub-uwp.FluentHub_tq8wa33sfftnm`，`IsDevelopmentMode=True`，`SignatureKind=None`，InstallLocation = 上述构建输出目录。
+- 清单依赖 `Microsoft.WindowsAppRuntime.2` MinVersion `2.0.1.0`；**实际解析依赖 = `Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe`**。
+- 进程加载模块实证（pid 4632）：`Microsoft.WindowsAppRuntime.dll`、`Microsoft.UI.Xaml.dll`、`Microsoft.UI.Xaml.Controls.dll`、`Microsoft.UI.Composition.OSSupport.dll`、`dcompi.dll`、`Microsoft.UI.Windowing.dll` 等全部来自 `C:\Program Files\WindowsApps\Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe\`；`hostfxr.dll`/`coreclr.dll` 来自构建输出目录（SelfContained）。
+- → **2.6.5 替代 2.0.x：实测可用**（构建引用 WASDK 2.0.1，运行于框架包 2.6.5）。
+- **清理命令**（用户级，保留以供 T5 继续使用，本票未执行）：`Get-AppxPackage -Name 49462fluenthub-uwp.FluentHub | Remove-AppxPackage`
+
+### 8.4 启动与截图
+
+- 启动方式：计划任务 `schtasks /Create /TN z5_t4_launch ... /IT /RL LIMITED` + `/Run`，任务内 `explorer.exe shell:AppsFolder\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm!App`；会话 1（Console）；任务已 `schtasks /Delete` 删除。
+- 结果：01:37:55 AWST 进程启动，`Responding=True`，主窗口标题 `FluentHub`；显示左侧导航（Inbox / My pulls / Reviews / Assigned）、顶部搜索框，正文「Sign in to GitHub to view your activity.」—— 即**未登录主界面**；未出现必须登录才能继续的阻断，未点击登录、未输入任何凭据。
+- 截图（仅该窗口区域，DWM 窗口边界 1424×748）：`pilot/fluenthub/t4_fluenthub_window.png`（sha256 `2E429645B3E468AC3BD4066230A2A72F0B3347B22E3F02DDFD675ACA11F7D0FD`）。
+- 截图后用 `CloseMainWindow()` 正常关闭应用。
+
+### 8.5 结论
+
+- **T4 基线（非原样：`-p:NuGetAudit=false`；SDK 10.0.26100.0 由 pidan 安装；运行时 2.6.5 替代 2.0.x）= PASS**：构建 0 警告 0 错误；启动到未登录主界面。
+- 原样构建（第 3 节）仍为 FAIL，不改写。
+- 不含任何性能/时序结论；不采数；Success≠adopt。
+- T4 PASS → 按第二波顺序可进入 Z5-T5（仅本地提交）。
+
+### 8.6 本地副作用
+
+- 用户级包注册：`49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm`（保留；清理命令见 8.3）。
+- FluentHub 克隆仅新增被忽略的 `bin/`、`obj/` 产物；`git status` 干净。
+- 日志：`%TEMP%\z5_wave1\t4\rebuild2\build_a1.log`、`exit.txt`、`register.log`、`launch.log`、`shot.log`、`modules.txt`、截图原件 `fluenthub_t4_window.png`；启动/截图脚本 `t4_launch.ps1`、`winshot.ps1`。
+- 计划任务已删除；无安装、无证书、无系统设置改动（SDK 安装为 pidan 本人操作）。
