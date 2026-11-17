@@ -1,0 +1,346 @@
+15.726ms 派题 #8 MotionSoftDemo (pid 8368); App.Unhandled subscribers=1; wallclock at Loaded = 2026-11-18 00:43:41.366; OS=10.0.19045.0; QPC freq=10000000
+22.039ms load_tokens ok
+35.245ms SELFTEST deferred-dispose: started probe bridge tokens=ok retarget ok=True subscribed=True
+39.904ms Z3a L1 dev smoke (--z3a-l1-dev / MF_Z3A_L1_DEV); DEV-ONLY, not Z4, PERF-CI HOLD; starts in 800 ms
+48.844ms SELFTEST bridge: Dispose requested inside native call (depth 1); fm_destroy deferred via DispatcherQueue.TryEnqueue
+49.876ms SELFTEST deferred-dispose: Dispose() called from sink, InNative=True, IsDisposed right after=False, Subscribed=False
+908.020ms Z3A_DEV_ONLY=1
+908.027ms Z4=NO
+908.029ms PERF_CI=HOLD
+908.030ms provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d
+908.030ms note=dev smoke only; does not fill Z4 APPROVED and is not a Z4 session
+908.033ms ok no public-or-otherwise type MotionEngine
+908.033ms ok no public-or-otherwise type MotionAnimation
+908.034ms ok no public-or-otherwise type RiveView
+908.034ms ok no public-or-otherwise type PointerFollow
+908.035ms ok MotionSystem.Create()
+908.035ms ok MotionSystem.Dispose()
+908.036ms ok MotionSystem.LoadTokens(json)
+908.036ms ok MotionSystem.SetReducedMotion(on)
+908.037ms ok MotionSystem.IsRunning
+908.037ms ok MotionSystem.OnFrame()
+908.038ms ok MotionSystem.Current(target, property)
+908.038ms ok MotionSystem.CreateAnimation(target, transition?)
+908.039ms ok AnimationHandle.Play()
+908.041ms ok AnimationHandle.Cancel()
+908.042ms ok AnimationHandle.Release()
+908.042ms ok AnimationHandle.Retarget
+908.043ms ok Retarget(property, target, spring, from?)
+908.044ms ok MotionTokens.Load(json)
+908.044ms ok no 0.3 default on L1 methods
+908.045ms ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose
+908.045ms ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose
+908.046ms ok provider name
+908.046ms ok provider guid
+908.049ms ok event ids 1-6
+908.051ms ETW_EVENT name=TokenLoad id=6 level=Informational payload=35940431931428,bad_tokens.json,1,414
+908.053ms ok public Create + bad token diagnostic: /bogus: unknown key 'bogus' (allowed: $schema, $comment, version, durations, easing, springs, transitions)
+908.058ms 
+908.059ms ETW_EVENT name=TokenLoad id=6 level=Informational payload=35940431931428,motion.json,0,84
+908.059ms ok MotionTokens.Load on fm_create system: ok
+908.060ms ok manual system idle before play
+908.060ms ETW_EVENT name=TokenLoad id=6 level=Informational payload=35940431931428,motion.json,1,9
+908.061ms ok MotionTokens.Load error has JSON-Pointer: /bogus: unknown key 'bogus' (allowed: $schema, $comment, version, durations, easing, springs, transitions)|
+908.061ms ETW_EVENT name=TokenLoad id=6 level=Informational payload=35940431931428,demo_motion.json,0,73
+908.062ms ok MotionSystem.LoadTokens demo_motion.json: ok
+908.062ms ETW_EVENT name=TokenLoad id=6 level=Informational payload=35940431931428,bad_tokens.json,1,5
+908.063ms ok bad load does not claim success
+908.063ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,1,1,demo.enter,Created
+908.064ms ok tokens remain after a rejected load
+908.064ms ok unknown transition returns an empty handle
+908.065ms ETW_EVENT name=IdleTransition id=5 level=Informational payload=35940431931428,1,1
+908.066ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,1,1,demo.enter,Played
+908.066ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3953,200,1
+908.067ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3953,200,1
+908.067ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,454,8,1
+908.068ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,19,4,1
+908.068ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,6,2,1
+908.069ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.069ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.075ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.076ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.077ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.077ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,4,2,1
+908.077ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.078ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,13,2,1
+908.078ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.079ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.080ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.080ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.081ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.081ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.082ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,4,2,1
+908.082ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,8,2,1
+908.083ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,9,2,1
+908.083ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,13,2,1
+908.084ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.084ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.085ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.085ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.086ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.086ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,4,2,1
+908.087ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.087ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.088ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,10,2,1
+908.088ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.089ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.089ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.090ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.090ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.091ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,4,2,1
+908.091ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.092ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.092ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,10,2,1
+908.093ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.093ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.094ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.094ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.095ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.095ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,4,2,1
+908.096ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.096ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.097ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,10,2,1
+908.102ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.102ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.103ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.104ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.104ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.105ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,4,2,1
+908.105ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.106ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.106ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,6,2,1
+908.106ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.107ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.107ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.108ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.109ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.109ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,4,2,1
+908.110ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,14,2,1
+908.110ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.111ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.111ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.112ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.112ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.113ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.113ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.114ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,4,2,1
+908.114ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,13,2,1
+908.115ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.115ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.116ms ETW_EVENT name=IdleTransition id=5 level=Informational payload=35940431931428,0,0
+908.116ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,13,5,0
+908.117ms ok demo.enter ran then idled frames=69
+908.117ms ok demo.enter ends at offsetX=0 opacity=1
+908.118ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,2,1,,Created
+908.118ms ok CreateAnimation empty (retarget-only)
+908.119ms ETW_EVENT name=IdleTransition id=5 level=Informational payload=35940431931428,1,1
+908.119ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,2,1,,Played
+908.120ms ETW_EVENT name=Retarget id=2 level=Informational payload=35940431931428,2,offsetX,0,240,0.32,0.78,0,0
+908.120ms ok start retarget 240
+908.121ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,2993,7,1
+908.121ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,16,2,1
+908.122ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.122ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.123ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.123ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.124ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.124ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.125ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,9,2,1
+908.125ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,1,1
+908.126ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,6,2,1
+908.126ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.127ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.127ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.129ms ok mid-play sample value=161.664134 vel=1533.78411
+908.130ms ETW_EVENT name=Retarget id=2 level=Informational payload=35940431931428,2,offsetX,161.66413420003562,40,0.32,0.78,0,1533.7841113385382
+908.130ms ok mid-play interrupt retarget 40
+908.131ms ok interrupt keeps value and velocity (no shadow IV)
+908.131ms ETW_EVENT name=Retarget id=2 level=Informational payload=35940431931428,2,offsetX,161.66413420003562,200,0.32,0.78,0,1533.7841113385382
+908.132ms ok same-property retarget 200
+908.132ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,182,5,1
+908.133ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.133ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,2,1
+908.134ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.134ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.135ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.135ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,8,6,1
+908.136ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.136ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,4,2,1
+908.137ms ETW_EVENT name=Retarget id=2 level=Informational payload=35940431931428,2,offsetX,210.8458748020546,80,0.32,0.78,0,190.71543881901334
+908.137ms ok same-property retarget 80
+908.138ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,15,2,1
+908.138ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,1,1
+908.139ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,20,5,1
+908.139ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,20,7,1
+908.140ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,19,4,1
+908.140ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.141ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.141ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.142ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.142ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,2,1,,Cancelled
+908.143ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,3,1,,Created
+908.143ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,3,1,,Played
+908.144ms ETW_EVENT name=Retarget id=2 level=Informational payload=35940431931428,3,offsetX,159.1911351254466,220,0.32,0.78,0,0
+908.144ms ok cross-animation retarget 220
+908.145ms ok cross-animation handoff has no jump
+908.145ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,511,4,1
+908.146ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,8,2,1
+908.146ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,1,1
+908.147ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.152ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.153ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.153ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,7,1,1
+908.154ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.154ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.155ms ETW_EVENT name=Retarget id=2 level=Informational payload=35940431931428,3,offsetX,185.0953301702304,30,0.32,0.78,0,502.1225705420073
+908.155ms ok second mid-play interrupt
+908.156ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,16,2,1
+908.156ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,1,1
+908.157ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.157ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.158ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,8,2,1
+908.158ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.159ms ETW_EVENT name=Retarget id=2 level=Informational payload=35940431931428,3,offsetX,151.69729633768105,160,0.32,0.78,0,-1281.3046419104815
+908.159ms ok sixth retarget
+908.160ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,3,1,,Released
+908.160ms ok Retarget after Release fails
+908.161ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,481,5,1
+908.161ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,6,2,1
+908.162ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,6,2,1
+908.162ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,1,1
+908.163ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,10,2,1
+908.163ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.164ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.164ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.165ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,2,1
+908.165ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.166ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.166ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.167ms ok Release drops the handle and motion continues value 151.697296 -> 131.470447
+908.167ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,18,6,1
+908.168ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,1,1
+908.168ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.169ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.169ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.170ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.170ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.171ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.171ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.173ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,1,1
+908.173ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,10,2,1
+908.174ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.174ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.175ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.175ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.176ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.176ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.177ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.177ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,18,2,1
+908.178ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.178ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.179ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.179ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.180ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.180ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.181ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.181ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.182ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,12,2,1
+908.182ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.183ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.183ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.184ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.184ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.186ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.187ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.187ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.188ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,8,2,1
+908.188ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.189ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.189ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.190ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.190ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.191ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.191ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.192ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.192ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,8,1,1
+908.193ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.193ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.194ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.194ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.195ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.195ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,1,1
+908.196ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.196ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.197ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,10,1,1
+908.197ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.198ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.198ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.198ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.199ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.199ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.200ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.201ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.201ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,8,1,1
+908.206ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.207ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.207ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.208ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.208ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.209ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.209ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.210ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.210ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,1,1
+908.211ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,7,1,1
+908.211ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.212ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.212ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.213ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.213ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,1,1
+908.214ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.214ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,3,1,1
+908.215ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,1,1
+908.215ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,3,1,1
+908.216ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,10,2,1
+908.216ms ETW_EVENT name=IdleTransition id=5 level=Informational payload=35940431931428,0,0
+908.217ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,9,7,0
+908.217ms ok idle after released motion finishes
+908.218ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,4,4,demo.enter,Created
+908.218ms ETW_EVENT name=IdleTransition id=5 level=Informational payload=35940431931428,1,1
+908.219ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,4,4,demo.enter,Played
+908.220ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,17,3,1
+908.220ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.221ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.221ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,9,2,1
+908.222ms ETW_EVENT name=FrameTick id=103 level=Informational payload=35940431931428,9,2,1
+908.222ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,5,2,1
+908.223ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,2,1
+908.223ms ok reduced-motion setup is still in flight opacity=0.826891887
+908.224ms ETW_EVENT name=IdleTransition id=5 level=Informational payload=35940431931428,0,0
+908.224ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,470,18,0
+908.225ms ok SetReducedMotion snaps to end frames=1 opacity=1 offsetX=0
+908.225ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,5,5,,Created
+908.226ms ETW_EVENT name=IdleTransition id=5 level=Informational payload=35940431931428,1,1
+908.226ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,5,5,,Played
+908.227ms ETW_EVENT name=Retarget id=2 level=Informational payload=35940431931428,5,offsetX,0,50,0.32,0.78,1,NaN
+908.228ms ok retarget while reduced motion is on
+908.229ms ETW_EVENT name=IdleTransition id=5 level=Informational payload=35940431931428,0,0
+908.229ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,119,6,0
+908.230ms ETW_EVENT name=IdleTransition id=5 level=Informational payload=35940431931428,0,0
+908.230ms ETW_EVENT name=FrameTick id=3 level=Verbose payload=35940431931428,4,1,0
+908.231ms ok reduced-motion Retarget lands on target with velocity 0 got 50 vel=0
+908.231ms ETW_EVENT name=AnimationLifecycle id=1 level=Informational payload=35940431931428,5,5,,Cancelled
+908.232ms ETW_EVENT name=IdleTransition id=5 level=Informational payload=35940431931428,1,1
+908.232ms ETW_EVENT name=PresentStats id=4 level=Informational payload=35940431931428,0,16.666
+908.233ms ok E1 event AnimationLifecycle
+908.234ms ok E1 event Retarget
+908.234ms ok E1 event FrameTick
+908.235ms ok E1 event PresentStats
+908.235ms ok E1 event IdleTransition
+908.236ms ok E1 event TokenLoad
+908.236ms ETW_SEEN [AnimationLifecycle,FrameTick,IdleTransition,PresentStats,Retarget,TokenLoad]
+908.237ms Z3A_DEV_ONLY verdict=PASS fails=0 not_z4=1 perf_ci=HOLD
+908.251ms Z3A_L1_DEV_SMOKE file=C:\Users\admin\AppData\Local\Temp\z5_wave1\t1\gui_logs\z3a_l1_dev_smoke.txt code=0 not_z4=1 perf_ci=HOLD
+1041.475ms SELFTEST deferred-dispose result: sinkCalls=1 DeferredDisposes=1 IsDisposed=True subs=1 unsubs=1 callbackErrors=0 -> PASS
+1718.418ms MAPTEST auto-close window
+1733.990ms SHUTDOWN reason=MainWindow.Closed: bridge wasSubscribed=False subs=1 unsubs=1 paired=True disposed=True callbackErrors=0 faultsInjected=[off]; probe bridge subs=1 unsubs=1; suite Rendering subs=0 unsubs=0; App.Unhandled subscribers after=0; exceptions=0; log auto-flushes=0 dropped=0
+1793.714ms SHUTDOWN reason=Page.Unloaded: already done -> no-op

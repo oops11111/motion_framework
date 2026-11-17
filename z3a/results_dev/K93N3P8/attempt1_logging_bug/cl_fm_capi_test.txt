@@ -1,0 +1,4 @@
+fm_capi_test.cpp
+fm_capi.cpp
+正在生成代码...
+  正在创建库 C:\Users\admin\AppData\Local\Temp\z5_wave1\t1\capi_test\fm_capi_test.lib 和对象 C:\Users\admin\AppData\Local\Temp\z5_wave1\t1\capi_test\fm_capi_test.exp

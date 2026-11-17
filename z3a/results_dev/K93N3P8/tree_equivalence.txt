@@ -1,0 +1,86 @@
+# Z5 T1 tree equivalence (K93N3P8, generated 2026-11-18 00:44:38 Australia/Perth UTC+8)
+fe59c622 = fe59c6229784ee7712926e3e0f94bcc0187f9069
+2e57bff  = 2e57bff384c771cc972840ca98a1f0bb92aaeb98
+
+## git rev-parse fe59c622:code fe59c622:MotionSoftDemo fe59c622:tools 2e57bff:code 2e57bff:MotionSoftDemo 2e57bff:tools
+fe59c622:code 62005db224ae97453322940a76dfacf831b54944
+fe59c622:MotionSoftDemo e7561c15868331f2b83bf1a0a2cb01e232786485
+fe59c622:tools 799982f4ee1f81b7a7329da5bc449bd9eb8633e6
+2e57bff:code 62005db224ae97453322940a76dfacf831b54944
+2e57bff:MotionSoftDemo e7561c15868331f2b83bf1a0a2cb01e232786485
+2e57bff:tools 799982f4ee1f81b7a7329da5bc449bd9eb8633e6
+
+PAIR code : SAME (62005db224ae97453322940a76dfacf831b54944 vs 62005db224ae97453322940a76dfacf831b54944)
+PAIR MotionSoftDemo : SAME (e7561c15868331f2b83bf1a0a2cb01e232786485 vs e7561c15868331f2b83bf1a0a2cb01e232786485)
+PAIR tools : SAME (799982f4ee1f81b7a7329da5bc449bd9eb8633e6 vs 799982f4ee1f81b7a7329da5bc449bd9eb8633e6)
+
+## git diff --name-status fe59c622 2e57bff (full)
+M	docs/Z_SERIES_CONVERGE.md
+M	docs/m2_mainline_brief.md
+A	docs/workbuddy_z4_r1_approved_push.md
+A	docs/z3a_z4_r1_claude_review.md
+A	docs/z4_etw_l1_smoke_r1_closed.md
+A	docs/z4_etw_l1_smoke_r1_k93_iji_manifest.md
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s1/BUILD_NOTES.md
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s1/bad_tokens.json
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s1/env.json
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s1/session.log
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s1/trace.nettrace
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s1/verdict.json
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s2/BUILD_NOTES.md
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s2/bad_tokens.json
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s2/env.json
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s2/session.log
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s2/trace.nettrace
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s2/verdict.json
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s3/BUILD_NOTES.md
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s3/bad_tokens.json
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s3/env.json
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s3/session.log
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s3/trace.nettrace
+A	z4/results_etw_l1_smoke_r1/IJI1KJG/s3/verdict.json
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s1/INVALID.md
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s1/Report.wer
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s2/bad_tokens.json
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s2/env.json
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s2/session.log
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s2/trace.nettrace
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s2/verdict.json
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s3/INVALID.md
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s3/Report.wer
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s4/BUILD_NOTES.md
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s4/bad_tokens.json
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s4/env.json
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s4/session.log
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s4/trace.nettrace
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s4/verdict.json
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s5/BUILD_NOTES.md
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s5/bad_tokens.json
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s5/env.json
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s5/session.log
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s5/trace.nettrace
+A	z4/results_etw_l1_smoke_r1/K93N3P8/s5/verdict.json
+
+## changes outside docs/ and z4/ (incl. root Directory.Build.props, global.json, nuget.config, etc.)
+NONE (0 entries). All 45 changed paths are under docs/ or z4/.
+
+## root-level files (2e57bff) for reference
+.gitignore
+MotionSoftDemo
+README.md
+artifacts
+code
+disputes.md
+disputes_r1_gemini.md
+docs
+m0
+m3
+plan.md
+round0_gemini.md
+summary.md
+tools
+win_softdemo_src
+z4
+
+## git diff --stat fe59c622 2e57bff -- . ':(exclude)docs' ':(exclude)z4'
+(empty)
