@@ -1,4 +1,5 @@
 # FluentHub 基线 · K93N3P8（Z5 T4）— 结果：**FAIL（原样构建失败，未启动）**
+> 最新结论（2026-11-18 01:40 AWST，第 8 节）：**非原样基线 PASS**（`-p:NuGetAudit=false`；SDK 10.0.26100 由 pidan 本人安装；运行时 2.6.5 替代 2.0.x）。标题行的 FAIL 只指第 3 节原样构建。构建/运行日志在 K93 `%TEMP%`，未入库。
 
 > composition.h 冻结；L1 公开面 / fm_* / E1 不改；不采数（dev-only，不计任何闸门会话）；PERF-CI HOLD；Success≠adopt；不合 main；不 force/amend/rebase；不改任何 *_LOCKED.md；系统级改动一律停下请示 pidan。
 > 本分支只放本报告，不提交 FluentHub 源码；本地克隆不 fork 到公开处，不向上游提 PR。
