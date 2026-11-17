@@ -106,6 +106,8 @@
 - `wb/z5-t5` **仅本地提交，未 push**（未获 pidan 推送许可）。
 - 偏差请评审知悉：本地侧叉 csproj 加了 `EventSourceSupport=true`（3.2），否则 PublishAot 工程里 EventSource 被整体关闭。
 
+更正（2026-11-18）：pidan 02:02 AWST 拍板卡「wb/z5-t5 可以普通 push，推完交 Claude 和 notion 复核并结题」之后，本分支已普通 push（远端 `3809757…`）。第 4.4 节「两边 CHECKSURFACE fails=0」没有对 pack DLL 的原始输出入库，以公开面 dump 一致为准。
+
 ## 9. 本地副作用
 - FluentHub 本地侧叉：2 个文件修改 + 1 个新文件（未提交；`git diff` 即 patch）；`bin/`、`obj/` 产物更新。
 - 用户级包注册 `49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm` 保留（清理命令见第 1 节）；包 LocalState 内 `z5_t5_motion.log`（run2）与 `z5_t5_motion.run1.log`。
