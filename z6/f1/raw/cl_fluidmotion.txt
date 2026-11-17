@@ -1,0 +1,2 @@
+fm_capi.cpp
+  正在创建库 %USERPROFILE%\AppData\Local\Temp\z6\f1\native\fluidmotion.lib 和对象 %USERPROFILE%\AppData\Local\Temp\z6\f1\native\fluidmotion.exp
