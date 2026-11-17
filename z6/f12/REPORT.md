@@ -53,3 +53,16 @@ PRE = POST = 期望值（blob `fd0603c17136c067e89c71e56aef310f2f7e63f4`，归�
 ## 6. 授权留痕
 
 push 尚未获 pidan 本人许可，本分支仅本地提交。
+
+## 7. 第二次提交：标题下补一行（按交接定稿 r2）
+
+- 依据：`z6_workbuddy_handover_FINAL_r2.md`（sha256 `82ab4e29db68e943ab04b034d9e3e360c4a84f2a05451ae904772e10761dd2b1`，150 行）变更摘要第 2 条；r2 取代 r1。第一次提交 `d3c169bf1078d3be1e6c01a46a4b2e5bc0471fb3` 不改、不 amend，本次为第二个普通提交，父提交即 `d3c169bf1078d3be1e6c01a46a4b2e5bc0471fb3`。
+- 做法：仍按仓库字节处理。在第 1 行（标题行）之后、原第 2 行（空行）之前插入一行，行尾 LF，与文件一致。插入的内容原样见 `raw/title_line.txt`。这一做法沿用 Z5 C1 的先例（`b592b6c8`，在 `pilot/fluenthub/BASELINE.md` 标题下插入 `> 最新结论…` 一行）。
+- 核对（原始输出 `raw/f12_check2.txt`）：
+  - 相对 `d3c169bf1078d3be1e6c01a46a4b2e5bc0471fb3`：`git diff --numstat` = `1	0	docs/z5_closed.md`，`-` 行数 0；
+  - 新文件 = 旧文件第 1 行 + 插入行 + 旧文件其余字节，逐字节相同：True；
+  - 新 blob `7ad3e88664da3cea6ed686128d2e5fd2a7f330bc`，sha256 `1d7843e77d64bd4990a0c2bfd73c9e318048d7a2d59e44439149bc4f38bfda37`（32797 字节），CR 字节数 0，首字节 `0x23`（无 BOM）；
+  - 相对 base `7e2feb0e`：`git diff --numstat` = `11	0	docs/z5_closed.md`，`-` 行数 0。
+- composition.h：PRE `fd0603c17136c067e89c71e56aef310f2f7e63f4` / `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418`，POST `fd0603c17136c067e89c71e56aef310f2f7e63f4` / `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418`，PRE = POST = 期望值。
+- 状态：**未复核**（本地提交，未推送）。push 尚未获 pidan 本人许可，本分支仅本地提交。
+- 台账：本票动作已记入 K93 本地 `%USERPROFILE%\mf_z6\LEDGER.md`（只追加）。本次不推送，所以没有放 `z6/LEDGER_snapshot.md`。
