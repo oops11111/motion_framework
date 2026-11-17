@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    PILOT-ONLY (Z5-T5-0). This is NOT the formal L1 class library; a formal L1 library needs separate approval.
+    Link-compiles MotionSoftDemo/MotionSystem.cs and MotionSoftDemo/MotionEtw.cs unchanged (no source edits here).
+    Namespace stays MotionSoftDemo; "FluidMotion.L1" is only the file name (and therefore the output file name).
+    Consumer: the local FluentHub side fork only (C:\Users\admin\pilot\FluentHub), via the prebuilt DLL listed in SHA256SUMS.
+    Not for distribution. The only allowed link-compile point besides z3a_l1_devsmoke. Build configuration: Release.
+    Not Z4. Not PERF-CI. Success is not adopt.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>MotionSoftDemo</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\MotionSoftDemo\MotionSystem.cs" Link="MotionSystem.cs" />
+    <Compile Include="..\..\MotionSoftDemo\MotionEtw.cs" Link="MotionEtw.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\code\capi\demo_motion.json" Link="demo_motion.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\MotionNative\fluidmotion.dll" Link="fluidmotion.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\..\MotionNative\fluidmotion.dll')" />
+  </ItemGroup>
+</Project>
