@@ -22,3 +22,11 @@
 - Merge to `main`; adopt.
 - Z4 official data collection: the r1 gate is LOCKED (`docs/z4_etw_l1_smoke_gate_r1_LOCKED.md`) but APPROVED_* are empty; pidan must send 「APPROVED Z4 r1」 in chat, and the Z3a L1 build must already exist.
 - Coding outside the Z3a ticket (including any FluentHub / Files / `RiveView` / `PointerFollow` / real compositor backend work).
+
+## 已知限制（Known limitations）
+
+- **PresentStats 当前为占位值，不是测量值**（2026-11-18 AWST 补记，Z5 T2；仅文档，不改 L1 公开面 / fm_* / E1）。
+  - 现有发射点一律写死 `dropped=0`、`intervalMs=16.666`：`MotionSoftDemo/Z4L1Session.cs`、`MotionSoftDemo/Z3aL1DevSmoke.cs`（另有 `MotionSoftDemo/M202Probe.cs` 同样写死）；`MotionSoftDemo/MotionEtw.cs` 的 `PresentStats` 事件只原样转发调用方传入的值。
+  - 试点遥测**不得读取** PresentStats 的字段值（`dropped` / `intervalMs`）作任何判断或统计。K93N3P8 实测帧间隔 p50 约 31 ms（Z4 r1 K93 s2/s4/s5 `frame_dt_ms.p50` = 31.32 / 31.24 / 31.27 ms），与占位 16.666 ms 不符。
+  - 该事件名、事件 id 4、字段与 provider GUID 仍按 E1 冻结，不因本条改动。
+  - 真实 present 统计（掉帧数 / 实际呈现间隔）须**另开票**；本条不授权编码。
