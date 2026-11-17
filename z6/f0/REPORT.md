@@ -69,3 +69,11 @@ PRE = POST = 期望值。
 ## 6. 授权留痕
 
 push 尚未获 pidan 本人许可，本分支仅本地提交。
+
+## 7. 补记（2026-11-18 AWST，按交接定稿 r2；第二个普通提交，不改上文）
+
+- 交接定稿已升级为 `z6_workbuddy_handover_FINAL_r2.md`（sha256 `82ab4e29db68e943ab04b034d9e3e360c4a84f2a05451ae904772e10761dd2b1`）。按 r2，F0 已做的工作不重做。
+- **本票实际 base sha**：`7e2feb0e98f69cf45fff8da4e60220d2b24a5e1a`。第一次提交 `ee495368814f3227831025227f0b35b11e01ebac`，父提交即 base。
+- **状态：未复核**。结果只在本地提交，没有推送。
+- **r2 第四节「FrameTick 只计数，不落 deltaUs 数值」**：`raw/devsmoke_console_Debug.txt`、`raw/devsmoke_console_Release.txt` 是 devsmoke 的原样 stdout。其中 `ETW_EVENT name=FrameTick ... payload=...` 行（两份合计 474 行）带着 devsmoke 自身打印的 payload 字段，与 Z5-T3 已入库的同类输出一样。这两份文件是 r1 下产出并提交的，本报告和上文都没有读取或引用这些字段的数值，也不据此作结论。按「已做的不重做」和「证据不改写」，原样保留不删改；之后是否要对这类原始输出另作处理，由 pidan 或协调决定。
+- 台账：本票动作已记入 K93 本地 `%USERPROFILE%\mf_z6\LEDGER.md`（只追加）。本次不推送，所以没有放 `z6/LEDGER_snapshot.md`。
