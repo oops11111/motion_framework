@@ -1,0 +1,66 @@
+00001 PILOT start (Z5-T5, pilot-only)
+00002 UISettings.AnimationsEnabled=True -> SetReducedMotion(False)
+00003 ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose
+00004 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00005 ETW_EVENT name=TokenLoad id=6 name=motion.json problemCount=0
+00006 MotionTokens.Load demo_motion.json: ok
+00007 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Created
+00008 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Played
+00009 enter target=1 anim=1
+00010 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Created
+00011 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Played
+00012 enter target=2 anim=2
+00013 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Created
+00014 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Played
+00015 enter target=3 anim=3
+00016 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Created
+00017 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Played
+00018 enter target=4 anim=4
+00019 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00020 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=3 transition= state=Created
+00021 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00022 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=3 transition= state=Played
+00023 ETW_EVENT name=Retarget id=2 anim=5 prop=offsetX from=0 to=8 hasFrom=0 vel=0
+00024 hover-in target=3 anim=5 retarget(offsetX=8) ok=True
+00025 ETW_EVENT name=Retarget id=2 anim=5 prop=offsetX from=0.0053659204594245224 to=0 hasFrom=0 vel=5.643213033249324
+00026 hover-out target=3 anim=5 retarget(offsetX=0) ok=True
+00027 ETW_EVENT name=AnimationLifecycle id=1 anim=6 target=2 transition= state=Created
+00028 ETW_EVENT name=AnimationLifecycle id=1 anim=6 target=2 transition= state=Played
+00029 ETW_EVENT name=Retarget id=2 anim=6 prop=offsetX from=0 to=8 hasFrom=0 vel=0
+00030 hover-in target=2 anim=6 retarget(offsetX=8) ok=True
+00031 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00032 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00033 ETW_EVENT name=Retarget id=2 anim=6 prop=offsetX from=8 to=0 hasFrom=0 vel=0
+00034 hover-out target=2 anim=6 retarget(offsetX=0) ok=True
+00035 ETW_EVENT name=Retarget id=2 anim=5 prop=offsetX from=0 to=8 hasFrom=0 vel=0
+00036 hover-in target=3 anim=5 retarget(offsetX=8) ok=True
+00037 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00038 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00039 ETW_EVENT name=Retarget id=2 anim=5 prop=offsetX from=8 to=0 hasFrom=0 vel=0
+00040 hover-out target=3 anim=5 retarget(offsetX=0) ok=True
+00041 ETW_EVENT name=AnimationLifecycle id=1 anim=7 target=4 transition= state=Created
+00042 ETW_EVENT name=AnimationLifecycle id=1 anim=7 target=4 transition= state=Played
+00043 ETW_EVENT name=Retarget id=2 anim=7 prop=offsetX from=0 to=8 hasFrom=0 vel=0
+00044 hover-in target=4 anim=7 retarget(offsetX=8) ok=True
+00045 ETW_EVENT name=Retarget id=2 anim=7 prop=offsetX from=0.002175469234065197 to=0 hasFrom=0 vel=3.618709511883364
+00046 hover-out target=4 anim=7 retarget(offsetX=0) ok=True
+00047 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00048 MainWindow.Closed -> Dispose
+00049 Dispose begin
+00050 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Cancelled
+00051 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Released
+00052 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Cancelled
+00053 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Released
+00054 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Cancelled
+00055 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Released
+00056 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Cancelled
+00057 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Released
+00058 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=3 transition= state=Cancelled
+00059 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=3 transition= state=Released
+00060 ETW_EVENT name=AnimationLifecycle id=1 anim=6 target=2 transition= state=Cancelled
+00061 ETW_EVENT name=AnimationLifecycle id=1 anim=6 target=2 transition= state=Released
+00062 ETW_EVENT name=AnimationLifecycle id=1 anim=7 target=4 transition= state=Cancelled
+00063 ETW_EVENT name=AnimationLifecycle id=1 anim=7 target=4 transition= state=Released
+00064 Dispose end handles=7 (enter=4, hover=3) sinkCalls=262
+00065 ETW_SUMMARY distinctNames=5 names[AnimationLifecycle=28, FrameTick=85, IdleTransition=8, Retarget=8, TokenLoad=1] lifecycle[Cancelled=7, Created=7, Played=7, Released=7]
+# path=C:\Users\admin\AppData\Local\Packages\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\LocalState\z5_t5_motion.log lines=65 dropped=0 capacity=4096

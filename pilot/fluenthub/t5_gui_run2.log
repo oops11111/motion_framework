@@ -1,0 +1,42 @@
+﻿01:51:59.786 session=1 cursor_orig=935,511
+01:52:01.587 window hwnd=3804660 pid=37788
+01:52:01.665 shot enter_00 rect=168,160,1592,908
+01:52:01.771 shot enter_01 rect=168,160,1592,908
+01:52:01.869 shot enter_02 rect=168,160,1592,908
+01:52:01.969 shot enter_03 rect=168,160,1592,908
+01:52:02.085 shot enter_04 rect=168,160,1592,908
+01:52:02.186 shot enter_05 rect=168,160,1592,908
+01:52:02.285 shot enter_06 rect=168,160,1592,908
+01:52:02.386 shot enter_07 rect=168,160,1592,908
+01:52:02.485 shot enter_08 rect=168,160,1592,908
+01:52:02.586 shot enter_09 rect=168,160,1592,908
+01:52:02.686 shot enter_10 rect=168,160,1592,908
+01:52:02.803 shot enter_11 rect=168,160,1592,908
+01:52:09.423 shot rest rect=168,160,1592,908
+01:52:09.435 scale=1.390625 itemX=293 myPullsY=300 reviewsY=351
+01:52:09.552 moveto 1002,577 sendinput_rc=1 now=1002,577
+01:52:10.072 moveto 293,300 sendinput_rc=1 now=293,300
+01:52:10.074 cursor -> My pulls
+01:52:10.106 shot hoverin_00 rect=168,160,1592,908
+01:52:10.222 shot hoverin_01 rect=168,160,1592,908
+01:52:10.321 shot hoverin_02 rect=168,160,1592,908
+01:52:10.426 shot hoverin_03 rect=168,160,1592,908
+01:52:10.538 shot hoverin_04 rect=168,160,1592,908
+01:52:10.638 shot hoverin_05 rect=168,160,1592,908
+01:52:11.739 shot hover_mypulls_settled rect=168,160,1592,908
+01:52:11.863 moveto 293,351 sendinput_rc=1 now=293,351
+01:52:11.864 cursor -> Reviews
+01:52:12.951 shot hover_reviews_settled rect=168,160,1592,908
+01:52:13.066 moveto 1002,577 sendinput_rc=1 now=1002,577
+01:52:13.067 cursor -> away
+01:52:13.105 shot hoverout_00 rect=168,160,1592,908
+01:52:13.204 shot hoverout_01 rect=168,160,1592,908
+01:52:13.305 shot hoverout_02 rect=168,160,1592,908
+01:52:13.404 shot hoverout_03 rect=168,160,1592,908
+01:52:13.504 shot hoverout_04 rect=168,160,1592,908
+01:52:13.621 shot hoverout_05 rect=168,160,1592,908
+01:52:14.724 shot after_hover_settled rect=168,160,1592,908
+01:52:14.820 moveto 935,511 sendinput_rc=1 now=935,511
+01:52:14.823 CloseMainWindow sent
+01:52:19.851 alive_after_close=False
+01:52:19.852 done

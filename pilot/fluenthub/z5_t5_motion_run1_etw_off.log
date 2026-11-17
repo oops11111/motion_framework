@@ -1,0 +1,12 @@
+00001 PILOT start (Z5-T5, pilot-only)
+00002 UISettings.AnimationsEnabled=True -> SetReducedMotion(False)
+00003 MotionTokens.Load demo_motion.json: ok
+00004 enter target=1 anim=1
+00005 enter target=2 anim=2
+00006 enter target=3 anim=3
+00007 enter target=4 anim=4
+00008 MainWindow.Closed -> Dispose
+00009 Dispose begin
+00010 Dispose end handles=4 (enter=4, hover=0) sinkCalls=136
+00011 ETW_SUMMARY distinctNames=0 names[] lifecycle[]
+# path=C:\Users\admin\AppData\Local\Packages\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\LocalState\z5_t5_motion.log lines=11 dropped=0 capacity=4096
