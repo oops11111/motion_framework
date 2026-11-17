@@ -1,0 +1,2 @@
+  demo.enter: 69 frames (575 ms), 138 sink calls
+35 checks, 0 failures

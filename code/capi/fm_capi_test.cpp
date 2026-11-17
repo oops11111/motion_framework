@@ -74,6 +74,29 @@ int main(int argc, char** argv) {
     fm_destroy(s);
     fm_destroy(nullptr);
 
+    // Z6 F3: empty animation + Play + Retarget at the C layer (mirrors the Z5-T3 devsmoke case). Fresh system and target.
+    {
+        Ctx c2; fm_system* s2 = fm_create_manual(Sink, Render, &c2);
+        CHECK(s2 != nullptr && fm_load_tokens(s2, json.c_str(), err, sizeof err) == 0);
+        uint64_t z = fm_animation_create(s2, 6, nullptr);            // empty animation (Retarget only)
+        CHECK(z != 0);
+        fm_animation_play(s2, z);                                    // Play on an empty animation: wakes the pump, nothing to drive
+        RunFrames(s2, 10);
+        CHECK(!fm_is_running(s2));                                   // ...so it goes idle again
+        CHECK(fm_animation_retarget(s2, z, "offsetX", 120.0, 0.32, 0.78, 0, 0.0) == 0);   // never-sampled property, no `from`: rejected
+        CHECK(!fm_is_running(s2));                                   // a rejected Retarget does not wake the pump
+        CHECK(fm_animation_retarget(s2, z, "offsetX", 120.0, 0.32, 0.78, 1, 0.0) == 1);   // from: 0 -> 120
+        CHECK(fm_is_running(s2) && c2.running);
+        double v0 = -1, vel0 = -1; CHECK(fm_current(s2, 6, "offsetX", &v0, &vel0) == 1 && v0 == 0.0);
+        const int f2 = RunFrames(s2, 1000);
+        CHECK(!fm_is_running(s2) && !c2.running && f2 > 0 && f2 < 1000);
+        CHECK(c2.last.at("offsetX") == 120.0);                       // lands exactly on the target
+        CHECK(fm_animation_retarget(s2, z, "offsetX", 0.0, 0.32, 0.78, 0, 0.0) == 1);     // now sampled: `from` may be omitted
+        for (int i = 0; i < 3; ++i) { fm_manual_advance(s2, 1.0 / 120.0); fm_on_frame(s2); }
+        CHECK(fm_is_running(s2));
+        fm_destroy(s2);                                              // destroy with the pump on and the handle still held
+    }
+
     std::printf("%d checks, %d failures\n", g_checks, g_fail);
     return g_fail ? 1 : 0;
 }
