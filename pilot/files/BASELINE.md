@@ -72,3 +72,21 @@ dotnet build src\Files.App\Files.App.csproj -c Debug -p:Platform=x64
 ## 5. 日志
 
 `pilot/files/f9a_logs/`：`clone.log`、`cmd.txt`、`restore.log`、`build.log`、`times.txt`（run1），`cmd2.txt`、`build2.log`、`times2.txt`（run2），`MANIFEST.txt`（原始 sha256 与入库 sha256）。入库前把用户目录替换为 `%USERPROFILE%`，`C:\Program Files (x86)` / `C:\Program Files` 替换为 `%ProgramFiles(x86)%` / `%ProgramFiles%`（`z6/f9a/f9a_collect.ps1`）。
+
+---
+
+## 续跑（2026-11-18 08:25–08:31 AWST）— 结果：**未完成重跑**（未复核）
+
+许可（pidan，卡 t208s1016，08:04 AWST）：「F9a 允许安装新版 .NET SDK（Roslyn≥5.9）和 VS 2026 C++ 工作负载」。不花钱，不升级付费版。
+
+| 项 | 安装前 | 安装后（SDK 完成、VS 未装） |
+|---|---|---|
+| 机器级 SDK | 8.0.428、9.0.321、10.0.300 | 不变 |
+| 用户级 SDK | 无 | **10.0.404** 于 `%USERPROFILE%\.dotnet`（官方脚本，`-NoPath`） |
+| Roslyn（所用编译器） | 10.0.300 → 5.6.0（FileVersion 5.600.26.23102） | 用户级 10.0.404 → **5.9.0**（FileVersion 5.900.26.53019） |
+| VS Community 2026 | 18.6.11822.322，ManagedDesktop+CoreEditor | 不变 |
+| `VC\Tools\MSVC` | 不存在 | 仍不存在 |
+
+- SDK 安装 exit=0。命令与日志：`pilot/files/f9a_logs/rerun/` 与 `z6/f9a/raw/rerun/sdk/`。
+- VS C++ 工作负载：`setup.exe modify … NativeDesktop --includeRecommended --passive --norestart --noUpdateInstaller` 在未提升进程中 **exit=5007**。日志：`Commands with --quiet or --passive should be run elevated from the beginning.` **未弹出 UAC**（未点击）。详见 REPORT 续跑段。
+- **未重跑** run1 / run2（须等 C++ 工作负载装完）。Files HEAD 仍为 `cbfb4ba54a89632fbceb82ea94ada60a9bae3737`，工作区干净。上一节原样基线结论仍为 **FAIL（未启动）**。

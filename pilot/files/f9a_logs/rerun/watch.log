@@ -1,0 +1,6 @@
+2026-11-18T08:31:07.791996+08:00 launch %ProgramFiles(x86)%\Microsoft Visual Studio\Installer\setup.exe modify --installPath %ProgramFiles%\Microsoft Visual Studio\18\Community --add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended --passive --norestart --noUpdateInstaller
+2026-11-18T08:31:07.861388+08:00 pid=21008
+2026-11-18T08:31:09.278321+08:00 t=00s shot=s_00.png size=192044 setup_poll=None procs=setup,21008,
+2026-11-18T08:31:10.654302+08:00 t=01s shot=s_01.png size=189496 setup_poll=5007 procs=
+2026-11-18T08:31:10.654880+08:00 setup exited 5007
+2026-11-18T08:31:10.655353+08:00 done poll=5007

@@ -1,0 +1,2 @@
+%USERPROFILE%\.dotnet\dotnet.exe
+%ProgramFiles%\dotnet\dotnet.exe

@@ -1,0 +1,7 @@
+source=https://builds.dotnet.microsoft.com/dotnet/release-metadata/10.0/releases.json
+channel=10.0
+latest-release=10.0.15
+latest-sdk=10.0.404
+release-date=2026-11-10
+chosen=10.0.404 (10.0.4xx feature band; official free STS/GA SDK; Roslyn 5.9)
+download=https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-sdk-10.0.404-win-x64.zip
