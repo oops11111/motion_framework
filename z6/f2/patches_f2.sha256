@@ -1,0 +1,8 @@
+NavMotionPilot.cs.pre_f2  sha256=c54461d39f95bd0034a15e9d17fadbc3ee34fa56dc249d07f16e9101d4fc6c79  bytes=16477
+NavMotionPilot.cs.post_f2 sha256=80a50698d07cd4c42afd5823c916ef5d6321bf1e83414a59e51288668dc73e21  bytes=17652
+fluenthub_f2_NavMotionPilot.patch    sha256=bf8748df33969a6f5a0e954d8a96e15c6b8a937f21ad2bb4a8ccc299daaf32a8  bytes=5124
+RootView.xaml.cs.pre_f2  sha256=3b7b2ec7fe7781ed484ddb76c78278cf1464be134b3aac26e7cc8441b58fa8c5  bytes=10785
+RootView.xaml.cs.post_f2 sha256=364e9d65a6d6508c3417a34fe98b6a16cae7314d74ccd1f28b94ebf6ab144184  bytes=10557
+fluenthub_f2_RootView.patch    sha256=6c7d74b6b6aa888731833d2cc40fad7e5793bdeca103484fa19537523ef6de2a  bytes=1006
+MainWindow.cs.pre_f2 sha256=61c7c6a1131787c72aa6e267da277646982ad53a2664c4e3cf225eb50e26fa19 bytes=1377
+MainWindow.cs.post   sha256=61c7c6a1131787c72aa6e267da277646982ad53a2664c4e3cf225eb50e26fa19 bytes=1377 unchanged=True path=%USERPROFILE%\pilot\FluentHub\src\FluentHub\Views\MainWindow.cs

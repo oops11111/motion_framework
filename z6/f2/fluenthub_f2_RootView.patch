@@ -1,0 +1,22 @@
+--- a/RootView.xaml.cs (pre_f2)
++++ b/RootView.xaml.cs (post_f2)
+@@ -40,7 +40,8 @@
+ 		private async void OnRootViewLoaded(object sender, RoutedEventArgs e)
+ 		{
+ 			MainWindow.Instance.SetTitleBar(MainTitleBar);
+-			// Z5-T5 pilot-only: Loaded re-entry guard; Unloaded disposes first, so a rebuilt RootView creates a fresh system.
++			// Z5-T5 / Z6-F2: Unloaded disposes first, so a rebuilt RootView creates a fresh system.
++			PilotLog.Write("F2 RootView Loaded -> Create NavMotionPilot");
+ 			_motionPilot ??= new NavMotionPilot(NavigationView);
+ 			if (NavigationView.SelectedItem is null && NavigationView.MenuItems.Count > 0)
+ 			{
+@@ -59,7 +60,8 @@
+ 		private void OnRootViewUnloaded(object sender, RoutedEventArgs e)
+ 		{
+ 			ViewModel.CancelLoading();
+-			_motionPilot?.Dispose(); // Z5-T5 pilot-only
++			PilotLog.Write("F2 RootView Unloaded -> Dispose NavMotionPilot then null");
++			_motionPilot?.Dispose(); // Z5-T5 / Z6-F2: Dispose before the next Loaded Create
+ 			_motionPilot = null;
+ 		}
+ 
