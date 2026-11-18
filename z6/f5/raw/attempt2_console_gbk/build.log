@@ -1,0 +1,19 @@
+  姝ｅ湪纭畾瑕佽繕鍘熺殑椤圭洰鈥?
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : warning NU1903: 鍖?"Microsoft.DotNet.ILCompiler" 10.0.8 鍏锋湁宸茬煡鐨?楂?涓ラ噸鎬ф紡娲烇紝https://github.com/advisories/GHSA-p3jp-9v83-76w9
+  鎵€鏈夐」鐩潎鏄渶鏂扮殑锛屾棤娉曡繕鍘熴€?
+  FmL1VerifyPack: OK FluidMotion.L1.dll=94D6489D9BEC289732EA3E4A8540B052E576A7182BAE3F3367A3E72F04E10DC2 fluidmotion.dll=ADD4857DEAD413F8211941381C6AA8F73C546F3ECAE1774ACED79C464719577D demo_motion.json=8D5DB5775ACAD5DB0C04CBC3C2A214BB7309670C304B71FF40860757973C410E
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : warning NU1903: 鍖?"Microsoft.DotNet.ILCompiler" 10.0.8 鍏锋湁宸茬煡鐨?楂?涓ラ噸鎬ф紡娲烇紝https://github.com/advisories/GHSA-p3jp-9v83-76w9
+  Octokit.Generators -> %USERPROFILE%\pilot\FluentHub\src\Octokit.Generators\bin\x64\Debug\netstandard2.0\Octokit.Generators.dll
+  Octokit -> %USERPROFILE%\pilot\FluentHub\src\Octokit\bin\x64\Debug\net10.0\Octokit.dll
+  FluentHub.Core -> %USERPROFILE%\pilot\FluentHub\src\FluentHub.Core\bin\x64\Debug\net10.0\FluentHub.Core.dll
+  0 IID calculations/fetches patched
+  FluentHub -> %USERPROFILE%\pilot\FluentHub\src\FluentHub\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\FluentHub.dll
+
+宸叉垚鍔熺敓鎴愩€?
+
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : warning NU1903: 鍖?"Microsoft.DotNet.ILCompiler" 10.0.8 鍏锋湁宸茬煡鐨?楂?涓ラ噸鎬ф紡娲烇紝https://github.com/advisories/GHSA-p3jp-9v83-76w9
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : warning NU1903: 鍖?"Microsoft.DotNet.ILCompiler" 10.0.8 鍏锋湁宸茬煡鐨?楂?涓ラ噸鎬ф紡娲烇紝https://github.com/advisories/GHSA-p3jp-9v83-76w9
+    2 涓鍛?
+    0 涓敊璇?
+
+宸茬敤鏃堕棿 00:00:41.49

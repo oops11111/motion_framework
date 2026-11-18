@@ -1,0 +1,121 @@
+diff --git a/src/FluentHub/Views/NavMotionPilot.cs b/src/FluentHub/Views/NavMotionPilot.cs
+index 30f6001..8e80900 100644
+--- a/src/FluentHub/Views/NavMotionPilot.cs
++++ b/src/FluentHub/Views/NavMotionPilot.cs
+@@ -3,6 +3,7 @@
+ // No timing judgement anywhere (PresentStats is a placeholder, N/A). PERF-CI HOLD. Success != adopt.
+ 
+ using System.Diagnostics.Tracing;
++using System.Runtime.Versioning;
+ using Microsoft.UI.Dispatching;
+ using Microsoft.UI.Xaml;
+ using Microsoft.UI.Xaml.Controls;
+@@ -22,6 +23,7 @@ namespace FluentHub.Views
+ 	/// <summary>
+ 	/// Left NavigationView menu items: Loaded, wait for first frame, then Play "demo.enter" (tokens).
+ 	/// F1C hover enqueue unchanged. F2: after first enter Play, DispatcherQueue.TryEnqueue RootView forceReload (Unloaded Dispose, then Loaded Create).
++	/// F5: subscribe UISettings.AnimationsEnabledChanged and call MotionSystem.SetReducedMotion(!AnimationsEnabled) on the UI thread.
+ 	/// </summary>
+ 	internal sealed class NavMotionPilot : IDisposable
+ 	{
+@@ -60,6 +62,9 @@ namespace FluentHub.Views
+ 		private double? _f1cLastOpacity;
+ 		private double? _f1cMidObserved;
+ 		private const ulong F1cTarget = 1;
++		private readonly UISettings _uiSettings;
++		private int _f5EventCount;
++		private bool _f5AppliedAnimationsEnabled;
+ 		private static int s_f2Cycle;
+ 		private static bool s_f2RebuildQueued;
+ 		private readonly int _f2Cycle;
+@@ -75,16 +80,33 @@ namespace FluentHub.Views
+ 			_system.FramePumpChanged += OnFramePumpChanged;
+ 			_system.ValueChanged += OnValueChanged;
+ 
+-			bool animationsEnabled = new UISettings().AnimationsEnabled;
+-			_log.Line($"UISettings.AnimationsEnabled={animationsEnabled} -> SetReducedMotion({!animationsEnabled})");
+-			_system.SetReducedMotion(!animationsEnabled);
+-
+ 			string tokensPath = Path.Combine(AppContext.BaseDirectory, "demo_motion.json");
+ 			string? diag = new MotionTokens(_system).Load(File.ReadAllText(tokensPath));
+ 			_log.Line("MotionTokens.Load demo_motion.json: " + (diag ?? "ok"));
+ 
+ 			_dispatcher = navigationView.DispatcherQueue;
+ 			_nav = navigationView;
++
++			// Z6-F5: follow the system setting while running. Startup value is read once, but the subscription keeps
++			// SetReducedMotion in sync afterwards (was: a single read at startup only).
++			_uiSettings = new UISettings();
++			// AnimationsEnabledChanged needs Windows 10 19041; the project declares 17763 as its minimum, so guard the
++			// subscription explicitly (CA1416) instead of raising the app minimum.
++			bool f5CanSubscribe = OperatingSystem.IsWindowsVersionAtLeast(10, 0, 19041);
++			if (OperatingSystem.IsWindowsVersionAtLeast(10, 0, 19041))
++			{
++				SubscribeAnimationsChanged();
++			}
++			bool animationsEnabled = _uiSettings.AnimationsEnabled;
++			_f5AppliedAnimationsEnabled = animationsEnabled;
++			_log.Line($"F5 subscribed UISettings.AnimationsEnabledChanged={f5CanSubscribe}; initial AnimationsEnabled={animationsEnabled} -> SetReducedMotion({!animationsEnabled})");
++			_system.SetReducedMotion(!animationsEnabled);
++			_log.Line($"F5 initial SetReducedMotion({!animationsEnabled}) applied on UI thread thread={Environment.CurrentManagedThreadId}");
++
++			// Dev-only selftest: run the same enqueued path once with the current value. No state change, and not
++			// evidence of a system-setting switch; it only proves the DispatcherQueue hand-off works.
++			bool f5SelfQueued = _dispatcher.TryEnqueue(() => ApplyReducedMotion(animationsEnabled, "selftest"));
++			_log.Line($"F5 selftest enqueue ok={f5SelfQueued} (same value, no state change)");
+ 			_enteredHandler = OnItemPointerEntered;
+ 			_leftHandler = OnItemPointerLeft;
+ 
+@@ -337,6 +359,40 @@ namespace FluentHub.Views
+ 			MainWindow.Instance.InitializeApplication(null, forceReload: true);
+ 		}
+ 
++		[SupportedOSPlatform("windows10.0.19041.0")]
++		private void SubscribeAnimationsChanged() => _uiSettings.AnimationsEnabledChanged += OnAnimationsEnabledChanged;
++
++		[SupportedOSPlatform("windows10.0.19041.0")]
++		private void UnsubscribeAnimationsChanged() => _uiSettings.AnimationsEnabledChanged -= OnAnimationsEnabledChanged;
++
++		private void OnAnimationsEnabledChanged(UISettings sender, UISettingsAnimationsEnabledChangedEventArgs args)
++		{
++			// WinRT raises this on a thread-pool thread. MotionSystem is thread-affine (contract Table 2), so only
++			// read the new value here and marshal the API call to the UI thread that created the system.
++			bool animationsEnabled = sender.AnimationsEnabled;
++			_f5EventCount++;
++			_log.Line($"F5 AnimationsEnabledChanged n={_f5EventCount} enabled={animationsEnabled} thread={Environment.CurrentManagedThreadId} -> TryEnqueue SetReducedMotion({!animationsEnabled})");
++			bool queued = _dispatcher.TryEnqueue(() => ApplyReducedMotion(animationsEnabled, "event"));
++			_log.Line($"F5 AnimationsEnabledChanged n={_f5EventCount} enqueue ok={queued}");
++			_log.Flush();
++		}
++
++		private void ApplyReducedMotion(bool animationsEnabled, string source)
++		{
++			// UI thread only (DispatcherQueue). SetReducedMotion is thread-affine and may snap running animations to their end.
++			if (_disposed)
++			{
++				return;
++			}
++
++			bool reduced = !animationsEnabled;
++			_log.Line($"F5 SetReducedMotion({reduced}) source={source} animationsEnabled={animationsEnabled} previous={_f5AppliedAnimationsEnabled} thread={Environment.CurrentManagedThreadId}");
++			_system.SetReducedMotion(reduced);
++			_f5AppliedAnimationsEnabled = animationsEnabled;
++			_log.Line($"F5 SetReducedMotion({reduced}) applied; last_animationsEnabled={_f5AppliedAnimationsEnabled}");
++			_log.Flush();
++		}
++
+ 		private void OnWindowClosed(object sender, WindowEventArgs args)
+ 		{
+ 			_log.Line("MainWindow.Closed -> Dispose");
+@@ -376,6 +432,11 @@ namespace FluentHub.Views
+ 				handle.Release();
+ 			}
+ 
++			if (OperatingSystem.IsWindowsVersionAtLeast(10, 0, 19041))
++			{
++				UnsubscribeAnimationsChanged();
++			}
++			_log.Line($"F5 unsubscribed AnimationsEnabledChanged events={_f5EventCount}");
+ 			_system.Dispose();
+ 
+ 			if (_renderingHooked)
