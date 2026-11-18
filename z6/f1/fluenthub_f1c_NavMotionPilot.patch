@@ -1,0 +1,178 @@
+--- a/src/FluentHub/Views/NavMotionPilot.cs
++++ b/src/FluentHub/Views/NavMotionPilot.cs
+@@ -20,8 +20,8 @@
+ namespace FluentHub.Views
+ {
+ 	/// <summary>
+-	/// Left NavigationView menu items: Loaded, wait for first frame, then Play "demo.enter" (tokens), PointerEntered → Retarget offsetX=8,
+-	/// PointerExited/Canceled/CaptureLost → Retarget the same handle back to 0, Unloaded/Closed → Cancel+Release every handle, then Dispose.
++	/// Left NavigationView menu items: Loaded, wait for first frame, then Play "demo.enter" (tokens).
++	/// F1C: after the sink sees enter mid-flight, DispatcherQueue.TryEnqueue hovers (Retarget offsetX=8). No fm_* in sink/render. Pointer hover ignored.
+ 	/// </summary>
+ 	internal sealed class NavMotionPilot : IDisposable
+ 	{
+@@ -53,11 +53,18 @@
+ 		private int _enterShots;
+ 		private bool _enterShotBusy;
+ 		private int _sinkCount;
++		private bool _f1cEnqueued;
++		private bool _f1cHoverPlayed;
++		private int _f1cOverlap;
++		private double? _f1cLastOffsetX;
++		private double? _f1cLastOpacity;
++		private double? _f1cMidObserved;
++		private const ulong F1cTarget = 1;
+ 
+ 		public NavMotionPilot(NavigationView navigationView)
+ 		{
+ 			_log = new PilotLog();
+-			_log.Line("PILOT start (Z6-F6, wait for first frame then Play enter; T5 hover unchanged)");
++			_log.Line("PILOT start (Z6-F1C, program-state hover after sink sees enter mid-flight; enqueue via DispatcherQueue; F6 enter wait unchanged)");
+ 			_listener = new PilotEtwListener(_log);
+ 
+ 			_system = MotionSystem.Create();
+@@ -115,6 +122,7 @@
+ 				_renderingHooked = true;
+ 			}
+ 			_log.Line("F6 waiting for first CompositionTarget.Rendering before Play");
++			_log.Line("F1C will enqueue hover from sink mid-flight via DispatcherQueue; no fm_* in sink/render; pointer hover ignored");
+ 			_log.Flush();
+ 		}
+ 
+@@ -160,42 +168,45 @@
+ 
+ 		private void OnItemPointerEntered(object sender, PointerRoutedEventArgs e)
+ 		{
+-			if (_disposed || sender is not NavigationViewItem item || !_targets.TryGetValue(item, out ulong target))
+-			{
+-				return;
+-			}
+-
+-			if (!_hover.TryGetValue(target, out AnimationHandle? hover))
+-			{
+-				// Empty animation (retarget-only) + Play, then Retarget; created once per item and reused.
+-				hover = _system.CreateAnimation(target, null);
++			// F1C: do not rely on human hover; ignore pointer so the interrupt is program-state only.
++			if (!_disposed)
++			{
++				_log.Line("F1C ignore pointer-enter (program-state hover only)");
++			}
++		}
++
++		private void OnItemPointerLeft(object sender, PointerRoutedEventArgs e)
++		{
++			if (!_disposed)
++			{
++				_log.Line("F1C ignore pointer-leave (program-state hover only)");
++			}
++		}
++
++		private void PlayHoverAfterMidFlight()
++		{
++			// Runs on DispatcherQueue, not inside sink/render. Same hover path as T5 (empty anim + Play + Retarget offsetX=8, no from).
++			if (_disposed || _f1cHoverPlayed)
++			{
++				return;
++			}
++
++			if (!_hover.TryGetValue(F1cTarget, out AnimationHandle? hover))
++			{
++				hover = _system.CreateAnimation(F1cTarget, null);
+ 				hover.Play();
+-				_hover[target] = hover;
++				_hover[F1cTarget] = hover;
+ 			}
+ 
+ 			bool ok = hover.Retarget(OffsetX, HoverOffset, Snappy);
+-			_log.Line($"hover-in target={target} anim={hover.Id} retarget({OffsetX}={HoverOffset}) ok={ok}");
+-		}
+-
+-		private void OnItemPointerLeft(object sender, PointerRoutedEventArgs e)
+-		{
+-			if (_disposed || sender is not NavigationViewItem item || !_targets.TryGetValue(item, out ulong target))
+-			{
+-				return;
+-			}
+-
+-			if (_hover.TryGetValue(target, out AnimationHandle? hover))
+-			{
+-				// Same handle back to 0 (no Cancel + new handle: Cancel would freeze the value as rest).
+-				bool ok = hover.Retarget(OffsetX, 0, Snappy);
+-				_log.Line($"hover-out target={target} anim={hover.Id} retarget({OffsetX}=0) ok={ok}");
+-				_log.Flush();
+-			}
++			_f1cHoverPlayed = true;
++			_log.Line($"F1C PLAY hover after mid-flight enqueue (not in sink/render) target={F1cTarget} anim={hover.Id} retarget({OffsetX}={HoverOffset}) ok={ok} mid_observed={_f1cMidObserved}");
++			_log.Flush();
+ 		}
+ 
+ 		private void OnValueChanged(ulong target, string property, double value)
+ 		{
+-			// Sink: never call back into the motion API from here.
++			// Sink: never call back into the motion API from here (L1 contract Table 2). Observation + TryEnqueue only.
+ 			if (_disposed)
+ 			{
+ 				return;
+@@ -209,6 +220,45 @@
+ 			else if (property == OpacityProperty && _items.TryGetValue(target, out NavigationViewItem? item))
+ 			{
+ 				item.Opacity = Math.Clamp(value, 0, 1);
++			}
++
++			if (target != F1cTarget)
++			{
++				return;
++			}
++
++			if (property == OffsetX)
++			{
++				_f1cLastOffsetX = value;
++			}
++			else if (property == OpacityProperty)
++			{
++				_f1cLastOpacity = value;
++			}
++
++			// Enter mid-flight on offsetX: token starts at -80 and ends at 0. Do not Play/Retarget here.
++			if (_enterPlayed && !_f1cEnqueued && property == OffsetX && value > -80.0 && value < 0.0)
++			{
++				_f1cEnqueued = true;
++				_f1cMidObserved = value;
++				_log.Line($"F1C SINK mid-flight target={target} property={property} value={value} (enqueue hover; no fm_* in this callback)");
++				bool queued = _dispatcher.TryEnqueue(PlayHoverAfterMidFlight);
++				_log.Line($"F1C SINK enqueue hover ok={queued}");
++				_log.Flush();
++			}
++
++			if (_f1cHoverPlayed && _f1cLastOffsetX.HasValue && _f1cLastOpacity.HasValue)
++			{
++				double ox = _f1cLastOffsetX.Value;
++				double op = _f1cLastOpacity.Value;
++				if (op > 0.0 && op < 1.0 && System.Math.Abs(ox - HoverOffset) > 1e-6)
++				{
++					_f1cOverlap++;
++					if (_f1cOverlap <= 12)
++					{
++						_log.Line($"F1C_OVERLAP n={_f1cOverlap} target={target} offsetX={ox} opacity={op}");
++					}
++				}
+ 			}
+ 		}
+ 
+@@ -283,6 +333,7 @@
+ 			}
+ 
+ 			_disposed = true;
++			_log.Line($"F1C_FINAL offsetX={_f1cLastOffsetX} opacity={_f1cLastOpacity} overlapSinkNotes={_f1cOverlap} enqueued={_f1cEnqueued} hoverPlayed={_f1cHoverPlayed} mid_observed={_f1cMidObserved} expected_offsetX={HoverOffset} (later writer target)");
+ 			_log.Line("Dispose begin");
+ 
+ 			foreach (var (item, _) in _targets)
+@@ -343,7 +394,7 @@
+ 				folder = Path.GetTempPath();
+ 			}
+ 
+-			_path = Path.Combine(folder, "z6_f6_motion.log");
++			_path = Path.Combine(folder, "z6_f1c_motion.log");
+ 		}
+ 
+ 		public void Line(string text)

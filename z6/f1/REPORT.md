@@ -72,3 +72,61 @@ devsmoke（B 层）同样有 `F1B_HOLDER1 / F1B_RETARGET_FROM / F1B_OVERLAP / F1
 
 ## 8. 停下点
 - 无。C 层留待 F6 之后（须包注册许可，已有 t206s992 总许可，届时再记）。
+
+---
+
+## C 层（2026-11-18 08:34–08:39 AWST，未复核）— **已停下，未跑 GUI**
+
+- 依据：handover r2 第三节 F1 C（F6 之后）：侧叉由程序状态触发；sink 观察到入场中途后，用 `DispatcherQueue.TryEnqueue` 排队调用悬停；**不得在 sink/render 回调里直接调 fm_\***（合同 Table 2 第 2 条）；不靠人手悬停；连续 3 次没触发成功就停下报告；不得为凑重叠改 token 时长或 `demo_motion.json`。
+- 分支：仍在同一支 `wb/z6-f1` 上**追加提交**（不 amend）。定稿把 A/B/C 写在同一张 F1 票下，未要求另开分支。父提交为本票 A/B tip `cf7e4b9a4cf1898726111d9953a565ddd397a5f5`（其父为 main `7e2feb0e`）。
+- worktree：`%USERPROFILE%\mf_z6\f1`。
+- 许可原话：
+  - pidan，卡 t206s992，2026-11-18 07:01 AWST：「wb/z6-* 分支可以普通 push（常设许可）」
+  - 本段未用到包注册 / schtasks（GUI 未跑）。t208s1016 的 F6/F9a 开关与安装许可**不适用于本层**（F6 开关「仅限本票」）。
+- 侧叉：`%USERPROFILE%\pilot\FluentHub` @ `eb08f0dbcbb43880ab34038b0cb6742f0c0deca5`（本地已有 T5 / F11 / F6 改动，均未推送到该仓库）。本层只改 `src/FluentHub/Views/NavMotionPilot.cs`；源码不入库；未 fork、未登录、无上游 PR。未改 `demo_motion.json`、未改 token 时长。未改 A/B 源文件（`code/capi/fm_capi_test.cpp`、`MotionSoftDemo/Z3aL1DevSmoke.cs`），本层未重跑 A/B。
+
+### 侧叉改动（`fluenthub_f1c_NavMotionPilot.patch`，相对 F6 完成后的 CS）
+1. 保持 F6：等首帧后再 `DispatcherQueue.TryEnqueue` Play 入场。
+2. `OnValueChanged`（sink）在 target=1 的 `offsetX` 处于 (−80, 0) 时只**观察**并 `TryEnqueue(PlayHoverAfterMidFlight)`，日志 `F1C SINK mid-flight … (enqueue hover; no fm_* in this callback)`。不在此回调里 `Create` / `Play` / `Retarget` / 其它 fm_*。
+3. `PlayHoverAfterMidFlight` 在 DispatcherQueue 上走与 T5 相同的悬停路径：空动画 + Play + `Retarget(offsetX, 8, snappy)`，不带 from。日志写明 `not in sink/render`。
+4. sink 继续记 `F1C_OVERLAP`（opacity 仍在 (0,1) 且 offsetX 未到 8）和 Dispose 前的 `F1C_FINAL`（后写者目标 8）。
+5. 指针 Enter/Leave 在本层被忽略并记日志，保证「不靠人手悬停」。
+6. 运动日志改名为 `z6_f1c_motion.log`。
+- 当前 CS sha256 `c54461d39f95bd0034a15e9d17fadbc3ee34fa56dc249d07f16e9101d4fc6c79`（不入库源码）。patch sha 见 `patches_f1c.sha256`。改法由 `f1c_patch.py` 完成。未改冻结文件。
+
+### 构建（原样命令，无额外开关）
+| 步骤 | 命令原文 | 结果 |
+|---|---|---|
+| 第一次（会话 PATH 仍指向 F9a 装的用户级 SDK） | `dotnet build src\FluentHub\FluentHub.csproj -c Debug -p:Platform=x64` | SDK **10.0.404**，exit=0，0 警告 0 错误，`FmL1VerifyPack: OK`（08:36:16–08:38:34 AWST）。**不是**本票要采用的默认工具链，只作记录 |
+| 第二次（显式机器默认） | `"%ProgramFiles%\dotnet\dotnet.exe" build src\FluentHub\FluentHub.csproj -c Debug -p:Platform=x64` | SDK **10.0.300**，**exit=1**：restore 把 NU1903（`Microsoft.DotNet.ILCompiler` 10.0.8）当作错误。日志见 `raw/c/build_sdk300/` |
+
+- **未**使用 `-p:WarningsNotAsErrors=NU1903` 或 `-p:NuGetAudit=false`（F11/F6 的许可仅限那两票）。
+- **未**用 `--no-restore` 或其他规避。
+- **未**注册包、未跑 GUI、未用 schtasks。C 层「3 次触发失败再停」的运行门槛未走到。
+
+### composition.h 与冻结面
+- PRE `raw/composition_pre_c.txt`（08:34:47 +08:00）与 POST `raw/composition_post_c.txt`（08:39:10 +08:00）：`match=True`，blob `fd0603c17136c067e89c71e56aef310f2f7e63f4`，normalized `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418`，head 仍为 `cf7e4b9a`。PRE=POST。
+- `git diff --name-only HEAD -- code/composition.h code/capi/fm_capi.h code/capi/fm_capi.cpp MotionSoftDemo/MotionEtw.cs docs/api_v0_frozen.md` 为空。
+
+### 结论
+- C 层**代码已写在侧叉**，但 **GUI / 重叠证据未跑**。
+- 机器默认 SDK 10.0.300 原样构建失败（NU1903）。继续需要任一步（对本票批准与 F6 相同的非原样开关，或批准用已安装的用户级 SDK 10.0.404 原样命令构建并跑 GUI）都须 **pidan 拍板**。本层停在这里。
+
+### 入库（本追加提交）
+- `z6/f1/REPORT.md`（本段）、`f1c_patch.py`、`fluenthub_f1c_NavMotionPilot.patch`、`patches_f1c.sha256`
+- `z6/f1/raw/composition_pre_c.txt`、`composition_post_c.txt`、`raw/c/build_sdk404/**`、`raw/c/build_sdk300/**`
+- `z6/LEDGER_snapshot.md`
+- 不含 FluentHub 源码，无 GUI 日志 / 截图。
+
+### 偏差
+- 第一次构建误用了 F9a 装在 `%USERPROFILE%\.dotnet` 的 SDK 10.0.404（本会话此前为 F9a 前置过 PATH / `DOTNET_ROOT`）。发现后立刻用 `%ProgramFiles%\dotnet\dotnet.exe`（10.0.300）重跑并保留失败日志。
+- 侧叉 bin 产物停留在 10.0.404 那次成功构建；未用其启动应用。
+
+### 副作用与清理
+- 侧叉 `NavMotionPilot.cs` 已本地修改（相对 F6）；10.0.404 构建更新了侧叉 bin/obj。
+- 无包注册、无计划任务、无系统设置改动、未花钱。用户级 SDK 目录是 F9a 留下的，本层未再安装。
+
+### 停下点
+- **停在这里**，等 pidan 在下列之一上拍板后再续跑 C 层 GUI（同一侧叉，不改 token / demo_motion.json）：
+  1. 批准本票使用非原样开关 `-p:WarningsNotAsErrors=NU1903`（不识别则退回 `-p:NuGetAudit=false`），用机器 SDK 10.0.300 构建；或
+  2. 批准本票用已安装的官方用户级 SDK 10.0.404，原样命令 `dotnet build src\FluentHub\FluentHub.csproj -c Debug -p:Platform=x64`（无额外开关）构建并跑 GUI。
