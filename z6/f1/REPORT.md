@@ -130,3 +130,64 @@ devsmoke（B 层）同样有 `F1B_HOLDER1 / F1B_RETARGET_FROM / F1B_OVERLAP / F1
 - **停在这里**，等 pidan 在下列之一上拍板后再续跑 C 层 GUI（同一侧叉，不改 token / demo_motion.json）：
   1. 批准本票使用非原样开关 `-p:WarningsNotAsErrors=NU1903`（不识别则退回 `-p:NuGetAudit=false`），用机器 SDK 10.0.300 构建；或
   2. 批准本票用已安装的官方用户级 SDK 10.0.404，原样命令 `dotnet build src\FluentHub\FluentHub.csproj -c Debug -p:Platform=x64`（无额外开关）构建并跑 GUI。
+
+---
+
+## C 层续跑（2026-11-18 08:50–08:53 AWST，未复核）
+
+- 许可原话（pidan，卡 t208s1024，2026-11-18 08:49 AWST，workbuddy cli 会话）：「F1 C 批准非原样开关 -p:WarningsNotAsErrors=NU1903，不识别则退回 -p:NuGetAudit=false，用机器 SDK 10.0.300 构建并跑 GUI，仅限本票」
+- 上述开关许可**仅限 F1 C**，不适用于 F2 / F5 / F9a 或其他票。
+- 常设许可（pidan，卡 t206s992，2026-11-18 07:01 AWST）：「wb/z6-* 分支可以普通 push（常设许可）」；「Z6 范围内允许用一次性计划任务跑 GUI，用完即删」；「Z6 范围内松散包注册和卸载给总许可」。
+- 本追加提交不 amend `c4061a2d`。侧叉 CS 相对上一笔未再改。未碰 F9a 安装、F9b、F2、F5。未花钱。
+
+### 结论
+- **PASS（非原样（构建开关：-p:WarningsNotAsErrors=NU1903））**。
+- 全程使用机器默认 `%ProgramFiles%\dotnet\dotnet.exe`（SDK **10.0.300**），未把用户级 10.0.404 放进 PATH。`DOTNET_ROOT=%ProgramFiles%\dotnet`，`where dotnet` 只有机器路径。
+- `-p:WarningsNotAsErrors=NU1903` **被识别**：restore 把 NU1903 报为警告，exit=0，2 警告 0 错误，`FmL1VerifyPack: OK`。**未退回** `-p:NuGetAudit=false`，因此没有「退回前失败日志」可留（上一笔已有无开关的 10.0.300 失败日志 `raw/c/build_sdk300/`）。命令原文见 `raw/c2/build_wnae/cmd.txt`：
+
+```
+"%ProgramFiles%\dotnet\dotnet.exe" build src\FluentHub\FluentHub.csproj -c Debug -p:Platform=x64 -p:WarningsNotAsErrors=NU1903
+```
+
+- GUI 第一次即触发成功（无须连续 3 次失败再停）。日志证明：sink 先见入场中途并只入队；Play/Retarget 发生在 DispatcherQueue 回调（不在 sink/render）；交接处 offsetX 连续；入场 opacity 仍在上升的同时 hover 的 offsetX 在走向 8；最终 offsetX=8（后写者目标）、opacity=1。不靠人手悬停。未改 token / `demo_motion.json`。不计时。
+
+### GUI（一次性 schtasks，用完即删；松散包用完卸载）
+- 注册：`Add-AppxPackage -Register` 用户级，清单 `…\win-x64\AppxManifest.xml`，exit=0。包名 `49462fluenthub-uwp.FluentHub_tq8wa33sfftnm!App`。
+- 启动：`schtasks /Create /TN z6_f1c_launch /TR "explorer.exe shell:AppsFolder\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm!App" /SC ONCE /ST 00:00 /IT /RL LIMITED /F` 然后 `/Run`，结束后 `/Delete`（随后查询 exit=1，任务已不存在）。
+- 光标临时移到 (8,8) 并复原。未登录 GitHub。runtimeconfig 中 `System.Diagnostics.Tracing.EventSource.IsSupported=true`。
+- 运动日志要点（全文 `raw/c2/run/z6_f1c_motion.log`，路径已脱敏）：
+  - `00017`–`00018` F6 首帧回调后入队 Play 入场（仍不在 Rendering 里直接 Play）
+  - `00029` `F1C SINK mid-flight target=1 property=offsetX value=-76.64838521930064 (enqueue hover; no fm_* in this callback)`
+  - `00030` `F1C SINK enqueue hover ok=True`
+  - `00033` ETW Retarget `anim=5 prop=offsetX from=-76.64838521930064 to=8 hasFrom=0 vel=383.9144757886635`（from 与 sink 观察值相同，交接连续；hasFrom=0）
+  - `00034` `F1C PLAY hover after mid-flight enqueue (not in sink/render) … retarget(offsetX=8) ok=True mid_observed=-76.64838521930064`
+  - `00035`–`00046` `F1C_OVERLAP` n=1..12：opacity 从 0.48 升到 0.997，同时 offsetX 从 −68.5 走向 4.92（两持有者同帧重叠）。共 `overlapSinkNotes=15`（只详记前 12 条）
+  - `00053` `F1C_FINAL offsetX=8 opacity=1 … expected_offsetX=8 (later writer target)`
+  - `Dispose end handles=5 (enter=4, hover=1) sinkCalls=160`
+  - `ETW_SUMMARY … names[AnimationLifecycle=20, FrameTick=21, IdleTransition=4, Retarget=1, TokenLoad=1] lifecycle[Cancelled=5, Created=5, Played=5, Released=5]`
+- FrameTick **只计数**（21），入库日志无 `deltaUs`。日志中无 pointer-enter/leave 忽略行，说明没有人手悬停事件。
+- 窗口-only 截图（PrintWindow，只截 FluentHub）：`evidence/window/enter_early.png`（窗体已出现、内容近空）、`settled.png`（条目已就位）。PrintWindow 枚举到窗口时入场/悬停短动画已基本结束，8px 悬停位移在静帧上不明显；重叠与后写者胜以日志为准，不以截图计时或作为唯一证据。
+
+### composition.h 与冻结面
+- PRE `raw/composition_pre_c2.txt`（08:50:15 +08:00）与 POST `raw/composition_post_c2.txt`（08:53:01 +08:00）：`match=True`，blob `fd0603c17136c067e89c71e56aef310f2f7e63f4`，normalized `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418`，head 仍为 `c4061a2d`。冻结 `git diff --name-only` 为空。
+
+### 入库（本追加提交）
+- `z6/f1/REPORT.md`（本段）、`f1c_run.py`
+- `z6/f1/raw/c2/build_wnae/**`、`raw/c2/run/**`、`raw/composition_pre_c2.txt`、`composition_post_c2.txt`
+- `z6/f1/evidence/window/enter_early.png`、`settled.png`
+- `z6/LEDGER_snapshot.md`
+- 不含 FluentHub 源码。侧叉 CS 相对上一笔无新 diff。
+
+### 偏差
+- 构建为经批准的非原样开关（结论已标明），仅限 F1 C。
+- 窗口截图未能捕捉 8px 悬停中途（枚举 hwnd 偏晚），不以截图代替日志。
+- 本层只跑了 FluentHub Debug GUI，未重跑 A/B 的 `fm_capi_test` / devsmoke（那些源文件本层未改）。
+- F6 遗留的 RenderTargetBitmap 诊断仍会写 `z6_f6_enter_*.png` 到 LocalState（左栏仍可能为黑）；不是本层证据。
+
+### 副作用与清理
+- 松散包已注册并在取证后 `Remove-AppxPackage` 卸载。任务 `z6_f1c_launch` 用完即删。光标已复原。
+- 侧叉 bin 被 10.0.300 + 本开关的构建更新（仅本地）。`%TEMP%\z6\f1c\` 本机日志。LocalState 可能仍有 `z6_f1c_motion.log` 与 F6 诊断 PNG。
+- 无系统设置改动，未登录，未花钱。
+
+### 停下点
+- 无。C 层验收在本续跑完成。
