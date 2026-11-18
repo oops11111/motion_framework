@@ -1,8 +1,10 @@
-# Z6 F5 · ReducedMotion 跟随运行中的系统设置变化 — 未完成（停下：真实切换需 pidan 批准）
+# Z6 F5 · ReducedMotion 跟随运行中的系统设置变化 — FAIL（续跑后 source=event 仍为 0）
+
+> **续跑结论（2026-11-18 13:23–13:30 AWST）**：pidan 批准后已用 `SystemParametersInfo(SPI_SETCLIENTAREAANIMATION)` 在 GUI 运行期间做了关→开两个方向的真实切换（SPI 回读 1→0→1，`UserPreferencesMask` 0x12↔0x10），原值已恢复且复核一致。但日志里 `F5 AnimationsEnabledChanged` 与 `source=event` **仍为 0 行**，`events=0`。诊断证明切换的确实是 `UISettings.AnimationsEnabled` 背后的同一个设置（关闭后新进程读到 `False`），因此失败点是变更通知没有送达应用内的订阅者，不是切错设置。**验收第 2 项仍未达成，本票判 FAIL。** 详见第 11 节。
 
 > **未复核**：本报告随 `wb/z6-f5` 推送，尚未经评审复核。dev-only，不采数，不计时，不计任何闸门会话；PERF-CI HOLD；Success≠adopt。
-> **结论**：宿主侧代码已改为订阅 `UISettings.AnimationsEnabledChanged` 并在 UI 线程调用 `MotionSystem.SetReducedMotion(bool)`；机器 SDK 10.0.300 + 批准开关构建 exit=0；GUI 一次跑通，日志显示订阅生效、初始值已应用、入队路径已在 UI 线程执行。
-> **但验收第 2 项「日志显示设置切换后 `SetReducedMotion` 的入参跟着变」未达成**：切换系统动画设置属系统级步骤（定稿第二节第 7 条），本票许可未覆盖，故按定稿第五节停下，未自行切换。
+> **首跑结论（2026-11-18 10:07，已被第 11 节取代）**：宿主侧代码已改为订阅 `UISettings.AnimationsEnabledChanged` 并在 UI 线程调用 `MotionSystem.SetReducedMotion(bool)`；机器 SDK 10.0.300 + 批准开关构建 exit=0；GUI 一次跑通，日志显示订阅生效、初始值已应用、入队路径已在 UI 线程执行。
+> **但验收第 2 项「日志显示设置切换后 `SetReducedMotion` 的入参跟着变」未达成**：切换系统动画设置属系统级步骤（定稿第二节第 7 条），首跑许可未覆盖，故按定稿第五节停下，未自行切换。**续跑已获批并执行，结果见第 11 节（仍为 0 行，判 FAIL）。**
 
 ## 1. 基线与标识
 
@@ -113,6 +115,8 @@ GUI（`z6/f5/f5_run.py`，原始输出 `z6/f5/raw/run/`）：
 
 **续跑所需**：pidan 本人一句「F5 批准切换系统动画设置，测完恢复原值」即可。续跑只需在同一套脚本里，GUI 运行期间切换一次系统「动画效果」开关（两个方向），观察 `F5 AnimationsEnabledChanged ... source=event` 行与 `SetReducedMotion` 入参，然后恢复原值并记录。无需改代码、无需重新构建。
 
+（2026-11-18 13:23 已获该许可并完成续跑：切换确实生效且已恢复，但 `source=event` 仍为 0 行，结论 FAIL，见第 11 节。）
+
 ## 7. 入库
 
 - `z6/f5/REPORT.md`、`f5_patch.py`、`f5_build.ps1`、`f5_run.py`、`f5_collect.ps1`、`f5_composition.ps1`
@@ -141,7 +145,150 @@ GUI（`z6/f5/f5_run.py`，原始输出 `z6/f5/raw/run/`）：
 - `%TEMP%\z6\f5\` 下留有补丁脚本、构建与 GUI 原件（仅本机 TEMP）。
 - **未改**任何系统动画设置、未改注册表、未装任何 SDK/组件、未提权、未动证书。
 
-## 10. 停下点
+## 10. 停下点（首跑）
 
 - **停下**：验收第 2 项需要切换系统动画设置（系统级步骤），本票无许可。等 pidan 本人批准后续跑（见第 6 节）。
 - 其余无新增须拍板项；未花钱；未碰冻结面。
+
+## 11. 续跑：系统动画切换（2026-11-18 13:23–13:30 AWST）— FAIL
+
+### 11.1 授权留痕（逐字）
+
+- pidan 本人，2026-11-18 13:23 AWST，workbuddy cli 会话原话：
+  - 「F5 批准切换系统动画设置，测完恢复原值」
+- 沿用常设许可（t206s992）：`wb/z6-*` 普通 push；Z6 内一次性计划任务跑 GUI 用完即删；Z6 内松散包注册/卸载。
+- 本次**未重新构建**，因此未使用 t208s1037 的构建开关许可；未提权、未弹 UAC、未改 HKLM。
+
+### 11.2 PRE（2026-11-18 13:25:35–13:25:43 +08:00）
+
+- HEAD = `8115a15155471adbd9bbc006a6cfb715b66d991a`；`git status --porcelain` 为空（仅本轮新建的证据目录除外）。
+- `code/composition.h`：blob `fd0603c17136c067e89c71e56aef310f2f7e63f4`，LF 归一 sha256 `a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418`，`match=True`（`z6/f5/raw/run2/composition_pre.txt`、`pre_git.txt`）。
+- 系统动画设置原值（`z6/f5/raw/run2/settings_pre.txt`）：
+
+| 来源 | 原值 |
+|---|---|
+| `Windows.UI.ViewManagement.UISettings.AnimationsEnabled` | `True` |
+| `SystemParametersInfo(SPI_GETCLIENTAREAANIMATION=0x1042)` | ok=1, value=`1` |
+| `HKCU\Control Panel\Desktop\WindowMetrics` → `MinAnimate` | `1` |
+| `HKCU\Control Panel\Desktop` → `UserPreferencesMask` | `9E 3E 07 80 12 00 00 00` |
+
+- 上一轮卸载后包 `LocalState` 不存在，故本轮共享日志从空开始（不是追加）。
+
+### 11.3 复用产物（未重建）
+
+| 项 | 值 |
+|---|---|
+| `AppxManifest.xml` | 2026-11-18 10:03，未改动 |
+| `src/FluentHub/Views/NavMotionPilot.cs` sha256 | `d0b111f56e2a809dedd566186e559cd1f1f2a8895e4a51667ee2344f67fec065`（= 首跑 post） |
+| `FluidMotion.L1.dll` sha256 | `94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2`（与 F7 `SHA256SUMS` 一致） |
+
+未改任何代码，未重新构建。
+
+### 11.4 流程与命令
+
+脚本 `z6/f5/f5b_run.py`（沿用 `f5_run.py` 的注册 / 一次性任务 / PrintWindow / 清理流程，新增切换与回读），原始输出 `z6/f5/raw/run2/`：
+
+1. `Add-AppxPackage -Register -Path <AppxManifest>`（松散包，t206s992 总许可）；
+2. 光标移到 (8,8)（保存原位置）；
+3. `schtasks /Create /TN z6_f5b_launch /TR "explorer.exe shell:AppsFolder\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm!App" /SC ONCE /ST 00:00 /IT /RL LIMITED /F` → `/Run`（交互式、LIMITED，不提权）；
+4. 等窗口出现、`F5 subscribed` 出现 2 次（F2 重建两轮）、`F6 PLAY after first frame`，再静置 3 s，记基线（127 行）；
+5. 关动画：`SystemParametersInfoW(SPI_SETCLIENTAREAANIMATION=0x1043, 0, FALSE, SPIF_UPDATEINIFILE|SPIF_SENDCHANGE)`，回读 SPI 与 HKCU，等 12 s 找 `source=event`；
+6. 开动画：同 API 传 TRUE，回读，等 12 s；
+7. 恢复原值（=TRUE）并复核 SPI / `MinAnimate` / `UserPreferencesMask`；
+8. `CloseMainWindow` → 等 `Dispose end`；`schtasks /Delete` + `/Query`（返回 1）；光标复原；复制日志；`Remove-AppxPackage`。
+
+### 11.5 切换时间线与观测（AWST）
+
+| 时刻 | 动作 | SPI 回读 | `UserPreferencesMask` | `MinAnimate` | 日志新增 |
+|---|---|---|---|---|---|
+| 13:26:37.344 | 请求关动画（基线 127 行） | — | `…12` | 1 | — |
+| 13:26:38.750 | 关完成，mode=byval，ret=1 | `0` | `9E 3E 07 80 10 00 00 00` | 1 | 0 |
+| 13:26:50.840 | 关后等 12.09 s | — | — | — | **0 行**（`log_after_off.txt` 为空） |
+| 13:26:50.894 | 请求开动画 | — | — | — | — |
+| 13:26:51.833 | 开完成，mode=byval，ret=1 | `1` | `9E 3E 07 80 12 00 00 00` | 1 | 0 |
+| 13:27:03.925 | 开后等 12.09 s | — | — | — | **0 行**（`log_after_on.txt` 为空） |
+| 13:27:03.979 | 恢复原值请求（original=1） | — | — | — | — |
+| 13:27:06.008 | 恢复完成 | `1` | `9E 3E 07 80 12 00 00 00` | 1 | — |
+| 13:27:06.986 | 关窗后 `Dispose end` | — | — | — | 关闭段 35 行 |
+
+- 两次切换期间应用**一行日志都没有产生**（关后 12 s、开后 12 s 均为 0 行），说明应用处于空闲，不是被日志刷屏掩盖。
+- `MinAnimate` 全程为 `1` 未变；变化的是 `UserPreferencesMask` 第 5 字节（`0x12`↔`0x10`，即 0x02 位），与「动画效果」开关一致。
+
+### 11.6 日志摘录（`z6/f5/raw/run2/z6_f5b_motion.log`，162 行，F5 共 12 行）
+
+```
+00006 F5 subscribed UISettings.AnimationsEnabledChanged=True; initial AnimationsEnabled=True -> SetReducedMotion(False)
+00008 F5 initial SetReducedMotion(False) applied on UI thread thread=2
+00009 F5 selftest enqueue ok=True (same value, no state change)
+00023 F5 SetReducedMotion(False) source=selftest animationsEnabled=True previous=True thread=2
+00025 F5 SetReducedMotion(False) applied; last_animationsEnabled=True
+00042 F5 subscribed UISettings.AnimationsEnabledChanged=True; initial AnimationsEnabled=True -> SetReducedMotion(False)
+00045 F5 initial SetReducedMotion(False) applied on UI thread thread=2
+00046 F5 selftest enqueue ok=True (same value, no state change)
+00067 F5 SetReducedMotion(False) source=selftest animationsEnabled=True previous=True thread=2
+00070 F5 SetReducedMotion(False) applied; last_animationsEnabled=True
+00114 F5 unsubscribed AnimationsEnabledChanged events=0
+00158 F5 unsubscribed AnimationsEnabledChanged events=0
+```
+
+- `F5 AnimationsEnabledChanged` 行：**0**；`source=event` 行：**0**；两个实例 Dispose 时 `events=0`。
+- 关→开两个方向都没有任何回调：既没有 `SetReducedMotion(True) source=event`，也没有 `SetReducedMotion(False) source=event`。
+- 订阅本身是活的：两轮各订阅一次，cycle=2 的订阅（00042）早于切换（13:26:37），且应用一直存活到 13:27:06 关窗。
+- 不计时；`deltaUs` 行 0；`FrameTick` 只出现在 `ETW_SUMMARY` 计数里。
+
+### 11.7 原值与恢复值
+
+| 项 | 原值 | 恢复后 | 一致 |
+|---|---|---|---|
+| `UISettings.AnimationsEnabled` | `True` | `True` | 是 |
+| `SPI_GETCLIENTAREAANIMATION` | `1` | `1` | 是 |
+| `MinAnimate` | `1` | `1` | 是 |
+| `UserPreferencesMask` | `9E 3E 07 80 12 00 00 00` | `9E 3E 07 80 12 00 00 00` | 是 |
+
+`matches_original=True`（`z6/f5/raw/run2/settings_post_script.txt`、`run.log` 13:27:06 行）。
+
+### 11.8 失败原因分析
+
+诊断（`z6/f5/raw/run2/diag/diagnostic.txt`）：
+
+1. 想用 Windows PowerShell 5.1 直接订阅 WinRT 事件做对照，失败：「Windows PowerShell 无法订阅 Windows RT 事件」；脚本在订阅处终止，**未执行任何 SPI 写入**，未改动设置。
+2. 改为手工隔离测试（每次读取都起新进程，避开进程内缓存）：
+   - 基线：SPI=`1`，`UISettings.AnimationsEnabled=True`；
+   - SPI 置 0 后：回读 `0`，**新进程**读到 `UISettings.AnimationsEnabled=False`，`UserPreferencesMask=…10`；
+   - SPI 置 1 后：回读 `1`，新进程读到 `True`，`UserPreferencesMask=…12`；
+   - 收尾复核与原值完全一致，FluentHub 进程数 0。
+
+结论：切换的确实是 `UISettings.AnimationsEnabled` 背后的同一个设置，**排除了「切错设置」**。已排除的其他可能：
+
+- 订阅未装上：两轮都打出 `F5 subscribed …=True`，且 cycle=2 的订阅早于切换；
+- 应用已退出 / 订阅实例已被 Dispose：窗口在，日志连续，`Dispose` 只在关窗后出现；
+- 线程亲和问题：回调在 `TryEnqueue` 之前就应打印 `F5 AnimationsEnabledChanged …`，一行都没有，说明回调根本没进；
+- 事件被日志量掩盖：切换窗口内日志 0 行。
+
+因此剩下的解释集中在**变更通知未送达**：`SPI_SETCLIENTAREAANIMATION + SPIF_SENDCHANGE` 在本机（Windows 11 26100）改变了设置值，但 `UISettings.AnimationsEnabledChanged` 没有向该 WinUI 3 桌面进程投递回调。可能是该事件只随系统设置代理（设置应用的切换路径）发出，也可能是 WinUI 3 桌面进程（无 CoreWindow）下 WinRT 的这条通知链路未接通。**本票未改代码、未换 API、未重跑凑结果**，按硬约束如实判 FAIL。
+
+### 11.9 验收对照（更新）
+
+| 验收项 | 结果 |
+|---|---|
+| `git diff --name-only` 不含 `MotionSoftDemo/`、`code/`、`pilot/l1pack/` | **满足** |
+| 日志显示设置切换后 `SetReducedMotion` 入参跟着变 | **未达成（FAIL）**：设置已真实切换并回读确认，`source=event` 仍 0 行 |
+| 不计时 | 满足 |
+| 测完恢复原值并记录 | **满足**：四项均与原值一致 |
+
+### 11.10 清理
+
+- `Remove-AppxPackage` 已卸载；`analysis.txt` 记录 `package still registered after run=0`；FluentHub 进程数 0。
+- 一次性任务 `z6_f5b_launch` 用完即删，`/Query` 返回 1（不存在）。
+- 光标曾移到 (8,8)，已复原到 (1479,0)（`run.log` 记录 saved=(1479,0)）。
+- 窗口截图 5 张（`z6/f5/raw/run2/frames/`），均为 PrintWindow 当前窗口，无整桌面。
+- 冻结面 diff 为空（`z6/f5/raw/run2/frozen_diff.txt`）。
+- 未改代码、未重建、未提权、未动 HKLM、未装组件、未登录第三方账号。
+
+### 11.11 本次偏差
+
+1. **额外做了两轮 SPI 切换用于诊断**（13:28–13:29）：在 pidan 许可的「切换 + 恢复」范围内，已恢复并复核；记录在 `diag/diagnostic.txt`。
+2. **`Register-ObjectEvent` 订阅 WinRT 事件失败**：PowerShell 限制，未改动设置，仅作诊断尝试记录。
+3. **`schtasks_*.txt` 为空**：脚本用 `text=True` 读 `schtasks` 中文输出时抛 `UnicodeDecodeError`（控制台代码页 936），只影响被丢弃的 stdout 副本；命令本身 exit code 正常（create=0、run=0、delete=0、query=1），均在 `run.log` 里。
+4. **未重新构建**：按要求复用首跑产物，故本轮不涉及构建开关。
+5. **诊断的第 2 步（SPI 值 vs 新进程 UISettings）为手工逐条执行**，未逐条打时间戳，只有顺序与结果记录。

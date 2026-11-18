@@ -1,0 +1,23 @@
+Z6 F5b 诊断记录（不涉及产品代码，不改任何设置以外的状态）
+时间：2026-11-18 13:28–13:29 AWST（手工逐条执行，未逐条打时间戳；顺序如下）
+目的：区分「切换的不是 UISettings 读的那个设置」与「设置变了但 WinRT 变更事件没有送达」。
+
+1) 尝试用 Windows PowerShell 5.1 直接订阅 WinRT 事件
+   命令：Register-ObjectEvent -InputObject (New-Object Windows.UI.ViewManagement.UISettings) -EventName AnimationsEnabledChanged
+   结果：失败。原文「Register-ObjectEvent : Windows PowerShell 无法订阅 Windows RT 事件。」
+   影响：脚本在 ErrorActionPreference=Stop 下于订阅处终止，未执行任何 SPI 写入；本次尝试没有改动系统设置。
+   说明：这是 PowerShell 的限制，不构成产品侧证据。
+
+2) 手工隔离测试（每次读取 UISettings 都起新的 powershell.exe 进程，避免进程内缓存）
+   2.1 基线：SPI_GETCLIENTAREAANIMATION=1；新进程 UISettings.AnimationsEnabled=True；
+       UserPreferencesMask=9E 3E 07 80 12 00 00 00；MinAnimate=1
+   2.2 SPI_SETCLIENTAREAANIMATION(0) + SPIF_UPDATEINIFILE|SPIF_SENDCHANGE：ret=1；回读 SPI=0；
+       新进程 UISettings.AnimationsEnabled=False；UserPreferencesMask=9E 3E 07 80 10 00 00 00；MinAnimate=1（不变）
+   2.3 SPI_SETCLIENTAREAANIMATION(1) + 同 flags：ret=1；回读 SPI=1；
+       新进程 UISettings.AnimationsEnabled=True；UserPreferencesMask=9E 3E 07 80 12 00 00 00；MinAnimate=1
+   2.4 收尾复核：UISettings.AnimationsEnabled=True；UserPreferencesMask=9E 3E 07 80 12 00 00 00；
+       MinAnimate=1；FluentHub 进程数=0
+
+结论：SPI 切换的确就是 UISettings.AnimationsEnabled 背后的同一个设置（关闭后新进程读到 False），
+所以本次 0 条 source=event 不是「切错了设置」，而是变更通知没有送达应用进程里的
+UISettings.AnimationsEnabledChanged 订阅者。

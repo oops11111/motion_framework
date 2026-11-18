@@ -1,0 +1,23 @@
+redaction: %USERPROFILE% -> %USERPROFILE%; Program Files -> %ProgramFiles%
+%WORKTREE%\z6\f5\raw\run2\close.out.txt redacted=False src_sha=ca4a016eae14ab0c7ebb935a6e24ae8b512958f25c788f11eb99566d066b7957
+%WORKTREE%\z6\f5\raw\run2\log_after_off.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run2\log_after_on.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run2\preexisting_package.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run2\register.out.txt redacted=True src_sha=2b754a610a71c5176610c3235d5e62d86d5ab2b445cd98477ab3183af52acce6
+%WORKTREE%\z6\f5\raw\run2\run.log redacted=False src_sha=b757fa320151a2fcd46301e32d94e631496fbd3655b0c97ff1210675aa8fd267
+%WORKTREE%\z6\f5\raw\run2\schtasks_create.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run2\schtasks_delete_stale.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run2\schtasks_delete.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run2\schtasks_query_after.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run2\schtasks_run.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run2\settings_post_script.txt redacted=False src_sha=e5f03a76594bd694ff0d35584dc58d13e58d7d160e5e5cdc36342ebf94c045d2
+%WORKTREE%\z6\f5\raw\run2\settings_pre_script.txt redacted=False src_sha=93103e00b21679f14dea0b90d67c3144e9be470b1330e70b66b8cfcd63b4f479
+%WORKTREE%\z6\f5\raw\run2\unregister.out.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run2\z6_f5b_motion.log redacted=True src_sha=90122a9dcd151da704b5e3c3673adad6ba136b1313dab809a14964c71de1ed9d
+%WORKTREE%\z6\f5\raw\run2\frames\win_00_appear.png redacted=False binary src_sha=9b4b428cc6660c325d0c4897c4447bbcd625c5749117521fabf2d1c0b262a8b3
+%WORKTREE%\z6\f5\raw\run2\frames\win_01_tick.png redacted=False binary src_sha=1ad7901de48d8386377b7cb4db0ed723d62f0e3284c6413107cf1d5536edfb01
+%WORKTREE%\z6\f5\raw\run2\frames\win_02_settled.png redacted=False binary src_sha=6b1261fe569a6d3231fea844a5837a8392b1d145401c1d37d1e4d085655509b8
+%WORKTREE%\z6\f5\raw\run2\frames\win_03_anim_off.png redacted=False binary src_sha=6b1261fe569a6d3231fea844a5837a8392b1d145401c1d37d1e4d085655509b8
+%WORKTREE%\z6\f5\raw\run2\frames\win_04_anim_on.png redacted=False binary src_sha=6b1261fe569a6d3231fea844a5837a8392b1d145401c1d37d1e4d085655509b8
+%WORKTREE%\z6\f5\raw\run2\diag\listener.txt redacted=False src_sha=a9e04d032cb5bd04ab466f9e288c8c24cb37b746dd900f72d742ae30b2bd4f39
+%WORKTREE%\z6\f5\raw\run2\diag\uisettings_listen.ps1 redacted=False src_sha=3ad8b19ec9e8249c960598a3db43da526546171eebd287e34a6876378699b066
