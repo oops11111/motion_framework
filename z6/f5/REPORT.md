@@ -10,7 +10,7 @@
 - **父提交** = `81b3f15cdf44b8207fa843bb819bf01416973316`（`wb/z6-f2` tip）。**叠在 F2 上**：F5 复用 F11 的 pack 路径与构建时 sha 校验、F6 的「首帧后再 Play」、F2 的共享日志与 RootView 重建触发，均为同一份 FluentHub 侧叉。开工前 `git ls-remote origin refs/heads/main` = `7e2feb0e98f69cf45fff8da4e60220d2b24a5e1a`（未前进，无需另开）。
 - 侧叉：`%USERPROFILE%\pilot\FluentHub`，仍停在 `eb08f0dbcbb43880ab34038b0cb6742f0c0deca5`；源码不入库。
 - 依据：`z6_workbuddy_handover_FINAL_r2.md`，sha256 `82ab4e29db68e943ab04b034d9e3e360c4a84f2a05451ae904772e10761dd2b1`（核对一致）。
-- 时间：2026-11-18 09:53–10:04 AWST（Australia/Perth, UTC+8）。
+- 时间：2026-11-18 09:53–10:07 AWST（Australia/Perth, UTC+8）。
 
 ## 2. 授权留痕（逐字）
 
