@@ -1,0 +1,40 @@
+diff --git a/src/FluentHub/FluentHub.csproj b/src/FluentHub/FluentHub.csproj
+index aa2b5199..62b39908 100644
+--- a/src/FluentHub/FluentHub.csproj
++++ b/src/FluentHub/FluentHub.csproj
+@@ -78,7 +78,10 @@
+ 
+ 	<!-- Z5-T5 PILOT-ONLY (local side fork; never pushed, no upstream PR): consume the prebuilt FluidMotion.L1.dll from Z5-T5-0 (verify against SHA256SUMS). No L1 sources are compiled here. -->
+ 	<PropertyGroup>
+-		<FmL1PackDir>%USERPROFILE%\mf_z5\t5pack\pilot\l1pack\bin\x64\Release\net8.0\</FmL1PackDir>
++		<!-- Z6-F11 PILOT-ONLY: pack location is configurable (override with -p:FmL1Root=... or -p:FmL1PackDir=... / -p:FmL1Sums=...). Default = the Z6 F7 worktree pack. -->
++		<FmL1Root Condition="'$(FmL1Root)' == ''">$(USERPROFILE)\mf_z6\f7\</FmL1Root>
++		<FmL1PackDir Condition="'$(FmL1PackDir)' == ''">$(FmL1Root)pilot\l1pack\bin\x64\Release\net8.0\</FmL1PackDir>
++		<FmL1Sums Condition="'$(FmL1Sums)' == ''">$(FmL1Root)pilot\l1pack\SHA256SUMS</FmL1Sums>
+ 		<!-- Z5-T5 pilot-only: PublishAot=true makes the SDK write System.Diagnostics.Tracing.EventSource.IsSupported=false into runtimeconfig even for Debug builds, which silences the frozen FluidMotion-Motion provider. Turn the feature switch back on for this local pilot (no publish/AOT is done). -->
+ 		<EventSourceSupport>true</EventSourceSupport>
+ 	</PropertyGroup>
+@@ -90,4 +93,23 @@
+ 		<None Include="$(FmL1PackDir)demo_motion.json" Link="demo_motion.json" CopyToOutputDirectory="PreserveNewest" />
+ 	</ItemGroup>
+ 
++	<!-- Z6-F11 PILOT-ONLY: build-time sha256 check of the consumed pack files against the F7 SHA256SUMS; any mismatch fails the build. -->
++	<Target Name="FmL1VerifyPack" BeforeTargets="BeforeBuild;ResolveAssemblyReferences">
++		<Error Condition="!Exists('$(FmL1Sums)')" Text="FmL1VerifyPack: SHA256SUMS not found: $(FmL1Sums)" />
++		<PropertyGroup>
++			<_FmSumsText>$([System.IO.File]::ReadAllText('$(FmL1Sums)'))</_FmSumsText>
++			<_FmExpL1>$([System.Text.RegularExpressions.Regex]::Match('$(_FmSumsText)', '(?m)^([0-9a-f]{64})  FluidMotion\.L1\.dll\s').Groups[1].Value)</_FmExpL1>
++			<_FmExpNative>$([System.Text.RegularExpressions.Regex]::Match('$(_FmSumsText)', '(?m)^([0-9a-f]{64})  fluidmotion\.dll\s').Groups[1].Value)</_FmExpNative>
++			<_FmExpJson>$([System.Text.RegularExpressions.Regex]::Match('$(_FmSumsText)', '(?m)^([0-9a-f]{64})  demo_motion\.json\s').Groups[1].Value)</_FmExpJson>
++		</PropertyGroup>
++		<Error Condition="'$(_FmExpL1)' == '' or '$(_FmExpNative)' == '' or '$(_FmExpJson)' == ''" Text="FmL1VerifyPack: expected sha256 entries missing in $(FmL1Sums)" />
++		<Error Condition="!Exists('$(FmL1PackDir)FluidMotion.L1.dll') or !Exists('$(FmL1PackDir)fluidmotion.dll') or !Exists('$(FmL1PackDir)demo_motion.json')" Text="FmL1VerifyPack: pack file missing under $(FmL1PackDir)" />
++		<GetFileHash Files="$(FmL1PackDir)FluidMotion.L1.dll" Algorithm="SHA256"><Output TaskParameter="Hash" PropertyName="_FmGotL1" /></GetFileHash>
++		<GetFileHash Files="$(FmL1PackDir)fluidmotion.dll" Algorithm="SHA256"><Output TaskParameter="Hash" PropertyName="_FmGotNative" /></GetFileHash>
++		<GetFileHash Files="$(FmL1PackDir)demo_motion.json" Algorithm="SHA256"><Output TaskParameter="Hash" PropertyName="_FmGotJson" /></GetFileHash>
++		<Error Condition="'$(_FmGotL1)' != '$(_FmExpL1)'" Text="FmL1VerifyPack: sha256 mismatch FluidMotion.L1.dll expected=$(_FmExpL1) actual=$(_FmGotL1)" />
++		<Error Condition="'$(_FmGotNative)' != '$(_FmExpNative)'" Text="FmL1VerifyPack: sha256 mismatch fluidmotion.dll expected=$(_FmExpNative) actual=$(_FmGotNative)" />
++		<Error Condition="'$(_FmGotJson)' != '$(_FmExpJson)'" Text="FmL1VerifyPack: sha256 mismatch demo_motion.json expected=$(_FmExpJson) actual=$(_FmGotJson)" />
++		<Message Importance="high" Text="FmL1VerifyPack: OK FluidMotion.L1.dll=$(_FmGotL1) fluidmotion.dll=$(_FmGotNative) demo_motion.json=$(_FmGotJson)" />
++	</Target>
+ </Project>

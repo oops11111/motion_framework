@@ -1,0 +1,2 @@
+cwd=%USERPROFILE%\pilot\FluentHub
+dotnet build src\FluentHub\FluentHub.csproj -c Debug -p:Platform=x64 -p:WarningsNotAsErrors=NU1903

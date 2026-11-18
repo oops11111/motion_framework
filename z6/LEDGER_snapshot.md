@@ -42,3 +42,20 @@
 | 2026-11-18 07:26 | F7 | `git worktree add -b wb/z6-f7 %USERPROFILE%\mf_z6\f7 7e2feb0e` | 无 | 新 worktree 和本地分支 `wb/z6-f7` | `git worktree remove` 后 `git branch -D`（须先确认提交已保存） |
 | 2026-11-18 07:29 | F7 | `f7_build.cmd`：Release 重打 L1 pack（原样命令），CheckSurface fails=0，公开面与 surface_l1pack.txt 完全相同；fm_capi_test 23/0 ×2，devsmoke PASS ×2 | 无 | worktree 内未跟踪 `MotionNative\`、`pilot\l1pack\bin\obj\`；`%TEMP%\z6\f7\`、`%TEMP%\z6\f7src\`；NuGet 缓存 | pack 产物供 F11 使用，F11 完成后再议；`%TEMP%` 证据入库后可删 |
 | 2026-11-18 07:33 | F7 | 普通提交并 `git push -u origin wb/z6-f7` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-f7` | 删远端分支须另行请示 |
+| 2026-11-18 07:34 | F7 | 普通 push `wb/z6-f7` 完成，ls-remote = `6b9f4767829add919cb6e626f45208f2ecf59614` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-f7` | 删远端分支须另行请示 |
+| 2026-11-18 07:36 | F11 | **停下**：构建 FluentHub 侧叉须 `-p:NuGetAudit=false`（T4 已证明不加则 restore 因 NU1903+TreatWarningsAsErrors 失败），定稿第二节第 12 条列为非原样开关，须 pidan 拍板；只读检查了侧叉状态（@eb08f0db，T5 改动未提交），未改侧叉、未开分支、未构建 | 无 | 无 | — |
+| 2026-11-18 07:40 | F8A | 从 main 7e2feb0e 开 `wb/z6-F8A`，worktree `%USERPROFILE%\mf_z6\F8A`；只写 `docs/z6_F8A_gate_DRAFT.md`（DRAFT，NOT LOCKED，数值全部待定）与 z6/F8A/**；未写探针、未采数；composition PRE/POST match | 无 | 无 | — |
+| 2026-11-18 07:40 | F8A | 普通提交并 `git push -u origin wb/z6-F8A` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-F8A` | 删远端分支须另行请示 |
+| 2026-11-18 07:40 | F8B | 从 main 7e2feb0e 开 `wb/z6-F8B`，worktree `%USERPROFILE%\mf_z6\F8B`；只写 `docs/z6_F8B_gate_DRAFT.md`（DRAFT，NOT LOCKED，数值全部待定）与 z6/F8B/**；未写探针、未采数；composition PRE/POST match | 无 | 无 | — |
+| 2026-11-18 07:40 | F8B | 普通提交并 `git push -u origin wb/z6-F8B` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-F8B` | 删远端分支须另行请示 |
+| 2026-11-18 07:41 | F8a/F8b | **更正**（未 push 前发现）：上两组 F8A/F8B 行中的分支名、worktree、文件名大写系脚本变量大小写冲突所致；实际分支为 `wb/z6-f8a` / `wb/z6-f8b`，worktree `%USERPROFILE%\mf_z6\f8a` / `f8b`。首个本地提交误把草稿记为 `docs/z6_F8A_gate_DRAFT.md` / `docs/z6_F8B_gate_DRAFT.md` 且漏收 z6/<票号>/**；按禁 amend 规则追加第二个提交改名为小写并补收，未 push 前完成 | 无 | 无 | — |
+| 2026-11-18 07:41 | F8a | 普通 push `wb/z6-f8a` 完成，ls-remote = `74f3515648cbdfa6d3ef2dfd1bbd348c8dd7c3a0` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-f8a` | 删远端分支须另行请示 |
+| 2026-11-18 07:41 | F8b | 普通 push `wb/z6-f8b` 完成，ls-remote = `a58efa98937352f1f1b4cea9fb3f00b9d7831c7b` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-f8b` | 删远端分支须另行请示 |
+| 2026-11-18 07:44 | f8a | 追加新提交（不 amend）：`z6/f8a/REPORT.md` 末尾追加「偏差」段，刷新快照；普通 push `wb/z6-f8a` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端分支 `wb/z6-f8a` 前进 | 删远端分支须另行请示 |
+| 2026-11-18 07:44 | f8b | 追加新提交（不 amend）：`z6/f8b/REPORT.md` 末尾追加「偏差」段，刷新快照；普通 push `wb/z6-f8b` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端分支 `wb/z6-f8b` 前进 | 删远端分支须另行请示 |
+| 2026-11-18 07:53 | F8a/F8b | 偏差补记提交已普通 push：f8a ls-remote = `c640972a4858c6cb72dbc5060a601c4f040c0e2f`，f8b ls-remote = `fe2373b523c6fe2a70598af0bf37b8a028a70d63` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端分支前进 | — |
+| 2026-11-18 07:53 | F9a | 本地克隆 files-community/Files 到 `%USERPROFILE%\pilot\Files`，检出 v4.3 `cbfb4ba5`；原样构建 run1（上游 CI msbuild 两步，VS 2026 MSBuild）与 run2（T4 形式 dotnet build）均 FAIL（CS9057 Roslyn 5.6<5.9；run1 另有 MSB4018 缺 MSVC 目录）；**停下**：继续须装 SDK / VS C++ 工作负载或非原样，待 pidan 拍板；未安装、未注册、未启动 | 无 | 本地克隆、NuGet 缓存 | — |
+| 2026-11-18 07:53 | F9a | 普通提交并 `git push -u origin wb/z6-f9a` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-f9a` | 删远端分支须另行请示 |
+| 2026-11-18 08:03 | F9a | 普通 push `wb/z6-f9a` 完成，ls-remote = `75139796d49ae2bed45df5eca82860ee93940ff0` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-f9a` | 删远端分支须另行请示 |
+| 2026-11-18 08:03 | F11 | 从 `wb/z6-f7` 6b9f4767 开 `wb/z6-f11`（叠加，定稿 F11 依赖 F7）；侧叉 csproj 改为 FmL1Root/FmL1PackDir/FmL1Sums 可覆盖 + FmL1VerifyPack 构建时 sha256 校验；非原样开关 `-p:WarningsNotAsErrors=NU1903`（被识别，未退回 NuGetAudit=false）；v1 原位 PASS、v2 换目录 PASS、v3 改坏副本按预期 FAIL 并复原、v4 复原后原位 PASS | 许可：「F11 批准非原样开关 -p:WarningsNotAsErrors=NU1903，不识别则退回 -p:NuGetAudit=false，仅限本票」，t208s1010 | 侧叉 csproj（本地）、侧叉 bin/obj、%TEMP% 下 pack 副本 | — |
+| 2026-11-18 08:03 | F11 | 普通提交并 `git push -u origin wb/z6-f11` | 许可：「wb/z6-* 分支可以普通 push（常设许可）」，t206s992 | 远端新分支 `wb/z6-f11` | 删远端分支须另行请示 |
