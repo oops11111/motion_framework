@@ -1,0 +1,4 @@
+2026-11-18T08:18:52.034143+08:00 grabber started
+2026-11-18T08:18:52.263613+08:00 schtasks create exit=0
+2026-11-18T08:18:52.362861+08:00 schtasks run exit=0
+2026-11-18T08:18:57.422923+08:00 grabber stopped n=54

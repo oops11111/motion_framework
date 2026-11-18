@@ -1,0 +1,3 @@
+SUCCESS: Attempted to run the scheduled task "z6_f6_launch".
+
+exit=0
