@@ -1,0 +1,27 @@
+name: Z6 F9a full-solution failure evidence
+
+on:
+  push:
+    branches: [codex/z6-f9a-fullsolution]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'z6/f9a/fullsolution-codex/**'
+      - '.github/workflows/z6-f9a-fullsolution.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  full-solution-evidence:
+    if: github.head_ref == 'codex/z6-f9a-fullsolution' || github.ref == 'refs/heads/codex/z6-f9a-fullsolution'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate exact failed command, preserved errors and source receipts
+        run: python z6/f9a/fullsolution-codex/verify.py

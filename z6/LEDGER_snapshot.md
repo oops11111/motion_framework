@@ -90,3 +90,10 @@ Stage3B attempt20261121T090938Z-a08ae53c-run1: original Files pin cbfb4ba54a8963
 PR15 merged425165e112c271dc76706e5ff2d5354b1dfc9120 fromcecc685923824a106f2faf537fddd53dcf2795d9; five applicable head checks and mainpost44889148641 policy/Debug/Release success, accepted by primary. Original build PASS only, no launch.
 
 3C1 scanner collected current manifest/recipe/source/SDK metadata read only; source clean/pincbfb4ba54a89632fbceb82ea94ada60a9bae3737 unchanged. Current appbin is not a verified deployment layout; Server compiled but not mapped in this recipe, AppX and intermediate PackageLayout differ. Normal VS auto merge remains unproven, no upstream bug decision or startup PASS. Evidence z6/f9a/deployment-preflight. No build/target/layout/register/launch/F9b action. Primary review/CI pending.
+
+
+## F9a3C1 accepted;3C2 original full-solution Build FAIL (append-only)
+
+PR16 merged8e68cf81ef10bd0623651949e6a98ddef4f175ca from0eb69f17282a6d75a49550fe42dea394de3a099b; head checks and mainpost44890658744 success, primary accepted read-only preflight evidence only. Startup remains not tested.
+
+3C2 exact upstream AGENTS fullsolution attempt20261121T094221Z-e33cb21d-fullsolution at Files cbfb4ba54a89632fbceb82ea94ada60a9bae3737: Build exit1, Launcher.vcxproj145 missing repository packages/Microsoft.Windows.ImplementationLibrary.1.0.260126.7/build/native/Microsoft.Windows.ImplementationLibrary.targets. SourcePRE=POST/clean. Stopped without RestorePackagesConfig/extra restore/import repair/retry. Evidence z6/f9a/fullsolution-codex; original3B app-build PASS remains distinct, no startup or F9b conclusion. Repository evidence CI/primary review pending.

@@ -1,0 +1,103 @@
+{
+  "status": "FAIL (original build; no repair attempted)",
+  "attempt": "20261121T094221Z-e33cb21d-fullsolution",
+  "route": "fullsolution",
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "start_utc": "2026-11-21T09:42:21.395939+00:00",
+  "child_environment": {
+    "DOTNET_ROOT": "%USERPROFILE%/.dotnet",
+    "PATH_prefix": "%USERPROFILE%/.dotnet",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "AMD64_restored_only_if_missing": true,
+    "persistent_changes": false
+  },
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "%USERPROFILE%\\pilot\\Files",
+        "%WORKSPACE%\\m0\\out\\f9a-fullsolution-20261121T094221Z-e33cb21d-fullsolution\\source"
+      ],
+      "cwd": "%WORKSPACE%",
+      "pid": 81228,
+      "start_utc": "2026-11-21T09:42:21.669447+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T09:42:23.693159+00:00",
+      "original_sha256": "e9c7374586cbed6151e6f369f63b5fad491a85f64bac90c1c3b3dfeea6b3c3c7",
+      "original_bytes": 118,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-fullsolution-20261121T094221Z-e33cb21d-fullsolution\\clone.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "10952ff54034a9a84574fb34580c6186935223196a36836171cbb401b20a15b4"
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "cbfb4ba54a89632fbceb82ea94ada60a9bae3737"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-fullsolution-20261121T094221Z-e33cb21d-fullsolution\\source",
+      "pid": 60272,
+      "start_utc": "2026-11-21T09:42:23.699178+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T09:42:27.934386+00:00",
+      "original_sha256": "05569c6822bb05a7846f6b3da0c5ff4a841f0392b8dd3f8e994eb715732d7035",
+      "original_bytes": 37,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-fullsolution-20261121T094221Z-e33cb21d-fullsolution\\checkout.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "05569c6822bb05a7846f6b3da0c5ff4a841f0392b8dd3f8e994eb715732d7035"
+    },
+    {
+      "label": "dotnet_version",
+      "argv": [
+        "%USERPROFILE%\\.dotnet\\dotnet.exe",
+        "--version"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-fullsolution-20261121T094221Z-e33cb21d-fullsolution\\source",
+      "pid": 60688,
+      "start_utc": "2026-11-21T09:42:30.048188+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T09:42:30.285583+00:00",
+      "original_sha256": "a391a16c2e43840573b47a7c336fc376a5f58e13cfafb1930a338034912d6dc7",
+      "original_bytes": 10,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-fullsolution-20261121T094221Z-e33cb21d-fullsolution\\dotnet_version.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "c479e77cb703fe4dac97ec3e3ebbeb4968c95c716d53abad60b516b6866ca49d"
+    },
+    {
+      "label": "build",
+      "argv": [
+        "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+        "-restore",
+        "Files.slnx",
+        "-p:Configuration=Debug",
+        "-p:Platform=x64",
+        "-v:quiet",
+        "-clp:ErrorsOnly"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-fullsolution-20261121T094221Z-e33cb21d-fullsolution\\source",
+      "pid": 78948,
+      "start_utc": "2026-11-21T09:42:30.288483+00:00",
+      "exit_code": 1,
+      "end_utc": "2026-11-21T09:44:59.740191+00:00",
+      "original_sha256": "718be820d083df36f812825eb3f2bffc69b6fb09999c1facca7287eea8795577",
+      "original_bytes": 568,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-fullsolution-20261121T094221Z-e33cb21d-fullsolution\\build.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "8e22da4e7afb49063cf524f59bae65207a41926086c6596b577aeef73ed56775"
+    }
+  ],
+  "source_unchanged": true,
+  "build_exit_code": 1,
+  "source_tree": "901330b3d5e4daa7838e24eaeedf4c2c745705c9",
+  "end_utc": "2026-11-21T09:45:01.488012+00:00"
+}

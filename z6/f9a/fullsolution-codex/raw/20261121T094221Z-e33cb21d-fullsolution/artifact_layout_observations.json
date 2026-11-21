@@ -1,0 +1,61 @@
+{
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "observed_paths": [
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.dll",
+      "exists": false,
+      "is_file": false
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.exe",
+      "exists": false,
+      "is_file": false
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/AppxManifest.xml",
+      "exists": false,
+      "is_file": false
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.App.build.appxrecipe",
+      "exists": false,
+      "is_file": false
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/AppX",
+      "exists": false,
+      "is_file": false
+    },
+    {
+      "path_from_source": "src/Files.App/obj/x64/Debug/net10.0-windows10.0.26100.0/win-x64/PackageLayout",
+      "exists": false,
+      "is_file": false
+    },
+    {
+      "path_from_source": "src/Files.App.Server/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.App.Server.exe",
+      "exists": true,
+      "is_file": true,
+      "bytes": 162816,
+      "sha256": "c39f5fd212e91de45cc4887b2e90ad4cde68bf44fd975228fc261b9a865a9c05"
+    }
+  ],
+  "native_helper_binaries_in_assets": [
+    {
+      "name": "Files.App.OpenDialog32.dll",
+      "sha256": "ca2eb07ae860a0dee6e38049b6426c3ce7deed3a1f6c50907bfb56a328d63091"
+    },
+    {
+      "name": "Files.App.OpenDialog64.dll",
+      "sha256": "a2fe7cb42bd237b94d9d238cd232dd44c58815ec0db36b07a20dd55810693781"
+    },
+    {
+      "name": "Files.App.SaveDialog32.dll",
+      "sha256": "f6ecebc45357e1e32013a5c2af511b166e643b4fc5cb6cf38d967be74441d5d5"
+    },
+    {
+      "name": "Files.App.SaveDialog64.dll",
+      "sha256": "39323a5c13dcecb1c10c9ea10e2f7415148e2865699f3e1215b6f851d7b66c97"
+    }
+  ],
+  "scope": "Read-only existence/hash after the one failed original Build; no layout created, binaries/app/tests not executed"
+}
