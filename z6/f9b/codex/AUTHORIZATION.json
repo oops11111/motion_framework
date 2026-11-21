@@ -1,0 +1,18 @@
+{
+  "user_verbatim": "开票",
+  "source": "Direct user response in current root conversation",
+  "message_id": "unavailable",
+  "recorded_utc": "2026-11-21T12:45:16Z",
+  "recorded_awst": "2026-11-21 20:45:16 AWST",
+  "time_note": "Primary recording time, not sending time",
+  "context": "Direct reply immediately following primary F9b opening card; card allowed reply 开F9b按提案范围执行. The user said only 开票; the following scope is the card context, not additional quoted user words.",
+  "approved_card_scope": [
+    "Local isolated Files sidefork consumes frozen prebuilt L1 pack; repository delivery patch-only",
+    "EventSourceSupport=true for pilot ETW; RestorePackagesConfig=true at exact declared versions; NON-ORIGINAL build",
+    "F9b-specific same FilesDev temporary manual-layout registration, ordinary MainPage, visible entry and pointer-only hover/rest, normal close and exact own package cleanup",
+    "ETW safe counts and necessary lifecycle only; no FrameTick delta payload or PresentStats fields",
+    "No L1/public/fm/E1/composition/pack source/API change, installation, certificate, account, performance collection; extra requirement STOP"
+  ],
+  "execution_gate": "This receipt opens F9b; primary must review this Plan before any clone/patch/build/runtime, and actual host diff/scripts/layout before runtime",
+  "prior_scope_note": "F9a-only grants are not used to infer F9b authority; this direct contextual opening approves this card scope"
+}
