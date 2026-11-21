@@ -13,6 +13,7 @@
   "postflight": "postflight.json",
   "scope": "NativeDesktop workload and recommended dependencies, one existing VS2026 instance",
   "limitations": [
+    "Final installer errors log records Error0x80070005 at 16:56:20 AWST: Could not sync DCAT registration, access denied to HKLM/SOFTWARE/Microsoft/Windows NT/CurrentVersion/Update/TargetingInfo/PersistentDynamicInstalled. Final installer exited0 and workload/component/tool readiness checks passed, but DCAT sync failed and downstream impact was not assessed. No repair/registry change/reinstall attempted.",
     "NGEN System.Design output warned that Microsoft.Data.SqlClient could not be loaded; NGEN and final installer exited0. No repair or additional install was attempted.",
     "No Files baseline build/GUI/package activation, no F2/F9b authorization.",
     "Cloud CI validates repository evidence integrity; it cannot independently reproduce local installation."
