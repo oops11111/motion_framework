@@ -1,0 +1,10 @@
+{
+  "utc": "2026-11-21T08:47:45.4294943Z",
+  "active_log": "dd_setup_20261121163410.log",
+  "observed_activity": "Downloading successive Win11SDK_10.0.26100 CAB files from download.visualstudio.microsoft.com",
+  "state_metadata": "state.packages.json contains identities; plan.xml static RequestedState/PlannedAction, not real-time progress",
+  "worker_hex": "86c8",
+  "worker_pid": 34504,
+  "network_counters": "Get-NetTCPConnection denied access; bytes unknown",
+  "error_logs": "Three current errors logs empty at 08:43:56Z"
+}

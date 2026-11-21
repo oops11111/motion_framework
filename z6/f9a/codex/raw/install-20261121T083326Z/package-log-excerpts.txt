@@ -1,0 +1,1279 @@
+Bounded last3lines of package logs; original SHA and complete ignored copy in log-index.json.
+
+## dd_setup_20261121163410_000_TestMSI.log
+MSI (c) (C8:08) [16:34:20:425]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:34:20 ===
+
+
+## dd_setup_20261121163410_001_Microsoft.VisualStudio.Product.Community.log
+[2026-11-21T16:34:23] INFO: Begin execution: IsolationIniFileInitializerTask
+[2026-11-21T16:34:23] INFO: Completed execution: IsolationIniFileInitializerTask
+[2026-11-21T16:34:23] INFO: Result: Success
+
+## dd_setup_20261121163410_002_Microsoft.VisualStudio.VC.Ide.Base.Resources.log
+[86c8:0018][2026-11-21T16:34:23] Completed: Copying file /Contents/Common7/IDE/zh-Hans/Microsoft.VisualStudio.VC.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\zh-Hans\Microsoft.VisualStudio.VC.resources.dll
+[86c8:0018][2026-11-21T16:34:23] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\zh-Hans\Microsoft.VisualStudio.VC.resources.dll'.
+[86c8:0018][2026-11-21T16:34:23] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_003_Microsoft.VisualStudio.VC.Llvm.Base.log
+[86c8:0018][2026-11-21T16:36:43] Completed: Copying file /Contents/VC/Tools/Llvm/x64/bin/clang-tidy.exe to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\Llvm\x64\bin\clang-tidy.exe
+[86c8:0018][2026-11-21T16:36:43] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\Llvm\x64\bin\clang-tidy.exe'.
+[86c8:0018][2026-11-21T16:36:43] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_004_Microsoft.VisualStudio.VC.Ide.LanguageService.Resources.log
+[86c8:0018][2026-11-21T16:36:43] Completed: Copying file /Contents/Common7/IDE/zh-Hans/Microsoft.VisualStudio.VC.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\zh-Hans\Microsoft.VisualStudio.VC.resources.dll
+[86c8:0018][2026-11-21T16:36:43] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\zh-Hans\Microsoft.VisualStudio.VC.resources.dll'.
+[86c8:0018][2026-11-21T16:36:43] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_005_Microsoft.VisualStudio.VC.Ide.Core.VCProjectEngine.Resources.log
+[86c8:0018][2026-11-21T16:36:43] Completed: Copying file /Contents/Common7/IDE/PublicAssemblies/zh-Hans/Microsoft.VisualStudio.VCProjectEngine.xml to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\PublicAssemblies\zh-Hans\Microsoft.VisualStudio.VCProjectEngine.xml
+[86c8:0018][2026-11-21T16:36:43] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\PublicAssemblies\zh-Hans\Microsoft.VisualStudio.VCProjectEngine.xml'.
+[86c8:0018][2026-11-21T16:36:43] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_006_Microsoft.VisualStudio.VC.Ide.Core.VCProjectEngine.log
+[86c8:0018][2026-11-21T16:36:43] Completed: Copying file /Contents/Common7/IDE/PublicAssemblies/Microsoft.VisualStudio.VCProjectEngine.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.VCProjectEngine.dll
+[86c8:0018][2026-11-21T16:36:43] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.VCProjectEngine.dll'.
+[86c8:0018][2026-11-21T16:36:43] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_007_Microsoft.VisualStudio.VC.Ide.ProjectSystem.Resources.log
+[86c8:0018][2026-11-21T16:36:44] Completed: Copying file /Contents/Common7/Tools/ProjectComponents/zh-Hans/Microsoft.VisualStudio.Project.VisualC.VCProjectEngine.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\ProjectComponents\zh-Hans\Microsoft.VisualStudio.Project.VisualC.VCProjectEngine.resources.dll
+[86c8:0018][2026-11-21T16:36:44] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\ProjectComponents\zh-Hans\Microsoft.VisualStudio.Project.VisualC.VCProjectEngine.resources.dll'.
+[86c8:0018][2026-11-21T16:36:44] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_008_Microsoft.VisualStudio.VC.Ide.ProjectSystem.log
+[86c8:0018][2026-11-21T16:36:44] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/VC/Project/extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\Project\extension.vsixmanifest
+[86c8:0018][2026-11-21T16:36:44] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\Project\extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:36:44] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_009_Microsoft.VisualStudio.VC.Ide.Core.log
+[86c8:0018][2026-11-21T16:36:44] Completed: Copying file /Contents/Common7/IDE/VC/vcpackages/vcmeta.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\vcpackages\vcmeta.dll
+[86c8:0018][2026-11-21T16:36:44] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\vcpackages\vcmeta.dll'.
+[86c8:0018][2026-11-21T16:36:44] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_010_Microsoft.VisualStudio.VC.Ide.LanguageService.Dependencies.Resources.log
+[86c8:0018][2026-11-21T16:36:44] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/VC/CodeLens/zh-Hans/Microsoft.VisualStudio.VC.CodeLens.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\CodeLens\zh-Hans\Microsoft.VisualStudio.VC.CodeLens.resources.dll
+[86c8:0018][2026-11-21T16:36:44] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\CodeLens\zh-Hans\Microsoft.VisualStudio.VC.CodeLens.resources.dll'.
+[86c8:0018][2026-11-21T16:36:44] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_011_Microsoft.VisualStudio.VC.Ide.LanguageService.Dependencies.log
+[86c8:0018][2026-11-21T16:36:45] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/VC/CodeLens/extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\CodeLens\extension.vsixmanifest
+[86c8:0018][2026-11-21T16:36:45] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\CodeLens\extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:36:45] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_012_Microsoft.VisualStudio.VC.Ide.VCPkgDatabase.log
+[86c8:0018][2026-11-21T16:36:45] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/VC/VCPkgHeadersDatabase.zip to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\VCPkgHeadersDatabase.zip
+[86c8:0018][2026-11-21T16:36:45] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\VCPkgHeadersDatabase.zip'.
+[86c8:0018][2026-11-21T16:36:45] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_013_Microsoft.VisualStudio.VC.Ide.CodeModel.log
+[86c8:0018][2026-11-21T16:36:45] Completed: Copying file /Contents/Common7/IDE/PublicAssemblies/Microsoft.VisualStudio.VCCodeModel.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.VCCodeModel.dll
+[86c8:0018][2026-11-21T16:36:45] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.VCCodeModel.dll'.
+[86c8:0018][2026-11-21T16:36:45] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_014_Microsoft.VisualStudio.VC.Copilot.Setup.Resources.log
+[86c8:0018][2026-11-21T16:36:45] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/VC/Copilot/zh-Hans/Microsoft.VisualStudio.VC.Copilot.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\Copilot\zh-Hans\Microsoft.VisualStudio.VC.Copilot.resources.dll
+[86c8:0018][2026-11-21T16:36:45] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\Copilot\zh-Hans\Microsoft.VisualStudio.VC.Copilot.resources.dll'.
+[86c8:0018][2026-11-21T16:36:45] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_015_Microsoft.VisualStudio.VC.Copilot.Setup.log
+[86c8:0018][2026-11-21T16:36:45] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/VC/Copilot/extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\Copilot\extension.vsixmanifest
+[86c8:0018][2026-11-21T16:36:45] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\VC\Copilot\extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:36:45] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_016_Microsoft.VisualStudio.VC.Ide.LanguageService.log
+[86c8:0018][2026-11-21T16:36:46] Completed: Copying file /Contents/Common7/IDE/Extensions/Microsoft/VC/ClassWizard/extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\VC\ClassWizard\extension.vsixmanifest
+[86c8:0018][2026-11-21T16:36:46] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\VC\ClassWizard\extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:36:46] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_017_Microsoft.VisualStudio.VC.Ide.Base.log
+[86c8:0018][2026-11-21T16:36:46] Completed: Copying file /Contents/Common7/IDE/VC/VCProjectDefaults/VCMergeModules.xml to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCProjectDefaults\VCMergeModules.xml
+[86c8:0018][2026-11-21T16:36:46] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCProjectDefaults\VCMergeModules.xml'.
+[86c8:0018][2026-11-21T16:36:46] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_018_Microsoft.VisualStudio.VC.Ide.Dskx.Resources.log
+[86c8:0018][2026-11-21T16:36:47] Completed: Copying file /Contents/Common7/Tools/2052/spyxxui_amd64.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\2052\spyxxui_amd64.dll
+[86c8:0018][2026-11-21T16:36:47] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\2052\spyxxui_amd64.dll'.
+[86c8:0018][2026-11-21T16:36:47] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_019_Microsoft.VisualStudio.VC.Ide.Dskx.log
+[86c8:0018][2026-11-21T16:36:47] Completed: Copying file /Contents/Common7/Tools/spyxx_amd64.exe to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\spyxx_amd64.exe
+[86c8:0018][2026-11-21T16:36:47] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\spyxx_amd64.exe'.
+[86c8:0018][2026-11-21T16:36:47] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_020_Microsoft.VisualStudio.VC.Ide.WinXPlus.log
+[86c8:0018][2026-11-21T16:36:47] Completed: Copying file /Contents/Common7/IDE/VCGraphicsWizard.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VCGraphicsWizard.dll
+[86c8:0018][2026-11-21T16:36:47] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VCGraphicsWizard.dll'.
+[86c8:0018][2026-11-21T16:36:47] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_021_Microsoft.VisualStudio.VC.MSBuild.v180.Base.Resources.log
+[86c8:0018][2026-11-21T16:36:47] Completed: Copying file /Contents/Msbuild/Microsoft/VC/v180/zh-Hans/Microsoft.VC.VcpkgSdkResolver.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\zh-Hans\Microsoft.VC.VcpkgSdkResolver.resources.dll
+[86c8:0018][2026-11-21T16:36:47] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\zh-Hans\Microsoft.VC.VcpkgSdkResolver.resources.dll'.
+[86c8:0018][2026-11-21T16:36:47] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_022_Microsoft.VisualStudio.VC.MSBuild.v180.Base.log
+[86c8:0018][2026-11-21T16:36:47] Completed: Copying file /Contents/Msbuild/Microsoft/VC/v180/Microsoft.Metagen.targets to %ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\Microsoft.Metagen.targets
+[86c8:0018][2026-11-21T16:36:47] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\Microsoft.Metagen.targets'.
+[86c8:0018][2026-11-21T16:36:47] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_023_Microsoft.VisualStudio.VC.MSBuild.v180.X86.log
+[86c8:0018][2026-11-21T16:36:47] Completed: Copying file /Contents/Msbuild/Microsoft/VC/v180/Platforms/Win32/Platform.targets to %ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\Platforms\Win32\Platform.targets
+[86c8:0018][2026-11-21T16:36:47] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\Platforms\Win32\Platform.targets'.
+[86c8:0018][2026-11-21T16:36:47] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_024_Microsoft.VC.Tools.Redirection.v145.log
+[86c8:0018][2026-11-21T16:36:48] Completed: Copying file /Contents/VC/Auxiliary/Build/Microsoft.VCToolsVersion.v145.default.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\Microsoft.VCToolsVersion.v145.default.props
+[86c8:0018][2026-11-21T16:36:48] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\Microsoft.VCToolsVersion.v145.default.props'.
+[86c8:0018][2026-11-21T16:36:48] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_025_Microsoft.VisualStudio.VC.MSBuild.v180.x86.v145.log
+[86c8:0018][2026-11-21T16:36:48] Completed: Copying file /Contents/Msbuild/Microsoft/VC/v180/Platforms/Win32/PlatformToolsets/v145/Toolset.targets to %ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\Platforms\Win32\PlatformToolsets\v145\Toolset.targets
+[86c8:0018][2026-11-21T16:36:48] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\Platforms\Win32\PlatformToolsets\v145\Toolset.targets'.
+[86c8:0018][2026-11-21T16:36:48] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_026_Microsoft.VisualStudio.VC.MSBuild.v180.X64.log
+[86c8:0018][2026-11-21T16:36:48] Completed: Copying file /Contents/Msbuild/Microsoft/VC/v180/Platforms/x64/Platform.targets to %ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\Platforms\x64\Platform.targets
+[86c8:0018][2026-11-21T16:36:48] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\Platforms\x64\Platform.targets'.
+[86c8:0018][2026-11-21T16:36:48] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_027_Microsoft.VisualStudio.VC.MSBuild.v180.X64.v145.log
+[86c8:0018][2026-11-21T16:36:48] Completed: Copying file /Contents/Msbuild/Microsoft/VC/v180/Platforms/x64/PlatformToolsets/v145/Toolset.targets to %ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\Platforms\x64\PlatformToolsets\v145\Toolset.targets
+[86c8:0018][2026-11-21T16:36:48] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v180\Platforms\x64\PlatformToolsets\v145\Toolset.targets'.
+[86c8:0018][2026-11-21T16:36:48] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_028_Microsoft.VisualStudio.Debugger.Script.Msi.log
+MSI (c) (C8:60) [16:36:52:293]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:36:52 ===
+
+
+## dd_setup_20261121163410_029_Microsoft.VS.VC.vcvars.x64.Shortcuts.log
+[86c8:0018][2026-11-21T16:36:52] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:36:52] Getting list of files within the package
+[86c8:0018][2026-11-21T16:36:52] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_030_Microsoft.VS.VC.vcvars.x86.Shortcuts.log
+[86c8:0018][2026-11-21T16:36:52] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:36:52] Getting list of files within the package
+[86c8:0018][2026-11-21T16:36:52] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_031_Microsoft.VisualStudio.VC.vcvars.log
+[86c8:0018][2026-11-21T16:36:52] Completed: Copying file /Contents/Common7/Tools/vsdevcmd/ext/vcvars/vcvars140.bat to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd\ext\vcvars\vcvars140.bat
+[86c8:0018][2026-11-21T16:36:52] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd\ext\vcvars\vcvars140.bat'.
+[86c8:0018][2026-11-21T16:36:52] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_032_Microsoft.VisualStudio.VC.Ide.x64.log
+[86c8:0018][2026-11-21T16:36:52] Completed: Copying file /Contents/Common7/Packages/Debugger/X64/msdia140.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Packages\Debugger\X64\msdia140.dll
+[86c8:0018][2026-11-21T16:36:52] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Packages\Debugger\X64\msdia140.dll'.
+[86c8:0018][2026-11-21T16:36:52] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_033_Microsoft.VisualStudio.WebTools.Resources.log
+[86c8:0018][2026-11-21T16:36:53] Processing file extension for install .svc
+[86c8:0018][2026-11-21T16:36:53] RegistrationPath: Software\Microsoft\VisualStudio_bf096482\Capabilities\FileAssociations
+[86c8:0018][2026-11-21T16:36:53] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_034_Microsoft.VisualStudio.WebToolsExtensions.MSBuild.Resources.log
+[86c8:0018][2026-11-21T16:36:53] Completed: Copying file /Contents/MSBUILD/Microsoft/VisualStudio/v18.0/WebApplications/zh-Hans/Microsoft.WebApplication.Build.Tasks.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\MSBUILD\Microsoft\VisualStudio\v18.0\WebApplications\zh-Hans\Microsoft.WebApplication.Build.Tasks.resources.dll
+[86c8:0018][2026-11-21T16:36:53] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\MSBUILD\Microsoft\VisualStudio\v18.0\WebApplications\zh-Hans\Microsoft.WebApplication.Build.Tasks.resources.dll'.
+[86c8:0018][2026-11-21T16:36:53] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_035_Microsoft.VisualStudio.WebToolsExtensions.MSBuild.log
+[86c8:0018][2026-11-21T16:36:53] Completed: Copying file /Contents/MSBUILD/Microsoft/VisualStudio/v18.0/WebApplications/Microsoft.WebApplication.targets to %ProgramFiles%\Microsoft Visual Studio\18\Community\MSBUILD\Microsoft\VisualStudio\v18.0\WebApplications\Microsoft.WebApplication.targets
+[86c8:0018][2026-11-21T16:36:53] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\MSBUILD\Microsoft\VisualStudio\v18.0\WebApplications\Microsoft.WebApplication.targets'.
+[86c8:0018][2026-11-21T16:36:53] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_036_Microsoft.VisualStudio.WebTools.log
+[86c8:0018][2026-11-21T16:36:55] Completed: Copying file /Contents/Xml/Schemas/SiteMapSchema.xsd to %ProgramFiles%\Microsoft Visual Studio\18\Community\Xml\Schemas\SiteMapSchema.xsd
+[86c8:0018][2026-11-21T16:36:55] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Xml\Schemas\SiteMapSchema.xsd'.
+[86c8:0018][2026-11-21T16:36:55] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_037_Microsoft.VisualStudio.WebToolsExtensions.Resources.log
+[86c8:0018][2026-11-21T16:36:55] Completed: Copying file /Contents/Common7/IDE/zh-Hans/Microsoft.VisualStudio.Web.Application.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\zh-Hans\Microsoft.VisualStudio.Web.Application.resources.dll
+[86c8:0018][2026-11-21T16:36:55] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\zh-Hans\Microsoft.VisualStudio.Web.Application.resources.dll'.
+[86c8:0018][2026-11-21T16:36:55] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_038_Microsoft.VisualStudio.WebToolsExtensions.Core.log
+[86c8:0018][2026-11-21T16:36:57] Processing file extension for install .publishproj
+[86c8:0018][2026-11-21T16:36:57] Processing file extension for install .razor
+[86c8:0018][2026-11-21T16:36:57] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_039_Microsoft.VisualStudio.WebToolsExtensions.log
+[86c8:0018][2026-11-21T16:36:57] Completed: Copying file /Contents/Common7/IDE/Microsoft.VisualStudio.Web.Host.exe.config to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\Microsoft.VisualStudio.Web.Host.exe.config
+[86c8:0018][2026-11-21T16:36:57] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\Microsoft.VisualStudio.Web.Host.exe.config'.
+[86c8:0018][2026-11-21T16:36:57] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_040_Microsoft.VisualStudio.VC.Items.Pro.log
+[86c8:0018][2026-11-21T16:36:58] Completed: Copying file /Contents/Common7/IDE/VC/VCProjectItemsOpenFolder/NewItems.vsdir to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCProjectItemsOpenFolder\NewItems.vsdir
+[86c8:0018][2026-11-21T16:36:58] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCProjectItemsOpenFolder\NewItems.vsdir'.
+[86c8:0018][2026-11-21T16:36:58] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_041_Microsoft.VisualStudio.VC.Templates.General.Resources.log
+[86c8:0018][2026-11-21T16:36:58] Completed: Copying file /Contents/Common7/IDE/ItemTemplates/VC/HLSL/2052/VertexShader/VertexShader.vstemplate to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\ItemTemplates\VC\HLSL\2052\VertexShader\VertexShader.vstemplate
+[86c8:0018][2026-11-21T16:36:58] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\ItemTemplates\VC\HLSL\2052\VertexShader\VertexShader.vstemplate'.
+[86c8:0018][2026-11-21T16:36:58] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_042_Microsoft.VisualStudio.VC.Templates.General.log
+[86c8:0018][2026-11-21T16:36:58] Completed: Copying file /Contents/Common7/IDE/VC/VCWizards/1033/Images/spacer.gif to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCWizards\1033\Images\spacer.gif
+[86c8:0018][2026-11-21T16:36:58] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCWizards\1033\Images\spacer.gif'.
+[86c8:0018][2026-11-21T16:36:58] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_043_Microsoft.VisualStudio.VC.Ide.Pro.Resources.log
+[86c8:0018][2026-11-21T16:36:58] Completed: Copying file /Contents/Common7/IDE/VC/VCWizards/CodeWiz/Generic/ResourceScript/Templates/2052/resource.h to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCWizards\CodeWiz\Generic\ResourceScript\Templates\2052\resource.h
+[86c8:0018][2026-11-21T16:36:58] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCWizards\CodeWiz\Generic\ResourceScript\Templates\2052\resource.h'.
+[86c8:0018][2026-11-21T16:36:58] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_044_Microsoft.VisualStudio.VC.Ide.Pro.log
+[86c8:0018][2026-11-21T16:36:58] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:36:58] Getting list of files within the package
+[86c8:0018][2026-11-21T16:36:58] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_045_Microsoft.VisualStudio.Graphics.Appid.Resources.log
+[86c8:0018][2026-11-21T16:36:58] Processing file extension for install .vsglog
+[86c8:0018][2026-11-21T16:36:58] RegistrationPath: Software\Microsoft\VisualStudio_bf096482\Capabilities\FileAssociations
+[86c8:0018][2026-11-21T16:36:58] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_046_Microsoft.VisualStudio.Graphics.Appid.log
+[86c8:0018][2026-11-21T16:36:59] Completed: Copying file /Contents/Common7/IDE/VsGraphicsMnu.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VsGraphicsMnu.dll
+[86c8:0018][2026-11-21T16:36:59] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VsGraphicsMnu.dll'.
+[86c8:0018][2026-11-21T16:36:59] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_047_Microsoft.VisualStudio.Graphics.Analyzer.Resources.log
+[86c8:0018][2026-11-21T16:36:59] Completed: Copying file /Contents/VC/Auxiliary/VS/redist/GraphicsDbgRedist/x86/2052/VsGraphicsResources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\VS\redist\GraphicsDbgRedist\x86\2052\VsGraphicsResources.dll
+[86c8:0018][2026-11-21T16:36:59] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\VS\redist\GraphicsDbgRedist\x86\2052\VsGraphicsResources.dll'.
+[86c8:0018][2026-11-21T16:36:59] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_048_Microsoft.VisualStudio.Graphics.Analyzer.Targeted.log
+[86c8:0018][2026-11-21T16:36:59] Completed: Copying file /Contents/Team%20Tools/DiagnosticsHub/Collector/Agents/GpuProfilingCollectionAgent.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Team Tools\DiagnosticsHub\Collector\Agents\GpuProfilingCollectionAgent.dll
+[86c8:0018][2026-11-21T16:36:59] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Team Tools\DiagnosticsHub\Collector\Agents\GpuProfilingCollectionAgent.dll'.
+[86c8:0018][2026-11-21T16:36:59] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_049_Microsoft.VisualStudio.Graphics.Analyzer.log
+[86c8:0018][2026-11-21T16:36:59] Completed: Copying file /Contents/Common7/IDE/VSGraphicsExtensions/Analyzer/Extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VSGraphicsExtensions\Analyzer\Extension.vsixmanifest
+[86c8:0018][2026-11-21T16:36:59] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VSGraphicsExtensions\Analyzer\Extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:36:59] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_050_Microsoft.VisualStudio.Graphics.Msi.log
+MSI (c) (C8:2C) [16:37:00:995]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:37:00 ===
+
+
+## dd_setup_20261121163410_051_Microsoft.VisualStudio.Graphics.Msi.log
+MSI (c) (C8:C8) [16:37:14:991]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:37:14 ===
+
+
+## dd_setup_20261121163410_052_Microsoft.VisualStudio.Graphics.Viewers.Resources.log
+[86c8:0018][2026-11-21T16:37:15] Processing file extension for install .dsgl
+[86c8:0018][2026-11-21T16:37:15] RegistrationPath: Software\Microsoft\VisualStudio_bf096482\Capabilities\FileAssociations
+[86c8:0018][2026-11-21T16:37:15] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_053_Microsoft.VisualStudio.Graphics.Viewers.log
+[86c8:0018][2026-11-21T16:37:15] Completed: Copying file /Contents/Common7/IDE/Extensions/Microsoft/VsGraphics/VsGraphics_Microsoft_VisualStudio_Graphics_dll_Component.pkgdef to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\VsGraphics\VsGraphics_Microsoft_VisualStudio_Graphics_dll_Component.pkgdef
+[86c8:0018][2026-11-21T16:37:15] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\VsGraphics\VsGraphics_Microsoft_VisualStudio_Graphics_dll_Component.pkgdef'.
+[86c8:0018][2026-11-21T16:37:15] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_054_Microsoft.VC.14.51.Servicing.log
+[86c8:0018][2026-11-21T16:37:15] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.ServicingVersion.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.props
+[86c8:0018][2026-11-21T16:37:15] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.props'.
+[86c8:0018][2026-11-21T16:37:15] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_055_Microsoft.VC.14.51.Servicing.CrtHeaders.log
+[86c8:0018][2026-11-21T16:37:15] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.ServicingVersion.CrtHeaders.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.CrtHeaders.props
+[86c8:0018][2026-11-21T16:37:15] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.CrtHeaders.props'.
+[86c8:0018][2026-11-21T16:37:15] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_056_Microsoft.VC.14.51.CRT.Headers.base.log
+[86c8:0018][2026-11-21T16:37:16] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/modules/std.ixx to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\modules\std.ixx
+[86c8:0018][2026-11-21T16:37:16] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\modules\std.ixx'.
+[86c8:0018][2026-11-21T16:37:16] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_057_Microsoft.VC.14.51.CRT.Headers.Resources.base.log
+[86c8:0018][2026-11-21T16:37:16] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/include/zh-CN/xutility.xml to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\zh-CN\xutility.xml
+[86c8:0018][2026-11-21T16:37:16] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\zh-CN\xutility.xml'.
+[86c8:0018][2026-11-21T16:37:16] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_058_Microsoft.VC.14.51.CRT.Headers.Resources.log
+[86c8:0018][2026-11-21T16:37:16] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:37:16] Getting list of files within the package
+[86c8:0018][2026-11-21T16:37:16] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_059_Microsoft.VisualCpp.CRT.Headers.log
+[86c8:0018][2026-11-21T16:37:16] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:37:16] Getting list of files within the package
+[86c8:0018][2026-11-21T16:37:16] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_060_Microsoft.VisualCpp.Redist.14.Latest.log
+[CF10:5380][2026-11-21T16:37:40]i410: Variable: WixBundleUILevel = 2
+[CF10:5380][2026-11-21T16:37:40]i410: Variable: WixBundleVersion = 14.51.36231.0
+[CF10:5380][2026-11-21T16:37:40]i007: Exit code: 0x0, restarting: No
+
+## dd_setup_20261121163410_060_Microsoft.VisualCpp.Redist.14.Latest_000_vcRuntimeMinimum_x86.log
+MSI (c) (40:C4) [16:37:37:211]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:37:37 ===
+
+
+## dd_setup_20261121163410_060_Microsoft.VisualCpp.Redist.14.Latest_001_vcRuntimeAdditional_x86.log
+MSI (c) (40:E0) [16:37:38:255]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:37:38 ===
+
+
+## dd_setup_20261121163410_061_Microsoft.VisualCpp.Redist.14.Latest.log
+[ED74:48B4][2026-11-21T16:40:06]i410: Variable: WixBundleUILevel = 2
+[ED74:48B4][2026-11-21T16:40:06]i410: Variable: WixBundleVersion = 14.51.36231.0
+[ED74:48B4][2026-11-21T16:40:06]i007: Exit code: 0xbc2, restarting: No
+
+## dd_setup_20261121163410_061_Microsoft.VisualCpp.Redist.14.Latest_000_vcRuntimeMinimum_x64.log
+MSI (c) (A0:F4) [16:40:02:368]: RESTART MANAGER: Session closed.
+=== Verbose logging stopped: 2026/11/21  16:40:02 ===
+
+
+## dd_setup_20261121163410_061_Microsoft.VisualCpp.Redist.14.Latest_001_vcRuntimeAdditional_x64.log
+MSI (c) (A0:08) [16:40:03:433]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:40:03 ===
+
+
+## dd_setup_20261121163410_062_Microsoft.VisualCpp.RuntimeDebug.14.log
+MSI (c) (C8:24) [16:40:08:195]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:40:08 ===
+
+
+## dd_setup_20261121163410_063_Microsoft.VisualCpp.RuntimeDebug.14.log
+MSI (c) (C8:DC) [16:40:09:474]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:40:09 ===
+
+
+## dd_setup_20261121163410_064_Microsoft.VC.14.51.CRT.Redist.X64.base.log
+[86c8:0018][2026-11-21T16:40:09] Completed: Copying file /Contents/VC/Redist/MSVC/14.51.36231/x64/Microsoft.VC145.OpenMP/vcomp140.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\14.51.36231\x64\Microsoft.VC145.OpenMP\vcomp140.dll
+[86c8:0018][2026-11-21T16:40:09] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\14.51.36231\x64\Microsoft.VC145.OpenMP\vcomp140.dll'.
+[86c8:0018][2026-11-21T16:40:09] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_065_Microsoft.VisualCpp.CRT.Redist.Resources.log
+[86c8:0018][2026-11-21T16:40:09] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:09] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:09] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_066_Microsoft.VisualCpp.CRT.Redist.X64.log
+[86c8:0018][2026-11-21T16:40:10] Completed: Copying file /Contents/VC/Redist/MSVC/v145/vc_redist.x64.exe to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\v145\vc_redist.x64.exe
+[86c8:0018][2026-11-21T16:40:10] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\v145\vc_redist.x64.exe'.
+[86c8:0018][2026-11-21T16:40:10] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_067_Microsoft.VC.14.51.CRT.Redist.X86.base.log
+[86c8:0018][2026-11-21T16:40:10] Completed: Copying file /Contents/VC/Redist/MSVC/14.51.36231/x86/Microsoft.VC145.OPENMP/vcomp140.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\14.51.36231\x86\Microsoft.VC145.OPENMP\vcomp140.dll
+[86c8:0018][2026-11-21T16:40:10] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\14.51.36231\x86\Microsoft.VC145.OPENMP\vcomp140.dll'.
+[86c8:0018][2026-11-21T16:40:10] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_068_Microsoft.VisualCpp.CRT.Redist.X86.log
+[86c8:0018][2026-11-21T16:40:10] Completed: Copying file /Contents/VC/Redist/MSVC/v145/vc_redist.x86.exe to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\v145\vc_redist.x86.exe
+[86c8:0018][2026-11-21T16:40:10] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\v145\vc_redist.x86.exe'.
+[86c8:0018][2026-11-21T16:40:10] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_069_Microsoft.VC.14.51.CRT.Source.base.log
+[86c8:0018][2026-11-21T16:40:11] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/crt/src/vcruntime/x86_exception_filter.cpp to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\crt\src\vcruntime\x86_exception_filter.cpp
+[86c8:0018][2026-11-21T16:40:11] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\crt\src\vcruntime\x86_exception_filter.cpp'.
+[86c8:0018][2026-11-21T16:40:11] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_070_Microsoft.VisualCpp.CRT.Source.log
+[86c8:0018][2026-11-21T16:40:12] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:12] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:12] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_071_Microsoft.VC.14.51.CRT.x64.Desktop.base.log
+[86c8:0018][2026-11-21T16:40:14] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/x64/msvcmrt_netcore.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x64\msvcmrt_netcore.lib
+[86c8:0018][2026-11-21T16:40:14] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x64\msvcmrt_netcore.lib'.
+[86c8:0018][2026-11-21T16:40:14] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_072_Microsoft.VisualCpp.CRT.x64.Desktop.log
+[86c8:0018][2026-11-21T16:40:14] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:14] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:14] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_073_Microsoft.VC.14.51.CRT.x86.Desktop.base.log
+[86c8:0018][2026-11-21T16:40:16] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/x86/msvcmrt_netcore.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x86\msvcmrt_netcore.lib
+[86c8:0018][2026-11-21T16:40:16] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x86\msvcmrt_netcore.lib'.
+[86c8:0018][2026-11-21T16:40:16] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_074_Microsoft.VisualCpp.CRT.x86.Desktop.log
+[86c8:0018][2026-11-21T16:40:16] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:16] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:16] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_075_Microsoft.VisualCpp.Servicing.DIASDK.log
+[86c8:0018][2026-11-21T16:40:16] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.ServicingVersion.DIASDK.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.DIASDK.props
+[86c8:0018][2026-11-21T16:40:16] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.DIASDK.props'.
+[86c8:0018][2026-11-21T16:40:16] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_076_Microsoft.VisualCpp.DIA.SDK.log
+[86c8:0018][2026-11-21T16:40:17] Completed: Copying file /Contents/DIA%20SDK/Samples/DIA2Dump/stdafx.h to %ProgramFiles%\Microsoft Visual Studio\18\Community\DIA SDK\Samples\DIA2Dump\stdafx.h
+[86c8:0018][2026-11-21T16:40:17] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\DIA SDK\Samples\DIA2Dump\stdafx.h'.
+[86c8:0018][2026-11-21T16:40:17] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_077_Microsoft.VC.14.51.Tools.Core.Props.log
+[86c8:0018][2026-11-21T16:40:17] Completed: Copying file /Contents/VC/Auxiliary/Build/v145/Microsoft.VCToolsVersion.VC.14.51.txt to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\v145\Microsoft.VCToolsVersion.VC.14.51.txt
+[86c8:0018][2026-11-21T16:40:17] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\v145\Microsoft.VCToolsVersion.VC.14.51.txt'.
+[86c8:0018][2026-11-21T16:40:17] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_078_Microsoft.VisualCpp.Tools.Core.x86.log
+[86c8:0018][2026-11-21T16:40:17] Completed: Copying file /Contents/VC/Auxiliary/Build/vcvarsall.bat to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvarsall.bat
+[86c8:0018][2026-11-21T16:40:17] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvarsall.bat'.
+[86c8:0018][2026-11-21T16:40:17] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_079_Microsoft.VisualCpp.Tools.Core.Resources.log
+[86c8:0018][2026-11-21T16:40:17] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:17] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:17] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_080_Microsoft.VC.14.51.Tools.HostX86.TargetX86.Res.base.log
+[86c8:0018][2026-11-21T16:40:17] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx86/x86/2052/nmakeui.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x86\2052\nmakeui.dll
+[86c8:0018][2026-11-21T16:40:17] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x86\2052\nmakeui.dll'.
+[86c8:0018][2026-11-21T16:40:17] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_081_Microsoft.VC.14.51.Props.log
+[86c8:0018][2026-11-21T16:40:17] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.Paths.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.props
+[86c8:0018][2026-11-21T16:40:17] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.props'.
+[86c8:0018][2026-11-21T16:40:17] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_082_Microsoft.VC.14.51.Props.x86.log
+[86c8:0018][2026-11-21T16:40:17] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.Paths.x86.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.x86.props
+[86c8:0018][2026-11-21T16:40:17] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.x86.props'.
+[86c8:0018][2026-11-21T16:40:17] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_083_Microsoft.VC.14.51.Servicing.Compilers.log
+[86c8:0018][2026-11-21T16:40:17] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.ServicingVersion.Compilers.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.Compilers.props
+[86c8:0018][2026-11-21T16:40:17] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.Compilers.props'.
+[86c8:0018][2026-11-21T16:40:17] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_084_Microsoft.VC.14.51.Tools.HostX86.TargetX86.base.log
+[86c8:0018][2026-11-21T16:40:18] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx86/x86/xdcmake.exe.config to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x86\xdcmake.exe.config
+[86c8:0018][2026-11-21T16:40:18] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x86\xdcmake.exe.config'.
+[86c8:0018][2026-11-21T16:40:18] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_085_Microsoft.VisualCpp.Tools.HostX86.TargetX86.log
+[86c8:0018][2026-11-21T16:40:18] Completed: Copying file /Contents/VC/Auxiliary/Build/vcvars32.bat to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars32.bat
+[86c8:0018][2026-11-21T16:40:18] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars32.bat'.
+[86c8:0018][2026-11-21T16:40:18] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_086_Microsoft.VisualCpp.Tools.HostX86.TargetX86.Res.log
+[86c8:0018][2026-11-21T16:40:18] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:18] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:18] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_087_Microsoft.VC.14.51.Tools.Hostx86.Targetx64.Res.base.log
+[86c8:0018][2026-11-21T16:40:18] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx86/x64/2052/nmakeui.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x64\2052\nmakeui.dll
+[86c8:0018][2026-11-21T16:40:18] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x64\2052\nmakeui.dll'.
+[86c8:0018][2026-11-21T16:40:18] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_088_Microsoft.VC.14.51.Props.x64.log
+[86c8:0018][2026-11-21T16:40:18] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.Paths.x64.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.x64.props
+[86c8:0018][2026-11-21T16:40:18] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.x64.props'.
+[86c8:0018][2026-11-21T16:40:18] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_089_Microsoft.VC.14.51.Tools.HostX86.TargetX64.base.log
+[86c8:0018][2026-11-21T16:40:19] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx86/x64/xdcmake.exe.config to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x64\xdcmake.exe.config
+[86c8:0018][2026-11-21T16:40:19] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x64\xdcmake.exe.config'.
+[86c8:0018][2026-11-21T16:40:19] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_090_Microsoft.VisualCpp.Tools.HostX86.TargetX64.log
+[86c8:0018][2026-11-21T16:40:19] Completed: Copying file /Contents/VC/Auxiliary/Build/vcvarsx86_amd64.bat to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvarsx86_amd64.bat
+[86c8:0018][2026-11-21T16:40:19] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvarsx86_amd64.bat'.
+[86c8:0018][2026-11-21T16:40:19] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_091_Microsoft.VisualCpp.Tools.Hostx86.Targetx64.Res.log
+[86c8:0018][2026-11-21T16:40:19] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:19] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:19] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_092_Microsoft.VC.14.51.CRT.Redist.x64.OneCore.Desktop.base.log
+[86c8:0018][2026-11-21T16:40:19] Completed: Copying file /Contents/VC/Redist/MSVC/14.51.36231/onecore/x64/Microsoft.VC145.OpenMP/vcomp140.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\14.51.36231\onecore\x64\Microsoft.VC145.OpenMP\vcomp140.dll
+[86c8:0018][2026-11-21T16:40:19] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\14.51.36231\onecore\x64\Microsoft.VC145.OpenMP\vcomp140.dll'.
+[86c8:0018][2026-11-21T16:40:19] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_093_Microsoft.VisualCpp.CRT.Redist.x64.OneCore.Desktop.log
+[86c8:0018][2026-11-21T16:40:20] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:20] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:20] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_094_Microsoft.VC.14.51.CRT.Redist.x86.OneCore.Desktop.base.log
+[86c8:0018][2026-11-21T16:40:20] Completed: Copying file /Contents/VC/Redist/MSVC/14.51.36231/onecore/x86/Microsoft.VC145.OPENMP/vcomp140.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\14.51.36231\onecore\x86\Microsoft.VC145.OPENMP\vcomp140.dll
+[86c8:0018][2026-11-21T16:40:20] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\14.51.36231\onecore\x86\Microsoft.VC145.OPENMP\vcomp140.dll'.
+[86c8:0018][2026-11-21T16:40:20] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_095_Microsoft.VisualCpp.CRT.Redist.x86.OneCore.Desktop.log
+[86c8:0018][2026-11-21T16:40:20] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:20] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:20] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_096_Microsoft.VC.14.51.CRT.x64.OneCore.Desktop.base.log
+[86c8:0018][2026-11-21T16:40:22] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/onecore/x64/vcruntimed.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\onecore\x64\vcruntimed.lib
+[86c8:0018][2026-11-21T16:40:22] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\onecore\x64\vcruntimed.lib'.
+[86c8:0018][2026-11-21T16:40:22] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_097_Microsoft.VisualCpp.CRT.x64.OneCore.Desktop.log
+[86c8:0018][2026-11-21T16:40:23] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:23] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:23] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_098_Microsoft.VC.14.51.CRT.x64.Store.base.log
+[86c8:0018][2026-11-21T16:40:24] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/x64/wsetargv.obj to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x64\wsetargv.obj
+[86c8:0018][2026-11-21T16:40:24] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x64\wsetargv.obj'.
+[86c8:0018][2026-11-21T16:40:24] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_099_Microsoft.VisualCpp.CRT.x64.Store.log
+[86c8:0018][2026-11-21T16:40:24] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:24] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:24] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_100_Microsoft.VC.14.51.CRT.x86.OneCore.Desktop.base.log
+[86c8:0018][2026-11-21T16:40:26] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/onecore/x86/vcruntimed.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\onecore\x86\vcruntimed.lib
+[86c8:0018][2026-11-21T16:40:26] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\onecore\x86\vcruntimed.lib'.
+[86c8:0018][2026-11-21T16:40:26] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_101_Microsoft.VisualCpp.CRT.x86.OneCore.Desktop.log
+[86c8:0018][2026-11-21T16:40:26] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:26] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:26] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_102_Microsoft.VC.14.51.CRT.x86.Store.base.log
+[86c8:0018][2026-11-21T16:40:27] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/x86/wsetargv.obj to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x86\wsetargv.obj
+[86c8:0018][2026-11-21T16:40:27] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x86\wsetargv.obj'.
+[86c8:0018][2026-11-21T16:40:27] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_103_Microsoft.VisualCpp.CRT.x86.Store.log
+[86c8:0018][2026-11-21T16:40:28] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:28] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:28] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_104_Microsoft.VC.14.51.PGO.Headers.base.log
+[86c8:0018][2026-11-21T16:40:28] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/include/pgobootrun.h to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\pgobootrun.h
+[86c8:0018][2026-11-21T16:40:28] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\pgobootrun.h'.
+[86c8:0018][2026-11-21T16:40:28] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_105_Microsoft.VisualCpp.PGO.Headers.log
+[86c8:0018][2026-11-21T16:40:28] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:28] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:28] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_106_Microsoft.VC.14.51.PGO.X64.base.log
+[86c8:0018][2026-11-21T16:40:28] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/x64/pgort.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x64\pgort.lib
+[86c8:0018][2026-11-21T16:40:28] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x64\pgort.lib'.
+[86c8:0018][2026-11-21T16:40:28] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_107_Microsoft.VisualCpp.PGO.X64.log
+[86c8:0018][2026-11-21T16:40:28] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:28] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:28] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_108_Microsoft.VC.14.51.PGO.X86.base.log
+[86c8:0018][2026-11-21T16:40:28] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/x86/pgort.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x86\pgort.lib
+[86c8:0018][2026-11-21T16:40:28] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x86\pgort.lib'.
+[86c8:0018][2026-11-21T16:40:28] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_109_Microsoft.VisualCpp.PGO.X86.log
+[86c8:0018][2026-11-21T16:40:28] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:28] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:28] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_110_Microsoft.VC.14.51.Prem.HostX64.TargetX64.Res.base.log
+[86c8:0018][2026-11-21T16:40:29] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/2052/pgoui.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x64\2052\pgoui.dll
+[86c8:0018][2026-11-21T16:40:29] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x64\2052\pgoui.dll'.
+[86c8:0018][2026-11-21T16:40:29] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_111_Microsoft.VC.14.51.Premium.Tools.HostX64.TargetX64.base.log
+[86c8:0018][2026-11-21T16:40:29] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/sptdump.exe to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x64\sptdump.exe
+[86c8:0018][2026-11-21T16:40:29] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x64\sptdump.exe'.
+[86c8:0018][2026-11-21T16:40:29] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_112_Microsoft.VisualCpp.Premium.Tools.HostX64.TargetX64.log
+[86c8:0018][2026-11-21T16:40:29] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:29] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:29] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_113_Microsoft.VC.14.51.Prem.HostX64.TargetX86.Res.base.log
+[86c8:0018][2026-11-21T16:40:29] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x86/2052/pgoui.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x86\2052\pgoui.dll
+[86c8:0018][2026-11-21T16:40:29] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x86\2052\pgoui.dll'.
+[86c8:0018][2026-11-21T16:40:29] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_114_Microsoft.VC.14.51.Premium.Tools.HostX64.TargetX86.base.log
+[86c8:0018][2026-11-21T16:40:29] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x86/sptdump.exe to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x86\sptdump.exe
+[86c8:0018][2026-11-21T16:40:29] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x86\sptdump.exe'.
+[86c8:0018][2026-11-21T16:40:29] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_115_Microsoft.VisualCpp.Premium.Tools.HostX64.TargetX86.log
+[86c8:0018][2026-11-21T16:40:29] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:29] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:29] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_116_Microsoft.VC.14.51.Prem.HostX86.TargetX86.Res.base.log
+[86c8:0018][2026-11-21T16:40:30] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx86/x86/2052/pgoui.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x86\2052\pgoui.dll
+[86c8:0018][2026-11-21T16:40:30] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x86\2052\pgoui.dll'.
+[86c8:0018][2026-11-21T16:40:30] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_117_Microsoft.VC.14.51.Premium.Tools.HostX86.TargetX86.base.log
+[86c8:0018][2026-11-21T16:40:30] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx86/x86/sptdump.exe to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x86\sptdump.exe
+[86c8:0018][2026-11-21T16:40:30] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x86\sptdump.exe'.
+[86c8:0018][2026-11-21T16:40:30] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_118_Microsoft.VisualCpp.Premium.Tools.HostX86.TargetX86.log
+[86c8:0018][2026-11-21T16:40:30] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:30] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:30] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_119_Microsoft.VC.14.51.Prem.Hostx86.Targetx64.Res.base.log
+[86c8:0018][2026-11-21T16:40:30] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx86/x64/2052/pgoui.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x64\2052\pgoui.dll
+[86c8:0018][2026-11-21T16:40:30] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x64\2052\pgoui.dll'.
+[86c8:0018][2026-11-21T16:40:30] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_120_Microsoft.VC.14.51.Premium.Tools.HostX86.TargetX64.base.log
+[86c8:0018][2026-11-21T16:40:30] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx86/x64/sptdump.exe to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x64\sptdump.exe
+[86c8:0018][2026-11-21T16:40:30] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx86\x64\sptdump.exe'.
+[86c8:0018][2026-11-21T16:40:30] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_121_Microsoft.VisualCpp.Premium.Tools.HostX86.TargetX64.log
+[86c8:0018][2026-11-21T16:40:30] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:30] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:30] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_122_Microsoft.VC.14.51.Tools.HostX64.TargetX64.Res.base.log
+[86c8:0018][2026-11-21T16:40:30] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/2052/nmakeui.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x64\2052\nmakeui.dll
+[86c8:0018][2026-11-21T16:40:30] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x64\2052\nmakeui.dll'.
+[86c8:0018][2026-11-21T16:40:30] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_123_Microsoft.VC.14.51.Tools.HostX64.TargetX64.base.log
+[86c8:0018][2026-11-21T16:40:31] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/xdcmake.exe.config to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x64\xdcmake.exe.config
+[86c8:0018][2026-11-21T16:40:31] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x64\xdcmake.exe.config'.
+[86c8:0018][2026-11-21T16:40:31] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_124_Microsoft.VisualCpp.Tools.HostX64.TargetX64.log
+[86c8:0018][2026-11-21T16:40:32] Completed: Copying file /Contents/VC/Auxiliary/Build/vcvars64.bat to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars64.bat
+[86c8:0018][2026-11-21T16:40:32] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars64.bat'.
+[86c8:0018][2026-11-21T16:40:32] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_125_Microsoft.VC.14.51.Tools.HostX64.TargetX86.Res.base.log
+[86c8:0018][2026-11-21T16:40:32] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x86/2052/nmakeui.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x86\2052\nmakeui.dll
+[86c8:0018][2026-11-21T16:40:32] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x86\2052\nmakeui.dll'.
+[86c8:0018][2026-11-21T16:40:32] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_126_Microsoft.VC.14.51.Tools.HostX64.TargetX86.base.log
+[86c8:0018][2026-11-21T16:40:33] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x86/xdcmake.exe.config to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x86\xdcmake.exe.config
+[86c8:0018][2026-11-21T16:40:33] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x86\xdcmake.exe.config'.
+[86c8:0018][2026-11-21T16:40:33] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_127_Microsoft.VisualCpp.Tools.HostX64.TargetX86.log
+[86c8:0018][2026-11-21T16:40:33] Completed: Copying file /Contents/VC/Auxiliary/Build/vcvarsamd64_x86.bat to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvarsamd64_x86.bat
+[86c8:0018][2026-11-21T16:40:33] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvarsamd64_x86.bat'.
+[86c8:0018][2026-11-21T16:40:33] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_128_Microsoft.VC.14.51.Servicing.CAExtensions.log
+[86c8:0018][2026-11-21T16:40:33] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.ServicingVersion.CAExtensions.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.CAExtensions.props
+[86c8:0018][2026-11-21T16:40:33] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.CAExtensions.props'.
+[86c8:0018][2026-11-21T16:40:33] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_129_Microsoft.VC.14.51.Servicing.CARulesets.log
+[86c8:0018][2026-11-21T16:40:33] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.ServicingVersion.CARulesets.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.CARulesets.props
+[86c8:0018][2026-11-21T16:40:33] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.CARulesets.props'.
+[86c8:0018][2026-11-21T16:40:33] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_130_Microsoft.VC.14.51.CA.Rulesets.base.log
+[86c8:0018][2026-11-21T16:40:33] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/CodeAnalysis/Rulesets/NativeRecommendedRules.ruleset to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\CodeAnalysis\Rulesets\NativeRecommendedRules.ruleset
+[86c8:0018][2026-11-21T16:40:33] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\CodeAnalysis\Rulesets\NativeRecommendedRules.ruleset'.
+[86c8:0018][2026-11-21T16:40:33] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_131_Microsoft.VC.14.51.CA.Ext.Hostx64.Targetx86.base.log
+[86c8:0018][2026-11-21T16:40:34] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/HostX64/x86/libz3.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x86\libz3.dll
+[86c8:0018][2026-11-21T16:40:34] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x86\libz3.dll'.
+[86c8:0018][2026-11-21T16:40:34] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_132_Microsoft.VisualCpp.CA.Ext.Hostx64.Targetx86.log
+[86c8:0018][2026-11-21T16:40:34] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:34] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:34] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_133_Microsoft.VC.14.51.CA.Ext.Hostx64.Targetx64.base.log
+[86c8:0018][2026-11-21T16:40:34] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/HostX64/x64/libz3.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\libz3.dll
+[86c8:0018][2026-11-21T16:40:34] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\libz3.dll'.
+[86c8:0018][2026-11-21T16:40:34] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_134_Microsoft.VisualCpp.CA.Ext.Hostx64.Targetx64.log
+[86c8:0018][2026-11-21T16:40:34] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:35] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:35] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_135_Microsoft.VC.14.51.CA.Ext.Hostx86.Targetx86.base.log
+[86c8:0018][2026-11-21T16:40:35] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/HostX86/x86/libz3.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX86\x86\libz3.dll
+[86c8:0018][2026-11-21T16:40:35] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX86\x86\libz3.dll'.
+[86c8:0018][2026-11-21T16:40:35] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_136_Microsoft.VisualCpp.CA.Ext.Hostx86.Targetx86.log
+[86c8:0018][2026-11-21T16:40:35] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:35] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:35] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_137_Microsoft.VC.14.51.CA.Ext.Hostx86.Targetx64.base.log
+[86c8:0018][2026-11-21T16:40:35] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/bin/HostX86/x64/libz3.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX86\x64\libz3.dll
+[86c8:0018][2026-11-21T16:40:35] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX86\x64\libz3.dll'.
+[86c8:0018][2026-11-21T16:40:35] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_138_Microsoft.VisualCpp.CA.Ext.Hostx86.Targetx64.log
+[86c8:0018][2026-11-21T16:40:36] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:40:36] Getting list of files within the package
+[86c8:0018][2026-11-21T16:40:36] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_139_Microsoft.VisualCpp.CodeAnalysis.Extensions.log
+[86c8:0018][2026-11-21T16:40:36] Completed: Copying file /Contents/VC/Auxiliary/VS/include/CppCoreCheck/warnings.h to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\VS\include\CppCoreCheck\warnings.h
+[86c8:0018][2026-11-21T16:40:36] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\VS\include\CppCoreCheck\warnings.h'.
+[86c8:0018][2026-11-21T16:40:36] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_140_Win11SDK_10.0.26100.log
+[11/21/2026 16:48:41] Launching '%ProgramData%\Microsoft\VisualStudio\Packages\Win11SDK_10.0.26100,version=10.0.26100.16,productarch=neutral\winsdksetup.exe' with arguments '/features OptionId.AvrfExternal OptionId.UWPManaged OptionId.WindowsSoftwareLogoToolkit OptionId.SigningTools OptionId.UWPLocalized OptionId.UWPCPP OptionId.DesktopCPPx64 OptionId.DesktopCPPx86 OptionID.DesktopCPPARM64 OptionId.MSIInstallTools /quiet /norestart /Ceip on /Log "%TEMP%\windowssdk\dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1.log"'.
+[11/21/2026 16:48:41] Waiting for child process to terminate...
+[11/21/2026 16:54:53] Child process terminated with exit code 0.
+
+## dd_setup_20261121163410_141_Microsoft.VC.14.51.Servicing.ATL.log
+[86c8:0018][2026-11-21T16:54:53] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.ServicingVersion.ATL.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.ATL.props
+[86c8:0018][2026-11-21T16:54:53] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.ServicingVersion.ATL.props'.
+[86c8:0018][2026-11-21T16:54:53] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_142_Microsoft.VC.14.51.ATL.Headers.base.log
+[86c8:0018][2026-11-21T16:54:54] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/atlmfc/include/__atlmfc_core.h to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\atlmfc\include\__atlmfc_core.h
+[86c8:0018][2026-11-21T16:54:54] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\atlmfc\include\__atlmfc_core.h'.
+[86c8:0018][2026-11-21T16:54:54] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_143_Microsoft.VisualCpp.ATL.Headers.log
+[86c8:0018][2026-11-21T16:54:54] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:54:54] Getting list of files within the package
+[86c8:0018][2026-11-21T16:54:54] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_144_Microsoft.VC.14.51.ATL.Source.base.log
+[86c8:0018][2026-11-21T16:54:54] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/atlmfc/src/atl/atls/stdafx.h to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\atlmfc\src\atl\atls\stdafx.h
+[86c8:0018][2026-11-21T16:54:54] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\atlmfc\src\atl\atls\stdafx.h'.
+[86c8:0018][2026-11-21T16:54:54] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_145_Microsoft.VisualCpp.ATL.Source.log
+[86c8:0018][2026-11-21T16:54:54] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:54:54] Getting list of files within the package
+[86c8:0018][2026-11-21T16:54:54] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_146_Microsoft.VC.14.51.Props.ATLMFC.log
+[86c8:0018][2026-11-21T16:54:54] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.Paths.ATLMFC.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.ATLMFC.props
+[86c8:0018][2026-11-21T16:54:54] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.ATLMFC.props'.
+[86c8:0018][2026-11-21T16:54:54] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_147_Microsoft.VC.14.51.ATL.X64.base.log
+[86c8:0018][2026-11-21T16:54:54] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.Paths.x64.ATL.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.x64.ATL.props
+[86c8:0018][2026-11-21T16:54:54] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.x64.ATL.props'.
+[86c8:0018][2026-11-21T16:54:54] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_148_Microsoft.VisualCpp.ATL.X64.log
+[86c8:0018][2026-11-21T16:54:55] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:54:55] Getting list of files within the package
+[86c8:0018][2026-11-21T16:54:55] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_149_Microsoft.VC.14.51.ATL.X86.base.log
+[86c8:0018][2026-11-21T16:54:55] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.Paths.x86.ATL.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.x86.ATL.props
+[86c8:0018][2026-11-21T16:54:55] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.x86.ATL.props'.
+[86c8:0018][2026-11-21T16:54:55] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_150_Microsoft.VisualCpp.ATL.X86.log
+[86c8:0018][2026-11-21T16:54:55] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:54:55] Getting list of files within the package
+[86c8:0018][2026-11-21T16:54:55] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_151_Microsoft.VisualStudio.VC.Ide.ATL.Resources.log
+[86c8:0018][2026-11-21T16:54:55] Completed: Copying file /Contents/Common7/IDE/ProjectTemplates/VC/MFCATL/ATLProject/2052/xdlldata.h to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\ProjectTemplates\VC\MFCATL\ATLProject\2052\xdlldata.h
+[86c8:0018][2026-11-21T16:54:55] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\ProjectTemplates\VC\MFCATL\ATLProject\2052\xdlldata.h'.
+[86c8:0018][2026-11-21T16:54:55] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_152_Microsoft.VisualStudio.VC.Ide.ATL.log
+[86c8:0018][2026-11-21T16:54:55] Completed: Copying file /Contents/Common7/IDE/VC/VCContextItems/ImplementInterface/ProxyHeader.H to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCContextItems\ImplementInterface\ProxyHeader.H
+[86c8:0018][2026-11-21T16:54:55] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCContextItems\ImplementInterface\ProxyHeader.H'.
+[86c8:0018][2026-11-21T16:54:55] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_153_Microsoft.VisualStudio.VC.Templates.Desktop.log
+[86c8:0018][2026-11-21T16:54:55] Completed: Copying file /Contents/Common7/IDE/ProjectTemplates/VC/WindowsDesktop/WindowsStaticLib/WindowsStaticLib.vstemplate to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\ProjectTemplates\VC\WindowsDesktop\WindowsStaticLib\WindowsStaticLib.vstemplate
+[86c8:0018][2026-11-21T16:54:55] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\ProjectTemplates\VC\WindowsDesktop\WindowsStaticLib\WindowsStaticLib.vstemplate'.
+[86c8:0018][2026-11-21T16:54:55] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_154_Microsoft.VisualStudio.VC.Templates.UnitTest.Resources.log
+[86c8:0018][2026-11-21T16:54:56] Completed: Copying file /Contents/Common7/IDE/VC/VCWizards/CodeWiz/Generic/UnitTest/templates/2052/unittest.cpp to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCWizards\CodeWiz\Generic\UnitTest\templates\2052\unittest.cpp
+[86c8:0018][2026-11-21T16:54:56] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\VCWizards\CodeWiz\Generic\UnitTest\templates\2052\unittest.cpp'.
+[86c8:0018][2026-11-21T16:54:56] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_155_Microsoft.VisualStudio.TestTools.TP.V1.CPP.Resources.log
+[86c8:0018][2026-11-21T16:54:56] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/TestWindow/zh-Hans/Microsoft.VisualStudio.TestWindow.CppUnitTestExtension.Resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\zh-Hans\Microsoft.VisualStudio.TestWindow.CppUnitTestExtension.Resources.dll
+[86c8:0018][2026-11-21T16:54:56] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\zh-Hans\Microsoft.VisualStudio.TestWindow.CppUnitTestExtension.Resources.dll'.
+[86c8:0018][2026-11-21T16:54:56] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_156_Microsoft.VisualStudio.TestTools.TestPlatform.V1.CPP.log
+[86c8:0018][2026-11-21T16:54:56] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/TestWindow/Microsoft.VisualStudio.TestWindow.CppUnitTestExtension.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\Microsoft.VisualStudio.TestWindow.CppUnitTestExtension.dll
+[86c8:0018][2026-11-21T16:54:56] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\Microsoft.VisualStudio.TestWindow.CppUnitTestExtension.dll'.
+[86c8:0018][2026-11-21T16:54:56] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_157_Microsoft.VisualStudio.VC.UnitTest.Desktop.Build.Core.log
+[86c8:0018][2026-11-21T16:54:56] Completed: Copying file /Contents/VC/Auxiliary/VS/UnitTest/lib/x86/Microsoft.VisualStudio.TestTools.CppUnitTestFramework.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\VS\UnitTest\lib\x86\Microsoft.VisualStudio.TestTools.CppUnitTestFramework.lib
+[86c8:0018][2026-11-21T16:54:56] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Auxiliary\VS\UnitTest\lib\x86\Microsoft.VisualStudio.TestTools.CppUnitTestFramework.lib'.
+[86c8:0018][2026-11-21T16:54:56] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_158_Microsoft.VisualStudio.VC.Templates.UnitTest.log
+[86c8:0018][2026-11-21T16:54:56] Completed: Copying file /Contents/Msbuild/Microsoft/VC/v160/Microsoft.Cpp.UnitTest.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v160\Microsoft.Cpp.UnitTest.props
+[86c8:0018][2026-11-21T16:54:56] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Msbuild\Microsoft\VC\v160\Microsoft.Cpp.UnitTest.props'.
+[86c8:0018][2026-11-21T16:54:56] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_159_Microsoft.VisualStudio.VC.CppBuildInsights.Resources.log
+[86c8:0018][2026-11-21T16:54:56] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Platform/CppBuildInsights/zh-Hans/Microsoft.VisualStudio.CppBuildInsightsTool.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Platform\CppBuildInsights\zh-Hans\Microsoft.VisualStudio.CppBuildInsightsTool.resources.dll
+[86c8:0018][2026-11-21T16:54:56] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Platform\CppBuildInsights\zh-Hans\Microsoft.VisualStudio.CppBuildInsightsTool.resources.dll'.
+[86c8:0018][2026-11-21T16:54:56] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_160_Microsoft.VisualStudio.VC.CppBuildInsights.log
+[86c8:0018][2026-11-21T16:54:57] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Platform/CppBuildInsights/extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Platform\CppBuildInsights\extension.vsixmanifest
+[86c8:0018][2026-11-21T16:54:57] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Platform\CppBuildInsights\extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:54:57] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_161_Microsoft.VisualStudio.VC.ExternalBuildFramework.Resources.log
+[86c8:0018][2026-11-21T16:54:57] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/TestWindow/Extensions/zh-Hans/Microsoft.VisualStudio.Workspace.ExternalBuildFramework.TestProvider.Resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\Extensions\zh-Hans\Microsoft.VisualStudio.Workspace.ExternalBuildFramework.TestProvider.Resources.dll
+[86c8:0018][2026-11-21T16:54:57] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\Extensions\zh-Hans\Microsoft.VisualStudio.Workspace.ExternalBuildFramework.TestProvider.Resources.dll'.
+[86c8:0018][2026-11-21T16:54:57] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_162_Microsoft.VisualStudio.VC.ExternalBuildFramework.log
+[86c8:0018][2026-11-21T16:54:57] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/EBF/TestExplorer/extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\EBF\TestExplorer\extension.vsixmanifest
+[86c8:0018][2026-11-21T16:54:57] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\EBF\TestExplorer\extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:54:57] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_163_Microsoft.VisualStudio.VC.CMake.Project.Resources.log
+[86c8:0018][2026-11-21T16:54:57] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/CMake/zh-Hans/Microsoft.VisualStudio.CMake.Project.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\zh-Hans\Microsoft.VisualStudio.CMake.Project.resources.dll
+[86c8:0018][2026-11-21T16:54:57] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\zh-Hans\Microsoft.VisualStudio.CMake.Project.resources.dll'.
+[86c8:0018][2026-11-21T16:54:57] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_164_Microsoft.VisualStudio.VC.CMake.Client.Resources.log
+[86c8:0018][2026-11-21T16:54:58] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/CMake/Client/zh-Hans/Microsoft.VisualStudio.CMake.Client.resources.dll to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Client\zh-Hans\Microsoft.VisualStudio.CMake.Client.resources.dll
+[86c8:0018][2026-11-21T16:54:58] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Client\zh-Hans\Microsoft.VisualStudio.CMake.Client.resources.dll'.
+[86c8:0018][2026-11-21T16:54:58] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_165_Microsoft.VisualStudio.VC.CMake.Client.log
+[86c8:0018][2026-11-21T16:54:58] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/CMake/Client/extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Client\extension.vsixmanifest
+[86c8:0018][2026-11-21T16:54:58] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Client\extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:54:58] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_166_Microsoft.VisualStudio.VC.CMake.Project.log
+[86c8:0018][2026-11-21T16:54:58] Completed: Copying file /Contents/Common7/IDE/CommonExtensions/Microsoft/CMake/extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\extension.vsixmanifest
+[86c8:0018][2026-11-21T16:54:58] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:54:58] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_167_Microsoft.VisualStudio.VC.CMake.log
+[86c8:0018][2026-11-21T16:55:04] Completed: Copying file /Contents/Common7/Tools/vsdevcmd/ext/cmake.bat to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd\ext\cmake.bat
+[86c8:0018][2026-11-21T16:55:04] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd\ext\cmake.bat'.
+[86c8:0018][2026-11-21T16:55:04] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_168_Microsoft.VisualStudio.VC.Ide.TestAdapterForBoostTest.log
+[86c8:0018][2026-11-21T16:55:05] Completed: Copying file /extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\os3pdysh.iuc\extension.vsixmanifest
+[86c8:0018][2026-11-21T16:55:05] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\os3pdysh.iuc\extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:55:05] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_169_Microsoft.VisualStudio.VC.Ide.TestAdapterForGoogleTest.log
+[86c8:0018][2026-11-21T16:55:06] Completed: Copying file /extension.vsixmanifest to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\julayeqk.r5q\extension.vsixmanifest
+[86c8:0018][2026-11-21T16:55:06] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\julayeqk.r5q\extension.vsixmanifest'.
+[86c8:0018][2026-11-21T16:55:06] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_170_Microsoft.VisualStudio.VC.IDE.Project.Factories.log
+[86c8:0018][2026-11-21T16:55:06] Completed: Copying file /Contents/Common7/IDE/VC/vcpackages/vcproject.factories.txt to %ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\vcpackages\vcproject.factories.txt
+[86c8:0018][2026-11-21T16:55:06] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\IDE\VC\vcpackages\vcproject.factories.txt'.
+[86c8:0018][2026-11-21T16:55:06] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_171_Microsoft.VC.14.51.ASAN.Headers.base.log
+[86c8:0018][2026-11-21T16:55:06] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/include/sanitizer/tsan_interface_atomic.h to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\sanitizer\tsan_interface_atomic.h
+[86c8:0018][2026-11-21T16:55:06] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\sanitizer\tsan_interface_atomic.h'.
+[86c8:0018][2026-11-21T16:55:06] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_172_Microsoft.VC.14.51.ASAN.X64.base.log
+[86c8:0018][2026-11-21T16:55:09] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/x64/vcasand.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x64\vcasand.lib
+[86c8:0018][2026-11-21T16:55:09] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x64\vcasand.lib'.
+[86c8:0018][2026-11-21T16:55:09] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_173_Microsoft.VC.14.51.Props.ARM64.log
+[86c8:0018][2026-11-21T16:55:09] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/Auxiliary/Microsoft.VC.Paths.ARM64.props to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.ARM64.props
+[86c8:0018][2026-11-21T16:55:09] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\Auxiliary\Microsoft.VC.Paths.ARM64.props'.
+[86c8:0018][2026-11-21T16:55:09] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_174_Microsoft.VC.14.51.ASAN.ARM64.base.log
+[86c8:0018][2026-11-21T16:55:11] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/arm64/vcasand.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\arm64\vcasand.lib
+[86c8:0018][2026-11-21T16:55:11] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\arm64\vcasand.lib'.
+[86c8:0018][2026-11-21T16:55:11] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_175_Microsoft.VC.14.51.ASAN.X86.base.log
+[86c8:0018][2026-11-21T16:55:14] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/x86/vcasand.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x86\vcasand.lib
+[86c8:0018][2026-11-21T16:55:14] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\x86\vcasand.lib'.
+[86c8:0018][2026-11-21T16:55:14] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_176_Microsoft.VC.14.51.ASAN.X86.OneCore.base.log
+[86c8:0018][2026-11-21T16:55:15] Completed: Copying file /Contents/VC/Tools/MSVC/14.51.36231/lib/onecore/x86/vcasand.lib to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\onecore\x86\vcasand.lib
+[86c8:0018][2026-11-21T16:55:15] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\lib\onecore\x86\vcasand.lib'.
+[86c8:0018][2026-11-21T16:55:15] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_177_Microsoft.VisualCpp.ASAN.X86.OneCore.log
+[86c8:0018][2026-11-21T16:55:15] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:55:15] Getting list of files within the package
+[86c8:0018][2026-11-21T16:55:15] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_178_Microsoft.VisualCpp.ASAN.X86.log
+[86c8:0018][2026-11-21T16:55:16] Using package payload to get the embedded manifest
+[86c8:0018][2026-11-21T16:55:16] Getting list of files within the package
+[86c8:0018][2026-11-21T16:55:16] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_179_Microsoft.VisualStudio.VC.Vcpkg.log
+[86c8:0018][2026-11-21T16:55:16] Completed: Copying file /Contents/VC/vcpkg/vcpkg.exe to %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\vcpkg\vcpkg.exe
+[86c8:0018][2026-11-21T16:55:16] Timestamp updated for file '%ProgramFiles%\Microsoft Visual Studio\18\Community\VC\vcpkg\vcpkg.exe'.
+[86c8:0018][2026-11-21T16:55:16] Package executed successfully. Return code: 0
+
+## dd_setup_20261121163410_180_Microsoft.VisualStudio.Product.Community.log
+[2026-11-21T16:55:54] INFO: Completed execution: IsolationIniFileFinalizerTask
+[2026-11-21T16:55:54] INFO: Result: Success
+[2026-11-21T16:55:54] INFO: ---------- End running tasks ----------
+
+## dd_setup_20261121163410_181_Microsoft.VisualStudio.Product.Community.log
+[86c8:0018][2026-11-21T16:56:20] %ProgramFiles%\Microsoft Visual Studio\18\Community\common7\ide\vsngenrunner.exe eqi 2 --AssemblyCount 803
+
+## dd_vcredist_amd64_20261121164004.log
+[8E78:166D0][2026-11-21T16:40:04]i410: Variable: WixBundleUILevel = 1
+[8E78:166D0][2026-11-21T16:40:04]i410: Variable: WixBundleVersion = 14.50.35719.0
+[8E78:166D0][2026-11-21T16:40:06]i007: Exit code: 0x0, restarting: No
+
+## dd_vcredist_wrapper_x64_20261121163743.log
+Windows PowerShell 脚本结束
+结束时间: 20261121164006
+**********************
+
+## dd_vcredist_wrapper_x86_20261121163718.log
+Windows PowerShell 脚本结束
+结束时间: 20261121163741
+**********************
+
+## dd_vcredist_x86_20261121163739.log
+[E5F0:747C][2026-11-21T16:37:39]i410: Variable: WixBundleUILevel = 1
+[E5F0:747C][2026-11-21T16:37:39]i410: Variable: WixBundleVersion = 14.50.35719.0
+[E5F0:747C][2026-11-21T16:37:40]i007: Exit code: 0x0, restarting: No
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1.log
+[3248:22C4][2026-11-21T16:54:53]i410: Variable: WixBundleUILevel = 2
+[3248:22C4][2026-11-21T16:54:53]i410: Variable: WixBundleVersion = 10.1.26100.8249
+[3248:22C4][2026-11-21T16:54:53]i007: Exit code: 0x0, restarting: No
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_000_package_ApplicationVerifierx64ExternalPackageDesktopEditions_x64_en_us.log
+MSI (c) (C8:50) [16:48:59:037]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:48:59 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_001_package_ApplicationVerifierx64ExternalPackageOnecoreUAP_x64_en_us.log
+MSI (c) (C8:64) [16:49:08:059]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:49:08 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_002_package_KitsConfigurationInstaller_x86_en_us.log
+MSI (c) (C8:08) [16:49:08:890]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:49:08 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_003_package_WindowsAppCertificationKitx64_x86_en_us.log
+MSI (c) (C8:54) [16:49:29:993]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:49:29 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_004_package_WindowsAppCertificationKitx64OnecoreUAP_x86_en_us.log
+MSI (c) (C8:94) [16:49:31:237]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:49:31 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_005_package_WindowsAppCertificationKitNativeComponents_x64_en_us.log
+MSI (c) (C8:2C) [16:49:35:923]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:49:35 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_006_package_WindowsAppCertificationKitSupportedApiListx86_x86_en_us.log
+MSI (c) (C8:88) [16:49:36:611]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:49:36 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_007_package_WindowsSDKEULA_x86_en_us.log
+MSI (c) (C8:3C) [16:49:37:372]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:49:37 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_008_package_MSIDevelopmentTools_x86_en_us.log
+MSI (c) (C8:30) [16:49:38:244]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:49:38 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_009_package_WindowsSDKSigningTools_x86_en_us.log
+MSI (c) (C8:80) [16:49:40:130]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:49:40 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_010_package_WindowsSDKModernNonVersionedDeveloperTools_x86_en_us.log
+MSI (c) (C8:D0) [16:50:10:255]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:50:10 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_011_package_WindowsIoTExtensionSDK_x86_en_us.log
+MSI (c) (C8:3C) [16:50:10:822]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:50:10 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_012_package_UniversalCRTToolsx86_x86_en_us.log
+MSI (c) (C8:20) [16:50:11:480]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:50:11 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_013_package_WindowsSDKforWindowsStoreAppsContracts_x86_en_us.log
+MSI (c) (C8:C4) [16:50:25:631]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:50:25 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_014_package_UniversalCRTToolsx64_x64_en_us.log
+MSI (c) (C8:84) [16:50:26:277]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:50:26 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_015_package_WindowsSDKforWindowsStoreApps_x86_en_us.log
+MSI (c) (C8:58) [16:50:49:823]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:50:49 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_016_package_WinRTIntellisenseDesktopenus_x86_en_us.log
+MSI (c) (C8:1C) [16:50:51:868]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:50:51 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_017_package_WindowsSDKforWindowsStoreAppsTools_x86_en_us.log
+MSI (c) (C8:14) [16:51:00:936]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:00 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_018_package_UniversalCRTExtensionSDK_x86_en_us.log
+MSI (c) (C8:5C) [16:51:01:801]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:01 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_019_package_WindowsDesktopExtensionSDK_x86_en_us.log
+MSI (c) (C8:4C) [16:51:02:646]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:02 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_020_package_WindowsIoTExtensionSDKContracts_x86_en_us.log
+MSI (c) (C8:68) [16:51:03:266]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:03 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_021_package_WindowsDesktopExtensionSDKContracts_x86_en_us.log
+MSI (c) (C8:68) [16:51:04:980]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:04 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_022_package_WinRTIntellisenseIoTenus_x86_en_us.log
+MSI (c) (C8:1C) [16:51:05:538]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:05 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_023_package_WindowsTeamExtensionSDK_x86_en_us.log
+MSI (c) (C8:E4) [16:51:06:110]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:06 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_024_package_WindowsMobileExtensionSDKContracts_x86_en_us.log
+MSI (c) (C8:30) [16:51:06:666]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:06 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_025_package_WindowsSDKFacadeWindowsWinMDVersioned_x86_en_us.log
+MSI (c) (C8:78) [16:51:07:372]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:07 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_026_package_WindowsSDKModernVersionedDeveloperTools_x86_en_us.log
+MSI (c) (C8:28) [16:51:08:802]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:08 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_027_package_WinAppDeploy_x86_en_us.log
+MSI (c) (C8:3C) [16:51:10:438]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:10 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_028_package_WindowsSDK_x86_en_us.log
+MSI (c) (C8:90) [16:51:42:628]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:42 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_029_package_WindowsMobileExtensionSDK_x86_en_us.log
+MSI (c) (C8:FC) [16:51:43:257]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:43 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_030_package_WinRTIntellisenseMobileenus_x86_en_us.log
+MSI (c) (C8:60) [16:51:44:078]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:44 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_031_package_UniversalCRTRedistributable_x86_en_us.log
+MSI (c) (C8:98) [16:51:46:745]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:46 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_032_package_WindowsSDKforWindowsStoreManagedAppsLibs_x86_en_us.log
+MSI (c) (C8:04) [16:51:47:905]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:47 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_033_package_WindowsTeamExtensionSDKContracts_x86_en_us.log
+MSI (c) (C8:5C) [16:51:48:460]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:51:48 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_034_package_UniversalCRTHeadersLibrariesandSources_x86_en_us.log
+MSI (c) (C8:CC) [16:52:03:742]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:03 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_035_package_WindowsSDKforWindowsStoreAppsMetadata_x86_en_us.log
+MSI (c) (C8:E8) [16:52:04:880]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:04 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_036_package_WinRTIntellisensePPIenus_x86_en_us.log
+MSI (c) (C8:40) [16:52:05:434]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:05 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_037_package_UniversalGeneralMIDIDLSExtensionSDK_x86_en_us.log
+MSI (c) (C8:F8) [16:52:06:178]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:06 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_038_package_WinRTIntellisenseUAPenus_x86_en_us.log
+MSI (c) (C8:74) [16:52:07:842]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:07 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_039_package_WindowsSDKDirectXx86Remote_x86_en_us.log
+MSI (c) (C8:98) [16:52:08:546]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:08 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_040_package_WindowsSDKRedistributables_x86_en_us.log
+MSI (c) (C8:14) [16:52:09:636]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:09 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_041_package_WindowsSDKforWindowsStoreAppsLibs_x86_en_us.log
+MSI (c) (C8:14) [16:52:17:840]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:17 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_042_package_WindowsSDKforWindowsStoreAppsDirectXx86Remote_x86_en_us.log
+MSI (c) (C8:18) [16:52:18:731]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:18 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_043_package_WindowsSDKforWindowsStoreAppsHeadersOnecoreUap_x86_en_us.log
+MSI (c) (C8:40) [16:52:21:274]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:21 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_044_package_WindowsSDKDirectXx64Remote_x64_en_us.log
+MSI (c) (C8:40) [16:52:21:997]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:52:21 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_045_package_WindowsSDKforWindowsStoreAppsHeaders_x86_en_us.log
+MSI (c) (C8:44) [16:53:16:675]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:53:16 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_046_package_WinRTIntellisenseIoTOtherLanguages_x86_en_us.log
+MSI (c) (C8:A4) [16:53:17:289]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:53:17 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_047_package_WinRTIntellisenseUAPOtherLanguages_x86_en_us.log
+MSI (c) (C8:78) [16:53:27:849]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:53:27 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_048_package_WinRTIntellisensePPIOtherLanguages_x86_en_us.log
+MSI (c) (C8:34) [16:53:28:455]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:53:28 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_049_package_WinRTIntellisenseDesktopOtherLanguages_x86_en_us.log
+MSI (c) (C8:DC) [16:53:39:532]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:53:39 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_050_package_WindowsSDKOnecoreUapHeadersx86_x86_en_us.log
+MSI (c) (C8:00) [16:53:43:899]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:53:43 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_051_package_WindowsSDKDesktopHeadersx86_x86_en_us.log
+MSI (c) (C8:F8) [16:54:15:501]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:15 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_052_package_WindowsSDKDesktopToolsx86_x86_en_us.log
+MSI (c) (C8:40) [16:54:18:874]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:18 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_053_package_WindowsSDKDesktopLibsx86_x86_en_us.log
+MSI (c) (C8:DC) [16:54:28:023]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:28 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_054_package_WindowsSDKDesktopToolsx64_x86_en_us.log
+MSI (c) (C8:E8) [16:54:30:867]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:30 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_055_package_WindowsSDKDesktopLibsx64_x86_en_us.log
+MSI (c) (C8:74) [16:54:38:183]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:38 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_056_package_WindowsSDKDesktopHeadersx64_x86_en_us.log
+MSI (c) (C8:74) [16:54:38:825]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:38 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_057_package_WindowsSDKOnecoreUapHeadersx64_x86_en_us.log
+MSI (c) (C8:54) [16:54:39:464]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:39 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_058_package_WindowsSDKDesktopToolsarm64_x86_en_us.log
+MSI (c) (C8:78) [16:54:42:127]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:42 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_059_package_WindowsSDKDesktopHeadersarm64_x86_en_us.log
+MSI (c) (C8:08) [16:54:42:735]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:42 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_060_package_WindowsSDKDesktopLibsarm64_x86_en_us.log
+MSI (c) (C8:C8) [16:54:50:677]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:50 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_061_package_WindowsSDKARM64DesktopTools_x86_en_us.log
+MSI (c) (C8:AC) [16:54:51:399]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:51 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_062_package_WindowsSDKOnecoreUapHeadersarm64_x86_en_us.log
+MSI (c) (C8:2C) [16:54:52:072]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:52 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_063_package_SDKARM64Additions_x86_en_us.log
+MSI (c) (C8:00) [16:54:52:779]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:52 ===
+
+
+## windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_064_package_SDKARM64Redistributables_x86_en_us.log
+MSI (c) (C8:FC) [16:54:53:338]: MainEngineThread is returning 0
+=== Verbose logging stopped: 2026/11/21  16:54:53 ===
+

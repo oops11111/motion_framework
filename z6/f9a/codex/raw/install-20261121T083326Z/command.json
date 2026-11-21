@@ -1,0 +1,7 @@
+{
+  "verb": "RunAs",
+  "window_style": "Hidden",
+  "executable": "%ProgramFiles(x86)%\\Microsoft Visual Studio\\Installer\\setup.exe",
+  "utc": "2026-11-21T08:33:26.9512703Z",
+  "arguments": "modify --installPath \"%ProgramFiles%\\Microsoft Visual Studio\\18\\Community\" --channelId VisualStudio.18.Release --add \"Microsoft.VisualStudio.Workload.NativeDesktop;includeRecommended\" --quiet --norestart"
+}

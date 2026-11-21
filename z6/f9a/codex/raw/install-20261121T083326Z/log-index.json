@@ -1,0 +1,2158 @@
+[
+  {
+    "name": "dd_installer_20261121163329.log",
+    "bytes": 27298,
+    "original_sha256": "ede87c75b2e18daf2131b5d54167cb43a0a213efa910ed7b9e8d4377870624b5",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_installer_20261121163329.log",
+    "last_write_utc_epoch": 1795250044.7768292,
+    "published": "complete sanitized text",
+    "published_sha256": "28423556c34e7e1377286d62a3551ab20743cedebf76a2f6a261a4dd24f20942"
+  },
+  {
+    "name": "dd_installer_20261121163349.log",
+    "bytes": 59522,
+    "original_sha256": "c2af8af0f6ef826523136b3f00f3143f3969c38f00386233ec936b47041b5acd",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_installer_20261121163349.log",
+    "last_write_utc_epoch": 1795251389.863706,
+    "published": "complete sanitized text",
+    "published_sha256": "1045520f3a8238bab0659bd435456b44af7113bc67947dfb94c83f0c56f18860"
+  },
+  {
+    "name": "dd_installer_elevated_20261121163339.log",
+    "bytes": 10401,
+    "original_sha256": "31794ea54c9e762b8dbdea28de3c3e093c8e47e3dc3586ae2e3b912e48edfada",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_installer_elevated_20261121163339.log",
+    "last_write_utc_epoch": 1795250042.2620144,
+    "published": "complete sanitized text",
+    "published_sha256": "69d0ff9da0fdc004d0cd14fbecdc0ae27e8aaa7979af3d2563f79e8fbb243921"
+  },
+  {
+    "name": "dd_installer_elevated_20261121163350.log",
+    "bytes": 5983141,
+    "original_sha256": "0534d00580ae013d0f77fd1758ff03f64a9f786949d531f8215520c7aebab9d9",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_installer_elevated_20261121163350.log",
+    "last_write_utc_epoch": 1795251386.473847,
+    "published": "bounded head/tail excerpt",
+    "published_sha256": "5b24ad33baaba4a387f7d1ac34cdeb376e25f2191a445f61e1c74408602e1e89"
+  },
+  {
+    "name": "dd_setup_20261121163334.log",
+    "bytes": 14120,
+    "original_sha256": "fa357729275061185a58b98eece7bc848cafe90ce5e0b8efa6c31add4da22504",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163334.log",
+    "last_write_utc_epoch": 1795250018.1920614,
+    "published": "complete sanitized text",
+    "published_sha256": "1186e55174ba7df1d29c2b1310d589e7ca2716c81a28d889fe7bbe82b6d24e62"
+  },
+  {
+    "name": "dd_setup_20261121163334_errors.log",
+    "bytes": 0,
+    "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163334_errors.log",
+    "last_write_utc_epoch": 1795250014.681766,
+    "published": "complete sanitized text",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "dd_setup_20261121163358.log",
+    "bytes": 18983,
+    "original_sha256": "ea6237dd7597a273001287a2587d878a7ed181b85e553f8bcd5512b356f1e512",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163358.log",
+    "last_write_utc_epoch": 1795250041.7072039,
+    "published": "complete sanitized text",
+    "published_sha256": "e5bbdcca114f4cdca32671d0e1dab42a956625a4b2ab18a0a38164b204ac5458"
+  },
+  {
+    "name": "dd_setup_20261121163358_errors.log",
+    "bytes": 0,
+    "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163358_errors.log",
+    "last_write_utc_epoch": 1795250038.5387986,
+    "published": "complete sanitized text",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "dd_setup_20261121163410.log",
+    "bytes": 5418068,
+    "original_sha256": "e04d42e9347f7b54f4f0962eeaddcb6f98a7384166069d05a810c374f70271c3",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410.log",
+    "last_write_utc_epoch": 1795251380.8694363,
+    "published": "bounded head/tail excerpt",
+    "published_sha256": "7019983564997abbe82f66d9bf2b866afa8808547dbe76241fe038f674664e03"
+  },
+  {
+    "name": "dd_setup_20261121163410_000_TestMSI.log",
+    "bytes": 62954,
+    "original_sha256": "ca722404c084352ad2c2077f17f4146bed8a42834b769048ebcba7f0b3cfe141",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_000_TestMSI.log",
+    "last_write_utc_epoch": 1795250060.4275534,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_001_Microsoft.VisualStudio.Product.Community.log",
+    "bytes": 2992,
+    "original_sha256": "cef34844c1e3ba4b08ff0168acfa84cdb5faea0f056ac16b0ef9d47e22e1680b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_001_Microsoft.VisualStudio.Product.Community.log",
+    "last_write_utc_epoch": 1795250063.0365667,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_002_Microsoft.VisualStudio.VC.Ide.Base.Resources.log",
+    "bytes": 7227,
+    "original_sha256": "cadd09ae6abf36b61d457f6aa87dc33439a48c94d057759c3663b580256a1bb4",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_002_Microsoft.VisualStudio.VC.Ide.Base.Resources.log",
+    "last_write_utc_epoch": 1795250063.6230092,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_003_Microsoft.VisualStudio.VC.Llvm.Base.log",
+    "bytes": 6831,
+    "original_sha256": "f370f8a6df57105a33d657ef81cab5df6c119d6d9bfef017192259c2a5da5f35",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_003_Microsoft.VisualStudio.VC.Llvm.Base.log",
+    "last_write_utc_epoch": 1795250203.3863304,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_004_Microsoft.VisualStudio.VC.Ide.LanguageService.Resources.log",
+    "bytes": 51813,
+    "original_sha256": "b55d0eb82140a5404512fdd70d2e8f8791951cd820880c7c4d06e7ff08b6d128",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_004_Microsoft.VisualStudio.VC.Ide.LanguageService.Resources.log",
+    "last_write_utc_epoch": 1795250203.728469,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_005_Microsoft.VisualStudio.VC.Ide.Core.VCProjectEngine.Resources.log",
+    "bytes": 1215,
+    "original_sha256": "bd3b299829fee9f557e2fdf46087af47e2ba010f14c3c46e61653f62c96e06ee",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_005_Microsoft.VisualStudio.VC.Ide.Core.VCProjectEngine.Resources.log",
+    "last_write_utc_epoch": 1795250203.8597236,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_006_Microsoft.VisualStudio.VC.Ide.Core.VCProjectEngine.log",
+    "bytes": 1167,
+    "original_sha256": "037f4125346db33cdc5894797a8106b295b13c95d5dd05d58ba5c9209d9f07d9",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_006_Microsoft.VisualStudio.VC.Ide.Core.VCProjectEngine.log",
+    "last_write_utc_epoch": 1795250203.9590993,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_007_Microsoft.VisualStudio.VC.Ide.ProjectSystem.Resources.log",
+    "bytes": 6693,
+    "original_sha256": "bef3bea02cf76ecba0b5525e2a79bbf28b274aebb8875a540cf5226ac8a4477b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_007_Microsoft.VisualStudio.VC.Ide.ProjectSystem.Resources.log",
+    "last_write_utc_epoch": 1795250204.4753952,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_008_Microsoft.VisualStudio.VC.Ide.ProjectSystem.log",
+    "bytes": 17367,
+    "original_sha256": "db8f817304c4e17b0f5b3eb3322c09378300158f2303ba69536cfa1b687f6229",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_008_Microsoft.VisualStudio.VC.Ide.ProjectSystem.log",
+    "last_write_utc_epoch": 1795250204.777261,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_009_Microsoft.VisualStudio.VC.Ide.Core.log",
+    "bytes": 6111,
+    "original_sha256": "98f3e8c021fa4eaf09edd1ec8b5b124d43f78167d1f10960eb03df02eb527fe8",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_009_Microsoft.VisualStudio.VC.Ide.Core.log",
+    "last_write_utc_epoch": 1795250204.8876314,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_010_Microsoft.VisualStudio.VC.Ide.LanguageService.Dependencies.Resources.log",
+    "bytes": 1383,
+    "original_sha256": "cc3ddecf51ad381d3959dc0829518d4e689a28547d64587329578b42f1344852",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_010_Microsoft.VisualStudio.VC.Ide.LanguageService.Dependencies.Resources.log",
+    "last_write_utc_epoch": 1795250204.9815855,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_011_Microsoft.VisualStudio.VC.Ide.LanguageService.Dependencies.log",
+    "bytes": 2145,
+    "original_sha256": "1958910a4e6ca5b24e8c140c0c52428d638046496a5ec3ef935be6462e02a20a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_011_Microsoft.VisualStudio.VC.Ide.LanguageService.Dependencies.log",
+    "last_write_utc_epoch": 1795250205.0740132,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_012_Microsoft.VisualStudio.VC.Ide.VCPkgDatabase.log",
+    "bytes": 1137,
+    "original_sha256": "19c0a6228a8d1918401b5b2a26023e1b971a9b7290229021ccb4775ebf419120",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_012_Microsoft.VisualStudio.VC.Ide.VCPkgDatabase.log",
+    "last_write_utc_epoch": 1795250205.1727839,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_013_Microsoft.VisualStudio.VC.Ide.CodeModel.log",
+    "bytes": 1143,
+    "original_sha256": "598dd15eecb24d5ce661ba3a5909ec281ee9959d6968a0b02fd9c8ba2afa53a7",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_013_Microsoft.VisualStudio.VC.Ide.CodeModel.log",
+    "last_write_utc_epoch": 1795250205.2639213,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_014_Microsoft.VisualStudio.VC.Copilot.Setup.Resources.log",
+    "bytes": 1371,
+    "original_sha256": "107d47f7755404bed1954dd41d9a3ad906239df8a7bfcdfbcba1bef93a3d4f61",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_014_Microsoft.VisualStudio.VC.Copilot.Setup.Resources.log",
+    "last_write_utc_epoch": 1795250205.3552554,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_015_Microsoft.VisualStudio.VC.Copilot.Setup.log",
+    "bytes": 4119,
+    "original_sha256": "a9506dfdf56d1675ceee3f7490a474f9474f74bd7f5328cebd59d07a143f67de",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_015_Microsoft.VisualStudio.VC.Copilot.Setup.log",
+    "last_write_utc_epoch": 1795250205.5781865,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_016_Microsoft.VisualStudio.VC.Ide.LanguageService.log",
+    "bytes": 71103,
+    "original_sha256": "3150258adfbd949240ea762995e01d3152c80440b79c429ec8a6f0b6d61afccf",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_016_Microsoft.VisualStudio.VC.Ide.LanguageService.log",
+    "last_write_utc_epoch": 1795250206.5587726,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_017_Microsoft.VisualStudio.VC.Ide.Base.log",
+    "bytes": 116013,
+    "original_sha256": "5b12edb149cc5408cde6765da6d60c89ea37064ef5ab0b95c5f424b0cfc923e6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_017_Microsoft.VisualStudio.VC.Ide.Base.log",
+    "last_write_utc_epoch": 1795250206.887623,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_018_Microsoft.VisualStudio.VC.Ide.Dskx.Resources.log",
+    "bytes": 1569,
+    "original_sha256": "4ce553064c25fa27242ddf1809e637a8292785ce0707d7eae6940e640137ec94",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_018_Microsoft.VisualStudio.VC.Ide.Dskx.Resources.log",
+    "last_write_utc_epoch": 1795250207.060269,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_019_Microsoft.VisualStudio.VC.Ide.Dskx.log",
+    "bytes": 4725,
+    "original_sha256": "f8d93151fd12cc589de7d59f14f4cbf3b8d73ffa9a6ed225a2a7f2bb1278eaf0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_019_Microsoft.VisualStudio.VC.Ide.Dskx.log",
+    "last_write_utc_epoch": 1795250207.197602,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_020_Microsoft.VisualStudio.VC.Ide.WinXPlus.log",
+    "bytes": 19263,
+    "original_sha256": "a1b014901e32094bff747cabbc4c24b3dd20cdf99d1cf1fd3aeddedbde4e797f",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_020_Microsoft.VisualStudio.VC.Ide.WinXPlus.log",
+    "last_write_utc_epoch": 1795250207.373384,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_021_Microsoft.VisualStudio.VC.MSBuild.v180.Base.Resources.log",
+    "bytes": 40071,
+    "original_sha256": "603ce92af3278270e90384f653876a2347f0816377f44827e3746799d6b526fd",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_021_Microsoft.VisualStudio.VC.MSBuild.v180.Base.Resources.log",
+    "last_write_utc_epoch": 1795250207.5425482,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_022_Microsoft.VisualStudio.VC.MSBuild.v180.Base.log",
+    "bytes": 81435,
+    "original_sha256": "89a518326755879a7d7376df8cc058f8ada8cd8f163e20005f3ac4afb391bd8f",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_022_Microsoft.VisualStudio.VC.MSBuild.v180.Base.log",
+    "last_write_utc_epoch": 1795250207.801903,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_023_Microsoft.VisualStudio.VC.MSBuild.v180.X86.log",
+    "bytes": 3483,
+    "original_sha256": "1d8a77eae1f751c09b132ec487f85be00ab929277981eed6816dfb8a4afd8797",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_023_Microsoft.VisualStudio.VC.MSBuild.v180.X86.log",
+    "last_write_utc_epoch": 1795250207.9477134,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_024_Microsoft.VC.Tools.Redirection.v145.log",
+    "bytes": 1113,
+    "original_sha256": "39d6a6a574cc7d45501fec141e24d842b0f5311bd7452917d1370ba2ef7e0530",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_024_Microsoft.VC.Tools.Redirection.v145.log",
+    "last_write_utc_epoch": 1795250208.0871823,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_025_Microsoft.VisualStudio.VC.MSBuild.v180.x86.v145.log",
+    "bytes": 2109,
+    "original_sha256": "f860de6dd73fd34d33f1c86936436eb7ecc62c7fdb3b658b8edc3919a519401c",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_025_Microsoft.VisualStudio.VC.MSBuild.v180.x86.v145.log",
+    "last_write_utc_epoch": 1795250208.3191526,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_026_Microsoft.VisualStudio.VC.MSBuild.v180.X64.log",
+    "bytes": 3435,
+    "original_sha256": "9d1e76b12cdad8c3243332f1463b140e58d6d5e9f3f48a4714a8eab2525264d0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_026_Microsoft.VisualStudio.VC.MSBuild.v180.X64.log",
+    "last_write_utc_epoch": 1795250208.4656088,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_027_Microsoft.VisualStudio.VC.MSBuild.v180.X64.v145.log",
+    "bytes": 2085,
+    "original_sha256": "50ba14dd70d003879ad13e008b2e7328c3fe6b3e3346a005b0d1d0eed6839dfe",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_027_Microsoft.VisualStudio.VC.MSBuild.v180.X64.v145.log",
+    "last_write_utc_epoch": 1795250208.603058,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_028_Microsoft.VisualStudio.Debugger.Script.Msi.log",
+    "bytes": 1692148,
+    "original_sha256": "f513f743292e6658c78279a8d14691ab44ec5cfe182c010b495e9ab0dc5b6db6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_028_Microsoft.VisualStudio.Debugger.Script.Msi.log",
+    "last_write_utc_epoch": 1795250212.295647,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_029_Microsoft.VS.VC.vcvars.x64.Shortcuts.log",
+    "bytes": 309,
+    "original_sha256": "39461845aac3ab972de6848ac15c574746a858b35d34ad466ee6630f382daa3a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_029_Microsoft.VS.VC.vcvars.x64.Shortcuts.log",
+    "last_write_utc_epoch": 1795250212.4579506,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_030_Microsoft.VS.VC.vcvars.x86.Shortcuts.log",
+    "bytes": 309,
+    "original_sha256": "39461845aac3ab972de6848ac15c574746a858b35d34ad466ee6630f382daa3a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_030_Microsoft.VS.VC.vcvars.x86.Shortcuts.log",
+    "last_write_utc_epoch": 1795250212.578055,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_031_Microsoft.VisualStudio.VC.vcvars.log",
+    "bytes": 1677,
+    "original_sha256": "73f0f13d7cb48e814f8ba8e7a5657a864f6bba28860a405c3a488055e6d5ba19",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_031_Microsoft.VisualStudio.VC.vcvars.log",
+    "last_write_utc_epoch": 1795250212.6543002,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_032_Microsoft.VisualStudio.VC.Ide.x64.log",
+    "bytes": 993,
+    "original_sha256": "bb69f9e6250b3b130146ccb434e132c1c67619e395182ab9b1fc93ac064eb54c",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_032_Microsoft.VisualStudio.VC.Ide.x64.log",
+    "last_write_utc_epoch": 1795250212.7865472,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_033_Microsoft.VisualStudio.WebTools.Resources.log",
+    "bytes": 69129,
+    "original_sha256": "1ba25b1f18ef808daf7bec819ff7b0166bbb65ac48bac6560912b212699ff11b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_033_Microsoft.VisualStudio.WebTools.Resources.log",
+    "last_write_utc_epoch": 1795250213.4449234,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_034_Microsoft.VisualStudio.WebToolsExtensions.MSBuild.Resources.log",
+    "bytes": 6819,
+    "original_sha256": "957722e5bdf4ec4c56264d81f634bf0d5d244bc95b74f5574932923c35d189c9",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_034_Microsoft.VisualStudio.WebToolsExtensions.MSBuild.Resources.log",
+    "last_write_utc_epoch": 1795250213.7257628,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_035_Microsoft.VisualStudio.WebToolsExtensions.MSBuild.log",
+    "bytes": 24303,
+    "original_sha256": "30604f88999b241d1c3399576282280360d3995d098b447e8dc5f350ce6b7b1e",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_035_Microsoft.VisualStudio.WebToolsExtensions.MSBuild.log",
+    "last_write_utc_epoch": 1795250213.8855703,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_036_Microsoft.VisualStudio.WebTools.log",
+    "bytes": 69393,
+    "original_sha256": "3f13ce0744ca907f0bee1c8721f9feacc75a646892078118ae5b8388d5fdc74a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_036_Microsoft.VisualStudio.WebTools.log",
+    "last_write_utc_epoch": 1795250215.0459614,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_037_Microsoft.VisualStudio.WebToolsExtensions.Resources.log",
+    "bytes": 99759,
+    "original_sha256": "0b712eb737952415b008d13a914a791fb7a7c36fa290056798cad545d7d2b5c8",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_037_Microsoft.VisualStudio.WebToolsExtensions.Resources.log",
+    "last_write_utc_epoch": 1795250215.5550232,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_038_Microsoft.VisualStudio.WebToolsExtensions.Core.log",
+    "bytes": 424709,
+    "original_sha256": "9fc2b956d9dd96010d290b2757a8faf88a57122f29f700ba96d31b380a0c50c7",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_038_Microsoft.VisualStudio.WebToolsExtensions.Core.log",
+    "last_write_utc_epoch": 1795250217.485051,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_039_Microsoft.VisualStudio.WebToolsExtensions.log",
+    "bytes": 1065,
+    "original_sha256": "684bbfae35fd211750afa7a502212214245cd6a9e895ff5240a891e4459cecbf",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_039_Microsoft.VisualStudio.WebToolsExtensions.log",
+    "last_write_utc_epoch": 1795250217.6164465,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_040_Microsoft.VisualStudio.VC.Items.Pro.log",
+    "bytes": 3963,
+    "original_sha256": "89f55bd286f29206cadcf27826da2e6b4e87e687e964c17b5beb771eacde74a1",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_040_Microsoft.VisualStudio.VC.Items.Pro.log",
+    "last_write_utc_epoch": 1795250218.1833234,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_041_Microsoft.VisualStudio.VC.Templates.General.Resources.log",
+    "bytes": 13287,
+    "original_sha256": "4f03c3021cbfd8bd6a2879c69c21d96a987584ff86efe3b7785bd4f618acfd32",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_041_Microsoft.VisualStudio.VC.Templates.General.Resources.log",
+    "last_write_utc_epoch": 1795250218.324894,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_042_Microsoft.VisualStudio.VC.Templates.General.log",
+    "bytes": 43893,
+    "original_sha256": "920f95277e326797f9a038adbc47662ee75d70d915fcd351b8b820af114a31a2",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_042_Microsoft.VisualStudio.VC.Templates.General.log",
+    "last_write_utc_epoch": 1795250218.4843197,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_043_Microsoft.VisualStudio.VC.Ide.Pro.Resources.log",
+    "bytes": 15321,
+    "original_sha256": "e3d7b58a63f844de6c5546404d3821655a78deb94995d55f85bed2ccdd5f1cc3",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_043_Microsoft.VisualStudio.VC.Ide.Pro.Resources.log",
+    "last_write_utc_epoch": 1795250218.6048706,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_044_Microsoft.VisualStudio.VC.Ide.Pro.log",
+    "bytes": 309,
+    "original_sha256": "c5b4953776b177c2282c73a6da0fceb9424be0487a404f4c7cfae1fb05727bd7",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_044_Microsoft.VisualStudio.VC.Ide.Pro.log",
+    "last_write_utc_epoch": 1795250218.7145584,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_045_Microsoft.VisualStudio.Graphics.Appid.Resources.log",
+    "bytes": 1228,
+    "original_sha256": "619c1cad6a4dc9d22deb524e082e19cabfba4a767c976678115c849c8574c872",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_045_Microsoft.VisualStudio.Graphics.Appid.Resources.log",
+    "last_write_utc_epoch": 1795250218.849289,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_046_Microsoft.VisualStudio.Graphics.Appid.log",
+    "bytes": 7545,
+    "original_sha256": "185c94c1aeea0855d12e9b4acbc9fafc9e789235cdfa0db23573c24699d3ffbb",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_046_Microsoft.VisualStudio.Graphics.Appid.log",
+    "last_write_utc_epoch": 1795250219.0292368,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_047_Microsoft.VisualStudio.Graphics.Analyzer.Resources.log",
+    "bytes": 9081,
+    "original_sha256": "f77350c0157cf9718003ac96500cfa087378d1523e5f83d3d03a0efe4f0aa364",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_047_Microsoft.VisualStudio.Graphics.Analyzer.Resources.log",
+    "last_write_utc_epoch": 1795250219.3250844,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_048_Microsoft.VisualStudio.Graphics.Analyzer.Targeted.log",
+    "bytes": 1191,
+    "original_sha256": "d386d067fe97547b2dfbc9ced6363f47f2dfcc9f37fe9a4521827e9a16b2fbbc",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_048_Microsoft.VisualStudio.Graphics.Analyzer.Targeted.log",
+    "last_write_utc_epoch": 1795250219.4163811,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_049_Microsoft.VisualStudio.Graphics.Analyzer.log",
+    "bytes": 53973,
+    "original_sha256": "5f7973bc73119aedc63fc4f422123c163bb97339548e5b6962e96c8715aea813",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_049_Microsoft.VisualStudio.Graphics.Analyzer.log",
+    "last_write_utc_epoch": 1795250219.8712544,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_050_Microsoft.VisualStudio.Graphics.Msi.log",
+    "bytes": 175072,
+    "original_sha256": "0446c948f11b30b13145bebd15121d0e88c3165d758004843d948262ea8c9bde",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_050_Microsoft.VisualStudio.Graphics.Msi.log",
+    "last_write_utc_epoch": 1795250220.997151,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_051_Microsoft.VisualStudio.Graphics.Msi.log",
+    "bytes": 173924,
+    "original_sha256": "e9d892de188f47660e43887f0aa4ba93e4fc3dbc4c9672796e411f22f2376298",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_051_Microsoft.VisualStudio.Graphics.Msi.log",
+    "last_write_utc_epoch": 1795250234.9935694,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_052_Microsoft.VisualStudio.Graphics.Viewers.Resources.log",
+    "bytes": 4259,
+    "original_sha256": "521b2b8ea677367c4267826d1f975accc19a5b06552a6e07532e9886f1f3a9f1",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_052_Microsoft.VisualStudio.Graphics.Viewers.Resources.log",
+    "last_write_utc_epoch": 1795250235.2014227,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_053_Microsoft.VisualStudio.Graphics.Viewers.log",
+    "bytes": 118245,
+    "original_sha256": "1ee6da2c83389d35cffc4c76d90bd20daa49a19272ba9fb63d5cae476831c609",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_053_Microsoft.VisualStudio.Graphics.Viewers.log",
+    "last_write_utc_epoch": 1795250235.501294,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_054_Microsoft.VC.14.51.Servicing.log",
+    "bytes": 1167,
+    "original_sha256": "2be89706df449bedff3c3b9b413e7e9d6e82419e660b9857775e1ed8385aa282",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_054_Microsoft.VC.14.51.Servicing.log",
+    "last_write_utc_epoch": 1795250235.6065261,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_055_Microsoft.VC.14.51.Servicing.CrtHeaders.log",
+    "bytes": 1233,
+    "original_sha256": "fc7c3a106ec6e7312f3dd1f759952237ae0cac35cdb06f1ba72bf9f1a3e98f7a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_055_Microsoft.VC.14.51.Servicing.CrtHeaders.log",
+    "last_write_utc_epoch": 1795250235.699783,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_056_Microsoft.VC.14.51.CRT.Headers.base.log",
+    "bytes": 216273,
+    "original_sha256": "f46bb74ad7cd7a6a676dd655f242fc130c333b9b75ffccae58dd12215b568607",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_056_Microsoft.VC.14.51.CRT.Headers.base.log",
+    "last_write_utc_epoch": 1795250236.4243162,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_057_Microsoft.VC.14.51.CRT.Headers.Resources.base.log",
+    "bytes": 24015,
+    "original_sha256": "3c429fa2a61d1ce9b4341245577d4d92ff754bffcf0db5c095879e55e56c99af",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_057_Microsoft.VC.14.51.CRT.Headers.Resources.base.log",
+    "last_write_utc_epoch": 1795250236.5987134,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_058_Microsoft.VC.14.51.CRT.Headers.Resources.log",
+    "bytes": 309,
+    "original_sha256": "e15aa6bb8e1d3e920f3435b39be801d726a67439f96353255b2942a6f67a4ded",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_058_Microsoft.VC.14.51.CRT.Headers.Resources.log",
+    "last_write_utc_epoch": 1795250236.690661,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_059_Microsoft.VisualCpp.CRT.Headers.log",
+    "bytes": 309,
+    "original_sha256": "e15aa6bb8e1d3e920f3435b39be801d726a67439f96353255b2942a6f67a4ded",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_059_Microsoft.VisualCpp.CRT.Headers.log",
+    "last_write_utc_epoch": 1795250236.8182645,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_060_Microsoft.VisualCpp.Redist.14.Latest.log",
+    "bytes": 12289,
+    "original_sha256": "f160118d3eb448801e8e4ba711695fce539fe37af7696de92c8205806137447d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_060_Microsoft.VisualCpp.Redist.14.Latest.log",
+    "last_write_utc_epoch": 1795250260.8598912,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_060_Microsoft.VisualCpp.Redist.14.Latest_000_vcRuntimeMinimum_x86.log",
+    "bytes": 249970,
+    "original_sha256": "55b44a1e06e35ebd2831899f81f13e83afda2ad9428d0b0aa12d833d301d244e",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_060_Microsoft.VisualCpp.Redist.14.Latest_000_vcRuntimeMinimum_x86.log",
+    "last_write_utc_epoch": 1795250257.2139833,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_060_Microsoft.VisualCpp.Redist.14.Latest_001_vcRuntimeAdditional_x86.log",
+    "bytes": 273250,
+    "original_sha256": "71e19d345130cfdeb6311b29542675bd77b5ebb88749fe882f831bb4548f22e8",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_060_Microsoft.VisualCpp.Redist.14.Latest_001_vcRuntimeAdditional_x86.log",
+    "last_write_utc_epoch": 1795250258.256694,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_061_Microsoft.VisualCpp.Redist.14.Latest.log",
+    "bytes": 13580,
+    "original_sha256": "0547ceead2d85a9751f38f023930b7974b9f3e96662952d25571d2b41d888be3",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_061_Microsoft.VisualCpp.Redist.14.Latest.log",
+    "last_write_utc_epoch": 1795250406.1588638,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_061_Microsoft.VisualCpp.Redist.14.Latest_000_vcRuntimeMinimum_x64.log",
+    "bytes": 276698,
+    "original_sha256": "8ca79b4c7300367c4462e63438fc45268ff406182ca9fa35a620b10d1b574b65",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_061_Microsoft.VisualCpp.Redist.14.Latest_000_vcRuntimeMinimum_x64.log",
+    "last_write_utc_epoch": 1795250402.3689349,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_061_Microsoft.VisualCpp.Redist.14.Latest_001_vcRuntimeAdditional_x64.log",
+    "bytes": 270414,
+    "original_sha256": "ec84b3aa1decfe58e504cb3a9923c7b496cd8586dce87de9a0ca5425083334f5",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_061_Microsoft.VisualCpp.Redist.14.Latest_001_vcRuntimeAdditional_x64.log",
+    "last_write_utc_epoch": 1795250403.434899,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_062_Microsoft.VisualCpp.RuntimeDebug.14.log",
+    "bytes": 254838,
+    "original_sha256": "0ffd22872ab49edf19cca61639b568387f799307065a288c7e4c087a0a0f32f8",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_062_Microsoft.VisualCpp.RuntimeDebug.14.log",
+    "last_write_utc_epoch": 1795250408.197018,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_063_Microsoft.VisualCpp.RuntimeDebug.14.log",
+    "bytes": 252096,
+    "original_sha256": "ca5ecdedc858bb224f1fa08e9c9c015ab627e9df3690fddb8c76dfed2a56dc46",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_063_Microsoft.VisualCpp.RuntimeDebug.14.log",
+    "last_write_utc_epoch": 1795250409.4758742,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_064_Microsoft.VC.14.51.CRT.Redist.X64.base.log",
+    "bytes": 24063,
+    "original_sha256": "88981813c94076ffbdd6baccd8fbaf4f5275e99ba6da7ee2c63921d85b4cd855",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_064_Microsoft.VC.14.51.CRT.Redist.X64.base.log",
+    "last_write_utc_epoch": 1795250409.726843,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_065_Microsoft.VisualCpp.CRT.Redist.Resources.log",
+    "bytes": 309,
+    "original_sha256": "792f1ab43d0c26d515a15f4316188b52f69ececc7e916f90b2a594cda80bcca1",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_065_Microsoft.VisualCpp.CRT.Redist.Resources.log",
+    "last_write_utc_epoch": 1795250409.8448248,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_066_Microsoft.VisualCpp.CRT.Redist.X64.log",
+    "bytes": 2391,
+    "original_sha256": "4e09c94f4abd9109d8612a6f57210458ef0ebe1c698505dfeff63db2a3bf49a5",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_066_Microsoft.VisualCpp.CRT.Redist.X64.log",
+    "last_write_utc_epoch": 1795250410.2628577,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_067_Microsoft.VC.14.51.CRT.Redist.X86.base.log",
+    "bytes": 22215,
+    "original_sha256": "0ccad114469b9943afa9464ec0d0a5a7cfe312bed88a0e92cadadfe30ac165d0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_067_Microsoft.VC.14.51.CRT.Redist.X86.base.log",
+    "last_write_utc_epoch": 1795250410.5057898,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_068_Microsoft.VisualCpp.CRT.Redist.X86.log",
+    "bytes": 2391,
+    "original_sha256": "c13c0fa9d59a004c2a1f70ac7cdaaf8cd05794f88065d6ae01b4aff3f5a5393b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_068_Microsoft.VisualCpp.CRT.Redist.X86.log",
+    "last_write_utc_epoch": 1795250410.7118318,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_069_Microsoft.VC.14.51.CRT.Source.base.log",
+    "bytes": 295701,
+    "original_sha256": "38b8c2362eb97cf8f86387b99f11c0ef98896692b337921d34b2c50b321566ee",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_069_Microsoft.VC.14.51.CRT.Source.base.log",
+    "last_write_utc_epoch": 1795250411.5106766,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_070_Microsoft.VisualCpp.CRT.Source.log",
+    "bytes": 309,
+    "original_sha256": "e262f4f737afe5b1f271ff0ef6aba581d9fc116fdebbe61ff90dca059a8a4c0a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_070_Microsoft.VisualCpp.CRT.Source.log",
+    "last_write_utc_epoch": 1795250412.0597794,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_071_Microsoft.VC.14.51.CRT.x64.Desktop.base.log",
+    "bytes": 29847,
+    "original_sha256": "7a619f610a27305ec73b9a4dfb63be051adfa1074f45daabbdadef0caf05a454",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_071_Microsoft.VC.14.51.CRT.x64.Desktop.base.log",
+    "last_write_utc_epoch": 1795250414.3524988,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_072_Microsoft.VisualCpp.CRT.x64.Desktop.log",
+    "bytes": 309,
+    "original_sha256": "8ba9b7324f0593ab47e643158f7df6290e54f82a6abe2e4cb469330110d876d0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_072_Microsoft.VisualCpp.CRT.x64.Desktop.log",
+    "last_write_utc_epoch": 1795250414.458577,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_073_Microsoft.VC.14.51.CRT.x86.Desktop.base.log",
+    "bytes": 26547,
+    "original_sha256": "e8705c3a7bae062da5524db6383d28e3f633601f837400f85b1c42d3fa89e3ca",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_073_Microsoft.VC.14.51.CRT.x86.Desktop.base.log",
+    "last_write_utc_epoch": 1795250416.5040202,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_074_Microsoft.VisualCpp.CRT.x86.Desktop.log",
+    "bytes": 309,
+    "original_sha256": "85bbb396dffb96dcbebbf3e8b0db15364af40bf29b9c8622c7ffb75945b224df",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_074_Microsoft.VisualCpp.CRT.x86.Desktop.log",
+    "last_write_utc_epoch": 1795250416.6136568,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_075_Microsoft.VisualCpp.Servicing.DIASDK.log",
+    "bytes": 1209,
+    "original_sha256": "ad7e7ca26bee9af4a0ef98b7e1b164beb892068017f461f2a0464f11bbb996b6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_075_Microsoft.VisualCpp.Servicing.DIASDK.log",
+    "last_write_utc_epoch": 1795250416.7527301,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_076_Microsoft.VisualCpp.DIA.SDK.log",
+    "bytes": 15465,
+    "original_sha256": "df3ad76f347fc067db333fe415e14ec9f6abb24b5e1bcb90aaa8d44097cb12cc",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_076_Microsoft.VisualCpp.DIA.SDK.log",
+    "last_write_utc_epoch": 1795250417.275928,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_077_Microsoft.VC.14.51.Tools.Core.Props.log",
+    "bytes": 3501,
+    "original_sha256": "53572a6d4b7ef97e6c0767cf6388e503cb7fcb1223174924fab072706ed6b264",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_077_Microsoft.VC.14.51.Tools.Core.Props.log",
+    "last_write_utc_epoch": 1795250417.3974838,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_078_Microsoft.VisualCpp.Tools.Core.x86.log",
+    "bytes": 3273,
+    "original_sha256": "e77a5b86479f7fb3d9924332f6019d563bbeefb28f5e54509054dd5b6351c1c7",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_078_Microsoft.VisualCpp.Tools.Core.x86.log",
+    "last_write_utc_epoch": 1795250417.518151,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_079_Microsoft.VisualCpp.Tools.Core.Resources.log",
+    "bytes": 309,
+    "original_sha256": "022abb797af4fbff0639d9a573d7f443763531a725b6288893939b5953b0022d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_079_Microsoft.VisualCpp.Tools.Core.Resources.log",
+    "last_write_utc_epoch": 1795250417.5768635,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_080_Microsoft.VC.14.51.Tools.HostX86.TargetX86.Res.base.log",
+    "bytes": 6591,
+    "original_sha256": "1adce25515c6ef37a1fa377f94d96c4c97e2bffa635c6ffa657c4354816ca5eb",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_080_Microsoft.VC.14.51.Tools.HostX86.TargetX86.Res.base.log",
+    "last_write_utc_epoch": 1795250417.6504214,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_081_Microsoft.VC.14.51.Props.log",
+    "bytes": 2877,
+    "original_sha256": "c57b657058fe1d88d975d397046f581b08596f7fcd4ba63c366148c63756a329",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_081_Microsoft.VC.14.51.Props.log",
+    "last_write_utc_epoch": 1795250417.71098,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_082_Microsoft.VC.14.51.Props.x86.log",
+    "bytes": 1125,
+    "original_sha256": "a718d642f3776e2f513036757e832dfc475e9cf2a601916e309909c0653170c9",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_082_Microsoft.VC.14.51.Props.x86.log",
+    "last_write_utc_epoch": 1795250417.772271,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_083_Microsoft.VC.14.51.Servicing.Compilers.log",
+    "bytes": 1227,
+    "original_sha256": "ae7f6f5ba74fa3920315c4a17d7bf256b9451cc2b4103305456f4c298a536a9a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_083_Microsoft.VC.14.51.Servicing.Compilers.log",
+    "last_write_utc_epoch": 1795250417.8313222,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_084_Microsoft.VC.14.51.Tools.HostX86.TargetX86.base.log",
+    "bytes": 43281,
+    "original_sha256": "956dc1e1c6b4ba27cffa182df048d9573237fab741e187af17ca81f3ba5183d0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_084_Microsoft.VC.14.51.Tools.HostX86.TargetX86.base.log",
+    "last_write_utc_epoch": 1795250418.5431304,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_085_Microsoft.VisualCpp.Tools.HostX86.TargetX86.log",
+    "bytes": 1809,
+    "original_sha256": "1a2c70db57d0aae3ebc37db6a156b1c11e79d410ed66fdded503b488609c2daa",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_085_Microsoft.VisualCpp.Tools.HostX86.TargetX86.log",
+    "last_write_utc_epoch": 1795250418.6084077,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_086_Microsoft.VisualCpp.Tools.HostX86.TargetX86.Res.log",
+    "bytes": 309,
+    "original_sha256": "3a2c66fb4ff066cb2dc7a06a4a8e72f7c2813e0dbe61208cb9a57267c39b0dd8",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_086_Microsoft.VisualCpp.Tools.HostX86.TargetX86.Res.log",
+    "last_write_utc_epoch": 1795250418.6640944,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_087_Microsoft.VC.14.51.Tools.Hostx86.Targetx64.Res.base.log",
+    "bytes": 6591,
+    "original_sha256": "f55afd51e7742c0519f946525094b1032acc5f9745931220b405852a65422a04",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_087_Microsoft.VC.14.51.Tools.Hostx86.Targetx64.Res.base.log",
+    "last_write_utc_epoch": 1795250418.7282662,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_088_Microsoft.VC.14.51.Props.x64.log",
+    "bytes": 1125,
+    "original_sha256": "e61e89ab425f15532863e1b0dda84ee577d38c5ba84ed530447b196017ab9d73",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_088_Microsoft.VC.14.51.Props.x64.log",
+    "last_write_utc_epoch": 1795250418.788117,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_089_Microsoft.VC.14.51.Tools.HostX86.TargetX64.base.log",
+    "bytes": 38313,
+    "original_sha256": "1793fbe65c5384d0bc53186cc8b1c059a4bb8dc44d6e3b4da68686c23a77b6bb",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_089_Microsoft.VC.14.51.Tools.HostX86.TargetX64.base.log",
+    "last_write_utc_epoch": 1795250419.5327034,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_090_Microsoft.VisualCpp.Tools.HostX86.TargetX64.log",
+    "bytes": 1851,
+    "original_sha256": "b8159a3b4c45f6fc51377d03cb2b3f0608ecb4536674e6a31433ebdee54fd94e",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_090_Microsoft.VisualCpp.Tools.HostX86.TargetX64.log",
+    "last_write_utc_epoch": 1795250419.7026718,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_091_Microsoft.VisualCpp.Tools.Hostx86.Targetx64.Res.log",
+    "bytes": 309,
+    "original_sha256": "f788098e02bdf9456346b91d9a5fbcb8078eb04ee999f7b71b025939ae8560fd",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_091_Microsoft.VisualCpp.Tools.Hostx86.Targetx64.Res.log",
+    "last_write_utc_epoch": 1795250419.7600613,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_092_Microsoft.VC.14.51.CRT.Redist.x64.OneCore.Desktop.base.log",
+    "bytes": 21321,
+    "original_sha256": "092d69d26b468e4985f91c58c1360c37691d95f604a87d90b86696b71784d98c",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_092_Microsoft.VC.14.51.CRT.Redist.x64.OneCore.Desktop.base.log",
+    "last_write_utc_epoch": 1795250419.9402938,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_093_Microsoft.VisualCpp.CRT.Redist.x64.OneCore.Desktop.log",
+    "bytes": 309,
+    "original_sha256": "acaecba6162b3b5de3aeb5129dd7217f19af25db2dead9051c4a62088f53679e",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_093_Microsoft.VisualCpp.CRT.Redist.x64.OneCore.Desktop.log",
+    "last_write_utc_epoch": 1795250420.0000806,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_094_Microsoft.VC.14.51.CRT.Redist.x86.OneCore.Desktop.base.log",
+    "bytes": 19401,
+    "original_sha256": "0512396f47c15d804903bc0733c215fb3452b235d2e459cc5fe7afe9600a1a96",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_094_Microsoft.VC.14.51.CRT.Redist.x86.OneCore.Desktop.base.log",
+    "last_write_utc_epoch": 1795250420.1247141,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_095_Microsoft.VisualCpp.CRT.Redist.x86.OneCore.Desktop.log",
+    "bytes": 309,
+    "original_sha256": "0dead975926523581ee6ba0ba8aa580845f7ee5d5a0d4cf80cb19176643440fd",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_095_Microsoft.VisualCpp.CRT.Redist.x86.OneCore.Desktop.log",
+    "last_write_utc_epoch": 1795250420.1824203,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_096_Microsoft.VC.14.51.CRT.x64.OneCore.Desktop.base.log",
+    "bytes": 40713,
+    "original_sha256": "f1a68cac8c0bd292eca59bdaea2b1e14b78b07a8af2f7c9b8dc8b15fe1d940dd",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_096_Microsoft.VC.14.51.CRT.x64.OneCore.Desktop.base.log",
+    "last_write_utc_epoch": 1795250422.6712258,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_097_Microsoft.VisualCpp.CRT.x64.OneCore.Desktop.log",
+    "bytes": 309,
+    "original_sha256": "ce834acd270bc19b62139955d94195f105573cd91f6f1cdb35fefbee33097d4f",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_097_Microsoft.VisualCpp.CRT.x64.OneCore.Desktop.log",
+    "last_write_utc_epoch": 1795250423.0504708,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_098_Microsoft.VC.14.51.CRT.x64.Store.base.log",
+    "bytes": 66915,
+    "original_sha256": "e0c9b644839ef2edfd66d3844e876460494e513d37769b4114a337f6bea806ce",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_098_Microsoft.VC.14.51.CRT.x64.Store.base.log",
+    "last_write_utc_epoch": 1795250424.0940478,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_099_Microsoft.VisualCpp.CRT.x64.Store.log",
+    "bytes": 309,
+    "original_sha256": "ad29663ec37a8f27fb8dcb2ff6d61d08d2fa45e97decb6a5c9e15b931e4839c5",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_099_Microsoft.VisualCpp.CRT.x64.Store.log",
+    "last_write_utc_epoch": 1795250424.1912029,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_100_Microsoft.VC.14.51.CRT.x86.OneCore.Desktop.base.log",
+    "bytes": 41487,
+    "original_sha256": "31cadcf31e15b191aabf3945543134c67a484f32fc1c06af813adfdf2b5207a4",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_100_Microsoft.VC.14.51.CRT.x86.OneCore.Desktop.base.log",
+    "last_write_utc_epoch": 1795250426.437868,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_101_Microsoft.VisualCpp.CRT.x86.OneCore.Desktop.log",
+    "bytes": 309,
+    "original_sha256": "273fddb93c87059a1cbff125f6b42474ca0876946348d1c6f5a06c74dc5b3743",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_101_Microsoft.VisualCpp.CRT.x86.OneCore.Desktop.log",
+    "last_write_utc_epoch": 1795250426.708439,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_102_Microsoft.VC.14.51.CRT.x86.Store.base.log",
+    "bytes": 86223,
+    "original_sha256": "9f3a8dac920fef5a6b26a51ffd64a7408cb8001eb3f2e39a11216293e8ae075d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_102_Microsoft.VC.14.51.CRT.x86.Store.base.log",
+    "last_write_utc_epoch": 1795250427.858503,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_103_Microsoft.VisualCpp.CRT.x86.Store.log",
+    "bytes": 309,
+    "original_sha256": "4590fd259df0796193a7d4dfd225f33b3da3eca670fffdc2a96860875ea32ae6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_103_Microsoft.VisualCpp.CRT.x86.Store.log",
+    "last_write_utc_epoch": 1795250428.0507128,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_104_Microsoft.VC.14.51.PGO.Headers.base.log",
+    "bytes": 1017,
+    "original_sha256": "ec40b14fb5309710d0659f65891d16e86b4d3bc696cc31c8ae3bed0e459d94d9",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_104_Microsoft.VC.14.51.PGO.Headers.base.log",
+    "last_write_utc_epoch": 1795250428.3974123,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_105_Microsoft.VisualCpp.PGO.Headers.log",
+    "bytes": 309,
+    "original_sha256": "4590fd259df0796193a7d4dfd225f33b3da3eca670fffdc2a96860875ea32ae6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_105_Microsoft.VisualCpp.PGO.Headers.log",
+    "last_write_utc_epoch": 1795250428.505702,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_106_Microsoft.VC.14.51.PGO.X64.base.log",
+    "bytes": 1719,
+    "original_sha256": "fdba1ec5e6fafdee4c93d76d79e6b4a0edba4c1a6aa116362c92259cba132d99",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_106_Microsoft.VC.14.51.PGO.X64.base.log",
+    "last_write_utc_epoch": 1795250428.6124408,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_107_Microsoft.VisualCpp.PGO.X64.log",
+    "bytes": 309,
+    "original_sha256": "4590fd259df0796193a7d4dfd225f33b3da3eca670fffdc2a96860875ea32ae6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_107_Microsoft.VisualCpp.PGO.X64.log",
+    "last_write_utc_epoch": 1795250428.7122936,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_108_Microsoft.VC.14.51.PGO.X86.base.log",
+    "bytes": 1719,
+    "original_sha256": "2415339c32285729fc7178722f55b9cf42bfeb320b025eab99dec770acd13fe2",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_108_Microsoft.VC.14.51.PGO.X86.base.log",
+    "last_write_utc_epoch": 1795250428.8136976,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_109_Microsoft.VisualCpp.PGO.X86.log",
+    "bytes": 309,
+    "original_sha256": "4590fd259df0796193a7d4dfd225f33b3da3eca670fffdc2a96860875ea32ae6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_109_Microsoft.VisualCpp.PGO.X86.log",
+    "last_write_utc_epoch": 1795250428.913247,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_110_Microsoft.VC.14.51.Prem.HostX64.TargetX64.Res.base.log",
+    "bytes": 1875,
+    "original_sha256": "174bba742586bebc0a48220d71dfe365ecdb21a219f3ebf0bcf8870c73d6805d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_110_Microsoft.VC.14.51.Prem.HostX64.TargetX64.Res.base.log",
+    "last_write_utc_epoch": 1795250429.298097,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_111_Microsoft.VC.14.51.Premium.Tools.HostX64.TargetX64.base.log",
+    "bytes": 8721,
+    "original_sha256": "a047865c52b768d1fc9bb5dc8dafc41233fa8e1db5675e555cfba8879f29a92b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_111_Microsoft.VC.14.51.Premium.Tools.HostX64.TargetX64.base.log",
+    "last_write_utc_epoch": 1795250429.4344742,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_112_Microsoft.VisualCpp.Premium.Tools.HostX64.TargetX64.log",
+    "bytes": 309,
+    "original_sha256": "a763e422a28b02a808db0cec6553629e2a30be074bf2c4e8c116f87f91f4cad0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_112_Microsoft.VisualCpp.Premium.Tools.HostX64.TargetX64.log",
+    "last_write_utc_epoch": 1795250429.5330527,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_113_Microsoft.VC.14.51.Prem.HostX64.TargetX86.Res.base.log",
+    "bytes": 1077,
+    "original_sha256": "53614a45245b19f30e8be51373e5bb30eff8e3c423bfd8558200268054081a98",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_113_Microsoft.VC.14.51.Prem.HostX64.TargetX86.Res.base.log",
+    "last_write_utc_epoch": 1795250429.6400669,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_114_Microsoft.VC.14.51.Premium.Tools.HostX64.TargetX86.base.log",
+    "bytes": 5601,
+    "original_sha256": "5cba6c77cc4e3db6f078edbd83254ce3fa5663dc3a9c23129fd61010c6fd9e07",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_114_Microsoft.VC.14.51.Premium.Tools.HostX64.TargetX86.base.log",
+    "last_write_utc_epoch": 1795250429.76566,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_115_Microsoft.VisualCpp.Premium.Tools.HostX64.TargetX86.log",
+    "bytes": 309,
+    "original_sha256": "a763e422a28b02a808db0cec6553629e2a30be074bf2c4e8c116f87f91f4cad0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_115_Microsoft.VisualCpp.Premium.Tools.HostX64.TargetX86.log",
+    "last_write_utc_epoch": 1795250429.8718905,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_116_Microsoft.VC.14.51.Prem.HostX86.TargetX86.Res.base.log",
+    "bytes": 1875,
+    "original_sha256": "aabb3eb111ccf4800c13a7b30dfed28eb4ca8ccbb70c4737a8af6cb24343c8fa",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_116_Microsoft.VC.14.51.Prem.HostX86.TargetX86.Res.base.log",
+    "last_write_utc_epoch": 1795250430.0124755,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_117_Microsoft.VC.14.51.Premium.Tools.HostX86.TargetX86.base.log",
+    "bytes": 7113,
+    "original_sha256": "516db6d61f52a6b196d15bd1c00c01ac9c9c700c39eea8dbe596a6b405b5a0d0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_117_Microsoft.VC.14.51.Premium.Tools.HostX86.TargetX86.base.log",
+    "last_write_utc_epoch": 1795250430.1434236,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_118_Microsoft.VisualCpp.Premium.Tools.HostX86.TargetX86.log",
+    "bytes": 309,
+    "original_sha256": "1a01124fbc23e7b630fe56fe6a722061b344df4d3d89848af896dbbf7311f69f",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_118_Microsoft.VisualCpp.Premium.Tools.HostX86.TargetX86.log",
+    "last_write_utc_epoch": 1795250430.2423308,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_119_Microsoft.VC.14.51.Prem.Hostx86.Targetx64.Res.base.log",
+    "bytes": 1077,
+    "original_sha256": "e97b3db124e851c917337ad568b3ca6a93f4bccd63b485041105d8ed534a3924",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_119_Microsoft.VC.14.51.Prem.Hostx86.Targetx64.Res.base.log",
+    "last_write_utc_epoch": 1795250430.3522627,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_120_Microsoft.VC.14.51.Premium.Tools.HostX86.TargetX64.base.log",
+    "bytes": 5601,
+    "original_sha256": "475b47d3a4faae40d8b2a3cc443e8aef64508df82981a654cef4511ec86d1acc",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_120_Microsoft.VC.14.51.Premium.Tools.HostX86.TargetX64.base.log",
+    "last_write_utc_epoch": 1795250430.7109897,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_121_Microsoft.VisualCpp.Premium.Tools.HostX86.TargetX64.log",
+    "bytes": 309,
+    "original_sha256": "1a01124fbc23e7b630fe56fe6a722061b344df4d3d89848af896dbbf7311f69f",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_121_Microsoft.VisualCpp.Premium.Tools.HostX86.TargetX64.log",
+    "last_write_utc_epoch": 1795250430.8194869,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_122_Microsoft.VC.14.51.Tools.HostX64.TargetX64.Res.base.log",
+    "bytes": 6591,
+    "original_sha256": "aee1d21f0010b433d7ee361caf5de7bd5d390945455788b4e3534ad5095f5517",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_122_Microsoft.VC.14.51.Tools.HostX64.TargetX64.Res.base.log",
+    "last_write_utc_epoch": 1795250430.938305,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_123_Microsoft.VC.14.51.Tools.HostX64.TargetX64.base.log",
+    "bytes": 42291,
+    "original_sha256": "ea0a75dc667fc36e1d97f705a23d90bbfdaaabd94d8b527055c5031efee7c9e6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_123_Microsoft.VC.14.51.Tools.HostX64.TargetX64.base.log",
+    "last_write_utc_epoch": 1795250431.8519258,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_124_Microsoft.VisualCpp.Tools.HostX64.TargetX64.log",
+    "bytes": 1809,
+    "original_sha256": "71d87f34aa435c78eac098b508438689903e41bc8c7cf101972119f827f7c74c",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_124_Microsoft.VisualCpp.Tools.HostX64.TargetX64.log",
+    "last_write_utc_epoch": 1795250432.041738,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_125_Microsoft.VC.14.51.Tools.HostX64.TargetX86.Res.base.log",
+    "bytes": 6591,
+    "original_sha256": "ba4cb4e23b2ac91b0a31c38e36bc826a68fea9f5a912ec07ecf15260ae697f6b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_125_Microsoft.VC.14.51.Tools.HostX64.TargetX86.Res.base.log",
+    "last_write_utc_epoch": 1795250432.1766963,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_126_Microsoft.VC.14.51.Tools.HostX64.TargetX86.base.log",
+    "bytes": 40887,
+    "original_sha256": "3f624e741cdc360e28814fce84630ea338c14d8af2eae9adf336c6c0841371cc",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_126_Microsoft.VC.14.51.Tools.HostX64.TargetX86.base.log",
+    "last_write_utc_epoch": 1795250433.008552,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_127_Microsoft.VisualCpp.Tools.HostX64.TargetX86.log",
+    "bytes": 1851,
+    "original_sha256": "710d74e7da0dba6185757d55b3eb6bdee1277403b2c1ba7ca2a64b3e0ca7c57a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_127_Microsoft.VisualCpp.Tools.HostX64.TargetX86.log",
+    "last_write_utc_epoch": 1795250433.3964512,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_128_Microsoft.VC.14.51.Servicing.CAExtensions.log",
+    "bytes": 1245,
+    "original_sha256": "1e92b32c6a36b7d5f2f4cbf3320a8f8687c35a98486f8860571af276815848c0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_128_Microsoft.VC.14.51.Servicing.CAExtensions.log",
+    "last_write_utc_epoch": 1795250433.498278,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_129_Microsoft.VC.14.51.Servicing.CARulesets.log",
+    "bytes": 1233,
+    "original_sha256": "7dbe73e0c30ca81d57f8c42215deba79e0a000ed42616339d2818787e489a869",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_129_Microsoft.VC.14.51.Servicing.CARulesets.log",
+    "last_write_utc_epoch": 1795250433.6010437,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_130_Microsoft.VC.14.51.CA.Rulesets.base.log",
+    "bytes": 21981,
+    "original_sha256": "0fba36a56f80eab3484388e02c8cd29d9c39d947af817bd2c4ac657fa4e1f9c5",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_130_Microsoft.VC.14.51.CA.Rulesets.base.log",
+    "last_write_utc_epoch": 1795250433.795534,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_131_Microsoft.VC.14.51.CA.Ext.Hostx64.Targetx86.base.log",
+    "bytes": 2583,
+    "original_sha256": "ded14d73e75637b20356672e305505e189a76aa471e1a357c3671b1012d15010",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_131_Microsoft.VC.14.51.CA.Ext.Hostx64.Targetx86.base.log",
+    "last_write_utc_epoch": 1795250434.2755892,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_132_Microsoft.VisualCpp.CA.Ext.Hostx64.Targetx86.log",
+    "bytes": 309,
+    "original_sha256": "79e82350c62828f95fcc036712d445662e8f24eb2268ea47fe179baf3dfa46b6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_132_Microsoft.VisualCpp.CA.Ext.Hostx64.Targetx86.log",
+    "last_write_utc_epoch": 1795250434.3939493,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_133_Microsoft.VC.14.51.CA.Ext.Hostx64.Targetx64.base.log",
+    "bytes": 2583,
+    "original_sha256": "6bb932b35bd5889fdac38270b8560f7b2a87d32561b4f8d431bcfcd65d2d39d4",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_133_Microsoft.VC.14.51.CA.Ext.Hostx64.Targetx64.base.log",
+    "last_write_utc_epoch": 1795250434.918215,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_134_Microsoft.VisualCpp.CA.Ext.Hostx64.Targetx64.log",
+    "bytes": 309,
+    "original_sha256": "c340fd331060f2b7346e728531218d614069504fb4547d1db17ec4a760e17d14",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_134_Microsoft.VisualCpp.CA.Ext.Hostx64.Targetx64.log",
+    "last_write_utc_epoch": 1795250435.0175328,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_135_Microsoft.VC.14.51.CA.Ext.Hostx86.Targetx86.base.log",
+    "bytes": 2583,
+    "original_sha256": "7f6e8f6f370ef3aa8847f9cd826ee23f7f6dc6727465546b9ccfdac65010577f",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_135_Microsoft.VC.14.51.CA.Ext.Hostx86.Targetx86.base.log",
+    "last_write_utc_epoch": 1795250435.318854,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_136_Microsoft.VisualCpp.CA.Ext.Hostx86.Targetx86.log",
+    "bytes": 309,
+    "original_sha256": "34bc2f75facdb2297bf81743e450f2fdd74c2b41d93bdb28258e63c32d80eaa4",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_136_Microsoft.VisualCpp.CA.Ext.Hostx86.Targetx86.log",
+    "last_write_utc_epoch": 1795250435.4240012,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_137_Microsoft.VC.14.51.CA.Ext.Hostx86.Targetx64.base.log",
+    "bytes": 2583,
+    "original_sha256": "d7e58b5542c48090ec3d9ca8c760626edc320452480bad16df1bc6098fcb3b42",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_137_Microsoft.VC.14.51.CA.Ext.Hostx86.Targetx64.base.log",
+    "last_write_utc_epoch": 1795250435.7191586,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_138_Microsoft.VisualCpp.CA.Ext.Hostx86.Targetx64.log",
+    "bytes": 309,
+    "original_sha256": "9aaa988d7a8681f96f105692f5e9ed9fa576276002795fa3097580a2108bbf82",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_138_Microsoft.VisualCpp.CA.Ext.Hostx86.Targetx64.log",
+    "last_write_utc_epoch": 1795250436.0240827,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_139_Microsoft.VisualCpp.CodeAnalysis.Extensions.log",
+    "bytes": 2679,
+    "original_sha256": "a4b061eb682257f3258e133df11047f75b199783f2fe8c18b5048f74aa7ffd96",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_139_Microsoft.VisualCpp.CodeAnalysis.Extensions.log",
+    "last_write_utc_epoch": 1795250436.1261744,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_140_Win11SDK_10.0.26100.log",
+    "bytes": 698,
+    "original_sha256": "9317b676233296562455e82b6cb114f0740d995bbf84e419c1274bd5158fa602",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_140_Win11SDK_10.0.26100.log",
+    "last_write_utc_epoch": 1795251293.424724,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_141_Microsoft.VC.14.51.Servicing.ATL.log",
+    "bytes": 1191,
+    "original_sha256": "8a8b10ccf1b5ba1bb4f140970941e3e8b57b8578ea5bf84c071a9f6e4a3076bc",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_141_Microsoft.VC.14.51.Servicing.ATL.log",
+    "last_write_utc_epoch": 1795251293.9642527,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_142_Microsoft.VC.14.51.ATL.Headers.base.log",
+    "bytes": 50847,
+    "original_sha256": "6e2e37540e5693df27b63624727e0d1c684e6e87354274d3b62eb0d4879a5dac",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_142_Microsoft.VC.14.51.ATL.Headers.base.log",
+    "last_write_utc_epoch": 1795251294.140601,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_143_Microsoft.VisualCpp.ATL.Headers.log",
+    "bytes": 309,
+    "original_sha256": "671c028779fcefd4442c9ef55f9eddce5308a47be660dbcf0fbca751a2a34c6c",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_143_Microsoft.VisualCpp.ATL.Headers.log",
+    "last_write_utc_epoch": 1795251294.2800682,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_144_Microsoft.VC.14.51.ATL.Source.base.log",
+    "bytes": 4263,
+    "original_sha256": "187168442008afe8afe4f157c7ee1736f4afb1f0f2d80eb2b2ed1c7c2357a38a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_144_Microsoft.VC.14.51.ATL.Source.base.log",
+    "last_write_utc_epoch": 1795251294.4292428,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_145_Microsoft.VisualCpp.ATL.Source.log",
+    "bytes": 309,
+    "original_sha256": "671c028779fcefd4442c9ef55f9eddce5308a47be660dbcf0fbca751a2a34c6c",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_145_Microsoft.VisualCpp.ATL.Source.log",
+    "last_write_utc_epoch": 1795251294.569167,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_146_Microsoft.VC.14.51.Props.ATLMFC.log",
+    "bytes": 1143,
+    "original_sha256": "be4331b6980ebcd0ffa974263ec8ef3c3e24891cf08d7827b3c3858a97d2c101",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_146_Microsoft.VC.14.51.Props.ATLMFC.log",
+    "last_write_utc_epoch": 1795251294.7040658,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_147_Microsoft.VC.14.51.ATL.X64.base.log",
+    "bytes": 4239,
+    "original_sha256": "a29637c8f677a1ec45a91aa3a1884cdcf86f9aeb79abd3a84fc60d1d1beb68da",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_147_Microsoft.VC.14.51.ATL.X64.base.log",
+    "last_write_utc_epoch": 1795251294.8744416,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_148_Microsoft.VisualCpp.ATL.X64.log",
+    "bytes": 309,
+    "original_sha256": "72d4e0aa955779c2b7940e9b234236572a999d7181a0c8254940a0fa10c7ce7c",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_148_Microsoft.VisualCpp.ATL.X64.log",
+    "last_write_utc_epoch": 1795251295.0811045,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_149_Microsoft.VC.14.51.ATL.X86.base.log",
+    "bytes": 2631,
+    "original_sha256": "ec18f0208d6c36f9adc2b6a8a1147c92bd944fc4518b4c3757d9da356ccc420b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_149_Microsoft.VC.14.51.ATL.X86.base.log",
+    "last_write_utc_epoch": 1795251295.2472415,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_150_Microsoft.VisualCpp.ATL.X86.log",
+    "bytes": 309,
+    "original_sha256": "72d4e0aa955779c2b7940e9b234236572a999d7181a0c8254940a0fa10c7ce7c",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_150_Microsoft.VisualCpp.ATL.X86.log",
+    "last_write_utc_epoch": 1795251295.383396,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_151_Microsoft.VisualStudio.VC.Ide.ATL.Resources.log",
+    "bytes": 36777,
+    "original_sha256": "cd87a6ab0b999c18f0e423cbc748a992f1b357d4132b0fdeeb5028823299e55f",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_151_Microsoft.VisualStudio.VC.Ide.ATL.Resources.log",
+    "last_write_utc_epoch": 1795251295.5674841,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_152_Microsoft.VisualStudio.VC.Ide.ATL.log",
+    "bytes": 13029,
+    "original_sha256": "5122f29e7e6a8b2e7971ea655226bb8dd3055e21073ad0b02539a93156af1a85",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_152_Microsoft.VisualStudio.VC.Ide.ATL.log",
+    "last_write_utc_epoch": 1795251295.7289522,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_153_Microsoft.VisualStudio.VC.Templates.Desktop.log",
+    "bytes": 18249,
+    "original_sha256": "fd351f5eb3d83e58f76cf035f6050c6dcc0b1a5575e5a30d2c79e44f3dfc6fb0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_153_Microsoft.VisualStudio.VC.Templates.Desktop.log",
+    "last_write_utc_epoch": 1795251295.940124,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_154_Microsoft.VisualStudio.VC.Templates.UnitTest.Resources.log",
+    "bytes": 4833,
+    "original_sha256": "3589bf51a96559a006d12bffef3eaf2e15a7dede0f2558a670bab966b34a1085",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_154_Microsoft.VisualStudio.VC.Templates.UnitTest.Resources.log",
+    "last_write_utc_epoch": 1795251296.0903509,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_155_Microsoft.VisualStudio.TestTools.TP.V1.CPP.Resources.log",
+    "bytes": 1497,
+    "original_sha256": "e5c5706692002e7d8800581936e66068ad18542a959b0823f3b627a28b8881d1",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_155_Microsoft.VisualStudio.TestTools.TP.V1.CPP.Resources.log",
+    "last_write_utc_epoch": 1795251296.2338178,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_156_Microsoft.VisualStudio.TestTools.TestPlatform.V1.CPP.log",
+    "bytes": 1389,
+    "original_sha256": "b20c459bcc4bb2109dc5f639fb9ccf16135195ee24fd1f23f438e61cdcbd1927",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_156_Microsoft.VisualStudio.TestTools.TestPlatform.V1.CPP.log",
+    "last_write_utc_epoch": 1795251296.4270203,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_157_Microsoft.VisualStudio.VC.UnitTest.Desktop.Build.Core.log",
+    "bytes": 12303,
+    "original_sha256": "fe15b34dc4b8ce7534c9fac5382a60f9c7e481471e73c847fa19152ce2567457",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_157_Microsoft.VisualStudio.VC.UnitTest.Desktop.Build.Core.log",
+    "last_write_utc_epoch": 1795251296.5971808,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_158_Microsoft.VisualStudio.VC.Templates.UnitTest.log",
+    "bytes": 8013,
+    "original_sha256": "00ecdccec40529e4819f7dfcca8b8737d40551ba4b991e24ce31d372e1356c55",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_158_Microsoft.VisualStudio.VC.Templates.UnitTest.log",
+    "last_write_utc_epoch": 1795251296.7501752,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_159_Microsoft.VisualStudio.VC.CppBuildInsights.Resources.log",
+    "bytes": 5013,
+    "original_sha256": "7601dd62ef8658741fb5dfa2a82437e0b7d440a402293b2dab223165c61ea7b4",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_159_Microsoft.VisualStudio.VC.CppBuildInsights.Resources.log",
+    "last_write_utc_epoch": 1795251296.9753761,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_160_Microsoft.VisualStudio.VC.CppBuildInsights.log",
+    "bytes": 58995,
+    "original_sha256": "511f839f731d04c09ac5e5782f8e645630868d938c0bab6446d6c787434cb0e7",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_160_Microsoft.VisualStudio.VC.CppBuildInsights.log",
+    "last_write_utc_epoch": 1795251297.212979,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_161_Microsoft.VisualStudio.VC.ExternalBuildFramework.Resources.log",
+    "bytes": 5307,
+    "original_sha256": "4acca8699832f00259ccf775908b842c80372b20001152ab1de17938bc451b49",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_161_Microsoft.VisualStudio.VC.ExternalBuildFramework.Resources.log",
+    "last_write_utc_epoch": 1795251297.4627879,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_162_Microsoft.VisualStudio.VC.ExternalBuildFramework.log",
+    "bytes": 8805,
+    "original_sha256": "7059596e476301e8351eb38bdc6cc249490265ad5e9af0062d5839fe81703463",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_162_Microsoft.VisualStudio.VC.ExternalBuildFramework.log",
+    "last_write_utc_epoch": 1795251297.6533113,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_163_Microsoft.VisualStudio.VC.CMake.Project.Resources.log",
+    "bytes": 5235,
+    "original_sha256": "376f1cc8dbb01c04bdcddafb7660b7ae2f4dbefaf9ad24ccbd0291fae9cd5b45",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_163_Microsoft.VisualStudio.VC.CMake.Project.Resources.log",
+    "last_write_utc_epoch": 1795251297.835261,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_164_Microsoft.VisualStudio.VC.CMake.Client.Resources.log",
+    "bytes": 1395,
+    "original_sha256": "08cb30d66d64f9c5dfc710a2dfd6175a1f585b5a0955fbd9152d5a473752b3c0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_164_Microsoft.VisualStudio.VC.CMake.Client.Resources.log",
+    "last_write_utc_epoch": 1795251298.2851124,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_165_Microsoft.VisualStudio.VC.CMake.Client.log",
+    "bytes": 3159,
+    "original_sha256": "792da20ede62746c2d2483b93818b3dbd52d0b277cec2838a11eededb464c9d9",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_165_Microsoft.VisualStudio.VC.CMake.Client.log",
+    "last_write_utc_epoch": 1795251298.37728,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_166_Microsoft.VisualStudio.VC.CMake.Project.log",
+    "bytes": 38499,
+    "original_sha256": "07c0cec1afcfe47cc6e1b56bac2774ba287fccb58af674b2e9a92386ecbef150",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_166_Microsoft.VisualStudio.VC.CMake.Project.log",
+    "last_write_utc_epoch": 1795251298.5696676,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_167_Microsoft.VisualStudio.VC.CMake.log",
+    "bytes": 4245963,
+    "original_sha256": "a14c1d08c394a4d627b2f64119e7684135e6eae4459e64b32a7c61944b23a7d8",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_167_Microsoft.VisualStudio.VC.CMake.log",
+    "last_write_utc_epoch": 1795251304.2931285,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_168_Microsoft.VisualStudio.VC.Ide.TestAdapterForBoostTest.log",
+    "bytes": 51519,
+    "original_sha256": "649c0c47e2ade45842e8874dc33cb0041b2254d767f62843eb822434179d9ca0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_168_Microsoft.VisualStudio.VC.Ide.TestAdapterForBoostTest.log",
+    "last_write_utc_epoch": 1795251305.7709029,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_169_Microsoft.VisualStudio.VC.Ide.TestAdapterForGoogleTest.log",
+    "bytes": 128481,
+    "original_sha256": "429afd6fb2dc40b26a8ca1f956c5f3bf6d6b46df6d26321d4c9794e64dfdd83b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_169_Microsoft.VisualStudio.VC.Ide.TestAdapterForGoogleTest.log",
+    "last_write_utc_epoch": 1795251306.59795,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_170_Microsoft.VisualStudio.VC.IDE.Project.Factories.log",
+    "bytes": 1035,
+    "original_sha256": "8349d0382e9eb91b09326b106fabcc6514b910e26a34058d0e41a2cfe61b3a25",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_170_Microsoft.VisualStudio.VC.IDE.Project.Factories.log",
+    "last_write_utc_epoch": 1795251306.7947743,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_171_Microsoft.VC.14.51.ASAN.Headers.base.log",
+    "bytes": 13935,
+    "original_sha256": "7683ea13a041c0a74b18481d142a49f6d3d8c4cd2f5d85120910339d240123fc",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_171_Microsoft.VC.14.51.ASAN.Headers.base.log",
+    "last_write_utc_epoch": 1795251306.9602563,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_172_Microsoft.VC.14.51.ASAN.X64.base.log",
+    "bytes": 33939,
+    "original_sha256": "bda4c9a6d9edd3998103e6e8727f6e7189a033b28ce3700f11fa7f111de0e02d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_172_Microsoft.VC.14.51.ASAN.X64.base.log",
+    "last_write_utc_epoch": 1795251309.462178,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_173_Microsoft.VC.14.51.Props.ARM64.log",
+    "bytes": 1137,
+    "original_sha256": "c03ac208d04961c9cc08449123b645af77dd0fdcb080c42ca72541577f365214",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_173_Microsoft.VC.14.51.Props.ARM64.log",
+    "last_write_utc_epoch": 1795251309.612719,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_174_Microsoft.VC.14.51.ASAN.ARM64.base.log",
+    "bytes": 29427,
+    "original_sha256": "26e3c1b703846a8fe7dacee49c35befe32e7adfe6a7f74f83bf965fe13e73338",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_174_Microsoft.VC.14.51.ASAN.ARM64.base.log",
+    "last_write_utc_epoch": 1795251311.7774863,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_175_Microsoft.VC.14.51.ASAN.X86.base.log",
+    "bytes": 33603,
+    "original_sha256": "8e37a4c060f6b51b9337f0c19f9fd2710cbc5ca94d1f62cdaaa58197e73efd29",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_175_Microsoft.VC.14.51.ASAN.X86.base.log",
+    "last_write_utc_epoch": 1795251314.0227132,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_176_Microsoft.VC.14.51.ASAN.X86.OneCore.base.log",
+    "bytes": 24795,
+    "original_sha256": "1369edd7e0cbf9e3e2b2e8ef234d1875742e23539ddcda4d3607259f788fd8ce",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_176_Microsoft.VC.14.51.ASAN.X86.OneCore.base.log",
+    "last_write_utc_epoch": 1795251315.8434246,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_177_Microsoft.VisualCpp.ASAN.X86.OneCore.log",
+    "bytes": 309,
+    "original_sha256": "0062b910ac17c9355258ff4e3324c276d79e56d2a5c7f87aa5e0a1c0c6e835e5",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_177_Microsoft.VisualCpp.ASAN.X86.OneCore.log",
+    "last_write_utc_epoch": 1795251315.9778585,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_178_Microsoft.VisualCpp.ASAN.X86.log",
+    "bytes": 309,
+    "original_sha256": "f029c9b1ae11e4cc1cae6e35e48e904a1975ad4228f13f341358d9261cf9ab77",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_178_Microsoft.VisualCpp.ASAN.X86.log",
+    "last_write_utc_epoch": 1795251316.1060042,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_179_Microsoft.VisualStudio.VC.Vcpkg.log",
+    "bytes": 180129,
+    "original_sha256": "d8f4b99e03e40a75ee6814bacb476d291c2bcb4a2148dc1b829358bcce1f1861",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_179_Microsoft.VisualStudio.VC.Vcpkg.log",
+    "last_write_utc_epoch": 1795251316.59789,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_180_Microsoft.VisualStudio.Product.Community.log",
+    "bytes": 28414,
+    "original_sha256": "595fd7709da2d30fc2ae5b6ea939536671b9d6972553fc0a180abc6b3d0d01d4",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_180_Microsoft.VisualStudio.Product.Community.log",
+    "last_write_utc_epoch": 1795251354.1791022,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_181_Microsoft.VisualStudio.Product.Community.log",
+    "bytes": 143,
+    "original_sha256": "97435697cd59bdd1bb04de704db47b1bb0ac6c255e867f4ef77b1ee5e709f90d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_181_Microsoft.VisualStudio.Product.Community.log",
+    "last_write_utc_epoch": 1795251380.0712605,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_setup_20261121163410_errors.log",
+    "bytes": 992,
+    "original_sha256": "821cde17727a33cc1151eea6c17e491108471b37471d2841e330665cd8d8b800",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121163410_errors.log",
+    "last_write_utc_epoch": 1795251380.1073165,
+    "published": "complete sanitized text",
+    "published_sha256": "fcf984687cd82e8e5fe623b331a0d85c8cc8e98082ba3103ec6a7dc57579f03a"
+  },
+  {
+    "name": "dd_setup_20261121165623.log",
+    "bytes": 16361,
+    "original_sha256": "9c5cb6d6a501b0b2dcebd62ab27251530eac1c8e60c9b360413bd3441af78959",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121165623.log",
+    "last_write_utc_epoch": 1795251385.7962203,
+    "published": "complete sanitized text",
+    "published_sha256": "60d35e46e7c7b736e3f6e8177999a03fd25aef0e065cb7714542e389563208eb"
+  },
+  {
+    "name": "dd_setup_20261121165623_errors.log",
+    "bytes": 0,
+    "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_setup_20261121165623_errors.log",
+    "last_write_utc_epoch": 1795251383.102393,
+    "published": "complete sanitized text",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "dd_vcredist_amd64_20261121164004.log",
+    "bytes": 10621,
+    "original_sha256": "e8c9ed18bb8e8c7ce593cc98dde27bd3ed042800a7ed7e0d9d7a737b7174f49f",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_vcredist_amd64_20261121164004.log",
+    "last_write_utc_epoch": 1795250406.0882187,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_vcredist_wrapper_x64_20261121163743.log",
+    "bytes": 3433,
+    "original_sha256": "eac58e3876a81c815f1605aca258b2737d859e8bf317c7148b7e6ff83eebb18d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_vcredist_wrapper_x64_20261121163743.log",
+    "last_write_utc_epoch": 1795250406.7775657,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_vcredist_wrapper_x86_20261121163718.log",
+    "bytes": 2509,
+    "original_sha256": "dd7b419acc91ff08529d46c007d7b1ef0d3c24434e9dba433b3f72969314f6ff",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_vcredist_wrapper_x86_20261121163718.log",
+    "last_write_utc_epoch": 1795250261.8330736,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "dd_vcredist_x86_20261121163739.log",
+    "bytes": 9005,
+    "original_sha256": "f5a37e65a3eff9fa5e68f07010d90508a4abf821ce50a0ec3e4875f4fbec7013",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/dd_vcredist_x86_20261121163739.log",
+    "last_write_utc_epoch": 1795250260.6880448,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1.log",
+    "bytes": 426599,
+    "original_sha256": "bfe49be4f14d1c878c786043977e782a91589b1c11996a7c0a2cc36d302679d9",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1.log",
+    "last_write_utc_epoch": 1795251293.4059474,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_000_package_ApplicationVerifierx64ExternalPackageDesktopEditions_x64_en_us.log",
+    "bytes": 252528,
+    "original_sha256": "f4c1540a60146985d70cbfaa25089e4de9fb7839028c1f134143f231f12148bc",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_000_package_ApplicationVerifierx64ExternalPackageDesktopEditions_x64_en_us.log",
+    "last_write_utc_epoch": 1795250939.0388877,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_001_package_ApplicationVerifierx64ExternalPackageOnecoreUAP_x64_en_us.log",
+    "bytes": 1017648,
+    "original_sha256": "d7a9abe38a845fe58543c9e4aee0c8e7078604cb169d669a49034bcb41446aba",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_001_package_ApplicationVerifierx64ExternalPackageOnecoreUAP_x64_en_us.log",
+    "last_write_utc_epoch": 1795250948.060221,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_002_package_KitsConfigurationInstaller_x86_en_us.log",
+    "bytes": 181974,
+    "original_sha256": "a50b29585035b949cab051ad38561e742fc1eb30a16c3ced8fc559b967736bad",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_002_package_KitsConfigurationInstaller_x86_en_us.log",
+    "last_write_utc_epoch": 1795250948.8921819,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_003_package_WindowsAppCertificationKitx64_x86_en_us.log",
+    "bytes": 3584158,
+    "original_sha256": "f07d89b116bf2d6563fdfb104d55f81cb2238b1ec7f56c75c2741d785c0efb16",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_003_package_WindowsAppCertificationKitx64_x86_en_us.log",
+    "last_write_utc_epoch": 1795250969.9944272,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_004_package_WindowsAppCertificationKitx64OnecoreUAP_x86_en_us.log",
+    "bytes": 457222,
+    "original_sha256": "13099eaf71e48784cec05149856a9bb4f95ea1b584d2690d10d6201587dec247",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_004_package_WindowsAppCertificationKitx64OnecoreUAP_x86_en_us.log",
+    "last_write_utc_epoch": 1795250971.2395442,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_005_package_WindowsAppCertificationKitNativeComponents_x64_en_us.log",
+    "bytes": 1885248,
+    "original_sha256": "367bd1e0271dd853f202887023d961d7da1fef98924cf21e08d349a9030b5952",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_005_package_WindowsAppCertificationKitNativeComponents_x64_en_us.log",
+    "last_write_utc_epoch": 1795250975.924154,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_006_package_WindowsAppCertificationKitSupportedApiListx86_x86_en_us.log",
+    "bytes": 248778,
+    "original_sha256": "44b51e43c96f458af1f796d4fc46d863185f2343f7433b1adf57854844cdc199",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_006_package_WindowsAppCertificationKitSupportedApiListx86_x86_en_us.log",
+    "last_write_utc_epoch": 1795250976.6139898,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_007_package_WindowsSDKEULA_x86_en_us.log",
+    "bytes": 254214,
+    "original_sha256": "8c763382c48c788cebcd66e5cf4f1708a8657f2c1d592e300f8c4a20daa5a90b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_007_package_WindowsSDKEULA_x86_en_us.log",
+    "last_write_utc_epoch": 1795250977.3747258,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_008_package_MSIDevelopmentTools_x86_en_us.log",
+    "bytes": 276888,
+    "original_sha256": "7a0dc3d913584994d07a0a0789498d43fedc15bff7c7d453c40aec166d4c207d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_008_package_MSIDevelopmentTools_x86_en_us.log",
+    "last_write_utc_epoch": 1795250978.2460408,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_009_package_WindowsSDKSigningTools_x86_en_us.log",
+    "bytes": 584120,
+    "original_sha256": "81b2783e22d089934a48d92cb9fcd48227c671295a88402e9302e719e8865671",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_009_package_WindowsSDKSigningTools_x86_en_us.log",
+    "last_write_utc_epoch": 1795250980.1316218,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_010_package_WindowsSDKModernNonVersionedDeveloperTools_x86_en_us.log",
+    "bytes": 419150,
+    "original_sha256": "b2052ce75d694fcb7e3655c8f747fa4bfa55d8da77417c023232459b99597cd8",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_010_package_WindowsSDKModernNonVersionedDeveloperTools_x86_en_us.log",
+    "last_write_utc_epoch": 1795251010.2561226,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_011_package_WindowsIoTExtensionSDK_x86_en_us.log",
+    "bytes": 176506,
+    "original_sha256": "4e6d9448a0f74ba900c579091c5613c6d437637350b0650e8df4cf4fd253e689",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_011_package_WindowsIoTExtensionSDK_x86_en_us.log",
+    "last_write_utc_epoch": 1795251010.8235905,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_012_package_UniversalCRTToolsx86_x86_en_us.log",
+    "bytes": 236936,
+    "original_sha256": "483e10dd07bd9559cee0682d345c495db313ae61876c00a4aff4cc1939914ec8",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_012_package_UniversalCRTToolsx86_x86_en_us.log",
+    "last_write_utc_epoch": 1795251011.481752,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_013_package_WindowsSDKforWindowsStoreAppsContracts_x86_en_us.log",
+    "bytes": 699764,
+    "original_sha256": "17bf5314e8d64c0bdd9acb97499d1ac6d021456059dba9ef29e2943c25c3ac4a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_013_package_WindowsSDKforWindowsStoreAppsContracts_x86_en_us.log",
+    "last_write_utc_epoch": 1795251025.6325953,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_014_package_UniversalCRTToolsx64_x64_en_us.log",
+    "bytes": 210214,
+    "original_sha256": "59b070b9622b2f4a8ae91067e3f604f34b3c224a3d2e316db8cf769ffbb023c0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_014_package_UniversalCRTToolsx64_x64_en_us.log",
+    "last_write_utc_epoch": 1795251026.2786908,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_015_package_WindowsSDKforWindowsStoreApps_x86_en_us.log",
+    "bytes": 414638,
+    "original_sha256": "7a99264289c7bfdd87901029297aa2421f663491a28f331964682f1a9f401d34",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_015_package_WindowsSDKforWindowsStoreApps_x86_en_us.log",
+    "last_write_utc_epoch": 1795251049.8241782,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_016_package_WinRTIntellisenseDesktopenus_x86_en_us.log",
+    "bytes": 2562156,
+    "original_sha256": "55309c897a289fb3c41cae5844e46dfcd12ed32d954a310d4f22bfb9aed45f75",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_016_package_WinRTIntellisenseDesktopenus_x86_en_us.log",
+    "last_write_utc_epoch": 1795251051.8699677,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_017_package_WindowsSDKforWindowsStoreAppsTools_x86_en_us.log",
+    "bytes": 1946748,
+    "original_sha256": "bb0c0b40df6dc253debf249276b5f7c97571aa5adf64e5b51a90485c594e1694",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_017_package_WindowsSDKforWindowsStoreAppsTools_x86_en_us.log",
+    "last_write_utc_epoch": 1795251060.938259,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_018_package_UniversalCRTExtensionSDK_x86_en_us.log",
+    "bytes": 298638,
+    "original_sha256": "709c9a09060e9e80d4830d0539548b4f1e16810a3fdeb4e57fbcd2285ca6bc3b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_018_package_UniversalCRTExtensionSDK_x86_en_us.log",
+    "last_write_utc_epoch": 1795251061.803877,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_019_package_WindowsDesktopExtensionSDK_x86_en_us.log",
+    "bytes": 265058,
+    "original_sha256": "329de4188cdc67064fe05c97529ed74cfed72298d8ed3338ed0309a1a697b33d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_019_package_WindowsDesktopExtensionSDK_x86_en_us.log",
+    "last_write_utc_epoch": 1795251062.6487556,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_020_package_WindowsIoTExtensionSDKContracts_x86_en_us.log",
+    "bytes": 177078,
+    "original_sha256": "fbeb5752dea0648fd08cfa1fa6ce38e7a3403e879aae88ec89f066a078279ce0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_020_package_WindowsIoTExtensionSDKContracts_x86_en_us.log",
+    "last_write_utc_epoch": 1795251063.2685902,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_021_package_WindowsDesktopExtensionSDKContracts_x86_en_us.log",
+    "bytes": 1098084,
+    "original_sha256": "8e0c778740386565186119bf74a3dbfffa8c276a5226a60a92d367626931706a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_021_package_WindowsDesktopExtensionSDKContracts_x86_en_us.log",
+    "last_write_utc_epoch": 1795251064.9818375,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_022_package_WinRTIntellisenseIoTenus_x86_en_us.log",
+    "bytes": 176780,
+    "original_sha256": "e8a811be1ddcb650451a12a427507143f13ea28597c49b1c46dac7376e398a97",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_022_package_WinRTIntellisenseIoTenus_x86_en_us.log",
+    "last_write_utc_epoch": 1795251065.5413003,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_023_package_WindowsTeamExtensionSDK_x86_en_us.log",
+    "bytes": 176564,
+    "original_sha256": "7d6f1e7385d376255421cab996c20a50d490bb602af902709bc7300ae827c8a0",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_023_package_WindowsTeamExtensionSDK_x86_en_us.log",
+    "last_write_utc_epoch": 1795251066.1124377,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_024_package_WindowsMobileExtensionSDKContracts_x86_en_us.log",
+    "bytes": 177252,
+    "original_sha256": "97fabd3909a8c9895d878eb3263ec14fb6b2aeda97df05106327cfa2f8236ffc",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_024_package_WindowsMobileExtensionSDKContracts_x86_en_us.log",
+    "last_write_utc_epoch": 1795251066.6676867,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_025_package_WindowsSDKFacadeWindowsWinMDVersioned_x86_en_us.log",
+    "bytes": 242136,
+    "original_sha256": "61734476a514302bae5469580368e59bf6fe6d74ca4e9d76747e69e1d7132b7e",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_025_package_WindowsSDKFacadeWindowsWinMDVersioned_x86_en_us.log",
+    "last_write_utc_epoch": 1795251067.3748834,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_026_package_WindowsSDKModernVersionedDeveloperTools_x86_en_us.log",
+    "bytes": 478626,
+    "original_sha256": "b6ad8aa4954dba917e779a1b10716d2a61bf95c626745510a7882efa9b656100",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_026_package_WindowsSDKModernVersionedDeveloperTools_x86_en_us.log",
+    "last_write_utc_epoch": 1795251068.8042047,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_027_package_WinAppDeploy_x86_en_us.log",
+    "bytes": 573880,
+    "original_sha256": "6fe8cc8872964c84f369e6fb129126d520f365ccc805c108c068ac3bb5260a1b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_027_package_WinAppDeploy_x86_en_us.log",
+    "last_write_utc_epoch": 1795251070.4399426,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_028_package_WindowsSDK_x86_en_us.log",
+    "bytes": 471884,
+    "original_sha256": "a646ae13ea9e0abad8cf1de54376e1eec472a3ed9eeaf86e6c52b5831fb6c9d9",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_028_package_WindowsSDK_x86_en_us.log",
+    "last_write_utc_epoch": 1795251102.630855,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_029_package_WindowsMobileExtensionSDK_x86_en_us.log",
+    "bytes": 176680,
+    "original_sha256": "04a00d2300a3fcd25a2fa8c698c959190926daaa105c90458a65a1c43cba582d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_029_package_WindowsMobileExtensionSDK_x86_en_us.log",
+    "last_write_utc_epoch": 1795251103.259794,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_030_package_WinRTIntellisenseMobileenus_x86_en_us.log",
+    "bytes": 353790,
+    "original_sha256": "cec95d7cd197b2f36337ccf1f5854321eb28051830365d0554dd5147529110e7",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_030_package_WinRTIntellisenseMobileenus_x86_en_us.log",
+    "last_write_utc_epoch": 1795251104.080905,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_031_package_UniversalCRTRedistributable_x86_en_us.log",
+    "bytes": 749734,
+    "original_sha256": "4f8c72a5717127895953490679781c6342697f95aa7ea2a651614520c1ede8e7",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_031_package_UniversalCRTRedistributable_x86_en_us.log",
+    "last_write_utc_epoch": 1795251106.7475135,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_032_package_WindowsSDKforWindowsStoreManagedAppsLibs_x86_en_us.log",
+    "bytes": 275572,
+    "original_sha256": "50567bc7920ec14fa8d98c609dec3976f637ce524f72c26badaffdf279556ade",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_032_package_WindowsSDKforWindowsStoreManagedAppsLibs_x86_en_us.log",
+    "last_write_utc_epoch": 1795251107.9061525,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_033_package_WindowsTeamExtensionSDKContracts_x86_en_us.log",
+    "bytes": 177136,
+    "original_sha256": "568d78b1ebb5058bc1021638a2a434fc31cedf460369da17df2e64a24b17dc52",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_033_package_WindowsTeamExtensionSDKContracts_x86_en_us.log",
+    "last_write_utc_epoch": 1795251108.4632475,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_034_package_UniversalCRTHeadersLibrariesandSources_x86_en_us.log",
+    "bytes": 3894462,
+    "original_sha256": "c477c0b541349f99e1dc5563ed974431ec14b0c36f3c58ce74bf35e546e29e1a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_034_package_UniversalCRTHeadersLibrariesandSources_x86_en_us.log",
+    "last_write_utc_epoch": 1795251123.7440448,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_035_package_WindowsSDKforWindowsStoreAppsMetadata_x86_en_us.log",
+    "bytes": 305160,
+    "original_sha256": "4074f2c5228107611f80130944e8ec963d2abfad169626040ce5724a18d9decb",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_035_package_WindowsSDKforWindowsStoreAppsMetadata_x86_en_us.log",
+    "last_write_utc_epoch": 1795251124.8816087,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_036_package_WinRTIntellisensePPIenus_x86_en_us.log",
+    "bytes": 176780,
+    "original_sha256": "ef36b75967e944f01534b095917c4f7a0c26592d3597f9e144e7cd1c05cd767a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_036_package_WinRTIntellisensePPIenus_x86_en_us.log",
+    "last_write_utc_epoch": 1795251125.4352741,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_037_package_UniversalGeneralMIDIDLSExtensionSDK_x86_en_us.log",
+    "bytes": 280810,
+    "original_sha256": "64a7ecac9eba339d07f4c284ac9e2bcf8b2949c422eb8d38fbcf2ddca4c49dba",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_037_package_UniversalGeneralMIDIDLSExtensionSDK_x86_en_us.log",
+    "last_write_utc_epoch": 1795251126.1802585,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_038_package_WinRTIntellisenseUAPenus_x86_en_us.log",
+    "bytes": 1816914,
+    "original_sha256": "eab5fc10ff42cdc6fe3a6728b8938a69f913b266707b2ea37a50a6a8a782ce3d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_038_package_WinRTIntellisenseUAPenus_x86_en_us.log",
+    "last_write_utc_epoch": 1795251127.8447812,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_039_package_WindowsSDKDirectXx86Remote_x86_en_us.log",
+    "bytes": 253586,
+    "original_sha256": "faab78b5edcea92683a02345c6b03c4b83691b7b03bbcb78e26c2d44eef399f6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_039_package_WindowsSDKDirectXx86Remote_x86_en_us.log",
+    "last_write_utc_epoch": 1795251128.5479763,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_040_package_WindowsSDKRedistributables_x86_en_us.log",
+    "bytes": 289330,
+    "original_sha256": "640de3675b187e820b94fe2ef55d9b1b510b308a1c144bae73814cba0125f823",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_040_package_WindowsSDKRedistributables_x86_en_us.log",
+    "last_write_utc_epoch": 1795251129.6386638,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_041_package_WindowsSDKforWindowsStoreAppsLibs_x86_en_us.log",
+    "bytes": 1965738,
+    "original_sha256": "aa542fd51080cd3ccf1a13ffb1fd561ae8bfc2f887baaf5abf721bdeb4bb2cac",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_041_package_WindowsSDKforWindowsStoreAppsLibs_x86_en_us.log",
+    "last_write_utc_epoch": 1795251137.8410518,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_042_package_WindowsSDKforWindowsStoreAppsDirectXx86Remote_x86_en_us.log",
+    "bytes": 326342,
+    "original_sha256": "ec8531bec48bb261f5afb9f165d4041747da28d2dbd99b930dfec507a7ada31b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_042_package_WindowsSDKforWindowsStoreAppsDirectXx86Remote_x86_en_us.log",
+    "last_write_utc_epoch": 1795251138.733765,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_043_package_WindowsSDKforWindowsStoreAppsHeadersOnecoreUap_x86_en_us.log",
+    "bytes": 691310,
+    "original_sha256": "129cef7879d32a93e926d59604057f050be605f809b8692687f787354bdae6c2",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_043_package_WindowsSDKforWindowsStoreAppsHeadersOnecoreUap_x86_en_us.log",
+    "last_write_utc_epoch": 1795251141.2757711,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_044_package_WindowsSDKDirectXx64Remote_x64_en_us.log",
+    "bytes": 223350,
+    "original_sha256": "6ec194660b02e047dec24a6026874c1b3abb3deffab1e7946a4a424dc2817d3b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_044_package_WindowsSDKDirectXx64Remote_x64_en_us.log",
+    "last_write_utc_epoch": 1795251141.9990098,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_045_package_WindowsSDKforWindowsStoreAppsHeaders_x86_en_us.log",
+    "bytes": 14352244,
+    "original_sha256": "0b26f600cf1e20d63decdfba6164e1f041acbb26a1ef5c24f2d307df76818378",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_045_package_WindowsSDKforWindowsStoreAppsHeaders_x86_en_us.log",
+    "last_write_utc_epoch": 1795251196.676161,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_046_package_WinRTIntellisenseIoTOtherLanguages_x86_en_us.log",
+    "bytes": 191904,
+    "original_sha256": "40acb07375284fe7a97f2a19548b1d212da37018d31830954daf11b21a15f566",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_046_package_WinRTIntellisenseIoTOtherLanguages_x86_en_us.log",
+    "last_write_utc_epoch": 1795251197.2905834,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_047_package_WinRTIntellisenseUAPOtherLanguages_x86_en_us.log",
+    "bytes": 3988118,
+    "original_sha256": "7ce53935f85d86ba6510f5a85b78f00e88728866b29abcf08c2e948ec422c0d2",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_047_package_WinRTIntellisenseUAPOtherLanguages_x86_en_us.log",
+    "last_write_utc_epoch": 1795251207.8503847,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_048_package_WinRTIntellisensePPIOtherLanguages_x86_en_us.log",
+    "bytes": 191904,
+    "original_sha256": "fab2187a7fa9053df34a0246040104de7edb87c9114e6375f6b63ad0a3fa6ead",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_048_package_WinRTIntellisensePPIOtherLanguages_x86_en_us.log",
+    "last_write_utc_epoch": 1795251208.456885,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_049_package_WinRTIntellisenseDesktopOtherLanguages_x86_en_us.log",
+    "bytes": 5752764,
+    "original_sha256": "32d6814d32a6cc2cc4c74e8f481f26a35a2b440780fe9ff38e59decb918284fa",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_049_package_WinRTIntellisenseDesktopOtherLanguages_x86_en_us.log",
+    "last_write_utc_epoch": 1795251219.5344467,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_050_package_WindowsSDKOnecoreUapHeadersx86_x86_en_us.log",
+    "bytes": 1268310,
+    "original_sha256": "d040f1dc31022a87ac469a798921004439043eaaecdc7d7d7c7f41a0e3f4ee40",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_050_package_WindowsSDKOnecoreUapHeadersx86_x86_en_us.log",
+    "last_write_utc_epoch": 1795251223.9001617,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_051_package_WindowsSDKDesktopHeadersx86_x86_en_us.log",
+    "bytes": 8438752,
+    "original_sha256": "3ebd68a16b71aa5e650b9fe7932235c1d7608b0b53ee4c7e8febd78204a3613a",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_051_package_WindowsSDKDesktopHeadersx86_x86_en_us.log",
+    "last_write_utc_epoch": 1795251255.5032218,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_052_package_WindowsSDKDesktopToolsx86_x86_en_us.log",
+    "bytes": 919418,
+    "original_sha256": "85841ccd613d19d78ee447e1b63c98d4731c9388fbfbd62e201485fc874927e1",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_052_package_WindowsSDKDesktopToolsx86_x86_en_us.log",
+    "last_write_utc_epoch": 1795251258.8752155,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_053_package_WindowsSDKDesktopLibsx86_x86_en_us.log",
+    "bytes": 2007722,
+    "original_sha256": "5f5013100704f2e75f3d73078e09450454191884dbcde2d2ceb4103beba0cb9c",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_053_package_WindowsSDKDesktopLibsx86_x86_en_us.log",
+    "last_write_utc_epoch": 1795251268.02452,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_054_package_WindowsSDKDesktopToolsx64_x86_en_us.log",
+    "bytes": 768388,
+    "original_sha256": "2451774d77b0553af14c9c77b6c7ad2f4c8b5fb68ac1cdc66224808b40c4003b",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_054_package_WindowsSDKDesktopToolsx64_x86_en_us.log",
+    "last_write_utc_epoch": 1795251270.8694372,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_055_package_WindowsSDKDesktopLibsx64_x86_en_us.log",
+    "bytes": 2003764,
+    "original_sha256": "0d9469b17ef835f77170d84ffce8ba7827494cc61f55a2503ac7c8c3b6a5c82d",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_055_package_WindowsSDKDesktopLibsx64_x86_en_us.log",
+    "last_write_utc_epoch": 1795251278.184182,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_056_package_WindowsSDKDesktopHeadersx64_x86_en_us.log",
+    "bytes": 248046,
+    "original_sha256": "ad9332656124c2f78d95e45ec9cd905752d7c957ce96274e43a0360d41f40bf6",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_056_package_WindowsSDKDesktopHeadersx64_x86_en_us.log",
+    "last_write_utc_epoch": 1795251278.8271463,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_057_package_WindowsSDKOnecoreUapHeadersx64_x86_en_us.log",
+    "bytes": 242592,
+    "original_sha256": "e7c9dacbf4caf2c2d15f5b003c1334b70129acf2f38e4ede993b6362c6e780a3",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_057_package_WindowsSDKOnecoreUapHeadersx64_x86_en_us.log",
+    "last_write_utc_epoch": 1795251279.4663937,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_058_package_WindowsSDKDesktopToolsarm64_x86_en_us.log",
+    "bytes": 743738,
+    "original_sha256": "f30a6a2f95bc788c7de9aa67fa7cd7f2d847d93408bbb9f67c8c5206c1994e97",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_058_package_WindowsSDKDesktopToolsarm64_x86_en_us.log",
+    "last_write_utc_epoch": 1795251282.1299527,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_059_package_WindowsSDKDesktopHeadersarm64_x86_en_us.log",
+    "bytes": 178702,
+    "original_sha256": "9f6be5a3615cb45b8f5c9b6065211764bd0ae14a2bd56224d1af1b42685adb51",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_059_package_WindowsSDKDesktopHeadersarm64_x86_en_us.log",
+    "last_write_utc_epoch": 1795251282.737705,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_060_package_WindowsSDKDesktopLibsarm64_x86_en_us.log",
+    "bytes": 1939530,
+    "original_sha256": "19a78c2aa85c4d50771c1d6dafd480a8f3bfb8227d4bef137829665f5ec699eb",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_060_package_WindowsSDKDesktopLibsarm64_x86_en_us.log",
+    "last_write_utc_epoch": 1795251290.678968,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_061_package_WindowsSDKARM64DesktopTools_x86_en_us.log",
+    "bytes": 250562,
+    "original_sha256": "6c50d90757041eb36672f2267eec8c1f848b3314038a5e82f1b6e3844748e835",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_061_package_WindowsSDKARM64DesktopTools_x86_en_us.log",
+    "last_write_utc_epoch": 1795251291.4001992,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_062_package_WindowsSDKOnecoreUapHeadersarm64_x86_en_us.log",
+    "bytes": 252714,
+    "original_sha256": "dec1cc6de6c08614569d32926977d0f96ef75447f526e5fccbb4fa28f5ac852e",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_062_package_WindowsSDKOnecoreUapHeadersarm64_x86_en_us.log",
+    "last_write_utc_epoch": 1795251292.074774,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_063_package_SDKARM64Additions_x86_en_us.log",
+    "bytes": 179380,
+    "original_sha256": "848eff06b59c82ce938a7c9e817a776ceac7f82e5c35d7692f659e5d16fd9b50",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_063_package_SDKARM64Additions_x86_en_us.log",
+    "last_write_utc_epoch": 1795251292.7810314,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  },
+  {
+    "name": "windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_064_package_SDKARM64Redistributables_x86_en_us.log",
+    "bytes": 179814,
+    "original_sha256": "76654cdf3df5a3e9e9296fda4c853d2518e05ca690242ccfe42836c113aa49dc",
+    "original_location": "%WORKSPACE%/m0/out/f9a-install-20261121T083326Z/original-dd-logs/windowssdk/dd_setup_20261121163410_140_Win11SDK_10.0.26100.winsdksetup_1_064_package_SDKARM64Redistributables_x86_en_us.log",
+    "last_write_utc_epoch": 1795251293.3391135,
+    "published": "inventory plus last3lines excerpt; complete original retained ignored"
+  }
+]

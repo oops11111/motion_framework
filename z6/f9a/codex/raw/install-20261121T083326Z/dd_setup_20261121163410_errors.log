@@ -1,0 +1,7 @@
+[86c8:0018][2026-11-21T16:56:20] Error 0x80070005: Could not sync DCAT registration: 对注册表项“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Update\TargetingInfo\PersistentDynamicInstalled”的访问被拒绝。
+   在 Microsoft.Win32.RegistryKey.Win32Error(Int32 errorCode, String str)
+   在 Microsoft.Win32.RegistryKey.CreateSubKeyInternal(String subkey, RegistryKeyPermissionCheck permissionCheck, Object registrySecurityObj, RegistryOptions registryOptions)
+   在 Microsoft.Win32.RegistryKey.CreateSubKey(String subkey, RegistryKeyPermissionCheck permissionCheck, RegistryOptions options)
+   在 Microsoft.VisualStudio.Setup.Services.WindowsRegistryKey.CreateSubKey(String path, RegistryOptions options)
+   在 Microsoft.VisualStudio.Setup.Activities.SyncDCatRegistration.RegisterOrUpdateProduct(IRegistry registry, String productName, String version)
+   在 Microsoft.VisualStudio.Setup.Activities.SyncDCatRegistration.Invoke(CancellationToken token)
