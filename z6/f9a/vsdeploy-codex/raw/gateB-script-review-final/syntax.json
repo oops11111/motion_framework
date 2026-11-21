@@ -1,0 +1,12 @@
+{
+  "status": "PASS (AST/PSParser/default dryrun only)",
+  "B_runtime": "NOT EXECUTED",
+  "scripts": {
+    "prepare_gateA.py": "f092a0ee2bf104ffa5c0590b7c55df413edcbde0336f325cc57786c53cff005a",
+    "deploy_gateB.py": "8668add420191692d5ad618ae493799be430c666dafa63d8fb9e0fd88fcc9369",
+    "native_lifecycle.py": "bf180af888422e18f91008094bde141297dea36e406f1d552432d86ce16a9a9a",
+    "ActivateNormally.ps1": "8bcbb6660ca0e51659f56117e881ab8257f879ba965842765be248c0816f02fd"
+  },
+  "state_delta": "STOP, no automatic repair",
+  "wrapper_failure_exit": "nonzero after result saved"
+}

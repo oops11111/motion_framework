@@ -1,0 +1,122 @@
+{
+  "phase": "GateA NON-ORIGINAL preparation only; GateB NOT AUTHORIZED",
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "source_dir": "m0/out/f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA/source",
+  "identity": {
+    "Name": "FilesDev",
+    "Publisher": "CN=Files",
+    "Version": "4.3.0.0",
+    "ProcessorArchitecture": "x64"
+  },
+  "application": {
+    "Id": "App",
+    "Executable": "Files.exe",
+    "EntryPoint": "Windows.FullTrustApplication",
+    "{http://schemas.microsoft.com/appx/manifest/desktop/windows10/4}SupportsMultipleInstances": "true"
+  },
+  "outputs": {
+    "Files.exe": {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.exe",
+      "sha256": "e5e8765c4fb1a69429c919b508e99b5e49773eb173b91cee58a2a8e3bd3d30b3",
+      "bytes": 587776
+    },
+    "Files.dll": {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.dll",
+      "sha256": "1d9f4daa2460a5819f8e893acf4d962437e17c16a6516509c253528f47b3de41",
+      "bytes": 6747136
+    },
+    "AppxManifest.xml": {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/AppxManifest.xml",
+      "sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+      "bytes": 22767
+    },
+    "Files.App.build.appxrecipe": {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.App.build.appxrecipe",
+      "sha256": "17e61f4fd3ce92609dd1d956c60c45e9f25873a67e23138f6be05f9c39724454",
+      "bytes": 436999
+    }
+  },
+  "dependencies": [
+    {
+      "TargetDeviceFamily": {
+        "Name": "Windows.Desktop",
+        "MinVersion": "10.0.19041.0",
+        "MaxVersionTested": "10.0.26100.0"
+      }
+    },
+    {
+      "PackageDependency": {
+        "Name": "Microsoft.WindowsAppRuntime.2",
+        "MinVersion": "2.5.1.0",
+        "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+      }
+    }
+  ],
+  "capabilities": [
+    "runFullTrust",
+    "broadFileSystemAccess",
+    "allowElevation",
+    "unvirtualizedResources",
+    "packageManagement",
+    "removableStorage",
+    "internetClient",
+    "privateNetworkClientServer"
+  ],
+  "extension_categories": [
+    "windows.activatableClass.inProcessServer",
+    "windows.activatableClass.outOfProcessServer",
+    "windows.appExecutionAlias",
+    "windows.appExtensionHost",
+    "windows.fileTypeAssociation",
+    "windows.protocol",
+    "windows.startupTask",
+    "windows.updateTask"
+  ],
+  "packages_config_sha256": "4e8ba66b03f978177ae68a0b6fd8758c3a517acee6b67cb7193afd0c4a9b56d5",
+  "packages": [
+    {
+      "id": "Microsoft.Windows.CppWinRT",
+      "version": "3.0.260818.1",
+      "nupkg_sha256": "a8993608ae9263a8288e1a1d9ee2684a5632f4acc59e1e89ddd86b3b889a7367",
+      "nuspec_sha256": "32e3ff986c895ce7d8f748f86f529ffdd1cd24fa7c0e5247fb4119fcd762c162"
+    },
+    {
+      "id": "Microsoft.Windows.ImplementationLibrary",
+      "version": "1.0.260126.7",
+      "nupkg_sha256": "7d67bc71dd0edc342db44ea0334ac9b6a1776514f81694b0b5b3c7ac9d608e42",
+      "nuspec_sha256": "be450c46ac09efe0f569d211d660a4e7ab90aa23f50113152d76de2aaf2952a5"
+    }
+  ],
+  "imports": [
+    {
+      "path": "packages/Microsoft.Windows.CppWinRT.3.0.260818.1/build/native/Microsoft.Windows.CppWinRT.props",
+      "sha256": "3306e33ae1f3f7bb1690e27a5cbd4275b980c35be6f5e67b5dc863cf3c22be32"
+    },
+    {
+      "path": "packages/Microsoft.Windows.ImplementationLibrary.1.0.260126.7/build/native/Microsoft.Windows.ImplementationLibrary.targets",
+      "sha256": "162833637c3367768726ee4d6ef5a8726da57c424461dc3d97dbc2b11b84a6aa"
+    },
+    {
+      "path": "packages/Microsoft.Windows.CppWinRT.3.0.260818.1/build/native/Microsoft.Windows.CppWinRT.targets",
+      "sha256": "24c007e1c3978b8835ab2b279e6d400b058d84480adf3ab0159805923f439043"
+    }
+  ],
+  "server_compiled": {
+    "exists": true,
+    "sha256": "c39f5fd212e91de45cc4887b2e90ad4cde68bf44fd975228fc261b9a865a9c05"
+  },
+  "recipe": {
+    "mapped_files": 1308,
+    "helper_mappings": [
+      "Assets\\FilesOpenDialog\\Files.App.Launcher.exe",
+      "Assets\\FilesOpenDialog\\Files.App.OpenDialog32.dll",
+      "Assets\\FilesOpenDialog\\Files.App.OpenDialog64.dll",
+      "Assets\\FilesOpenDialog\\Files.App.SaveDialog32.dll",
+      "Assets\\FilesOpenDialog\\Files.App.SaveDialog64.dll"
+    ],
+    "server_subtree_mappings": [],
+    "AppX_exists": false,
+    "appbin_server_path_exists": false
+  },
+  "deployed_or_activated": false
+}
