@@ -1,0 +1,15 @@
+{
+  "grant_kind": "F9b FilesDev pilot runtime",
+  "source": "Direct user response in current root conversation",
+  "user_verbatim": "开票",
+  "recorded_utc": "2026-11-21T12:45:16Z",
+  "original_authorization_sha256": "30ca0f7f5e260200f765b1ffc4eda045421b79cec7425549ad60df62d3ffc8ec",
+  "context": "Existing F9b direct opening after explicit scope card; not F9a permission and not new user words",
+  "scope": [
+    "Local isolated Files sidefork consumes frozen prebuilt L1 pack; repository delivery patch-only",
+    "EventSourceSupport=true for pilot ETW; RestorePackagesConfig=true at exact declared versions; NON-ORIGINAL build",
+    "F9b-specific same FilesDev temporary manual-layout registration, ordinary MainPage, visible entry and pointer-only hover/rest, normal close and exact own package cleanup",
+    "ETW safe counts and necessary lifecycle only; no FrameTick delta payload or PresentStats fields",
+    "No L1/public/fm/E1/composition/pack source/API change, installation, certificate, account, performance collection; extra requirement STOP"
+  ]
+}
