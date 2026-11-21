@@ -1,0 +1,14 @@
+  正在确定要还原的项目…
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : error NU1903: 错误形式的警告: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9
+  已还原 %USERPROFILE%\pilot\FluentHub\src\Octokit\Octokit.csproj (用时 393 毫秒)。
+  已还原 %USERPROFILE%\pilot\FluentHub\src\FluentHub.Core\FluentHub.Core.csproj (用时 393 毫秒)。
+  已还原 %USERPROFILE%\pilot\FluentHub\src\Octokit.Generators\Octokit.Generators.csproj (用时 395 毫秒)。
+  未能还原 %USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj (用时 537 毫秒)。
+
+生成失败。
+
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : error NU1903: 错误形式的警告: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9
+    0 个警告
+    1 个错误
+
+已用时间 00:00:03.39

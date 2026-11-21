@@ -33,3 +33,5 @@
 - 2026-11-21 15:12 AWST: imported pinned F3 5a3cef559e826a8450a252add7efd8659125a0e4; incoming exact ledger is archived at integration/tests/source_ledgers/f3-5a3cef559e826a8450a252add7efd8659125a0e4.md. Existing ticket verdicts unchanged.
 - Primary reviewed this independent F0/F3/F1 scope under the current user continuous-delivery instruction; details in integration/tests/PLAN.md. No system or non-original-build authorization inferred.
 - Prior F5 acceptance reference only: PR10 merged to codex/z6-integration at 15d4108fd56eb661c1a46c6552ffe74a0318ff28. That F2/F5 ancestry is not part of this stage or main.
+
+- 2026-11-21 15:13 AWST: imported pinned F1 5ec13f459a7926012407b10cf263127e5a74ab73; incoming exact ledger is archived at integration/tests/source_ledgers/f1-5ec13f459a7926012407b10cf263127e5a74ab73.md. Native F1/F3 blocks merged without test conflict; historical GUI C evidence imported only, not newly judged.
