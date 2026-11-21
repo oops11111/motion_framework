@@ -4,7 +4,7 @@ import ast,hashlib,json,subprocess
 H=Path(__file__).resolve().parent;R=H.parents[2];BASE="05830996127cd40d32f3718a2ae253583d092f36"
 def git(*a):return subprocess.check_output(["git","-C",str(R),*a])
 def data(f):
- b=f.read_bytes();return b if "source_ledgers" in f.parts else b.replace(b"\r\n",b"\n")
+ b=f.read_bytes();return b if "source_ledgers" in f.parts or f.name=="pilot.original.jsonl" else b.replace(b"\r\n",b"\n")
 def digest(b):return hashlib.sha256(b).hexdigest()
 def main():
  old=git("show",BASE+":z6/LEDGER_snapshot.md");assert (H/"source_ledgers/base.md").read_bytes()==old and data(R/"z6/LEDGER_snapshot.md").startswith(old)

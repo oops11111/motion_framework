@@ -1,0 +1,14 @@
+[
+  {
+    "hwnd": "0x1991014",
+    "title": "Files",
+    "class": "WinUIDesktopWin32WindowClass",
+    "visible": true
+  },
+  {
+    "hwnd": "0x11f12a6",
+    "title": "Default IME",
+    "class": "IME",
+    "visible": false
+  }
+]

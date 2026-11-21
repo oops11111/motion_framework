@@ -1,0 +1,9 @@
+# F9b runtime attempt1: STOP, exact cleanup complete
+
+Attempt20261121T134355Z-00e0d1ee exited1 at the entry position assertion. Register0, ordinaryapp37760/HWND0x1991014 verified. Exact managed/native mapped-file metadata paths and byte hashes matched approved layout. Root viewed actual SettingsRow crops: entry00 blank and entry01 icon/text restored support qualitative opacity entry, not an80px displacement claim. UIAgeometry position threshold did not pass; hover/rest stages were not reached. This first STOP is unchanged, not retagged PASS.
+
+Failure normalWM_CLOSE exited0. Complete finalDispose log original bytes were captured BEFORE exactRemove and preserved byte-for-byte: SHAa8328783ca1542c04ce5035d2238cb30961f30b51affa7377961f25e62c8a542. Created=Played=Cancelled=Released=3, finalIdle0/pump0, renderingFalse/originalVisualRestoredtrue. Only4 distinct events (IdleTransition4/TokenLoad1/AnimationLifecycle12/FrameTick23); Retarget absent because hover did not run. Therefore no complete F9b lifecycle/motion acceptance.
+
+Exact newFilesDev fullname removed; cleanuptrue/POSTabsent, originalpointer restored, foreignpackage deltaempty/UserChoice unchanged/source samev4/layout1334hashes unchanged. Primary independently queried current packages[] and residualdata[] and accepted cleanup. Full original ignored attempt remains untouched; sanitized fullmetadata and originalcropimages published, fullpackage inventories remain ignored/hash-only.7actualcode hashes and binding/release/provenance reference committed2bce153. No host/pack/build/layout change or unauthorized retry.
+
+Root permits a separate minimal tool version to record actual entry_position_changed bool without making it the sole acceptance gate, flag entry_visible_review_required and hand image judgment to primary. Hover/rest position+crop acceptance still required. Preparation only until a new explicit execution release.

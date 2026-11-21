@@ -1,0 +1,24 @@
+pilot start manual NON-ORIGINAL dev-only; PERF-CI HOLD; Success!=adopt
+AnimationsEnabled=True
+idle active=1 pump=1
+tokens loaded; entry consumes demo.enter
+lifecycle Created
+lifecycle Played
+entry replay signal ready process=37760
+lifecycle Created
+lifecycle Played
+entry played demo.enter
+idle active=0 pump=0
+lifecycle Cancelled
+lifecycle Released
+lifecycle Created
+idle active=1 pump=1
+lifecycle Played
+entry played demo.enter
+idle active=0 pump=0
+lifecycle Cancelled
+lifecycle Released
+lifecycle Cancelled
+lifecycle Released
+dispose {"eventCounts":{"IdleTransition":4,"TokenLoad":1,"AnimationLifecycle":12,"FrameTick":23},"lifecycleCounts":{"Created":3,"Played":3,"Cancelled":3,"Released":3},"lastIdleActive":0,"lastIdlePump":0,"CreatedEqualsReleased":true}
+disposed sinkCalls=46 rendering=False originalVisualRestored=true

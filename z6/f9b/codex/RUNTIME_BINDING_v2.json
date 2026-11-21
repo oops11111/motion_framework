@@ -1,0 +1,19 @@
+{
+  "source_relative": "m0/out/f9b-inputs-20261121T125037Z-fab35294/source",
+  "layout_relative": "m0/out/f9b-runtime-layout-20261121T132345Z-9a66a571/layout",
+  "layout_receipt_relative": "z6/f9b/codex/raw/f9b-runtime-layout-20261121T132345Z-9a66a571",
+  "inventory_sha256": "4a215a0a69466577ffebf905445d1939464f1cd0db1e267877f9ed81e7eb1acb",
+  "destination_hashes_sha256": "fd91689c3dd0f4bb295969071b6725b91b08cbcbb28aae440a36714a2bfd14ff",
+  "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+  "host_patch_sha256": "90fadd56b948f080e19435f1b0c05cc56dd57762783d95a6d4651e34cf859e1a",
+  "host_managed_sha256": "ef37c9e2ad646e9279c0d5f2c51119162cea33675b005677cc936a4e3b66cbf2",
+  "code_hashes": {
+    "z6/f9b/codex/RuntimeGuard.ps1": "566ec36dd37b0386957881fdc9c03e73299f28a5209e4640d1d7414584ab3abd",
+    "z6/f9b/codex/RuntimeProbe.cs": "e9a4f9b83b9949a57d4ed8a21e2dd598df676c3f7f20802b215901c252802207",
+    "z6/f9b/codex/RuntimeProbe.ps1": "acfb2ba8b2a009ee8cc3d48aa3774ffe0a8604bc37233c917820a676dcb6ac5d",
+    "z6/f9b/codex/ActivateNormally.ps1": "845c88200063a5852da4a5e09ffa78b603a11be138c84cd9c303a327a08e46e0",
+    "z6/f9b/codex/native_lifecycle.py": "bf180af888422e18f91008094bde141297dea36e406f1d552432d86ce16a9a9a",
+    "z6/f9b/codex/run_runtime_v2.py": "09b33b3804a65c86be9b90b59a4c519e03000646c737c1f1519f0470859ec560",
+    "z6/f9b/codex/prepare_runtime_layout.py": "bb9d98112d3d20b7a130ab59a69ddc4d32fce43f70b1c1e9704c3af012b730bc"
+  }
+}
