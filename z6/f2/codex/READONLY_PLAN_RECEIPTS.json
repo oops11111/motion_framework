@@ -1,0 +1,44 @@
+{
+  "main": "d2aac2dc355d0412aa5fc3ede212b79faf4459b9",
+  "integration": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+  "merge_base": "c3fb8d926458ebb93c3bc675a13c5f25ab853719",
+  "predicted_shared_changed_path": [
+    "z6/LEDGER_snapshot.md"
+  ],
+  "primary_readonly_merge_tree_result": "Only ledger conflict, virtual tree98618abc... as primary reported; child did not perform merge",
+  "upstream": "FluentHub eb08f0dbcbb43880ab34038b0cb6742f0c0deca5",
+  "reference_clone": "m0/out/f5-fluenthub read-only",
+  "default_dotnet": "%ProgramFiles%/dotnet/dotnet.exe",
+  "default_sdk_version": "10.0.300",
+  "info_exit": 1,
+  "info_limit": "--info printed InstallerBase TypeInitializationException/NullReference with current PROCESSOR_ARCHITECTURE missing; no repair/build performed",
+  "original_info_sha256": "d4e710ded2b54fb7facfd31daf4708f602dcb9a37c1012e938d697b36f63a07b",
+  "default_pack_root": "%USERPROFILE%/mf_z6/f7/",
+  "sums_sha256": "b37fab6059d2e95fd8e9116a666234e290626a4859e1a5b36d4109519abc604a",
+  "pack_files": [
+    {
+      "name": "FluidMotion.L1.dll",
+      "expected_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2",
+      "actual_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2",
+      "match": true
+    },
+    {
+      "name": "fluidmotion.dll",
+      "expected_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d",
+      "actual_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d",
+      "match": true
+    },
+    {
+      "name": "demo_motion.json",
+      "expected_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+      "actual_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+      "match": true
+    }
+  ],
+  "future_build_commands": [
+    "dotnet restore FluentHub.slnx",
+    "dotnet build FluentHub.slnx -c Debug"
+  ],
+  "upstream_AGENTS_rules": "UTF8 CRLF, csproj UTF8 BOM, nullable, minimal changes",
+  "no_merge_patch_build_gui": true
+}
