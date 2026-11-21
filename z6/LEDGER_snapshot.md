@@ -50,3 +50,5 @@ Original source verdicts retained. Canonical docs and reports/raw imported exact
 - F12: ordinary source merge 876b73ac752338fab09b225e227cfde77c1c0c63; exact ledger snapshot preserved.
 
 - F4: ordinary source merge 5fa5f856bc54632becbc365bb2453a71af4b0c29; exact ledger snapshot preserved.
+
+- F8a: ordinary source merge c640972a4858c6cb72dbc5060a601c4f040c0e2f; exact ledger snapshot preserved.
