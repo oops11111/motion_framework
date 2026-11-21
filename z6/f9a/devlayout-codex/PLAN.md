@@ -48,3 +48,7 @@ Branch-scoped CI validates source provenance, manifest/evidence hashes, immutabl
 ## Bounded read-only deployment-configuration finding
 
 Installed MSBuild SolutionPersistence OpenAsync parsed the original slnx without writing or executing targets. App/Server/UITests Deploy rules all ProjectValue=True; Debug|x64 resolves (Debug,x64,True,True). Official XmlConfiguration.cs ToModel lines36-43 maps empty Build/Deploy Project value to bool.TrueString; ApplyModelToXml lines75-78 serializes true as empty. Thus empty Deploy is not proved disabled and cannot explain the prior STOP. The adjacent source comment conflicts with executable logic and is not a basis for claiming false. Reference: https://github.com/microsoft/vs-solutionpersistence/blob/main/src/Microsoft.VisualStudio.SolutionPersistence/Serializer/Xml/XmlDecorators/XmlConfiguration.cs . Further parser output/version/hash can be persisted here when L is released; no prior evidence mutation, no slnx edits or new VS invocation.
+
+## Visual resource clarification approved by primary
+
+Manifest logical logo/splash names need not be naked physical basenames. Preserve original bytes/names; record actual recipe qualified family and resources.pri SHA/existence. Executable/Server/WinRT paths require exact mapped files. Resource-family/PRI evidence does not prove runtime resource resolution. No synthesis/rename/reindex/build. Microsoft reference: https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/mrtcore/images-tailored-for-scale-theme-contrast .

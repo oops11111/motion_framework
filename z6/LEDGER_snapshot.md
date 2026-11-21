@@ -111,3 +111,10 @@ User specifically approved only RestorePackagesConfig=true for F9a with NON-ORIG
 PR18 merged92c498fbcf8ea7216d54104886a722d34d5099fb; mainpost44895678100 all3 success, primary accepted NON-ORIGINAL build only.
 
 3C4 GateA fresh preparation Build0 with authorized RestorePackagesConfig=true; source clean. User separately approved selected FilesDev deployment/main-page startup/exact cleanup. Precheck autoload STOP retained, no deployment then; explicit existing WinPS5 Security module import fixed harness precheck. Unique actual signed VS18 /Deploy selected Files.App attempt20261121T113424Z-2ea2b1b4 exited0 but FilesDev remained absent and output reported build only. Wrapper exit1/STOP; startup/UIA/close not executed, no package created or removed, package inventory and UserChoice unchanged, source clean. No fallback/new flags/system repairs. Evidence z6/f9a/vsdeploy-codex; F9a startup NOTREADY, historical results unchanged; primary review/CI pending.
+
+
+## F9a3C4 accepted STOP evidence;3C5 GateL workspace layout only
+
+PR19 merged0fc838c9624b4a23c99bbc57f3d5d1c9bf8c2510, mainpost44900488544 policy/Debug/Release success; startup remained NOT TESTED.
+
+3C5 GateL attempt20261121T115207Z-c7612b64: manual development layout with1328 exact byte copies (1305recipe+originalmanifest+22compiledServer), allsource/destinationSHA match, sourceclean/pinned. Prior source-string canonicalisation STOP retained; no actual byte/destination drift. Logical visual resources retain qualified families and PRI, runtime not verified. GateM not executed/released: no registration/activation/UIA/close. NON-ORIGINAL build plus manually assembled development layout does not replace original/VSSTOP. Current evidence z6/f9a/devlayout-codex; primary L review pending.

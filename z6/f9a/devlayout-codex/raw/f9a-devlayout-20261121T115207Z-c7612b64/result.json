@@ -1,0 +1,35 @@
+{
+  "mode": "execute-layout",
+  "status": "PASS L workspace byte-copy only",
+  "registration": false,
+  "activation": false,
+  "route": "NON-ORIGINAL build + manually assembled development layout",
+  "source_PRE": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": "",
+    "diff": ""
+  },
+  "identity": {
+    "Name": "FilesDev",
+    "Publisher": "CN=Files",
+    "Version": "4.3.0.0",
+    "ProcessorArchitecture": "x64"
+  },
+  "recipe_entries": 1305,
+  "server_files": 22,
+  "mapping_files": 1328,
+  "inventory_sha256": "0bfdf5bbae22fc3734ba9987be2ecd10f7e64b02f0cddccd8aa912130a7f7f43",
+  "bound": {
+    "Files.exe": "e5e8765c4fb1a69429c919b508e99b5e49773eb173b91cee58a2a8e3bd3d30b3",
+    "Files.dll": "0083066016670606f13e63a5660c12f5b450af5dcf65d848b9e85666a0fc20d7",
+    "AppxManifest.xml": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+    "Files.App.build.appxrecipe": "0f3d51582e9944f0522bdd14f9b61aa5b0fbd3ec0da0935dcc175a42733a2423"
+  },
+  "layout_relative": "m0/out/f9a-devlayout-20261121T115207Z-c7612b64/layout",
+  "destination_hashes_sha256": "2d910d3a01c751fa7a4bd00e4578e1455d36936c9438922b772a60463bd15fbd",
+  "source_POST": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": "",
+    "diff": ""
+  }
+}
