@@ -1,0 +1,44 @@
+﻿== Debug 07:04:23
+SUCCESS: The scheduled task "z6f0_gui_Debug" has successfully been created.
+
+SUCCESS: Attempted to run the scheduled task "z6f0_gui_Debug".
+
+SUCCESS: The scheduled task "z6f0_gui_Debug" was successfully deleted.
+
+query_after_delete:
+schtasks : ERROR: The system cannot find the file specified.
+At line:1 char:607
++ ...  "query_after_delete:"; $out += (schtasks /Query /TN $tn 2>&1 | Out-S ...
++                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: The syst...file specified.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+
+LAUNCHER_START=2026/11/18 周三  7:04:23.32
+RUNNING_EXE=_z6f0_build_Debug\MotionSoftDemo.exe --z3a-l1-dev
+EXE_EXIT=0
+LAUNCHER_END=2026/11/18 周三  7:04:26.77
+
+== Release 07:04:27
+SUCCESS: The scheduled task "z6f0_gui_Release" has successfully been created.
+
+SUCCESS: Attempted to run the scheduled task "z6f0_gui_Release".
+
+SUCCESS: The scheduled task "z6f0_gui_Release" was successfully deleted.
+
+query_after_delete:
+schtasks : ERROR: The system cannot find the file specified.
+At line:1 char:607
++ ...  "query_after_delete:"; $out += (schtasks /Query /TN $tn 2>&1 | Out-S ...
++                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: The syst...file specified.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+
+LAUNCHER_START=2026/11/18 周三  7:04:27.67
+RUNNING_EXE=_z6f0_build_Release\MotionSoftDemo.exe --z3a-l1-dev
+EXE_EXIT=0
+LAUNCHER_END=2026/11/18 周三  7:04:30.54
+
