@@ -1,0 +1,9 @@
+{
+  "original_path": "%WORKSPACE%/m0/out/f9a-deployment-preflight-20261121-final/observations.original.json",
+  "original_bytes": 20825,
+  "original_sha256": "8667d1c2740b1ee9013e04d1ce9be0aa00bdf5299fe9580165d6ea874c797a47",
+  "published_path": "z6/f9a/deployment-preflight/raw/20261121-readonly/observations.json",
+  "published_sha256": "466933ee0aa6208c226173d1b694becf94f7ec3326249b987534e6b9946c480f",
+  "redaction": "Absolute workstation paths replaced with environment placeholders; structured data otherwise preserved",
+  "command": "python z6/f9a/deployment-preflight/scan.py --output m0/out/f9a-deployment-preflight-20261121-final"
+}

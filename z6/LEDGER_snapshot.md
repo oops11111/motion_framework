@@ -83,3 +83,10 @@ F9a original source030216fad26d2a2e0d3d3d9ef7edf057d66b07bc imported unchanged w
 PR14 merged3078ae0e9f8792a03f45e09dd4fce5c6fda1ca7e; headfba233e688e396e7d26e8e9bcbcfd091ba00b376 all five checks and mainpost44887910560 three jobs success, independently accepted by primary. Final DCAT sync error and NGEN warning remain disclosed, not repaired.
 
 Stage3B attempt20261121T090938Z-a08ae53c-run1: original Files pin cbfb4ba54a89632fbceb82ea94ada60a9bae3737, fresh no-hardlink clone, original upstream CI Restore0 and Build0, sourcePRE=POST/clean. Initial sandbox clone STOP20261121T090913Z-3a2a9200-run1 retained; it never reached build. Run2 omitted because run1 passed. Binary/manifest hashes only, no Files install/launch/package/F9b/F2 action. Current evidence z6/f9a/baseline-codex; primary review/CI pending, original historical FAIL unchanged.
+
+
+## F9a3B accepted;3C1 read-only deployment evidence (append-only)
+
+PR15 merged425165e112c271dc76706e5ff2d5354b1dfc9120 fromcecc685923824a106f2faf537fddd53dcf2795d9; five applicable head checks and mainpost44889148641 policy/Debug/Release success, accepted by primary. Original build PASS only, no launch.
+
+3C1 scanner collected current manifest/recipe/source/SDK metadata read only; source clean/pincbfb4ba54a89632fbceb82ea94ada60a9bae3737 unchanged. Current appbin is not a verified deployment layout; Server compiled but not mapped in this recipe, AppX and intermediate PackageLayout differ. Normal VS auto merge remains unproven, no upstream bug decision or startup PASS. Evidence z6/f9a/deployment-preflight. No build/target/layout/register/launch/F9b action. Primary review/CI pending.

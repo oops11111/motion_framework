@@ -1,0 +1,27 @@
+name: Z6 F9a deployment preflight evidence
+
+on:
+  push:
+    branches: [codex/z6-f9a-deployment-preflight]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'z6/f9a/deployment-preflight/**'
+      - '.github/workflows/z6-f9a-deployment-preflight.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  deployment-preflight-evidence:
+    if: github.head_ref == 'codex/z6-f9a-deployment-preflight' || github.ref == 'refs/heads/codex/z6-f9a-deployment-preflight'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify stored read-only evidence, hash coverage and scope
+        run: python z6/f9a/deployment-preflight/verify.py
