@@ -26,3 +26,10 @@
 | 2026-11-18 07:03 | F12 | 普通 push `git push -u origin wb/z6-f12`，ls-remote = `876b73ac752338fab09b225e227cfde77c1c0c63` | 同上，t206s992 | 远端新分支 `wb/z6-f12` | 同上 |
 | 2026-11-18 07:04 | F0 | **系统级：一次性计划任务** `z6f0_gui_Debug`、`z6f0_gui_Release`（`/IT /RL LIMITED`）跑 `--z3a-l1-dev`，跑完 `/Delete /F`，`/Query` 确认已不存在 | 许可：「Z6 范围内允许用一次性计划任务跑 GUI，用完即删」，t206s992 | `%TEMP%\z6\f0\gui_Debug\`、`gui_Release\`、`launcher_*.log`、`schtasks_gui.txt` | 任务已删；日志在证据入库后才可删 |
 | 2026-11-18 07:06 | F0 | `f0_collect_gui.ps1` 收集到 `z6/f0/raw_gui/`（FrameTick payload 改为 `[omitted]`，路径改为 `%USERPROFILE%`） | 无 | 原件保留在 `%TEMP%\z6\f0\` | 证据入库后才可删 |
+
+
+## Codex stage 2A append-only integration records
+
+- 2026-11-21 15:12 AWST: imported pinned F3 5a3cef559e826a8450a252add7efd8659125a0e4; incoming exact ledger is archived at integration/tests/source_ledgers/f3-5a3cef559e826a8450a252add7efd8659125a0e4.md. Existing ticket verdicts unchanged.
+- Primary reviewed this independent F0/F3/F1 scope under the current user continuous-delivery instruction; details in integration/tests/PLAN.md. No system or non-original-build authorization inferred.
+- Prior F5 acceptance reference only: PR10 merged to codex/z6-integration at 15d4108fd56eb661c1a46c6552ffe74a0318ff28. That F2/F5 ancestry is not part of this stage or main.
