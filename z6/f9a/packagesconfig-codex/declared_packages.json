@@ -1,0 +1,19 @@
+[
+  {
+    "path": "src/Files.App.Launcher/packages.config",
+    "sha256": "4e8ba66b03f978177ae68a0b6fd8758c3a517acee6b67cb7193afd0c4a9b56d5",
+    "git_blob": "f3255c9617199ec636a01fcc01d93269be1b1f7f",
+    "packages": [
+      {
+        "id": "Microsoft.Windows.CppWinRT",
+        "version": "3.0.260818.1",
+        "targetFramework": "native"
+      },
+      {
+        "id": "Microsoft.Windows.ImplementationLibrary",
+        "version": "1.0.260126.7",
+        "targetFramework": "native"
+      }
+    ]
+  }
+]

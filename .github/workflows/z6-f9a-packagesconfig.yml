@@ -1,0 +1,27 @@
+name: Z6 F9a authorized packages.config evidence
+
+on:
+  push:
+    branches: [codex/z6-f9a-packagesconfig]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'z6/f9a/packagesconfig-codex/**'
+      - '.github/workflows/z6-f9a-packagesconfig.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  authorized-restore-evidence:
+    if: github.head_ref == 'codex/z6-f9a-packagesconfig' || github.ref == 'refs/heads/codex/z6-f9a-packagesconfig'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate authority, one-flag result and declared-version receipts
+        run: python z6/f9a/packagesconfig-codex/verify.py

@@ -1,0 +1,112 @@
+{
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "build_mode": "NON-ORIGINAL",
+  "observed_outputs": [
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.dll",
+      "exists": true,
+      "is_file": true,
+      "app_or_test_executed": false,
+      "registered": false,
+      "bytes": 6747136,
+      "sha256": "c4dcb8a473ff1a9a5680efa33e1a6b7fac7309c1fce6098d967449d2ec2fd873"
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.exe",
+      "exists": true,
+      "is_file": true,
+      "app_or_test_executed": false,
+      "registered": false,
+      "bytes": 587776,
+      "sha256": "e5e8765c4fb1a69429c919b508e99b5e49773eb173b91cee58a2a8e3bd3d30b3"
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/AppxManifest.xml",
+      "exists": true,
+      "is_file": true,
+      "app_or_test_executed": false,
+      "registered": false,
+      "bytes": 22767,
+      "sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4"
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.App.build.appxrecipe",
+      "exists": true,
+      "is_file": true,
+      "app_or_test_executed": false,
+      "registered": false,
+      "bytes": 440056,
+      "sha256": "5d5310419232afa868f3f453603cce472d28ec07d411071f52b7dc10d7de565e"
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/AppX",
+      "exists": false,
+      "is_file": false,
+      "app_or_test_executed": false,
+      "registered": false
+    },
+    {
+      "path_from_source": "src/Files.App/obj/x64/Debug/net10.0-windows10.0.26100.0/win-x64/PackageLayout",
+      "exists": false,
+      "is_file": false,
+      "app_or_test_executed": false,
+      "registered": false
+    },
+    {
+      "path_from_source": "src/Files.App.Server/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.App.Server.exe",
+      "exists": true,
+      "is_file": true,
+      "app_or_test_executed": false,
+      "registered": false,
+      "bytes": 162816,
+      "sha256": "c39f5fd212e91de45cc4887b2e90ad4cde68bf44fd975228fc261b9a865a9c05"
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.App.Server/Files.App.Server.exe",
+      "exists": false,
+      "is_file": false,
+      "app_or_test_executed": false,
+      "registered": false
+    }
+  ],
+  "native_helper_binaries": [
+    {
+      "name": "Files.App.Launcher.exe",
+      "bytes": 2894336,
+      "sha256": "9bc6c278b679196285b13eddb2b04af3e6ee4da3320d1425396bb1a92b696e36"
+    },
+    {
+      "name": "Files.App.OpenDialog32.dll",
+      "bytes": 411648,
+      "sha256": "e2670567fb0ea5970e5d1b7a06dbd4f5169e0f4d66e27ccc9a0a883bdde6b884"
+    },
+    {
+      "name": "Files.App.OpenDialog64.dll",
+      "bytes": 502784,
+      "sha256": "fb5c38dd7ec7c44524ed6bf347537b2cc3707166de8a08f6b46325e733b73505"
+    },
+    {
+      "name": "Files.App.SaveDialog32.dll",
+      "bytes": 928768,
+      "sha256": "f58adb1f52dda38df0a385ecd3e9fd863d552508c5d3ad2d64f5d8d2d9157ab9"
+    },
+    {
+      "name": "Files.App.SaveDialog64.dll",
+      "bytes": 1223680,
+      "sha256": "d4448eb9ebb85736539178ecdee14b1bd7fbf2a7f1e93bd40782d12512e87da0"
+    }
+  ],
+  "recipe_summary": {
+    "mapped_files": 1308,
+    "native_helper_mappings": [
+      "Assets\\FilesOpenDialog\\Files.App.Launcher.exe",
+      "Assets\\FilesOpenDialog\\Files.App.OpenDialog32.dll",
+      "Assets\\FilesOpenDialog\\Files.App.OpenDialog64.dll",
+      "Assets\\FilesOpenDialog\\Files.App.SaveDialog32.dll",
+      "Assets\\FilesOpenDialog\\Files.App.SaveDialog64.dll"
+    ],
+    "server_subtree_mappings": [],
+    "LayoutDir_relative_to_target": "AppX"
+  },
+  "scope": "Hash/existence after authorized build only; no layout/deployment/startup proof"
+}

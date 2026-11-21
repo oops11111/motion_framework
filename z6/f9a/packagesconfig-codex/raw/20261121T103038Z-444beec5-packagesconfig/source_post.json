@@ -1,0 +1,68 @@
+{
+  "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "tree": "901330b3d5e4daa7838e24eaeedf4c2c745705c9",
+  "status_porcelain": "",
+  "tracked_diff": "",
+  "key_files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "git_blob": "29ddd90234caf499cc4fb11fc090dc81b0822f5b",
+      "sha256_working_bytes": "21cd36e8adc61c1851fe2613ef1ff648c8b436876ba158b6c8af3db63f15e82c"
+    },
+    {
+      "path": "Directory.Build.props",
+      "git_blob": "78aa35603883a28019e8de23b62cc0eb95c4d687",
+      "sha256_working_bytes": "08849ea7f6cf98e9c14b742f5d8559d136b98e70f34ffe54b8f6098a6d10817e"
+    },
+    {
+      "path": "Directory.Packages.props",
+      "git_blob": "363e5572ea6b18f35759c94ce228cba214a46c09",
+      "sha256_working_bytes": "8b88fdfc5021f347c843e9b566cd63da0088b46d70e2a4b1b5a893081e7f2503"
+    },
+    {
+      "path": "Files.slnx",
+      "git_blob": "49657a490d21b6bb0930e7eea2af6c0c36ae52ec",
+      "sha256_working_bytes": "42cadc33c819915ea456aa7dc7f1c50ba23829566e6e9091d6c991fa3c2cdd3f"
+    },
+    {
+      "path": "global.json",
+      "git_blob": "9e04c2aca53c017abe70b64d96df0d325fcea563",
+      "sha256_working_bytes": "18eec3eb8e1f2ec4bb390a2f5cc9c3e54531246918edcdff5ebf7f165f3875eb"
+    },
+    {
+      "path": "nuget.config",
+      "git_blob": "e6a18a8f28c183f80dd4ec571f2047c29918bd87",
+      "sha256_working_bytes": "fd4e45cc3707a3f5f108de9b1bca4ae951e6f5e42011a25d10d1b685c03b83ca"
+    },
+    {
+      "path": "src/Files.App.Launcher/packages.config",
+      "git_blob": "f3255c9617199ec636a01fcc01d93269be1b1f7f",
+      "sha256_working_bytes": "4e8ba66b03f978177ae68a0b6fd8758c3a517acee6b67cb7193afd0c4a9b56d5"
+    },
+    {
+      "path": "src/Files.App/Files.App.csproj",
+      "git_blob": "ffe246f1c2e230236938c1e82521b14a08581f37",
+      "sha256_working_bytes": "14b647139ac4fd5b2e2e7259c98c6b8b022d3c617a7ea53e7f4eff91f14db8df"
+    },
+    {
+      "path": "src/Files.App/Package.appxmanifest",
+      "git_blob": "54653e46b095c73761acd2853df38624e6f57be0",
+      "sha256_working_bytes": "9c6d3b8423e243f6936089dc294d449366643c75d93cf911584e877e77d4e227"
+    },
+    {
+      "path": "src/Files.App/Properties/PublishProfiles/win-arm64.pubxml",
+      "git_blob": "b83d7b6107345fa06aad5f4fdc65929e2148a071",
+      "sha256_working_bytes": "bceb31de806d88e6158842c9a2230726fb2e9bc6745a296816b7f8b68fc0ece2"
+    },
+    {
+      "path": "src/Files.App/Properties/PublishProfiles/win-x64.pubxml",
+      "git_blob": "9a4f8958bb626f073089875f163331466222babd",
+      "sha256_working_bytes": "1e772b890cd5c5c2cbe11d37f5adb1b320a3bb6edd42e8dc181e9378fdbc16c6"
+    },
+    {
+      "path": "src/Files.App/Properties/PublishProfiles/win-x86.pubxml",
+      "git_blob": "e5a15fee76ce2603f70d8f84e25a8abc33fc8fe8",
+      "sha256_working_bytes": "bd4ef7a4ca6f5e6202bb0d7288624340ee2ccb5bf512f3d65fed3f62c7df9e80"
+    }
+  ]
+}

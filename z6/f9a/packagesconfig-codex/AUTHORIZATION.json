@@ -1,0 +1,11 @@
+{
+  "user_verbatim": "批准 F9a 仅本票增加 -p:RestorePackagesConfig=true，按原版本还原并构建，标记“非原样”。",
+  "source": "Latest direct user message in current root conversation",
+  "message_id": "unavailable",
+  "recorded_utc": "2026-11-21 10:27:54 UTC",
+  "recorded_awst": "2026-11-21 18:27:54 AWST",
+  "recording_not_send_time": true,
+  "scope": "F9a only; add exactly -p:RestorePackagesConfig=true to the original full-solution command; restore declared versions and build; entire route NON-ORIGINAL",
+  "exclusions": "No source patch, upgrade, extra property/target/independent restore/manual package copy/install/certificate/deployment/activation/F2/F9b",
+  "execution_gate": "Plan review and explicit primary execution instruction before clone/build"
+}

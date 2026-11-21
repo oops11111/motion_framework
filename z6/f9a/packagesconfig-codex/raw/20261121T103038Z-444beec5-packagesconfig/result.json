@@ -1,0 +1,105 @@
+{
+  "status": "PASS (NON-ORIGINAL build only)",
+  "attempt": "20261121T103038Z-444beec5-packagesconfig",
+  "route": "packagesconfig",
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "start_utc": "2026-11-21T10:30:38.373804+00:00",
+  "build_mode": "NON-ORIGINAL: only RestorePackagesConfig=true authorized",
+  "child_environment": {
+    "DOTNET_ROOT": "%USERPROFILE%/.dotnet",
+    "PATH_prefix": "%USERPROFILE%/.dotnet",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "AMD64_restored_only_if_missing": true,
+    "persistent_changes": false
+  },
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "%USERPROFILE%\\pilot\\Files",
+        "%WORKSPACE%\\m0\\out\\f9a-packagesconfig-20261121T103038Z-444beec5-packagesconfig\\source"
+      ],
+      "cwd": "%WORKSPACE%",
+      "pid": 81960,
+      "start_utc": "2026-11-21T10:30:38.615383+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T10:30:40.470488+00:00",
+      "original_sha256": "e8ac381011cf621ce91405fcacd4407a2d7282d2ec9ab57ece05735c79b6ba34",
+      "original_bytes": 122,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-packagesconfig-20261121T103038Z-444beec5-packagesconfig\\clone.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "068ba7c8da95ddf5b9c25e7357d2e0c9dc1845c9b8e880864166ac1735e82abd"
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "cbfb4ba54a89632fbceb82ea94ada60a9bae3737"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-packagesconfig-20261121T103038Z-444beec5-packagesconfig\\source",
+      "pid": 77856,
+      "start_utc": "2026-11-21T10:30:40.471511+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T10:30:44.780883+00:00",
+      "original_sha256": "05569c6822bb05a7846f6b3da0c5ff4a841f0392b8dd3f8e994eb715732d7035",
+      "original_bytes": 37,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-packagesconfig-20261121T103038Z-444beec5-packagesconfig\\checkout.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "05569c6822bb05a7846f6b3da0c5ff4a841f0392b8dd3f8e994eb715732d7035"
+    },
+    {
+      "label": "dotnet_version",
+      "argv": [
+        "%USERPROFILE%\\.dotnet\\dotnet.exe",
+        "--version"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-packagesconfig-20261121T103038Z-444beec5-packagesconfig\\source",
+      "pid": 66232,
+      "start_utc": "2026-11-21T10:30:46.811960+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T10:30:47.060144+00:00",
+      "original_sha256": "a391a16c2e43840573b47a7c336fc376a5f58e13cfafb1930a338034912d6dc7",
+      "original_bytes": 10,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-packagesconfig-20261121T103038Z-444beec5-packagesconfig\\dotnet_version.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "c479e77cb703fe4dac97ec3e3ebbeb4968c95c716d53abad60b516b6866ca49d"
+    },
+    {
+      "label": "build",
+      "argv": [
+        "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+        "-restore",
+        "Files.slnx",
+        "-p:Configuration=Debug",
+        "-p:Platform=x64",
+        "-v:quiet",
+        "-clp:ErrorsOnly",
+        "-p:RestorePackagesConfig=true"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-packagesconfig-20261121T103038Z-444beec5-packagesconfig\\source",
+      "pid": 83272,
+      "start_utc": "2026-11-21T10:30:47.062572+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T10:36:10.757467+00:00",
+      "original_sha256": "92974ff7bf86e3799d4dcbfc6f443fe26b945bfd426cce82e90232cb0d42a361",
+      "original_bytes": 58,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-packagesconfig-20261121T103038Z-444beec5-packagesconfig\\build.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "d9ac3e1065f2e8f7cce0c377b3ffff4db7e1fc92d7d23adfd91948429b068339"
+    }
+  ],
+  "source_unchanged": true,
+  "build_exit_code": 0,
+  "source_tree": "901330b3d5e4daa7838e24eaeedf4c2c745705c9",
+  "end_utc": "2026-11-21T10:36:12.725486+00:00"
+}
