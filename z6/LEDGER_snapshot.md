@@ -69,3 +69,10 @@ Exact historical evidence imported; source ledger snapshots at z6/integration/pa
 - F11: ordinary source merge c3fb8d926458ebb93c3bc675a13c5f25ab853719; exact source ledger archived.
 
 - F6: ordinary source merge 5e92d05ea3cf7c943dd3a79e97223db10c8d74e0; exact source ledger archived.
+
+
+## Stage 2C accepted and F9a stage3A authorized (append-only)
+
+PR13 head db208be6da7442b9105efbd767a6a5ccf8c6d710 merged122f7b4edc7698e742658532e3e1a83010f39f17; head five checks and main post44883079762 policy/Debug/Release success, primary accepted metadata/history integration and local reference inspection.
+
+F9a original source030216fad26d2a2e0d3d3d9ef7edf057d66b07bc imported unchanged with historical FAIL/attempt1 preserved. Source/base ledgers archived z6/f9a/codex/source_ledgers. Current user authorized only VS2026 C++ workload installation; stage3A evidence pending, no new baseline or F2/F9b authorization.

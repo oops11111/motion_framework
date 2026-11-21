@@ -1,0 +1,24 @@
+{
+  "status": "PASS (local workload installation only)",
+  "instance_id": "bf096482",
+  "final_worker_pid": 34504,
+  "worker_log": "dd_installer_elevated_20261121163350.log",
+  "final_exit_code": 0,
+  "actual_exit_log_lines": [
+    "[86c8:0001][2026-11-21T16:56:26] Closing the installer with exit code 0",
+    "[86c8:0001][2026-11-21T16:56:26] Exit Code: 0"
+  ],
+  "launcher_exit_is_not_installation_acceptance": true,
+  "restart_required": false,
+  "postflight": "postflight.json",
+  "scope": "NativeDesktop workload and recommended dependencies, one existing VS2026 instance",
+  "limitations": [
+    "Final installer errors log records Error0x80070005 at 16:56:20 AWST: Could not sync DCAT registration, access denied to HKLM/SOFTWARE/Microsoft/Windows NT/CurrentVersion/Update/TargetingInfo/PersistentDynamicInstalled. Final installer exited0 and workload/component/tool readiness checks passed, but DCAT sync failed and downstream impact was not assessed. No repair/registry change/reinstall attempted.",
+    "NGEN System.Design output warned that Microsoft.Data.SqlClient could not be loaded; NGEN and final installer exited0. No repair or additional install was attempted.",
+    "No Files baseline build/GUI/package activation, no F2/F9b authorization.",
+    "Cloud CI validates repository evidence integrity; it cannot independently reproduce local installation."
+  ],
+  "installer_script_sha256": "c6e914812e2f7651fdaf6614c78a2688a70baac1fa9183adf3493866880b26d2",
+  "postflight_script_sha256": "2dce8b042343b62044133a3e462ae54101139207c143ba8f9e961c61acf7c350",
+  "watch_end": "Read-only 60x20sec watch reached its loop bound; installation was not stopped. Independent final postflight records no remaining installer processes."
+}

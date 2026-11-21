@@ -1,0 +1,216 @@
+{
+  "utc": "2026-11-21T08:33:26.8356762Z",
+  "dotnet_sdks": [
+    "8.0.428 [%ProgramFiles%\\dotnet\\sdk]",
+    "9.0.321 [%ProgramFiles%\\dotnet\\sdk]",
+    "10.0.300 [%ProgramFiles%\\dotnet\\sdk]"
+  ],
+  "installer_sha256": "BDF0005C1404E198443211114DA87022B39CAA5176ABD4EE2E62BA315E831300",
+  "administrator": false,
+  "process_id": 65836,
+  "existing_dd_logs": [
+    {
+      "Name": "dd_BackgroundDownload_20261121123051_00_setup_errors.log",
+      "Length": 0,
+      "LastWriteTimeUtc": "2026-11-21T04:30:59.06528Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121123051_00_setup.log",
+      "Length": 2853294,
+      "LastWriteTimeUtc": "2026-11-21T04:32:23.7899003Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121123051_01_setup_errors.log",
+      "Length": 0,
+      "LastWriteTimeUtc": "2026-11-21T04:32:23.9396384Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121123051_01_setup.log",
+      "Length": 784,
+      "LastWriteTimeUtc": "2026-11-21T04:32:26.124032Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121123051_result_Success.log",
+      "Length": 0,
+      "LastWriteTimeUtc": "2026-11-21T04:32:26.1290349Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121123051.log",
+      "Length": 2867482,
+      "LastWriteTimeUtc": "2026-11-21T04:32:26.1270317Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121153028_result_Success.log",
+      "Length": 0,
+      "LastWriteTimeUtc": "2026-11-21T07:34:27.8671789Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121153028.log",
+      "Length": 7638,
+      "LastWriteTimeUtc": "2026-11-21T07:34:27.8961779Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121153052_00_setup_errors.log",
+      "Length": 0,
+      "LastWriteTimeUtc": "2026-11-21T07:30:58.5403744Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121153052_00_setup.log",
+      "Length": 2839661,
+      "LastWriteTimeUtc": "2026-11-21T07:34:23.0430346Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121153052_01_setup_errors.log",
+      "Length": 0,
+      "LastWriteTimeUtc": "2026-11-21T07:34:23.1926987Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121153052_01_setup.log",
+      "Length": 779,
+      "LastWriteTimeUtc": "2026-11-21T07:34:25.2129723Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121153052_result_Success.log",
+      "Length": 0,
+      "LastWriteTimeUtc": "2026-11-21T07:34:25.2169718Z"
+    },
+    {
+      "Name": "dd_BackgroundDownload_20261121153052.log",
+      "Length": 2854046,
+      "LastWriteTimeUtc": "2026-11-21T07:34:25.2159722Z"
+    },
+    {
+      "Name": "dd_installer_20261118082952.log",
+      "Length": 2312,
+      "LastWriteTimeUtc": "2026-11-18T00:29:53.4560797Z"
+    },
+    {
+      "Name": "dd_installer_20261118083024.log",
+      "Length": 2476,
+      "LastWriteTimeUtc": "2026-11-18T00:30:25.066238Z"
+    },
+    {
+      "Name": "dd_installer_20261118083107.log",
+      "Length": 3210,
+      "LastWriteTimeUtc": "2026-11-18T00:31:09.1539738Z"
+    },
+    {
+      "Name": "dd_vs_setup_bootstrapper_decompression_log.txt",
+      "Length": 814,
+      "LastWriteTimeUtc": "2026-11-18T04:30:59.6087254Z"
+    }
+  ],
+  "installer_signature": "Valid",
+  "session_id": 1,
+  "attempt": "20261121T083326Z",
+  "signer": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+  "instances": [
+    {
+      "instanceId": "8805f93c",
+      "installDate": "2026-06-16T08:04:36Z",
+      "installationName": "VisualStudio/17.14.34+37328.6",
+      "installationPath": "%ProgramFiles(x86)%\\Microsoft Visual Studio\\2022\\BuildTools",
+      "installationVersion": "17.14.37328.6",
+      "productId": "Microsoft.VisualStudio.Product.BuildTools",
+      "productPath": "%ProgramFiles(x86)%\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\Tools\\LaunchDevCmd.bat",
+      "state": 4294967295,
+      "isComplete": true,
+      "isLaunchable": true,
+      "isPrerelease": false,
+      "isRebootRequired": false,
+      "displayName": "Visual Studio ���ɹ��� 2022",
+      "description": "Visual Studio ���ɹ����������ɱ����ͻ��� MSBuild ���й� .NET Ӧ�ó��򣬶�����Ҫ Visual Studio IDE��������ѡ��װ Visual C++ �������Ϳ⡢MFC��ALT �� C++/CLI ֧�֡�",
+      "channelId": "VisualStudio.17.Release",
+      "channelUri": "https://aka.ms/vs/17/release/channel",
+      "enginePath": "%ProgramFiles(x86)%\\Microsoft Visual Studio\\Installer\\resources\\app\\ServiceHub\\Services\\Microsoft.VisualStudio.Setup.Service",
+      "installChannelUri": "https://aka.ms/vs/17/release/626743089_-1622078805/channel",
+      "installedChannelId": "VisualStudio.17.Release",
+      "installedChannelUri": "https://aka.ms/vs/17/release/channel",
+      "releaseNotes": "https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes-v17.14#17.14.34",
+      "resolvedInstallationPath": "%ProgramFiles(x86)%\\Microsoft Visual Studio\\2022\\BuildTools",
+      "thirdPartyNotices": "https://go.microsoft.com/fwlink/?LinkId=661288",
+      "updateDate": "2026-06-16T08:04:36.7265398Z",
+      "catalog": {
+        "buildBranch": "d17.14",
+        "buildVersion": "17.14.37328.6",
+        "id": "VisualStudio/17.14.34+37328.6",
+        "localBuild": "build-lab",
+        "manifestName": "VisualStudio",
+        "manifestType": "installer",
+        "productDisplayVersion": "17.14.34",
+        "productLine": "Dev17",
+        "productLineVersion": "2022",
+        "productMilestone": "RTW",
+        "productMilestoneIsPreRelease": "False",
+        "productName": "Visual Studio",
+        "productPatchVersion": "34",
+        "productPreReleaseMilestoneSuffix": "1.0",
+        "productSemanticVersion": "17.14.34+37328.6",
+        "requiredEngineVersion": "3.14.2086.54749"
+      },
+      "properties": {
+        "campaignId": "",
+        "channelManifestId": "VisualStudio.17.Release/17.14.34+37328.6",
+        "includeRecommended": "0",
+        "nickname": "",
+        "setupEngineFilePath": "%ProgramFiles(x86)%\\Microsoft Visual Studio\\Installer\\setup.exe"
+      }
+    },
+    {
+      "instanceId": "bf096482",
+      "installDate": "2026-05-29T07:18:52Z",
+      "installationName": "VisualStudio/18.6.2+11822.322",
+      "installationPath": "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community",
+      "installationVersion": "18.6.11822.322",
+      "productId": "Microsoft.VisualStudio.Product.Community",
+      "productPath": "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\devenv.exe",
+      "state": 4294967295,
+      "isComplete": true,
+      "isLaunchable": true,
+      "isPrerelease": false,
+      "isRebootRequired": false,
+      "displayName": "Visual Studio Community 2026",
+      "description": "������ʽӦ�������һ������ - ����ṩ�����ڸ�Ч������",
+      "channelId": "VisualStudio.18.Release",
+      "channelUri": "https://aka.ms/vs/18/stable/channel",
+      "enginePath": "%ProgramFiles(x86)%\\Microsoft Visual Studio\\Installer\\resources\\app\\ServiceHub\\Services\\Microsoft.VisualStudio.Setup.Service",
+      "expirationDate": "2026-08-21T01:00:00+08:00",
+      "installedChannelId": "VisualStudio.18.Release",
+      "installedChannelUri": "https://aka.ms/vs/18/stable/channel",
+      "releaseNotes": "https://docs.microsoft.com/en-us/visualstudio/releases/18/release-notes-v18.6#18.6.2",
+      "resolvedInstallationPath": "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community",
+      "retirementDate": "2026-11-19T01:00:00+08:00",
+      "thirdPartyNotices": "https://go.microsoft.com/fwlink/?LinkId=661480",
+      "updateDate": "2026-05-29T07:18:52.6048389Z",
+      "catalog": {
+        "buildBranch": "stable",
+        "buildVersion": "18.6.11822.322",
+        "featureReleaseMonth": "05",
+        "featureReleaseYear": "2026",
+        "id": "VisualStudio/18.6.2+11822.322",
+        "includeBuildVersionInDisplayVersion": "False",
+        "localBuild": "build-lab",
+        "manifestName": "VisualStudio",
+        "manifestType": "installer",
+        "productDisplayVersion": "18.6.2",
+        "productLine": "Dev18",
+        "productLineVersion": "18",
+        "productMilestone": "RTW",
+        "productMilestoneIsPreRelease": "False",
+        "productName": "Visual Studio",
+        "productPatchVersion": "2",
+        "productPreReleaseMilestoneSuffix": "1.0",
+        "productRelease": "RTW",
+        "productSemanticVersion": "18.6.2+11822.322",
+        "requiredEngineVersion": "4.6.58.48107"
+      },
+      "properties": {
+        "campaignId": "2500:d66e8fd69a534f049cbd0da8462756cb",
+        "channelManifestId": "VisualStudio.18.Release/18.6.2+11822.322",
+        "includeRecommended": "1",
+        "nickname": "",
+        "setupEngineFilePath": "%ProgramFiles(x86)%\\Microsoft Visual Studio\\Installer\\setup.exe"
+      }
+    }
+  ]
+}

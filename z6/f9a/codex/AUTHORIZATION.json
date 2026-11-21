@@ -1,0 +1,9 @@
+{
+  "user_verbatim": "VS 2026 C++ 工作负载可以由你安装",
+  "source": "Direct user response in current root conversation",
+  "recorded_awst": "2026-11-21 16:26:38 AWST",
+  "recording_is_not_send_time": true,
+  "message_id": "unavailable",
+  "scope": "Existing VS2026 Community NativeDesktop workload and recommended dependencies only; user personally handles UAC; no automatic restart/force-close/paid upgrade/accounts",
+  "excluded": "F2 adjudication, NU1903 exceptions, package registration, F9b, other installs"
+}

@@ -1,0 +1,3 @@
+10.0.300  FileVersion=5.600.26.23102  ProductVersion=5.6.0-2.26230.102+caa81fa4971f74880cdab61990cb1b11420939ec  path=%ProgramFiles%\dotnet\sdk\10.0.300\Roslyn\bincore\Microsoft.CodeAnalysis.dll
+8.0.428  FileVersion=4.1100.25.56922  ProductVersion=4.11.0-3.25569.22+3fb752d448006a3144a60ccf181d745e555422f9  path=%ProgramFiles%\dotnet\sdk\8.0.428\Roslyn\bincore\Microsoft.CodeAnalysis.dll
+9.0.321  FileVersion=4.1400.26.6401  ProductVersion=4.14.0-3.26064.1+450493a9b4ec6337bced0120e97cb76f4ed783db  path=%ProgramFiles%\dotnet\sdk\9.0.321\Roslyn\bincore\Microsoft.CodeAnalysis.dll

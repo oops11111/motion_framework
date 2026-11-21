@@ -1,0 +1,22 @@
+{
+  "utc": "2026-11-21T08:44:58.9069166Z",
+  "state_lastwrite": "2026-11-21T08:40:36.1653648Z",
+  "selected_packages": [
+    {
+      "id": "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
+      "version": "18.6.11706.339",
+      "type": "Component",
+      "selectedState": "GroupSelected",
+      "userSelectedState": "Implicit"
+    },
+    {
+      "id": "Microsoft.VisualStudio.Workload.NativeDesktop",
+      "version": "18.6.11706.339",
+      "type": "Workload",
+      "productArch": "x64",
+      "selectedState": "GroupSelected",
+      "userSelectedState": "Explicit"
+    }
+  ],
+  "note": "Selection only, not installed acceptance"
+}

@@ -1,0 +1,28 @@
+name: Z6 F9a environment evidence
+
+on:
+  push:
+    branches: [codex/z6-f9a]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'pilot/files/**'
+      - 'z6/f9a/**'
+      - '.github/workflows/z6-f9a.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  environment-evidence:
+    if: github.head_ref == 'codex/z6-f9a' || github.ref == 'refs/heads/codex/z6-f9a'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify historical evidence and environment record integrity
+        run: python z6/f9a/codex/verify.py

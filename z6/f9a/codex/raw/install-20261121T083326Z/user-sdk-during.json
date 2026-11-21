@@ -1,0 +1,11 @@
+{
+  "version_sha256": "7C640DDF62826144982BFD8F9E9CF5D888E0B4E4A673822F6647C39C51CD3BF4",
+  "dotnet_host": true,
+  "version_file": {
+    "Length": 101,
+    "LastWriteTimeUtc": "2026-10-29T21:30:42Z"
+  },
+  "exists": true,
+  "path": "%USERPROFILE%\\.dotnet\\sdk\\10.0.404",
+  "utc": "2026-11-21T08:37:13.1848412Z"
+}

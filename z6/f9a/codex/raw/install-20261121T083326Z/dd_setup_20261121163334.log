@@ -1,0 +1,76 @@
+[b8e8:0021][2026-11-21T16:33:34] Setup Engine v4.7.25, Microsoft Windows NT 10.0.19045.0
+[b8e8:0021][2026-11-21T16:33:34] Command line: "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\setup.exe" modify --installPath "%ProgramFiles%\Microsoft Visual Studio\18\Community" --channelId VisualStudio.18.Release --add "Microsoft.VisualStudio.Workload.NativeDesktop;includeRecommended" --quiet --norestart
+[b8e8:0021][2026-11-21T16:33:34] Loading packages for instance 'bf096482'
+[b8e8:0021][2026-11-21T16:33:36] DependencyComparer was created without a productArch. productArch will be ignored for dependency comparison.
+[b8e8:0021][2026-11-21T16:33:36] Compatible ProductCode '{C98BEAD5-CC51-48D4-BF36-A6CF0173B6ED}' found for package 'Microsoft.VisualStudio.MinShell.Msi,version=18.6.11706.339,productarch=arm64'
+[b8e8:0021][2026-11-21T16:33:36] Compatible package version is less than or equal to the package version. Code '{C98BEAD5-CC51-48D4-BF36-A6CF0173B6ED}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:36] Switching package detection state from 'Superseded' to 'Absent' since package version '18.6.11706.339' is greater than installed version '18.6.11706'
+[b8e8:0021][2026-11-21T16:33:36] Compatible ProductCode '{9B4FAB35-D508-479A-9E8A-366D8E4767A5}' found for package 'Microsoft.VisualStudio.Community.Msi,version=18.6.11706.339,machinearch=x86'
+[b8e8:0021][2026-11-21T16:33:36] Compatible package version is less than or equal to the package version. Code '{9B4FAB35-D508-479A-9E8A-366D8E4767A5}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Switching package detection state from 'Superseded' to 'Absent' since package version '18.6.11706.339' is greater than installed version '17.0.157.0'
+[b8e8:0021][2026-11-21T16:33:37] Switching package detection state from 'Superseded' to 'Absent' since package version '18.6.11706.339' is greater than installed version '17.0.157.0'
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{BD4C49AC-2A45-48B0-B3F7-0C6043987AD0}' found for package 'Microsoft.Net.4.8.1.SDK,version=4.8.9037.0'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{BD4C49AC-2A45-48B0-B3F7-0C6043987AD0}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{94DDB521-CDD4-4A83-BBE0-D3C856FE9420}' found for package 'Microsoft.Net.4.8.1.TargetingPack,version=4.8.9037.0'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{94DDB521-CDD4-4A83-BBE0-D3C856FE9420}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{BC104582-4691-4D4C-8922-C215D941A2EB}' found for package 'Microsoft.VisualCpp.RuntimeDebug.14,version=14.51.36231,chip=x86'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{BC104582-4691-4D4C-8922-C215D941A2EB}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{FE85AA49-3522-4663-9F52-9CD9E9837189}' found for package 'Microsoft.VisualCpp.RuntimeDebug.14,version=14.51.36231,chip=x64,machinearch=x64'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{FE85AA49-3522-4663-9F52-9CD9E9837189}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{FE85AA49-3522-4663-9F52-9CD9E9837189}' found for package 'Microsoft.VisualCpp.RuntimeDebug.14.ARM64,version=14.51.36231,chip=x64,machinearch=arm64'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{FE85AA49-3522-4663-9F52-9CD9E9837189}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{DF851A3A-E220-3C52-A99A-960D792154E8}' found for package 'Microsoft.Windows.UniversalCRT.Tools.Msi,version=10.0.26624,chip=x86'
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{C496F4B2-CF3E-4CC4-7F6E-F9CE56BFFCA6}' found for package 'Microsoft.Windows.UniversalCRT.Tools.Msi,version=10.0.26624,chip=x64'
+[b8e8:0021][2026-11-21T16:33:37] Loaded existing instance for product 'Microsoft.VisualStudio.Product.Community,version=18.6.11822.322,chip=x64,productarch=x64'
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{BD4C49AC-2A45-48B0-B3F7-0C6043987AD0}' found for package 'Microsoft.Net.4.8.1.SDK,version=4.8.9037.0'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{BD4C49AC-2A45-48B0-B3F7-0C6043987AD0}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{94DDB521-CDD4-4A83-BBE0-D3C856FE9420}' found for package 'Microsoft.Net.4.8.1.TargetingPack,version=4.8.9037.0'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{94DDB521-CDD4-4A83-BBE0-D3C856FE9420}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{BC104582-4691-4D4C-8922-C215D941A2EB}' found for package 'Microsoft.VisualCpp.RuntimeDebug.14,version=14.51.36231,chip=x86'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{BC104582-4691-4D4C-8922-C215D941A2EB}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{FE85AA49-3522-4663-9F52-9CD9E9837189}' found for package 'Microsoft.VisualCpp.RuntimeDebug.14,version=14.51.36231,chip=x64,machinearch=x64'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{FE85AA49-3522-4663-9F52-9CD9E9837189}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{DF851A3A-E220-3C52-A99A-960D792154E8}' found for package 'Microsoft.Windows.UniversalCRT.Tools.Msi,version=10.0.26624,chip=x86'
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{C496F4B2-CF3E-4CC4-7F6E-F9CE56BFFCA6}' found for package 'Microsoft.Windows.UniversalCRT.Tools.Msi,version=10.0.26624,chip=x64'
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.Windows.UniversalCRT.Msu.8 is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.2,6.3)”中。
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.Windows.UniversalCRT.Msu.81 is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.3,6.4)”中。
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.Net.4.8.FullRedist is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.1.1,10.0.17763]”中。
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.Net.4.8.FullRedist.Resources is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.1.1,10.0.19042)”中。
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.Net.4.8.KB5003306 is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[10.0.18362,10.0.18363]”中。
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.Net.4.8.KB5003304 is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[10.0.19041,10.0.19042)”中。
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.VisualStudio.NuGet.PowershellBindingRedirect is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.1,6.2)”中。
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.Ancm.IIS.Msi is not applicable: 未满足所需条件: IISCoreWebEngineInstalledx64 And IISW3SvcInstalledx64
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.Ancmv2.IIS.Msi is not applicable: 未满足所需条件: IISCoreWebEngineInstalledx64 And IISW3SvcInstalledx64
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.VisualStudio.ComponentGroup.IISDevelopment is not applicable: 未满足所需条件: IISCoreWebEngineInstalledx64 And IISW3SvcInstalledx64
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{BD4C49AC-2A45-48B0-B3F7-0C6043987AD0}' found for package 'Microsoft.Net.4.8.1.SDK,version=4.8.9037.0'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{BD4C49AC-2A45-48B0-B3F7-0C6043987AD0}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{94DDB521-CDD4-4A83-BBE0-D3C856FE9420}' found for package 'Microsoft.Net.4.8.1.TargetingPack,version=4.8.9037.0'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{94DDB521-CDD4-4A83-BBE0-D3C856FE9420}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Package Microsoft.Windows.UniversalCRT.Msu.7 is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.1,6.2)”中。
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{BC104582-4691-4D4C-8922-C215D941A2EB}' found for package 'Microsoft.VisualCpp.RuntimeDebug.14,version=14.51.36231,chip=x86'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{BC104582-4691-4D4C-8922-C215D941A2EB}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:37] Compatible ProductCode '{FE85AA49-3522-4663-9F52-9CD9E9837189}' found for package 'Microsoft.VisualCpp.RuntimeDebug.14,version=14.51.36231,chip=x64,machinearch=x64'
+[b8e8:0021][2026-11-21T16:33:37] Compatible package version is less than or equal to the package version. Code '{FE85AA49-3522-4663-9F52-9CD9E9837189}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:38] Compatible ProductCode '{DF851A3A-E220-3C52-A99A-960D792154E8}' found for package 'Microsoft.Windows.UniversalCRT.Tools.Msi,version=10.0.26624,chip=x86'
+[b8e8:0021][2026-11-21T16:33:38] Compatible ProductCode '{C496F4B2-CF3E-4CC4-7F6E-F9CE56BFFCA6}' found for package 'Microsoft.Windows.UniversalCRT.Tools.Msi,version=10.0.26624,chip=x64'
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.Windows.UniversalCRT.Msu.8 is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.2,6.3)”中。
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.Windows.UniversalCRT.Msu.81 is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.3,6.4)”中。
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.Net.4.8.FullRedist is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.1.1,10.0.17763]”中。
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.Net.4.8.FullRedist.Resources is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.1.1,10.0.19042)”中。
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.Net.4.8.KB5003306 is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[10.0.18362,10.0.18363]”中。
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.Net.4.8.KB5003304 is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[10.0.19041,10.0.19042)”中。
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.VisualStudio.NuGet.PowershellBindingRedirect is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.1,6.2)”中。
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.Ancm.IIS.Msi is not applicable: 未满足所需条件: IISCoreWebEngineInstalledx64 And IISW3SvcInstalledx64
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.Ancmv2.IIS.Msi is not applicable: 未满足所需条件: IISCoreWebEngineInstalledx64 And IISW3SvcInstalledx64
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.VisualStudio.ComponentGroup.IISDevelopment is not applicable: 未满足所需条件: IISCoreWebEngineInstalledx64 And IISW3SvcInstalledx64
+[b8e8:0021][2026-11-21T16:33:38] Compatible ProductCode '{BD4C49AC-2A45-48B0-B3F7-0C6043987AD0}' found for package 'Microsoft.Net.4.8.1.SDK,version=4.8.9037.0'
+[b8e8:0021][2026-11-21T16:33:38] Compatible package version is less than or equal to the package version. Code '{BD4C49AC-2A45-48B0-B3F7-0C6043987AD0}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:38] Compatible ProductCode '{94DDB521-CDD4-4A83-BBE0-D3C856FE9420}' found for package 'Microsoft.Net.4.8.1.TargetingPack,version=4.8.9037.0'
+[b8e8:0021][2026-11-21T16:33:38] Compatible package version is less than or equal to the package version. Code '{94DDB521-CDD4-4A83-BBE0-D3C856FE9420}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:38] Package Microsoft.Windows.UniversalCRT.Msu.7 is not applicable: 当前 OS 版本“10.0.19045.0”不在支持的版本范围“[6.1,6.2)”中。
+[b8e8:0021][2026-11-21T16:33:38] Compatible ProductCode '{BC104582-4691-4D4C-8922-C215D941A2EB}' found for package 'Microsoft.VisualCpp.RuntimeDebug.14,version=14.51.36231,chip=x86'
+[b8e8:0021][2026-11-21T16:33:38] Compatible package version is less than or equal to the package version. Code '{BC104582-4691-4D4C-8922-C215D941A2EB}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:38] Compatible ProductCode '{FE85AA49-3522-4663-9F52-9CD9E9837189}' found for package 'Microsoft.VisualCpp.RuntimeDebug.14,version=14.51.36231,chip=x64,machinearch=x64'
+[b8e8:0021][2026-11-21T16:33:38] Compatible package version is less than or equal to the package version. Code '{FE85AA49-3522-4663-9F52-9CD9E9837189}' will not be used for repair/uninstall attempts.
+[b8e8:0021][2026-11-21T16:33:38] Compatible ProductCode '{DF851A3A-E220-3C52-A99A-960D792154E8}' found for package 'Microsoft.Windows.UniversalCRT.Tools.Msi,version=10.0.26624,chip=x86'
+[b8e8:0021][2026-11-21T16:33:38] Compatible ProductCode '{C496F4B2-CF3E-4CC4-7F6E-F9CE56BFFCA6}' found for package 'Microsoft.Windows.UniversalCRT.Tools.Msi,version=10.0.26624,chip=x64'

@@ -1,0 +1,3 @@
+msbuild=%ProgramFiles%\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\amd64\MSBuild.exe
+msbuild %SOLUTION_PATH% -t:Restore -p:Platform=x64 -p:Configuration=Debug -p:PublishReadyToRun=true -v:quiet
+msbuild %APP_PROJECT_PATH% -t:Build -p:Configuration=Debug -p:Platform=x64 -p:AppxBundle=Never -p:GenerateAppxPackageOnBuild=false -v:quiet
