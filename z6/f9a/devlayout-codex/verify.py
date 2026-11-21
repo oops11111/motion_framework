@@ -23,5 +23,5 @@ def main():
  manifest=H/"SHA256SUMS";entries=[l.split("  ",1) for l in manifest.read_text().splitlines()];files={f.relative_to(H).as_posix() for f in H.rglob("*") if f.is_file() and f!=manifest and "__pycache__" not in f.parts}
  assert {n for _,n in entries}==files and len(entries)==len(files)
  for sha,n in entries:assert hashlib.sha256(content(H/n)).hexdigest()==sha,n;assert (H/n).stat().st_size<5000000
- print(json.dumps({"status":"PASS","sealed_files":len(files),"source_destination_pairs":1328,"GateM":"First attempt STOP before activation; exact cleanup completed","scope":"Recorded GateL evidence integrity, no runtime GUI claim"},indent=2))
+ print(json.dumps({"status":"PASS","sealed_files":len(files),"source_destination_pairs":1328,"GateM":"Two attempts STOP before activation; both exact cleanup completed","scope":"Recorded GateL evidence integrity, no runtime GUI claim"},indent=2))
 if __name__=="__main__":main()

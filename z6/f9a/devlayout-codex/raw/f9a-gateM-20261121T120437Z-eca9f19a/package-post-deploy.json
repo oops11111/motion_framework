@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "FilesDev",
+    "PackageFullName": "FilesDev_4.3.0.0_x64__ykqwq8d6ps0ag",
+    "PackageFamilyName": "FilesDev_ykqwq8d6ps0ag",
+    "Version": "4.3.0.0",
+    "Architecture": 9,
+    "Publisher": "CN=Files",
+    "InstallLocation": "%WORKSPACE%\\m0\\out\\f9a-devlayout-20261121T115207Z-c7612b64\\layout",
+    "Status": 0
+  }
+]
