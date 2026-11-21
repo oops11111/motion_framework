@@ -1,0 +1,5 @@
+# Non-activation helper validation after M2
+
+Primary approved only this minimal compatibility correction and validation, not a third registration. ActivateNormally.ps1 now computes identical authority bytes with existing .NET SHA256.Create().ComputeHash(ReadAllBytes), replacing only Get-FileHash. Explicit UTF8 reads remain. ValidateOnly follows the actual authority/instruction guard and Add-Type COM class compilation, then returns before package query, Launch, Activator.CreateInstance or ActivateApplication. Real execution mode still requires exact installed-package/App/empty-args checks before Launch. Default without Execute/ValidateOnly still prints dryrun only.
+
+Actual WinPS5 ValidateOnly invocation exited0: auth_guard=true/COM_compiled=true/activation NOT_EXECUTED; no package query, registration, UIA or statefile creation. Full command, output, helper SHA and residual FilesDev data[] are in raw/M-dotnetsha-validateonly/result.json. PSParser also passed. Existing M1/M2 raw and reports unchanged. A third registration requires primary review and a separate continuation release; none has run.
