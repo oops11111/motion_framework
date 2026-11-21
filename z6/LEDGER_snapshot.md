@@ -65,3 +65,5 @@ PR #12 head6191d9db816d56c3d8d34cbb76f4791341c4e4c9 merged as8c5cc6f31ca2be79698
 Exact historical evidence imported; source ledger snapshots at z6/integration/pack/source_ledgers. Local reference inspection is separate from original F7/F11/F6 acceptance, not a current-main pack rebuild or fresh host GUI/relocation/corruption run.
 
 - F7: ordinary source merge 6b9f4767829add919cb6e626f45208f2ecf59614; exact source ledger archived.
+
+- F11: ordinary source merge c3fb8d926458ebb93c3bc675a13c5f25ab853719; exact source ledger archived.
