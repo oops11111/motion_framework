@@ -1,0 +1,11 @@
+head=7e2feb0e98f69cf45fff8da4e60220d2b24a5e1a time=2026-11-18 07:29:38 +08:00
+Get-FileHash FluidMotion.L1.dll = 94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2
+Get-FileHash fluidmotion.dll = add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d
+Get-FileHash demo_motion.json = 8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e
+Get-FileHash MotionNative\fluidmotion.dll = add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d
+Get-FileHash code\capi\demo_motion.json = 8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e
+git hash-object MotionSoftDemo/MotionEtw.cs = 0404498ab4cb7e96168405a7ffb63591686797ca expected=0404498ab4cb7e96168405a7ffb63591686797ca match=True
+git hash-object MotionSoftDemo/MotionSystem.cs = fe72b08f9445723f926a2928345e23311503efec expected=fe72b08f9445723f926a2928345e23311503efec match=True
+surface_l1pack.txt lines=47 new lines=47
+differing_line_numbers=[]
+only_first_line_may_differ=True

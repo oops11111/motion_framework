@@ -1,0 +1,9 @@
+  正在确定要还原的项目…
+  已还原 %USERPROFILE%\mf_z6\f7\pilot\l1pack\FluidMotion.L1.csproj (用时 293 毫秒)。
+  FluidMotion.L1 -> %USERPROFILE%\mf_z6\f7\pilot\l1pack\bin\x64\Release\net8.0\FluidMotion.L1.dll
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:04.27
