@@ -1,0 +1,214 @@
+{
+  "status": "PASS (M manual layout main-page and exact cleanup)",
+  "attempt": "%WORKSPACE%\\m0\\out\\f9a-gateM-20261121T121105Z-994a1615",
+  "cleanup_complete": true,
+  "layout_PRE": {
+    "files": 1328,
+    "inventory_sha256": "0bfdf5bbae22fc3734ba9987be2ecd10f7e64b02f0cddccd8aa912130a7f7f43",
+    "destination_hashes_sha256": "2d910d3a01c751fa7a4bd00e4578e1455d36936c9438922b772a60463bd15fbd",
+    "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4"
+  },
+  "source_PRE": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": "",
+    "tracked_diff": ""
+  },
+  "PRE": [],
+  "runtime_PRE": [
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.5.1.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.6.5.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 0,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    }
+  ],
+  "state_PRE": {
+    "protocol": null,
+    "associations": [
+      {
+        "value": null,
+        "ext": ".zip"
+      },
+      {
+        "value": null,
+        "ext": ".7z"
+      },
+      {
+        "value": null,
+        "ext": ".rar"
+      },
+      {
+        "value": null,
+        "ext": ".tar"
+      },
+      {
+        "value": null,
+        "ext": ".jar"
+      },
+      {
+        "value": null,
+        "ext": ".mrpack"
+      },
+      {
+        "value": null,
+        "ext": ".gz"
+      }
+    ]
+  },
+  "all_packages_PRE_sha256": "ba513b466f0c43eae62d5d41bdc18f06d72ac9562d7493916e4a67104bb13239",
+  "registration_exit": 0,
+  "all_packages_AFTER_DEPLOY_sha256": "63a1a3979e71e6a077c6a354c3627364bf671243bd7c66efde11f89055acec66",
+  "other_package_delta_after_deploy": {
+    "added": [],
+    "removed": []
+  },
+  "deployed_files": {
+    "Files.exe": {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-devlayout-20261121T115207Z-c7612b64\\layout\\Files.exe",
+      "sha256": "e5e8765c4fb1a69429c919b508e99b5e49773eb173b91cee58a2a8e3bd3d30b3"
+    },
+    "Files.dll": {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-devlayout-20261121T115207Z-c7612b64\\layout\\Files.dll",
+      "sha256": "0083066016670606f13e63a5660c12f5b450af5dcf65d848b9e85666a0fc20d7"
+    },
+    "AppxManifest.xml": {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-devlayout-20261121T115207Z-c7612b64\\layout\\AppxManifest.xml",
+      "sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4"
+    }
+  },
+  "identity_verified": {
+    "pid": 61852,
+    "exe": "%WORKSPACE%\\m0\\out\\f9a-devlayout-20261121T115207Z-c7612b64\\layout\\Files.exe",
+    "exe_sha256": "e5e8765c4fb1a69429c919b508e99b5e49773eb173b91cee58a2a8e3bd3d30b3",
+    "package": "FilesDev_4.3.0.0_x64__ykqwq8d6ps0ag",
+    "start_time": {
+      "Id": 61852,
+      "StartTime": "/Date(1795263098268)/"
+    }
+  },
+  "mainpage_ready": {
+    "hwnd": "0x355121a",
+    "visible": true,
+    "pid": 61852,
+    "marker": "SettingsButton",
+    "ready": true,
+    "exists": true,
+    "enabled": true
+  },
+  "normal_close_exit": 0,
+  "removed_exact_fullname": "FilesDev_4.3.0.0_x64__ykqwq8d6ps0ag",
+  "POST": [],
+  "state_POST": {
+    "protocol": null,
+    "associations": [
+      {
+        "value": null,
+        "ext": ".zip"
+      },
+      {
+        "value": null,
+        "ext": ".7z"
+      },
+      {
+        "value": null,
+        "ext": ".rar"
+      },
+      {
+        "value": null,
+        "ext": ".tar"
+      },
+      {
+        "value": null,
+        "ext": ".jar"
+      },
+      {
+        "value": null,
+        "ext": ".mrpack"
+      },
+      {
+        "value": null,
+        "ext": ".gz"
+      }
+    ]
+  },
+  "runtime_POST": [
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.5.1.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.6.5.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 0,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    }
+  ],
+  "source_POST": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": "",
+    "tracked_diff": ""
+  },
+  "layout_POST": {
+    "files": 1328,
+    "inventory_sha256": "0bfdf5bbae22fc3734ba9987be2ecd10f7e64b02f0cddccd8aa912130a7f7f43",
+    "destination_hashes_sha256": "2d910d3a01c751fa7a4bd00e4578e1455d36936c9438922b772a60463bd15fbd",
+    "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4"
+  },
+  "all_packages_POST_sha256": "ba513b466f0c43eae62d5d41bdc18f06d72ac9562d7493916e4a67104bb13239",
+  "other_package_delta_final": {
+    "added": [],
+    "removed": []
+  },
+  "state_changed": false,
+  "state_comparison_available": true,
+  "owned_package": {
+    "Name": "FilesDev",
+    "PackageFullName": "FilesDev_4.3.0.0_x64__ykqwq8d6ps0ag",
+    "PackageFamilyName": "FilesDev_ykqwq8d6ps0ag",
+    "Version": "4.3.0.0",
+    "Architecture": 9,
+    "Publisher": "CN=Files",
+    "InstallLocation": "%WORKSPACE%\\m0\\out\\f9a-devlayout-20261121T115207Z-c7612b64\\layout",
+    "Status": 0
+  }
+}
