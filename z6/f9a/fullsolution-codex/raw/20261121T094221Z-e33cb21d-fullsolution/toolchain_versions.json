@@ -1,0 +1,14 @@
+[
+  {
+    "path": "%USERPROFILE%\\.dotnet\\sdk\\10.0.404\\Roslyn\\bincore\\Microsoft.CodeAnalysis.dll",
+    "sha256": "A146BFC7B91475BD17A69E71ED3D8310CFB8DDFA2CAFA18BB3DC25690257286A",
+    "file_version": "5.900.26.53019",
+    "product_version": "5.9.0-1.26529.119+2ab2854867733112c84ac12c4273d7970ac3afdf"
+  },
+  {
+    "path": "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+    "sha256": "D649F3EAD8CBEDEDF63500A5D926FB4402D2CFC5B311F88A7D1D2E7EF036CAF8",
+    "file_version": "18.6.3.22110",
+    "product_version": "18.6.3+84d3e95b46e9154d9504eba69a5fbc6993ff543d"
+  }
+]
