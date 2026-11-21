@@ -1,0 +1,152 @@
+{
+  "route": "NON-ORIGINAL; sole WarningsNotAsErrors=NU1903 addition",
+  "commands": [
+    {
+      "label": "restore",
+      "argv": [
+        "dotnet",
+        "restore",
+        "FluentHub.slnx",
+        "-p:WarningsNotAsErrors=NU1903"
+      ],
+      "pid": 85584,
+      "started_utc": "2026-11-21T23:31:25.313202+00:00",
+      "route": "NON-ORIGINAL",
+      "child_arch_before": null,
+      "child_arch_after": "AMD64",
+      "PATH_changed": false,
+      "DOTNET_ROOT_changed": false,
+      "exit": 0,
+      "ended_utc": "2026-11-21T23:31:31.853062+00:00"
+    },
+    {
+      "label": "build",
+      "argv": [
+        "dotnet",
+        "build",
+        "FluentHub.slnx",
+        "-c",
+        "Debug",
+        "-p:WarningsNotAsErrors=NU1903"
+      ],
+      "pid": 94100,
+      "started_utc": "2026-11-21T23:31:31.866676+00:00",
+      "route": "NON-ORIGINAL",
+      "child_arch_before": null,
+      "child_arch_after": "AMD64",
+      "PATH_changed": false,
+      "DOTNET_ROOT_changed": false,
+      "exit": 1,
+      "ended_utc": "2026-11-21T23:32:28.349554+00:00"
+    }
+  ],
+  "captures": [
+    {
+      "name": "restore.stdout.log",
+      "original_bytes": 1114,
+      "original_sha256": "1f7877e8e9ce07400e2fb58d5020dc5c34d4e2bd0a7e6cccbe95dadd39a2f389",
+      "encoding": "UTF-8",
+      "replacement_characters": 0
+    },
+    {
+      "name": "restore.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "UTF-8",
+      "replacement_characters": 0
+    },
+    {
+      "name": "build.stdout.log",
+      "original_bytes": 3899,
+      "original_sha256": "45009ea856d18cdace3bf83870578bcc0bfc6c3652331dded6cb7e13ea63dbc5",
+      "encoding": "UTF-8",
+      "replacement_characters": 0
+    },
+    {
+      "name": "build.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "UTF-8",
+      "replacement_characters": 0
+    }
+  ],
+  "source_post": [
+    {
+      "path": "src/FluentHub/App.xaml.cs",
+      "sha256": "533a4b3133cfa45dad9729054bda269c160dbeb8545658390c30d729eb0056fb",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/FluentHub.csproj",
+      "sha256": "3d20c00ded8bf06200032f8fe10b5972230e4c4286f848a7e68dd175f38e1890",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/MainWindow.cs",
+      "sha256": "1a2e06d2809f380005e86505d48c9cac0f7b364138a81c5c3e269a522f98670d",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/RootView.xaml.cs",
+      "sha256": "6ef7c79cb381c8635b32f31756691f0a0c3a5acd6325f36fffcf2eac19f11f02",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/NavMotionPilot.cs",
+      "sha256": "2cf3bebc184fd05a26da3689fdf7ea8116216847f569a8481d5b9081d702b5ce",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/ReducedMotionState.cs",
+      "sha256": "c660d87c15ac756056c891cd6d1c3b15f0d02ac064ed8e4b574b8aef7a5e69ef",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/FakeReducedMotionSource.cs",
+      "sha256": "a2d2fcd5487aba6ce3373acd93963482885614bced9a2377e0c3fe5cab8e6873",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/WindowReducedMotionSource.cs",
+      "sha256": "4155456016e6f862a58670f5882add877d3e67aa09a98fd5c69e31a3f51485ac",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/RootRebuildState.cs",
+      "sha256": "f3b638372875462cf2f58818e3593bf756576ed11861f1cb24d060287369262b",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/PilotEventCounts.cs",
+      "sha256": "db2c29c33b5482742048628a474275fe27ec82951d23ef15b769219d81643ea7",
+      "matches_v2": true
+    }
+  ],
+  "source_post_matches": true,
+  "actual_configuration": "Debug",
+  "actual_platform": "arm64",
+  "actual_tfm": "net10.0-windows10.0.26100.0",
+  "actual_rid": "win-arm64",
+  "actual_platform_evidence": "build output Octokit/Core/Tests bin/arm64 and XamlCompiler obj/arm64/.../win-arm64/input.json",
+  "manifest_architecture": "NOT_PRODUCED",
+  "host_dll": "NOT_PRODUCED",
+  "output_api_checks": "NOT_EXECUTED: no successful host output",
+  "runtime": "NOT_EXECUTED",
+  "stop": "CS8012 FluidMotion.L1 targets another processor; XamlCompiler MSB3073",
+  "next_candidate_not_executed": "same solution command with explicit Platform=x64 requires separate decision",
+  "protected_diff": [],
+  "readonly_pack_post": [
+    {
+      "name": "FluidMotion.L1.dll",
+      "sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2"
+    },
+    {
+      "name": "fluidmotion.dll",
+      "sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d"
+    },
+    {
+      "name": "demo_motion.json",
+      "sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e"
+    }
+  ]
+}

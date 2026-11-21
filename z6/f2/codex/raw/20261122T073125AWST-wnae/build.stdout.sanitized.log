@@ -1,0 +1,22 @@
+  正在确定要还原的项目…
+%F2_SOURCE%\src\FluentHub\FluentHub.csproj : warning NU1903: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9 [%F2_SOURCE%\FluentHub.slnx]
+  所有项目均是最新的，无法还原。
+  FmL1VerifyPack: OK FluidMotion.L1.dll=94D6489D9BEC289732EA3E4A8540B052E576A7182BAE3F3367A3E72F04E10DC2 fluidmotion.dll=ADD4857DEAD413F8211941381C6AA8F73C546F3ECAE1774ACED79C464719577D demo_motion.json=8D5DB5775ACAD5DB0C04CBC3C2A214BB7309670C304B71FF40860757973C410E
+%F2_SOURCE%\src\FluentHub\FluentHub.csproj : warning NU1903: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9
+  Octokit.Generators -> %F2_SOURCE%\src\Octokit.Generators\bin\Debug\netstandard2.0\Octokit.Generators.dll
+  Octokit -> %F2_SOURCE%\src\Octokit\bin\arm64\Debug\net10.0\Octokit.dll
+  FluentHub.Core -> %F2_SOURCE%\src\FluentHub.Core\bin\arm64\Debug\net10.0\FluentHub.Core.dll
+  FluentHub.Tests -> %F2_SOURCE%\tests\FluentHub.Tests\bin\arm64\Debug\net10.0\FluentHub.Tests.dll
+CSC : error CS8012: 引用程序集“FluidMotion.L1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null”面向的是另一个处理器。 [%F2_SOURCE%\src\FluentHub\FluentHub.csproj]
+%USERPROFILE%\.nuget\packages\microsoft.windowsappsdk.winui\2.0.12\buildTransitive\Microsoft.UI.Xaml.Markup.Compiler.interop.targets(845,9): error MSB3073: 命令“"%USERPROFILE%\.nuget\packages\microsoft.windowsappsdk.winui\2.0.12\buildTransitive\..\tools\net6.0\..\net472\XamlCompiler.exe" "obj\arm64\Debug\net10.0-windows10.0.26100.0\win-arm64\\input.json" "obj\arm64\Debug\net10.0-windows10.0.26100.0\win-arm64\\output.json"”已退出，代码为 1。 [%F2_SOURCE%\src\FluentHub\FluentHub.csproj]
+
+生成失败。
+
+%F2_SOURCE%\src\FluentHub\FluentHub.csproj : warning NU1903: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9 [%F2_SOURCE%\FluentHub.slnx]
+%F2_SOURCE%\src\FluentHub\FluentHub.csproj : warning NU1903: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9
+CSC : error CS8012: 引用程序集“FluidMotion.L1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null”面向的是另一个处理器。 [%F2_SOURCE%\src\FluentHub\FluentHub.csproj]
+%USERPROFILE%\.nuget\packages\microsoft.windowsappsdk.winui\2.0.12\buildTransitive\Microsoft.UI.Xaml.Markup.Compiler.interop.targets(845,9): error MSB3073: 命令“"%USERPROFILE%\.nuget\packages\microsoft.windowsappsdk.winui\2.0.12\buildTransitive\..\tools\net6.0\..\net472\XamlCompiler.exe" "obj\arm64\Debug\net10.0-windows10.0.26100.0\win-arm64\\input.json" "obj\arm64\Debug\net10.0-windows10.0.26100.0\win-arm64\\output.json"”已退出，代码为 1。 [%F2_SOURCE%\src\FluentHub\FluentHub.csproj]
+    2 个警告
+    2 个错误
+
+已用时间 00:00:56.07
