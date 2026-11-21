@@ -1,3 +1,4 @@
 * text eol=lf
 source_ledgers/*.md -text
 raw/**/pilot.original.jsonl -text
+*.png -text

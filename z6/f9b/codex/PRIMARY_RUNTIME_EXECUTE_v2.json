@@ -1,0 +1,10 @@
+{
+  "instruction_kind": "Primary F9b runtime execute",
+  "root_verbatim": "Root接受v2最小工具修正与实际ValidateOnly；释放第二次、且仅一次续验runtime。绑定RUNTIME_BINDING_v2 SHA9647db12be2601d2c257d032329f89f58961d7440e485fda669980e9ca0dffff /run_runtime_v2 SHA09b33b3804a65c86be9b90b59a4c519e03000646c737c1f1519f0470859ec560，原host/pack/layout/其余工具不变。把本原话和authority/binding精确SHA写PRIMARY_RUNTIME_EXECUTE_v2.json，执行v2同范围ordinary注册/主页/定性entrycrop+pointerhover/rest/模块元数据/normalclose/完整log先capture再exactRemove/恢复pointer。首轮STOP不改；entry位移false如实报告，opacity截图待root审。任何失败先闭环清理并报，不自第三注册或host修正。",
+  "authority_sha256": "ea7c7fe2dc3598157c85b70504f50d2aa0dd2e18cc095666e046d6ab349bc681",
+  "binding_sha256": "9647db12be2601d2c257d032329f89f58961d7440e485fda669980e9ca0dffff",
+  "inventory_sha256": "4a215a0a69466577ffebf905445d1939464f1cd0db1e267877f9ed81e7eb1acb",
+  "destination_hashes_sha256": "fd91689c3dd0f4bb295969071b6725b91b08cbcbb28aae440a36714a2bfd14ff",
+  "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+  "host_patch_sha256": "90fadd56b948f080e19435f1b0c05cc56dd57762783d95a6d4651e34cf859e1a"
+}
