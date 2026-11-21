@@ -1,0 +1,106 @@
+{
+  "status": "PASS (NON-ORIGINAL build only)",
+  "attempt": "20261121T105022Z-ff07d274-gateA",
+  "route": "gateA",
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "start_utc": "2026-11-21T10:50:22.996888+00:00",
+  "phase": "GateA preparation only; GateB not authorized",
+  "build_mode": "NON-ORIGINAL: only RestorePackagesConfig=true authorized",
+  "child_environment": {
+    "DOTNET_ROOT": "%USERPROFILE%/.dotnet",
+    "PATH_prefix": "%USERPROFILE%/.dotnet",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "AMD64_restored_only_if_missing": true,
+    "persistent_changes": false
+  },
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "%USERPROFILE%\\pilot\\Files",
+        "%WORKSPACE%\\m0\\out\\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\\source"
+      ],
+      "cwd": "%WORKSPACE%",
+      "pid": 87172,
+      "start_utc": "2026-11-21T10:50:23.282531+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T10:50:24.927080+00:00",
+      "original_sha256": "ebbc3f7dee5da36756eae47d61ebddaecd4c4debaba142f08237ecd823c4de28",
+      "original_bytes": 119,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\\clone.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "703c20564245779a7ac036c8617af1cf12a1f18ce93cb05acc9245dbaac0d1cb"
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "cbfb4ba54a89632fbceb82ea94ada60a9bae3737"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\\source",
+      "pid": 62756,
+      "start_utc": "2026-11-21T10:50:24.928074+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T10:50:29.114555+00:00",
+      "original_sha256": "05569c6822bb05a7846f6b3da0c5ff4a841f0392b8dd3f8e994eb715732d7035",
+      "original_bytes": 37,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\\checkout.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "05569c6822bb05a7846f6b3da0c5ff4a841f0392b8dd3f8e994eb715732d7035"
+    },
+    {
+      "label": "dotnet_version",
+      "argv": [
+        "%USERPROFILE%\\.dotnet\\dotnet.exe",
+        "--version"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\\source",
+      "pid": 66208,
+      "start_utc": "2026-11-21T10:50:31.150464+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T10:50:31.379042+00:00",
+      "original_sha256": "a391a16c2e43840573b47a7c336fc376a5f58e13cfafb1930a338034912d6dc7",
+      "original_bytes": 10,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\\dotnet_version.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "c479e77cb703fe4dac97ec3e3ebbeb4968c95c716d53abad60b516b6866ca49d"
+    },
+    {
+      "label": "build",
+      "argv": [
+        "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+        "-restore",
+        "Files.slnx",
+        "-p:Configuration=Debug",
+        "-p:Platform=x64",
+        "-v:quiet",
+        "-clp:ErrorsOnly",
+        "-p:RestorePackagesConfig=true"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\\source",
+      "pid": 56268,
+      "start_utc": "2026-11-21T10:50:31.381559+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T10:56:16.622848+00:00",
+      "original_sha256": "92974ff7bf86e3799d4dcbfc6f443fe26b945bfd426cce82e90232cb0d42a361",
+      "original_bytes": 58,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\\build.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "d9ac3e1065f2e8f7cce0c377b3ffff4db7e1fc92d7d23adfd91948429b068339"
+    }
+  ],
+  "source_unchanged": true,
+  "build_exit_code": 0,
+  "source_tree": "901330b3d5e4daa7838e24eaeedf4c2c745705c9",
+  "end_utc": "2026-11-21T10:56:18.524298+00:00"
+}

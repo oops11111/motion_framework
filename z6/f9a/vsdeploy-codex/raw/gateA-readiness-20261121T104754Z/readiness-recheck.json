@@ -1,0 +1,13 @@
+{
+  "existing_devenv": [],
+  "utc": "2026-11-21T10:49:00.0946701Z",
+  "devenv_com": {
+    "signature_status": "NotSigned",
+    "path": "%ProgramFiles%/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.com",
+    "file_version": "18.0.11820.231 built by: stable",
+    "exists": true,
+    "sha256": "5CB238875A3F0B5263263824616AF3249D7E2388A16EB459E5B4A64556E7B6DC",
+    "signer": null
+  },
+  "residual_FilesDev_directories": []
+}

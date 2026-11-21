@@ -1,0 +1,13 @@
+{
+  "existing_devenv": [],
+  "devenv_exe": {
+    "path": "%ProgramFiles%/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.exe",
+    "sha256": "47D848F16FD4CD40410B67C7E4935FD90F69736579D09F6A99C9E2273EBBD04A",
+    "exists": true,
+    "file_version": "18.6.11822.322 built by: stable",
+    "signature_status": "Valid",
+    "signer": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+  },
+  "residual_FilesDev_directories": [],
+  "utc": "2026-11-21T10:57:16.5294815Z"
+}

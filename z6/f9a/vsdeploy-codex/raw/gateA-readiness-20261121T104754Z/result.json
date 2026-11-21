@@ -1,0 +1,30 @@
+{
+  "status": "STOP (GateA readiness; no clone/build)",
+  "initial_observation_utc": "2026-11-21T10:47:54.0572209Z",
+  "initial_source": "First readonly shell output in current conversation; recheck raw JSON separately retained with its own timestamps",
+  "devenv_com_signature": "NotSigned",
+  "signer": null,
+  "sha256": "5CB238875A3F0B5263263824616AF3249D7E2388A16EB459E5B4A64556E7B6DC",
+  "file_version": "18.0.11820.231 built by: stable",
+  "other_initial_checks": {
+    "existing_devenv": [],
+    "FilesDev_packages": [],
+    "residual_FilesDev_directories": [],
+    "installed_x64_runtime_versions": [
+      "2.5.1.0",
+      "2.6.5.0",
+      "2.7.0.0"
+    ]
+  },
+  "interpretation": "The planned Valid/Microsoft-signature gate was not met; NotSigned is not a malware finding or proof of package tampering. No fallback executable/trust/install operation attempted.",
+  "not_performed": [
+    "fresh clone",
+    "preparation build",
+    "devenv execution including /?",
+    "Deploy",
+    "registration",
+    "activation",
+    "trust/policy/certificate change"
+  ],
+  "next": "Primary reviews exact evidence and decides bounded trust/precondition follow-up; GateB remains separately unauthorized"
+}

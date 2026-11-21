@@ -1,0 +1,11 @@
+{
+  "recorded_utc": "2026-11-21T11:35:14.440659+00:00",
+  "note": "Execution already started, script/helper frozen until termination; explicit-import precheck fix not yet committed at start",
+  "files": {
+    "deploy_gateB.py": "30ba56aa54842f05cdeda4277a2e3d3292d61fcbe5dfd4515a9e6a05a8333148",
+    "ActivateNormally.ps1": "8bcbb6660ca0e51659f56117e881ab8257f879ba965842765be248c0816f02fd",
+    "WaitMainPage.ps1": "539658f1ab1ef4572e35267f3ca184ed7d1033f93466fee6c6cd35dcba52f25b",
+    "native_lifecycle.py": "bf180af888422e18f91008094bde141297dea36e406f1d552432d86ce16a9a9a"
+  },
+  "head": "a6edb03d62c3dee9762c4c84f596890a929383e6"
+}

@@ -1,0 +1,159 @@
+{
+  "status": "STOP (B incomplete; inspect actual residue/error)",
+  "attempt": "%WORKSPACE%\\m0\\out\\f9a-gateB-20261121T113424Z-2ea2b1b4",
+  "cleanup_complete": false,
+  "source_PRE": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": "",
+    "tracked_diff": ""
+  },
+  "PRE": [],
+  "runtime_PRE": [
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.5.1.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.6.5.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 0,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    }
+  ],
+  "state_PRE": {
+    "protocol": null,
+    "associations": [
+      {
+        "value": null,
+        "ext": ".zip"
+      },
+      {
+        "value": null,
+        "ext": ".7z"
+      },
+      {
+        "value": null,
+        "ext": ".rar"
+      },
+      {
+        "value": null,
+        "ext": ".tar"
+      },
+      {
+        "value": null,
+        "ext": ".jar"
+      },
+      {
+        "value": null,
+        "ext": ".mrpack"
+      },
+      {
+        "value": null,
+        "ext": ".gz"
+      }
+    ]
+  },
+  "all_packages_PRE_sha256": "ba513b466f0c43eae62d5d41bdc18f06d72ac9562d7493916e4a67104bb13239",
+  "deploy_exit": 0,
+  "all_packages_AFTER_DEPLOY_sha256": "ba513b466f0c43eae62d5d41bdc18f06d72ac9562d7493916e4a67104bb13239",
+  "other_package_delta_after_deploy": {
+    "added": [],
+    "removed": []
+  },
+  "error": "Deployment failed/unsupported; no fallback",
+  "POST": [],
+  "state_POST": {
+    "protocol": null,
+    "associations": [
+      {
+        "value": null,
+        "ext": ".zip"
+      },
+      {
+        "value": null,
+        "ext": ".7z"
+      },
+      {
+        "value": null,
+        "ext": ".rar"
+      },
+      {
+        "value": null,
+        "ext": ".tar"
+      },
+      {
+        "value": null,
+        "ext": ".jar"
+      },
+      {
+        "value": null,
+        "ext": ".mrpack"
+      },
+      {
+        "value": null,
+        "ext": ".gz"
+      }
+    ]
+  },
+  "runtime_POST": [
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.5.1.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.6.5.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 0,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    }
+  ],
+  "source_POST": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": "",
+    "tracked_diff": ""
+  },
+  "all_packages_POST_sha256": "ba513b466f0c43eae62d5d41bdc18f06d72ac9562d7493916e4a67104bb13239",
+  "other_package_delta_final": {
+    "added": [],
+    "removed": []
+  },
+  "state_changed": false,
+  "state_comparison_available": true,
+  "owned_package": null
+}

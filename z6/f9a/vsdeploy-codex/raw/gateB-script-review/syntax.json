@@ -1,0 +1,14 @@
+{
+  "python_AST_compile": [
+    "prepare_gateA.py",
+    "deploy_gateB.py",
+    "native_lifecycle.py"
+  ],
+  "PowerShellParser": [
+    "ActivateNormally.ps1"
+  ],
+  "status": "PASS (syntax/default dryrun only)",
+  "B_runtime": "NOT EXECUTED",
+  "native_helper_reference": "Adapted PID/path/package/WM_CLOSE pattern from accepted F5 harness76a61e11124650372cdf4c98be632c672857cb2f; added conservative inspect_package classification; not a Files source change",
+  "no_new_dependencies": true
+}

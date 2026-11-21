@@ -1,0 +1,16 @@
+{
+  "pid": 68548,
+  "argv": [
+    "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\devenv.exe",
+    "%WORKSPACE%\\m0\\out\\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\\source\\Files.slnx",
+    "/Deploy",
+    "Debug|x64",
+    "/Project",
+    "src/Files.App/Files.App.csproj",
+    "/ProjectConfig",
+    "Debug|x64",
+    "/Out",
+    "%WORKSPACE%\\m0\\out\\f9a-gateB-20261121T113424Z-2ea2b1b4\\deploy.log"
+  ],
+  "start_utc": "2026-11-21T11:34:30.453236+00:00"
+}

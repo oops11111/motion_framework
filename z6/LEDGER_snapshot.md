@@ -104,3 +104,10 @@ PR16 merged8e68cf81ef10bd0623651949e6a98ddef4f175ca from0eb69f17282a6d75a49550fe
 PR17 merged81543c86fc67801aa2de00f44d8b267c2ac09ee9 from1074cbea2295cae9eadd9bc4617b9e57433d7e40; mainpost44891508566 all3 success. Original fullsolution BuildFAIL remains unchanged.
 
 User specifically approved only RestorePackagesConfig=true for F9a with NON-ORIGINAL label. Attempt20261121T103038Z-444beec5-packagesconfig: sameFilescbfb4ba54a89632fbceb82ea94ada60a9bae3737/freshclone/oneextra property, Build0, sourcePRE=POST/clean. Actual WIL1.0.260126.7 and CppWinRT3.0.260818.1 nuspec/config/import hashes verified exact, no upgrade/source repair/retry. Evidence z6/f9a/packagesconfig-codex. No deployment/startup/F2/F9b action; repository CI/primary review pending.
+
+
+## F9a3C3 accepted;3C4 selected-project deployment STOP
+
+PR18 merged92c498fbcf8ea7216d54104886a722d34d5099fb; mainpost44895678100 all3 success, primary accepted NON-ORIGINAL build only.
+
+3C4 GateA fresh preparation Build0 with authorized RestorePackagesConfig=true; source clean. User separately approved selected FilesDev deployment/main-page startup/exact cleanup. Precheck autoload STOP retained, no deployment then; explicit existing WinPS5 Security module import fixed harness precheck. Unique actual signed VS18 /Deploy selected Files.App attempt20261121T113424Z-2ea2b1b4 exited0 but FilesDev remained absent and output reported build only. Wrapper exit1/STOP; startup/UIA/close not executed, no package created or removed, package inventory and UserChoice unchanged, source clean. No fallback/new flags/system repairs. Evidence z6/f9a/vsdeploy-codex; F9a startup NOTREADY, historical results unchanged; primary review/CI pending.

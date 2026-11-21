@@ -1,0 +1,26 @@
+{
+  "mode": "dryrun only; no OS/process/package/activation calls",
+  "runtime_status": "NOT TESTED",
+  "entry": "%ProgramFiles%/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.exe",
+  "entry_sha256": "47D848F16FD4CD40410B67C7E4935FD90F69736579D09F6A99C9E2273EBBD04A",
+  "source_dir": "m0/out/f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA/source",
+  "argv": [
+    "<signed entry>",
+    "<fresh Files.slnx>",
+    "/Deploy",
+    "Debug|x64",
+    "/Project",
+    "src/Files.App/Files.App.csproj",
+    "/ProjectConfig",
+    "Debug|x64",
+    "/Out",
+    "<fresh deploy.log>"
+  ],
+  "identity": {
+    "Name": "FilesDev",
+    "Publisher": "CN=Files",
+    "Version": "4.3.0.0",
+    "ProcessorArchitecture": "x64"
+  },
+  "cleanup": "Only exact newly captured fullname after ownership/exit checks; never force kill"
+}
