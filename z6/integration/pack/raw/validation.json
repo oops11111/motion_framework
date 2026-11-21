@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "base": "8c5cc6f31ca2be796986afd901fc1bb1098712ca",
+  "imported_files": 96,
+  "historical_files": 94,
+  "metadata_files": 2,
+  "exact_ledger_archives": 4,
+  "base_ledger_prefix": "unchanged",
+  "source_hashes": "metadata source declarations match unchanged current sources",
+  "reference_evidence": "Local hash/copy/API receipts intact; cloud policy does not independently access reference cache",
+  "production_test_and_prior_stage_changes": 0,
+  "manifest_sealed": false,
+  "manifest_files": 0,
+  "limitations": "No current-main pack rebuild, GUI, relocation/corruption rerun or original verdict re-adjudication"
+}

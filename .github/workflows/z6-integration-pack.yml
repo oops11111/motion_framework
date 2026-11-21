@@ -1,0 +1,32 @@
+name: Z6 pilot metadata provenance
+
+on:
+  push:
+    branches: [codex/z6-integration-pack]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'pilot/l1pack/README.md'
+      - 'pilot/l1pack/SHA256SUMS'
+      - 'z6/f7/**'
+      - 'z6/f11/**'
+      - 'z6/f6/**'
+      - 'z6/integration/pack/**'
+      - '.github/workflows/z6-integration-pack.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  metadata-provenance:
+    if: github.head_ref == 'codex/z6-integration-pack' || github.ref == 'refs/heads/codex/z6-integration-pack'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate source, exact history, metadata and reference evidence provenance
+        run: python z6/integration/pack/verify.py
