@@ -1,0 +1,15 @@
+{
+  "attempt": 7,
+  "command": [
+    "dotnet",
+    "build",
+    "src/FluentHub/FluentHub.csproj",
+    "-c",
+    "Debug",
+    "-p:Platform=x64",
+    "-p:WarningsNotAsErrors=NU1903"
+  ],
+  "environment_change": "child-only existing PROCESSOR_ARCHITECTURE=AMD64",
+  "scope": "F5 approved non-original warning downgrade; v2 host activation argument compile",
+  "exit_code": 0
+}

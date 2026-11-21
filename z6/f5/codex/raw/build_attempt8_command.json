@@ -1,0 +1,15 @@
+{
+  "attempt": 8,
+  "command": [
+    "dotnet",
+    "build",
+    "src/FluentHub/FluentHub.csproj",
+    "-c",
+    "Debug",
+    "-p:Platform=x64",
+    "-p:WarningsNotAsErrors=NU1903"
+  ],
+  "environment_change": "child-only existing PROCESSOR_ARCHITECTURE=AMD64",
+  "scope": "F5 approved non-original warning downgrade; v3 exact command-line Fake flag compile",
+  "exit_code": 0
+}

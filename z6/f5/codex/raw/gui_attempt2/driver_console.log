@@ -1,0 +1,12 @@
+{"mode": "execute", "selected_modes": ["Ordinary"], "identity": {"Name": "49462fluenthub-uwp.FluentHub", "Publisher": "CN=4E3C0825-4D00-4ECC-89F8-528E9200B125", "Version": "0.11.0.0", "ProcessorArchitecture": "x64"}, "manifest": "%REPO%\\m0\\out\\f5-fluenthub\\src\\FluentHub\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\AppxManifest.xml", "manifest_sha256": "fe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4", "exe_sha256": "7b0688b0e9504779d4af26390ce776339eda3ff850f9fa35dddeffa14ca55a4c", "PRE": {"AnimationsEnabled": true, "SPI_GETCLIENTAREAANIMATION": true, "MinAnimate": "1", "UserPreferencesMask": "9E3E078012000000"}, "register": "Add-AppxPackage -Register '%REPO%\\m0\\out\\f5-fluenthub\\src\\FluentHub\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\AppxManifest.xml'", "launch": "Fake and Real package-context diagnostics with child-only environment, then Ordinary Real Windows.Launch activation", "cleanup": "Remove-AppxPackage -Package <exact newly registered FullName>; never framework/runtime packages", "limits": "Package-context diagnostic token differs from ordinary activation; results separate. No OS settings writes, tasks or elevation"}
+{"status": "not accepted", "selected_modes": ["Ordinary"], "omitted_modes": ["Fake", "Real"], "runs": [], "error": "OSError: [WinError 1159] \u6d88\u606f\u53ea\u80fd\u4e0e\u540c\u6b65\u64cd\u4f5c\u4e00\u8d77\u4f7f\u7528\u3002", "removed_exact_package": "49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm", "remaining_packages": [], "POST": {"AnimationsEnabled": true, "SPI_GETCLIENTAREAANIMATION": true, "MinAnimate": "1", "UserPreferencesMask": "9E3E078012000000"}, "settings_unchanged": true}
+Traceback (most recent call last):
+  File "%REPO%\z6\f5\codex\gui_acceptance.py", line 385, in <module>
+    main()
+    ~~~~^^
+  File "%REPO%\z6\f5\codex\gui_acceptance.py", line 324, in main
+    result['runs'].append(run_host(mode, package, exe, attempt, native))
+                          ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "%REPO%\z6\f5\codex\gui_acceptance.py", line 232, in run_host
+    raise C.WinError(C.get_last_error())
+OSError: [WinError 1159] ��Ϣֻ����ͬ������һ��ʹ�á�

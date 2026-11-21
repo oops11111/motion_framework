@@ -1,0 +1,20 @@
+4	0	src/FluentHub/Views/MainWindow.cs
+12	46	src/FluentHub/Views/NavMotionPilot.cs
+29	0	src/FluentHub/Views/ReducedMotionState.cs
+31	0	src/FluentHub/Views/FakeReducedMotionSource.cs
+142	0	src/FluentHub/Views/WindowReducedMotionSource.cs
+PASS frozen surface; blob=fd0603c17136c067e89c71e56aef310f2f7e63f4; patch syntax; bounded delivery scope
+%REPO%\m0\out\fm-f5-tests-ih2oq9t1\SourceTests.cs(56,28): error CA1416: 可在所有平台上访问此调用站点。"EventWaitHandle.OpenExisting(string)" 仅在 'windows' 上受支持。 (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1416) [%REPO%\m0\out\fm-f5-tests-ih2oq9t1\SourceTests.csproj]
+
+生成失败。请修复生成错误并重新运行。
+Traceback (most recent call last):
+  File "%REPO%\z6\f5\codex\verify.py", line 83, in <module>
+    main()
+    ~~~~^^
+  File "%REPO%\z6\f5\codex\verify.py", line 78, in main
+    subprocess.run(["dotnet", "run", "--project", str(output / "SourceTests.csproj"), "-c", "Release"], check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "%USERPROFILE%\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['dotnet', 'run', '--project', '%USERPROFILE%\\mf_codex\\m0\\out\\fm-f5-tests-ih2oq9t1\\SourceTests.csproj', '-c', 'Release']' returned non-zero exit status 1.

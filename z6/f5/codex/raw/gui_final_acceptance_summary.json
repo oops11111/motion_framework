@@ -1,0 +1,68 @@
+{
+  "status": "PASS (dev-only), local B/C/E; pending latest-tip CI and primary acceptance",
+  "managed_dll_sha256": "9be938e614b636034840223429e0bdd60cc21342823fb31c0eb5859471008b7a",
+  "B": {
+    "mode": "ordinary Windows.Launch exact --fm-pilot-f5=1",
+    "calls": [
+      {
+        "reducedMotion": "True",
+        "animationsEnabled": "False",
+        "previous": "True",
+        "thread": 2
+      },
+      {
+        "reducedMotion": "False",
+        "animationsEnabled": "True",
+        "previous": "False",
+        "thread": 2
+      }
+    ],
+    "exact_flag_log_present": true,
+    "fake_source_instances": 1
+  },
+  "C": {
+    "mode": "ordinary Windows.Launch no Fake flag",
+    "hook_installs_ok": 1,
+    "message_6d_present": true,
+    "unchanged_rereads": 1,
+    "wm_SetReducedMotion_calls": 0
+  },
+  "E": {
+    "OrdinaryFake": {
+      "attached_cycles": [
+        "1",
+        "2"
+      ],
+      "detached_cycles": [
+        "1",
+        "2"
+      ],
+      "source_disposals": 1,
+      "exit_code": 0,
+      "visible_main_window": true
+    },
+    "Ordinary": {
+      "attached_cycles": [
+        "1",
+        "2"
+      ],
+      "detached_cycles": [
+        "1",
+        "2"
+      ],
+      "source_disposals": 1,
+      "exit_code": 0,
+      "visible_main_window": true
+    }
+  },
+  "POST": {
+    "AnimationsEnabled": true,
+    "SPI_GETCLIENTAREAANIMATION": true,
+    "MinAnimate": "1",
+    "UserPreferencesMask": "9E3E078012000000"
+  },
+  "settings_unchanged": true,
+  "removed_exact_package": "49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm",
+  "remaining_packages": [],
+  "D": "Not executed; optional real OS animation change not authorized"
+}

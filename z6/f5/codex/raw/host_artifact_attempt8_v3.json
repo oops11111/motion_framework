@@ -1,0 +1,13 @@
+{
+  "build_attempt": 8,
+  "patch": "fluenthub_f5_window_source_v3.patch",
+  "overall_exit": 0,
+  "files": {
+    "FluentHub.dll": "9be938e614b636034840223429e0bdd60cc21342823fb31c0eb5859471008b7a",
+    "FluentHub.exe": "7b0688b0e9504779d4af26390ce776339eda3ff850f9fa35dddeffa14ca55a4c",
+    "AppxManifest.xml": "fe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4",
+    "FluentHub.runtimeconfig.json": "50df474d05a24d16c8192c60f7cca3e1efffa3cc96dfd32b200ce8540e9ea5a2"
+  },
+  "runtime_EventSourceSupported": true,
+  "authorization_manifest_sha_matches": true
+}
