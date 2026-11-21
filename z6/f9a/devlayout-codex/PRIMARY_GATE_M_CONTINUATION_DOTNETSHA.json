@@ -1,0 +1,19 @@
+{
+  "instruction_kind": "Primary GateM execute",
+  "root_verbatim": "Root审588116d最小helperdiff通过，并独立WinPS5 ValidateOnly实测：auth_guard/COM_compiled=true，registration/packagequery/activation NOTEXECUTED，StatePath确未创建，workspaceclean。正式release下一M continuation：保留M1/M2和原instruction不改，新增PRIMARY_GATE_M_CONTINUATION_DOTNETSHA.json绑定同authoritysha/Linventory0bfdf5.../dest2d910d.../manifestad4...，kindPrimary GateM execute，root_verbatim本消息，引用M2精确cleanuptrue与ValidateOnly结果+helperSHA b8b6363cc8dfbd6413dca5f986a4f4ad0ea71bc34e5c9d6a49050bb386967d9d；普通commit后冻结所有代码执行。即时重核FilesDev/data/process/framework/source/layout全量门，注册只原exactRegister无extra，成功才实际ordinaryActivate→主页SettingsButton→normalclose→precisecleanup。新错误保存停止，不再自行叠变化；首先正常safe关闭/清理保证已授权测试包状态有证据。无需user再授相同权限。报REGISTER_PID/session/attempt与阶段结果，实际输入code哈希记录，结束后完整证据/manifest/CIstageverify/commitpushPR/root审全CI。",
+  "authority_sha256": "6c9f602406478c8fae6b0dbea7ec1fc1a19f3b4aae76a69c0c7bba97fbbe5b08",
+  "inventory_sha256": "0bfdf5bbae22fc3734ba9987be2ecd10f7e64b02f0cddccd8aa912130a7f7f43",
+  "destination_hashes_sha256": "2d910d3a01c751fa7a4bd00e4578e1455d36936c9438922b772a60463bd15fbd",
+  "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+  "prior_result_sha256": "8f084780f0028262711a7614563d4ae5cd12e86a34834d4c1d61fe2649d0683a",
+  "prior_result": "raw/f9a-gateM-20261121T120437Z-eca9f19a/result.json",
+  "prior_cleanup_complete": true,
+  "executing_scripts_sha256": {
+    "run_manual_package.py": "0ffe55ff770f4f225b31d5a9b64a503d60c908a0e8d3f600c5b824340fec27f2",
+    "ActivateNormally.ps1": "b8b6363cc8dfbd6413dca5f986a4f4ad0ea71bc34e5c9d6a49050bb386967d9d",
+    "WaitMainPage.ps1": "539658f1ab1ef4572e35267f3ca184ed7d1033f93466fee6c6cd35dcba52f25b",
+    "native_lifecycle.py": "bf180af888422e18f91008094bde141297dea36e406f1d552432d86ce16a9a9a",
+    "prepare_layout.py": "83a54fbd0cc6695a57c2c0659921d53aeb68f42d179742d70757e3577df713cb"
+  },
+  "validateonly_result_sha256": "d9b1715dec1e792358a4cc14aba32f68d00ce31a5156d4d2945efd83bd5c9b8d"
+}
