@@ -1,0 +1,116 @@
+VERBOSE: dotnet-install: Note that the intended use of this script is for Continuous Integration (CI) scenarios, where:
+VERBOSE: dotnet-install: - The SDK needs to be installed without user interaction and without admin rights.
+VERBOSE: dotnet-install: - The SDK installation doesn't need to persist across multiple CI runs.
+VERBOSE: dotnet-install: To set up a development environment or to run apps, use installers rather than this script. 
+Visit https://dotnet.microsoft.com/download to get the installer.
+VERBOSE: dotnet-install: Get-CLIArchitecture-From-Architecture -Architecture "x64"
+VERBOSE: dotnet-install: Get-NormalizedQuality -Quality ""
+VERBOSE: dotnet-install: Normalized quality: ''
+VERBOSE: dotnet-install: Get-NormalizedChannel -Channel "LTS"
+VERBOSE: dotnet-install: Normalized channel: 'LTS'
+VERBOSE: dotnet-install: Get-NormalizedProduct -Runtime ""
+VERBOSE: dotnet-install: Normalized product: 'dotnet-sdk'
+VERBOSE: dotnet-install: Tar available: 'True'
+VERBOSE: dotnet-install: Action 'Product discovery' took 0.0590138 seconds
+VERBOSE: dotnet-install: Resolve-Installation-Path -InstallDir "%USERPROFILE%\.dotnet"
+VERBOSE: dotnet-install: InstallRoot: %USERPROFILE%\.dotnet
+VERBOSE: Initialized feeds: https://builds.dotnet.microsoft.com/dotnet https://ci.dot.net/public
+VERBOSE: dotnet-install: Get-Specific-Version-From-Version -AzureFeed "https://builds.dotnet.microsoft.com/dotnet" 
+-Channel "LTS" -Version "10.0.404" -JSonFile ""
+VERBOSE: dotnet-install: Get-Download-Link -AzureFeed "https://builds.dotnet.microsoft.com/dotnet" -SpecificVersion 
+"10.0.404" -CLIArchitecture "x64"
+VERBOSE: dotnet-install: Get-Product-Version -AzureFeed "https://builds.dotnet.microsoft.com/dotnet" -SpecificVersion 
+"10.0.404"
+VERBOSE: dotnet-install: Get-Product-Version-Url -Flattened "True" -AzureFeed 
+"https://builds.dotnet.microsoft.com/dotnet" -SpecificVersion "10.0.404" -PackageDownloadLink ""
+VERBOSE: dotnet-install: Constructed productVersion link: 
+https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/sdk-productVersion.txt
+VERBOSE: dotnet-install: Get-Product-Version-Url -Flattened "False" -AzureFeed 
+"https://builds.dotnet.microsoft.com/dotnet" -SpecificVersion "10.0.404" -PackageDownloadLink ""
+VERBOSE: dotnet-install: Constructed productVersion link: 
+https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/productVersion.txt
+VERBOSE: dotnet-install: Checking for the existence of 
+https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/sdk-productVersion.txt
+VERBOSE: dotnet-install: Constructed primary named payload URL: 
+https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-sdk-10.0.404-win-x64.zip
+VERBOSE: dotnet-install: Get-LegacyDownload-Link -AzureFeed "https://builds.dotnet.microsoft.com/dotnet" 
+-SpecificVersion "10.0.404" -CLIArchitecture "x64"
+VERBOSE: dotnet-install: Constructed legacy named payload URL: 
+https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-dev-win-x64.10.0.404.zip
+VERBOSE: dotnet-install: Generated primary link 
+https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-sdk-10.0.404-win-x64.zip with version 10.0.404
+VERBOSE: dotnet-install: Generated legacy link 
+https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-dev-win-x64.10.0.404.zip with version 10.0.404
+VERBOSE: dotnet-install: Checking if the version 10.0.404 is already installed
+VERBOSE: dotnet-install: Is-Dotnet-Package-Installed -InstallRoot "%USERPROFILE%\.dotnet" -RelativePathToPackage "sdk"
+ -SpecificVersion "10.0.404"
+VERBOSE: dotnet-install: Is-Dotnet-Package-Installed: DotnetPackagePath=%USERPROFILE%\.dotnet\sdk\10.0.404
+VERBOSE: dotnet-install: Get-Specific-Version-From-Version -AzureFeed "https://ci.dot.net/public" -Channel "LTS" 
+-Version "10.0.404" -JSonFile ""
+VERBOSE: dotnet-install: Get-Download-Link -AzureFeed "https://ci.dot.net/public" -SpecificVersion "10.0.404" 
+-CLIArchitecture "x64"
+VERBOSE: dotnet-install: Get-Product-Version -AzureFeed "https://ci.dot.net/public" -SpecificVersion "10.0.404"
+VERBOSE: dotnet-install: Get-Product-Version-Url -Flattened "True" -AzureFeed "https://ci.dot.net/public" 
+-SpecificVersion "10.0.404" -PackageDownloadLink ""
+VERBOSE: dotnet-install: Constructed productVersion link: https://ci.dot.net/public/Sdk/10.0.404/sdk-productVersion.txt
+VERBOSE: dotnet-install: Get-Product-Version-Url -Flattened "False" -AzureFeed "https://ci.dot.net/public" 
+-SpecificVersion "10.0.404" -PackageDownloadLink ""
+VERBOSE: dotnet-install: Constructed productVersion link: https://ci.dot.net/public/Sdk/10.0.404/productVersion.txt
+VERBOSE: dotnet-install: Checking for the existence of https://ci.dot.net/public/Sdk/10.0.404/sdk-productVersion.txt
+VERBOSE: dotnet-install: Could not read productVersion.txt at 
+https://ci.dot.net/public/Sdk/10.0.404/sdk-productVersion.txt (Exception: 'Unable to download 
+https://ci.dot.net/public/Sdk/10.0.404/sdk-productVersion.txt.'. )
+VERBOSE: dotnet-install: Checking for the existence of https://ci.dot.net/public/Sdk/10.0.404/productVersion.txt
+VERBOSE: dotnet-install: Could not read productVersion.txt at https://ci.dot.net/public/Sdk/10.0.404/productVersion.txt
+ (Exception: 'Unable to download https://ci.dot.net/public/Sdk/10.0.404/productVersion.txt.'. )
+VERBOSE: dotnet-install: Using the default value '10.0.404' as the product version.
+VERBOSE: dotnet-install: Constructed primary named payload URL: 
+https://ci.dot.net/public/Sdk/10.0.404/dotnet-sdk-10.0.404-win-x64.zip
+VERBOSE: dotnet-install: Get-LegacyDownload-Link -AzureFeed "https://ci.dot.net/public" -SpecificVersion "10.0.404" 
+-CLIArchitecture "x64"
+VERBOSE: dotnet-install: Constructed legacy named payload URL: 
+https://ci.dot.net/public/Sdk/10.0.404/dotnet-dev-win-x64.10.0.404.zip
+VERBOSE: dotnet-install: Generated primary link https://ci.dot.net/public/Sdk/10.0.404/dotnet-sdk-10.0.404-win-x64.zip 
+with version 10.0.404
+VERBOSE: dotnet-install: Generated legacy link https://ci.dot.net/public/Sdk/10.0.404/dotnet-dev-win-x64.10.0.404.zip 
+with version 10.0.404
+VERBOSE: dotnet-install: Checking if the version 10.0.404 is already installed
+VERBOSE: dotnet-install: Is-Dotnet-Package-Installed -InstallRoot "%USERPROFILE%\.dotnet" -RelativePathToPackage "sdk"
+ -SpecificVersion "10.0.404"
+VERBOSE: dotnet-install: Is-Dotnet-Package-Installed: DotnetPackagePath=%USERPROFILE%\.dotnet\sdk\10.0.404
+VERBOSE: dotnet-install: Failed to check the disk space. Installation will continue, but it may fail if you do not have
+ enough disk space.
+VERBOSE: dotnet-install: Action 'Installation directory preparation' took 0.0070733 seconds
+VERBOSE: dotnet-install: Zip path: %USERPROFILE%\AppData\Local\Temp\djgdyyom.vip
+VERBOSE: dotnet-install: Downloading "primary" link 
+https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-sdk-10.0.404-win-x64.zip
+VERBOSE: HEAD https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-sdk-10.0.404-win-x64.zip with 0-byte 
+payload
+VERBOSE: received 303618098-byte response of content type application/octet-stream
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-sdk-10.0.404-win-x64.zip size is 303618098 bytes.
+dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-sdk-10.0.404-win-x64.zip size is 303618098 bytes.
+dotnet-install: The remote and local file sizes are equal.
+VERBOSE: dotnet-install: Action 'Package download' took 86.5096965 seconds
+VERBOSE: dotnet-install: Download succeeded.
+dotnet-install: Extracting the archive.
+VERBOSE: dotnet-install: Extract-Dotnet-Package -ZipPath "%USERPROFILE%\AppData\Local\Temp\djgdyyom.vip" -OutPath 
+"%USERPROFILE%\.dotnet"
+VERBOSE: dotnet-install: Get-List-Of-Directories-And-Versions-To-Unpack-From-Dotnet-Package -Zip 
+"System.IO.Compression.ZipArchive" -OutPath "%USERPROFILE%\.dotnet"
+VERBOSE: dotnet-install: Directories to unpack: 
+host/fxr/10.0.15/;packs/Microsoft.AspNetCore.App.Ref/10.0.15/;packs/Microsoft.NETCore.App.Host.win-x64/10.0.15/;packs/M
+icrosoft.NETCore.App.Ref/10.0.15/;packs/Microsoft.WindowsDesktop.App.Ref/10.0.15/;sdk/10.0.404/;sdk-manifests/10.0.100/
+;shared/Microsoft.AspNetCore.App/10.0.15/;shared/Microsoft.NETCore.App/10.0.15/;shared/Microsoft.WindowsDesktop.App/10.
+0.15/;templates/10.0.15/
+VERBOSE: dotnet-install: Action 'Package extraction' took 35.9285003 seconds
+VERBOSE: dotnet-install: Checking installation: version = 10.0.404
+VERBOSE: dotnet-install: Is-Dotnet-Package-Installed -InstallRoot "%USERPROFILE%\.dotnet" -RelativePathToPackage "sdk"
+ -SpecificVersion "10.0.404"
+VERBOSE: dotnet-install: Is-Dotnet-Package-Installed: DotnetPackagePath=%USERPROFILE%\.dotnet\sdk\10.0.404
+VERBOSE: dotnet-install: The temporary file "%USERPROFILE%\AppData\Local\Temp\djgdyyom.vip" was removed.
+dotnet-install: Binaries of dotnet can be found in %USERPROFILE%\.dotnet\
+VERBOSE: dotnet-install: Action 'Setting up shell environment' took 0.0027351 seconds
+dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+dotnet-install: Installed version is 10.0.404
+dotnet-install: Installation finished
