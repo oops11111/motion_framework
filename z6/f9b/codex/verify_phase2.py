@@ -30,5 +30,5 @@ def main():
  first=json.loads((H/"raw/20261121T130006Z-44000cad/result.json").read_text());assert first["status"]=="STOP" and first["commands"][-1]["exit"]==1
  assert "CS8618" in (H/"raw/20261121T130006Z-44000cad/host_build.log").read_text(encoding="utf-8")
  assert json.loads((a/"freeze_POST.json").read_text())==json.loads((H/"raw/20261121T125037Z-fab35294/freeze_PRE.json").read_text())
- print(json.dumps({"status":"PASS phase2 recorded build/logic/API","source_files":4,"private_checks":17,"runtime":"NOT EXECUTED","scope":"Evidence integrity; real host motion still requires local runtime gate"},indent=2))
+ print(json.dumps({"status":"PASS phase2 recorded build/logic/API","source_files":4,"private_checks":17,"phase2_runtime":"NOT EXECUTED in phase2","scope":"Evidence integrity; real host motion still requires local runtime gate"},indent=2))
 if __name__=="__main__":main()

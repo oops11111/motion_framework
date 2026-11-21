@@ -1,0 +1,9 @@
+{
+  "pid": 64228,
+  "argv": [
+    "powershell.exe",
+    "-NoProfile",
+    "-Command",
+    "$ErrorActionPreference='Stop';Add-AppxPackage -Register '%WORKSPACE%\\m0\\out\\f9b-runtime-layout-20261121T132345Z-9a66a571\\layout\\AppxManifest.xml'"
+  ]
+}

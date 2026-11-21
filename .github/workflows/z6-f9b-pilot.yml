@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.404'
-      - name: Validate pinned source, patch and recorded build API evidence
-        run: python z6/f9b/codex/verify_phase2.py
+      - name: Validate pinned source, patch and recorded build/runtime evidence
+        run: python z6/f9b/codex/verify_runtime.py
       - name: Test actual patched private evidence and lifetime logic
         run: python z6/f9b/codex/run_private_tests.py

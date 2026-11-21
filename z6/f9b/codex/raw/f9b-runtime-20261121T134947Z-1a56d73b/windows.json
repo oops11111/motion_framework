@@ -1,0 +1,20 @@
+[
+  {
+    "hwnd": "0x2330502",
+    "title": "Files",
+    "class": "WinUIDesktopWin32WindowClass",
+    "visible": true
+  },
+  {
+    "hwnd": "0x1fd1c18",
+    "title": "MSCTFIME UI",
+    "class": "MSCTFIME UI",
+    "visible": false
+  },
+  {
+    "hwnd": "0xe91c30",
+    "title": "Default IME",
+    "class": "IME",
+    "visible": false
+  }
+]
