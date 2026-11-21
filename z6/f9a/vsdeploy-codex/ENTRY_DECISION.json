@@ -1,0 +1,12 @@
+{
+  "source": "Primary reviewed entry revision in current conversation",
+  "previous_entry": "devenv.com",
+  "previous_preflight": "NotSigned; preserved STOP, no VS invocation/build occurred",
+  "selected_entry": "%ProgramFiles%/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.exe",
+  "expected_sha256": "47D848F16FD4CD40410B67C7E4935FD90F69736579D09F6A99C9E2273EBBD04A",
+  "required_signature": "Valid / Microsoft Corporation",
+  "output_contract": "Same documented switches; no console output expected; /Out primary log plus real process exit",
+  "gate_A": "Readonly recheck then permitted existing-authority preparation build if ready",
+  "gate_B": "NOT AUTHORIZED; new direct user grant still required",
+  "no_trust_change": true
+}

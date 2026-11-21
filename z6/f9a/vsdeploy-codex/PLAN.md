@@ -61,3 +61,12 @@ New workflow runs only this branch/head and validates stored evidence plus stage
 ## Stop boundaries
 
 Main/source/hash drift, existing FilesDev or residual data, competing devenv, invalid signature, missing dependency, source/config change, certificate/UAC/credentials/component/task/install demand, unexpected package identity or errors require evidence and stop. No extra build flags, independent restore, package source/manifest edits, manual layout or scope creep. GateB waits for direct user grant; current instruction is Plan only, then primary may authorize A separately. Overall project remains incomplete.
+
+
+## Reviewed entry revision after GateA .com preflight STOP
+
+The first GateA snapshot found unsigned devenv.com and correctly stopped before clone/build or any VS invocation. Those raw records and the STOP summary remain unchanged. Primary independently verified the same-instance devenv.exe Authenticode Valid/Microsoft Corporation, FileVersion18.6.11822.322, SHA47D848F16FD4CD40410B67C7E4935FD90F69736579D09F6A99C9E2273EBBD04A. The official CLI switch documentation supports the same switches on .exe, with no console output; /Out is the primary log.
+
+Primary reviewed and approved replacing the UNEXECUTED candidate entry with signed devenv.exe, not trusting/repairing the unsigned wrapper or retrying a failed deployment. Operational A/B entry is now %ProgramFiles%/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.exe, superseding earlier .com references. Preserve exit code and complete fresh /Out log; empty console is not success/failure evidence. No certificate/trust installation or policy change.
+
+Perform a new named read-only preflight, verifying that exact .exe signature/hash and mutable package/data/process/dependency prerequisites. If ready, primary explicitly approved proceeding only with GateA fresh preparation build under the existing one-property F9a grant, without another review round. GateB still has NO direct user deployment/startup/cleanup grant; do not execute .exe, even /?, until that grant and primary B instruction exist. All other scope and stop conditions remain unchanged.
