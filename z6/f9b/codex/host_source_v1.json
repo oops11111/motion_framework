@@ -1,0 +1,26 @@
+[
+  {
+    "path": "src/Files.App/Files.App.csproj",
+    "kind": "modified",
+    "post_sha256": "25cf077c77c21edf5272142c58de92e426d5721bd35cdaa5c58531e839d73376",
+    "original_git_blob": "ffe246f1c2e230236938c1e82521b14a08581f37"
+  },
+  {
+    "path": "src/Files.App/Views/MainPage.xaml.cs",
+    "kind": "modified",
+    "post_sha256": "61ea0a24f2345b68bd490ac09cdeff04be400a3b993145ba5571851efe36d31e",
+    "original_git_blob": "3577f29d915b719d1c87ae4b6263509521b1580b"
+  },
+  {
+    "path": "src/Files.App/Views/FilesMotionEvidence.cs",
+    "kind": "new",
+    "post_sha256": "adc4d071ad806d9676b015c1dc53bcc7ea87a0b90ebc426295f23baa20d172ac",
+    "original_git_blob": null
+  },
+  {
+    "path": "src/Files.App/Views/FilesMotionPilot.cs",
+    "kind": "new",
+    "post_sha256": "d45ebb539c15afb1922c0b6d0a76f38fb26eead1936d2ff0a7efc47521771332",
+    "original_git_blob": null
+  }
+]

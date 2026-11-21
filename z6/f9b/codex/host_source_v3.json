@@ -1,0 +1,34 @@
+[
+  {
+    "path": "src/Files.App/Files.App.csproj",
+    "post_sha256": "b6f79d7c74c4235a00eac28aeed63f48717ee90fa41d125362926e7e99903fee",
+    "BOM": true,
+    "CRLF_lines": 207,
+    "LF_only_lines": 0,
+    "original_git_blob": "ffe246f1c2e230236938c1e82521b14a08581f37"
+  },
+  {
+    "path": "src/Files.App/Views/MainPage.xaml.cs",
+    "post_sha256": "b0de752d1090da4b31bd1df0e095fa409dc2b68bc9580bd748247f7bddfe0afd",
+    "BOM": false,
+    "CRLF_lines": 634,
+    "LF_only_lines": 0,
+    "original_git_blob": "3577f29d915b719d1c87ae4b6263509521b1580b"
+  },
+  {
+    "path": "src/Files.App/Views/FilesMotionEvidence.cs",
+    "post_sha256": "761370b23febce4026bc270b65c4d24c7e3702453b97b3bfc72217cb81c23fe1",
+    "BOM": false,
+    "CRLF_lines": 88,
+    "LF_only_lines": 0,
+    "original_git_blob": null
+  },
+  {
+    "path": "src/Files.App/Views/FilesMotionPilot.cs",
+    "post_sha256": "471798028a358e89e6b3c3e82a1e2603c54bb08dcf71b909244de2e5f15e7070",
+    "BOM": false,
+    "CRLF_lines": 196,
+    "LF_only_lines": 0,
+    "original_git_blob": null
+  }
+]

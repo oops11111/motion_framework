@@ -128,3 +128,8 @@ M1 UTF8 guard STOP and M2 Get-FileHash guard STOP retained, both exactcleanup co
 ## F9b opened;phase1 reference/pin/API PASS (append-only)
 
 User literal opening message recorded2026-11-21T12:45:16Z with exact context in z6/f9b/codex/AUTHORIZATION.json; scope is new F9b, not inherited F9a. Phase1 attempt20261121T125037Z-fab35294: freshnohardlink Filescbfb cleanPREPOST, F7 reference3hashes before/copy/after exact, original SurfaceDump tool build0/CheckSurface0/fails0/fullbytes equal stage2C baselineSHA7b67b77bce6b36dc58cc870a17fe1b5588df3c6e526b39ca5a3e36d5280bc5cc. Frozencomposition/L1/fm/E1/pack sourcePREPOSTequal. Public frame method is OnFrame(), no inventedTick API. No Fileshostpatch/build/runtime/EventListener/nativefunction execution; phase2 awaits primary review/release. F2 remains independent, no closure/LOCKED/adopt/perf approval.
+
+
+## F9b phase2 finalv4 build/privatebehavior/API PASS (append-only)
+
+Finalv4 patchonly4hostfiles, upstreamCRLF/tabs/BOM, strict4fileapplyroundtrip bytes equal; initialCS8618/style/roundtrip records and v3BuildPASS preserved. Actual v4build20261121T131257Z-36a58930 sameauthorizedoneflag fullsolution0;17linkedprivatechecks0 with hostequivalent JSONreflectionfalse, safe lazyrestrictedpayload/generation/explicitwriter tested.3outputpackSHAexact/fullCheckSurfacefails0/fullDumpbyteequal7b67...; EventSourcetrue/JSONreflectionfalse actualconfig only. Frozen12source/API/packunchanged. No app registration/start/ETW/native motion/GUI in phase2; runtime actualdiff/scripts/layout primaryreview+release pending. F2independent, no closure/LOCKED/adopt/perf conclusion.

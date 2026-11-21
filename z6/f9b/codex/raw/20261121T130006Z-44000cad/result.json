@@ -1,0 +1,47 @@
+{
+  "phase": "F9b.2",
+  "attempt": "20261121T130006Z-44000cad",
+  "status": "STOP",
+  "build_mode": "NON-ORIGINAL RestorePackagesConfig=true and pilot EventSourceSupport=true",
+  "app_executed": false,
+  "commands": [
+    {
+      "label": "private_logic_tests",
+      "pid": 71268,
+      "argv": [
+        "%USERPROFILE%\\.dotnet\\dotnet.exe",
+        "run",
+        "--project",
+        "%WORKSPACE%\\m0\\out\\f9b-host-build-20261121T130006Z-44000cad\\logic-tests\\LogicTests.csproj",
+        "-c",
+        "Release"
+      ],
+      "exit": 0,
+      "original_sha256": "9642e1a6b415d7822e9e2721860a8576d3ae68ad2c5ab3c53c5bfb732eff8ef6",
+      "published_sha256": "04f8716131fc143bdc5d8bc393f42e4cc5e8298eb839d887695dc9df11c082a3"
+    },
+    {
+      "label": "host_build",
+      "pid": 75456,
+      "argv": [
+        "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+        "-restore",
+        "Files.slnx",
+        "-p:Configuration=Debug",
+        "-p:Platform=x64",
+        "-v:quiet",
+        "-clp:ErrorsOnly",
+        "-p:RestorePackagesConfig=true"
+      ],
+      "exit": 1,
+      "original_sha256": "ffe38771a308a566f3541b7dfde91ea1021315a4139fc10ca74f4a6e03d0a494",
+      "published_sha256": "68e27b56ae002922b8235e5e97bc8ac0105fc4ed87c2327cd42e3030c0eef0f2"
+    }
+  ],
+  "source_PRE": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": " M src/Files.App/Files.App.csproj\n M src/Files.App/Views/MainPage.xaml.cs\n?? src/Files.App/Views/FilesMotionEvidence.cs\n?? src/Files.App/Views/FilesMotionPilot.cs\n"
+  },
+  "tested_actual_evidence_sha256": "adc4d071ad806d9676b015c1dc53bcc7ea87a0b90ebc426295f23baa20d172ac",
+  "error": "Host build failed; no extra properties/fallback"
+}

@@ -1,0 +1,5 @@
+{
+  "v1": "Initial review patch preserved; csproj original BOM was omitted by patch-generation decoding",
+  "v2": "Correct diff records original csproj BOM removal as actual host bytes; no host implementation/source changed during build",
+  "scope": "Versioned patch accuracy correction only"
+}

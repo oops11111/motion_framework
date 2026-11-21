@@ -1,0 +1,13 @@
+ok restricted IDs and aliases never evaluate lazy payload getter
+ok Retarget and TokenLoad name-only paths never evaluate payload getter
+ok restricted events counted with103 alias
+ok necessary lifecycle event balance retained
+ok last idle fields retained without timing data
+ok only lifecycle and idle minimal fields emitted
+ok real action accepted into fake dispatcher
+ok queued action executes while owner live
+ok close idempotent
+ok queued old generation rejected after close
+ok no enqueue after close
+ok actual queue rejection reported to caller
+{"status":"PASS private host logic only","checks":12,"GUI":"NOT EXECUTED","native":"NOT EXECUTED"}

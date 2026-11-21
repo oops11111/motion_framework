@@ -26,5 +26,5 @@ def main():
  for f in H.glob("*.py"):ast.parse(f.read_text(encoding="utf-8"))
  manifest=H/"SHA256SUMS";entries=[l.split("  ",1) for l in manifest.read_text().splitlines()];files={f.relative_to(H).as_posix() for f in H.rglob("*") if f.is_file() and f!=manifest and "__pycache__" not in f.parts};assert {n for _,n in entries}==files and len(entries)==len(files)
  for sha,n in entries:assert digest(data(H/n))==sha,n;assert (H/n).stat().st_size<5000000
- print(json.dumps({"status":"PASS F9b.1 receipts","sealed_files":len(files),"full_surface_bytes_equal":True,"reference_files":3,"freeze_files":len(frozen),"host_patch_build_runtime":"NOT EXECUTED"},indent=2))
+ print(json.dumps({"status":"PASS F9b.1 receipts","sealed_files":len(files),"full_surface_bytes_equal":True,"reference_files":3,"freeze_files":len(frozen),"phase1_host_patch_build_runtime":"NOT EXECUTED in phase1"},indent=2))
 if __name__=="__main__":main()

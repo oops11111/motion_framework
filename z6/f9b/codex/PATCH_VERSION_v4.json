@@ -1,0 +1,6 @@
+{
+  "v3": "Build/private logic/pack API PASS preserved; actual runtimeconfig JSON reflection disabled exposed disposal summary incompatibility",
+  "v4": "Private explicit Utf8JsonWriter summary preserves same counter/nullable idle/bool shape without reflection; no new payload access or host/runtime feature override",
+  "fixture": "Actual helper linked under host-equivalent JsonSerializer.IsReflectionEnabledByDefault=false, old-call failure and new-summary checks",
+  "runtime": "NOT EXECUTED"
+}
