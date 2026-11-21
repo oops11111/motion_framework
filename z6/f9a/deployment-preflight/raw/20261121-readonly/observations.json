@@ -1,0 +1,580 @@
+{
+  "status": "PASS (read-only evidence collection only)",
+  "utc": "2026-11-21T09:34:52.924088+00:00",
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "source_pre": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "tree": "901330b3d5e4daa7838e24eaeedf4c2c745705c9",
+    "status_porcelain": "",
+    "tracked_diff": ""
+  },
+  "source_post": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "tree": "901330b3d5e4daa7838e24eaeedf4c2c745705c9",
+    "status_porcelain": "",
+    "tracked_diff": ""
+  },
+  "manifest": {
+    "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\AppxManifest.xml",
+    "exists": true,
+    "bytes": 22767,
+    "sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+    "identity": {
+      "Name": "FilesDev",
+      "Publisher": "CN=Files",
+      "Version": "4.3.0.0",
+      "ProcessorArchitecture": "x64"
+    },
+    "applications": [
+      {
+        "Id": "App",
+        "Executable": "Files.exe",
+        "EntryPoint": "Windows.FullTrustApplication",
+        "{http://schemas.microsoft.com/appx/manifest/desktop/windows10/4}SupportsMultipleInstances": "true"
+      }
+    ],
+    "dependencies": [
+      {
+        "kind": "TargetDeviceFamily",
+        "Name": "Windows.Desktop",
+        "MinVersion": "10.0.19041.0",
+        "MaxVersionTested": "10.0.26100.0"
+      },
+      {
+        "kind": "PackageDependency",
+        "Name": "Microsoft.WindowsAppRuntime.2",
+        "MinVersion": "2.5.1.0",
+        "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+      }
+    ],
+    "capabilities": [
+      "runFullTrust",
+      "broadFileSystemAccess",
+      "allowElevation",
+      "unvirtualizedResources",
+      "packageManagement",
+      "removableStorage",
+      "internetClient",
+      "privateNetworkClientServer"
+    ],
+    "extensions": [
+      {
+        "category": "windows.appExtensionHost",
+        "entry_point": null,
+        "executable": null,
+        "declared_paths": []
+      },
+      {
+        "category": "windows.protocol",
+        "entry_point": null,
+        "executable": null,
+        "declared_paths": []
+      },
+      {
+        "category": "windows.appExecutionAlias",
+        "entry_point": null,
+        "executable": null,
+        "declared_paths": []
+      },
+      {
+        "category": "windows.startupTask",
+        "entry_point": null,
+        "executable": null,
+        "declared_paths": []
+      },
+      {
+        "category": "windows.updateTask",
+        "entry_point": "Files.App.BackgroundTasks.UpdateTask",
+        "executable": null,
+        "declared_paths": []
+      },
+      {
+        "category": "windows.fileTypeAssociation",
+        "entry_point": null,
+        "executable": null,
+        "declared_paths": []
+      },
+      {
+        "category": "windows.activatableClass.inProcessServer",
+        "entry_point": null,
+        "executable": null,
+        "declared_paths": [
+          "WinRT.Host.dll"
+        ]
+      },
+      {
+        "category": "windows.activatableClass.outOfProcessServer",
+        "entry_point": null,
+        "executable": null,
+        "declared_paths": [
+          "Files.App.Server\\Files.App.Server.exe"
+        ]
+      },
+      {
+        "category": "windows.activatableClass.inProcessServer",
+        "entry_point": null,
+        "executable": null,
+        "declared_paths": [
+          "Microsoft.Web.WebView2.Core.dll"
+        ]
+      },
+      {
+        "category": "windows.activatableClass.inProcessServer",
+        "entry_point": null,
+        "executable": null,
+        "declared_paths": [
+          "Microsoft.Graphics.Canvas.dll"
+        ]
+      }
+    ],
+    "declared_path_checks": [
+      {
+        "manifest_relative_path": "Files.App.Server\\Files.App.Server.exe",
+        "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\Files.App.Server\\Files.App.Server.exe",
+        "exists": false
+      },
+      {
+        "manifest_relative_path": "Files.exe",
+        "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\Files.exe",
+        "exists": true,
+        "bytes": 587776,
+        "sha256": "e5e8765c4fb1a69429c919b508e99b5e49773eb173b91cee58a2a8e3bd3d30b3"
+      },
+      {
+        "manifest_relative_path": "Microsoft.Graphics.Canvas.dll",
+        "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\Microsoft.Graphics.Canvas.dll",
+        "exists": true,
+        "bytes": 1734176,
+        "sha256": "db92ee35e344e2d1f67849bb4cd8deb483f14d3d127baba8606a88735406cceb"
+      },
+      {
+        "manifest_relative_path": "Microsoft.Web.WebView2.Core.dll",
+        "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\Microsoft.Web.WebView2.Core.dll",
+        "exists": true,
+        "bytes": 793704,
+        "sha256": "17ccd9141c486d7a3689ed38d72d3bd8bb0e216b7990fcc76c132dc9102c6320"
+      },
+      {
+        "manifest_relative_path": "WinRT.Host.dll",
+        "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\WinRT.Host.dll",
+        "exists": true,
+        "bytes": 371512,
+        "sha256": "27149048165f353f88e56c79af4559fd29e68da2057ccd1dc91cd754e96fd5f8"
+      }
+    ]
+  },
+  "recipe": {
+    "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\Files.App.build.appxrecipe",
+    "exists": true,
+    "bytes": 421449,
+    "sha256": "12e12ed3d1f60a365e9abca14fa8f45293422ada0e05d324a170ec33b8691e5c",
+    "properties": {
+      "Machine": "DESKTOP-K93N3P8",
+      "WindowsUser": "admin",
+      "TargetPlatformIdentifier": "Windows",
+      "TargetOsVersion": "0.0",
+      "TargetOsDescription": null,
+      "SolutionConfiguration": "Debug|x64",
+      "PackageArchitecture": "x64",
+      "PackageIdentityName": "FilesDev",
+      "PackageIdentityPublisher": "CN=Files",
+      "IntermediateOutputPath": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\obj\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\",
+      "RemoteDeploymentType": "CopyToDevice",
+      "PackageRegistrationPath": null,
+      "RemoveNonLayoutFiles": "false",
+      "DeployOptionalPackages": "false",
+      "WindowsSdkPath": "%ProgramFiles% %28x86%29\\Windows Kits\\10\\",
+      "LayoutDir": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\AppX"
+    },
+    "mapped_file_count": 1300,
+    "missing_mapping_source_targets": [],
+    "server_subtree_mappings": [],
+    "cross_recipe_references": [],
+    "item_names": [
+      "AppXManifest",
+      "AppxLocation",
+      "AppxPackagedFile",
+      "Architecture",
+      "DeployOptionalPackages",
+      "FrameworkIdentity",
+      "IntermediateOutputPath",
+      "ItemGroup",
+      "LayoutDir",
+      "Machine",
+      "MoreInfo",
+      "Name",
+      "PackageArchitecture",
+      "PackageIdentityName",
+      "PackageIdentityPublisher",
+      "PackagePath",
+      "PackageRegistrationPath",
+      "Project",
+      "PropertyGroup",
+      "ReRegisterAppIfChanged",
+      "RemoteDeploymentType",
+      "RemoveNonLayoutFiles",
+      "ResolvedSDKReference",
+      "SolutionConfiguration",
+      "TargetOsDescription",
+      "TargetOsVersion",
+      "TargetPlatformIdentifier",
+      "Version",
+      "WindowsSdkPath",
+      "WindowsUser"
+    ],
+    "declared_AppX_layout_exists": false
+  },
+  "server": {
+    "compiled_output": {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App.Server\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\Files.App.Server.exe",
+      "exists": true,
+      "bytes": 162816,
+      "sha256": "c39f5fd212e91de45cc4887b2e90ad4cde68bf44fd975228fc261b9a865a9c05"
+    },
+    "appxrecipes_in_server_output": []
+  },
+  "active_nuget_import_receipts": {
+    "Files.App": {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\obj\\Files.App.csproj.nuget.g.targets",
+      "exists": true,
+      "bytes": 5465,
+      "sha256": "d5bf29b052aca76a06c657af12111018ac6fca4f956429f0210d3a5029e25007",
+      "imports": [
+        "$(NuGetPackageRoot)sqlite\\3.53.4\\buildTransitive\\net9.0\\SQLite.targets",
+        "$(NuGetPackageRoot)sentry\\6.11.0\\buildTransitive\\Sentry.targets",
+        "$(NuGetPackageRoot)microsoft.windows.sdk.buildtools.msix\\1.7.251221100\\buildTransitive\\Microsoft.Windows.SDK.BuildTools.MSIX.targets",
+        "$(NuGetPackageRoot)microsoft.windows.sdk.buildtools\\10.0.28000.2705\\buildTransitive\\Microsoft.Windows.SDK.BuildTools.targets",
+        "$(NuGetPackageRoot)microsoft.windowsappsdk.base\\2.0.4\\buildTransitive\\Microsoft.WindowsAppSDK.Base.targets",
+        "$(NuGetPackageRoot)microsoft.windowsappsdk.interactiveexperiences\\2.1.9\\buildTransitive\\Microsoft.WindowsAppSDK.InteractiveExperiences.targets",
+        "$(NuGetPackageRoot)microsoft.windowsappsdk.foundation\\2.3.12\\buildTransitive\\Microsoft.WindowsAppSDK.Foundation.targets",
+        "$(NuGetPackageRoot)microsoft.web.webview2\\1.0.3719.77\\buildTransitive\\Microsoft.Web.WebView2.targets",
+        "$(NuGetPackageRoot)microsoft.windowsappsdk.winui\\2.3.9\\buildTransitive\\Microsoft.WindowsAppSDK.WinUI.targets",
+        "$(NuGetPackageRoot)microsoft.windowsappsdk.search\\2.5.5\\buildTransitive\\Microsoft.WindowsAppSDK.Search.targets",
+        "$(NuGetPackageRoot)microsoft.windowsappsdk.runtime\\2.5.1\\buildTransitive\\Microsoft.WindowsAppSDK.Runtime.targets",
+        "$(NuGetPackageRoot)microsoft.windowsappsdk.dwrite\\2.1.0\\buildTransitive\\Microsoft.WindowsAppSDK.DWrite.targets",
+        "$(NuGetPackageRoot)microsoft.windowsappsdk\\2.5.1\\buildTransitive\\Microsoft.WindowsAppSDK.targets",
+        "$(NuGetPackageRoot)microsoft.windows.cswinrt\\2.3.1\\build\\Microsoft.Windows.CsWinRT.targets",
+        "$(NuGetPackageRoot)microsoft.graphics.win2d\\1.4.0\\buildTransitive\\net6.0-windows10.0.19041.0\\Microsoft.Graphics.Win2D.targets",
+        "$(NuGetPackageRoot)microsoft.extensions.options\\10.0.12\\buildTransitive\\net8.0\\Microsoft.Extensions.Options.targets",
+        "$(NuGetPackageRoot)microsoft.extensions.logging.abstractions\\10.0.12\\buildTransitive\\net8.0\\Microsoft.Extensions.Logging.Abstractions.targets",
+        "$(NuGetPackageRoot)communitytoolkit.labs.winui.dependencypropertygenerator\\0.1.250206-build.2040\\buildTransitive\\CommunityToolkit.Labs.WinUI.DependencyPropertyGenerator.targets",
+        "$(NuGetPackageRoot)communitytoolkit.mvvm\\8.4.2\\buildTransitive\\CommunityToolkit.Mvvm.targets"
+      ]
+    },
+    "Files.App.Server": {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App.Server\\obj\\Files.App.Server.csproj.nuget.g.targets",
+      "exists": true,
+      "bytes": 1095,
+      "sha256": "0ac866c8f934ca22dd905042a8d0daa8ff45ed4ae679bbd691a091ac6dafa5ed",
+      "imports": [
+        "$(NuGetPackageRoot)microsoft.windows.cswinrt\\2.3.1\\build\\Microsoft.Windows.CsWinRT.targets",
+        "$(NuGetPackageRoot)microsoft.extensions.options\\10.0.12\\buildTransitive\\net8.0\\Microsoft.Extensions.Options.targets",
+        "$(NuGetPackageRoot)microsoft.extensions.logging.abstractions\\10.0.12\\buildTransitive\\net8.0\\Microsoft.Extensions.Logging.Abstractions.targets"
+      ]
+    }
+  },
+  "source_references": [
+    {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App\\Files.App.csproj",
+      "exists": true,
+      "bytes": 10366,
+      "sha256": "14b647139ac4fd5b2e2e7259c98c6b8b022d3c617a7ea53e7f4eff91f14db8df",
+      "git_blob": "ffe246f1c2e230236938c1e82521b14a08581f37",
+      "line_references": {
+        "BuildFilesAppServer": [
+          170
+        ],
+        "Files.App.Server.winmd": [
+          146,
+          147,
+          149
+        ],
+        "ProjectReference": [
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161
+        ]
+      }
+    },
+    {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\src\\Files.App.Server\\Files.App.Server.csproj",
+      "exists": true,
+      "bytes": 3185,
+      "sha256": "e36240034e2553341b05d145b142af863e6c2fcc7379c506a953352953eea441",
+      "git_blob": "72378d41495a9d7d786f24444b5daf0195657791",
+      "line_references": {
+        "CsWinRTComponent": [
+          20
+        ],
+        "ProjectReference": [
+          48,
+          49
+        ],
+        "Appx": [
+          7,
+          8
+        ],
+        "Deploy": []
+      }
+    },
+    {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\Files.slnx",
+      "exists": true,
+      "bytes": 4307,
+      "sha256": "42cadc33c819915ea456aa7dc7f1c50ba23829566e6e9091d6c991fa3c2cdd3f",
+      "git_blob": "49657a490d21b6bb0930e7eea2af6c0c36ae52ec",
+      "line_references": {
+        "BuildDependency": [
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
+        ],
+        "Files.App.Server": [
+          50,
+          67
+        ],
+        "<Deploy": [
+          54,
+          71,
+          79
+        ]
+      }
+    },
+    {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\.github\\README.md",
+      "exists": true,
+      "bytes": 3291,
+      "sha256": "1d479bb4c3f36d7ca3d6b4e437e2f92ffa815a9fefe1d3d0ebd16bb9b083529a",
+      "git_blob": "5e2c734474e426b7eb77daed3a5ed4f27c9cd3dc",
+      "line_references": {
+        "Building from source": [
+          38
+        ],
+        "building-from-source": [
+          40
+        ]
+      }
+    },
+    {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\.github\\CONTRIBUTING.md",
+      "exists": true,
+      "bytes": 4236,
+      "sha256": "5c9b76d73afbd5a521ca1e2de98e9c2302a730cdc4f4fb7a5d8a50ffa9d28fe0",
+      "git_blob": "bc4e856af1916a10e2e89d4621245d12d7b11e72",
+      "line_references": {
+        "Files.Package": [
+          58
+        ],
+        "debug version": [
+          58,
+          59
+        ]
+      }
+    },
+    {
+      "path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source\\AGENTS.md",
+      "exists": true,
+      "bytes": 7302,
+      "sha256": "49c798b11c96af908531d57b7ba1a8b824d8f73bea7c0019c2addffc2c1a440f",
+      "git_blob": "8b8b4c3d31e2797b389ae80f9124ce30b91be814",
+      "line_references": {
+        "msbuild -restore Files.slnx": [
+          66
+        ]
+      }
+    }
+  ],
+  "sdk_references": {
+    "path": "%USERPROFILE%\\.nuget\\packages\\microsoft.windows.sdk.buildtools.msix\\1.7.251221100\\build\\Microsoft.Windows.SDK.BuildTools.MSIX.Packaging.targets",
+    "exists": true,
+    "bytes": 275798,
+    "sha256": "ad6a90582d0bf3f452bc057eecd7ddf7368b4337199dfce240e6382fc8992458",
+    "line_references": {
+      "<LayoutDir ": [
+        158
+      ],
+      "<AppxLayoutDir ": [
+        201,
+        1586
+      ],
+      "<_GenerateAppxPackageBaseDependsOn>": [
+        1650
+      ],
+      "<_CreateAppxBundlePlatformSpecificArtifactsDependsOn>": [
+        1719
+      ],
+      "_CreatePackageLayout;": [
+        1724
+      ],
+      "$(AppxLayoutDir)": [
+        201,
+        1586,
+        1838,
+        1850,
+        1879,
+        1890
+      ],
+      "UseHardlinksIfPossible=": [
+        1871,
+        1876,
+        1954,
+        1959,
+        2516,
+        2684,
+        2704,
+        2811,
+        2828,
+        2947,
+        2970,
+        3284,
+        3304,
+        3457,
+        3461,
+        3484,
+        3500
+      ],
+      "OptionalProjectRecipeFiles=": [
+        4605
+      ],
+      "F5 deploy only creates": [
+        4395
+      ],
+      "GenerateAppxPackageOnBuild=true": [
+        4397
+      ],
+      "EnableIncludePublishItemsOutputGroup": [
+        4400,
+        4402
+      ]
+    },
+    "targets": [
+      {
+        "name": "PrepareMsixPackage",
+        "attributes": {
+          "Name": "PrepareMsixPackage",
+          "Condition": "'$(_PrepareMsixPackage)' == 'true'",
+          "DependsOnTargets": "$(PrepareMsixPackageDependsOn)"
+        },
+        "line": 1623,
+        "direct_task_names": []
+      },
+      {
+        "name": "_GenerateAppxPackage",
+        "attributes": {
+          "Name": "_GenerateAppxPackage",
+          "Condition": "'$(AppxPackage)' == 'true'",
+          "DependsOnTargets": "$(_GenerateAppxPackageDependsOn)"
+        },
+        "line": 1668,
+        "direct_task_names": [
+          "Delete",
+          "WriteLinesToFile"
+        ]
+      },
+      {
+        "name": "_CreateAppxBundlePlatformSpecificArtifacts",
+        "attributes": {
+          "Name": "_CreateAppxBundlePlatformSpecificArtifacts",
+          "Condition": "'$(ProduceAppxBundle)' == 'true' AND ('$(RequestingProject)' == '' OR '$(RequestingProject)' == '$(ProjectName)')",
+          "DependsOnTargets": "$(_CreateAppxBundlePlatformSpecificArtifactsDependsOn)"
+        },
+        "line": 1805,
+        "direct_task_names": []
+      },
+      {
+        "name": "_CreatePackageLayout_CalculateInputsAndOutputs",
+        "attributes": {
+          "Name": "_CreatePackageLayout_CalculateInputsAndOutputs"
+        },
+        "line": 1814,
+        "direct_task_names": [
+          "WinAppSdkRemovePayloadDuplicates"
+        ]
+      },
+      {
+        "name": "_CreatePackageLayout",
+        "attributes": {
+          "Name": "_CreatePackageLayout"
+        },
+        "line": 1848,
+        "direct_task_names": [
+          "RemoveDir",
+          "MakeDir",
+          "WinAppSdkFilterItemGroup",
+          "WinAppSdkFilterItemGroup",
+          "Copy",
+          "Copy",
+          "Message"
+        ]
+      },
+      {
+        "name": "_CreatePackageLayout_AddFileWrites",
+        "attributes": {
+          "Name": "_CreatePackageLayout_AddFileWrites"
+        },
+        "line": 1886,
+        "direct_task_names": []
+      },
+      {
+        "name": "_GenerateAppxPackageRecipe",
+        "attributes": {
+          "Name": "_GenerateAppxPackageRecipe",
+          "DependsOnTargets": "$(_GenerateAppxPackageRecipeDependsOn)"
+        },
+        "line": 4566,
+        "direct_task_names": []
+      },
+      {
+        "name": "_GenerateAppxPackageRecipeFile",
+        "attributes": {
+          "Name": "_GenerateAppxPackageRecipeFile",
+          "Inputs": "$(MSBuildAllProjects);@(_GenerateAppxPackageRecipeInput)",
+          "Outputs": "$(AppxPackageRecipe)"
+        },
+        "line": 4569,
+        "direct_task_names": [
+          "WinAppSdkGenerateAppxPackageRecipe",
+          "Message",
+          "Message",
+          "Message",
+          "Message"
+        ]
+      }
+    ]
+  },
+  "sdk_supporting_files": [
+    {
+      "path": "%USERPROFILE%\\.nuget\\packages\\microsoft.windows.sdk.buildtools.msix\\1.7.251221100\\build\\Microsoft.Windows.SDK.BuildTools.MSIX.Common.targets",
+      "exists": true,
+      "bytes": 5006,
+      "sha256": "41ab491d590759badcd84f29bb74a3e9419bb7f795fd1aeb4276a820215702ce"
+    },
+    {
+      "path": "%USERPROFILE%\\.nuget\\packages\\microsoft.windows.sdk.buildtools.msix\\1.7.251221100\\build\\Microsoft.Windows.SDK.BuildTools.MSIX.targets",
+      "exists": true,
+      "bytes": 2701,
+      "sha256": "6cd4b28267b2d22a95625185819f5c7a32b138cb4239b703f8a26bda63381772"
+    }
+  ],
+  "interpretation": {
+    "startup": "NOT READY/NOT TESTED: existing appbin is not a verified deployment layout",
+    "confirmed": "Server compiled but not in current recipe subtree; recipe AppX LayoutDir differs from SDK intermediate AppxLayoutDir",
+    "unknown": "Normal VS deploy automatic server merge is not proven or disproven; no safe standalone complete layout-only target was established",
+    "not_claimed": "No upstream bug judgment or complete F9a/startup acceptance",
+    "operations_not_performed": [
+      "MSBuild/target invocation",
+      "layout copying/removal",
+      "package registration",
+      "activation",
+      "new installation",
+      "source changes"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "method": "Separate bounded read-only source query after the one scanner snapshot; no full rescan and no target invocation",
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "references": [
+    {
+      "path": "src/Files.App.Launcher/Files.App.Launcher.vcxproj",
+      "sha256": "1384591dd8130fe36571760d8f4d536394bd4f83c44212a5a2a3fd1de44ad906",
+      "git_blob": "8a11cb6cc8d4c96112ab70cc5fd6fdbcf352d77b",
+      "line_references": {
+        "PostBuildEvent": [
+          67,
+          70
+        ],
+        "xcopy": [
+          69
+        ],
+        "PlatformToolset": [
+          40,
+          48
+        ],
+        "OutDir": [
+          43,
+          52,
+          65,
+          69
+        ]
+      }
+    },
+    {
+      "path": "src/Files.App.OpenDialog/Files.App.OpenDialog.vcxproj",
+      "sha256": "904ad1c1689d3b3a55b39a94da16b2096230a92b645f1aeea1896f0cc5c9e2a9",
+      "git_blob": "d77c8863ef63a3e9609bbed1abb5e488b97c0e68",
+      "line_references": {
+        "PostBuildEvent": [
+          84,
+          86
+        ],
+        "xcopy": [
+          85
+        ],
+        "PlatformToolset": [
+          36
+        ],
+        "OutDir": [
+          45,
+          53,
+          82,
+          85
+        ]
+      }
+    },
+    {
+      "path": "src/Files.App.SaveDialog/Files.App.SaveDialog.vcxproj",
+      "sha256": "05999c06ff0b8baaf7022f96f561089c8285352c38631800a31caa5d313571d5",
+      "git_blob": "098d63c7cbd869cae4f48b1ebbf466f42ce7f992",
+      "line_references": {
+        "PostBuildEvent": [
+          83,
+          85
+        ],
+        "xcopy": [
+          84
+        ],
+        "PlatformToolset": [
+          35
+        ],
+        "OutDir": [
+          44,
+          52,
+          81,
+          84
+        ]
+      }
+    }
+  ]
+}
