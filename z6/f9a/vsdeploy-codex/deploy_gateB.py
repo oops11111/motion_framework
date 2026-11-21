@@ -99,12 +99,22 @@ def execute(args,binding,source,entry):
             if any(w["visible"] for w in windows):break
             time.sleep(1)
         save(attempt/"windows.json",windows);assert any(w["visible"] for w in windows),"No ordinary visible first window"
+        visible=next(w for w in windows if w["visible"])
+        check=subprocess.run(["powershell.exe","-NoProfile","-File",str(HERE/"WaitMainPage.ps1"),"-OwnedPid",str(pid),"-OwnedHwnd",visible["hwnd"],"-Execute"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        (attempt/"mainpage-uia.json").write_bytes(check.stdout);(attempt/"mainpage-uia-stderr.log").write_bytes(check.stderr)
+        assert check.returncode==0,"MainPage SettingsButton readiness failed; splash alone is insufficient"
+        result["mainpage_ready"]=json.loads(check.stdout.decode("utf-8-sig"))
         result["normal_close_exit"]=native.close_owned(handle,pid);assert result["normal_close_exit"]==0
     except Exception as exc:
         result["error"]=str(exc)
     finally:
         try:
-            if native and handle:native.k.CloseHandle(handle)
+            if native and handle:
+                try:
+                    if native.k.WaitForSingleObject(handle,0)==258:
+                        result["failure_cleanup_normal_close_exit"]=native.close_owned(handle,pid)
+                except Exception as close_error:result["failure_cleanup_close_error"]=str(close_error)
+                finally:native.k.CloseHandle(handle)
             if owned:
                 from native_lifecycle import Native
                 check=Native();owned_root=Path(owned["InstallLocation"]).resolve();live=[]

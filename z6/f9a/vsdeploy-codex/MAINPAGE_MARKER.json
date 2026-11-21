@@ -1,0 +1,34 @@
+{
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "marker": "SettingsButton",
+  "meaning": "MainPage marker, not splash; source-only reference; runtime NOT EXECUTED",
+  "references": [
+    {
+      "path": "src/Files.App/App.xaml.cs",
+      "sha256": "63625180a1352a5147cf4ea9817bf4e17d56995a9d49a24fa66bdcc30d964a34",
+      "lines": [
+        141,
+        165
+      ]
+    },
+    {
+      "path": "src/Files.App/Views/MainPage.xaml",
+      "sha256": "43ca8b28171687cdb976dd19f7db005f8708c5ed2630e02cca3bcd4108ee3881",
+      "lines": [
+        310,
+        313
+      ]
+    },
+    {
+      "path": "src/Files.App/MainWindow.xaml.cs",
+      "sha256": "55cc9a793c49a25b5142694f8c6a6492ab921bc3e879eba524b373d87ff5ee15",
+      "lines": [
+        88,
+        122
+      ]
+    }
+  ],
+  "marker_source_lines": [
+    313
+  ]
+}
