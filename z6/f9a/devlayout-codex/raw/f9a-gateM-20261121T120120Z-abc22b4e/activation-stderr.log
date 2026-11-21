@@ -1,0 +1,20 @@
+ConvertFrom-Json : Invalid object passed in, ':' or '}' expected. (225): {
+  "grant_kind": "F9a FilesDev selected-project deployment, ordinary startup, exact cleanup",
+  "source": "Direct user response in current root conversation",
+  "user_verbatim": "鎵瑰噯锛屼粎鏈エ FilesDev 閮ㄧ讲銆佷富椤靛惎鍔ㄥ強绮剧‘娓呯悊銆?,
+  "recorded_utc": "2026-11-21T11:32:08Z",
+  "recorded_awst": "2026-11-21 19:32:08 AWST",
+  "time_note": "Recording time, not sending time",
+  "message_id": "unavailable",
+  "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+  "context_note": "Existing direct user grant, not a new user message. Primary explicitly applies the same FilesDev ide
+ntity/package operations to separately planned manual development layout stage3C5.",
+  "primary_scope_decision": "Root message: 鐢ㄦ埛鏈€鏂版槑绀衡€滀粎鏈エFilesDev閮ㄧ讲銆佷富椤靛惎鍔ㄥ強绮剧‘娓呯悊鈥濆凡缁忚鐩栬鍚宨dentity鐨勬敞鍐?鍚姩/娓呯悊缁堟€侊
+紱鏀瑰彉宸ュ叿鏈韩涓嶆槸鍐嶆璇锋眰鍚屼竴鍖呮潈闄愮殑鐞嗙敱銆?
+}
+At %WORKSPACE%\z6\f9a\devlayout-codex\ActivateNormally.ps1:12 char:49
++ $a=Get-Content -LiteralPath $AuthorityFile -Raw|ConvertFrom-Json
++                                                 ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [ConvertFrom-Json], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException,Microsoft.PowerShell.Commands.ConvertFromJsonCommand
+ 

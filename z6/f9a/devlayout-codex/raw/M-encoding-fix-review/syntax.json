@@ -1,0 +1,8 @@
+{
+  "PSParser": "PASS",
+  "explicit_UTF8_authority_instruction_JSON_parse": "PASS in WinPS5; read-only",
+  "runtime_after_fix": "NOT EXECUTED",
+  "fix": "Only Get-Content -Encoding UTF8 on authority and instruction reads",
+  "new_helper_sha256": "691adaff02c7f664f762b566e5d43b28a45fed0ae88d786ee4a121d7df01c95c",
+  "old_attempt_raw": "Preserved unchanged in ignored storage; sanitized published copy"
+}

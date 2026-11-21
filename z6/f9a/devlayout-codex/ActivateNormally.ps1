@@ -9,8 +9,8 @@ param(
 $ErrorActionPreference = 'Stop'
 if (-not $Execute) { @{mode='dryrun';aumid=$AppUserModelId;activation='ordinary; not executed'}|ConvertTo-Json; return }
 if (-not (Test-Path -LiteralPath $AuthorityFile) -or -not (Test-Path -LiteralPath $InstructionFile)) { throw 'Same-FilesDev authority context and primary instruction required' }
-$a=Get-Content -LiteralPath $AuthorityFile -Raw|ConvertFrom-Json
-$i=Get-Content -LiteralPath $InstructionFile -Raw|ConvertFrom-Json
+$a=Get-Content -LiteralPath $AuthorityFile -Raw -Encoding UTF8|ConvertFrom-Json
+$i=Get-Content -LiteralPath $InstructionFile -Raw -Encoding UTF8|ConvertFrom-Json
 if ($a.grant_kind -ne 'F9a FilesDev selected-project deployment, ordinary startup, exact cleanup' -or $a.source -ne 'Direct user response in current root conversation' -or [string]::IsNullOrWhiteSpace($a.user_verbatim)) { throw 'Not a existing direct same-FilesDev grant' }
 if ($i.instruction_kind -ne 'Primary GateM execute' -or [string]::IsNullOrWhiteSpace($i.root_verbatim) -or $i.authority_sha256.ToUpperInvariant() -ne (Get-FileHash -LiteralPath $AuthorityFile -Algorithm SHA256).Hash) { throw 'Primary M instruction not bound to this grant' }
 $packages=@(Get-AppxPackage -Name FilesDev)
