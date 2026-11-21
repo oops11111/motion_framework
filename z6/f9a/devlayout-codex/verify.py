@@ -19,7 +19,7 @@ def main():
  assert sum(r["kind"]=="server-output" for r in inventory)==22
  for x,y in zip(inventory,dest):assert all(x[k]==y[k] for k in ["destination","sha256","bytes"])
  for target in json.loads((a/"manifest_targets.json").read_text()):assert target["exact_file"] or (target["kind"]=="resource" and target["qualified_family"])
- ast.parse((H/"prepare_layout.py").read_text(encoding="utf-8"))
+ for f in H.glob("*.py"):ast.parse(f.read_text(encoding="utf-8"))
  manifest=H/"SHA256SUMS";entries=[l.split("  ",1) for l in manifest.read_text().splitlines()];files={f.relative_to(H).as_posix() for f in H.rglob("*") if f.is_file() and f!=manifest and "__pycache__" not in f.parts}
  assert {n for _,n in entries}==files and len(entries)==len(files)
  for sha,n in entries:assert hashlib.sha256(content(H/n)).hexdigest()==sha,n;assert (H/n).stat().st_size<5000000

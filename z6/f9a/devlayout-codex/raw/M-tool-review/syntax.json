@@ -1,0 +1,14 @@
+{
+  "Python_AST": "PASS",
+  "PSParser": "PASS",
+  "default_M_dryrun": "PASS",
+  "registration_activation_realUIA": "NOT EXECUTED",
+  "scripts": {
+    "ActivateNormally.ps1": "7ca7802444bab765b7b538c1ac45d6c381c9163fdc2d7e7dfab3d2b9ffe93613",
+    "native_lifecycle.py": "bf180af888422e18f91008094bde141297dea36e406f1d552432d86ce16a9a9a",
+    "prepare_layout.py": "83a54fbd0cc6695a57c2c0659921d53aeb68f42d179742d70757e3577df713cb",
+    "run_manual_package.py": "0ffe55ff770f4f225b31d5a9b64a503d60c908a0e8d3f600c5b824340fec27f2",
+    "verify.py": "3016a247d5255ab10306213d9b7ee3492880c8fea669e700c48d8ada238413c6",
+    "WaitMainPage.ps1": "539658f1ab1ef4572e35267f3ca184ed7d1033f93466fee6c6cd35dcba52f25b"
+  }
+}

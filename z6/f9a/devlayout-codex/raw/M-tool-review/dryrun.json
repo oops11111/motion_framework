@@ -1,0 +1,17 @@
+{
+  "mode": "dryrun; no OS/package/activation/UIA calls",
+  "runtime": "NOT TESTED",
+  "layout": "m0/out/f9a-devlayout-20261121T115207Z-c7612b64/layout",
+  "inventory_sha256": "0bfdf5bbae22fc3734ba9987be2ecd10f7e64b02f0cddccd8aa912130a7f7f43",
+  "destination_hashes_sha256": "2d910d3a01c751fa7a4bd00e4578e1455d36936c9438922b772a60463bd15fbd",
+  "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+  "registration": "Add-AppxPackage -Register <layout/AppxManifest.xml>; no other flags",
+  "identity": {
+    "Name": "FilesDev",
+    "Publisher": "CN=Files",
+    "Version": "4.3.0.0",
+    "ProcessorArchitecture": "x64"
+  },
+  "startup": "ordinary PFN!App, empty args, SettingsButton visible/enabled",
+  "cleanup": "normal WM_CLOSE, then exact newly captured fullname only after no owned/unknown processes"
+}

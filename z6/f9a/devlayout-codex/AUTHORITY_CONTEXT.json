@@ -1,0 +1,12 @@
+{
+  "grant_kind": "F9a FilesDev selected-project deployment, ordinary startup, exact cleanup",
+  "source": "Direct user response in current root conversation",
+  "user_verbatim": "批准，仅本票 FilesDev 部署、主页启动及精确清理。",
+  "recorded_utc": "2026-11-21T11:32:08Z",
+  "recorded_awst": "2026-11-21 19:32:08 AWST",
+  "time_note": "Recording time, not sending time",
+  "message_id": "unavailable",
+  "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+  "context_note": "Existing direct user grant, not a new user message. Primary explicitly applies the same FilesDev identity/package operations to separately planned manual development layout stage3C5.",
+  "primary_scope_decision": "Root message: 用户最新明示“仅本票FilesDev部署、主页启动及精确清理”已经覆盖该同identity的注册/启动/清理终态；改变工具本身不是再次请求同一包权限的理由。"
+}
