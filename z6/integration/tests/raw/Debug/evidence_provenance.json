@@ -1,0 +1,83 @@
+{
+  "source_attempt": "m0/out/z6-integration-tests-Debug-20261121T071704Z-ecaa5047",
+  "note": "Original command/result log hashes and source manifest describe unredacted originals. Top-level SHA256SUMS covers delivered UTF-8/LF/path-sanitized copies. Redacted command text is evidence; use run_tests.py for execution.",
+  "files": [
+    {
+      "source_file": "managed_build.log",
+      "source_sha256": "eeb59e3a0c1039cc682f7351b024d67381ea7954d409df133936129b4652240a",
+      "delivered_file": "managed_build.log",
+      "delivered_sha256": "f3fb811b2fbe6cb56087553fffd33c4776369f92d1d495ed4411d6e257bcdb89",
+      "encoding": "UTF-8"
+    },
+    {
+      "source_file": "managed_test.log",
+      "source_sha256": "359ff2408cf17546ea702520ccac06ec8f221a73d05da062414f840ec51476f1",
+      "delivered_file": "managed_test.log",
+      "delivered_sha256": "78a5c80673405b2b974515e8b5d88e0f53ff9119070c4841fb0cc94a94fe2a7a",
+      "encoding": "UTF-8"
+    },
+    {
+      "source_file": "native_build.cmd",
+      "source_sha256": "9b0b9da4c799ec277c4506c9cfcda174f9bc38de9ad8887f04dda3c625426aac",
+      "delivered_file": "native_build.command.txt",
+      "delivered_sha256": "6ddfaaae0c1cfa35b80a5fba291f834951d936fa5beb132010777952c428e911",
+      "encoding": "UTF-8"
+    },
+    {
+      "source_file": "native_build.log",
+      "source_sha256": "51e2d9bde2837030561eb0b93db428d8cc71a9dbbf3532190afdf29740880cf3",
+      "delivered_file": "native_build.log",
+      "delivered_sha256": "e8504d6ca85966668659b758d92e5a8cf5fbf6165002b90b79d32bc64ae96064",
+      "encoding": "UTF-8"
+    },
+    {
+      "source_file": "native_test.log",
+      "source_sha256": "bf2f907bc58226ee2ac543c728e84263fbb143f746d4732b29a8b20ef67f6cee",
+      "delivered_file": "native_test.log",
+      "delivered_sha256": "0ae187f9fa539348c5eb3671c9d10c51b6ee93a120211449fa59559d3c734f81",
+      "encoding": "UTF-8"
+    },
+    {
+      "source_file": "result.json",
+      "source_sha256": "aca8f522b0ab7a3c48ef6d884cee90814052642b02a47796c2e6c8a05c9e1c60",
+      "delivered_file": "result.json",
+      "delivered_sha256": "7749f7c7f8bd952abde9d4ea0b51ed779c8d961bbffc1ec5a386c7d41ba87c2c",
+      "encoding": "UTF-8"
+    },
+    {
+      "source_file": "SHA256SUMS",
+      "source_sha256": "1e5b8565bbf0b447690954c7ff9cc90feaf047c01f3c0b89ea5850dec26a2ce0",
+      "delivered_file": "source_SHA256SUMS_before_sanitizing.txt",
+      "delivered_sha256": "1e5b8565bbf0b447690954c7ff9cc90feaf047c01f3c0b89ea5850dec26a2ce0",
+      "encoding": "UTF-8"
+    },
+    {
+      "source_file": "surface_check.log",
+      "source_sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35",
+      "delivered_file": "surface_check.log",
+      "delivered_sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35",
+      "encoding": "UTF-8"
+    },
+    {
+      "source_file": "surface_Debug.checksurface.txt",
+      "source_sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35",
+      "delivered_file": "surface_Debug.checksurface.txt",
+      "delivered_sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35",
+      "encoding": "UTF-8"
+    },
+    {
+      "source_file": "surface_Debug.txt",
+      "source_sha256": "243c2e009252fa1d7d74b11c0c173a425a1804e1581157946882f852c8c23a34",
+      "delivered_file": "surface_Debug.txt",
+      "delivered_sha256": "243c2e009252fa1d7d74b11c0c173a425a1804e1581157946882f852c8c23a34",
+      "encoding": "UTF-8"
+    },
+    {
+      "source_file": "surface_tool_build.log",
+      "source_sha256": "82f30e79310326a9f13bec2bd8f465ba53880263d97fd04d5948c0f5a6c9d31e",
+      "delivered_file": "surface_tool_build.log",
+      "delivered_sha256": "af6f238f8750ac10e72db943ee5c2dc5029f59d02ef83f8b7b334d61fd332326",
+      "encoding": "UTF-8"
+    }
+  ]
+}

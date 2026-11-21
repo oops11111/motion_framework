@@ -1,0 +1,29 @@
+[
+  {
+    "ticket": "f0",
+    "tip": "45cbe21b96ac917c28635065b01206210aace738",
+    "source_path": "z6/LEDGER_snapshot.md",
+    "source_blob": "e87e521783619cc9a3b2f673751cf96b4b72ff70",
+    "sha256": "29c5b23555abd4abb263f0445d412b03a31d1502e41d3e46b0d0d4870ab9edf9",
+    "bytes": 5855,
+    "archive": "source_ledgers/f0-45cbe21b96ac917c28635065b01206210aace738.md"
+  },
+  {
+    "ticket": "f3",
+    "tip": "5a3cef559e826a8450a252add7efd8659125a0e4",
+    "source_path": "z6/LEDGER_snapshot.md",
+    "source_blob": "c2afa183b7030c56539b9bd03f7aa70fdbd1716c",
+    "sha256": "d9dd703ff28e63e5d9ff7489ac81a18c77b82b78443341c9cb12d75e0b97b386",
+    "bytes": 6753,
+    "archive": "source_ledgers/f3-5a3cef559e826a8450a252add7efd8659125a0e4.md"
+  },
+  {
+    "ticket": "f1",
+    "tip": "5ec13f459a7926012407b10cf263127e5a74ab73",
+    "source_path": "z6/LEDGER_snapshot.md",
+    "source_blob": "2411fc802cae95d03dafbb5abd95bd8a10e69166",
+    "sha256": "f84de599658780be409bea5453e4fb6e995511ba05b48a530f2bdbaa74fc170f",
+    "bytes": 19317,
+    "archive": "source_ledgers/f1-5ec13f459a7926012407b10cf263127e5a74ab73.md"
+  }
+]

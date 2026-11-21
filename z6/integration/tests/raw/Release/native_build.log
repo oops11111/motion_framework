@@ -1,0 +1,11 @@
+**********************************************************************
+** Visual Studio 2022 Developer Command Prompt v17.14.34
+** Copyright (c) 2025 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+fm_capi_test.cpp
+fm_capi.cpp
+正在生成代码...
+  正在创建库 %REPO%\m0\out\z6-integration-tests-Release-20261121T071853Z-766056ab\capi\fm_capi_test.lib 和对象 %REPO%\m0\out\z6-integration-tests-Release-20261121T071853Z-766056ab\capi\fm_capi_test.exp
+fm_capi.cpp
+  正在创建库 %REPO%\m0\out\z6-integration-tests-Release-20261121T071853Z-766056ab\native\fluidmotion.lib 和对象 %REPO%\m0\out\z6-integration-tests-Release-20261121T071853Z-766056ab\native\fluidmotion.exp

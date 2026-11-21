@@ -61,6 +61,45 @@ int main(int argc, char** argv) {
     uint64_t e = fm_animation_create(s, 1, "demo.exit"); fm_animation_play(s, e); RunFrames(s, 1000);
     CHECK(c.last.at("opacity") == 0.0 && c.last.at("offsetX") == 80.0);
 
+    // Z6 F1 A-layer: enter transition interrupted mid-flight by a second holder on the same (target, offsetX)
+    // ("hover"). Manual clock only; nothing is timed. Later writer wins; the hand-off keeps value and velocity.
+    {
+        Ctx c3; fm_system* s3 = fm_create_manual(Sink, Render, &c3);
+        CHECK(s3 != nullptr && fm_load_tokens(s3, json.c_str(), err, sizeof err) == 0);
+        const uint64_t T = 11;
+        const uint64_t enter = fm_animation_create(s3, T, "demo.enter");   // holder 1: token transition
+        const uint64_t hover = fm_animation_create(s3, T, nullptr);        // holder 2: retarget-only
+        CHECK(enter != 0 && hover != 0 && enter != hover);
+        fm_animation_play(s3, enter);
+        for (int i = 0; i < 6; ++i) { fm_manual_advance(s3, 1.0 / 120.0); fm_on_frame(s3); }
+        double ex = 0, evx = 0, eo = 0, evo = 0;
+        CHECK(fm_current(s3, T, "offsetX", &ex, &evx) == 1 && fm_current(s3, T, "opacity", &eo, &evo) == 1);
+        CHECK(ex > -80.0 && ex < 0.0 && evx > 0.0 && eo > 0.0 && eo < 1.0 && fm_is_running(s3));   // enter is mid-flight
+        std::printf("  F1A_HOLDER1 enter=%llu target=%llu property=offsetX in_flight value=%.9g vel=%.9g opacity=%.9g\n",
+                    (unsigned long long)enter, (unsigned long long)T, ex, evx, eo);
+        fm_animation_play(s3, hover);
+        CHECK(fm_animation_retarget(s3, hover, "offsetX", 40.0, 0.32, 0.78, 0, 0.0) == 1);   // later writer, no `from`
+        double hx = 0, hvx = 0; CHECK(fm_current(s3, T, "offsetX", &hx, &hvx) == 1);
+        CHECK(std::fabs(hx - ex) < 1e-9 && std::fabs(hvx - evx) < 1e-9);                     // Retarget starts at the live value
+        std::printf("  F1A_RETARGET_FROM hover=%llu target=%llu property=offsetX from=%.9g vel=%.9g to=40\n",
+                    (unsigned long long)hover, (unsigned long long)T, hx, hvx);
+        int overlap = 0; double prevO = eo, prevX = hx;                                       // both holders write each frame
+        for (int i = 0; i < 6; ++i) {
+            fm_manual_advance(s3, 1.0 / 120.0); fm_on_frame(s3);
+            const double o = c3.last.at("opacity"), x = c3.last.at("offsetX");
+            if (o > prevO && x != prevX) ++overlap;
+            prevO = o; prevX = x;
+        }
+        CHECK(overlap == 6);
+        std::printf("  F1A_OVERLAP frames=6 enter_opacity_advancing_and_hover_offsetX_moving=%d\n", overlap);
+        RunFrames(s3, 1000);
+        double fx = 0; CHECK(fm_current(s3, T, "offsetX", &fx, nullptr) == 1 && fx == 40.0);
+        CHECK(!fm_is_running(s3) && c3.last.at("offsetX") == 40.0 && c3.last.at("opacity") == 1.0);
+        std::printf("  F1A_FINAL offsetX=%.9g opacity=%.9g expected_offsetX=40 (later writer target)\n",
+                    c3.last.at("offsetX"), c3.last.at("opacity"));
+        fm_animation_release(s3, enter); fm_animation_release(s3, hover); fm_destroy(s3);
+    }
+
     // reduced motion: toggling mid-flight needs the pump woken (the shim does it); jump lands on the next frame
     fm_animation_play(s, a);                                   // demo.enter again, mid-flight below
     for (int i = 0; i < 6; ++i) { fm_manual_advance(s, 1.0 / 120.0); fm_on_frame(s); }
@@ -73,6 +112,29 @@ int main(int argc, char** argv) {
     fm_animation_play(s, fm_animation_create(s, 7, "demo.enter"));
     fm_destroy(s);
     fm_destroy(nullptr);
+
+    // Z6 F3: empty animation + Play + Retarget at the C layer (mirrors the Z5-T3 devsmoke case). Fresh system and target.
+    {
+        Ctx c2; fm_system* s2 = fm_create_manual(Sink, Render, &c2);
+        CHECK(s2 != nullptr && fm_load_tokens(s2, json.c_str(), err, sizeof err) == 0);
+        uint64_t z = fm_animation_create(s2, 6, nullptr);            // empty animation (Retarget only)
+        CHECK(z != 0);
+        fm_animation_play(s2, z);                                    // Play on an empty animation: wakes the pump, nothing to drive
+        RunFrames(s2, 10);
+        CHECK(!fm_is_running(s2));                                   // ...so it goes idle again
+        CHECK(fm_animation_retarget(s2, z, "offsetX", 120.0, 0.32, 0.78, 0, 0.0) == 0);   // never-sampled property, no `from`: rejected
+        CHECK(!fm_is_running(s2));                                   // a rejected Retarget does not wake the pump
+        CHECK(fm_animation_retarget(s2, z, "offsetX", 120.0, 0.32, 0.78, 1, 0.0) == 1);   // from: 0 -> 120
+        CHECK(fm_is_running(s2) && c2.running);
+        double v0 = -1, vel0 = -1; CHECK(fm_current(s2, 6, "offsetX", &v0, &vel0) == 1 && v0 == 0.0);
+        const int f2 = RunFrames(s2, 1000);
+        CHECK(!fm_is_running(s2) && !c2.running && f2 > 0 && f2 < 1000);
+        CHECK(c2.last.at("offsetX") == 120.0);                       // lands exactly on the target
+        CHECK(fm_animation_retarget(s2, z, "offsetX", 0.0, 0.32, 0.78, 0, 0.0) == 1);     // now sampled: `from` may be omitted
+        for (int i = 0; i < 3; ++i) { fm_manual_advance(s2, 1.0 / 120.0); fm_on_frame(s2); }
+        CHECK(fm_is_running(s2));
+        fm_destroy(s2);                                              // destroy with the pump on and the handle still held
+    }
 
     std::printf("%d checks, %d failures\n", g_checks, g_fail);
     return g_fail ? 1 : 0;

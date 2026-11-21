@@ -1,0 +1,7 @@
+@echo off
+call "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+if errorlevel 1 exit /b %errorlevel%
+cl /nologo /std:c++17 /EHsc /O2 /DNDEBUG /MT /W3 /I code/capi /I code /I code/explore code/capi/fm_capi_test.cpp code/capi/fm_capi.cpp /Fo:%REPO%\m0\out\z6-integration-tests-Release-20261121T071853Z-766056ab\capi\ /Fe:%REPO%\m0\out\z6-integration-tests-Release-20261121T071853Z-766056ab\capi\fm_capi_test.exe
+if errorlevel 1 exit /b %errorlevel%
+cl /nologo /std:c++17 /EHsc /O2 /W3 /LD /I code/capi /I code /I code/explore code/capi/fm_capi.cpp /Fo:%REPO%\m0\out\z6-integration-tests-Release-20261121T071853Z-766056ab\native\ /Fe:%REPO%\m0\out\z6-integration-tests-Release-20261121T071853Z-766056ab\native\fluidmotion.dll
+exit /b %errorlevel%

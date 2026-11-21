@@ -1,0 +1,40 @@
+
+欢迎使用 .NET 10.0!
+---------------------
+SDK 版本: 10.0.404
+
+遥测
+---------
+.NET 工具会收集用法数据，帮助我们改善你的体验。它由 Microsoft 收集并与社区共享。你可通过使用喜欢的 shell 将 DOTNET_CLI_TELEMETRY_OPTOUT 环境变量设置为 "1" 或 "true" 来选择退出遥测。
+
+阅读有关 .NET CLI 工具遥测的更多信息: https://aka.ms/dotnet-cli-telemetry
+
+----------------
+已安装 ASP.NET Core HTTPS 开发证书。
+若要信任该证书，请运行 "dotnet dev-certs https --trust"
+了解 HTTPS: https://aka.ms/dotnet-https
+
+----------------
+编写第一个应用: https://aka.ms/dotnet-hello-world
+了解新增功能: https://aka.ms/dotnet-whats-new
+浏览文档: https://aka.ms/dotnet-docs
+报告问题并在 GitHub 上查找来源: https://github.com/dotnet/core
+使用 "dotnet --help" 查看可用命令或访问: https://aka.ms/dotnet-cli
+--------------------------------------------------------------------------------------
+  正在确定要还原的项目…
+  已还原 %USERPROFILE%\pilot\FluentHub\src\Octokit\Octokit.csproj (用时 5.27 秒)。
+  已还原 %USERPROFILE%\pilot\FluentHub\src\Octokit.Generators\Octokit.Generators.csproj (用时 5.27 秒)。
+  已还原 %USERPROFILE%\pilot\FluentHub\src\FluentHub.Core\FluentHub.Core.csproj (用时 5.27 秒)。
+  已还原 %USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj (用时 1.11 分钟)。
+  FmL1VerifyPack: OK FluidMotion.L1.dll=94D6489D9BEC289732EA3E4A8540B052E576A7182BAE3F3367A3E72F04E10DC2 fluidmotion.dll=ADD4857DEAD413F8211941381C6AA8F73C546F3ECAE1774ACED79C464719577D demo_motion.json=8D5DB5775ACAD5DB0C04CBC3C2A214BB7309670C304B71FF40860757973C410E
+  Octokit.Generators -> %USERPROFILE%\pilot\FluentHub\src\Octokit.Generators\bin\x64\Debug\netstandard2.0\Octokit.Generators.dll
+  Octokit -> %USERPROFILE%\pilot\FluentHub\src\Octokit\bin\x64\Debug\net10.0\Octokit.dll
+  FluentHub.Core -> %USERPROFILE%\pilot\FluentHub\src\FluentHub.Core\bin\x64\Debug\net10.0\FluentHub.Core.dll
+  0 IID calculations/fetches patched
+  FluentHub -> %USERPROFILE%\pilot\FluentHub\src\FluentHub\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\FluentHub.dll
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:02:17.08

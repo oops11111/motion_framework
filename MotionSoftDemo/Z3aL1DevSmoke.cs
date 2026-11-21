@@ -45,7 +45,7 @@ public static class Z3aL1DevSmoke
 
             var seen = new HashSet<string>(StringComparer.Ordinal);
             var idleLines = new List<string>();
-            using var mirror = new MotionEtwMirror(line =>
+            using var mirror = new CountOnlyEtwListener(line =>
             {
                 log.WriteLine(line);
                 if (line.StartsWith("ETW_EVENT name=IdleTransition ", StringComparison.Ordinal)) idleLines.Add(line);
@@ -197,6 +197,56 @@ public static class Z3aL1DevSmoke
                 Ok(pumpOffCallbacks == 1, "Z5-T3 Dispose with pump on raises FramePumpChanged(false) once");
             }
 
+            // Z6 F1 B-layer: deterministic overlap on one (target, offsetX) using the internal manual clock.
+            // Holder 1 = demo.enter (token transition); holder 2 = empty animation retargeted mid-flight ("hover").
+            // Later writer wins; the hand-off keeps value and velocity. Manual clock only; nothing is timed.
+            using (var f1 = MotionSystem.CreateManual())
+            {
+                const ulong T = 11;
+                string? f1Tok = f1.LoadTokens(json, "demo_motion.json");
+                Ok(f1Tok == null, "F1B tokens " + (f1Tok ?? "ok"));
+                var enter = f1.CreateAnimation(T, "demo.enter");
+                var hover = f1.CreateAnimation(T, null);
+                Ok(enter.Id != 0 && hover.Id != 0 && enter.Id != hover.Id,
+                    "F1B two holders on target=11 enter=" + enter.Id.ToString(CultureInfo.InvariantCulture)
+                    + " hover=" + hover.Id.ToString(CultureInfo.InvariantCulture));
+                enter.Play();
+                Step(f1, 6);
+                var e = f1.Current(T, "offsetX");
+                var eo = f1.Current(T, "opacity");
+                double ex = e?.Value ?? double.NaN, evx = e?.Velocity ?? double.NaN, eop = eo?.Value ?? double.NaN;
+                log.WriteLine("F1B_HOLDER1 enter=" + enter.Id.ToString(CultureInfo.InvariantCulture)
+                    + " target=11 property=offsetX in_flight value=" + Fmt(ex) + " vel=" + Fmt(evx) + " opacity=" + Fmt(eop));
+                Ok(ex > -80 && ex < 0 && evx > 0 && eop > 0 && eop < 1 && f1.IsRunning, "F1B enter is mid-flight before the second holder writes");
+                hover.Play();
+                Ok(hover.Retarget("offsetX", 40, Snappy), "F1B hover Retarget offsetX -> 40 (later writer, from=null)");
+                var h = f1.Current(T, "offsetX");
+                double hx = h?.Value ?? double.NaN, hvx = h?.Velocity ?? double.NaN;
+                log.WriteLine("F1B_RETARGET_FROM hover=" + hover.Id.ToString(CultureInfo.InvariantCulture)
+                    + " target=11 property=offsetX from=" + Fmt(hx) + " vel=" + Fmt(hvx) + " to=40");
+                Ok(Math.Abs(hx - ex) < 1e-9 && Math.Abs(hvx - evx) < 1e-9, "F1B Retarget starts at the live value and velocity (no jump)");
+                int overlap = 0;
+                double prevO = eop, prevX = hx;
+                for (int i = 0; i < 6; i++)
+                {
+                    Step(f1, 1);
+                    double o = f1.Current(T, "opacity")?.Value ?? double.NaN;
+                    double x = f1.Current(T, "offsetX")?.Value ?? double.NaN;
+                    if (o > prevO && x != prevX) overlap++;
+                    prevO = o;
+                    prevX = x;
+                }
+                log.WriteLine("F1B_OVERLAP frames=6 enter_opacity_advancing_and_hover_offsetX_moving=" + overlap.ToString(CultureInfo.InvariantCulture));
+                Ok(overlap == 6, "F1B both holders active in the same frames");
+                Pump(f1, 1000);
+                double fx = f1.Current(T, "offsetX")?.Value ?? double.NaN;
+                double fo = f1.Current(T, "opacity")?.Value ?? double.NaN;
+                log.WriteLine("F1B_FINAL offsetX=" + Fmt(fx) + " opacity=" + Fmt(fo) + " expected_offsetX=40 (later writer target)");
+                Ok(!f1.IsRunning && fx == 40 && fo == 1, "F1B later writer wins: final offsetX == 40, enter still finishes opacity == 1");
+                enter.Release();
+                hover.Release();
+            }
+
             MotionEtw.Log.PresentStats(sys.SessionId, 0, 16.666);
             string[] required = { "AnimationLifecycle", "Retarget", "FrameTick", "PresentStats", "IdleTransition", "TokenLoad" };
             foreach (string name in required)
@@ -290,6 +340,52 @@ public static class Z3aL1DevSmoke
     }
 
     static string Fmt(double? v) => v.HasValue ? v.Value.ToString("G9", CultureInfo.InvariantCulture) : "null";
+
+    // Test fixture only. The frozen production mirror formats every payload;
+    // integration smoke must never read FrameTick/PresentStats field values.
+    sealed class CountOnlyEtwListener : EventListener
+    {
+        readonly Action<string>? _sink;
+        readonly Dictionary<string, int> _counts = new(StringComparer.Ordinal);
+
+        public CountOnlyEtwListener(Action<string> sink, bool enableVerbose)
+        {
+            _sink = sink;
+            var provider = MotionEtw.Log;
+            var level = enableVerbose ? EventLevel.Verbose : EventLevel.Informational;
+            EnableEvents(provider, level, EventKeywords.All);
+            sink($"ETW_LISTENER enabled provider={provider.Name} guid={provider.Guid} level={level} count_only=1");
+        }
+
+        protected override void OnEventWritten(EventWrittenEventArgs e)
+        {
+            if (_sink == null || e.EventSource?.Name != "FluidMotion-Motion") return;
+            string name = e.EventName ?? ("Event" + e.EventId);
+            if (e.EventId == 103 || string.Equals(name, "FrameTickAccept", StringComparison.Ordinal))
+                name = "FrameTick";
+            int count;
+            lock (_counts)
+            {
+                _counts.TryGetValue(name, out count);
+                _counts[name] = ++count;
+            }
+
+            // These early returns precede every Payload getter/enumeration.
+            if (name == "FrameTick" || name == "PresentStats")
+            {
+                _sink($"ETW_EVENT name={name} id={e.EventId} count={count}");
+                return;
+            }
+            if (name == "IdleTransition")
+            {
+                // Preserve the existing Dispose assertion's non-timing fields.
+                string payload = e.Payload == null ? "" : string.Join(",", e.Payload.Select(p => p?.ToString() ?? ""));
+                _sink($"ETW_EVENT name={name} id={e.EventId} level={e.Level} count={count} payload={payload}");
+                return;
+            }
+            _sink($"ETW_EVENT name={name} id={e.EventId} count={count}");
+        }
+    }
 
     static int Finish(TextWriter log, int fails)
     {

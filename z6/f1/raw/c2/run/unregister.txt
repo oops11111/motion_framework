@@ -1,0 +1,11 @@
+BEFORE 49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm Ok
+AFTER gone
+schtasks : ERROR: The system cannot find the file specified.
+At line:9 char:1
++ schtasks /Query /TN z6_f1c_launch 2>&1 | Out-String
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: The syst...file specified.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+

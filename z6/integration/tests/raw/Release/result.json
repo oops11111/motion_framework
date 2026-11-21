@@ -1,0 +1,86 @@
+{
+  "configuration": "Release",
+  "status": "PASS (dev-only)",
+  "output": "%REPO%\\m0\\out\\z6-integration-tests-Release-20261121T071853Z-766056ab",
+  "commands": [
+    {
+      "label": "native_build",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "%REPO%\\m0\\out\\z6-integration-tests-Release-20261121T071853Z-766056ab\\native_build.cmd"
+      ],
+      "exit_code": 0,
+      "log": "native_build.log",
+      "sha256": "3f38e590975dae81f5a3766354890b909e05e44411b4b3a90072fd565cc7d15e"
+    },
+    {
+      "label": "native_test",
+      "command": [
+        "%REPO%\\m0\\out\\z6-integration-tests-Release-20261121T071853Z-766056ab\\capi\\fm_capi_test.exe",
+        "%REPO%\\code\\capi\\demo_motion.json"
+      ],
+      "exit_code": 0,
+      "log": "native_test.log",
+      "sha256": "bf2f907bc58226ee2ac543c728e84263fbb143f746d4732b29a8b20ef67f6cee"
+    },
+    {
+      "label": "managed_build",
+      "command": [
+        "dotnet",
+        "build",
+        "%REPO%\\MotionSoftDemo\\z3a_l1_devsmoke\\Z3aL1DevSmoke.csproj",
+        "-c",
+        "Release",
+        "--no-incremental",
+        "-o",
+        "%REPO%\\m0\\out\\z6-integration-tests-Release-20261121T071853Z-766056ab\\devsmoke"
+      ],
+      "exit_code": 0,
+      "log": "managed_build.log",
+      "sha256": "d2a997cd74b66a9c64400a9661b12e0f659d4d31b77ebaea414bd5fa7861aa92"
+    },
+    {
+      "label": "managed_test",
+      "command": [
+        "%REPO%\\m0\\out\\z6-integration-tests-Release-20261121T071853Z-766056ab\\devsmoke\\z3a_l1_devsmoke.exe",
+        "%REPO%\\code\\capi\\demo_motion.json"
+      ],
+      "exit_code": 0,
+      "log": "managed_test.log",
+      "sha256": "39477a65fcfeeba63afb67889a64fd533772dd8a3ffc5542fbc1aeb51e2c495b"
+    },
+    {
+      "label": "surface_tool_build",
+      "command": [
+        "dotnet",
+        "build",
+        "%REPO%\\m0\\out\\z6-integration-tests-Release-20261121T071853Z-766056ab\\surface_tool\\SurfaceDump.csproj",
+        "-c",
+        "Release"
+      ],
+      "exit_code": 0,
+      "log": "surface_tool_build.log",
+      "sha256": "b1cd4bb576efb90d80b793d4aef34102926b26fdf5c1d2e448a0dd4e1317ae8e"
+    },
+    {
+      "label": "surface_check",
+      "command": [
+        "dotnet",
+        "%REPO%\\m0\\out\\z6-integration-tests-Release-20261121T071853Z-766056ab\\surface_tool\\bin\\Release\\net10.0\\SurfaceDump.dll",
+        "%REPO%\\m0\\out\\z6-integration-tests-Release-20261121T071853Z-766056ab\\devsmoke\\z3a_l1_devsmoke.dll",
+        "%REPO%\\m0\\out\\z6-integration-tests-Release-20261121T071853Z-766056ab\\surface_Release.txt"
+      ],
+      "exit_code": 0,
+      "log": "surface_check.log",
+      "sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35"
+    }
+  ],
+  "child_architecture_before": null,
+  "child_architecture": "AMD64",
+  "environment_persisted": false,
+  "native_dll_sha256": "ae44cd9a3eb05a48574794052e85c63e39f861c8cc659a97b3094ad9181b9b9f",
+  "surface_sha256_lf": "243c2e009252fa1d7d74b11c0c173a425a1804e1581157946882f852c8c23a34",
+  "managed_assembly_sha256": "42869acee773794c0a7726258b883529adb08c429459e981934a3219ff3a39cc"
+}

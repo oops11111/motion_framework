@@ -1,0 +1,9 @@
+  Determining projects to restore...
+  Restored %REPO%\m0\out\z6-integration-tests-Debug-20261121T071704Z-ecaa5047\surface_tool\SurfaceDump.csproj (in 127 ms).
+  SurfaceDump -> %REPO%\m0\out\z6-integration-tests-Debug-20261121T071704Z-ecaa5047\surface_tool\bin\Release\net10.0\SurfaceDump.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.84
