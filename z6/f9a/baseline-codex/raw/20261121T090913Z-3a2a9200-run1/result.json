@@ -1,0 +1,40 @@
+{
+  "status": "STOP (precondition/provenance error)",
+  "attempt": "20261121T090913Z-3a2a9200-run1",
+  "route": "run1",
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "start_utc": "2026-11-21T09:09:13.421938+00:00",
+  "child_environment": {
+    "DOTNET_ROOT": "%USERPROFILE%/.dotnet",
+    "PATH_prefix": "%USERPROFILE%/.dotnet",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "AMD64_restored_only_if_missing": true,
+    "persistent_changes": false
+  },
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "%USERPROFILE%\\pilot\\Files",
+        "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090913Z-3a2a9200-run1\\source"
+      ],
+      "cwd": "%WORKSPACE%",
+      "pid": 79260,
+      "start_utc": "2026-11-21T09:09:13.688658+00:00",
+      "exit_code": 128,
+      "end_utc": "2026-11-21T09:09:14.147521+00:00",
+      "original_sha256": "58c0c7dbf6d79b476d2e7131599c374bec64287533b158c09ded12187e7cb766",
+      "original_bytes": 350,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090913Z-3a2a9200-run1\\clone.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "5eb0eb830486d31431833bd827c0d2f76952bb02d13dc66b6c09bd78cc88cc2a"
+    }
+  ],
+  "error": "",
+  "end_utc": "2026-11-21T09:09:14.148856+00:00"
+}

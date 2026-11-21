@@ -1,0 +1,27 @@
+{
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "artifacts": [
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.dll",
+      "bytes": 6747136,
+      "sha256": "dd4591739f29f6029860206e0da84ff628d5e94a499e9f2e270121d8621d0f79",
+      "executed": false,
+      "registered": false
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/Files.exe",
+      "bytes": 587776,
+      "sha256": "e5e8765c4fb1a69429c919b508e99b5e49773eb173b91cee58a2a8e3bd3d30b3",
+      "executed": false,
+      "registered": false
+    },
+    {
+      "path_from_source": "src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/AppxManifest.xml",
+      "bytes": 22767,
+      "sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+      "executed": false,
+      "registered": false
+    }
+  ],
+  "scope": "Hash binding only; binaries remain ignored, no deployment/launch/publication"
+}

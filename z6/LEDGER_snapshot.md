@@ -76,3 +76,10 @@ Exact historical evidence imported; source ledger snapshots at z6/integration/pa
 PR13 head db208be6da7442b9105efbd767a6a5ccf8c6d710 merged122f7b4edc7698e742658532e3e1a83010f39f17; head five checks and main post44883079762 policy/Debug/Release success, primary accepted metadata/history integration and local reference inspection.
 
 F9a original source030216fad26d2a2e0d3d3d9ef7edf057d66b07bc imported unchanged with historical FAIL/attempt1 preserved. Source/base ledgers archived z6/f9a/codex/source_ledgers. Current user authorized only VS2026 C++ workload installation; stage3A evidence pending, no new baseline or F2/F9b authorization.
+
+
+## F9a stage3A accepted; stage3B original build evidence (append-only)
+
+PR14 merged3078ae0e9f8792a03f45e09dd4fce5c6fda1ca7e; headfba233e688e396e7d26e8e9bcbcfd091ba00b376 all five checks and mainpost44887910560 three jobs success, independently accepted by primary. Final DCAT sync error and NGEN warning remain disclosed, not repaired.
+
+Stage3B attempt20261121T090938Z-a08ae53c-run1: original Files pin cbfb4ba54a89632fbceb82ea94ada60a9bae3737, fresh no-hardlink clone, original upstream CI Restore0 and Build0, sourcePRE=POST/clean. Initial sandbox clone STOP20261121T090913Z-3a2a9200-run1 retained; it never reached build. Run2 omitted because run1 passed. Binary/manifest hashes only, no Files install/launch/package/F9b/F2 action. Current evidence z6/f9a/baseline-codex; primary review/CI pending, original historical FAIL unchanged.
