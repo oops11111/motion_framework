@@ -70,3 +70,7 @@ The first GateA snapshot found unsigned devenv.com and correctly stopped before 
 Primary reviewed and approved replacing the UNEXECUTED candidate entry with signed devenv.exe, not trusting/repairing the unsigned wrapper or retrying a failed deployment. Operational A/B entry is now %ProgramFiles%/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.exe, superseding earlier .com references. Preserve exit code and complete fresh /Out log; empty console is not success/failure evidence. No certificate/trust installation or policy change.
 
 Perform a new named read-only preflight, verifying that exact .exe signature/hash and mutable package/data/process/dependency prerequisites. If ready, primary explicitly approved proceeding only with GateA fresh preparation build under the existing one-property F9a grant, without another review round. GateB still has NO direct user deployment/startup/cleanup grant; do not execute .exe, even /?, until that grant and primary B instruction exist. All other scope and stop conditions remain unchanged.
+
+## Gate B execution authority received
+
+Direct current-conversation user grant recorded 2026-11-21 11:32:08 UTC (recording, not sending time), verbatim in B_AUTHORIZATION.json; parent explicit execution instruction bound by SHA in PRIMARY_GATE_B_INSTRUCTION.json. Execute the already reviewed single selected-project route after fresh mutable prechecks. No other boundary changed.

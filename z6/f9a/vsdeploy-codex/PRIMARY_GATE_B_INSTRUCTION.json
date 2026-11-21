@@ -1,0 +1,6 @@
+{
+  "instruction_kind": "Primary GateB execute",
+  "root_verbatim": "现在按既有3C4 Plan明确实施GateB：先记录verbatim B_AUTHORIZATION.json（grant_kind精确脚本所需、manifestSHAad4ee744...、source字段exact），再PRIMARY_GATE_B_INSTRUCTION.json绑定authSHA，普通commit授权/执行计划更新后即可执行（root本消息即所需明确execution instruction，不必等重复确认）。",
+  "authority_sha256": "6de479b323c7d762e91bd6be70de745d4c6aa12fe71b698d7fcf82e5aa792bd6",
+  "scope": "One signed VS18 selected-project deploy, ordinary MainPage UIA readiness, normal close and exact cleanup; no fallback or extra system changes"
+}
