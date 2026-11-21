@@ -1,0 +1,23 @@
+2026-11-18T08:16:00.560666+08:00 manifest=%USERPROFILE%\pilot\FluentHub\src\FluentHub\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppxManifest.xml exists=True
+2026-11-18T08:16:00.565083+08:00 runtimeconfig FluentHub.runtimeconfig.json EventSource.IsSupported=True snippet_has_true=True
+2026-11-18T08:16:00.565656+08:00 runtimeconfig line: "System.ComponentModel.DefaultValueAttribute.IsSupported": false,
+2026-11-18T08:16:00.566193+08:00 runtimeconfig line: "System.ComponentModel.Design.IDesignerHost.IsSupported": false,
+2026-11-18T08:16:00.566695+08:00 runtimeconfig line: "System.Data.DataSet.XmlSerializationIsSupported": false,
+2026-11-18T08:16:00.567204+08:00 runtimeconfig line: "System.Diagnostics.Tracing.EventSource.IsSupported": true,
+2026-11-18T08:16:00.567892+08:00 runtimeconfig line: "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,
+2026-11-18T08:16:00.568421+08:00 runtimeconfig line: "System.Runtime.InteropServices.BuiltInComInterop.IsSupported": false,
+2026-11-18T08:16:00.568909+08:00 runtimeconfig line: "System.StartupHookProvider.IsSupported": false,
+2026-11-18T08:16:00.569506+08:00 REGISTER cmd: Add-AppxPackage -Register <AppxManifest.xml>
+2026-11-18T08:16:01.931040+08:00 register exit=0
+2026-11-18T08:16:01.931688+08:00 cursor saved x=935 y=511
+2026-11-18T08:16:01.932271+08:00 SCHTASKS create: schtasks /Create /TN z6_f6_launch /TR explorer.exe shell:AppsFolder\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm!App /SC ONCE /ST 00:00 /IT /RL LIMITED /F
+2026-11-18T08:16:02.049622+08:00 schtasks run exit=0
+2026-11-18T08:16:04.255053+08:00 window pid=40052 hwnd=43976252 rect=(160, 160, 1600, 916)
+2026-11-18T08:16:07.307966+08:00 captured_frames=45
+2026-11-18T08:16:08.356995+08:00 captured settled
+2026-11-18T08:16:08.671849+08:00 close: CLOSE_SENT
+2026-11-18T08:16:08.976857+08:00 process_exited=True
+2026-11-18T08:16:09.017654+08:00 schtasks delete exit=0
+2026-11-18T08:16:09.054849+08:00 schtasks query after delete exit=1
+2026-11-18T08:16:09.063936+08:00 motion logs found: %USERPROFILE%\AppData\Local\Packages\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\LocalState\z6_f6_motion.log
+2026-11-18T08:16:09.602106+08:00 done

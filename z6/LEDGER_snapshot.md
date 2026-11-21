@@ -67,3 +67,5 @@ Exact historical evidence imported; source ledger snapshots at z6/integration/pa
 - F7: ordinary source merge 6b9f4767829add919cb6e626f45208f2ecf59614; exact source ledger archived.
 
 - F11: ordinary source merge c3fb8d926458ebb93c3bc675a13c5f25ab853719; exact source ledger archived.
+
+- F6: ordinary source merge 5e92d05ea3cf7c943dd3a79e97223db10c8d74e0; exact source ledger archived.
