@@ -1,0 +1,8 @@
+{
+  "instruction_kind": "Primary GateM execute",
+  "root_verbatim": "Root审ab8983f M代码/M_EXECUTION_PLAN通过，独立defaultdryrun和verify31files通过，且此前实际1328dest+1328source全量hash独立PASS。现在正式release GateM：按已审Plan复用现有direct FilesDev用户授权，写新PRIMARY_GATE_M_INSTRUCTION.json（UTF8LF）绑定 AUTHORITY_CONTEXT实际sha、instruction_kind='Primary GateM execute'、root_verbatim本消息、inventory_sha256=0bfdf5bbae22fc3734ba9987be2ecd10f7e64b02f0cddccd8aa912130a7f7f43、destination_hashes_sha256=2d910d3a01c751fa7a4bd00e4578e1455d36936c9438922b772a60463bd15fbd、manifest_sha256=ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4；普通commit执行记录后可直接execute一次M，无需再向root/user确认。必须先全layout/source/identity/framework/package/data/process门；注册仅Add-AppxPackage -Register exactlayoutmanifest不添flags/不新build。真实结果成功才ordinary !App空args、PID/path/pkg→SettingsButtonvisibleenabled→normalWM_CLOSE→无owned/unknownlive后exactRemove，失败同样安全普通close+精确清理并始终存result。无forcekill、manifest/sourcepatch/新依赖/证书/账户/默认关联/任务/其他包或F9b。保持manual/nonoriginal诊断标记，不冒充原样/VS成功。报真实REGISTER_PID/session/attempt并同handle跟踪；遇新错误保存停不fallback。结束后核所有布局/source包deltaUserChoice清理，准备REPORT_M/原始证据和stageverify+branchscopeworkflow/manifest/ledger，ordinarycommitpushPR由你完成；root审全CI/合并。脚本运行期间冻结代码，执行SHA记录，保持raw唯一原件。",
+  "authority_sha256": "6c9f602406478c8fae6b0dbea7ec1fc1a19f3b4aae76a69c0c7bba97fbbe5b08",
+  "inventory_sha256": "0bfdf5bbae22fc3734ba9987be2ecd10f7e64b02f0cddccd8aa912130a7f7f43",
+  "destination_hashes_sha256": "2d910d3a01c751fa7a4bd00e4578e1455d36936c9438922b772a60463bd15fbd",
+  "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4"
+}

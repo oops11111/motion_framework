@@ -1,0 +1,10 @@
+{
+  "pid": 65440,
+  "argv": [
+    "powershell.exe",
+    "-NoProfile",
+    "-Command",
+    "$ErrorActionPreference='Stop'; Add-AppxPackage -Register '%WORKSPACE%\\m0\\out\\f9a-devlayout-20261121T115207Z-c7612b64\\layout\\AppxManifest.xml'"
+  ],
+  "start_utc": "2026-11-21T12:01:47.855895+00:00"
+}

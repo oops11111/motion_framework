@@ -1,0 +1,15 @@
+{
+  "resources_pri": {
+    "destination": "resources.pri",
+    "kind": "recipe",
+    "source": "%BUILDROOT%/src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64/resources.pri",
+    "sha256": "50b154b8ebe9746fa3788482e651c73f4c7dad3252a90f834f91688f2d8a4a96",
+    "bytes": 3269984
+  },
+  "visual_target_semantics": "logical names with qualified family and PRI presence; runtime resolution NOT TESTED",
+  "all_exact_executable_server_winrt_targets_resolved": true,
+  "source_destination_hash_pairs_equal": 1328,
+  "total_bytes": 200359553,
+  "collector_sha256": "83a54fbd0cc6695a57c2c0659921d53aeb68f42d179742d70757e3577df713cb",
+  "M_runtime": "NOT EXECUTED"
+}

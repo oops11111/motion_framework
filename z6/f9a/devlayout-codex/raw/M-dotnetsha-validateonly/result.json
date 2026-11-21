@@ -1,0 +1,30 @@
+{
+  "invocation": [
+    "powershell.exe",
+    "-NoProfile",
+    "-File",
+    "z6/f9a/devlayout-codex/ActivateNormally.ps1",
+    "-AppUserModelId",
+    "FilesDev_ykqwq8d6ps0ag!App",
+    "-StatePath",
+    "m0/out/f9a-validateonly-unused.json",
+    "-ValidateOnly",
+    "-AuthorityFile",
+    "z6/f9a/devlayout-codex/AUTHORITY_CONTEXT.json",
+    "-InstructionFile",
+    "z6/f9a/devlayout-codex/PRIMARY_GATE_M_CONTINUATION_UTF8.json"
+  ],
+  "actual_exit": 0,
+  "observed_stdout": {
+    "mode": "ValidateOnly",
+    "auth_guard": true,
+    "COM_compiled": true,
+    "activation": "NOT_EXECUTED",
+    "package_query": "NOT_EXECUTED",
+    "registration": "NOT_EXECUTED"
+  },
+  "helper_sha256": "b8b6363cc8dfbd6413dca5f986a4f4ad0ea71bc34e5c9d6a49050bb386967d9d",
+  "root_release": "Non-activation validation only; third registration NOT RELEASED",
+  "residual_FilesDev_data_names": [],
+  "statepath_created": false
+}

@@ -1,0 +1,54 @@
+# F9a3C5: manually assembled development layout diagnostic
+
+Status: PLAN ONLY. Neither L nor M has been executed. Primary review is required before L; a separate primary instruction after L review and prior main CI success is required before M.
+
+## Dependencies and interpretation
+
+Base main0fc838c9624b4a23c99bbc57f3d5d1c9bf8c2510 (PR19). Primary tracks postmain44900488544. Files source pin cbfb4ba54a89632fbceb82ea94ada60a9bae3737, isolated source m0/out/f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA/source, source HEAD/status must remain pinned/clean. Prior stages and manifests remain immutable. This stage does not retry the sealed VS attempt or redefine its STOP. Route is explicitly NON-ORIGINAL build + manually assembled development layout, not original/VS deployment success or an upstream bug decision.
+
+User's direct grant, verbatim: 「批准，仅本票 FilesDev 部署、主页启动及精确清理。」 Recorded by primary 2026-11-21 11:32:08 UTC /19:32:08 AWST, recording not sending time; message ID unavailable. Primary explicitly chooses to apply this same-identity package permission to this independently planned manual layout diagnostic; changing tools does not manufacture new system permissions. Preserve the previous one-property F9a build grant as provenance only; no new build here. No repeated user permission request is needed for the same approved package operation. New identity, dependency installation, certificate, account, system setting or extra privilege requirement stops.
+
+## Gate L: workspace-only preparation (not yet authorized to execute)
+
+Input is the current POST-VS recipe, not stale GateA pre-VS recipe. Exact sealed POST hashes:
+
+- Files.exe e5e8765c4fb1a69429c919b508e99b5e49773eb173b91cee58a2a8e3bd3d30b3
+- Files.dll 0083066016670606f13e63a5660c12f5b450af5dcf65d848b9e85666a0fc20d7
+- AppxManifest.xml ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4
+- Files.App.build.appxrecipe 0f3d51582e9944f0522bdd14f9b61aa5b0fbd3ec0da0935dcc175a42733a2423
+
+All four are under src/Files.App/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64. Read-only planning found 1305 AppxPackagedFile entries: 1013 sources beneath the pinned build root and 292 beneath the existing user NuGet cache; every source currently exists. These are observations, not final copied-layout acceptance. No source byte has been copied for this stage.
+
+Parse every AppxPackagedFile Include and child PackagePath. Resolve the source literally; require ordinary files under the exact pinned build root or the enumerated existing NuGet cache root, record source relative/tokenized path, size and SHA256. Reject unresolved variables, missing files, unapproved roots and any source reparse-point ancestry. PackagePath must be a nonempty relative Windows path: reject absolute/drive/UNC/device forms, colon/ADS, rooted separators, dot/dotdot/empty components, trailing dots/spaces and reserved device names. Normalize separators only for mapping; do not rewrite file content. Case-insensitive destination collisions, including recipe/manifest/Server additions, stop rather than choose a winner. Inspect full source ancestry and destination ancestry for reparse points before copying. Reject file/directory prefix collisions.
+
+Create a unique new ignored m0/out/f9a-devlayout-<UTC>-<nonce>/layout only after prechecks. Verify resolved destination remains under that fresh layout for every mapping. No hardlinks or symlinks: ordinary byte copy, no overwrite/reuse of an existing layout. Rehash each source immediately before copying, copy, then require destination SHA256 equals the snapshotted source; rehash sources after completion to detect changes. Keep source unchanged. Full source/destination mapping and hashes stay ignored; publish tokenized mappings/receipts with no local absolute paths and files below5MB (split if needed, never discard unique evidence).
+
+Add the unchanged current AppxManifest.xml bytes at layout root. The manifest explicitly declares OutOfProcessServer ServerName=Files.App.Server with Path Files.App.Server\Files.App.Server.exe. Add only the existing output subtree src/Files.App.Server/bin/x64/Debug/net10.0-windows10.0.26100.0/win-x64 recursively beneath layout/Files.App.Server/. Read-only planning found22 files/31899880 bytes there. Enumerate/hash every added output and its source relative path; no new source, no fresh compilation and no guessed extra files. This copies the existing compiled server runtime closure as bytes, not a dependency install. Unexpected reparse/collision/missing manifest target stops.
+
+L deliverables: default-dryrun layout collector, full resolved mapping receipts, all source/dest hashes and exact post-artifact provenance, manifest identity/dependencies/Server-target checks, source PRE/POST, REPORT with L-only result, immutable base ledger archive and append, branch-scoped evidence workflow. Verify identity FilesDev/CN=Files/4.3.0.0/x64/App and framework metadata unchanged. All declared executable/logo/server paths must resolve inside assembled layout. No MSBuild/internal target, build, app/ETW execution, registration or activation in L. Primary reviews actual complete mapping and L hashes before M.
+
+## Gate M: exact package diagnostic, separate primary release gate
+
+Depends on L PASS, root review of its mapping/source/dest receipts, and root confirmation prior main postCI passed. Reuse direct user grant above with a new execution instruction bound to current manifest/layout mapping hashes. Default tools dryrun. Immediately recheck all source/dest hashes, source pin/clean, unchanged identity/manifest/dependencies, framework status/minimum, no existing FilesDev package or residual FilesDev data, no existing owned process/VS deployment. Any drift or unknown stops before registration.
+
+Exact registration: Windows PowerShell5 Add-AppxPackage -Register <fresh layout/AppxManifest.xml>, with no other flags. Capture actual exit/error and exact newly created PackageFullName/FamilyName. Before/after all-package fullname inventories remain ignored; publish hash/delta only. Unexpected other identity change stops later activation, never uninstall unrelated packages. No certificate/trust/developer-mode/runtime installation, UAC, task, settings workaround or alternate deployment route.
+
+On successful exact package registration only, use reviewed ordinary ApplicationActivationManager PFN!App with empty arguments. Verify held PID/start/path/package identity and visible HWND. Read-only UIA under verified PID/HWND must find MainPage SettingsButton automation ID visible and enabled; splash alone fails. No Name/file-list reads, clicks, user-file browsing or account operations. Then normal WM_CLOSE and exit. On any readiness failure still attempt normal close through verified ownership, retain original failure. Do not force kill; live/unknown ownership prevents uninstall and is reported. Finally Remove-AppxPackage only the newly captured exact own fullname once all owned processes have normally exited; confirm FilesDev absent. Do not remove runtime or unrelated packages. Snapshot normalized UserChoice protocol/files associations PRE/POST; any delta STOP/no automatic repair. Persist errors and result even when cleanup fails. Deleting residual data is not automatic cleanup authority; preserve/report it.
+
+M acceptance: registration actually created the exact FilesDev, normal main-page marker actually passed, ordinary shutdown exited0, exact removal confirmed absent, no live/unknown owned processes, no unexpected package/default-state delta, source and all bound layout files unchanged. Only then report manual-development-layout diagnostic PASS, never original/VS PASS. Otherwise STOP with exact residue/error and no fallback.
+
+## Scope, CI and merge
+
+One stage PR to main. Allowed changes only z6/f9a/devlayout-codex/**, .github/workflows/z6-f9a-devlayout.yml and append to z6/LEDGER_snapshot.md while preserving full base prefix plus exact archive. Existing stages/source/test/production/pack/LOCKED/docs closure unchanged. Prior3C4 VS STOP unchanged. F2/F9b excluded. Parent owns review/CI/merge.
+
+Targeted local verification: Python AST/PowerShell parser and default dryrun only before runtime gates; after L mapping/hash/collision/traversal/scope/source verification; after M recorded identity/marker/lifecycle/cleanup/state acceptance. No manual rerun native/C# or GUI outside this diagnostic. Planned command interfaces: python z6/f9a/devlayout-codex/prepare_layout.py (default dryrun); --execute-layout only after primary L instruction; python .../run_manual_package.py (default dryrun); --execute with real authority and bound primary M instruction only after M release. Exact artifact paths/commands are receipts, never inferred success.
+
+Branch-scoped CI validates source provenance, manifest/evidence hashes, immutable base/prior-stage scope and recorded local outcomes, not this machine's actual registration/UIA. Existing regression workflow naturally supplies real Debug/Release and policy checks on PR/main; do not alter it. All applicable checks green plus primary acceptance before merge. CI cannot claim runtime deployment proof. Stop on any missing/hash mismatch/collision/path safety issue, dependency/cert/account/privilege requirement, source drift, unexpected system mutation or cleanup uncertainty. No new flags, installs or source repairs.
+
+## Bounded read-only deployment-configuration finding
+
+Installed MSBuild SolutionPersistence OpenAsync parsed the original slnx without writing or executing targets. App/Server/UITests Deploy rules all ProjectValue=True; Debug|x64 resolves (Debug,x64,True,True). Official XmlConfiguration.cs ToModel lines36-43 maps empty Build/Deploy Project value to bool.TrueString; ApplyModelToXml lines75-78 serializes true as empty. Thus empty Deploy is not proved disabled and cannot explain the prior STOP. The adjacent source comment conflicts with executable logic and is not a basis for claiming false. Reference: https://github.com/microsoft/vs-solutionpersistence/blob/main/src/Microsoft.VisualStudio.SolutionPersistence/Serializer/Xml/XmlDecorators/XmlConfiguration.cs . Further parser output/version/hash can be persisted here when L is released; no prior evidence mutation, no slnx edits or new VS invocation.
+
+## Visual resource clarification approved by primary
+
+Manifest logical logo/splash names need not be naked physical basenames. Preserve original bytes/names; record actual recipe qualified family and resources.pri SHA/existence. Executable/Server/WinRT paths require exact mapped files. Resource-family/PRI evidence does not prove runtime resource resolution. No synthesis/rename/reindex/build. Microsoft reference: https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/mrtcore/images-tailored-for-scale-theme-contrast .

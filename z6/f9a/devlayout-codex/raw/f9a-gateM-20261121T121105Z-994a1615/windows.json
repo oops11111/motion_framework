@@ -1,0 +1,32 @@
+[
+  {
+    "hwnd": "0x355121a",
+    "title": "Files",
+    "class": "WinUIDesktopWin32WindowClass",
+    "visible": true
+  },
+  {
+    "hwnd": "0x5b70f6a",
+    "title": "GDI+ Window (Files.exe)",
+    "class": "GDI+ Hook Window Class",
+    "visible": false
+  },
+  {
+    "hwnd": "0x4460b74",
+    "title": "MSCTFIME UI",
+    "class": "MSCTFIME UI",
+    "visible": false
+  },
+  {
+    "hwnd": "0xa620b28",
+    "title": "Default IME",
+    "class": "IME",
+    "visible": false
+  },
+  {
+    "hwnd": "0x174122a",
+    "title": "Default IME",
+    "class": "IME",
+    "visible": false
+  }
+]

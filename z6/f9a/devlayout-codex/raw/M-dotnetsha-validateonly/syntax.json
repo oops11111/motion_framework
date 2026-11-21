@@ -1,0 +1,7 @@
+{
+  "PSParser": "PASS",
+  "complete_real_UTF8_authority_instruction_SHA_guard": "PASS",
+  "existing_COM_AddType_compilation": "PASS",
+  "return_before_Launch_Activator_ActivateApplication": "YES",
+  "M_runtime_after_fix": "NOT EXECUTED"
+}

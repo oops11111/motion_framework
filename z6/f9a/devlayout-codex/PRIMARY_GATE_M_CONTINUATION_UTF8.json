@@ -1,0 +1,18 @@
+{
+  "instruction_kind": "Primary GateM execute",
+  "root_verbatim": "同意该最小UTF8修复并继续已授权M：保留首M actualregistration0/activation未调用/helperencodingSTOP/精确cleanupcomplete全部原件；ActivateNormally.ps1仅两处Get-Content显式-Encoding UTF8，read-only解析auth/instruction和PSParser结果落证据。普通commit修复+continuation说明后，写新的PRIMARY_GATE_M_CONTINUATION_UTF8.json（kind同Primary GateM execute，root_verbatim本消息，auth/inventory/dest/manifest绑定同前，引用上次结果/cleanup证据sha）保留原instruction不改；record当前执行code/helper SHA冻结。root现明确release新attempt，仍无需user重复授权。先全mutable前置/layout/sourcehash核（你已读residual[]还需执行即时recheck），同一AddAppx -Register后ordinaryactivation/真实SettingsButton→normalclose→exactcleanup，不多flags/build/cert/account。若再新错误保存stop不叠其它变化，正常safe清理。提供REGISTER_PID/session/attempt即时进度，始终同handle。",
+  "authority_sha256": "6c9f602406478c8fae6b0dbea7ec1fc1a19f3b4aae76a69c0c7bba97fbbe5b08",
+  "inventory_sha256": "0bfdf5bbae22fc3734ba9987be2ecd10f7e64b02f0cddccd8aa912130a7f7f43",
+  "destination_hashes_sha256": "2d910d3a01c751fa7a4bd00e4578e1455d36936c9438922b772a60463bd15fbd",
+  "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+  "prior_result_sha256": "19db726d895a21338f5159b3a8a0e5d1354732c0c6c72a3237bf637f43c6e55f",
+  "prior_result": "raw/f9a-gateM-20261121T120120Z-abc22b4e/result.json",
+  "prior_cleanup_complete": true,
+  "executing_scripts_sha256": {
+    "run_manual_package.py": "0ffe55ff770f4f225b31d5a9b64a503d60c908a0e8d3f600c5b824340fec27f2",
+    "ActivateNormally.ps1": "691adaff02c7f664f762b566e5d43b28a45fed0ae88d786ee4a121d7df01c95c",
+    "WaitMainPage.ps1": "539658f1ab1ef4572e35267f3ca184ed7d1033f93466fee6c6cd35dcba52f25b",
+    "native_lifecycle.py": "bf180af888422e18f91008094bde141297dea36e406f1d552432d86ce16a9a9a",
+    "prepare_layout.py": "83a54fbd0cc6695a57c2c0659921d53aeb68f42d179742d70757e3577df713cb"
+  }
+}

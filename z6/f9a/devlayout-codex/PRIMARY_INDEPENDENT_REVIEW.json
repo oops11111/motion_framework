@@ -1,0 +1,8 @@
+{
+  "recorded_utc": "2026-11-21T12:14:06Z",
+  "time_note": "Child recording time, not primary message sending time",
+  "source": "Primary current-conversation review message",
+  "statement": "Root independently read M3 result/UIA: registration0, PID61852 exactexe/package, SettingsButton exists/visible/enabled/ready, normalclose0, exactremove cleanuptrue, POSTabsent, package deltaempty, UserChoice unchanged, sourceclean, layout1328hashPOST matching. Root independently queried WinPS5 current FilesDev[] and residualFilesDev[].",
+  "acceptance_scope": "Actual ordinary homepage under manual NON-ORIGINAL development layout; historical M1/M2/VS STOP unchanged",
+  "no_rerun_required": true
+}
