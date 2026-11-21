@@ -1,0 +1,49 @@
+{
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "build_mode": "NON-ORIGINAL: only RestorePackagesConfig=true",
+  "all_declared_versions_match": true,
+  "packages": [
+    {
+      "declared_id": "Microsoft.Windows.CppWinRT",
+      "declared_version": "3.0.260818.1",
+      "actual_nuspec_id": "Microsoft.Windows.CppWinRT",
+      "actual_nuspec_version": "3.0.260818.1",
+      "nuspec_source": "packages/Microsoft.Windows.CppWinRT.3.0.260818.1/Microsoft.Windows.CppWinRT.3.0.260818.1.nupkg!/Microsoft.Windows.CppWinRT.nuspec",
+      "nuspec_sha256": "32e3ff986c895ce7d8f748f86f529ffdd1cd24fa7c0e5247fb4119fcd762c162",
+      "nupkg_sha256": "a8993608ae9263a8288e1a1d9ee2684a5632f4acc59e1e89ddd86b3b889a7367",
+      "packages_config_path": "src/Files.App.Launcher/packages.config",
+      "packages_config_sha256_unchanged": true,
+      "packages_config_git_blob": "f3255c9617199ec636a01fcc01d93269be1b1f7f"
+    },
+    {
+      "declared_id": "Microsoft.Windows.ImplementationLibrary",
+      "declared_version": "1.0.260126.7",
+      "actual_nuspec_id": "Microsoft.Windows.ImplementationLibrary",
+      "actual_nuspec_version": "1.0.260126.7",
+      "nuspec_source": "packages/Microsoft.Windows.ImplementationLibrary.1.0.260126.7/Microsoft.Windows.ImplementationLibrary.1.0.260126.7.nupkg!/Microsoft.Windows.ImplementationLibrary.nuspec",
+      "nuspec_sha256": "be450c46ac09efe0f569d211d660a4e7ab90aa23f50113152d76de2aaf2952a5",
+      "nupkg_sha256": "7d67bc71dd0edc342db44ea0334ac9b6a1776514f81694b0b5b3c7ac9d608e42",
+      "packages_config_path": "src/Files.App.Launcher/packages.config",
+      "packages_config_sha256_unchanged": true,
+      "packages_config_git_blob": "f3255c9617199ec636a01fcc01d93269be1b1f7f"
+    }
+  ],
+  "actual_import_files": [
+    {
+      "path_from_source": "packages/Microsoft.Windows.CppWinRT.3.0.260818.1/build/native/Microsoft.Windows.CppWinRT.props",
+      "bytes": 4447,
+      "sha256": "3306e33ae1f3f7bb1690e27a5cbd4275b980c35be6f5e67b5dc863cf3c22be32"
+    },
+    {
+      "path_from_source": "packages/Microsoft.Windows.ImplementationLibrary.1.0.260126.7/build/native/Microsoft.Windows.ImplementationLibrary.targets",
+      "bytes": 543,
+      "sha256": "162833637c3367768726ee4d6ef5a8726da57c424461dc3d97dbc2b11b84a6aa"
+    },
+    {
+      "path_from_source": "packages/Microsoft.Windows.CppWinRT.3.0.260818.1/build/native/Microsoft.Windows.CppWinRT.targets",
+      "bytes": 65613,
+      "sha256": "24c007e1c3978b8835ab2b279e6d400b058d84480adf3ab0159805923f439043"
+    }
+  ],
+  "scope": "Read-only post-build NuGet metadata/import hashes; no upgrade/source repair/manual package copy"
+}

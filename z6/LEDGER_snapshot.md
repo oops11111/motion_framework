@@ -97,3 +97,10 @@ PR15 merged425165e112c271dc76706e5ff2d5354b1dfc9120 fromcecc685923824a106f2faf53
 PR16 merged8e68cf81ef10bd0623651949e6a98ddef4f175ca from0eb69f17282a6d75a49550fe42dea394de3a099b; head checks and mainpost44890658744 success, primary accepted read-only preflight evidence only. Startup remains not tested.
 
 3C2 exact upstream AGENTS fullsolution attempt20261121T094221Z-e33cb21d-fullsolution at Files cbfb4ba54a89632fbceb82ea94ada60a9bae3737: Build exit1, Launcher.vcxproj145 missing repository packages/Microsoft.Windows.ImplementationLibrary.1.0.260126.7/build/native/Microsoft.Windows.ImplementationLibrary.targets. SourcePRE=POST/clean. Stopped without RestorePackagesConfig/extra restore/import repair/retry. Evidence z6/f9a/fullsolution-codex; original3B app-build PASS remains distinct, no startup or F9b conclusion. Repository evidence CI/primary review pending.
+
+
+## F9a3C2 failure evidence accepted;3C3 authorized NON-ORIGINAL Build PASS
+
+PR17 merged81543c86fc67801aa2de00f44d8b267c2ac09ee9 from1074cbea2295cae9eadd9bc4617b9e57433d7e40; mainpost44891508566 all3 success. Original fullsolution BuildFAIL remains unchanged.
+
+User specifically approved only RestorePackagesConfig=true for F9a with NON-ORIGINAL label. Attempt20261121T103038Z-444beec5-packagesconfig: sameFilescbfb4ba54a89632fbceb82ea94ada60a9bae3737/freshclone/oneextra property, Build0, sourcePRE=POST/clean. Actual WIL1.0.260126.7 and CppWinRT3.0.260818.1 nuspec/config/import hashes verified exact, no upgrade/source repair/retry. Evidence z6/f9a/packagesconfig-codex. No deployment/startup/F2/F9b action; repository CI/primary review pending.
