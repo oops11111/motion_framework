@@ -1,0 +1,41 @@
+00001 PILOT start (Z6-F6, wait for first frame then Play enter; T5 hover unchanged)
+00002 UISettings.AnimationsEnabled=True -> SetReducedMotion(False)
+00003 ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose
+00004 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00005 ETW_EVENT name=TokenLoad id=6 name=motion.json problemCount=0
+00006 MotionTokens.Load demo_motion.json: ok
+00007 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Created
+00008 F6 enter created (Play deferred) target=1 anim=1
+00009 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Created
+00010 F6 enter created (Play deferred) target=2 anim=2
+00011 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Created
+00012 F6 enter created (Play deferred) target=3 anim=3
+00013 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Created
+00014 F6 enter created (Play deferred) target=4 anim=4
+00015 F6 waiting for first CompositionTarget.Rendering before Play
+00016 F6 FIRST_FRAME callback (CompositionTarget.Rendering) before Play
+00017 F6 FIRST_FRAME enqueue Play ok=True
+00018 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00019 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00020 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Played
+00021 F6 PLAY after first frame target=1 anim=1
+00022 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Played
+00023 F6 PLAY after first frame target=2 anim=2
+00024 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Played
+00025 F6 PLAY after first frame target=3 anim=3
+00026 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Played
+00027 F6 PLAY after first frame target=4 anim=4
+00028 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00029 MainWindow.Closed -> Dispose
+00030 Dispose begin
+00031 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Cancelled
+00032 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Released
+00033 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Cancelled
+00034 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Released
+00035 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Cancelled
+00036 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Released
+00037 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Cancelled
+00038 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Released
+00039 Dispose end handles=4 (enter=4, hover=0) sinkCalls=168
+00040 ETW_SUMMARY distinctNames=4 names[AnimationLifecycle=16, FrameTick=22, IdleTransition=4, TokenLoad=1] lifecycle[Cancelled=4, Created=4, Played=4, Released=4]
+# path=%USERPROFILE%\AppData\Local\Packages\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\LocalState\z6_f6_motion.log lines=40 dropped=0 capacity=4096

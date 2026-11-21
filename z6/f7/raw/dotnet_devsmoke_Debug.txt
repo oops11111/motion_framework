@@ -1,0 +1,9 @@
+  正在确定要还原的项目…
+  已还原 %USERPROFILE%\mf_z6\f7\MotionSoftDemo\z3a_l1_devsmoke\Z3aL1DevSmoke.csproj (用时 322 毫秒)。
+  Z3aL1DevSmoke -> %USERPROFILE%\AppData\Local\Temp\z6\f7\ds_Debug\z3a_l1_devsmoke.dll
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:02.32

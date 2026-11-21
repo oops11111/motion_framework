@@ -1,0 +1,19 @@
+BUILD_START=周三 2026/11/18  7:29:08.87
+HEAD=
+7e2feb0e98f69cf45fff8da4e60220d2b24a5e1a
+VCVARS_EXIT=0 Platform=x64
+fluidmotion_cl_exit=0
+pack_build_release_exit=0
+surface_tool_build_exit=0
+checksurface_pack_exit=0
+fm_capi_test_release_cl_exit=0
+fm_capi_test_debug_cl_exit=0
+fm_capi_test_release_run_exit=0
+fm_capi_test_debug_run_exit=0
+devsmoke_Debug_build_exit=0
+devsmoke_Debug_copy_native_exit=0
+devsmoke_console_Debug_run_exit=0
+devsmoke_Release_build_exit=0
+devsmoke_Release_copy_native_exit=0
+devsmoke_console_Release_run_exit=0
+BUILD_END=周三 2026/11/18  7:29:38.47

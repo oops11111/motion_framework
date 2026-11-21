@@ -1,0 +1,50 @@
+{
+  "status": "PASS (reference hash/API inspection only)",
+  "attempt": "20261121T075208Z-14b65d8f",
+  "cache": "%USERPROFILE%/mf_z6/f7/pilot/l1pack/bin/x64/Release/net8.0",
+  "scope": "Existing F7 reference only; not a current-main pack rebuild or fresh F6/F11 host test",
+  "files": [
+    {
+      "name": "FluidMotion.L1.dll",
+      "reference_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2",
+      "copied_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2"
+    },
+    {
+      "name": "fluidmotion.dll",
+      "reference_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d",
+      "copied_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d"
+    },
+    {
+      "name": "demo_motion.json",
+      "reference_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+      "copied_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e"
+    }
+  ],
+  "commands": [
+    {
+      "label": "surface_tool_build",
+      "argv": [
+        "dotnet",
+        "build",
+        "%WORKSPACE%\\m0\\out\\z6-pack-reference-20261121T075208Z-14b65d8f\\surface_tool\\SurfaceDump.csproj",
+        "-c",
+        "Release"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "surface_check",
+      "argv": [
+        "dotnet",
+        "%WORKSPACE%\\m0\\out\\z6-pack-reference-20261121T075208Z-14b65d8f\\surface_tool\\bin\\Release\\net10.0\\SurfaceDump.dll",
+        "%WORKSPACE%\\m0\\out\\z6-pack-reference-20261121T075208Z-14b65d8f\\reference\\FluidMotion.L1.dll",
+        "%WORKSPACE%\\m0\\out\\z6-pack-reference-20261121T075208Z-14b65d8f\\surface_reference.txt"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "child_environment": "Standard PROCESSOR_ARCHITECTURE=AMD64 restored only in child; no persistent changes",
+  "surface_sha256": "7b67b77bce6b36dc58cc870a17fe1b5588df3c6e526b39ca5a3e36d5280bc5cc",
+  "baseline_sha256": "7b67b77bce6b36dc58cc870a17fe1b5588df3c6e526b39ca5a3e36d5280bc5cc",
+  "surface_compare": "Full canonical Git baseline bytes equal; no first-line exemption"
+}

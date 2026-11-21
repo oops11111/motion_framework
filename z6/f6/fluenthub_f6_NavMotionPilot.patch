@@ -1,0 +1,174 @@
+--- a/src/FluentHub/Views/NavMotionPilot.cs
++++ b/src/FluentHub/Views/NavMotionPilot.cs
+@@ -3,17 +3,24 @@
+ // No timing judgement anywhere (PresentStats is a placeholder, N/A). PERF-CI HOLD. Success != adopt.
+ 
+ using System.Diagnostics.Tracing;
++using Microsoft.UI.Dispatching;
+ using Microsoft.UI.Xaml;
+ using Microsoft.UI.Xaml.Controls;
+ using Microsoft.UI.Xaml.Input;
+ using Microsoft.UI.Xaml.Media;
++using Microsoft.UI.Xaml.Media.Imaging;
++using Windows.Graphics.Imaging;
++using Windows.Storage;
++using Windows.Storage.Streams;
++using System.Runtime.InteropServices.WindowsRuntime;
++using System.Threading.Tasks;
+ using MotionSoftDemo;
+ using Windows.UI.ViewManagement;
+ 
+ namespace FluentHub.Views
+ {
+ 	/// <summary>
+-	/// Left NavigationView menu items: Loaded → Play "demo.enter" (tokens), PointerEntered → Retarget offsetX=8,
++	/// Left NavigationView menu items: Loaded, wait for first frame, then Play "demo.enter" (tokens), PointerEntered → Retarget offsetX=8,
+ 	/// PointerExited/Canceled/CaptureLost → Retarget the same handle back to 0, Unloaded/Closed → Cancel+Release every handle, then Dispose.
+ 	/// </summary>
+ 	internal sealed class NavMotionPilot : IDisposable
+@@ -36,15 +43,21 @@
+ 		private readonly Dictionary<ulong, AnimationHandle> _hover = [];
+ 		private readonly PointerEventHandler _enteredHandler;
+ 		private readonly PointerEventHandler _leftHandler;
++		private readonly DispatcherQueue _dispatcher;
++		private readonly NavigationView _nav;
+ 		private bool _renderingHooked;
+ 		private bool _windowHooked;
+ 		private bool _disposed;
++		private bool _firstFrameSeen;
++		private bool _enterPlayed;
++		private int _enterShots;
++		private bool _enterShotBusy;
+ 		private int _sinkCount;
+ 
+ 		public NavMotionPilot(NavigationView navigationView)
+ 		{
+ 			_log = new PilotLog();
+-			_log.Line("PILOT start (Z5-T5, pilot-only)");
++			_log.Line("PILOT start (Z6-F6, wait for first frame then Play enter; T5 hover unchanged)");
+ 			_listener = new PilotEtwListener(_log);
+ 
+ 			_system = MotionSystem.Create();
+@@ -59,6 +72,8 @@
+ 			string? diag = new MotionTokens(_system).Load(File.ReadAllText(tokensPath));
+ 			_log.Line("MotionTokens.Load demo_motion.json: " + (diag ?? "ok"));
+ 
++			_dispatcher = navigationView.DispatcherQueue;
++			_nav = navigationView;
+ 			_enteredHandler = OnItemPointerEntered;
+ 			_leftHandler = OnItemPointerLeft;
+ 
+@@ -87,13 +102,60 @@
+ 
+ 			foreach (var (id, _) in _items)
+ 			{
++				// Z6-F6: create enter handles now, but Play only after the first host frame callback.
+ 				AnimationHandle enter = _system.CreateAnimation(id, EnterTransition);
+ 				_enter[id] = enter;
+-				enter.Play();
+-				_log.Line($"enter target={id} anim={enter.Id}");
+-			}
+-
++				_log.Line($"F6 enter created (Play deferred) target={id} anim={enter.Id}");
++			}
++
++			// Hook the host frame source immediately so the first CompositionTarget.Rendering can be observed before Play.
++			if (!_renderingHooked)
++			{
++				CompositionTarget.Rendering += OnRendering;
++				_renderingHooked = true;
++			}
++			_log.Line("F6 waiting for first CompositionTarget.Rendering before Play");
+ 			_log.Flush();
++		}
++
++		private async Task CaptureEnterShotAsync(int n)
++		{
++			try
++			{
++				var rtb = new RenderTargetBitmap();
++				await rtb.RenderAsync(_nav);
++				var pixels = await rtb.GetPixelsAsync();
++				StorageFolder folder;
++				try
++				{
++					folder = ApplicationData.Current.LocalFolder;
++				}
++				catch (Exception)
++				{
++					folder = await StorageFolder.GetFolderFromPathAsync(Path.GetTempPath());
++				}
++				StorageFile file = await folder.CreateFileAsync($"z6_f6_enter_{n:00}.png", CreationCollisionOption.ReplaceExisting);
++				using IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite);
++				BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
++				encoder.SetPixelData(
++					BitmapPixelFormat.Bgra8,
++					BitmapAlphaMode.Premultiplied,
++					(uint)rtb.PixelWidth,
++					(uint)rtb.PixelHeight,
++					96,
++					96,
++					pixels.ToArray());
++				await encoder.FlushAsync();
++				_log.Line($"F6 ENTER_SHOT n={n} {rtb.PixelWidth}x{rtb.PixelHeight} path={file.Path}");
++			}
++			catch (Exception ex)
++			{
++				_log.Line($"F6 ENTER_SHOT n={n} fail={ex.GetType().Name}: {ex.Message}");
++			}
++			finally
++			{
++				_enterShotBusy = false;
++			}
+ 		}
+ 
+ 		private void OnItemPointerEntered(object sender, PointerRoutedEventArgs e)
+@@ -172,7 +234,39 @@
+ 				return;
+ 			}
+ 
++			if (!_firstFrameSeen)
++			{
++				_firstFrameSeen = true;
++				_log.Line("F6 FIRST_FRAME callback (CompositionTarget.Rendering) before Play");
++				bool queued = _dispatcher.TryEnqueue(PlayEnterAfterFirstFrame);
++				_log.Line($"F6 FIRST_FRAME enqueue Play ok={queued}");
++				_log.Flush();
++			}
++
++			if (_enterPlayed && _enterShots < 6 && !_enterShotBusy)
++			{
++				int n = _enterShots++;
++				_enterShotBusy = true;
++				_ = CaptureEnterShotAsync(n);
++			}
++
+ 			_system.OnFrame();
++		}
++
++		private void PlayEnterAfterFirstFrame()
++		{
++			if (_disposed || _enterPlayed)
++			{
++				return;
++			}
++
++			_enterPlayed = true;
++			foreach (var (id, enter) in _enter)
++			{
++				enter.Play();
++				_log.Line($"F6 PLAY after first frame target={id} anim={enter.Id}");
++			}
++			_log.Flush();
+ 		}
+ 
+ 		private void OnWindowClosed(object sender, WindowEventArgs args)
+@@ -249,7 +343,7 @@
+ 				folder = Path.GetTempPath();
+ 			}
+ 
+-			_path = Path.Combine(folder, "z5_t5_motion.log");
++			_path = Path.Combine(folder, "z6_f6_motion.log");
+ 		}
+ 
+ 		public void Line(string text)

@@ -1,12 +1,12 @@
-# Z5-T5-0 L1 pilot pack (pilot-only; not the formal L1 library; not for distribution)
-# mf_tip (build source, branch wb/z5-t3): d618140b4aaaec1c1a61e42c57e35ea3004f54f5
+# Z6 F7 L1 pilot pack rebuild (pilot-only; not the formal L1 library; not for distribution)
+# mf_tip (build source, main): 7e2feb0e98f69cf45fff8da4e60220d2b24a5e1a
 # build_config: Release (dotnet build pilot\l1pack\FluidMotion.L1.csproj -c Release --no-incremental; Platform=x64 inherited from the vcvars64 environment; TargetFramework net8.0, AnyCPU IL)
-# output_dir (local, untracked): C:\Users\admin\mf_z5\t5pack\pilot\l1pack\bin\x64\Release\net8.0\
-# fluidmotion.dll: cl /nologo /std:c++17 /EHsc /O2 /W3 /LD /I code\capi /I code /I code\explore code\capi\fm_capi.cpp (VS 2022 BuildTools 17.14, x64)
-# built: 2026-11-18 01:13 AWST (Australia/Perth, UTC+8) on DESKTOP-K93N3P8
-2e2af911d484c3068d1a59b42a81637f153409370d9a3ecae7dd8714a0b29865  FluidMotion.L1.dll
-b39d58ef612f7dd2cd89cc4373e02954fb02e93723cae7632cf55c018d1e6996  fluidmotion.dll
+# output_dir (local, untracked): %USERPROFILE%\mf_z6\f7\pilot\l1pack\bin\x64\Release\net8.0\
+# fluidmotion.dll: cl /nologo /std:c++17 /EHsc /O2 /W3 /LD /I code\capi /I code /I code\explore code\capi\fm_capi.cpp (VS 2022 BuildTools 17.14.34, x64)
+# built: 2026-11-18 07:29 AWST (Australia/Perth, UTC+8) on DESKTOP-K93N3P8, branch wb/z6-f7 (Z6 F7); raw logs in z6/f7/raw/
+94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2  FluidMotion.L1.dll
+add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d  fluidmotion.dll
 8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e  demo_motion.json
-# git hash-object (source files link-compiled; identical to wb/z5-t3 tree entries)
+# git hash-object (source files link-compiled; identical to main 7e2feb0e tree entries)
 fe72b08f9445723f926a2928345e23311503efec  MotionSoftDemo/MotionSystem.cs
-565111f0fe46b4c20cb878b096cf34742203abf9  MotionSoftDemo/MotionEtw.cs
+0404498ab4cb7e96168405a7ffb63591686797ca  MotionSoftDemo/MotionEtw.cs

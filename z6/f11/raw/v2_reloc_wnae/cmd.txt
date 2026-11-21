@@ -1,0 +1,2 @@
+cwd=%USERPROFILE%\pilot\FluentHub
+dotnet build src\FluentHub\FluentHub.csproj -c Debug -p:Platform=x64 -p:WarningsNotAsErrors=NU1903 -p:FmL1Root=%USERPROFILE%\AppData\Local\Temp\z6\f11\pack_reloc\

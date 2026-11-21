@@ -1,0 +1,10 @@
+
+
+Name              : 49462fluenthub-uwp.FluentHub
+PackageFullName   : 49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm
+IsDevelopmentMode : True
+SignatureKind     : None
+Status            : Ok
+
+
+

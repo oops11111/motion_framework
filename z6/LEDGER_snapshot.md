@@ -54,3 +54,18 @@ Original source verdicts retained. Canonical docs and reports/raw imported exact
 - F8a: ordinary source merge c640972a4858c6cb72dbc5060a601c4f040c0e2f; exact ledger snapshot preserved.
 
 - F8b: ordinary source merge fe2373b523c6fe2a70598af0bf37b8a028a70d63; exact ledger snapshot preserved.
+
+
+## Stage 2B accepted on main (append-only record)
+
+PR #12 head6191d9db816d56c3d8d34cbb76f4791341c4e4c9 merged as8c5cc6f31ca2be796986afd901fc1bb1098712ca. Pushdoc44881562575, PRdoc44881582615 and PRregression44881582621 all applicable checks success; postmerge main44881810494 policy/Debug/Release all success. Primary accepted exact documentation integration; original verdicts unchanged.
+
+## Stage 2C pilot metadata provenance integration (implementing)
+
+Exact historical evidence imported; source ledger snapshots at z6/integration/pack/source_ledgers. Local reference inspection is separate from original F7/F11/F6 acceptance, not a current-main pack rebuild or fresh host GUI/relocation/corruption run.
+
+- F7: ordinary source merge 6b9f4767829add919cb6e626f45208f2ecf59614; exact source ledger archived.
+
+- F11: ordinary source merge c3fb8d926458ebb93c3bc675a13c5f25ab853719; exact source ledger archived.
+
+- F6: ordinary source merge 5e92d05ea3cf7c943dd3a79e97223db10c8d74e0; exact source ledger archived.

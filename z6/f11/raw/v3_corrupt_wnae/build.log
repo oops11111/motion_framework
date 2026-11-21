@@ -1,0 +1,13 @@
+  正在确定要还原的项目…
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : warning NU1903: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9
+  所有项目均是最新的，无法还原。
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj(110,3): error : FmL1VerifyPack: sha256 mismatch FluidMotion.L1.dll expected=94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2 actual=05179CD1009EAF7D63C0B3BEE6D2EA29C739F1901722528390B83589E24E7DA5
+
+生成失败。
+
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : warning NU1903: 包 "Microsoft.DotNet.ILCompiler" 10.0.8 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-p3jp-9v83-76w9
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj(110,3): error : FmL1VerifyPack: sha256 mismatch FluidMotion.L1.dll expected=94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2 actual=05179CD1009EAF7D63C0B3BEE6D2EA29C739F1901722528390B83589E24E7DA5
+    1 个警告
+    1 个错误
+
+已用时间 00:00:03.20
