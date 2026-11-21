@@ -1,0 +1,8 @@
+{
+  "commit": "eb08f0dbcbb43880ab34038b0cb6742f0c0deca5",
+  "files": {
+    "MainWindow.cs": "61c7c6a1131787c72aa6e267da277646982ad53a2664c4e3cf225eb50e26fa19",
+    "NavMotionPilot.cs": "d0b111f56e2a809dedd566186e559cd1f1f2a8895e4a51667ee2344f67fec065",
+    "RootView.xaml.cs": "364e9d65a6d6508c3417a34fe98b6a16cae7314d74ccd1f28b94ebf6ab144184"
+  }
+}
