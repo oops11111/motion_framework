@@ -1,0 +1,5 @@
+{
+  "sdk": "10.0.404",
+  "roslyn_path": "%USERPROFILE%/.dotnet/sdk/10.0.404/Roslyn/bincore/Microsoft.CodeAnalysis.dll",
+  "msbuild_path": "%ProgramFiles%/Microsoft Visual Studio/18/Community/MSBuild/Current/Bin/amd64/MSBuild.exe"
+}

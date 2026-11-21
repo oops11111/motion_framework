@@ -1,0 +1,10 @@
+{
+  "warning_occurrences": {
+    "CS0067": 5,
+    "CS0612": 6,
+    "CS0618": 75,
+    "CsWinRT1034": 1
+  },
+  "error_id_occurrences": [],
+  "scope": "Summary of original build stdout/stderr, no warnings suppressed; raw remains authoritative"
+}

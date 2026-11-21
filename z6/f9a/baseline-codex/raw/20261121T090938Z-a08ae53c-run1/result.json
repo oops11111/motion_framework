@@ -1,0 +1,127 @@
+{
+  "status": "PASS (original build only)",
+  "attempt": "20261121T090938Z-a08ae53c-run1",
+  "route": "run1",
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "start_utc": "2026-11-21T09:09:38.780167+00:00",
+  "child_environment": {
+    "DOTNET_ROOT": "%USERPROFILE%/.dotnet",
+    "PATH_prefix": "%USERPROFILE%/.dotnet",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "AMD64_restored_only_if_missing": true,
+    "persistent_changes": false
+  },
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "%USERPROFILE%\\pilot\\Files",
+        "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source"
+      ],
+      "cwd": "%WORKSPACE%",
+      "pid": 82356,
+      "start_utc": "2026-11-21T09:09:39.059817+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T09:09:41.732162+00:00",
+      "original_sha256": "2009ef8b6c5b624186b5e9ca6ae538fcb9226bd13ec50f04497d69ac93157a1e",
+      "original_bytes": 106,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\clone.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "4380b8a0dcb7dcb458ae1b36ce50ac0ce651a62e696e1581ba5fb51aa2855b88"
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "cbfb4ba54a89632fbceb82ea94ada60a9bae3737"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source",
+      "pid": 73528,
+      "start_utc": "2026-11-21T09:09:41.733171+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T09:09:45.970552+00:00",
+      "original_sha256": "05569c6822bb05a7846f6b3da0c5ff4a841f0392b8dd3f8e994eb715732d7035",
+      "original_bytes": 37,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\checkout.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "05569c6822bb05a7846f6b3da0c5ff4a841f0392b8dd3f8e994eb715732d7035"
+    },
+    {
+      "label": "dotnet_version",
+      "argv": [
+        "%USERPROFILE%\\.dotnet\\dotnet.exe",
+        "--version"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source",
+      "pid": 87360,
+      "start_utc": "2026-11-21T09:09:48.002998+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T09:09:48.569974+00:00",
+      "original_sha256": "a391a16c2e43840573b47a7c336fc376a5f58e13cfafb1930a338034912d6dc7",
+      "original_bytes": 10,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\dotnet_version.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "c479e77cb703fe4dac97ec3e3ebbeb4968c95c716d53abad60b516b6866ca49d"
+    },
+    {
+      "label": "restore",
+      "argv": [
+        "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+        "Files.slnx",
+        "-t:Restore",
+        "-p:Platform=x64",
+        "-p:Configuration=Debug",
+        "-p:PublishReadyToRun=true",
+        "-v:quiet"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source",
+      "pid": 32600,
+      "start_utc": "2026-11-21T09:09:48.572802+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T09:10:12.874123+00:00",
+      "original_sha256": "92974ff7bf86e3799d4dcbfc6f443fe26b945bfd426cce82e90232cb0d42a361",
+      "original_bytes": 58,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\restore.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "d9ac3e1065f2e8f7cce0c377b3ffff4db7e1fc92d7d23adfd91948429b068339"
+    },
+    {
+      "label": "build",
+      "argv": [
+        "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+        "src/Files.App/Files.App.csproj",
+        "-t:Build",
+        "-p:Configuration=Debug",
+        "-p:Platform=x64",
+        "-p:AppxBundle=Never",
+        "-p:GenerateAppxPackageOnBuild=false",
+        "-v:quiet"
+      ],
+      "cwd": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\source",
+      "pid": 87316,
+      "start_utc": "2026-11-21T09:10:12.875191+00:00",
+      "exit_code": 0,
+      "end_utc": "2026-11-21T09:14:13.599365+00:00",
+      "original_sha256": "00a1012ff582fb302cb3d29b09318e0a3f2bd0f9aa6e1cc43529eebc5c98afbf",
+      "original_bytes": 33972,
+      "original_path": "%WORKSPACE%\\m0\\out\\f9a-baseline-20261121T090938Z-a08ae53c-run1\\build.original.log",
+      "decode_encoding": "utf-8-sig",
+      "published_complete_sanitized": true,
+      "published_sha256": "3622108d7ac0f4f5f835f8edd53c6bf498def421d827b1451e642801c2f1bc2e"
+    }
+  ],
+  "source_unchanged": true,
+  "build_exit_code": 0,
+  "source_tree": "901330b3d5e4daa7838e24eaeedf4c2c745705c9",
+  "end_utc": "2026-11-21T09:14:15.590509+00:00"
+}

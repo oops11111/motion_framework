@@ -1,0 +1,27 @@
+name: Z6 F9a original baseline evidence
+
+on:
+  push:
+    branches: [codex/z6-f9a-baseline]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'z6/f9a/baseline-codex/**'
+      - '.github/workflows/z6-f9a-baseline.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  original-baseline-evidence:
+    if: github.head_ref == 'codex/z6-f9a-baseline' || github.ref == 'refs/heads/codex/z6-f9a-baseline'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate original command, source receipts and evidence hashes
+        run: python z6/f9a/baseline-codex/verify.py
