@@ -1,0 +1,5 @@
+original_spi=1 restored_spi=1
+original_MinAnimate=1 restored_MinAnimate=1
+original_UserPreferencesMask=9E 3E 07 80 12 00 00 00
+restored_UserPreferencesMask=9E 3E 07 80 12 00 00 00
+matches_original=True

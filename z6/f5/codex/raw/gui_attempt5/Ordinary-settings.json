@@ -1,0 +1,14 @@
+{
+  "PRE": {
+    "AnimationsEnabled": true,
+    "SPI_GETCLIENTAREAANIMATION": true,
+    "MinAnimate": "1",
+    "UserPreferencesMask": "9E3E078012000000"
+  },
+  "POST": {
+    "AnimationsEnabled": true,
+    "SPI_GETCLIENTAREAANIMATION": true,
+    "MinAnimate": "1",
+    "UserPreferencesMask": "9E3E078012000000"
+  }
+}

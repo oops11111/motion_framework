@@ -1,0 +1,15 @@
+redaction: %USERPROFILE% and USERPROFILE -> %USERPROFILE%; Program Files -> %ProgramFiles% / %ProgramFiles(x86)%
+binary screenshots copied unchanged (window-only PrintWindow)
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\build_wnae\cmd.txt redacted=True src_sha=a31b4363da921716194d51a5ea5ff7a50f032d46ce784a2834adc551f84d55d2
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\build_wnae\env.txt redacted=True src_sha=7441565ec795adec9c557eb8db34df2443fd3d24bf37903291f42aa441bb12dd
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\build_wnae\times.txt redacted=False src_sha=d6ab01e5b14bfac6c725826da8077d063a09d830ad9eb782b5cafa438d29993f
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\build_wnae\build.log redacted=True src_sha=7667706553875ab93bd649d77f7f8805d0d1c0dbdd8009bf6c35ceba593be768
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\run\run.log redacted=False src_sha=bda6ebf29dee7426944423fd3994013a6475bb96cd3274f26cda5c1c36fa865d
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\run\register.out.txt redacted=True src_sha=2b754a610a71c5176610c3235d5e62d86d5ab2b445cd98477ab3183af52acce6
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\run\schtasks_create.txt redacted=False src_sha=eb36ff8498611b3542b1c6892c1063fae3d68200523898df7da1b33b94a3ff67
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\run\schtasks_run.txt redacted=False src_sha=1213c0abb157378faa92ff75dc2768d3da3ab86e3195b7b7507f72b275130d4a
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\run\schtasks_delete.txt redacted=False src_sha=2a8a09ce41da9c4f728d647f8eb7dc94ba22bd841a6f6cc13d7e4f072f9be4c1
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\run\schtasks_query_after.txt redacted=False src_sha=58b126e69c409dbc584f69501513845a5cc6d3abce1fea39ebe4a9874a81c908
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\run\z6_f2_motion.log redacted=True src_sha=0a0ed2067fc8bae0a0b0a6512b0d3cc108082c083d20dbe6843fa66e2a82df38
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\run\z6_f2_motion_preclose.log redacted=True src_sha=e781870396bbaa9980e3161a855c4b02ebe1eb131f38f4f471e8b2a8070a0278
+%USERPROFILE%\mf_z6\f2\z6\f2\raw\run\unregister.txt redacted=False src_sha=4b9dee8e67246c5ac0a18b83274225fcea7dd2c14b79f4886956cd3906300a6b

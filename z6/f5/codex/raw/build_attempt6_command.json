@@ -1,0 +1,22 @@
+{
+  "attempt": 6,
+  "command": [
+    "dotnet",
+    "build",
+    "src/FluentHub/FluentHub.csproj",
+    "-c",
+    "Debug",
+    "-p:Platform=x64",
+    "-p:WarningsNotAsErrors=NU1903"
+  ],
+  "environment_change": {
+    "target": "new child process only",
+    "name": "PROCESSOR_ARCHITECTURE",
+    "from": null,
+    "to": "AMD64",
+    "source": "existing machine environment, read-only"
+  },
+  "extra_msbuild_properties": false,
+  "scope": "F5 non-original warning downgrade, process environment repaired",
+  "exit_code": 0
+}

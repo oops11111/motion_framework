@@ -1,0 +1,9 @@
+
+
+Name            : 49462fluenthub-uwp.FluentHub
+Status          : Ok
+InstallLocation : %USERPROFILE%\pilot\FluentHub\src\FluentHub\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64
+PackageFullName : 49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm
+
+
+

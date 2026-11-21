@@ -1,0 +1,1 @@
+SUCCESS: The scheduled task "z6_f2_launch" was successfully deleted.

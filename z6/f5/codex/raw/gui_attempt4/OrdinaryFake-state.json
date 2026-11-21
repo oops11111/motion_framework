@@ -1,0 +1,6 @@
+{
+  "pid": 82844,
+  "activationArguments": "--fm-pilot-f5=1",
+  "diagnosticContext": false,
+  "activation": "IApplicationActivationManager, AO_NOERRORUI"
+}

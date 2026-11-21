@@ -1,0 +1,13 @@
+{
+  "attempt": 2,
+  "method": "direct exe after successful attempt6; no package registration",
+  "environment": {
+    "target": "new child only",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "FM_PILOT_F5": "1"
+  },
+  "exe_sha256": "7b0688b0e9504779d4af26390ce776339eda3ff850f9fa35dddeffa14ca55a4c",
+  "pid": 51392,
+  "exit_code": 3762504530,
+  "exit_hex": "0xe0434352"
+}

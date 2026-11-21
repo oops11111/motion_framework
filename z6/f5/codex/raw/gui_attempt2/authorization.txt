@@ -1,0 +1,11 @@
+{
+  "conversation_id": "01a1fbc2-1314-7713-a701-c7b3149490ec",
+  "identity": "49462fluenthub-uwp.FluentHub",
+  "manifest_sha256": "fe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4",
+  "scope": "F5 temporary registration, package-context diagnostics, ordinary Real activation, exact cleanup",
+  "source": "direct user response in current root conversation",
+  "user_text": "授权",
+  "recorded_awst": "2026-11-21 12:50:34 AWST",
+  "recording_note": "recording time supplied by root, not asserted message send time",
+  "question_item_id": "direct user message: 授权; replying to pending F5 temporary package registration question; message id unavailable"
+}

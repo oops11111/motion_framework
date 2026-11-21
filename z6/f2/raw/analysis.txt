@@ -1,0 +1,39 @@
+lines=152 created=15 released=15 played=15 cancelled=15
+created_eq_released=True
+IdleTransition count=14 (not asserted)
+IdleTransition lines:
+  L5: 00005 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+  L20: 00020 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+  L21: 00021 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+  L36: 00036 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+  L37: 00037 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+  L59: 00059 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+  L60: 00060 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+  L68: 00068 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+  L69: 00069 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+  L106: 00106 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+  L107: 00107 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+  L110: 00110 ETW_SUMMARY distinctNames=5 names[AnimationLifecycle=28, FrameTick=3, IdleTransition=7, Retarget=1, TokenLoad=2] lifecycle[Cancelled=5, Created=9, Played=9, Released=5]
+  L133: 00133 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+  L151: 00151 ETW_SUMMARY distinctNames=5 names[AnimationLifecycle=32, FrameTick=22, IdleTransition=5, Retarget=2, TokenLoad=1] lifecycle[Cancelled=10, Created=6, Played=6, Released=10]
+Dispose begin/end: c1=84-109 c2=137-150
+last IdleTransition during cycle1 Dispose window: (107, '00107 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0')
+last IdleTransition during cycle2 Dispose window: None
+last IdleTransition in combined log: (151, '00151 ETW_SUMMARY distinctNames=5 names[AnimationLifecycle=32, FrameTick=22, IdleTransition=5, Retarget=2, TokenLoad=1] lifecycle[Cancelled=10, Created=6, Played=6, Released=10]')
+FrameTick payload/delta lines=0
+Loaded lines:
+  00001 F2 RootView Loaded -> Create NavMotionPilot
+  00032 F2 RootView Loaded -> Create NavMotionPilot
+Unloaded lines:
+  00082 F2 RootView Unloaded -> Dispose NavMotionPilot then null
+PILOT start:
+  00002 PILOT start (Z6-F2, RootView rebuild cycle=1; Unloaded Dispose then Loaded Create; F6 enter wait unchanged)
+  00033 PILOT start (Z6-F2, RootView rebuild cycle=2; Unloaded Dispose then Loaded Create; F6 enter wait unchanged)
+REBUILD:
+  00031 F2 REBUILD begin: MainWindow.InitializeApplication(forceReload=true)
+order: PILOT cycle=2 at L33; first Unloaded at L82; Loaded_before_Unloaded=True
+
+CORRECTION: IdleTransition event lines are ETW_EVENT name=IdleTransition only (exclude ETW_SUMMARY).
+IdleTransition event count=12 (not asserted)
+last IdleTransition EVENT in combined log: (133, '00133 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0')
+cycle2 Dispose window has no new IdleTransition event; last event in the combined log is L133 activeCount=0 pumpOn=0 (before Close/Dispose, pump already off).

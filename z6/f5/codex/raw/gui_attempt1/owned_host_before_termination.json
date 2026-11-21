@@ -1,0 +1,30 @@
+{
+  "pid": 87000,
+  "verified_creation_utc": "2026-11-21T04:51:43.534358+00:00",
+  "verified_exe": "%REPO%\\m0\\out\\f5-fluenthub\\src\\FluentHub\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\FluentHub.exe",
+  "exe_sha256": "7b0688b0e9504779d4af26390ce776339eda3ff850f9fa35dddeffa14ca55a4c",
+  "verified_package_full_name": "49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm",
+  "top_level_windows": [
+    {
+      "hwnd": "0xe50974",
+      "title": "FluentHub",
+      "class": "WinUIDesktopWin32WindowClass"
+    },
+    {
+      "hwnd": "0x6090660",
+      "title": "MSCTFIME UI",
+      "class": "MSCTFIME UI"
+    },
+    {
+      "hwnd": "0x2080e16",
+      "title": "Default IME",
+      "class": "IME"
+    }
+  ],
+  "prior_graceful_close": "WM_CLOSE already attempted by driver; no exit and MainWindowHandle=0",
+  "wrapper": {
+    "pid": 54240,
+    "cim_lookup_after_watchdog": "not found; no wrapper termination performed"
+  },
+  "exception_to_prepared_no_force_plan": "Exact self-created hung test host only; ownership/starttime/package reverified while holding handle; necessary failed-test cleanup authorized by root current task"
+}

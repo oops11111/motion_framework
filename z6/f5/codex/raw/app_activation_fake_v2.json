@@ -1,0 +1,10 @@
+{
+  "upstream_commit": "eb08f0dbcbb43880ab34038b0cb6742f0c0deca5",
+  "file": "src/FluentHub/App.xaml.cs",
+  "pre_sha256": "f9ad74dff1bb5397630ed14b8e9680e354a87208166ce9fbb12c4680d3edaa53",
+  "pre_matches_upstream_LF": true,
+  "post_sha256_lf": "06fce311b2e9bf1d74c9a789bde8d8eeec638cf7f5c787d1e7830a6415e2b23b",
+  "flag": "--fm-pilot-f5=1",
+  "match": "case-sensitive exact full string",
+  "environment_target": "Process"
+}

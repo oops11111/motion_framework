@@ -1,0 +1,91 @@
+{
+  "status": "PASS (dev-only) B/C/E via ordinary activation",
+  "selected_modes": [
+    "OrdinaryFake",
+    "Ordinary"
+  ],
+  "managed_dll_sha256": "9be938e614b636034840223429e0bdd60cc21342823fb31c0eb5859471008b7a",
+  "required_gate_mapping": {
+    "B": "OrdinaryFake",
+    "C": "Ordinary",
+    "E": "OrdinaryFake and Ordinary"
+  },
+  "legacy_diagnostic_modes": "Fake/Real are not required gates and are not retried",
+  "runs": [
+    {
+      "mode": "OrdinaryFake",
+      "pid": 62252,
+      "exe_sha256": "7b0688b0e9504779d4af26390ce776339eda3ff850f9fa35dddeffa14ca55a4c",
+      "managed_dll_sha256": "9be938e614b636034840223429e0bdd60cc21342823fb31c0eb5859471008b7a",
+      "packageFullName": "49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm",
+      "launch": "ordinary Windows.Launch activation, AO_NOERRORUI",
+      "activation_arguments": "--fm-pilot-f5=1",
+      "log_path": "%USERPROFILE%\\AppData\\Local\\Packages\\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\\LocalState\\z6_f2_motion.log",
+      "windows": [
+        {
+          "hwnd": "0xe60290",
+          "title": "FluentHub",
+          "class": "WinUIDesktopWin32WindowClass",
+          "visible": true
+        },
+        {
+          "hwnd": "0x13512a8",
+          "title": "MSCTFIME UI",
+          "class": "MSCTFIME UI",
+          "visible": false
+        },
+        {
+          "hwnd": "0xb770608",
+          "title": "Default IME",
+          "class": "IME",
+          "visible": false
+        }
+      ],
+      "exit_code": 0,
+      "lifecycle": "two subscribers, one source, clean exit",
+      "gate": "PASS (dev-only)"
+    },
+    {
+      "mode": "Ordinary",
+      "pid": 69204,
+      "exe_sha256": "7b0688b0e9504779d4af26390ce776339eda3ff850f9fa35dddeffa14ca55a4c",
+      "managed_dll_sha256": "9be938e614b636034840223429e0bdd60cc21342823fb31c0eb5859471008b7a",
+      "packageFullName": "49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm",
+      "launch": "ordinary Windows.Launch activation, AO_NOERRORUI",
+      "activation_arguments": "",
+      "log_path": "%USERPROFILE%\\AppData\\Local\\Packages\\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\\LocalState\\z6_f2_motion.log",
+      "windows": [
+        {
+          "hwnd": "0xfc11ea",
+          "title": "FluentHub",
+          "class": "WinUIDesktopWin32WindowClass",
+          "visible": true
+        },
+        {
+          "hwnd": "0xe612aa",
+          "title": "MSCTFIME UI",
+          "class": "MSCTFIME UI",
+          "visible": false
+        },
+        {
+          "hwnd": "0x33b08fa",
+          "title": "Default IME",
+          "class": "IME",
+          "visible": false
+        }
+      ],
+      "exit_code": 0,
+      "lifecycle": "two subscribers, one source, clean exit",
+      "gate": "PASS (dev-only)"
+    }
+  ],
+  "removed_exact_package": "49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm",
+  "remaining_packages": [],
+  "POST": {
+    "AnimationsEnabled": true,
+    "SPI_GETCLIENTAREAANIMATION": true,
+    "MinAnimate": "1",
+    "UserPreferencesMask": "9E3E078012000000"
+  },
+  "settings_unchanged": true
+}

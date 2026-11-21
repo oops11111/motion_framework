@@ -1,0 +1,29 @@
+{
+  "command": "python z6/f5/codex/gui_acceptance.py --manifest <isolated-build-output>/AppxManifest.xml --dry-run",
+  "exit_code": 0,
+  "package_registration_executed": false,
+  "activation_executed": false,
+  "package_absence_assertion_passed": true,
+  "plan": {
+    "mode": "read-only dry-run",
+    "identity": {
+      "Name": "49462fluenthub-uwp.FluentHub",
+      "Publisher": "CN=4E3C0825-4D00-4ECC-89F8-528E9200B125",
+      "Version": "0.11.0.0",
+      "ProcessorArchitecture": "x64"
+    },
+    "manifest": "%REPO%\\m0\\out\\f5-fluenthub\\src\\FluentHub\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\AppxManifest.xml",
+    "manifest_sha256": "fe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4",
+    "exe_sha256": "7b0688b0e9504779d4af26390ce776339eda3ff850f9fa35dddeffa14ca55a4c",
+    "PRE": {
+      "AnimationsEnabled": true,
+      "SPI_GETCLIENTAREAANIMATION": true,
+      "MinAnimate": "1",
+      "UserPreferencesMask": "9E3E078012000000"
+    },
+    "register": "Add-AppxPackage -Register '%REPO%\\m0\\out\\f5-fluenthub\\src\\FluentHub\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\AppxManifest.xml'",
+    "launch": "Fake and Real package-context diagnostics with child-only environment, then Ordinary Real Windows.Launch activation",
+    "cleanup": "Remove-AppxPackage -Package <exact newly registered FullName>; never framework/runtime packages",
+    "limits": "Package-context diagnostic token differs from ordinary activation; results separate. No OS settings writes, tasks or elevation"
+  }
+}

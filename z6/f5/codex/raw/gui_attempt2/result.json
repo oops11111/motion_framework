@@ -1,0 +1,21 @@
+{
+  "status": "not accepted",
+  "selected_modes": [
+    "Ordinary"
+  ],
+  "omitted_modes": [
+    "Fake",
+    "Real"
+  ],
+  "runs": [],
+  "error": "OSError: [WinError 1159] 消息只能与同步操作一起使用。",
+  "removed_exact_package": "49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm",
+  "remaining_packages": [],
+  "POST": {
+    "AnimationsEnabled": true,
+    "SPI_GETCLIENTAREAANIMATION": true,
+    "MinAnimate": "1",
+    "UserPreferencesMask": "9E3E078012000000"
+  },
+  "settings_unchanged": true
+}

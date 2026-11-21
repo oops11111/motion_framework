@@ -1,0 +1,40 @@
+Z6 F5 attempt1（首跑失败）控制台记录 — 重建件，非原始文件
+=====================================================================
+说明（如实记录）：首跑失败时构建日志写在 %TEMP%\z6\f5\build_wnae\build.log；重跑前我把整个
+build_wnae 目录删掉了，原始文件因此丢失（违反“首跑失败记录保留在 attempt1/”的证据规）。本文件是
+从 CLI 会话控制台捕获逐字转录的 stdout，用于保留首跑的失败内容；它不是原始日志文件。
+
+首跑命令（与重跑相同，原文）：
+  "%ProgramFiles%\dotnet\dotnet.exe" build src\FluentHub\FluentHub.csproj -c Debug -p:Platform=x64 -p:WarningsNotAsErrors=NU1903
+
+首跑退出码：1（2 个警告 / 2 个错误）。失败原因：CA1416 —— AnimationsEnabledChanged 需要
+Windows 10.0.19041.0，而项目声明的最低版本是 10.0.17763.0。修复：侧叉里加
+OperatingSystem.IsWindowsVersionAtLeast(10,0,19041) 守卫 + [SupportedOSPlatform("windows10.0.19041.0")]
+包装订阅/退订，未改项目最低版本、未加任何构建开关。
+
+以下为控制台原文（控制台按 GBK 显示 UTF-8 文本，中文呈乱码；内容不变；本机绝对路径已替换为 %USERPROFILE%）：
+
+---------------------------------------------------------------------
+  姝ｅ湪纭�瀹氳�佽繕鍘熺殑椤圭洰鈥?
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : warning NU1903: 鍖?"Microsoft.DotNet.ILCompiler" 10.0.8 鍏锋湁宸茬煡鐨?楂?涓ラ噸鎬ф紡娲烇紝https://github.com/advisories/GHSA-p3jp-9v83-76w9
+  鎵€鏈夐」鐩�鍧囨槸鏈€鏂扮殑锛屾棤娉曡繕鍘熴€?
+  FmL1VerifyPack: OK FluidMotion.L1.dll=94D6489D9BEC289732EA3E4A8540B052E576A7182BAE3F3367A3E72F04E10DC2 fluidmotion.dll=ADD4857DEAD413F8211941381C6AA8F73C546F3ECAE1774ACED79C464719577D demo_motion.json=8D5DB5775ACAD5DB0C04CBC3C2A214BB7309670C304B71FF40860757973C410E
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : warning NU1903: 鍖?"Microsoft.DotNet.ILCompiler" 10.0.8 鍏锋湁宸茬煡鐨?楂?涓ラ噸鎬ф紡娲烇紝https://github.com/advisories/GHSA-p3jp-9v83-76w9
+  Octokit.Generators -> %USERPROFILE%\pilot\FluentHub\src\Octokit.Generators\bin\x64\Debug\netstandard2.0\Octokit.Generators.dll
+  Octokit -> %USERPROFILE%\pilot\FluentHub\src\Octokit\bin\x64\Debug\net10.0\Octokit.dll
+  FluentHub.Core -> %USERPROFILE%\pilot\FluentHub\src\FluentHub.Core\bin\x64\Debug\net10.0\FluentHub.Core.dll
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\Views\NavMotionPilot.cs(93,4): error CA1416: 鍙�鍦� "Windows" 10.0.17763.0 鍙婃洿楂樼増鏈?涓婅�块棶姝よ皟鐢ㄧ珯鐐广€?UISettings.AnimationsEnabledChanged" 浠呭湪 "Windows" 10.0.19041.0 鍙婃洿楂樼増鏈?涓婂彈鏀�銆?(https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1416) [%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj]
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\Views\NavMotionPilot.cs(423,4): error CA1416: 鍙�鍦� "Windows" 10.0.17763.0 鍙婃洿楂樼増鏈?涓婅�块棶姝よ皟鐢ㄧ珯鐐广€?UISettings.AnimationsEnabledChanged" 浠呭湪 "Windows" 10.0.19041.0 鍙婃洿楂樼増鏈?涓婂彈鏀�銆?(https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1416) [%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj]
+
+鐢熸垚澶辫触銆?
+
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : warning NU1903: 鍖?"Microsoft.DotNet.ILCompiler" 10.0.8 鍏锋湁宸茬煡鐨?楂?涓ラ噸鎬ф紡娲烇紝https://github.com/advisories/GHSA-p3jp-9v83-76w9
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\FluentHub.csproj : warning NU1903: 鍖?"Microsoft.DotNet.ILCompiler" 10.0.8 鍏锋湁宸茬煡鐨?楂?涓ラ噸鎬ф紡娲烇紝https://github.com/advisories/GHSA-p3jp-9v83-76w9
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\Views\NavMotionPilot.cs(93,4): error CA1416: ...
+%USERPROFILE%\pilot\FluentHub\src\FluentHub\Views\NavMotionPilot.cs(423,4): error CA1416: ...
+    2 涓�璀﹀�?
+    2 涓�閿欒�?
+
+宸茬敤鏃堕棿 00:01:00.40
+EXIT=1
+---------------------------------------------------------------------

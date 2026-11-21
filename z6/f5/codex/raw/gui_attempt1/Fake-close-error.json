@@ -1,0 +1,4 @@
+{
+  "pid": 87000,
+  "error": "Owned host did not exit; no kill or package removal is attempted"
+}

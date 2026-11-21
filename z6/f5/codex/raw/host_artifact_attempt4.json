@@ -1,0 +1,14 @@
+{
+  "overall_build_exit": 1,
+  "artifacts": {
+    "FluentHub.dll": "a1f4b06faf0c09ffb74fffd2bbf42a5686f5b434b2966d5d74d2f24f348cb97b",
+    "FluentHub.exe": "7b0688b0e9504779d4af26390ce776339eda3ff850f9fa35dddeffa14ca55a4c",
+    "AppxManifest.xml": "fe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4",
+    "FluentHub.runtimeconfig.json": "50df474d05a24d16c8192c60f7cca3e1efffa3cc96dfd32b200ce8540e9ea5a2"
+  },
+  "EventSource.IsSupported": true,
+  "manifest_dependency": {
+    "Name": "Microsoft.WindowsAppRuntime.2",
+    "MinVersion": "2.0.1.0"
+  }
+}

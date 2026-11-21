@@ -1,0 +1,154 @@
+--- a/NavMotionPilot.cs (pre_f2)
++++ b/NavMotionPilot.cs (post_f2)
+@@ -21,7 +21,7 @@
+ {
+ 	/// <summary>
+ 	/// Left NavigationView menu items: Loaded, wait for first frame, then Play "demo.enter" (tokens).
+-	/// F1C: after the sink sees enter mid-flight, DispatcherQueue.TryEnqueue hovers (Retarget offsetX=8). No fm_* in sink/render. Pointer hover ignored.
++	/// F1C hover enqueue unchanged. F2: after first enter Play, DispatcherQueue.TryEnqueue RootView forceReload (Unloaded Dispose, then Loaded Create).
+ 	/// </summary>
+ 	internal sealed class NavMotionPilot : IDisposable
+ 	{
+@@ -60,11 +60,15 @@
+ 		private double? _f1cLastOpacity;
+ 		private double? _f1cMidObserved;
+ 		private const ulong F1cTarget = 1;
++		private static int s_f2Cycle;
++		private static bool s_f2RebuildQueued;
++		private readonly int _f2Cycle;
+ 
+ 		public NavMotionPilot(NavigationView navigationView)
+ 		{
++			_f2Cycle = System.Threading.Interlocked.Increment(ref s_f2Cycle);
+ 			_log = new PilotLog();
+-			_log.Line("PILOT start (Z6-F1C, program-state hover after sink sees enter mid-flight; enqueue via DispatcherQueue; F6 enter wait unchanged)");
++			_log.Line($"PILOT start (Z6-F2, RootView rebuild cycle={_f2Cycle}; Unloaded Dispose then Loaded Create; F6 enter wait unchanged)");
+ 			_listener = new PilotEtwListener(_log);
+ 
+ 			_system = MotionSystem.Create();
+@@ -316,7 +320,21 @@
+ 				enter.Play();
+ 				_log.Line($"F6 PLAY after first frame target={id} anim={enter.Id}");
+ 			}
++			if (!s_f2RebuildQueued && _f2Cycle == 1)
++			{
++				s_f2RebuildQueued = true;
++				bool queued = _dispatcher.TryEnqueue(RequestF2Rebuild);
++				_log.Line($"F2 enqueue RootView rebuild ok={queued} (DispatcherQueue, not sink/render)");
++			}
+ 			_log.Flush();
++		}
++
++		private void RequestF2Rebuild()
++		{
++			// UI thread, not sink/render. forceReload replaces Content: old RootView Unloaded (Dispose) then new Loaded (Create).
++			_log.Line("F2 REBUILD begin: MainWindow.InitializeApplication(forceReload=true)");
++			_log.Flush();
++			MainWindow.Instance.InitializeApplication(null, forceReload: true);
+ 		}
+ 
+ 		private void OnWindowClosed(object sender, WindowEventArgs args)
+@@ -334,6 +352,7 @@
+ 
+ 			_disposed = true;
+ 			_log.Line($"F1C_FINAL offsetX={_f1cLastOffsetX} opacity={_f1cLastOpacity} overlapSinkNotes={_f1cOverlap} enqueued={_f1cEnqueued} hoverPlayed={_f1cHoverPlayed} mid_observed={_f1cMidObserved} expected_offsetX={HoverOffset} (later writer target)");
++			_log.Line($"F2 Dispose begin cycle={_f2Cycle}");
+ 			_log.Line("Dispose begin");
+ 
+ 			foreach (var (item, _) in _targets)
+@@ -365,25 +384,36 @@
+ 				_renderingHooked = false;
+ 			}
+ 
+-			_log.Line($"Dispose end handles={_enter.Count + _hover.Count} (enter={_enter.Count}, hover={_hover.Count}) sinkCalls={_sinkCount}");
++			_log.Line($"Dispose end handles={_enter.Count + _hover.Count} (enter={_enter.Count}, hover={_hover.Count}) sinkCalls={_sinkCount} cycle={_f2Cycle}");
++			_log.Line($"F2 Dispose end cycle={_f2Cycle}");
+ 			_log.Line(_listener.Summary());
+ 			_listener.Dispose();
+ 			_log.Flush();
+ 		}
+ 	}
+ 
+-	/// <summary>Bounded in-memory line buffer, written to the package LocalState folder on Flush.</summary>
++	/// <summary>Shared in-memory line buffer (survives RootView rebuild), written to LocalState on Flush.</summary>
+ 	internal sealed class PilotLog
+ 	{
+ 		private const int Capacity = 4096;
+-		private readonly object _gate = new();
+-		private readonly List<string> _lines = [];
+-		private readonly string _path;
+-		private int _sequence;
+-		private int _dropped;
++		private static readonly object SharedGate = new();
++		private static readonly List<string> SharedLines = [];
++		private static int SharedSeq;
++		private static int SharedDropped;
++		private static string? SharedPath;
+ 
+ 		public PilotLog()
+ 		{
++			EnsurePath();
++		}
++
++		private static void EnsurePath()
++		{
++			if (SharedPath is not null)
++			{
++				return;
++			}
++
+ 			string folder;
+ 			try
+ 			{
+@@ -394,32 +424,36 @@
+ 				folder = Path.GetTempPath();
+ 			}
+ 
+-			_path = Path.Combine(folder, "z6_f1c_motion.log");
+-		}
+-
+-		public void Line(string text)
+-		{
+-			lock (_gate)
+-			{
+-				_sequence++;
+-				if (_lines.Count >= Capacity)
+-				{
+-					_dropped++;
++			SharedPath = Path.Combine(folder, "z6_f2_motion.log");
++		}
++
++		public void Line(string text) => Write(text);
++
++		public static void Write(string text)
++		{
++			EnsurePath();
++			lock (SharedGate)
++			{
++				SharedSeq++;
++				if (SharedLines.Count >= Capacity)
++				{
++					SharedDropped++;
+ 					return;
+ 				}
+ 
+-				_lines.Add($"{_sequence:D5} {text}");
++				SharedLines.Add($"{SharedSeq:D5} {text}");
+ 			}
+ 		}
+ 
+ 		public void Flush()
+ 		{
+-			lock (_gate)
++			EnsurePath();
++			lock (SharedGate)
+ 			{
+ 				try
+ 				{
+-					var all = new List<string>(_lines) { $"# path={_path} lines={_lines.Count} dropped={_dropped} capacity={Capacity}" };
+-					File.WriteAllLines(_path, all);
++					var all = new List<string>(SharedLines) { $"# path={SharedPath} lines={SharedLines.Count} dropped={SharedDropped} capacity={Capacity}" };
++					File.WriteAllLines(SharedPath!, all);
+ 				}
+ 				catch (Exception)
+ 				{

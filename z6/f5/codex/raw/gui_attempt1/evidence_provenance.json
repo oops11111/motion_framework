@@ -1,0 +1,101 @@
+{
+  "source_attempt": "m0/out/f5-gui-20261121T045137Z-08f295ec",
+  "redaction": "UTF-8/LF, machine paths replaced by placeholders; original source manifest is explicitly renamed and applies to originals, not redacted copies",
+  "files": [
+    {
+      "source_file": "authorization.txt",
+      "source_sha256": "000540cc7d8520b98e53adf6f6bdccc6ecef016d78ff0ac0315c59c5030457e9",
+      "delivered_file": "authorization.txt",
+      "delivered_sha256": "000540cc7d8520b98e53adf6f6bdccc6ecef016d78ff0ac0315c59c5030457e9"
+    },
+    {
+      "source_file": "exact_package_cleanup.json",
+      "source_sha256": "1adeb9a98ed3def88a0709b95800f6ecd118ee84cdb1c54b08b2a41b7ac61df3",
+      "delivered_file": "exact_package_cleanup.json",
+      "delivered_sha256": "ca4c0ea0376944a2b8a8fb1d307f03f3dd88278277380d536a46d2057ae7ff3a"
+    },
+    {
+      "source_file": "Fake-close-error.json",
+      "source_sha256": "47852a761283f2575b37a7a9074db7a60d91a4043bfccb816a2123dcda386269",
+      "delivered_file": "Fake-close-error.json",
+      "delivered_sha256": "47852a761283f2575b37a7a9074db7a60d91a4043bfccb816a2123dcda386269"
+    },
+    {
+      "source_file": "Fake-launch-request.json",
+      "source_sha256": "0ad5733e340e82a64e85fc9448e34748d92fc94b05f5001eb08a7249fca4bf20",
+      "delivered_file": "Fake-launch-request.json",
+      "delivered_sha256": "0ad5733e340e82a64e85fc9448e34748d92fc94b05f5001eb08a7249fca4bf20"
+    },
+    {
+      "source_file": "Fake-state.json",
+      "source_sha256": "c30ff23921134122b01e18c12fec6adcf2e300bb9ffbcad4db2d3cdcfcff2885",
+      "delivered_file": "Fake-state.json",
+      "delivered_sha256": "32c62451aab156dacb6dc0740f888a0830fd6d13e5df08c5b9f78b5043c0f6cc"
+    },
+    {
+      "source_file": "Fake-stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "delivered_file": "Fake-stderr.txt",
+      "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_file": "Fake-stdout.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "delivered_file": "Fake-stdout.txt",
+      "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_file": "known_log_locations_after_cleanup.json",
+      "source_sha256": "02fd1f2e94cab27efe9979a3a967b4ea6bfa393f22491242c2e21c94670ccefb",
+      "delivered_file": "known_log_locations_after_cleanup.json",
+      "delivered_sha256": "1b472445affd9c1d4c101c1d8a7f182ff01be2d4152813b1fffdf3e7fe1c577a"
+    },
+    {
+      "source_file": "owned_host_before_termination.json",
+      "source_sha256": "d424f6edb197d7014e85d8d737ac6a8bef5d7bda99be1904e6df6f66e6175456",
+      "delivered_file": "owned_host_before_termination.json",
+      "delivered_sha256": "dc1a4aa833a89a2b7ff3ab392b03445bb1a74c90a8c47df3fb94a7eed2a52a37"
+    },
+    {
+      "source_file": "owned_host_cleanup.json",
+      "source_sha256": "fb6f82d26e358a957936cd53a66d25345e00a8dfa64e36873012e74d7968e57f",
+      "delivered_file": "owned_host_cleanup.json",
+      "delivered_sha256": "f04d38150d440135ecce69c3e122f710a4bf64541c2714b4daded0308df0fdd0"
+    },
+    {
+      "source_file": "plan.json",
+      "source_sha256": "fde5c9e6567c5db09da9ee666aaf9d8ac5130e16bf05913cc24142d2b0846c87",
+      "delivered_file": "plan.json",
+      "delivered_sha256": "8b15ff6f0de426625d88cad139b57e05f38c7eb53712927f5fdc05843b069602"
+    },
+    {
+      "source_file": "registered-package.json",
+      "source_sha256": "0dc3c6f949bec2690495bf0eb7a3b6f449145cdd38578f70ea4c144610ed9b1c",
+      "delivered_file": "registered-package.json",
+      "delivered_sha256": "2308136add141c88914390a5e09564eec94157030d5d57668bcae75c7aa94b0f"
+    },
+    {
+      "source_file": "result.json",
+      "source_sha256": "7708a35558defe8507dadf94e1a6debe56e89b51e83cb6011260a548629a29ca",
+      "delivered_file": "result.json",
+      "delivered_sha256": "da4f7a672b80641be16400309a63cec412408408b7150607d3051b84469973d0"
+    },
+    {
+      "source_file": "settings_after_cleanup.json",
+      "source_sha256": "9f2556a7ad9457832af59c28c93ab9e65a3877a17e0c1c7837849ceeced43afe",
+      "delivered_file": "settings_after_cleanup.json",
+      "delivered_sha256": "037d9646423362679c778833685529518ce1b0115c99332a0a22b02caf2d0756"
+    },
+    {
+      "source_file": "SHA256SUMS",
+      "source_sha256": "56e1f081c0cef4a7d4e4f8d3fb97ae431b91adba3061b42a2b8a5f127d2f187e",
+      "delivered_file": "source_SHA256SUMS_before_sanitizing.txt",
+      "delivered_sha256": "56e1f081c0cef4a7d4e4f8d3fb97ae431b91adba3061b42a2b8a5f127d2f187e"
+    }
+  ],
+  "supplemental_console": {
+    "file": "driver_console.log",
+    "delivered_sha256": "566fe61e5422e22b686b671f8a4d7eb10acaf0a0122b797d475072db3f87929f"
+  },
+  "source_manifest_note": "Original driver SHA snapshot may predate appended cleanup evidence. It validates original unredacted bytes only. Top-level SHA256SUMS validates all delivered redacted files."
+}

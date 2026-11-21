@@ -1,0 +1,28 @@
+4	0	src/FluentHub/Views/MainWindow.cs
+12	46	src/FluentHub/Views/NavMotionPilot.cs
+29	0	src/FluentHub/Views/ReducedMotionState.cs
+31	0	src/FluentHub/Views/FakeReducedMotionSource.cs
+142	0	src/FluentHub/Views/WindowReducedMotionSource.cs
+PASS frozen surface; blob=fd0603c17136c067e89c71e56aef310f2f7e63f4; patch syntax; bounded delivery scope
+PASS unchanged WM reread does not notify
+PASS changed WM and duplicate event deduplicate
+PASS real source ignores fake trigger
+PASS replacement subscriber does not retain old subscriber
+PASS disposed state suppresses late callbacks
+PASS OS reread cannot overwrite fake mode
+PASS named event reaches actual FakeReducedMotionSource
+PASS fake callback enqueued
+PASS wait thread has not applied state
+PASS fake notification on queued UI thread
+PASS activation cannot reset fake state
+PASS named event reaches actual FakeReducedMotionSource
+PASS fake callback enqueued
+PASS wait thread has not applied state
+PASS fake notification on queued UI thread
+PASS fake flip and restore
+PASS queued callback prepared before disposal
+PASS late fake callback captured
+PASS queued fake callback is harmless after source disposal
+PASS enqueue rejection is observable
+PASS (dev-only) checks=20; no OS setting writes; no GUI acceptance claimed
+PASS (dev-only); host build, GUI and real OS broadcasts are separate gates

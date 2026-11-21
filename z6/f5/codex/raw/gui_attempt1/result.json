@@ -1,0 +1,26 @@
+{
+  "status": "not accepted; cleanup or settings review required",
+  "runs": [],
+  "error": "RuntimeError: Observation timeout: two RootViews and old subscriber disposal",
+  "cleanup_pending": [
+    87000
+  ],
+  "remaining_packages": [
+    {
+      "Name": "49462fluenthub-uwp.FluentHub",
+      "PackageFullName": "49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm",
+      "PackageFamilyName": "49462fluenthub-uwp.FluentHub_tq8wa33sfftnm",
+      "Publisher": "CN=4E3C0825-4D00-4ECC-89F8-528E9200B125",
+      "Version": "0.11.0.0",
+      "Architecture": "X64",
+      "InstallLocation": "%REPO%\\m0\\out\\f5-fluenthub\\src\\FluentHub\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64"
+    }
+  ],
+  "POST": {
+    "AnimationsEnabled": true,
+    "SPI_GETCLIENTAREAANIMATION": true,
+    "MinAnimate": "1",
+    "UserPreferencesMask": "9E3E078012000000"
+  },
+  "settings_unchanged": true
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "source": "main",
+    "ref": "d2aac2dc355d0412aa5fc3ede212b79faf4459b9",
+    "git_blob": "b6b63a5b7416534ba5ec0a5a68690898844c23eb",
+    "sha256": "0d56c7242d138bab07af7a8e54a087d8376b93ea9c6f932e2bf3ef0b9e7150da",
+    "archive": "z6/f2/codex/source_ledgers/main-d2aac2dc355d0412aa5fc3ede212b79faf4459b9.md"
+  },
+  {
+    "source": "integration",
+    "ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "git_blob": "1060049cc7b2a1d055d7f02c2bc5157ac24ef3c5",
+    "sha256": "db39949f65039f8473efd52bcac598c9fb0379adb3acbbabfc2beab28d8ac175",
+    "archive": "z6/f2/codex/source_ledgers/integration-15d4108fd56eb661c1a46c6552ffe74a0318ff28.md"
+  }
+]
