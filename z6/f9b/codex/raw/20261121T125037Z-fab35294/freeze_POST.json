@@ -1,0 +1,50 @@
+{
+  "code/composition.h": {
+    "git_blob": "fd0603c17136c067e89c71e56aef310f2f7e63f4",
+    "working_normalized_sha256": "a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418"
+  },
+  "code/capi/fm_capi.h": {
+    "git_blob": "e247ffaf2e533f15e3b0b99372ecc68375f23f62",
+    "working_normalized_sha256": "31a25930fa00374fd0cfdd3d11c38f67a6eef5ff941b392da7c69d021491e7a0"
+  },
+  "code/capi/fm_capi.cpp": {
+    "git_blob": "b47f959d7a96229b8f6bdccf9157f81c4506a426",
+    "working_normalized_sha256": "cf9c4180faccbecb5cfd1332554cd5c7a8140b6f8f3fdf34e2206135860eaf62"
+  },
+  "MotionSoftDemo/MotionSystem.cs": {
+    "git_blob": "fe72b08f9445723f926a2928345e23311503efec",
+    "working_normalized_sha256": "fdd414d42c74007e7cb27c78de56734678adf7e68cb9acd4ddda4630ddff5c86"
+  },
+  "MotionSoftDemo/MotionEtw.cs": {
+    "git_blob": "0404498ab4cb7e96168405a7ffb63591686797ca",
+    "working_normalized_sha256": "ba9add3f9e099a4cf3d4e744004b4f76265eae3788e5568d55b9ab811aafe161"
+  },
+  "pilot/l1pack/FluidMotion.L1.csproj": {
+    "git_blob": "ace009e5c8e2c5c635f6a19a665c261881a5517a",
+    "working_normalized_sha256": "f644eb45fd0d6db71b593ef8066e851e0f3ee038d3ce7557fb424be9f73d0b4c"
+  },
+  "pilot/l1pack/SHA256SUMS": {
+    "git_blob": "438f933fa27691a4569428f48856e89168f3b1fd",
+    "working_normalized_sha256": "b37fab6059d2e95fd8e9116a666234e290626a4859e1a5b36d4109519abc604a"
+  },
+  "pilot/l1pack/README.md": {
+    "git_blob": "5f56d54b8c56ad1a807d9474b4c2ada9948df804",
+    "working_normalized_sha256": "23db604009cb673ef416002ac46925b488125e6cb75843eb0fad93d46a2c723c"
+  },
+  "docs/api_surface_m2_alpha_contract_LOCKED.md": {
+    "git_blob": "b9d58f7f7185aa39b3f3759a5f0ddb28becd9129",
+    "working_normalized_sha256": "c76f4f51f6df1a85acc25e8a1bc11952bce90cac9532370ccf5330026121c689"
+  },
+  "docs/z4_etw_l1_smoke_gate_r1_LOCKED.md": {
+    "git_blob": "afb7513ea1bc274e6f58266e0fc90cfc0782bba3",
+    "working_normalized_sha256": "cd246e5303f51fe5bf74b21cd22b51d56954b705488c5d6310a893ee9bb8e0a9"
+  },
+  "docs/api.md": {
+    "git_blob": "45edbcebe1b878ebcc4fa8cb428c3ef2d06c9f35",
+    "working_normalized_sha256": "eebdf2ba50ad585a3fe024dea0c891fbb80fc1a38f0eaf3882027f4eda69cb35"
+  },
+  "docs/api_changelog.md": {
+    "git_blob": "ac7d17785bfe372ca3c87b612b06ca56c14770fe",
+    "working_normalized_sha256": "0b8b800d0a942bb12bf183df2679ceccd111deb49877a4aed09f4a0835bb73d8"
+  }
+}

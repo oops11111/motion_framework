@@ -61,3 +61,7 @@ Stops: no source/flag/identity/dependency/API/scope drift, no unsafe callbacks, 
 - MainWindow.xaml.cs is expected unchanged: existing public WindowHandle/Closed and MainPage lifecycle suffice. App.xaml.cs expected unchanged: ordinary activation/no special args needed. If actual hooks require touching these, report concrete necessity to primary before enlarging patch. No MainPage XAML edit expected; no server/nativehelper/Core source modification.
 
 Candidate animation: SettingsButton translation only (private control, no user files): entry small offset to rest0, PointerEntered hover8DIP/PointerExited rest0, preserve/restore original translation and detach input handlers. Reuse same hover handle Retarget(from=null) so interruption retains state; no Cancel-to-return misuse. Entry/hover same target/property last-writer arbitration explicitly documented; no conflicting transforms or permanent layout mutation. Standard animations disabled => stop per T5, do not change OS setting or force motion. Page Unloaded/Closed guards prevent duplicate MotionSystem/subscriptions; no F2 RootView contract claims for another host.
+
+## Phase1 API naming clarification
+
+Actual complete reference CheckSurface confirms MotionSystem.OnFrame(), not Tick. Where the design above used the generic Tick wording, phase2 shall call only actual public OnFrame from the ordinary outer frame pump; sink/native-event reentrancy remains forbidden. No public API/source change. Phase1 input inspection PASS does not release host implementation or runtime.
