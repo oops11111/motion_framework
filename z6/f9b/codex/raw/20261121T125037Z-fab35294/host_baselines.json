@@ -1,0 +1,22 @@
+{
+  "src/Files.App/Files.App.csproj": {
+    "git_blob": "ffe246f1c2e230236938c1e82521b14a08581f37",
+    "sha256": "14b647139ac4fd5b2e2e7259c98c6b8b022d3c617a7ea53e7f4eff91f14db8df"
+  },
+  "src/Files.App/Views/MainPage.xaml.cs": {
+    "git_blob": "3577f29d915b719d1c87ae4b6263509521b1580b",
+    "sha256": "ea9539419879737a82b0d74b18878731e83becbf0a9db4ebcd86f91caadac517"
+  },
+  "src/Files.App/Views/MainPage.xaml": {
+    "git_blob": "5b2cc607d33fdb1efd512425e0a6e9ff11e1aafb",
+    "sha256": "43ca8b28171687cdb976dd19f7db005f8708c5ed2630e02cca3bcd4108ee3881"
+  },
+  "src/Files.App/MainWindow.xaml.cs": {
+    "git_blob": "f369ddbe536c3807e574e78d8916c4edee688913",
+    "sha256": "55cc9a793c49a25b5142694f8c6a6492ab921bc3e879eba524b373d87ff5ee15"
+  },
+  "src/Files.App/App.xaml.cs": {
+    "git_blob": "a9113d1741e2e09a80496ef024a4b35d45186c2d",
+    "sha256": "63625180a1352a5147cf4ea9817bf4e17d56995a9d49a24fa66bdcc30d964a34"
+  }
+}

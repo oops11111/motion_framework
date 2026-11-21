@@ -1,0 +1,12 @@
+{
+  "unchanged_excluded_host_files": {
+    "src/Files.App/Views/MainPage.xaml": "43ca8b28171687cdb976dd19f7db005f8708c5ed2630e02cca3bcd4108ee3881",
+    "src/Files.App/MainWindow.xaml.cs": "55cc9a793c49a25b5142694f8c6a6492ab921bc3e879eba524b373d87ff5ee15",
+    "src/Files.App/App.xaml.cs": "63625180a1352a5147cf4ea9817bf4e17d56995a9d49a24fa66bdcc30d964a34"
+  },
+  "AGENTS_git_blob": "8b8b4c3d31e2797b389ae80f9124ce30b91be814",
+  "editorconfig_git_blob": "29c9293c913e225ace8c253baf835851f17dccf8",
+  "rules": "Four changed hostfiles CRLF, original modified BOM preserved, newCSharp tabs",
+  "host_receipt": "host_source_v4.json",
+  "tested_and_built_patch_sha256": "90fadd56b948f080e19435f1b0c05cc56dd57762783d95a6d4651e34cf859e1a"
+}

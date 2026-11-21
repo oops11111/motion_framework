@@ -1,0 +1,86 @@
+{
+  "phase": "F9b.2",
+  "attempt": "20261121T130613Z-b4693a4f",
+  "status": "PASS F9b.2 build/private logic/output API only",
+  "build_mode": "NON-ORIGINAL RestorePackagesConfig=true and pilot EventSourceSupport=true",
+  "app_executed": false,
+  "commands": [
+    {
+      "label": "private_logic_tests",
+      "pid": 46596,
+      "argv": [
+        "%USERPROFILE%\\.dotnet\\dotnet.exe",
+        "run",
+        "--project",
+        "%WORKSPACE%\\m0\\out\\f9b-host-build-20261121T130613Z-b4693a4f\\logic-tests\\LogicTests.csproj",
+        "-c",
+        "Release"
+      ],
+      "exit": 0,
+      "original_sha256": "9642e1a6b415d7822e9e2721860a8576d3ae68ad2c5ab3c53c5bfb732eff8ef6",
+      "published_sha256": "04f8716131fc143bdc5d8bc393f42e4cc5e8298eb839d887695dc9df11c082a3"
+    },
+    {
+      "label": "host_build",
+      "pid": 18412,
+      "argv": [
+        "%ProgramFiles%\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+        "-restore",
+        "Files.slnx",
+        "-p:Configuration=Debug",
+        "-p:Platform=x64",
+        "-v:quiet",
+        "-clp:ErrorsOnly",
+        "-p:RestorePackagesConfig=true"
+      ],
+      "exit": 0,
+      "original_sha256": "92974ff7bf86e3799d4dcbfc6f443fe26b945bfd426cce82e90232cb0d42a361",
+      "published_sha256": "d9ac3e1065f2e8f7cce0c377b3ffff4db7e1fc92d7d23adfd91948429b068339"
+    },
+    {
+      "label": "output_surface_check",
+      "pid": 39784,
+      "argv": [
+        "%USERPROFILE%\\.dotnet\\dotnet.exe",
+        "%WORKSPACE%\\m0\\out\\f9b-inputs-20261121T125037Z-fab35294\\surface_tool\\bin\\Release\\net10.0\\SurfaceDump.dll",
+        "%WORKSPACE%\\m0\\out\\f9b-inputs-20261121T125037Z-fab35294\\source\\src\\Files.App\\bin\\x64\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\FluidMotion.L1.dll",
+        "%WORKSPACE%\\m0\\out\\f9b-host-build-20261121T130613Z-b4693a4f\\surface_host_output.txt"
+      ],
+      "exit": 0,
+      "original_sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35",
+      "published_sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35"
+    }
+  ],
+  "source_PRE": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": " M src/Files.App/Files.App.csproj\n M src/Files.App/Views/MainPage.xaml.cs\n?? src/Files.App/Views/FilesMotionEvidence.cs\n?? src/Files.App/Views/FilesMotionPilot.cs\n"
+  },
+  "tested_actual_evidence_sha256": "761370b23febce4026bc270b65c4d24c7e3702453b97b3bfc72217cb81c23fe1",
+  "source_POST": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": " M src/Files.App/Files.App.csproj\n M src/Files.App/Views/MainPage.xaml.cs\n?? src/Files.App/Views/FilesMotionEvidence.cs\n?? src/Files.App/Views/FilesMotionPilot.cs\n"
+  },
+  "output_pack": {
+    "FluidMotion.L1.dll": {
+      "reference_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2",
+      "output_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2"
+    },
+    "fluidmotion.dll": {
+      "reference_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d",
+      "output_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d"
+    },
+    "demo_motion.json": {
+      "reference_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+      "output_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e"
+    }
+  },
+  "EventSource_IsSupported": true,
+  "full_output_reference_surface_equal": true,
+  "output_surface_sha256": "7b67b77bce6b36dc58cc870a17fe1b5588df3c6e526b39ca5a3e36d5280bc5cc",
+  "host_artifacts": {
+    "Files.exe": "e5e8765c4fb1a69429c919b508e99b5e49773eb173b91cee58a2a8e3bd3d30b3",
+    "Files.dll": "906f9472279f70f671a1d106506a8edb854f524e37c8238480eca8dd31825a6d",
+    "AppxManifest.xml": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+    "Files.App.build.appxrecipe": "07e4e95c51a294055ce1a59f963a538b381e14dcb0d3f4ccdb02a723112dd60f"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "status": "PASS all4file full byte equality",
+  "patch_sha256": "acecece0ba54e9f9314221a933c8e896858992ca3abb9e63b34851cf6786e886",
+  "git_apply_check_exit": 0,
+  "git_apply_exit": 0,
+  "git_environment": "Only git -c core.autocrlf=false for this isolated scaffold apply; no persistent configuration/hostbuild/source change",
+  "baseline": "Exact original Git pin bytes including original csproj BOM",
+  "rows": [
+    {
+      "path": "src/Files.App/Files.App.csproj",
+      "host_sha256": "25cf077c77c21edf5272142c58de92e426d5721bd35cdaa5c58531e839d73376",
+      "roundtrip_sha256": "25cf077c77c21edf5272142c58de92e426d5721bd35cdaa5c58531e839d73376"
+    },
+    {
+      "path": "src/Files.App/Views/MainPage.xaml.cs",
+      "host_sha256": "61ea0a24f2345b68bd490ac09cdeff04be400a3b993145ba5571851efe36d31e",
+      "roundtrip_sha256": "61ea0a24f2345b68bd490ac09cdeff04be400a3b993145ba5571851efe36d31e"
+    },
+    {
+      "path": "src/Files.App/Views/FilesMotionEvidence.cs",
+      "host_sha256": "adc4d071ad806d9676b015c1dc53bcc7ea87a0b90ebc426295f23baa20d172ac",
+      "roundtrip_sha256": "adc4d071ad806d9676b015c1dc53bcc7ea87a0b90ebc426295f23baa20d172ac"
+    },
+    {
+      "path": "src/Files.App/Views/FilesMotionPilot.cs",
+      "host_sha256": "d45ebb539c15afb1922c0b6d0a76f38fb26eead1936d2ff0a7efc47521771332",
+      "roundtrip_sha256": "d45ebb539c15afb1922c0b6d0a76f38fb26eead1936d2ff0a7efc47521771332"
+    }
+  ]
+}

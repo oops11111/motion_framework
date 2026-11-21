@@ -1,0 +1,19 @@
+{
+  "code_commit": "2bce1532b90c6404a22b4a3d6ee1513b1dcb8d38",
+  "binding_sha256": "bf080982c8707a4fde9c48d540bcac78f6a47412130706e1390673601ec20bb1",
+  "execute_instruction_sha256": "939c8d0b9c0b2ae650c2b1946afab55ba4a342dd8ef6549e7a63d9419d90fec1",
+  "code_hashes": {
+    "z6/f9b/codex/RuntimeGuard.ps1": "566ec36dd37b0386957881fdc9c03e73299f28a5209e4640d1d7414584ab3abd",
+    "z6/f9b/codex/RuntimeProbe.cs": "e9a4f9b83b9949a57d4ed8a21e2dd598df676c3f7f20802b215901c252802207",
+    "z6/f9b/codex/RuntimeProbe.ps1": "acfb2ba8b2a009ee8cc3d48aa3774ffe0a8604bc37233c917820a676dcb6ac5d",
+    "z6/f9b/codex/ActivateNormally.ps1": "845c88200063a5852da4a5e09ffa78b603a11be138c84cd9c303a327a08e46e0",
+    "z6/f9b/codex/native_lifecycle.py": "bf180af888422e18f91008094bde141297dea36e406f1d552432d86ce16a9a9a",
+    "z6/f9b/codex/run_runtime.py": "1e17f88af554124ab3697073bd30e1e533ae8b27e60c1e38e12b0c5e36d82eef",
+    "z6/f9b/codex/prepare_runtime_layout.py": "bb9d98112d3d20b7a130ab59a69ddc4d32fce43f70b1c1e9704c3af012b730bc"
+  },
+  "original_ignored_attempt": "m0/out/f9b-runtime-20261121T134355Z-00e0d1ee",
+  "pilot_original_bytes_sha256": "a8328783ca1542c04ce5035d2238cb30961f30b51affa7377961f25e62c8a542",
+  "raw_originals_unchanged": true,
+  "primary_cleanup_review": "Primary independently queried WinPS5 FilesDev packages[]/data[] and accepted cleanup",
+  "primary_image_review": "Entry00 blank to Entry01 Settings icon/text restored is qualitative opacity entry; not evidence of 80px displacement; hover not reached"
+}

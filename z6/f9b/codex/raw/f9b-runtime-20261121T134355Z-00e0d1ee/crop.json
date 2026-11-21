@@ -1,0 +1,25 @@
+{
+  "pid": 37760,
+  "hwnd": "0x1991014",
+  "package": "FilesDev_4.3.0.0_x64__ykqwq8d6ps0ag",
+  "settings": {
+    "Exists": true,
+    "Visible": true,
+    "Enabled": true,
+    "Left": 179,
+    "Top": 865,
+    "Right": 478,
+    "Bottom": 905,
+    "Dpi": 120,
+    "Window": {
+      "Left": 160,
+      "Top": 160,
+      "Right": 1600,
+      "Bottom": 916
+    }
+  },
+  "left": 160,
+  "top": 860,
+  "right": 483,
+  "bottom": 910
+}

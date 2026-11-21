@@ -1,0 +1,26 @@
+[
+  {
+    "name": "FluidMotion.L1.dll",
+    "expected_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2",
+    "cache_before_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2",
+    "copied_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2",
+    "cache_after_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2",
+    "copied_after_sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2"
+  },
+  {
+    "name": "fluidmotion.dll",
+    "expected_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d",
+    "cache_before_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d",
+    "copied_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d",
+    "cache_after_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d",
+    "copied_after_sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d"
+  },
+  {
+    "name": "demo_motion.json",
+    "expected_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+    "cache_before_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+    "copied_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+    "cache_after_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+    "copied_after_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e"
+  }
+]

@@ -1,0 +1,214 @@
+{
+  "status": "PASS F9b local motion evidence pending primary image review",
+  "attempt": "%WORKSPACE%\\m0\\out\\f9b-runtime-20261121T134947Z-1a56d73b",
+  "route": "F9b manual NON-ORIGINAL",
+  "cleanup_complete": true,
+  "layout_PRE": {
+    "files": 1334,
+    "inventory_sha256": "4a215a0a69466577ffebf905445d1939464f1cd0db1e267877f9ed81e7eb1acb",
+    "destination_hashes_sha256": "fd91689c3dd0f4bb295969071b6725b91b08cbcbb28aae440a36714a2bfd14ff"
+  },
+  "source_PRE": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": " M src/Files.App/Files.App.csproj\n M src/Files.App/Views/MainPage.xaml.cs\n?? src/Files.App/Views/FilesMotionEvidence.cs\n?? src/Files.App/Views/FilesMotionPilot.cs",
+    "tracked_diff": "diff --git a/src/Files.App/Files.App.csproj b/src/Files.App/Files.App.csproj\nindex ffe246f1c..b0aa229e4 100644\n--- a/src/Files.App/Files.App.csproj\n+++ b/src/Files.App/Files.App.csproj\n@@ -172,4 +172,36 @@\n                  Targets=\"Build\"\n                  Properties=\"Configuration=$(Configuration);Platform=$(Platform)\" />\n     </Target>\n+\n+    <!-- F9b local pilot only: consume verified frozen binaries, never compile L1 sources. -->\n+    <PropertyGroup>\n+        <FmL1PackDir>$(MSBuildThisFileDirectory)..\\..\\..\\reference\\</FmL1PackDir>\n+        <EventSourceSupport>true</EventSourceSupport>\n+    </PropertyGroup>\n+    <ItemGroup>\n+        <Reference Include=\"FluidMotion.L1\" HintPath=\"$(FmL1PackDir)FluidMotion.L1.dll\" Private=\"true\" />\n+        <None Include=\"$(FmL1PackDir)fluidmotion.dll\" Link=\"fluidmotion.dll\" CopyToOutputDirectory=\"PreserveNewest\" />\n+        <None Include=\"$(FmL1PackDir)demo_motion.json\" Link=\"demo_motion.json\" CopyToOutputDirectory=\"PreserveNewest\" />\n+        <_FmPilotInput Include=\"$(FmL1PackDir)FluidMotion.L1.dll\" ExpectedHash=\"94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2\" />\n+        <_FmPilotInput Include=\"$(FmL1PackDir)fluidmotion.dll\" ExpectedHash=\"add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d\" />\n+        <_FmPilotInput Include=\"$(FmL1PackDir)demo_motion.json\" ExpectedHash=\"8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e\" />\n+    </ItemGroup>\n+    <Target Name=\"VerifyF9bPackBeforeUse\" BeforeTargets=\"ResolveAssemblyReferences\">\n+        <Error Condition=\"!Exists('%(_FmPilotInput.Identity)')\" Text=\"F9b frozen reference missing: %(_FmPilotInput.Filename)\" />\n+        <GetFileHash Files=\"@(_FmPilotInput)\" Algorithm=\"SHA256\">\n+            <Output TaskParameter=\"Items\" ItemName=\"_FmPilotInputHashes\" />\n+        </GetFileHash>\n+        <Error Condition=\"'%(_FmPilotInputHashes.FileHash)' != '%(_FmPilotInputHashes.ExpectedHash)'\" Text=\"F9b frozen reference hash mismatch: %(_FmPilotInputHashes.Filename)\" />\n+    </Target>\n+    <Target Name=\"VerifyF9bPackOutput\" AfterTargets=\"CopyFilesToOutputDirectory\">\n+        <ItemGroup>\n+            <_FmPilotOutput Include=\"$(TargetDir)FluidMotion.L1.dll\" ExpectedHash=\"94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2\" />\n+            <_FmPilotOutput Include=\"$(TargetDir)fluidmotion.dll\" ExpectedHash=\"add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d\" />\n+            <_FmPilotOutput Include=\"$(TargetDir)demo_motion.json\" ExpectedHash=\"8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e\" />\n+        </ItemGroup>\n+        <GetFileHash Files=\"@(_FmPilotOutput)\" Algorithm=\"SHA256\">\n+            <Output TaskParameter=\"Items\" ItemName=\"_FmPilotOutputHashes\" />\n+        </GetFileHash>\n+        <Error Condition=\"'%(_FmPilotOutputHashes.FileHash)' != '%(_FmPilotOutputHashes.ExpectedHash)'\" Text=\"F9b output reference hash mismatch: %(_FmPilotOutputHashes.Filename)\" />\n+    </Target>\n </Project>\ndiff --git a/src/Files.App/Views/MainPage.xaml.cs b/src/Files.App/Views/MainPage.xaml.cs\nindex 3577f29d9..a3ce43d30 100644\n--- a/src/Files.App/Views/MainPage.xaml.cs\n+++ b/src/Files.App/Views/MainPage.xaml.cs\n@@ -37,6 +37,8 @@ namespace Files.App.Views\n \n \t\tprivate bool keyReleased = true;\n \n+\t\tprivate FilesMotionPilot? _filesMotionPilot; // F9b local sidefork only.\n+\n \t\tprivate DispatcherQueueTimer _updateDateDisplayTimer;\n \t\tprivate WindowMessageMonitor? _titleBarMessageMonitor;\n \n@@ -47,6 +49,7 @@ namespace Files.App.Views\n \t\tpublic MainPage()\n \t\t{\n \t\t\tInitializeComponent();\n+\t\t\tUnloaded += (_, _) => { _filesMotionPilot?.Dispose(); _filesMotionPilot = null; };\n \n \t\t\t// Dependency Injection\n \t\t\tUserSettingsService = Ioc.Default.GetRequiredService<IUserSettingsService>();\n@@ -332,6 +335,7 @@ namespace Files.App.Views\n \n \t\tprivate void Page_Loaded(object sender, RoutedEventArgs e)\n \t\t{\n+\t\t\t_filesMotionPilot ??= new FilesMotionPilot(SettingsButton, MainWindow.Instance);\n \t\t\tViewModel.OnPageLoaded();\n \n \t\t\tMainWindow.Instance.AppWindow.Changed += (_, _) => MainWindow.Instance.RaiseSetTitleBarDragRegion(SetTitleBarDragRegion);"
+  },
+  "PRE": [],
+  "runtime_PRE": [
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.5.1.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.6.5.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 0,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    }
+  ],
+  "state_PRE": {
+    "protocol": null,
+    "associations": [
+      {
+        "value": null,
+        "ext": ".zip"
+      },
+      {
+        "value": null,
+        "ext": ".7z"
+      },
+      {
+        "value": null,
+        "ext": ".rar"
+      },
+      {
+        "value": null,
+        "ext": ".tar"
+      },
+      {
+        "value": null,
+        "ext": ".jar"
+      },
+      {
+        "value": null,
+        "ext": ".mrpack"
+      },
+      {
+        "value": null,
+        "ext": ".gz"
+      }
+    ]
+  },
+  "all_packages_PRE_sha256": "ba513b466f0c43eae62d5d41bdc18f06d72ac9562d7493916e4a67104bb13239",
+  "registration_exit": 0,
+  "all_packages_AFTER_REGISTER_sha256": "63a1a3979e71e6a077c6a354c3627364bf671243bd7c66efde11f89055acec66",
+  "package_delta_after_registration": {
+    "added": [],
+    "removed": []
+  },
+  "owned_pid": 46296,
+  "hwnd": "0x2330502",
+  "loaded_modules": {
+    "fluidmotion.dll": {
+      "mapped_path": "%WORKSPACE%\\m0\\out\\f9b-runtime-layout-20261121T132345Z-9a66a571\\layout\\fluidmotion.dll",
+      "sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d"
+    },
+    "FluidMotion.L1.dll": {
+      "mapped_path": "%WORKSPACE%\\m0\\out\\f9b-runtime-layout-20261121T132345Z-9a66a571\\layout\\FluidMotion.L1.dll",
+      "sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2"
+    }
+  },
+  "entry_position_changed": false,
+  "entry_visible_review_required": true,
+  "visible_motion_evidence": {
+    "entry_position_changed": false,
+    "entry_visible_review_required": true,
+    "hover_position_changed": true,
+    "rest_position_restored": true,
+    "images": [
+      "hover.png",
+      "rest-after-entry.png",
+      "rest-after-hover.png",
+      "rest-before.png",
+      "entry\\entry-00.png",
+      "entry\\entry-01.png",
+      "entry\\entry-02.png",
+      "entry\\entry-03.png",
+      "entry\\entry-04.png",
+      "entry\\entry-05.png",
+      "entry\\entry-06.png",
+      "entry\\entry-07.png",
+      "entry\\entry-08.png",
+      "entry\\entry-09.png",
+      "entry\\entry-10.png",
+      "entry\\entry-11.png"
+    ],
+    "primary_visual_review": "required; no performance conclusion"
+  },
+  "token_input_sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+  "normal_close_exit": 0,
+  "pilot_log_original_sha256": "2aea1242933febfac63cf3a485ae25a70fb65845bfa813762bd4880dd4e30735",
+  "pilot_log_captured_before_remove": true,
+  "motion_summary": {
+    "eventCounts": {
+      "IdleTransition": 10,
+      "TokenLoad": 1,
+      "AnimationLifecycle": 12,
+      "FrameTick": 64,
+      "Retarget": 3
+    },
+    "lifecycleCounts": {
+      "Created": 3,
+      "Played": 3,
+      "Cancelled": 3,
+      "Released": 3
+    },
+    "lastIdleActive": 0,
+    "lastIdlePump": 0,
+    "CreatedEqualsReleased": true
+  },
+  "lifecycle_acceptance": true,
+  "pointer_restore": {
+    "restored_original_pointer": true,
+    "pointer_only": true
+  },
+  "removed_exact_fullname": "FilesDev_4.3.0.0_x64__ykqwq8d6ps0ag",
+  "POST": [],
+  "state_POST": {
+    "protocol": null,
+    "associations": [
+      {
+        "value": null,
+        "ext": ".zip"
+      },
+      {
+        "value": null,
+        "ext": ".7z"
+      },
+      {
+        "value": null,
+        "ext": ".rar"
+      },
+      {
+        "value": null,
+        "ext": ".tar"
+      },
+      {
+        "value": null,
+        "ext": ".jar"
+      },
+      {
+        "value": null,
+        "ext": ".mrpack"
+      },
+      {
+        "value": null,
+        "ext": ".gz"
+      }
+    ]
+  },
+  "source_POST": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": " M src/Files.App/Files.App.csproj\n M src/Files.App/Views/MainPage.xaml.cs\n?? src/Files.App/Views/FilesMotionEvidence.cs\n?? src/Files.App/Views/FilesMotionPilot.cs",
+    "tracked_diff": "diff --git a/src/Files.App/Files.App.csproj b/src/Files.App/Files.App.csproj\nindex ffe246f1c..b0aa229e4 100644\n--- a/src/Files.App/Files.App.csproj\n+++ b/src/Files.App/Files.App.csproj\n@@ -172,4 +172,36 @@\n                  Targets=\"Build\"\n                  Properties=\"Configuration=$(Configuration);Platform=$(Platform)\" />\n     </Target>\n+\n+    <!-- F9b local pilot only: consume verified frozen binaries, never compile L1 sources. -->\n+    <PropertyGroup>\n+        <FmL1PackDir>$(MSBuildThisFileDirectory)..\\..\\..\\reference\\</FmL1PackDir>\n+        <EventSourceSupport>true</EventSourceSupport>\n+    </PropertyGroup>\n+    <ItemGroup>\n+        <Reference Include=\"FluidMotion.L1\" HintPath=\"$(FmL1PackDir)FluidMotion.L1.dll\" Private=\"true\" />\n+        <None Include=\"$(FmL1PackDir)fluidmotion.dll\" Link=\"fluidmotion.dll\" CopyToOutputDirectory=\"PreserveNewest\" />\n+        <None Include=\"$(FmL1PackDir)demo_motion.json\" Link=\"demo_motion.json\" CopyToOutputDirectory=\"PreserveNewest\" />\n+        <_FmPilotInput Include=\"$(FmL1PackDir)FluidMotion.L1.dll\" ExpectedHash=\"94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2\" />\n+        <_FmPilotInput Include=\"$(FmL1PackDir)fluidmotion.dll\" ExpectedHash=\"add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d\" />\n+        <_FmPilotInput Include=\"$(FmL1PackDir)demo_motion.json\" ExpectedHash=\"8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e\" />\n+    </ItemGroup>\n+    <Target Name=\"VerifyF9bPackBeforeUse\" BeforeTargets=\"ResolveAssemblyReferences\">\n+        <Error Condition=\"!Exists('%(_FmPilotInput.Identity)')\" Text=\"F9b frozen reference missing: %(_FmPilotInput.Filename)\" />\n+        <GetFileHash Files=\"@(_FmPilotInput)\" Algorithm=\"SHA256\">\n+            <Output TaskParameter=\"Items\" ItemName=\"_FmPilotInputHashes\" />\n+        </GetFileHash>\n+        <Error Condition=\"'%(_FmPilotInputHashes.FileHash)' != '%(_FmPilotInputHashes.ExpectedHash)'\" Text=\"F9b frozen reference hash mismatch: %(_FmPilotInputHashes.Filename)\" />\n+    </Target>\n+    <Target Name=\"VerifyF9bPackOutput\" AfterTargets=\"CopyFilesToOutputDirectory\">\n+        <ItemGroup>\n+            <_FmPilotOutput Include=\"$(TargetDir)FluidMotion.L1.dll\" ExpectedHash=\"94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2\" />\n+            <_FmPilotOutput Include=\"$(TargetDir)fluidmotion.dll\" ExpectedHash=\"add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d\" />\n+            <_FmPilotOutput Include=\"$(TargetDir)demo_motion.json\" ExpectedHash=\"8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e\" />\n+        </ItemGroup>\n+        <GetFileHash Files=\"@(_FmPilotOutput)\" Algorithm=\"SHA256\">\n+            <Output TaskParameter=\"Items\" ItemName=\"_FmPilotOutputHashes\" />\n+        </GetFileHash>\n+        <Error Condition=\"'%(_FmPilotOutputHashes.FileHash)' != '%(_FmPilotOutputHashes.ExpectedHash)'\" Text=\"F9b output reference hash mismatch: %(_FmPilotOutputHashes.Filename)\" />\n+    </Target>\n </Project>\ndiff --git a/src/Files.App/Views/MainPage.xaml.cs b/src/Files.App/Views/MainPage.xaml.cs\nindex 3577f29d9..a3ce43d30 100644\n--- a/src/Files.App/Views/MainPage.xaml.cs\n+++ b/src/Files.App/Views/MainPage.xaml.cs\n@@ -37,6 +37,8 @@ namespace Files.App.Views\n \n \t\tprivate bool keyReleased = true;\n \n+\t\tprivate FilesMotionPilot? _filesMotionPilot; // F9b local sidefork only.\n+\n \t\tprivate DispatcherQueueTimer _updateDateDisplayTimer;\n \t\tprivate WindowMessageMonitor? _titleBarMessageMonitor;\n \n@@ -47,6 +49,7 @@ namespace Files.App.Views\n \t\tpublic MainPage()\n \t\t{\n \t\t\tInitializeComponent();\n+\t\t\tUnloaded += (_, _) => { _filesMotionPilot?.Dispose(); _filesMotionPilot = null; };\n \n \t\t\t// Dependency Injection\n \t\t\tUserSettingsService = Ioc.Default.GetRequiredService<IUserSettingsService>();\n@@ -332,6 +335,7 @@ namespace Files.App.Views\n \n \t\tprivate void Page_Loaded(object sender, RoutedEventArgs e)\n \t\t{\n+\t\t\t_filesMotionPilot ??= new FilesMotionPilot(SettingsButton, MainWindow.Instance);\n \t\t\tViewModel.OnPageLoaded();\n \n \t\t\tMainWindow.Instance.AppWindow.Changed += (_, _) => MainWindow.Instance.RaiseSetTitleBarDragRegion(SetTitleBarDragRegion);"
+  },
+  "layout_POST": {
+    "files": 1334,
+    "inventory_sha256": "4a215a0a69466577ffebf905445d1939464f1cd0db1e267877f9ed81e7eb1acb",
+    "destination_hashes_sha256": "fd91689c3dd0f4bb295969071b6725b91b08cbcbb28aae440a36714a2bfd14ff"
+  },
+  "all_packages_POST_sha256": "ba513b466f0c43eae62d5d41bdc18f06d72ac9562d7493916e4a67104bb13239",
+  "package_delta_final": {
+    "added": [],
+    "removed": []
+  },
+  "state_changed": false,
+  "owned_package": {
+    "Name": "FilesDev",
+    "PackageFullName": "FilesDev_4.3.0.0_x64__ykqwq8d6ps0ag",
+    "PackageFamilyName": "FilesDev_ykqwq8d6ps0ag",
+    "Version": "4.3.0.0",
+    "Architecture": 9,
+    "Publisher": "CN=Files",
+    "InstallLocation": "%WORKSPACE%\\m0\\out\\f9b-runtime-layout-20261121T132345Z-9a66a571\\layout",
+    "Status": 0
+  }
+}

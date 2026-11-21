@@ -1,0 +1,29 @@
+name: Z6 F9b pilot evidence and private logic
+on:
+  push:
+    branches: [codex/z6-f9b-pilot]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'z6/f9b/codex/**'
+      - '.github/workflows/z6-f9b-pilot.yml'
+permissions:
+  contents: read
+jobs:
+  pilot-evidence-and-logic:
+    if: github.head_ref == 'codex/z6-f9b-pilot' || github.ref == 'refs/heads/codex/z6-f9b-pilot'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.404'
+      - name: Validate pinned source, patch and recorded build/runtime evidence
+        run: python z6/f9b/codex/verify_runtime.py
+      - name: Test actual patched private evidence and lifetime logic
+        run: python z6/f9b/codex/run_private_tests.py

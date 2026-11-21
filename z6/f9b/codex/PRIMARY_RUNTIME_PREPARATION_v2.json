@@ -1,0 +1,12 @@
+{
+  "instruction_kind": "Primary F9b runtime preparation only",
+  "root_verbatim": "Root读取首轮终态：STOP Entry movement not observed；cleanup_complete true、POST[]、WM_CLOSE0、原log已保全、3Created==3Released/lastIdle0/0、4事件（无Retarget因未hover）。先完整封存首轮代码+binding+原raw，不改既有首轮结论。Root已直接看entry00空白→entry01设置图标文字恢复，接受实际可见opacity入场定性证据，不能称80px位移达标。准最小工具修正准备：保留entry_position_changed实际bool但不作为唯一gate，记录entry_visible_review_required并让root看图；继续既定hover/rest位置+截图验收，宿主/pack/build/layout一字不变。新工具另版本/hash绑定+ValidateOnly后报root，尚不释放第二次注册。无需用户再批相同范围。",
+  "authority_sha256": "ea7c7fe2dc3598157c85b70504f50d2aa0dd2e18cc095666e046d6ab349bc681",
+  "binding_sha256": "9647db12be2601d2c257d032329f89f58961d7440e485fda669980e9ca0dffff",
+  "inventory_sha256": "4a215a0a69466577ffebf905445d1939464f1cd0db1e267877f9ed81e7eb1acb",
+  "destination_hashes_sha256": "fd91689c3dd0f4bb295969071b6725b91b08cbcbb28aae440a36714a2bfd14ff",
+  "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+  "host_patch_sha256": "90fadd56b948f080e19435f1b0c05cc56dd57762783d95a6d4651e34cf859e1a",
+  "prior_result_sha256": "e3fa5124ca07f9cedace067a0c7fb8ef0f409148c8588687f6ce1d5684ea3810",
+  "prior_cleanup_complete": true
+}

@@ -1,0 +1,95 @@
+{
+  "phase": "F9b.1",
+  "status": "PASS F9b.1 pin/reference/API only",
+  "attempt": "20261121T125037Z-fab35294",
+  "source_pin": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+  "source_relative": "m0/out/f9b-inputs-20261121T125037Z-fab35294/source",
+  "reference_relative": "m0/out/f9b-inputs-20261121T125037Z-fab35294/reference",
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "%USERPROFILE%\\pilot\\Files",
+        "%WORKSPACE%\\m0\\out\\f9b-inputs-20261121T125037Z-fab35294\\source"
+      ],
+      "pid": 58204,
+      "exit": 0,
+      "original_sha256": "5e822706d9200564e21a6e75a8e9faf357e758b430deaadc1b74aaa461f96d59",
+      "published_sha256": "98fe062ccf93f2bf77e7a6b700934cfcd9c35eeb4d9157c20055b4c5180667f2"
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "-C",
+        "%WORKSPACE%\\m0\\out\\f9b-inputs-20261121T125037Z-fab35294\\source",
+        "checkout",
+        "--detach",
+        "cbfb4ba54a89632fbceb82ea94ada60a9bae3737"
+      ],
+      "pid": 19928,
+      "exit": 0,
+      "original_sha256": "05569c6822bb05a7846f6b3da0c5ff4a841f0392b8dd3f8e994eb715732d7035",
+      "published_sha256": "05569c6822bb05a7846f6b3da0c5ff4a841f0392b8dd3f8e994eb715732d7035"
+    },
+    {
+      "label": "dotnet_version",
+      "argv": [
+        "%USERPROFILE%\\.dotnet\\dotnet.exe",
+        "--version"
+      ],
+      "pid": 45988,
+      "exit": 0,
+      "original_sha256": "a391a16c2e43840573b47a7c336fc376a5f58e13cfafb1930a338034912d6dc7",
+      "published_sha256": "c479e77cb703fe4dac97ec3e3ebbeb4968c95c716d53abad60b516b6866ca49d"
+    },
+    {
+      "label": "surface_tool_build",
+      "argv": [
+        "%USERPROFILE%\\.dotnet\\dotnet.exe",
+        "build",
+        "%WORKSPACE%\\m0\\out\\f9b-inputs-20261121T125037Z-fab35294\\surface_tool\\SurfaceDump.csproj",
+        "-c",
+        "Release"
+      ],
+      "pid": 69216,
+      "exit": 0,
+      "original_sha256": "28606cbe107afc4da6299aba520f39f64ce9de4b1ebcd25d855d7ec291cf332b",
+      "published_sha256": "5182f000fa965a830692926f82e9db7a8e447430d967902632c4babf173409d6"
+    },
+    {
+      "label": "surface_check",
+      "argv": [
+        "%USERPROFILE%\\.dotnet\\dotnet.exe",
+        "%WORKSPACE%\\m0\\out\\f9b-inputs-20261121T125037Z-fab35294\\surface_tool\\bin\\Release\\net10.0\\SurfaceDump.dll",
+        "%WORKSPACE%\\m0\\out\\f9b-inputs-20261121T125037Z-fab35294\\reference\\FluidMotion.L1.dll",
+        "%WORKSPACE%\\m0\\out\\f9b-inputs-20261121T125037Z-fab35294\\surface_reference.txt"
+      ],
+      "pid": 77112,
+      "exit": 0,
+      "original_sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35",
+      "published_sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35"
+    }
+  ],
+  "host_patch_build_runtime": false,
+  "reference_native_executed": false,
+  "child_environment": {
+    "DOTNET_ROOT": "%USERPROFILE%/.dotnet",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "persistent_changes": false
+  },
+  "surface": {
+    "sha256": "7b67b77bce6b36dc58cc870a17fe1b5588df3c6e526b39ca5a3e36d5280bc5cc",
+    "stage2C_baseline": "z6/integration/pack/raw/20261121T075208Z-14b65d8f/surface_reference.txt",
+    "baseline_sha256": "7b67b77bce6b36dc58cc870a17fe1b5588df3c6e526b39ca5a3e36d5280bc5cc",
+    "baseline_git_blob": "feccd11df481744d2047ed0be4cd8b9ffae5f27d",
+    "full_bytes_equal": true,
+    "first_line_exemption": false,
+    "checks_fails": 0,
+    "actual_frame_method": "MotionSystem.OnFrame(); Tick is not the inspected public method"
+  }
+}

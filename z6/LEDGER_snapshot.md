@@ -123,3 +123,18 @@ PR19 merged0fc838c9624b4a23c99bbc57f3d5d1c9bf8c2510, mainpost44900488544 policy/
 ## F9a3C5 GateM manual-layout continuation PASS (append-only)
 
 M1 UTF8 guard STOP and M2 Get-FileHash guard STOP retained, both exactcleanup complete before appactivation; reviewed helper compatibility fixes plus realWinPS5ValidateOnly passed. Actual M3 attempt20261121T121105Z-994a1615: Register0, ordinaryappPID61852 exactidentity, MainPageSettingsButton visible/enabled/ready true, normalWM_CLOSE0, exactRemove FilesDev_4.3.0.0_x64__ykqwq8d6ps0ag cleanuptrue/POSTabsent/residualdataempty. Source/layout1328hashes unchanged; allpackagefinalhash=PRE/foreign deltaempty/UserChoiceunchanged. Manualdevelopmentlayout + NON-ORIGINAL build diagnostic PASS only; original/VSSTOP unchanged, no upstreambug judgment. Evidence z6/f9a/devlayout-codex; primary/CI review pending, F2/F9b/closure excluded.
+
+
+## F9b opened;phase1 reference/pin/API PASS (append-only)
+
+User literal opening message recorded2026-11-21T12:45:16Z with exact context in z6/f9b/codex/AUTHORIZATION.json; scope is new F9b, not inherited F9a. Phase1 attempt20261121T125037Z-fab35294: freshnohardlink Filescbfb cleanPREPOST, F7 reference3hashes before/copy/after exact, original SurfaceDump tool build0/CheckSurface0/fails0/fullbytes equal stage2C baselineSHA7b67b77bce6b36dc58cc870a17fe1b5588df3c6e526b39ca5a3e36d5280bc5cc. Frozencomposition/L1/fm/E1/pack sourcePREPOSTequal. Public frame method is OnFrame(), no inventedTick API. No Fileshostpatch/build/runtime/EventListener/nativefunction execution; phase2 awaits primary review/release. F2 remains independent, no closure/LOCKED/adopt/perf approval.
+
+
+## F9b phase2 finalv4 build/privatebehavior/API PASS (append-only)
+
+Finalv4 patchonly4hostfiles, upstreamCRLF/tabs/BOM, strict4fileapplyroundtrip bytes equal; initialCS8618/style/roundtrip records and v3BuildPASS preserved. Actual v4build20261121T131257Z-36a58930 sameauthorizedoneflag fullsolution0;17linkedprivatechecks0 with hostequivalent JSONreflectionfalse, safe lazyrestrictedpayload/generation/explicitwriter tested.3outputpackSHAexact/fullCheckSurfacefails0/fullDumpbyteequal7b67...; EventSourcetrue/JSONreflectionfalse actualconfig only. Frozen12source/API/packunchanged. No app registration/start/ETW/native motion/GUI in phase2; runtime actualdiff/scripts/layout primaryreview+release pending. F2independent, no closure/LOCKED/adopt/perf conclusion.
+
+
+## F9b phase3 local runtime accepted;phase4 PR pending (append-only)
+
+Firstattempt20261121T134355Z-00e0d1ee remainsSTOP entryposition gate, safeclose/logcapture/exactcleanup complete. Explicit root-reviewed v2 tool only records actual entrypositionfalse and requests image review, no host/pack/build/layout changes. Secondattempt20261121T134947Z-1a56d73b: Register0/ordinaryMainPage/actualmappedmanagednativehashes; root personally accepted opacityentry+8DIPhover/rest crops, no negativeentrydisplacement claim. Frame64/Retarget3/Idle10/Token1/Lifecycle12, Created=Played=Cancelled=Released3/finalIdle0pump0. Normalclose0/fulloriginalLogSHA2aea1242933febfac63cf3a485ae25a70fb65845bfa813762bd4880dd4e30735 BEFORE exactRemove/cleanuptrue/POSTpackagesdataabsent, pointerrestored/pkgdeltaempty/UserChoiceunchanged/source4/layout1334unchanged. ManualNON-ORIGINAL devonly/Success!=adopt/PERF-CIHOLD; F2/closure/LOCKED untouched. Final CI/PR/primarymerge pending, no more runtime.

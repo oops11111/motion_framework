@@ -1,0 +1,2 @@
+适用于 .NET Framework MSBuild 版本 18.6.3+84d3e95b4
+%WORKSPACE%\m0\out\f9b-inputs-20261121T125037Z-fab35294\source\src\Files.App\Views\FilesMotionPilot.cs(42,14): error CS8618: 在退出构造函数时，不可为 null 的 字段 "_originalTransform" 必须包含非 null 值。请考虑添加 "required" 修饰符或将该 字段 声明为可为 null。 [%WORKSPACE%\m0\out\f9b-inputs-20261121T125037Z-fab35294\source\src\Files.App\Files.App.csproj]

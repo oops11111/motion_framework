@@ -1,0 +1,50 @@
+{
+  "base": {
+    "Exists": true,
+    "Visible": true,
+    "Enabled": true,
+    "Left": 83,
+    "Top": 769,
+    "Right": 382,
+    "Bottom": 809,
+    "Dpi": 120,
+    "Window": {
+      "Left": 64,
+      "Top": 64,
+      "Right": 1504,
+      "Bottom": 820
+    }
+  },
+  "hover": {
+    "Exists": true,
+    "Visible": true,
+    "Enabled": true,
+    "Left": 93,
+    "Top": 769,
+    "Right": 392,
+    "Bottom": 809,
+    "Dpi": 120,
+    "Window": {
+      "Left": 64,
+      "Top": 64,
+      "Right": 1504,
+      "Bottom": 820
+    }
+  },
+  "rest": {
+    "Exists": true,
+    "Visible": true,
+    "Enabled": true,
+    "Left": 83,
+    "Top": 769,
+    "Right": 382,
+    "Bottom": 809,
+    "Dpi": 120,
+    "Window": {
+      "Left": 64,
+      "Top": 64,
+      "Right": 1504,
+      "Bottom": 820
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "recorded_utc": "2026-11-21T13:52:37Z",
+  "time_note": "Child recording time, not primary sending time",
+  "source": "Current primary review messages; message IDs unavailable",
+  "primary_visual_verbatim": "Root已亲看v2 rest-before/entry00/entry01/hover/rest-after-hover原图：entry00图标文字不可见→entry01恢复；hover设置图标/文本明显向右，rest恢复。UIA Left83→93→83（120DPI=8DIP），接受可见淡入+hover/rest，entry负位移仍不作PASS声明。原日志也核对5类event（Frame64/Retarget3/Idle10/Token1/Lifecycle12）、3Created=3Released且Played/Cancelled3、finalIdle0/0、renderingFalse/restoretrue。",
+  "primary_cleanup_verbatim": "Root独立终态检查：v2result cleanup_complete true/normal_close_exit0/POST[]/UserChoice unchanged/package_delta_final为空，WinPS5当前packages[]/data[]。原logSHA2aea1242933febfac63cf3a485ae25a70fb65845bfa813762bd4880dd4e30735一致。请将此追加primaryreview记录。最终报告准确限定可见opacity入场+8DIPhover/rest（entryposition false）；以后不要求此票补entry负位移或再runtime。继续最终verify/push/PR即可。",
+  "accepted_visible_scope": [
+    "opacity entry",
+    "8DIP hover displacement",
+    "restored position"
+  ],
+  "entry_position_changed": false,
+  "negative_entry_displacement_accepted": false,
+  "further_runtime_required": false,
+  "actual_result_sha256": "d0f13f1cfb57920396153420196bdc2e5d96aacd2be98f4b4347aea508388975",
+  "pilot_original_sha256": "2aea1242933febfac63cf3a485ae25a70fb65845bfa813762bd4880dd4e30735",
+  "selected_images": {
+    "rest-before.png": "b1caba322f4af03247bcd04476aef0f07f1215b611d2607e70c7cc338b7e717a",
+    "entry/entry-00.png": "10908d9a6de334d19220a4edc35f44e8ce31bb31c1301e2df70ec7f269a21daf",
+    "entry/entry-01.png": "dc5856976964db49b494dfa2f8599d541f5f6e87304950c18cb883d8ab026ece",
+    "hover.png": "86cf81acdbe6335adf9cbe8c69cd0663f5e9b2ecf9b5825168d0ba9cda85d754",
+    "rest-after-hover.png": "b1caba322f4af03247bcd04476aef0f07f1215b611d2607e70c7cc338b7e717a"
+  }
+}

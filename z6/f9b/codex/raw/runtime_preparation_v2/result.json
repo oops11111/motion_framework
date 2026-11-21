@@ -1,0 +1,31 @@
+{
+  "status": "PASS defaultdryrun/WinPS5 fullguard+COM+probe compilation only",
+  "commands": [
+    {
+      "label": "default_dryrun",
+      "argv": [
+        "python",
+        "z6\\f9b\\codex\\run_runtime_v2.py"
+      ],
+      "exit": 0,
+      "original_stdout_sha256": "2fe0bc67c980a9a177f2a95e28416b33cb8eac8da32bd85fa0ae5810e84364dc"
+    },
+    {
+      "label": "ValidateOnly",
+      "argv": [
+        "python",
+        "z6\\f9b\\codex\\run_runtime_v2.py",
+        "--validate-only",
+        "--instruction",
+        "z6\\f9b\\codex\\PRIMARY_RUNTIME_PREPARATION_v2.json"
+      ],
+      "exit": 0,
+      "original_stdout_sha256": "3b3132a8777494bf7f6370d2e757963ace5001944770973fdfedba292dff9c34"
+    }
+  ],
+  "binding_sha256": "9647db12be2601d2c257d032329f89f58961d7440e485fda669980e9ca0dffff",
+  "driver_sha256": "09b33b3804a65c86be9b90b59a4c519e03000646c737c1f1519f0470859ec560",
+  "runtime": "NOT EXECUTED after tool change",
+  "host_pack_layout_changed": false,
+  "next_runtime_release": "NOT RECEIVED"
+}

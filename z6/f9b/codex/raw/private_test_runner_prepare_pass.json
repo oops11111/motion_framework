@@ -1,0 +1,7 @@
+{
+  "command": "python z6/f9b/codex/run_private_tests.py --prepare-only",
+  "exit": 0,
+  "actual_helper_sha256": "531c3f57f6fa71e8c0e35c6431e5a903d69cdc4a439238aaaaef0a3bdc795c36",
+  "patch_sha256": "90fadd56b948f080e19435f1b0c05cc56dd57762783d95a6d4651e34cf859e1a",
+  "scope": "Extraction/fullbyte hash and staging only; no extra dotnet run during active host build"
+}

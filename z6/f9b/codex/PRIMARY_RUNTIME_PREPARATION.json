@@ -1,0 +1,10 @@
+{
+  "instruction_kind": "Primary F9b runtime preparation only",
+  "root_verbatim": "继续 F9b 第 3 阶段准备。请报告布局复制/全量 SHA 终态、运行计划与工具文件名、dry-run/ValidateOnly 结果。当前仍只授权准备，不注册或启动应用；待我审查具体工具后释放运行。",
+  "authority_sha256": "ea7c7fe2dc3598157c85b70504f50d2aa0dd2e18cc095666e046d6ab349bc681",
+  "binding_sha256": "bf080982c8707a4fde9c48d540bcac78f6a47412130706e1390673601ec20bb1",
+  "inventory_sha256": "4a215a0a69466577ffebf905445d1939464f1cd0db1e267877f9ed81e7eb1acb",
+  "destination_hashes_sha256": "fd91689c3dd0f4bb295969071b6725b91b08cbcbb28aae440a36714a2bfd14ff",
+  "manifest_sha256": "ad4ee744e9e3b82875b656f3da15754003d673987b978c7c411af4d7c7c890b4",
+  "host_patch_sha256": "90fadd56b948f080e19435f1b0c05cc56dd57762783d95a6d4651e34cf859e1a"
+}

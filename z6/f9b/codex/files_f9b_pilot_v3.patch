@@ -1,0 +1,362 @@
+diff --git a/src/Files.App/Files.App.csproj b/src/Files.App/Files.App.csproj
+--- a/src/Files.App/Files.App.csproj
++++ b/src/Files.App/Files.App.csproj
+@@ -172,4 +172,36 @@
+                  Targets="Build"
+                  Properties="Configuration=$(Configuration);Platform=$(Platform)" />
+     </Target>
++
++    <!-- F9b local pilot only: consume verified frozen binaries, never compile L1 sources. -->
++    <PropertyGroup>
++        <FmL1PackDir>$(MSBuildThisFileDirectory)..\..\..\reference\</FmL1PackDir>
++        <EventSourceSupport>true</EventSourceSupport>
++    </PropertyGroup>
++    <ItemGroup>
++        <Reference Include="FluidMotion.L1" HintPath="$(FmL1PackDir)FluidMotion.L1.dll" Private="true" />
++        <None Include="$(FmL1PackDir)fluidmotion.dll" Link="fluidmotion.dll" CopyToOutputDirectory="PreserveNewest" />
++        <None Include="$(FmL1PackDir)demo_motion.json" Link="demo_motion.json" CopyToOutputDirectory="PreserveNewest" />
++        <_FmPilotInput Include="$(FmL1PackDir)FluidMotion.L1.dll" ExpectedHash="94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2" />
++        <_FmPilotInput Include="$(FmL1PackDir)fluidmotion.dll" ExpectedHash="add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d" />
++        <_FmPilotInput Include="$(FmL1PackDir)demo_motion.json" ExpectedHash="8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e" />
++    </ItemGroup>
++    <Target Name="VerifyF9bPackBeforeUse" BeforeTargets="ResolveAssemblyReferences">
++        <Error Condition="!Exists('%(_FmPilotInput.Identity)')" Text="F9b frozen reference missing: %(_FmPilotInput.Filename)" />
++        <GetFileHash Files="@(_FmPilotInput)" Algorithm="SHA256">
++            <Output TaskParameter="Items" ItemName="_FmPilotInputHashes" />
++        </GetFileHash>
++        <Error Condition="'%(_FmPilotInputHashes.FileHash)' != '%(_FmPilotInputHashes.ExpectedHash)'" Text="F9b frozen reference hash mismatch: %(_FmPilotInputHashes.Filename)" />
++    </Target>
++    <Target Name="VerifyF9bPackOutput" AfterTargets="CopyFilesToOutputDirectory">
++        <ItemGroup>
++            <_FmPilotOutput Include="$(TargetDir)FluidMotion.L1.dll" ExpectedHash="94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2" />
++            <_FmPilotOutput Include="$(TargetDir)fluidmotion.dll" ExpectedHash="add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d" />
++            <_FmPilotOutput Include="$(TargetDir)demo_motion.json" ExpectedHash="8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e" />
++        </ItemGroup>
++        <GetFileHash Files="@(_FmPilotOutput)" Algorithm="SHA256">
++            <Output TaskParameter="Items" ItemName="_FmPilotOutputHashes" />
++        </GetFileHash>
++        <Error Condition="'%(_FmPilotOutputHashes.FileHash)' != '%(_FmPilotOutputHashes.ExpectedHash)'" Text="F9b output reference hash mismatch: %(_FmPilotOutputHashes.Filename)" />
++    </Target>
+ </Project>
+diff --git a/src/Files.App/Views/MainPage.xaml.cs b/src/Files.App/Views/MainPage.xaml.cs
+--- a/src/Files.App/Views/MainPage.xaml.cs
++++ b/src/Files.App/Views/MainPage.xaml.cs
+@@ -37,6 +37,8 @@
+ 
+ 		private bool keyReleased = true;
+ 
++		private FilesMotionPilot? _filesMotionPilot; // F9b local sidefork only.
++
+ 		private DispatcherQueueTimer _updateDateDisplayTimer;
+ 		private WindowMessageMonitor? _titleBarMessageMonitor;
+ 
+@@ -47,6 +49,7 @@
+ 		public MainPage()
+ 		{
+ 			InitializeComponent();
++			Unloaded += (_, _) => { _filesMotionPilot?.Dispose(); _filesMotionPilot = null; };
+ 
+ 			// Dependency Injection
+ 			UserSettingsService = Ioc.Default.GetRequiredService<IUserSettingsService>();
+@@ -332,6 +335,7 @@
+ 
+ 		private void Page_Loaded(object sender, RoutedEventArgs e)
+ 		{
++			_filesMotionPilot ??= new FilesMotionPilot(SettingsButton, MainWindow.Instance);
+ 			ViewModel.OnPageLoaded();
+ 
+ 			MainWindow.Instance.AppWindow.Changed += (_, _) => MainWindow.Instance.RaiseSetTitleBarDragRegion(SetTitleBarDragRegion);
+diff --git a/src/Files.App/Views/FilesMotionEvidence.cs b/src/Files.App/Views/FilesMotionEvidence.cs
+new file mode 100644
+--- /dev/null
++++ b/src/Files.App/Views/FilesMotionEvidence.cs
+@@ -0,0 +1,88 @@
++// F9b local pilot only. No performance payload projection.
++using System;
++using System.Collections.Generic;
++using System.Linq;
++using System.Threading;
++
++namespace Files.App.Views;
++
++internal sealed class FilesMotionLifetime
++{
++	private int _closed;
++	private int _generation;
++	internal bool IsClosed => Volatile.Read(ref _closed) != 0;
++	internal bool Schedule(Func<Action, bool> enqueue, Action action)
++	{
++		if (IsClosed) return false;
++		int token = Volatile.Read(ref _generation);
++		return enqueue(() => { if (!IsClosed && token == Volatile.Read(ref _generation)) action(); });
++	}
++	internal bool Close()
++	{
++		if (Interlocked.Exchange(ref _closed, 1) != 0) return false;
++		Interlocked.Increment(ref _generation);
++		return true;
++	}
++}
++
++internal sealed class FilesMotionEvidence
++{
++	private readonly object _gate = new();
++	private readonly Action<string> _write;
++	private readonly Dictionary<string, int> _counts = new();
++	private readonly Dictionary<string, int> _states = new();
++	private int? _active;
++	private int? _pump;
++	internal FilesMotionEvidence(Action<string> write) => _write = write;
++
++	internal void Observe(int id, string? eventName, Func<IReadOnlyList<object?>?> payload)
++	{
++		lock (_gate)
++		{
++			// Restricted branches must return BEFORE invoking the payload getter or Count/enumeration.
++			if (id is 3 or 103 || eventName is "FrameTick" or "FrameTickAccept")
++			{
++				Increment(_counts, "FrameTick");
++				return;
++			}
++			if (id == 4 || eventName == "PresentStats")
++			{
++				Increment(_counts, "PresentStats");
++				return;
++			}
++			string name = eventName ?? "Unknown";
++			Increment(_counts, name);
++			if (id == 1 && name == "AnimationLifecycle")
++			{
++				var fields = payload();
++				string state = fields is not null && fields.Count > 4 ? fields[4] as string ?? "Unknown" : "Unknown";
++				if (state is not ("Created" or "Played" or "Cancelled" or "Released")) state = "Unknown";
++				Increment(_states, state);
++				_write("lifecycle " + state);
++			}
++			else if (id == 5 && name == "IdleTransition")
++			{
++				var fields = payload();
++				if (fields is not null && fields.Count > 2)
++				{
++					_active = Convert.ToInt32(fields[1]);
++					_pump = Convert.ToInt32(fields[2]);
++					_write($"idle active={_active} pump={_pump}");
++				}
++			}
++			// TokenLoad/Retarget and other events: names/counts only, no payload getter.
++		}
++	}
++	private static void Increment(Dictionary<string, int> counts, string name)
++		=> counts[name] = counts.TryGetValue(name, out int value) ? value + 1 : 1;
++	internal Dictionary<string, object?> Snapshot()
++	{
++		lock (_gate) return new()
++		{
++			["eventCounts"] = new Dictionary<string, int>(_counts),
++			["lifecycleCounts"] = new Dictionary<string, int>(_states),
++			["lastIdleActive"] = _active, ["lastIdlePump"] = _pump,
++			["CreatedEqualsReleased"] = _states.GetValueOrDefault("Created") == _states.GetValueOrDefault("Released")
++		};
++	}
++}
+diff --git a/src/Files.App/Views/FilesMotionPilot.cs b/src/Files.App/Views/FilesMotionPilot.cs
+new file mode 100644
+--- /dev/null
++++ b/src/Files.App/Views/FilesMotionPilot.cs
+@@ -0,0 +1,196 @@
++// F9b private local sidefork pilot: frozen prebuilt pack only, no performance acceptance.
++using System;
++using System.Diagnostics.Tracing;
++using System.IO;
++using System.Numerics;
++using System.Text.Json;
++using System.Threading;
++using Microsoft.UI.Dispatching;
++using Microsoft.UI.Xaml;
++using Microsoft.UI.Xaml.Input;
++using Microsoft.UI.Xaml.Media;
++using MotionSoftDemo;
++using Windows.Storage;
++using Windows.UI.ViewManagement;
++
++namespace Files.App.Views;
++
++internal sealed class FilesMotionPilot : IDisposable
++{
++	private readonly FrameworkElement _target;
++	private readonly MainWindow _window;
++	private readonly DispatcherQueue _dispatcher;
++	private readonly FilesMotionLifetime _lifetime = new();
++	private readonly Transform? _originalTransform;
++	private readonly double _originalOpacity;
++	private readonly TranslateTransform _offset = new();
++	private readonly StreamWriter _log;
++	private readonly object _logGate = new();
++	private readonly FilesMotionEvidence _evidence;
++	private SafeListener? _listener;
++	private MotionSystem? _system;
++	private AnimationHandle? _entry;
++	private AnimationHandle? _hover;
++	private EventWaitHandle? _entrySignal;
++	private RegisteredWaitHandle? _entryWait;
++	private bool _rendering;
++	private bool _inputHooked;
++	private bool _windowHooked;
++	private int _sinkCalls;
++	private bool _writerClosed;
++
++	internal FilesMotionPilot(FrameworkElement target, MainWindow window)
++	{
++		_target = target; _window = window; _dispatcher = target.DispatcherQueue;
++		_originalTransform = target.RenderTransform; _originalOpacity = target.Opacity;
++		string path = Path.Combine(ApplicationData.Current.LocalFolder.Path, $"f9b_motion_{Environment.ProcessId}.jsonl");
++		_log = new StreamWriter(new FileStream(path, FileMode.Append, FileAccess.Write, FileShare.ReadWrite)) { AutoFlush = true };
++		_evidence = new FilesMotionEvidence(Line);
++		try
++		{
++			Line("pilot start manual NON-ORIGINAL dev-only; PERF-CI HOLD; Success!=adopt");
++			bool animations = new UISettings().AnimationsEnabled;
++			Line("AnimationsEnabled=" + animations);
++			if (!animations) { Line("STOP animations disabled; no system setting change"); Dispose(); return; }
++			// Force provider construction before creating the private count-safe listener.
++			_ = MotionEtw.Log.Name;
++			_listener = new SafeListener(_evidence);
++			_system = MotionSystem.Create();
++			_system.ValueChanged += Apply;
++			_system.FramePumpChanged += Pump;
++			_system.SetReducedMotion(false); // Constructor UI thread, before any Play.
++			string? problem = new MotionTokens(_system).Load(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "demo_motion.json")));
++			if (problem is not null) throw new InvalidOperationException("Frozen token load failed");
++			Line("tokens loaded; entry consumes demo.enter");
++			var transforms = new TransformGroup();
++			target.RenderTransform = transforms;
++			if (_originalTransform is not null) transforms.Children.Add(_originalTransform);
++			transforms.Children.Add(_offset);
++			_hover = _system.CreateAnimation(1, null);
++			_hover.Play();
++			target.AddHandler(UIElement.PointerEnteredEvent, new PointerEventHandler(Entered), true);
++			target.AddHandler(UIElement.PointerExitedEvent, new PointerEventHandler(Exited), true);
++			_inputHooked = true;
++			window.Closed += Closed; _windowHooked = true;
++			string eventName = @"Local\FM_PILOT_F9B_ENTRY_" + Environment.ProcessId;
++			_entrySignal = new EventWaitHandle(false, EventResetMode.AutoReset, eventName);
++			_entryWait = ThreadPool.RegisterWaitForSingleObject(_entrySignal, (_, _) => Queue(ReplayEntry), null, Timeout.Infinite, false);
++			Line("entry replay signal ready process=" + Environment.ProcessId);
++			ReplayEntry();
++		}
++		catch (Exception error)
++		{
++			Line("STOP constructor " + error.GetType().Name);
++			Dispose();
++		}
++	}
++	private void Line(string text)
++	{
++		lock (_logGate) { if (!_writerClosed) _log.WriteLine(text); }
++	}
++	private void Queue(Action action)
++	{
++		if (_lifetime.IsClosed) return;
++		if (!_lifetime.Schedule(a => _dispatcher.TryEnqueue(a.Invoke), () =>
++		{
++			try { action(); }
++			catch (Exception error) { Line("STOP queued " + error.GetType().Name); Dispose(); }
++		}) && !_lifetime.IsClosed) Line("STOP DispatcherQueue rejected pilot action");
++	}
++	private void ReplayEntry()
++	{
++		if (_lifetime.IsClosed || _system is null) return;
++		if (_entry is not null) { _entry.Cancel(); _entry.Release(); }
++		_entry = _system.CreateAnimation(1, "demo.enter");
++		_entry.Play();
++		Line("entry played demo.enter");
++	}
++	private void Entered(object sender, PointerRoutedEventArgs args) => Queue(() => Retarget(8, "hover"));
++	private void Exited(object sender, PointerRoutedEventArgs args) => Queue(() => Retarget(0, "rest"));
++	private void Retarget(double value, string reason)
++	{
++		if (_hover is null || !_hover.Retarget("offsetX", value, new SpringParams(0.32, 0.78), from: null))
++			throw new InvalidOperationException("Hover retarget failed");
++		Line(reason + " retarget accepted");
++	}
++	private void Apply(ulong target, string property, double value)
++	{
++		if (_lifetime.IsClosed || target != 1) return;
++		_sinkCalls++;
++		if (property == "offsetX") _offset.X = value;
++		else if (property == "opacity") _target.Opacity = _originalOpacity * Math.Clamp(value, 0, 1);
++		// Native sink: visual-only, never reenter MotionSystem/fm_* here.
++	}
++	private void Pump(bool on)
++	{
++		// Native render callback: subscription-only, never call any motion API here.
++		if (on && !_lifetime.IsClosed && !_rendering) { CompositionTarget.Rendering += Rendering; _rendering = true; }
++		else if (!on && _rendering) { CompositionTarget.Rendering -= Rendering; _rendering = false; }
++	}
++	private void Rendering(object? sender, object args)
++	{
++		if (_lifetime.IsClosed) return;
++		try { _system?.OnFrame(); } // Ordinary outer frame source, not a native sink/render callback.
++		catch (Exception error) { Line("STOP frame " + error.GetType().Name); Dispose(); }
++	}
++	private void Closed(object sender, WindowEventArgs args) => Dispose();
++	public void Dispose()
++	{
++		if (!_lifetime.Close()) return;
++		_entryWait?.Unregister(null); _entryWait = null;
++		_entrySignal?.Dispose(); _entrySignal = null;
++		if (_rendering) { CompositionTarget.Rendering -= Rendering; _rendering = false; }
++		if (_inputHooked)
++		{
++			_target.RemoveHandler(UIElement.PointerEnteredEvent, new PointerEventHandler(Entered));
++			_target.RemoveHandler(UIElement.PointerExitedEvent, new PointerEventHandler(Exited));
++			_inputHooked = false;
++		}
++		if (_windowHooked) { _window.Closed -= Closed; _windowHooked = false; }
++		try
++		{
++			ReleaseForDispose(ref _entry);
++			ReleaseForDispose(ref _hover);
++			try { _system?.Dispose(); }
++			catch (Exception error) { Line("STOP system dispose " + error.GetType().Name); }
++		}
++		finally
++		{
++			if (_system is not null) { _system.ValueChanged -= Apply; _system.FramePumpChanged -= Pump; _system = null; }
++			_target.RenderTransform = _originalTransform; _target.Opacity = _originalOpacity;
++			Line("dispose " + JsonSerializer.Serialize(_evidence.Snapshot()));
++			Line($"disposed sinkCalls={_sinkCalls} rendering={_rendering} originalVisualRestored=true");
++			_listener?.Dispose(); _listener = null;
++			lock (_logGate) { _writerClosed = true; _log.Dispose(); }
++		}
++	}
++	private void ReleaseForDispose(ref AnimationHandle? handle)
++	{
++		var animation = handle; handle = null;
++		if (animation is null) return;
++		try { animation.Cancel(); }
++		catch (Exception error) { Line("STOP cancel " + error.GetType().Name); }
++		try { animation.Release(); }
++		catch (Exception error) { Line("STOP release " + error.GetType().Name); }
++	}
++	private sealed class SafeListener : EventListener
++	{
++		private readonly FilesMotionEvidence _evidence;
++		private bool _ready;
++		internal SafeListener(FilesMotionEvidence evidence)
++		{
++			_evidence = evidence; _ready = true;
++			foreach (var source in EventSource.GetSources()) Enable(source);
++		}
++		private void Enable(EventSource source)
++		{
++			if (source.Name == "FluidMotion-Motion") EnableEvents(source, EventLevel.Verbose, EventKeywords.All);
++		}
++		protected override void OnEventSourceCreated(EventSource source) { if (_ready) Enable(source); }
++		protected override void OnEventWritten(EventWrittenEventArgs e)
++		{
++			if (_ready && e.EventSource.Name == "FluidMotion-Motion")
++				_evidence.Observe(e.EventId, e.EventName, () => e.Payload);
++		}
++	}
++}

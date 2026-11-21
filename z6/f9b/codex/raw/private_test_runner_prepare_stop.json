@@ -1,0 +1,7 @@
+{
+  "status": "STOP preparation only; no dotnet/native/GUI executed",
+  "operation": "copy Program.cs into tempfile.mkdtemp-created ignored directory",
+  "error": "PermissionError [Errno13] permission denied on new temporary directory child file",
+  "cause": "Not established; no host source/build change",
+  "continuation": "Use ordinary unique workspace Path.mkdir staging as existing project runners; no ACL/system change"
+}

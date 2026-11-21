@@ -1,0 +1,16 @@
+{
+  "Exists": true,
+  "Visible": true,
+  "Enabled": true,
+  "Left": 180,
+  "Top": 865,
+  "Right": 479,
+  "Bottom": 905,
+  "Dpi": 120,
+  "Window": {
+    "Left": 160,
+    "Top": 160,
+    "Right": 1600,
+    "Bottom": 916
+  }
+}

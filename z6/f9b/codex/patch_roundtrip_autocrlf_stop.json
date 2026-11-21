@@ -1,0 +1,36 @@
+{
+  "status": "STOP strict byte check; global Git autocrlf affected scaffold output",
+  "git_apply_check_exit": 0,
+  "git_apply_exit": 0,
+  "rows": [
+    {
+      "path": "src/Files.App/Files.App.csproj",
+      "host_sha256": "25cf077c77c21edf5272142c58de92e426d5721bd35cdaa5c58531e839d73376",
+      "roundtrip_sha256": "e97ee575c6b409686e69f8bb739d345a5f07a5fd3a1f6cbf521f6ce88ddd7c5a",
+      "full_bytes_equal": false,
+      "only_newline_difference": true
+    },
+    {
+      "path": "src/Files.App/Views/MainPage.xaml.cs",
+      "host_sha256": "61ea0a24f2345b68bd490ac09cdeff04be400a3b993145ba5571851efe36d31e",
+      "roundtrip_sha256": "b0de752d1090da4b31bd1df0e095fa409dc2b68bc9580bd748247f7bddfe0afd",
+      "full_bytes_equal": false,
+      "only_newline_difference": true
+    },
+    {
+      "path": "src/Files.App/Views/FilesMotionEvidence.cs",
+      "host_sha256": "adc4d071ad806d9676b015c1dc53bcc7ea87a0b90ebc426295f23baa20d172ac",
+      "roundtrip_sha256": "d534a9661e576a270892940db86c1bb0f17ee70edb2d7a5ff201a045ad97574e",
+      "full_bytes_equal": false,
+      "only_newline_difference": true
+    },
+    {
+      "path": "src/Files.App/Views/FilesMotionPilot.cs",
+      "host_sha256": "d45ebb539c15afb1922c0b6d0a76f38fb26eead1936d2ff0a7efc47521771332",
+      "roundtrip_sha256": "aa0fa19c28bab932ace7dacc37cda0c72113deddd36dbc4e6e5f29050e7270dc",
+      "full_bytes_equal": false,
+      "only_newline_difference": true
+    }
+  ],
+  "host_build_source_unchanged": true
+}

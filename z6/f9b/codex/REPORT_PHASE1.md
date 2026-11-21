@@ -1,0 +1,13 @@
+# F9b.1 PASS: pin, frozen reference and complete API inspection
+
+Attempt20261121T125037Z-fab35294 created a new ignored no-hardlink Files clone at exact v4.3 cbfb4ba54a89632fbceb82ea94ada60a9bae3737. Source PRE/POST clean/equal; original working tree untouched. Five candidate host sourcefile exact Git blobs/SHA are preserved as receipts, no Files source submitted or modified.
+
+All three original readonly F7 cache files matched current main SUMS; ordinary independent copies and cache/copy AFTER hashes remained equal. Pack managed94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2/nativeadd4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d/tokens8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e. No pack/native build or native function execution.
+
+Existing SurfaceDump_Program.cs and original csproj were copied unchanged into a new ignored tool directory. Ordinary Release tool build exited0 under child userSDK10.0.404, reflection-only inspection exited0/CHECKSURFACE fails0. Full dump and full check output are included, not summary-only. Complete byte equality to stage2C reference (Git blob feccd11df481744d2047ed0be4cd8b9ffae5f27d), SHA7b67b77bce6b36dc58cc870a17fe1b5588df3c6e526b39ca5a3e36d5280bc5cc; no normalization or first-line exemption.
+
+Actual public outer frame method is MotionSystem.OnFrame(), not a Tick method. Phase2 will follow this inspected API/T5 pattern: normal outer Rendering pump calls OnFrame; native sink/event callbacks never reenter fm_*. No L1 API change is needed or allowed. Twelve frozen source/API/pack contract files have equal PRE/POST Git blobs and normalized working SHA, including composition a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418, MotionSystem/MotionEtw, fm_capi and pack metadata/project. Existing LOCKED files were read/hash only.
+
+No Files host patch/build, application registration/start, UIA, EventListener/ETW/native execution or system change occurred. The only build was the preexisting reflection inspection tool, not host/pack. F9a manual NON-ORIGINAL homepage evidence remains background; old original/VS failures unchanged. This is F9b input acceptance only, not runtime motion acceptance/adopt/performance/closure.
+
+Original command logs remain ignored; sanitized full logs and exact original/published SHA are in raw/result.json. Child DOTNET_ROOT/PATH and missing AMD64 only, no persistent changes/new flags/install/SDK changes. Phase2 requires primary review/release of this stage; runtime remains separately gated on actual patch/scripts/layout review. F2 independent.

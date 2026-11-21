@@ -1,0 +1,19 @@
+{
+    "mode":  "ValidateOnly",
+    "auth_guard":  true,
+    "COM_compiled":  true,
+    "activation":  "NOT_EXECUTED",
+    "package_query":  "NOT_EXECUTED",
+    "registration":  "NOT_EXECUTED"
+}
+
+{
+    "UIA":  "NOT_EXECUTED",
+    "auth_guard":  true,
+    "processquery":  "NOT_EXECUTED",
+    "screenshot":  "NOT_EXECUTED",
+    "input":  "NOT_EXECUTED",
+    "mode":  "ValidateOnly",
+    "probe_compiled":  true
+}
+
