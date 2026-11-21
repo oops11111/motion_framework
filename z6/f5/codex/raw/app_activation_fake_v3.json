@@ -1,0 +1,9 @@
+{
+  "file": "src/FluentHub/App.xaml.cs",
+  "post_sha256_lf": "6f5e619662c42916c7a355a589a8ca09e8c8f227e1d9d66d4c9f016252f19671",
+  "flag": "--fm-pilot-f5=1",
+  "guard": "Environment.GetCommandLineArgs Length==2 and exact ordinal arg[1]",
+  "scope": "EnvironmentVariableTarget.Process",
+  "previous_v2_defect": "WinUI desktop LaunchActivatedEventArgs.Arguments always empty; fixed per Microsoft API documentation",
+  "source": "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.launchactivatedeventargs.arguments?view=windows-app-sdk-2.0"
+}

@@ -1,0 +1,25 @@
+{
+  "status": "not accepted",
+  "selected_modes": [
+    "OrdinaryFake",
+    "Ordinary"
+  ],
+  "managed_dll_sha256": "b2429ee7c839b2de1ff90ffad871cd0abbe82b0ac9279ee0c760447fc7345d87",
+  "required_gate_mapping": {
+    "B": "OrdinaryFake",
+    "C": "Ordinary",
+    "E": "OrdinaryFake and Ordinary"
+  },
+  "legacy_diagnostic_modes": "Fake/Real are not required gates and are not retried",
+  "runs": [],
+  "error": "FileNotFoundError: [WinError 2] 系统找不到指定的文件。",
+  "removed_exact_package": "49462fluenthub-uwp.FluentHub_0.11.0.0_x64__tq8wa33sfftnm",
+  "remaining_packages": [],
+  "POST": {
+    "AnimationsEnabled": true,
+    "SPI_GETCLIENTAREAANIMATION": true,
+    "MinAnimate": "1",
+    "UserPreferencesMask": "9E3E078012000000"
+  },
+  "settings_unchanged": true
+}

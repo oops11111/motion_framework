@@ -1,0 +1,12 @@
+{
+  "pid": 45404,
+  "hwnd": "0xbc05ee",
+  "message": "0x001A",
+  "wParam": "0x006D",
+  "lParam": 0,
+  "api": "SendMessageTimeoutW, SMTO_ABORTIFHUNG",
+  "return": 1,
+  "last_error": 0,
+  "message_result": 0,
+  "watchdog_only_not_performance_gate": true
+}

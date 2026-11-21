@@ -1,0 +1,65 @@
+{
+  "source_attempt": "m0/out/f5-gui-20261121T050357Z-3935b3c1",
+  "redaction": "UTF-8/LF, machine paths replaced by placeholders; original source manifest is explicitly renamed and applies to originals, not redacted copies",
+  "files": [
+    {
+      "source_file": "authorization.txt",
+      "source_sha256": "000540cc7d8520b98e53adf6f6bdccc6ecef016d78ff0ac0315c59c5030457e9",
+      "delivered_file": "authorization.txt",
+      "delivered_sha256": "000540cc7d8520b98e53adf6f6bdccc6ecef016d78ff0ac0315c59c5030457e9"
+    },
+    {
+      "source_file": "OrdinaryFake-launch-request.json",
+      "source_sha256": "6bbdc698ef61efefb20d1cddba7b4435efe5ee3b2c2a3e8f986cf1c7cabdea82",
+      "delivered_file": "OrdinaryFake-launch-request.json",
+      "delivered_sha256": "6bbdc698ef61efefb20d1cddba7b4435efe5ee3b2c2a3e8f986cf1c7cabdea82"
+    },
+    {
+      "source_file": "OrdinaryFake-package-app-log.txt",
+      "source_sha256": "ac6569c1eb6ec7463c1a111e41c04fa82ec33876a45d29902c8bd5c8307dd0cd",
+      "delivered_file": "OrdinaryFake-package-app-log.txt",
+      "delivered_sha256": "90f655dfef517b1d8450736c0cf35520ef17a41428eda10081654702acfa3e6b"
+    },
+    {
+      "source_file": "OrdinaryFake-state.json",
+      "source_sha256": "011efd439bf98b9bd3ebc3c2640a701278c89f1825c0e2937873d2028e24033a",
+      "delivered_file": "OrdinaryFake-state.json",
+      "delivered_sha256": "4ebff4346f294c22490da21858f20f760c20366d45465c7d5300524554e8381c"
+    },
+    {
+      "source_file": "OrdinaryFake-windows.json",
+      "source_sha256": "76b8b4a419b505c8e553b82615ac37dc593259241251a40a68631034f8b3c525",
+      "delivered_file": "OrdinaryFake-windows.json",
+      "delivered_sha256": "76b8b4a419b505c8e553b82615ac37dc593259241251a40a68631034f8b3c525"
+    },
+    {
+      "source_file": "plan.json",
+      "source_sha256": "ee0b4c8bbbcd47438fd49b3779b6c5ef7b86c6e9e404321ea0f4108cf3ee3c31",
+      "delivered_file": "plan.json",
+      "delivered_sha256": "7fe1b2971857846dd9f92df78e1da2ad5c2e7d8f9b2d39113b88eba1d78d7f7c"
+    },
+    {
+      "source_file": "registered-package.json",
+      "source_sha256": "0dc3c6f949bec2690495bf0eb7a3b6f449145cdd38578f70ea4c144610ed9b1c",
+      "delivered_file": "registered-package.json",
+      "delivered_sha256": "2308136add141c88914390a5e09564eec94157030d5d57668bcae75c7aa94b0f"
+    },
+    {
+      "source_file": "result.json",
+      "source_sha256": "6487b5810e265fccd06c89560786ae723b0f14fed3fdae361adfd40591671aff",
+      "delivered_file": "result.json",
+      "delivered_sha256": "6487b5810e265fccd06c89560786ae723b0f14fed3fdae361adfd40591671aff"
+    },
+    {
+      "source_file": "SHA256SUMS",
+      "source_sha256": "bec235aeae76b1a84f228c42c2317ffff4b75f6aae10f7ef3df0f1f1f2e41ad5",
+      "delivered_file": "source_SHA256SUMS_before_sanitizing.txt",
+      "delivered_sha256": "bec235aeae76b1a84f228c42c2317ffff4b75f6aae10f7ef3df0f1f1f2e41ad5"
+    }
+  ],
+  "supplemental_console": {
+    "file": "driver_console.log",
+    "delivered_sha256": "deab488702007b3aa23fcccd5e21c7c8cd9d036097359f2653271b549961f2ae"
+  },
+  "source_manifest_note": "Original driver SHA snapshot may predate appended cleanup evidence. It validates original unredacted bytes only. Top-level SHA256SUMS validates all delivered redacted files."
+}

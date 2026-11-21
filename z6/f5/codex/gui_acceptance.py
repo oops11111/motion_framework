@@ -85,6 +85,8 @@ class Native:
         self.u.GetAncestor.argtypes = [W.HWND, W.UINT]
         self.u.GetAncestor.restype = W.HWND
         self.u.PostMessageW.argtypes = [W.HWND, W.UINT, W.WPARAM, W.LPARAM]
+        self.u.SendMessageTimeoutW.argtypes = [W.HWND, W.UINT, W.WPARAM, W.LPARAM, W.UINT, W.UINT, C.POINTER(C.c_size_t)]
+        self.u.SendMessageTimeoutW.restype = C.c_ssize_t
         self.enum_proc = C.WINFUNCTYPE(W.BOOL, W.HWND, W.LPARAM)
         self.u.EnumWindows.argtypes = [self.enum_proc, W.LPARAM]
 
@@ -134,6 +136,23 @@ class Native:
             raise C.WinError(C.get_last_error())
         return code.value
 
+    def window_details(self, pid):
+        rows = []
+        self.u.GetWindowTextW.argtypes = [W.HWND, W.LPWSTR, C.c_int]
+        self.u.GetClassNameW.argtypes = [W.HWND, W.LPWSTR, C.c_int]
+        self.u.IsWindowVisible.argtypes = [W.HWND]
+        @self.enum_proc
+        def callback(hwnd, unused):
+            if self.hwnd_pid(hwnd) == pid:
+                title = C.create_unicode_buffer(1024)
+                kind = C.create_unicode_buffer(512)
+                self.u.GetWindowTextW(hwnd, title, len(title))
+                self.u.GetClassNameW(hwnd, kind, len(kind))
+                rows.append({'hwnd': hex(hwnd), 'title': title.value, 'class': kind.value, 'visible': bool(self.u.IsWindowVisible(hwnd))})
+            return True
+        self.u.EnumWindows(callback, 0)
+        return rows
+
 
 def lifecycle(text, real):
     assert sorted(re.findall(r'F5 subscriber attached cycle=(\d+)', text)) == ['1', '2']
@@ -148,13 +167,21 @@ def lifecycle(text, real):
 
 
 def run_host(mode, package, exe, attempt, native):
+    is_fake = mode in ['Fake', 'OrdinaryFake']
+    is_ordinary = mode in ['Ordinary', 'OrdinaryFake']
+    managed_dll = exe.parent / 'FluentHub.dll'
+    managed_dll_sha256 = hashlib.sha256(managed_dll.read_bytes()).hexdigest()
     state = attempt / (mode + '-state.json')
-    log_path = Path(os.environ['LOCALAPPDATA']) / 'Packages' / package['PackageFamilyName'] / 'LocalState' / 'z6_f2_motion.log'
-    prior_stamp = log_path.stat().st_mtime_ns if log_path.exists() else 0
-    if log_path.exists():
-        shutil.copyfile(log_path, attempt / (mode + '-prior-app-log.txt'))
-    if mode == 'Ordinary':
+    candidates = {'package': Path(os.environ['LOCALAPPDATA']) / 'Packages' / package['PackageFamilyName'] / 'LocalState' / 'z6_f2_motion.log', 'TEMP': Path(os.environ['TEMP']) / 'z6_f2_motion.log'}
+    prior_stamps = {name: path.stat().st_mtime_ns if path.exists() else 0 for name, path in candidates.items()}
+    for name, path in candidates.items():
+        if path.exists():
+            shutil.copyfile(path, attempt / (mode + '-prior-' + name + '-app-log.txt'))
+    log_path = None
+    if is_ordinary:
         command = '& ' + literal(HERE / 'ActivateHostNormally.ps1') + ' -AppUserModelId ' + literal(package['PackageFamilyName'] + '!App') + ' -StatePath ' + literal(state)
+        if is_fake:
+            command += ' -ActivationArguments ' + literal('--fm-pilot-f5=1')
     else:
         args = subprocess.list2cmdline(['-NoProfile', '-File', str(HERE / 'LaunchHostInPackage.ps1'), '-ExePath', str(exe), '-Mode', mode, '-StatePath', str(state), '-StdoutPath', str(attempt / (mode + '-stdout.txt')), '-StderrPath', str(attempt / (mode + '-stderr.txt'))])
         command = 'Invoke-CommandInDesktopPackage -PackageFamilyName ' + literal(package['PackageFamilyName']) + ' -AppId App -Command ' + literal(PS) + ' -Args ' + literal(args) + ' -PreventBreakaway'
@@ -164,16 +191,28 @@ def run_host(mode, package, exe, attempt, native):
     try:
         ps(command)
         launched = wait_for(lambda: read_state(state), 'new host process state')
-        if mode != 'Ordinary':
+        if not is_ordinary:
             assert launched['packageFullName'] == package['PackageFullName']
         pid = launched['pid']
         handle = native.open_owned(pid, exe, package['PackageFullName'])
         def read_log():
-            if not log_path.exists() or log_path.stat().st_mtime_ns <= prior_stamp:
+            nonlocal log_path
+            fresh = [path for name, path in candidates.items() if path.exists() and path.stat().st_mtime_ns > prior_stamps[name]]
+            if len(fresh) > 1:
+                raise RuntimeError('Ambiguous new app logs in both known locations')
+            if not fresh:
                 return ''
-            return log_path.read_text(encoding='utf-8-sig', errors='replace')
+            log_path = fresh[0]
+            text = log_path.read_text(encoding='utf-8-sig', errors='replace')
+            if re.search(r'F5 hook installed .*ok=False', text):
+                raise RuntimeError('Real hook installation failed; stop this path')
+            return text
         wait_for(lambda: 'F5 subscriber attached cycle=2' in read_log() and 'F5 subscriber detached cycle=1' in read_log(), 'two RootViews and old subscriber disposal')
-        if mode == 'Fake':
+        windows = native.window_details(pid)
+        write_json(attempt / (mode + '-windows.json'), windows)
+        if is_ordinary:
+            assert any(window['visible'] and window['class'] == 'WinUIDesktopWin32WindowClass' for window in windows), 'Ordinary app is not visibly rendering'
+        if is_fake:
             event = native.k.OpenEventW(2, False, 'Local\\FM_PILOT_F5_TOGGLE')
             if not event:
                 raise C.WinError(C.get_last_error())
@@ -197,18 +236,24 @@ def run_host(mode, package, exe, attempt, native):
             hwnd = int(hooks[0], 16)
             assert native.hwnd_pid(hwnd) == pid and native.u.GetAncestor(hwnd, 2) == hwnd
             before = len(re.findall(r'F5 SetReducedMotion\([^)]*\) source=wm', read_log()))
-            if not native.u.PostMessageW(hwnd, 0x001A, 0x006D, 0):
-                raise C.WinError(C.get_last_error())
+            message_result = C.c_size_t()
+            C.set_last_error(0)
+            delivered = native.u.SendMessageTimeoutW(hwnd, 0x001A, 0x006D, 0, 0x0002, 2000, C.byref(message_result))
+            last_error = C.get_last_error()
+            write_json(attempt / (mode + '-message-injection.json'), {'pid': pid, 'hwnd': hex(hwnd), 'message': '0x001A', 'wParam': '0x006D', 'lParam': 0, 'api': 'SendMessageTimeoutW, SMTO_ABORTIFHUNG', 'return': delivered, 'last_error': last_error, 'message_result': message_result.value, 'watchdog_only_not_performance_gate': True})
+            if not delivered:
+                raise C.WinError(last_error)
             wait_for(lambda: 'F5 WM_SETTINGCHANGE wParam=0x6D ' in read_log() and re.search(r'F5 reread unchanged animationsEnabled=(True|False) source=wm', read_log()), 'arbitrary wParam injection and unchanged reread')
             assert len(re.findall(r'F5 SetReducedMotion\([^)]*\) source=wm', read_log())) == before
         exit_code = native.close_owned(handle, pid)
         wait_for(lambda: 'F5 source disposed ' in read_log() and 'F5 subscriber detached cycle=2' in read_log(), 'shutdown log flush', 5)
         text = log_path.read_text(encoding='utf-8-sig')
         (attempt / (mode + '-app-log.txt')).write_text(text, encoding='utf-8', newline='\n')
-        lifecycle(text, real=mode != 'Fake')
+        lifecycle(text, real=not is_fake)
         assert exit_code == 0, exit_code
-        launch = 'ordinary Windows.Launch activation, AO_NOERRORUI' if mode == 'Ordinary' else 'package-context diagnostic, not ordinary shell activation'
-        return {'mode': mode, 'pid': pid, 'exe_sha256': hashlib.sha256(exe.read_bytes()).hexdigest(), 'packageFullName': package['PackageFullName'], 'launch': launch, 'exit_code': exit_code, 'lifecycle': 'two subscribers, one source, clean exit', 'gate': 'PASS (dev-only)'}
+        launch = 'ordinary Windows.Launch activation, AO_NOERRORUI' if is_ordinary else 'package-context diagnostic, not ordinary shell activation'
+        assert hashlib.sha256(managed_dll.read_bytes()).hexdigest() == managed_dll_sha256, 'Managed host changed during test'
+        return {'mode': mode, 'pid': pid, 'exe_sha256': hashlib.sha256(exe.read_bytes()).hexdigest(), 'managed_dll_sha256': managed_dll_sha256, 'packageFullName': package['PackageFullName'], 'launch': launch, 'activation_arguments': '--fm-pilot-f5=1' if mode == 'OrdinaryFake' else '', 'log_path': str(log_path), 'windows': windows, 'exit_code': exit_code, 'lifecycle': 'two subscribers, one source, clean exit', 'gate': 'PASS (dev-only)'}
     finally:
         if pid is None:
             observed = read_state(state)
@@ -224,8 +269,9 @@ def run_host(mode, package, exe, attempt, native):
             if handle:
                 native.k.CloseHandle(handle)
             # Preserve failed startup/ownership/validation logs as well as passing logs.
-            if log_path.exists() and log_path.stat().st_mtime_ns > prior_stamp:
-                shutil.copyfile(log_path, attempt / (mode + '-app-log.txt'))
+            for name, path in candidates.items():
+                if path.exists() and path.stat().st_mtime_ns > prior_stamps[name]:
+                    shutil.copyfile(path, attempt / (mode + '-' + name + '-app-log.txt'))
 
 
 def main():
@@ -235,6 +281,7 @@ def main():
     mode.add_argument('--execute', action='store_true')
     mode.add_argument('--dry-run', action='store_true')
     parser.add_argument('--authorization-file', type=Path)
+    parser.add_argument('--launch-modes', choices=['Fake', 'Real', 'Ordinary', 'OrdinaryFake'], nargs='+', default=['OrdinaryFake', 'Ordinary'])
     args = parser.parse_args()
     manifest = args.manifest.resolve()
     allowed = (ROOT / 'm0/out/f5-fluenthub').resolve()
@@ -251,7 +298,8 @@ def main():
     assert exe.is_file()
     attempt = ROOT / 'm0/out' / ('f5-gui-' + datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ-') + uuid.uuid4().hex[:8])
     attempt.mkdir()
-    plan = {'mode': 'execute' if args.execute else 'read-only dry-run', 'identity': identity, 'manifest': str(manifest), 'manifest_sha256': hashlib.sha256(manifest.read_bytes()).hexdigest(), 'exe_sha256': hashlib.sha256(exe.read_bytes()).hexdigest(), 'PRE': pre, 'register': 'Add-AppxPackage -Register ' + literal(manifest), 'launch': 'Fake and Real package-context diagnostics with child-only environment, then Ordinary Real Windows.Launch activation', 'cleanup': 'Remove-AppxPackage -Package <exact newly registered FullName>; never framework/runtime packages', 'limits': 'Package-context diagnostic token differs from ordinary activation; results separate. No OS settings writes, tasks or elevation'}
+    launch_descriptions = {'OrdinaryFake': 'ordinary Windows.Launch with exact --fm-pilot-f5=1, process-only Fake environment', 'Ordinary': 'ordinary Windows.Launch with no Fake argument, real source', 'Fake': 'legacy package-context Fake diagnostic (not retried)', 'Real': 'legacy package-context Real diagnostic (not required)'}
+    plan = {'mode': 'execute' if args.execute else 'read-only dry-run', 'selected_modes': args.launch_modes, 'identity': identity, 'manifest': str(manifest), 'manifest_sha256': hashlib.sha256(manifest.read_bytes()).hexdigest(), 'exe_sha256': hashlib.sha256(exe.read_bytes()).hexdigest(), 'managed_dll_sha256': hashlib.sha256((exe.parent / 'FluentHub.dll').read_bytes()).hexdigest(), 'PRE': pre, 'register': 'Add-AppxPackage -Register ' + literal(manifest), 'launch': [launch_descriptions[mode] for mode in args.launch_modes], 'cleanup': 'Remove-AppxPackage -Package <exact newly registered FullName>; never framework/runtime packages', 'limits': 'Package-context diagnostic token differs from ordinary activation; results separate. No OS settings writes, tasks or elevation'}
     write_json(attempt / 'plan.json', plan)
     print(json.dumps(plan, ensure_ascii=True), flush=True)
     if not args.execute:
@@ -267,14 +315,15 @@ def main():
     # This record is evidence, not permission by itself: the operator must verify the actual current user reply.
     shutil.copyfile(args.authorization_file, attempt / 'authorization.txt')
     created = None
-    result = {'status': 'not accepted', 'runs': []}
+    result = {'status': 'not accepted', 'selected_modes': args.launch_modes, 'managed_dll_sha256': plan['managed_dll_sha256'], 'required_gate_mapping': {'B': 'OrdinaryFake', 'C': 'Ordinary', 'E': 'OrdinaryFake and Ordinary'}, 'legacy_diagnostic_modes': 'Fake/Real are not required gates and are not retried', 'runs': []}
     native = Native()
-    existing_event = native.k.OpenEventW(0x100000, False, 'Local\\FM_PILOT_F5_TOGGLE')
-    if existing_event:
-        native.k.CloseHandle(existing_event)
-        raise RuntimeError('Existing Fake toggle event; do not signal another test session')
-    if C.get_last_error() != 2:
-        raise RuntimeError('Cannot establish absence of the Fake toggle event')
+    if any(mode in ['Fake', 'OrdinaryFake'] for mode in args.launch_modes):
+        existing_event = native.k.OpenEventW(0x100000, False, 'Local\\FM_PILOT_F5_TOGGLE')
+        if existing_event:
+            native.k.CloseHandle(existing_event)
+            raise RuntimeError('Existing Fake toggle event; do not signal another test session')
+        if C.get_last_error() != 2:
+            raise RuntimeError('Cannot establish absence of the Fake toggle event')
     try:
         ps('Add-AppxPackage -Register ' + literal(manifest))
         matches = packages()
@@ -285,13 +334,14 @@ def main():
         assert Path(package['InstallLocation']).resolve() == manifest.parent
         created = package['PackageFullName']
         write_json(attempt / 'registered-package.json', package)
-        for mode in ['Fake', 'Real', 'Ordinary']:
+        for mode in args.launch_modes:
             before = snapshot()
             result['runs'].append(run_host(mode, package, exe, attempt, native))
             after = snapshot()
             write_json(attempt / (mode + '-settings.json'), {'PRE': before, 'POST': after})
             assert before == pre == after, 'OS settings changed externally or unexpectedly'
-        result['status'] = 'PASS (dev-only); Fake diagnostic B plus Real diagnostic and ordinary activation C/E'
+        complete = {'OrdinaryFake', 'Ordinary'}.issubset(args.launch_modes)
+        result['status'] = 'PASS (dev-only) B/C/E via ordinary activation' if complete else 'PASS (dev-only) for selected modes only; missing required gates not accepted'
     except Exception as error:
         result['error'] = type(error).__name__ + ': ' + str(error)
         raise

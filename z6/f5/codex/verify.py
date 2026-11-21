@@ -13,7 +13,7 @@ import tempfile
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 BASE = "e4cd696c10ad3d9a948c5650295be7fbbbc301cc"
-PATCH = HERE / "fluenthub_f5_window_source.patch"
+PATCH = HERE / "fluenthub_f5_window_source_v3.patch"
 
 
 def git(*args):

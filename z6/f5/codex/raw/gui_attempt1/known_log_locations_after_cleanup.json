@@ -1,0 +1,12 @@
+[
+  {
+    "location": "package",
+    "path": "%USERPROFILE%\\AppData\\Local\\Packages\\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\\LocalState\\z6_f2_motion.log",
+    "exists": false
+  },
+  {
+    "location": "TEMP",
+    "path": "%USERPROFILE%\\AppData\\Local\\Temp\\z6_f2_motion.log",
+    "exists": false
+  }
+]

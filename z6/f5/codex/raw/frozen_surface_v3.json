@@ -1,0 +1,12 @@
+{
+  "stage_base": "e4cd696c10ad3d9a948c5650295be7fbbbc301cc",
+  "composition_blob": "fd0603c17136c067e89c71e56aef310f2f7e63f4",
+  "composition_sha256_LF": "a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418",
+  "protected_diff": [],
+  "original_sidefork_unchanged": {
+    "MainWindow.cs": true,
+    "NavMotionPilot.cs": true,
+    "RootView.xaml.cs": true,
+    "App.xaml.cs_LF": true
+  }
+}
