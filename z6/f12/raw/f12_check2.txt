@@ -1,0 +1,30 @@
+time=2026-11-18 06:58:50 +08:00
+parent=d3c169bf1078d3be1e6c01a46a4b2e5bc0471fb3
+title_line_end_index=69
+insert_len=169
+insert_sha256=33850e82e35ab936e746127df46af5567f453795e7e4fa9be5a43969332ec5f3
+old_blob=6eb86d52b9f1a9e2ec4278be988513bf0d902e6d
+old_len=32628
+new_blob=7ad3e88664da3cea6ed686128d2e5fd2a7f330bc
+new_len=32797
+new_sha256=1d7843e77d64bd4990a0c2bfd73c9e318048d7a2d59e44439149bc4f38bfda37
+splice_identical=True
+new_cr_bytes=0
+numstat_vs_parent=1	0	docs/z5_closed.md
+minus_lines_vs_parent=0
+numstat_vs_base=11	0	docs/z5_closed.md
+minus_lines_vs_base=0
+composition_pre=fd0603c17136c067e89c71e56aef310f2f7e63f4 a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+composition_post=fd0603c17136c067e89c71e56aef310f2f7e63f4 a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418
+--- git diff --cached parent -- docs/z5_closed.md ---
+diff --git a/docs/z5_closed.md b/docs/z5_closed.md
+index 6eb86d5..7ad3e88 100644
+--- a/docs/z5_closed.md
++++ b/docs/z5_closed.md
+@@ -1,4 +1,5 @@
+ # Z5 结题（定稿 · 待落盘为 docs/z5_closed.md · 未 LOCK）
++> 合入状态（2026-11-18 AWST，Z6 F12 补记）：已经 PR #9 合入 main `7e2feb0e`，见文末「11. 合入记录」。本文其余文字保持结题时原样。
+ 
+ - **STATUS**：定稿（待落盘）。只表示 Z5 本轮执行已复核完毕，**不是** LOCK，**不是** adopt，**不合 main**。
+ - **起草**：notion ai，2026-11-18 02:10 AWST（Australia/Perth，UTC+8）；02:20 AWST 更新第 6、7 节（授权链核实）；02:45 AWST 并入 Gemini cli 对照复核，并修正判定和措辞（第 7 节）；06:10 AWST 定稿：核实 C1/C2 已推送，新增第 9 节「已知限制」、第 10 节「本地副作用（清理后）」，授权链补 06:03 四句。
+

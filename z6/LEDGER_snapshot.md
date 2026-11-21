@@ -37,3 +37,20 @@
 - 2026-11-21 15:13 AWST: imported pinned F1 5ec13f459a7926012407b10cf263127e5a74ab73; incoming exact ledger is archived at integration/tests/source_ledgers/f1-5ec13f459a7926012407b10cf263127e5a74ab73.md. Native F1/F3 blocks merged without test conflict; historical GUI C evidence imported only, not newly judged.
 
 - 2026-11-21 15:24:53 +0800: Stage 2A fresh local integration PASS(dev-only): native 45/0 Debug+Release; complete net8 devsmoke PASS both; both full surfaces equal original baseline. No GUI rerun, timing, production/schema change or new build override. Evidence: integration/tests/REPORT.md; primary review and exact-head CI required before main merge.
+
+
+## Stage 2A accepted on main (append-only integration record)
+
+PR #11 merged as 4e128e735edf788da0b9fa9e11f0d5e2511e5585; tested head 7f13ef46e31f51b59908f4457590c33aebb068bb. Head push 44880416531 and PR 44880461075 all applicable checks success. Postmerge main run 44880677014 policy/Debug/Release all success. Primary accepted deterministic native/C# integration; original reports remain unchanged.
+
+## Stage 2B documentation integration (implementing)
+
+Original source verdicts retained. Canonical docs and reports/raw imported exact; source ledger snapshots under z6/integration/docs/source_ledgers. F8 remains DRAFT; no approval, lock, probe, or closure issued.
+
+- F12: ordinary source merge 876b73ac752338fab09b225e227cfde77c1c0c63; exact ledger snapshot preserved.
+
+- F4: ordinary source merge 5fa5f856bc54632becbc365bb2453a71af4b0c29; exact ledger snapshot preserved.
+
+- F8a: ordinary source merge c640972a4858c6cb72dbc5060a601c4f040c0e2f; exact ledger snapshot preserved.
+
+- F8b: ordinary source merge fe2373b523c6fe2a70598af0bf37b8a028a70d63; exact ledger snapshot preserved.

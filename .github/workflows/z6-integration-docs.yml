@@ -1,0 +1,30 @@
+name: Z6 stage documentation import
+
+on:
+  push:
+    branches: [codex/z6-integration-docs]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/z5_closed.md'
+      - 'docs/z6_aot_host_guide.md'
+      - 'docs/z6_f8*_gate_DRAFT.md'
+      - 'z6/integration/docs/**'
+      - '.github/workflows/z6-integration-docs.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  documentation-import:
+    if: github.head_ref == 'codex/z6-integration-docs' || github.ref == 'refs/heads/codex/z6-integration-docs'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate exact imports, ledger prefix, local links and DRAFT boundary
+        run: python z6/integration/docs/verify.py

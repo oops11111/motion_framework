@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "base": "4e128e735edf788da0b9fa9e11f0d5e2511e5585",
+  "imported_files": 23,
+  "exact_ledger_archives": 5,
+  "base_ledger_prefix": "unchanged",
+  "local_links": [
+    {
+      "document": "docs/z6_aot_host_guide.md",
+      "target": "../pilot/fluenthub/BASELINE.md"
+    },
+    {
+      "document": "docs/z6_aot_host_guide.md",
+      "target": "../pilot/fluenthub/z5_t5_motion_run1_etw_off.log"
+    },
+    {
+      "document": "docs/z6_aot_host_guide.md",
+      "target": "../pilot/fluenthub/z5_t5_motion_run2.log"
+    },
+    {
+      "document": "docs/z6_aot_host_guide.md",
+      "target": "../pilot/fluenthub/T5_REPORT.md"
+    },
+    {
+      "document": "docs/z6_aot_host_guide.md",
+      "target": "../pilot/fluenthub/fluenthub_t5_side_fork.patch"
+    },
+    {
+      "document": "docs/z6_aot_host_guide.md",
+      "target": "z5_closed.md"
+    }
+  ],
+  "f8": "exact DRAFT imports; approvals blank; no lock/probe issued",
+  "production_test_and_stage2a_changes": 0,
+  "manifest_sealed": false,
+  "manifest_files": 0,
+  "limitations": "Documentation integration only; no new GUI/performance run or original ticket re-adjudication"
+}
