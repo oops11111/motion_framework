@@ -1,0 +1,10 @@
+{
+  "user_verbatim": "批准 F9a 仅本票增加 -p:RestorePackagesConfig=true，按原版本还原并构建，标记“非原样”。",
+  "source": "Direct user message in current root conversation, already recorded in packagesconfig-codex/AUTHORIZATION.json",
+  "message_id": "unavailable",
+  "recorded_utc": "2026-11-21 10:27:54 UTC",
+  "recorded_awst": "2026-11-21 18:27:54 AWST",
+  "recording_not_send_time": true,
+  "gate_A": "Same-ticket isolated NON-ORIGINAL preparation after primary instruction",
+  "gate_B": "NOT AUTHORIZED; separate direct user FilesDev deployment/startup/cleanup grant required"
+}
