@@ -1,0 +1,171 @@
+生成开始于 19:34...
+1>------ 已启动生成: 项目: Files.App.SaveDialog, 配置: Debug x64 ------
+2>------ 已启动生成: 项目: Files.App.OpenDialog, 配置: Debug x64 ------
+3>------ 已启动生成: 项目: Files.App.BackgroundTasks, 配置: Debug x64 ------
+4>------ 已启动生成: 项目: Files.Shared, 配置: Debug x64 ------
+5>------ 已启动生成: 项目: Files.Core.Storage, 配置: Debug x64 ------
+6>------ 已启动生成: 项目: Files.Core.SourceGenerator, 配置: Debug Any CPU ------
+3>  Files.App.BackgroundTasks -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.BackgroundTasks\bin\x64\Debug\net10.0-windows10.0.26100.0\Files.App.BackgroundTasks.dll
+6>  Files.Core.SourceGenerator -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.Core.SourceGenerator\bin\Debug\netstandard2.0\Files.Core.SourceGenerator.dll
+4>  Files.Shared -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.Shared\bin\x64\Debug\net10.0\Files.Shared.dll
+7>------ 已启动生成: 项目: Files.App.Controls, 配置: Debug x64 ------
+8>------ 已启动生成: 项目: Files.App.CsWin32, 配置: Debug x64 ------
+5>  Files.Core.Storage -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.Core.Storage\bin\x64\Debug\net10.0\Files.Core.Storage.dll
+8>  Files.App.CsWin32 -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.CsWin32\bin\x64\Debug\net10.0-windows10.0.26100.0\Files.App.CsWin32.dll
+2>  CustomOpenDialog.cpp
+2>  FilesOpenDialog.cpp
+2>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.OpenDialog\FilesOpenDialog.h(31,9): warning C4584: “CFilesOpenDialog”: 基类“IFileDialog”已是“IFileDialog2”的基类
+2>  (编译源文件“/FilesOpenDialog.cpp”)
+2>      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\shobjidl_core.h(19686,5):
+2>      参见“IFileDialog”的声明
+2>      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\shobjidl.h(5231,5):
+2>      参见“IFileDialog2”的声明
+2>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.OpenDialog\FilesOpenDialog.h(31,9): warning C4584: “CFilesOpenDialog”: 基类“IFileDialog”已是“IFileOpenDialog”的基类
+2>  (编译源文件“/FilesOpenDialog.cpp”)
+2>      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\shobjidl_core.h(19686,5):
+2>      参见“IFileDialog”的声明
+2>      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\shobjidl_core.h(20359,5):
+2>      参见“IFileOpenDialog”的声明
+2>  正在生成代码...
+2>  CustomOpenDialog_i.c
+2>  dllmain.cpp
+2>  Files.App.OpenDialog.vcxproj -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\artifacts\Debug\x64\Files.App.OpenDialog\Files.App.OpenDialog64.dll
+2>  %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.OpenDialog\..\..\artifacts\Debug\x64\Files.App.OpenDialog\Files.App.OpenDialog64.dll
+2>  复制了 1 个文件
+已用时间: 00:00:02.5123393
+========== 已完成 ==========
+
+
+9>------ 已启动生成: 项目: Files.App.Storage, 配置: Debug x64 ------
+10>------ 已启动生成: 项目: Files.App.Server, 配置: Debug x64 ------
+9>  Files.App.Storage -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.Storage\bin\x64\Debug\net10.0-windows10.0.26100.0\Files.App.Storage.dll
+10>  Files.App.Server -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.Server\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\Files.App.Server.dll
+7>  Files.App.Controls -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.Controls\bin\x64\Debug\net10.0-windows10.0.26100.0\Files.App.Controls.dll
+1>  CustomSaveDialog.cpp
+1>  FilesSaveDialog.cpp
+1>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.SaveDialog\FilesSaveDialog.h(29,9): warning C4584: “CFilesSaveDialog”: 基类“IFileDialog”已是“IFileDialog2”的基类
+1>  (编译源文件“/FilesSaveDialog.cpp”)
+1>      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\shobjidl_core.h(19686,5):
+1>      参见“IFileDialog”的声明
+1>      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\shobjidl.h(5231,5):
+1>      参见“IFileDialog2”的声明
+1>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.SaveDialog\FilesSaveDialog.h(29,9): warning C4584: “CFilesSaveDialog”: 基类“IFileDialog”已是“IFileSaveDialog”的基类
+1>  (编译源文件“/FilesSaveDialog.cpp”)
+1>      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\shobjidl_core.h(19686,5):
+1>      参见“IFileDialog”的声明
+1>      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\shobjidl_core.h(20026,5):
+1>      参见“IFileSaveDialog”的声明
+1>  正在生成代码...
+1>  CustomSaveDialog_i.c
+1>  dllmain.cpp
+1>  Files.App.SaveDialog.vcxproj -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\artifacts\Debug\x64\Files.App.SaveDialog\Files.App.SaveDialog64.dll
+1>  %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App.SaveDialog\..\..\artifacts\Debug\x64\Files.App.SaveDialog\Files.App.SaveDialog64.dll
+1>  复制了 1 个文件
+11>------ 已启动生成: 项目: Files.App, 配置: Debug x64 ------
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\Menus\FileTagsContextMenu.cs(9,14,9,48): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\Settings\GeneralViewModel.cs(7,14,7,48): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(1162,53,1162,80): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(68,31,68,58): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(72,33,72,60): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Data\Contracts\IStorageTrashBinService.cs(14,3,14,20): warning CS0612: “RecycleBinWatcher”已过时
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Services\Storage\StorageTrashBinService.cs(19,10,19,27): warning CS0612: “RecycleBinWatcher”已过时
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1048,21,1048,77): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1454,34,1454,90): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1739,51,1739,107): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(3887,144,3887,200): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5137,85,5137,141): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5138,161,5138,217): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Views\Shells\ModernShellPage.xaml.cs(50,4,50,43): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\Dialogs\FileSystemDialog\FileSystemDialogViewModel.cs(259,30,259,94): warning CS0618: “IImageService.GetImageModelFromPathAsync(string, uint)”已过时:“Use GetIconAsync() instead.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Views\Shells\ModernShellPage.xaml.cs(363,4,363,43): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\Dialogs\AddItemDialog\AddItemDialogViewModel.cs(81,25,81,79): warning CS0618: “IImageService.GetImageModelFromDataAsync(byte[]?)”已过时:“Use GetIconAsync() instead.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\Dialogs\CompressSkippedItemsDialogViewModel.cs(30,28,30,89): warning CS0618: “IImageService.GetImageModelFromPathAsync(string, uint)”已过时:“Use GetIconAsync() instead.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(668,4,668,26): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Views\Shells\BaseShellPage.cs(461,10,461,118): warning CS0618: “NavigationToolbarViewModel.CheckPathInputAsync(string, string?, IShellPage)”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Views\Shells\BaseShellPage.cs(823,5,823,44): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Helpers\Application\AppLifecycleHelper.cs(357,37,357,63): warning CS0618: “NativeStorageLegacyService”已过时:“Use the new WindowsStorable”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(1115,32,1115,59): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(1127,34,1127,61): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(1141,23,1141,50): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(1166,28,1166,55): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Data\Contracts\ImagingService.cs(32,15,32,139): warning CS0612: “FileThumbnailHelper.LoadIconFromPathAsync(string, uint, ThumbnailMode, ThumbnailOptions, bool)”已过时
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Helpers\Navigation\NavigationHelpers.cs(853,5,853,63): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\Menus\FileTagsContextMenu.cs(78,13,78,29): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Views\Layouts\BaseLayoutPage.cs(566,5,566,60): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\NavigationToolbar.xaml.cs(203,29,203,56): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\NavigationToolbar.xaml.cs(555,4,555,46): warning CS0618: “NavigationToolbarViewModel.PathBoxItem_DragLeave(object, DragEventArgs)”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\NavigationToolbar.xaml.cs(562,10,562,51): warning CS0618: “NavigationToolbarViewModel.PathBoxItem_DragOver(object, DragEventArgs)”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\NavigationToolbar.xaml.cs(569,10,569,47): warning CS0618: “NavigationToolbarViewModel.PathBoxItem_Drop(object, DragEventArgs)”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(3035,37,3035,102): warning CS0618: “NavigationToolbarViewModel.CurrentPathSetTextBox_TextChanged(object, TextChangedEventArgs)”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1299,62,1299,118): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1431,69,1431,125): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(3441,70,3441,96): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1659,25,1659,81): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1659,98,1659,154): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(4688,82,4688,108): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(4835,90,4835,116): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5113,85,5113,141): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5113,219,5113,275): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5133,85,5133,141): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5133,219,5133,275): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Services\SizeProvider\NoSizeProvider.cs(8,52,8,63): warning CS0067: 从不使用事件“NoSizeProvider.SizeChanged”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\Widgets\FileTagsWidgetViewModel.cs(31,73,31,99): warning CS0067: 从不使用事件“FileTagsWidgetViewModel.SelectedTaggedItemsChanged”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\Menus\FileTagsContextMenu.cs(9,14,9,48): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\Settings\GeneralViewModel.cs(7,14,7,48): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(1162,53,1162,80): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(68,31,68,58): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(72,33,72,60): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Data\Contracts\IStorageTrashBinService.cs(14,3,14,20): warning CS0612: “RecycleBinWatcher”已过时
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Services\Storage\StorageTrashBinService.cs(19,10,19,27): warning CS0612: “RecycleBinWatcher”已过时
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1048,21,1048,77): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1454,34,1454,90): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1739,51,1739,107): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(3887,144,3887,200): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5137,85,5137,141): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5138,161,5138,217): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Views\Shells\ModernShellPage.xaml.cs(50,4,50,43): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Views\Shells\ModernShellPage.xaml.cs(363,4,363,43): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Helpers\Application\AppLifecycleHelper.cs(357,37,357,63): warning CS0618: “NativeStorageLegacyService”已过时:“Use the new WindowsStorable”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\XamlTypeInfo.g.cs(1157,96,1157,138): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\XamlTypeInfo.g.cs(1158,38,1158,80): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Views\Shells\BaseShellPage.cs(461,10,461,118): warning CS0618: “NavigationToolbarViewModel.CheckPathInputAsync(string, string?, IShellPage)”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Views\Shells\BaseShellPage.cs(823,5,823,44): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\XamlTypeInfo.g.cs(1852,208,1852,250): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\XamlTypeInfo.g.cs(1853,156,1853,198): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\XamlTypeInfo.g.cs(2117,78,2117,120): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\XamlTypeInfo.g.cs(2118,28,2118,70): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Data\Contracts\ImagingService.cs(32,15,32,139): warning CS0612: “FileThumbnailHelper.LoadIconFromPathAsync(string, uint, ThumbnailMode, ThumbnailOptions, bool)”已过时
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\Dialogs\FileSystemDialog\FileSystemDialogViewModel.cs(259,30,259,94): warning CS0618: “IImageService.GetImageModelFromPathAsync(string, uint)”已过时:“Use GetIconAsync() instead.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\Dialogs\CompressSkippedItemsDialogViewModel.cs(30,28,30,89): warning CS0618: “IImageService.GetImageModelFromPathAsync(string, uint)”已过时:“Use GetIconAsync() instead.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\Dialogs\AddItemDialog\AddItemDialogViewModel.cs(81,25,81,79): warning CS0618: “IImageService.GetImageModelFromDataAsync(byte[]?)”已过时:“Use GetIconAsync() instead.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Views\Layouts\BaseLayoutPage.cs(566,5,566,60): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Helpers\Navigation\NavigationHelpers.cs(853,5,853,63): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\Menus\FileTagsContextMenu.cs(78,13,78,29): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(668,4,668,26): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\NavigationToolbar.xaml.cs(203,29,203,56): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(1115,32,1115,59): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(1127,34,1127,61): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(1141,23,1141,50): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\NavigationToolbarViewModel.cs(1166,28,1166,55): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\NavigationToolbar.xaml.cs(555,4,555,46): warning CS0618: “NavigationToolbarViewModel.PathBoxItem_DragLeave(object, DragEventArgs)”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\NavigationToolbar.xaml.cs(562,10,562,51): warning CS0618: “NavigationToolbarViewModel.PathBoxItem_DragOver(object, DragEventArgs)”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\UserControls\NavigationToolbar.xaml.cs(569,10,569,47): warning CS0618: “NavigationToolbarViewModel.PathBoxItem_Drop(object, DragEventArgs)”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1299,62,1299,118): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1431,69,1431,125): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1659,25,1659,81): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(1659,98,1659,154): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(3035,37,3035,102): warning CS0618: “NavigationToolbarViewModel.CurrentPathSetTextBox_TextChanged(object, TextChangedEventArgs)”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(3441,70,3441,96): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\XamlTypeInfo.g.cs(13347,100,13347,142): warning CS0618: “MenuFlyoutHelper”已过时:“Must not use this helper to generate menu flyout any longer.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(4688,82,4688,108): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(4835,90,4835,116): warning CS0618: “NavigationToolbarViewModel.PathControlDisplayText”已过时:“Superseded by Omnibar.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5113,85,5113,141): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5113,219,5113,275): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5133,85,5133,141): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\NavigationToolbar.g.cs(5133,219,5133,275): warning CS0618: “NavigationBarSuggestionItem”已过时:“Remove once Omnibar goes out of experimental.”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\Services\SizeProvider\NoSizeProvider.cs(8,52,8,63): warning CS0067: 从不使用事件“NoSizeProvider.SizeChanged”
+11>%WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\ViewModels\UserControls\Widgets\FileTagsWidgetViewModel.cs(31,73,31,99): warning CS0067: 从不使用事件“FileTagsWidgetViewModel.SelectedTaggedItemsChanged”
+11>  Files.App -> %WORKSPACE%\m0\out\f9a-vsdeploy-preparation-20261121T105022Z-ff07d274-gateA\source\src\Files.App\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\Files.dll
+========== 生成: 11 成功，0 失败，3 最新，0 已跳过 ==========
+========== 生成 于 19:37 完成，耗时 02:58.184 分钟 ==========
+

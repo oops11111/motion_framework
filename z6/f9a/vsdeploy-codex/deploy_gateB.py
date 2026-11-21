@@ -68,7 +68,7 @@ def execute(args,binding,source,entry):
         result["runtime_PRE"]=frameworks()
         assert any(r["Architecture"]==9 and r["Status"]==0 and tuple(map(int,r["Version"].split(".")))>=(2,5,1,0) and r["Publisher"].startswith("CN=Microsoft Corporation,") for r in result["runtime_PRE"]),"Runtime prerequisite changed"
         assert not ps("@(Get-Process devenv -ErrorAction SilentlyContinue|Select Id)|ConvertTo-Json"),"Existing VS: STOP"
-        signature=ps("Get-AuthenticodeSignature -LiteralPath "+literal(entry)+"|Select @{n='status';e={$_.Status.ToString()}},@{n='signer';e={$_.SignerCertificate.Subject}}|ConvertTo-Json")
+        signature=ps("Import-Module (Join-Path $PSHOME 'Modules/Microsoft.PowerShell.Security/Microsoft.PowerShell.Security.psd1') -ErrorAction Stop; Get-AuthenticodeSignature -LiteralPath "+literal(entry)+"|Select @{n='status';e={$_.Status.ToString()}},@{n='signer';e={$_.SignerCertificate.Subject}}|ConvertTo-Json")
         assert signature["status"]=="Valid" and "CN=Microsoft Corporation" in signature["signer"]
         result["state_PRE"]=association_state();all_pre=record_all("PRE")
         env=os.environ.copy();env["DOTNET_ROOT"]=str(Path(os.environ["USERPROFILE"])/".dotnet");env["PATH"]=env["DOTNET_ROOT"]+os.pathsep+env["PATH"]
@@ -140,10 +140,11 @@ def execute(args,binding,source,entry):
             if all_pre is not None:result["other_package_delta_final"]=delta(all_pre,all_post)
             result["cleanup_complete"]=bool(owned and result.get("removed_exact_fullname")==owned["PackageFullName"] and not result["POST"] and not result.get("cleanup_error") and not result.get("cleanup_stop"))
             before=normalized_state(result["state_PRE"]) if "state_PRE" in result else None;after=normalized_state(result["state_POST"])
-            result["state_changed"]=before!=after
+            result["state_changed"]=before!=after if before is not None else None
+            result["state_comparison_available"]=before is not None
             if result["state_changed"]:result["state_delta"]={"before":before,"after":after,"action":"STOP; no automatic repair"}
             source_ok=result["source_POST"]["head"]==binding["source_pin"] and not result["source_POST"]["status"] and not result["source_POST"]["tracked_diff"]
-            complete=not result.get("error") and result["cleanup_complete"] and result.get("normal_close_exit")==0 and source_ok and not result["state_changed"] and not any(result.get("other_package_delta_final",{}).values())
+            complete=not result.get("error") and result["cleanup_complete"] and result.get("normal_close_exit")==0 and source_ok and result["state_comparison_available"] and not result["state_changed"] and not any(result.get("other_package_delta_final",{}).values())
             result["status"]="PASS (B ordinary first-window and exact cleanup)" if complete else "STOP (B incomplete; inspect actual residue/error)"
         except Exception as exc:result["post_or_cleanup_evidence_error"]=str(exc);result["status"]="STOP (cleanup/state unknown; report retained identity)"
         finally:

@@ -1,0 +1,151 @@
+{
+  "status": "STOP (B incomplete; inspect actual residue/error)",
+  "attempt": "%WORKSPACE%\\m0\\out\\f9a-gateB-20261121T113315Z-0fb08da8",
+  "cleanup_complete": false,
+  "source_PRE": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": "",
+    "tracked_diff": ""
+  },
+  "PRE": [],
+  "runtime_PRE": [
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.5.1.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.6.5.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 0,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    }
+  ],
+  "error": "Get-AuthenticodeSignature : The 'Get-AuthenticodeSignature' command was found in the module 'Microsoft.PowerShell.Secur\r\nity', but the module could not be loaded. For more information, run 'Import-Module Microsoft.PowerShell.Security'.\r\nAt line:1 char:31\r\n+ $ErrorActionPreference='Stop';Get-AuthenticodeSignature -LiteralPath  ...\r\n+                               ~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (Get-AuthenticodeSignature:String) [], ParentContainsErrorRecordExceptio \r\n   n\r\n    + FullyQualifiedErrorId : CouldNotAutoloadMatchingModule\r\n \r\n",
+  "POST": [],
+  "state_POST": {
+    "protocol": null,
+    "associations": [
+      {
+        "value": null,
+        "ext": ".zip"
+      },
+      {
+        "value": null,
+        "ext": ".7z"
+      },
+      {
+        "value": null,
+        "ext": ".rar"
+      },
+      {
+        "value": null,
+        "ext": ".tar"
+      },
+      {
+        "value": null,
+        "ext": ".jar"
+      },
+      {
+        "value": null,
+        "ext": ".mrpack"
+      },
+      {
+        "value": null,
+        "ext": ".gz"
+      }
+    ]
+  },
+  "runtime_POST": [
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.5.1.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.6.5.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 0,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    },
+    {
+      "Name": "Microsoft.WindowsAppRuntime.2",
+      "Version": "2.7.0.0",
+      "Architecture": 9,
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Status": 0
+    }
+  ],
+  "source_POST": {
+    "head": "cbfb4ba54a89632fbceb82ea94ada60a9bae3737",
+    "status": "",
+    "tracked_diff": ""
+  },
+  "all_packages_POST_sha256": "ba513b466f0c43eae62d5d41bdc18f06d72ac9562d7493916e4a67104bb13239",
+  "state_changed": true,
+  "state_delta": {
+    "before": null,
+    "after": {
+      "associations": [
+        {
+          "ext": ".7z",
+          "value": null
+        },
+        {
+          "ext": ".gz",
+          "value": null
+        },
+        {
+          "ext": ".jar",
+          "value": null
+        },
+        {
+          "ext": ".mrpack",
+          "value": null
+        },
+        {
+          "ext": ".rar",
+          "value": null
+        },
+        {
+          "ext": ".tar",
+          "value": null
+        },
+        {
+          "ext": ".zip",
+          "value": null
+        }
+      ],
+      "protocol": null
+    },
+    "action": "STOP; no automatic repair"
+  },
+  "owned_package": null
+}

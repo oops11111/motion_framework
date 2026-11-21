@@ -1,0 +1,7 @@
+{
+  "status": "STOP before any deployment",
+  "actual_devenv_executions": 0,
+  "cause": "WinPS5 module autoload failure; explicit import of existing PSHOME Security module returns Valid signature in bounded read-only diagnostic",
+  "state_delta_interpretation": "PRE absent, comparison unknown; original result preserved; not proof of settings change",
+  "machine_changes": "None"
+}
