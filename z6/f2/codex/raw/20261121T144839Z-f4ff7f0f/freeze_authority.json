@@ -1,0 +1,8 @@
+{
+  "base": "d2aac2dc355d0412aa5fc3ede212b79faf4459b9",
+  "composition_blob": "fd0603c17136c067e89c71e56aef310f2f7e63f4",
+  "protected_diff": [],
+  "authority_sha256": "d5043298e9c8dbb5d0a008ed41fa704e1f25c750174db7c2f3ccb0cb513f0677",
+  "host_build": "NOT_EXECUTED",
+  "runtime": "NOT_EXECUTED"
+}

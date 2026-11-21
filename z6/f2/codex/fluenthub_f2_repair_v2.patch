@@ -1,0 +1,1139 @@
+diff --git a/src/FluentHub/App.xaml.cs b/src/FluentHub/App.xaml.cs
+index f8a1eab8..7dbb30e9 100644
+--- a/src/FluentHub/App.xaml.cs
++++ b/src/FluentHub/App.xaml.cs
+@@ -42,6 +42,14 @@ public partial class App : Application
+ 
+ 	protected override async void OnLaunched(LaunchActivatedEventArgs args)
+ 	{
++		// F5 pilot: opt in only this process before the window-owned source is constructed.
++		string[] commandLine = Environment.GetCommandLineArgs();
++		if (commandLine.Length == 2 && string.Equals(commandLine[1], "--fm-pilot-f5=1", StringComparison.Ordinal))
++		{
++			Environment.SetEnvironmentVariable("FM_PILOT_F5", "1", EnvironmentVariableTarget.Process);
++			PilotLog.Write("F5 activation Fake enabled from exact process command-line flag");
++		}
++
+ 		try
+ 		{
+ 			await Settings.LoadAsync();
+diff --git a/src/FluentHub/FluentHub.csproj b/src/FluentHub/FluentHub.csproj
+index 5c9c2027..62b39908 100644
+--- a/src/FluentHub/FluentHub.csproj
++++ b/src/FluentHub/FluentHub.csproj
+@@ -76,4 +76,40 @@
+ 		<AdditionalFiles Include="Strings\en-US\Resources.resw" />
+ 	</ItemGroup>
+ 
++	<!-- Z5-T5 PILOT-ONLY (local side fork; never pushed, no upstream PR): consume the prebuilt FluidMotion.L1.dll from Z5-T5-0 (verify against SHA256SUMS). No L1 sources are compiled here. -->
++	<PropertyGroup>
++		<!-- Z6-F11 PILOT-ONLY: pack location is configurable (override with -p:FmL1Root=... or -p:FmL1PackDir=... / -p:FmL1Sums=...). Default = the Z6 F7 worktree pack. -->
++		<FmL1Root Condition="'$(FmL1Root)' == ''">$(USERPROFILE)\mf_z6\f7\</FmL1Root>
++		<FmL1PackDir Condition="'$(FmL1PackDir)' == ''">$(FmL1Root)pilot\l1pack\bin\x64\Release\net8.0\</FmL1PackDir>
++		<FmL1Sums Condition="'$(FmL1Sums)' == ''">$(FmL1Root)pilot\l1pack\SHA256SUMS</FmL1Sums>
++		<!-- Z5-T5 pilot-only: PublishAot=true makes the SDK write System.Diagnostics.Tracing.EventSource.IsSupported=false into runtimeconfig even for Debug builds, which silences the frozen FluidMotion-Motion provider. Turn the feature switch back on for this local pilot (no publish/AOT is done). -->
++		<EventSourceSupport>true</EventSourceSupport>
++	</PropertyGroup>
++	<ItemGroup>
++		<Reference Include="FluidMotion.L1">
++			<HintPath>$(FmL1PackDir)FluidMotion.L1.dll</HintPath>
++		</Reference>
++		<None Include="$(FmL1PackDir)fluidmotion.dll" Link="fluidmotion.dll" CopyToOutputDirectory="PreserveNewest" />
++		<None Include="$(FmL1PackDir)demo_motion.json" Link="demo_motion.json" CopyToOutputDirectory="PreserveNewest" />
++	</ItemGroup>
++
++	<!-- Z6-F11 PILOT-ONLY: build-time sha256 check of the consumed pack files against the F7 SHA256SUMS; any mismatch fails the build. -->
++	<Target Name="FmL1VerifyPack" BeforeTargets="BeforeBuild;ResolveAssemblyReferences">
++		<Error Condition="!Exists('$(FmL1Sums)')" Text="FmL1VerifyPack: SHA256SUMS not found: $(FmL1Sums)" />
++		<PropertyGroup>
++			<_FmSumsText>$([System.IO.File]::ReadAllText('$(FmL1Sums)'))</_FmSumsText>
++			<_FmExpL1>$([System.Text.RegularExpressions.Regex]::Match('$(_FmSumsText)', '(?m)^([0-9a-f]{64})  FluidMotion\.L1\.dll\s').Groups[1].Value)</_FmExpL1>
++			<_FmExpNative>$([System.Text.RegularExpressions.Regex]::Match('$(_FmSumsText)', '(?m)^([0-9a-f]{64})  fluidmotion\.dll\s').Groups[1].Value)</_FmExpNative>
++			<_FmExpJson>$([System.Text.RegularExpressions.Regex]::Match('$(_FmSumsText)', '(?m)^([0-9a-f]{64})  demo_motion\.json\s').Groups[1].Value)</_FmExpJson>
++		</PropertyGroup>
++		<Error Condition="'$(_FmExpL1)' == '' or '$(_FmExpNative)' == '' or '$(_FmExpJson)' == ''" Text="FmL1VerifyPack: expected sha256 entries missing in $(FmL1Sums)" />
++		<Error Condition="!Exists('$(FmL1PackDir)FluidMotion.L1.dll') or !Exists('$(FmL1PackDir)fluidmotion.dll') or !Exists('$(FmL1PackDir)demo_motion.json')" Text="FmL1VerifyPack: pack file missing under $(FmL1PackDir)" />
++		<GetFileHash Files="$(FmL1PackDir)FluidMotion.L1.dll" Algorithm="SHA256"><Output TaskParameter="Hash" PropertyName="_FmGotL1" /></GetFileHash>
++		<GetFileHash Files="$(FmL1PackDir)fluidmotion.dll" Algorithm="SHA256"><Output TaskParameter="Hash" PropertyName="_FmGotNative" /></GetFileHash>
++		<GetFileHash Files="$(FmL1PackDir)demo_motion.json" Algorithm="SHA256"><Output TaskParameter="Hash" PropertyName="_FmGotJson" /></GetFileHash>
++		<Error Condition="'$(_FmGotL1)' != '$(_FmExpL1)'" Text="FmL1VerifyPack: sha256 mismatch FluidMotion.L1.dll expected=$(_FmExpL1) actual=$(_FmGotL1)" />
++		<Error Condition="'$(_FmGotNative)' != '$(_FmExpNative)'" Text="FmL1VerifyPack: sha256 mismatch fluidmotion.dll expected=$(_FmExpNative) actual=$(_FmGotNative)" />
++		<Error Condition="'$(_FmGotJson)' != '$(_FmExpJson)'" Text="FmL1VerifyPack: sha256 mismatch demo_motion.json expected=$(_FmExpJson) actual=$(_FmGotJson)" />
++		<Message Importance="high" Text="FmL1VerifyPack: OK FluidMotion.L1.dll=$(_FmGotL1) fluidmotion.dll=$(_FmGotNative) demo_motion.json=$(_FmGotJson)" />
++	</Target>
+ </Project>
+diff --git a/src/FluentHub/Views/MainWindow.cs b/src/FluentHub/Views/MainWindow.cs
+index 3b0414e6..47b944cd 100644
+--- a/src/FluentHub/Views/MainWindow.cs
++++ b/src/FluentHub/Views/MainWindow.cs
+@@ -2,6 +2,7 @@
+ // Licensed under the MIT License. See the LICENSE.
+ 
+ using Microsoft.UI;
++using Microsoft.UI.Xaml;
+ using Microsoft.UI.Windowing;
+ using Microsoft.UI.Xaml.Media;
+ using Windows.UI.WindowManagement;
+@@ -13,11 +14,17 @@ namespace FluentHub.Views
+ 	{
+ 		private static MainWindow? _Instance;
+ 		private RootView _rootView;
++		private readonly RootRebuildState _rebuild;
++		private RootView? _waitingRoot;
++		private EventHandler? _afterUnload;
++		internal WindowReducedMotionSource ReducedMotion { get; }
+ 
+ 		public static MainWindow Instance => _Instance ??= new();
+ 
+ 		public MainWindow()
+ 		{
++			_rebuild = new RootRebuildState(action => DispatcherQueue.TryEnqueue(action.Invoke), PilotLog.Write);
++			Closed += OnRepairClosed;
+ 			SystemBackdrop = new MicaBackdrop();
+ 
+ 			PersistenceId = "MainWindow";
+@@ -30,6 +37,9 @@ namespace FluentHub.Views
+ 			MinHeight = 516;
+ 			MinWidth = 516;
+ 
++			ReducedMotion = new WindowReducedMotionSource(this);
++			Closed += (_, _) => ReducedMotion.Dispose();
++
+ 			_rootView = new RootView();
+ 			Content = _rootView;
+ 		}
+@@ -40,11 +50,38 @@ namespace FluentHub.Views
+ 
+ 			if (forceReload)
+ 			{
+-				_rootView = new RootView();
+-				Content = _rootView;
++				int generation = _rebuild.Begin();
++				if (generation == 0) return;
++				var oldRoot = _rootView;
++				if (!oldRoot.IsLoaded) { _rebuild.Fail(generation, "old RootView not loaded"); return; }
++				_waitingRoot = oldRoot;
++				_afterUnload = (sender, _) =>
++				{
++					if (!ReferenceEquals(sender, oldRoot)) return;
++					oldRoot.F2UnloadedDisposed -= _afterUnload;
++					_afterUnload = null;
++					_waitingRoot = null;
++					PilotLog.Write("F2 old Dispose completed; queue new Create");
++					_rebuild.OldDisposed(generation, () =>
++					{
++						PilotLog.Write("F2 new RootView Create begin");
++						_rootView = new RootView();
++						Content = _rootView;
++					});
++				};
++				oldRoot.F2UnloadedDisposed += _afterUnload;
++				PilotLog.Write("F2 detach old RootView Content=null");
++				Content = null;
+ 			}
+ 
+ 			Activate();
+ 		}
++		private void OnRepairClosed(object sender, WindowEventArgs args)
++		{
++			_rebuild.Close();
++			if (_waitingRoot is not null && _afterUnload is not null) _waitingRoot.F2UnloadedDisposed -= _afterUnload;
++			_waitingRoot = null;
++			_afterUnload = null;
++		}
+ 	}
+ }
+diff --git a/src/FluentHub/Views/RootView.xaml.cs b/src/FluentHub/Views/RootView.xaml.cs
+index 5aa93caf..89c4de5a 100644
+--- a/src/FluentHub/Views/RootView.xaml.cs
++++ b/src/FluentHub/Views/RootView.xaml.cs
+@@ -21,6 +21,7 @@ namespace FluentHub.Views
+ 		private InboxView? _currentInboxView;
+ 		private NavigationViewItem? _lastNavigationItem;
+ 		private readonly AppRouteViewFactory _routeViewFactory;
++		private NavMotionPilot? _motionPilot; // Z5-T5 pilot-only
+ 
+ 		public RootView()
+ 		{
+@@ -36,9 +37,14 @@ namespace FluentHub.Views
+ 
+ 		public RootViewModel ViewModel { get; }
+ 
++		internal event EventHandler? F2UnloadedDisposed;
++
+ 		private async void OnRootViewLoaded(object sender, RoutedEventArgs e)
+ 		{
+ 			MainWindow.Instance.SetTitleBar(MainTitleBar);
++			// Z5-T5 / Z6-F2: Unloaded disposes first, so a rebuilt RootView creates a fresh system.
++			PilotLog.Write("F2 RootView Loaded -> Create NavMotionPilot");
++			_motionPilot ??= new NavMotionPilot(NavigationView);
+ 			if (NavigationView.SelectedItem is null && NavigationView.MenuItems.Count > 0)
+ 			{
+ 				NavigationView.SelectedItem = NavigationView.MenuItems[0];
+@@ -55,7 +61,18 @@ namespace FluentHub.Views
+ 
+ 		private void OnRootViewUnloaded(object sender, RoutedEventArgs e)
+ 		{
+-			ViewModel.CancelLoading();
++			bool complete = true;
++			try { ViewModel.CancelLoading(); }
++			catch (Exception error) { complete = false; PilotLog.Write("F2 STOP CancelLoading " + error.GetType().Name); }
++			PilotLog.Write("F2 RootView Unloaded -> Dispose NavMotionPilot then null");
++			try { _motionPilot?.Dispose(); }
++			catch (Exception error) { complete = false; PilotLog.Write("F2 STOP pilot Dispose " + error.GetType().Name); }
++			finally { _motionPilot = null; }
++			if (complete)
++			{
++				PilotLog.Write("F2 RootView Unloaded Dispose complete");
++				F2UnloadedDisposed?.Invoke(this, EventArgs.Empty);
++			}
+ 		}
+ 
+ 		private void OnNavigationSelectionChanged(
+diff --git a/src/FluentHub/Views/NavMotionPilot.cs b/src/FluentHub/Views/NavMotionPilot.cs
+new file mode 100644
+index 00000000..962f9a1c
+--- /dev/null
++++ b/src/FluentHub/Views/NavMotionPilot.cs
+@@ -0,0 +1,608 @@
++// Z5-T5 PILOT-ONLY (local side fork %USERPROFILE%/pilot/FluentHub; never pushed, no fork, no upstream PR).
++// Consumes the prebuilt FluidMotion.L1.dll from Z5-T5-0 (see SHA256SUMS); FluentHub does not compile L1 sources.
++// No timing judgement anywhere (PresentStats is a placeholder, N/A). PERF-CI HOLD. Success != adopt.
++
++using System.Diagnostics.Tracing;
++using Microsoft.UI.Dispatching;
++using Microsoft.UI.Xaml;
++using Microsoft.UI.Xaml.Controls;
++using Microsoft.UI.Xaml.Input;
++using Microsoft.UI.Xaml.Media;
++using Microsoft.UI.Xaml.Media.Imaging;
++using Windows.Graphics.Imaging;
++using Windows.Storage;
++using Windows.Storage.Streams;
++using System.Runtime.InteropServices.WindowsRuntime;
++using System.Threading.Tasks;
++using MotionSoftDemo;
++
++namespace FluentHub.Views
++{
++	/// <summary>
++	/// Left NavigationView menu items: Loaded, wait for first frame, then Play "demo.enter" (tokens).
++	/// F1C hover enqueue unchanged. F2: after first enter Play, DispatcherQueue.TryEnqueue RootView forceReload (Unloaded Dispose, then Loaded Create).
++	/// F5: consume the window-owned reduced-motion source on the UI thread.
++	/// </summary>
++	internal sealed class NavMotionPilot : IDisposable
++	{
++		private const string OffsetX = "offsetX";
++		private const string OpacityProperty = "opacity";
++		private const string EnterTransition = "demo.enter";
++		private const double HoverOffset = 8;
++
++		// demo_motion.json springs.snappy (320ms, damping 0.78).
++		private static readonly SpringParams Snappy = new(0.32, 0.78);
++
++		private readonly PilotLog _log;
++		private readonly PilotEtwListener _listener;
++		private readonly MotionSystem _system;
++		private readonly Dictionary<NavigationViewItem, ulong> _targets = [];
++		private readonly Dictionary<ulong, NavigationViewItem> _items = [];
++		private readonly Dictionary<ulong, TranslateTransform> _transforms = [];
++		private readonly Dictionary<ulong, AnimationHandle> _enter = [];
++		private readonly Dictionary<ulong, AnimationHandle> _hover = [];
++		private readonly PointerEventHandler _enteredHandler;
++		private readonly PointerEventHandler _leftHandler;
++		private readonly DispatcherQueue _dispatcher;
++		private readonly NavigationView _nav;
++		private bool _renderingHooked;
++		private bool _windowHooked;
++		private bool _disposed;
++		private int _lifetimeGeneration;
++		private bool _firstFrameSeen;
++		private bool _enterPlayed;
++		private int _enterShots;
++		private bool _enterShotBusy;
++		private int _sinkCount;
++		private bool _f1cEnqueued;
++		private bool _f1cHoverPlayed;
++		private int _f1cOverlap;
++		private double? _f1cLastOffsetX;
++		private double? _f1cLastOpacity;
++		private double? _f1cMidObserved;
++		private const ulong F1cTarget = 1;
++		private readonly ReducedMotionState _reducedMotion;
++		private bool _f5AppliedAnimationsEnabled;
++		private static int s_f2Cycle;
++		private static bool s_f2RebuildQueued;
++		private readonly int _f2Cycle;
++
++		public NavMotionPilot(NavigationView navigationView)
++		{
++			_f2Cycle = System.Threading.Interlocked.Increment(ref s_f2Cycle);
++			_log = new PilotLog();
++			_log.Line($"PILOT start (Z6-F2, RootView rebuild cycle={_f2Cycle}; Unloaded Dispose then Loaded Create; F6 enter wait unchanged)");
++			_listener = new PilotEtwListener(_log);
++
++			_system = MotionSystem.Create();
++			_system.FramePumpChanged += OnFramePumpChanged;
++			_system.ValueChanged += OnValueChanged;
++
++			string tokensPath = Path.Combine(AppContext.BaseDirectory, "demo_motion.json");
++			string? diag = new MotionTokens(_system).Load(File.ReadAllText(tokensPath));
++			_log.Line("MotionTokens.Load demo_motion.json: " + (diag ?? "ok"));
++
++			_dispatcher = navigationView.DispatcherQueue;
++			_nav = navigationView;
++
++			_reducedMotion = MainWindow.Instance.ReducedMotion.State;
++			_reducedMotion.Changed += OnReducedMotionChanged;
++			ApplyReducedMotion(_reducedMotion.AnimationsEnabled, "initial");
++			_log.Line($"F5 subscriber attached cycle={_f2Cycle}; initial applied before Play");
++			_enteredHandler = OnItemPointerEntered;
++			_leftHandler = OnItemPointerLeft;
++
++			ulong target = 1;
++			foreach (object menuItem in navigationView.MenuItems)
++			{
++				if (menuItem is not NavigationViewItem item)
++				{
++					continue;
++				}
++
++				var transform = new TranslateTransform();
++				item.RenderTransform = transform;
++				_targets[item] = target;
++				_items[target] = item;
++				_transforms[target] = transform;
++				item.AddHandler(UIElement.PointerEnteredEvent, _enteredHandler, true);
++				item.AddHandler(UIElement.PointerExitedEvent, _leftHandler, true);
++				item.AddHandler(UIElement.PointerCanceledEvent, _leftHandler, true);
++				item.AddHandler(UIElement.PointerCaptureLostEvent, _leftHandler, true);
++				target++;
++			}
++
++			MainWindow.Instance.Closed += OnWindowClosed;
++			_windowHooked = true;
++
++			foreach (var (id, _) in _items)
++			{
++				// Z6-F6: create enter handles now, but Play only after the first host frame callback.
++				AnimationHandle enter = _system.CreateAnimation(id, EnterTransition);
++				_enter[id] = enter;
++				_log.Line($"F6 enter created (Play deferred) target={id} anim={enter.Id}");
++			}
++
++			// Hook the host frame source immediately so the first CompositionTarget.Rendering can be observed before Play.
++			if (!_renderingHooked)
++			{
++				CompositionTarget.Rendering += OnRendering;
++				_renderingHooked = true;
++			}
++			_log.Line("F6 waiting for first CompositionTarget.Rendering before Play");
++			_log.Line("F1C will enqueue hover from sink mid-flight via DispatcherQueue; no fm_* in sink/render; pointer hover ignored");
++			_log.Flush();
++		}
++
++		private async Task CaptureEnterShotAsync(int n)
++		{
++			int generation = _lifetimeGeneration;
++			bool IsCurrent() => !_disposed && generation == _lifetimeGeneration;
++			if (!IsCurrent()) return;
++			try
++			{
++				var rtb = new RenderTargetBitmap();
++				await rtb.RenderAsync(_nav);
++				if (!IsCurrent()) return;
++				var pixels = await rtb.GetPixelsAsync();
++				if (!IsCurrent()) return;
++				StorageFolder folder;
++				try
++				{
++					folder = ApplicationData.Current.LocalFolder;
++				}
++				catch (Exception)
++				{
++					folder = await StorageFolder.GetFolderFromPathAsync(Path.GetTempPath());
++				}
++				if (!IsCurrent()) return;
++				StorageFile file = await folder.CreateFileAsync($"z6_f6_enter_{n:00}.png", CreationCollisionOption.ReplaceExisting);
++				if (!IsCurrent()) return;
++				using IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite);
++				if (!IsCurrent()) return;
++				BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
++				if (!IsCurrent()) return;
++				encoder.SetPixelData(
++					BitmapPixelFormat.Bgra8,
++					BitmapAlphaMode.Premultiplied,
++					(uint)rtb.PixelWidth,
++					(uint)rtb.PixelHeight,
++					96,
++					96,
++					pixels.ToArray());
++				if (!IsCurrent()) return;
++				await encoder.FlushAsync();
++				if (!IsCurrent()) return;
++				_log.Line($"F6 ENTER_SHOT n={n} {rtb.PixelWidth}x{rtb.PixelHeight} path={file.Path}");
++			}
++			catch (Exception ex)
++			{
++				if (!IsCurrent()) return;
++				_log.Line($"F6 ENTER_SHOT n={n} fail={ex.GetType().Name}: {ex.Message}");
++			}
++			finally
++			{
++				if (IsCurrent()) _enterShotBusy = false;
++			}
++		}
++
++		private void OnItemPointerEntered(object sender, PointerRoutedEventArgs e)
++		{
++			// F1C: do not rely on human hover; ignore pointer so the interrupt is program-state only.
++			if (!_disposed)
++			{
++				_log.Line("F1C ignore pointer-enter (program-state hover only)");
++			}
++		}
++
++		private void OnItemPointerLeft(object sender, PointerRoutedEventArgs e)
++		{
++			if (!_disposed)
++			{
++				_log.Line("F1C ignore pointer-leave (program-state hover only)");
++			}
++		}
++
++		private void PlayHoverAfterMidFlight()
++		{
++			// Runs on DispatcherQueue, not inside sink/render. Same hover path as T5 (empty anim + Play + Retarget offsetX=8, no from).
++			if (_disposed || _f1cHoverPlayed)
++			{
++				return;
++			}
++
++			if (!_hover.TryGetValue(F1cTarget, out AnimationHandle? hover))
++			{
++				hover = _system.CreateAnimation(F1cTarget, null);
++				hover.Play();
++				_hover[F1cTarget] = hover;
++			}
++
++			bool ok = hover.Retarget(OffsetX, HoverOffset, Snappy);
++			_f1cHoverPlayed = true;
++			_log.Line($"F1C PLAY hover after mid-flight enqueue (not in sink/render) target={F1cTarget} anim={hover.Id} retarget({OffsetX}={HoverOffset}) ok={ok} mid_observed={_f1cMidObserved}");
++			_log.Flush();
++		}
++
++		private void OnValueChanged(ulong target, string property, double value)
++		{
++			// Sink: never call back into the motion API from here (L1 contract Table 2). Observation + TryEnqueue only.
++			if (_disposed)
++			{
++				return;
++			}
++
++			_sinkCount++;
++			if (property == OffsetX && _transforms.TryGetValue(target, out TranslateTransform? transform))
++			{
++				transform.X = value;
++			}
++			else if (property == OpacityProperty && _items.TryGetValue(target, out NavigationViewItem? item))
++			{
++				item.Opacity = Math.Clamp(value, 0, 1);
++			}
++
++			if (target != F1cTarget)
++			{
++				return;
++			}
++
++			if (property == OffsetX)
++			{
++				_f1cLastOffsetX = value;
++			}
++			else if (property == OpacityProperty)
++			{
++				_f1cLastOpacity = value;
++			}
++
++			// Enter mid-flight on offsetX: token starts at -80 and ends at 0. Do not Play/Retarget here.
++			if (_enterPlayed && !_f1cEnqueued && property == OffsetX && value > -80.0 && value < 0.0)
++			{
++				_f1cEnqueued = true;
++				_f1cMidObserved = value;
++				_log.Line($"F1C SINK mid-flight target={target} property={property} value={value} (enqueue hover; no fm_* in this callback)");
++				bool queued = _dispatcher.TryEnqueue(PlayHoverAfterMidFlight);
++				_log.Line($"F1C SINK enqueue hover ok={queued}");
++				_log.Flush();
++			}
++
++			if (_f1cHoverPlayed && _f1cLastOffsetX.HasValue && _f1cLastOpacity.HasValue)
++			{
++				double ox = _f1cLastOffsetX.Value;
++				double op = _f1cLastOpacity.Value;
++				if (op > 0.0 && op < 1.0 && System.Math.Abs(ox - HoverOffset) > 1e-6)
++				{
++					_f1cOverlap++;
++					if (_f1cOverlap <= 12)
++					{
++						_log.Line($"F1C_OVERLAP n={_f1cOverlap} target={target} offsetX={ox} opacity={op}");
++					}
++				}
++			}
++		}
++
++		private void OnFramePumpChanged(bool on)
++		{
++			// Render callback: only bind/unbind the host frame source here.
++			if (on && !_renderingHooked && !_disposed)
++			{
++				CompositionTarget.Rendering += OnRendering;
++				_renderingHooked = true;
++			}
++			else if (!on && _renderingHooked)
++			{
++				CompositionTarget.Rendering -= OnRendering;
++				_renderingHooked = false;
++			}
++		}
++
++		private void OnRendering(object? sender, object e)
++		{
++			if (_disposed)
++			{
++				return;
++			}
++
++			if (!_firstFrameSeen)
++			{
++				_firstFrameSeen = true;
++				_log.Line("F6 FIRST_FRAME callback (CompositionTarget.Rendering) before Play");
++				bool queued = _dispatcher.TryEnqueue(PlayEnterAfterFirstFrame);
++				_log.Line($"F6 FIRST_FRAME enqueue Play ok={queued}");
++				_log.Flush();
++			}
++
++			if (_enterPlayed && _enterShots < 6 && !_enterShotBusy)
++			{
++				int n = _enterShots++;
++				_enterShotBusy = true;
++				_ = CaptureEnterShotAsync(n);
++			}
++
++			_system.OnFrame();
++		}
++
++		private void PlayEnterAfterFirstFrame()
++		{
++			if (_disposed || _enterPlayed)
++			{
++				return;
++			}
++
++			_enterPlayed = true;
++			foreach (var (id, enter) in _enter)
++			{
++				enter.Play();
++				_log.Line($"F6 PLAY after first frame target={id} anim={enter.Id}");
++			}
++			if (!s_f2RebuildQueued && _f2Cycle == 1)
++			{
++				s_f2RebuildQueued = true;
++				bool queued = _dispatcher.TryEnqueue(RequestF2Rebuild);
++				_log.Line($"F2 enqueue RootView rebuild ok={queued} (DispatcherQueue, not sink/render)");
++			}
++			_log.Flush();
++		}
++
++		private void RequestF2Rebuild()
++		{
++			if (_disposed) return;
++			// UI thread, not sink/render. forceReload replaces Content: old RootView Unloaded (Dispose) then new Loaded (Create).
++			_log.Line("F2 REBUILD begin: MainWindow.InitializeApplication(forceReload=true)");
++			_log.Flush();
++			MainWindow.Instance.InitializeApplication(null, forceReload: true);
++		}
++
++		private void OnReducedMotionChanged(bool animationsEnabled, string source)
++		{
++			bool queued = _dispatcher.TryEnqueue(() => ApplyReducedMotion(animationsEnabled, source));
++			_log.Line($"F5 subscriber enqueue source={source} ok={queued} cycle={_f2Cycle}");
++		}
++
++		private void ApplyReducedMotion(bool animationsEnabled, string source)
++		{
++			// UI thread only (DispatcherQueue). SetReducedMotion is thread-affine and may snap running animations to their end.
++			if (_disposed)
++			{
++				return;
++			}
++
++			bool reduced = !animationsEnabled;
++			_log.Line($"F5 SetReducedMotion({reduced}) source={source} animationsEnabled={animationsEnabled} previous={_f5AppliedAnimationsEnabled} thread={Environment.CurrentManagedThreadId}");
++			_system.SetReducedMotion(reduced);
++			_f5AppliedAnimationsEnabled = animationsEnabled;
++			_log.Line($"F5 SetReducedMotion({reduced}) applied; last_animationsEnabled={_f5AppliedAnimationsEnabled}");
++			_log.Flush();
++		}
++
++		private void OnWindowClosed(object sender, WindowEventArgs args)
++		{
++			_log.Line("MainWindow.Closed -> Dispose");
++			Dispose();
++		}
++
++		public void Dispose()
++		{
++			if (_disposed)
++			{
++				return;
++			}
++
++			_disposed = true;
++			_lifetimeGeneration++;
++			_log.Line($"F1C_FINAL offsetX={_f1cLastOffsetX} opacity={_f1cLastOpacity} overlapSinkNotes={_f1cOverlap} enqueued={_f1cEnqueued} hoverPlayed={_f1cHoverPlayed} mid_observed={_f1cMidObserved} expected_offsetX={HoverOffset} (later writer target)");
++			_log.Line($"F2 Dispose begin cycle={_f2Cycle}");
++			_log.Line("Dispose begin");
++
++			foreach (var (item, _) in _targets)
++			{
++				item.RemoveHandler(UIElement.PointerEnteredEvent, _enteredHandler);
++				item.RemoveHandler(UIElement.PointerExitedEvent, _leftHandler);
++				item.RemoveHandler(UIElement.PointerCanceledEvent, _leftHandler);
++				item.RemoveHandler(UIElement.PointerCaptureLostEvent, _leftHandler);
++			}
++
++			if (_windowHooked)
++			{
++				MainWindow.Instance.Closed -= OnWindowClosed;
++				_windowHooked = false;
++			}
++
++			// Every handle: Cancel, then Release; then Dispose the system.
++			foreach (AnimationHandle handle in _enter.Values.Concat(_hover.Values))
++			{
++				handle.Cancel();
++				handle.Release();
++			}
++
++			_reducedMotion.Changed -= OnReducedMotionChanged;
++			_log.Line($"F5 subscriber detached cycle={_f2Cycle}");
++			_system.Dispose();
++
++			if (_renderingHooked)
++			{
++				CompositionTarget.Rendering -= OnRendering;
++				_renderingHooked = false;
++			}
++
++			_log.Line($"Dispose end handles={_enter.Count + _hover.Count} (enter={_enter.Count}, hover={_hover.Count}) sinkCalls={_sinkCount} cycle={_f2Cycle}");
++			_log.Line($"F2 Dispose end cycle={_f2Cycle}");
++			_log.Line(_listener.Summary());
++			_listener.DisposeTracked();
++			_log.Flush();
++		}
++	}
++
++	/// <summary>Shared in-memory line buffer (survives RootView rebuild), written to LocalState on Flush.</summary>
++	internal sealed class PilotLog
++	{
++		private const int Capacity = 4096;
++		private static readonly object SharedGate = new();
++		private static readonly List<string> SharedLines = [];
++		private static int SharedSeq;
++		private static int SharedDropped;
++		private static string? SharedPath;
++
++		public PilotLog()
++		{
++			EnsurePath();
++		}
++
++		private static void EnsurePath()
++		{
++			if (SharedPath is not null)
++			{
++				return;
++			}
++
++			string folder;
++			try
++			{
++				folder = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
++			}
++			catch (Exception)
++			{
++				folder = Path.GetTempPath();
++			}
++
++			SharedPath = Path.Combine(folder, "z6_f2_motion.log");
++		}
++
++		public void Line(string text) => Write(text);
++
++		public static void Write(string text)
++		{
++			EnsurePath();
++			lock (SharedGate)
++			{
++				SharedSeq++;
++				if (SharedLines.Count >= Capacity)
++				{
++					SharedDropped++;
++					return;
++				}
++
++				SharedLines.Add($"{SharedSeq:D5} {text}");
++			}
++		}
++
++		public void Flush()
++		{
++			EnsurePath();
++			lock (SharedGate)
++			{
++				try
++				{
++					var all = new List<string>(SharedLines) { $"# path={SharedPath} lines={SharedLines.Count} dropped={SharedDropped} capacity={Capacity}" };
++					File.WriteAllLines(SharedPath!, all);
++				}
++				catch (Exception)
++				{
++					// Pilot logging must never take the app down.
++				}
++			}
++		}
++	}
++
++	/// <summary>
++	/// Host-side EventListener for the frozen FluidMotion-Motion provider. OnEventSourceCreated can run inside the
++	/// base constructor (before this constructor body), so matching sources are cached and enabled afterwards.
++	/// FrameTick is counted only; its payload is not logged (no timing data).
++	/// </summary>
++	internal sealed class PilotEtwListener : EventListener
++	{
++		private const string ProviderName = "FluidMotion-Motion";
++		private readonly object _gate = new();
++		private readonly PilotEventCounts _counts = new();
++		private static int s_active;
++		private bool _listenerDisposed;
++		private List<EventSource>? _pending;
++		private PilotLog? _log;
++
++		public PilotEtwListener(PilotLog log)
++		{
++			List<EventSource>? pending;
++			lock (_gate)
++			{
++				_log = log;
++				_log.Line($"F2 listener created active={System.Threading.Interlocked.Increment(ref s_active)}");
++				pending = _pending;
++				_pending = null;
++			}
++
++			if (pending is not null)
++			{
++				foreach (EventSource source in pending)
++				{
++					EnableProvider(source);
++				}
++			}
++		}
++
++		protected override void OnEventSourceCreated(EventSource eventSource)
++		{
++			if (eventSource is null || eventSource.Name != ProviderName)
++			{
++				return;
++			}
++
++			// _gate can be null here when called from the base constructor before field initialisers of a derived
++			// class run in some runtimes; field initialisers run first in C#, but stay defensive.
++			object? gate = _gate;
++			if (gate is null)
++			{
++				return;
++			}
++
++			lock (gate)
++			{
++				if (_log is null)
++				{
++					(_pending ??= []).Add(eventSource);
++					return;
++				}
++			}
++
++			EnableProvider(eventSource);
++		}
++
++		private void EnableProvider(EventSource source)
++		{
++			EnableEvents(source, EventLevel.Verbose, EventKeywords.All);
++			_log?.Line($"ETW_LISTENER enabled provider={source.Name} guid={source.Guid} level=Verbose");
++		}
++
++		protected override void OnEventWritten(EventWrittenEventArgs eventData)
++		{
++			if (eventData.EventSource?.Name != ProviderName)
++			{
++				return;
++			}
++
++			lock (_gate)
++			{
++				if (_listenerDisposed) return;
++				string detail = _counts.Observe(eventData.EventId, eventData.EventName, () => eventData.Payload);
++				if (eventData.EventId is 3 or 103 or 4 || eventData.EventName is "FrameTick" or "FrameTickAccept" or "PresentStats") return;
++				_log?.Line($"ETW_EVENT name={eventData.EventName} id={eventData.EventId} {detail}");
++			}
++		}
++
++		public void DisposeTracked()
++		{
++			lock (_gate)
++			{
++				if (_listenerDisposed) return;
++				_listenerDisposed = true;
++			}
++			Dispose();
++			_log?.Line($"F2 listener disposed active={System.Threading.Interlocked.Decrement(ref s_active)}");
++		}
++
++		public string Summary()
++		{
++			lock (_gate) return _counts.Summary();
++		}
++	}
++}
+diff --git a/src/FluentHub/Views/ReducedMotionState.cs b/src/FluentHub/Views/ReducedMotionState.cs
+new file mode 100644
+index 00000000..cdf4885b
+--- /dev/null
++++ b/src/FluentHub/Views/ReducedMotionState.cs
+@@ -0,0 +1,29 @@
++namespace FluentHub.Views;
++
++// Host-only state. Every operation is called on the window's UI dispatcher.
++internal sealed class ReducedMotionState(bool animationsEnabled, bool fake) : IDisposable
++{
++    private bool _disposed;
++    public bool AnimationsEnabled { get; private set; } = animationsEnabled;
++    public event Action<bool, string>? Changed;
++
++    public void Reread(bool enabled, string source)
++    {
++        if (_disposed || fake || enabled == AnimationsEnabled) return;
++        AnimationsEnabled = enabled;
++        Changed?.Invoke(enabled, source);
++    }
++
++    public void ToggleFake()
++    {
++        if (_disposed || !fake) return;
++        AnimationsEnabled = !AnimationsEnabled;
++        Changed?.Invoke(AnimationsEnabled, "fake");
++    }
++
++    public void Dispose()
++    {
++        _disposed = true;
++        Changed = null;
++    }
++}
+diff --git a/src/FluentHub/Views/FakeReducedMotionSource.cs b/src/FluentHub/Views/FakeReducedMotionSource.cs
+new file mode 100644
+index 00000000..49c9b3e5
+--- /dev/null
++++ b/src/FluentHub/Views/FakeReducedMotionSource.cs
+@@ -0,0 +1,31 @@
++using System.Threading;
++
++namespace FluentHub.Views;
++
++// Opt-in host diagnostics only. The wait thread never calls MotionSystem.
++internal sealed class FakeReducedMotionSource : IDisposable
++{
++    private readonly EventWaitHandle _toggle = new(false, EventResetMode.AutoReset, @"Local\FM_PILOT_F5_TOGGLE");
++    private readonly RegisteredWaitHandle _wait;
++    private int _disposed;
++
++    public FakeReducedMotionSource(Func<Action, bool> enqueue, ReducedMotionState state, Action<string> log)
++    {
++        _wait = ThreadPool.RegisterWaitForSingleObject(_toggle, (_, _) =>
++        {
++            if (Volatile.Read(ref _disposed) != 0) return;
++            bool queued = enqueue(() =>
++            {
++                if (Volatile.Read(ref _disposed) == 0) state.ToggleFake();
++            });
++            log($"F5 fake enqueue ok={queued}");
++        }, null, Timeout.Infinite, false);
++    }
++
++    public void Dispose()
++    {
++        if (Interlocked.Exchange(ref _disposed, 1) != 0) return;
++        _wait.Unregister(null);
++        _toggle.Dispose();
++    }
++}
+diff --git a/src/FluentHub/Views/WindowReducedMotionSource.cs b/src/FluentHub/Views/WindowReducedMotionSource.cs
+new file mode 100644
+index 00000000..b8126744
+--- /dev/null
++++ b/src/FluentHub/Views/WindowReducedMotionSource.cs
+@@ -0,0 +1,142 @@
++using System.Runtime.Versioning;
++using Microsoft.UI.Dispatching;
++using Microsoft.UI.Xaml;
++using Windows.UI.ViewManagement;
++using WinUIEx.Messaging;
++
++namespace FluentHub.Views;
++
++// Owned once by MainWindow; RootView recreation only replaces subscribers.
++internal sealed class WindowReducedMotionSource : IDisposable
++{
++    private readonly Window _window;
++    private readonly DispatcherQueue _dispatcher;
++    private readonly UISettings _settings = new();
++    private readonly PilotLog _log = new();
++    private readonly DispatcherQueueTimer _debounce;
++    private readonly WindowMessageMonitor? _monitor;
++    private readonly FakeReducedMotionSource? _fakeSource;
++    private readonly bool _fake;
++    private bool _disposed;
++    private int _wmCount, _eventCount, _activatedCount, _fakeCount;
++
++    public ReducedMotionState State { get; }
++
++    public WindowReducedMotionSource(Window window)
++    {
++        _window = window;
++        _dispatcher = window.DispatcherQueue;
++        _fake = Environment.GetEnvironmentVariable("FM_PILOT_F5") == "1";
++        State = new ReducedMotionState(_settings.AnimationsEnabled, _fake);
++        State.Changed += OnStateChanged;
++        _debounce = _dispatcher.CreateTimer();
++        _debounce.Interval = TimeSpan.FromMilliseconds(100);
++        _debounce.IsRepeating = false;
++        _debounce.Tick += OnDebounce;
++
++        if (_fake)
++        {
++            _fakeSource = new FakeReducedMotionSource(action => _dispatcher.TryEnqueue(() => action()), State, Log);
++            Log("F5 fake source enabled event=Local\\FM_PILOT_F5_TOGGLE");
++            return;
++        }
++
++        nint hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
++        try
++        {
++            if (hwnd == 0) throw new InvalidOperationException("Top-level HWND is zero");
++            _monitor = new WindowMessageMonitor(hwnd);
++            _monitor.WindowMessageReceived += OnMessage;
++            Log($"F5 hook installed hwnd=0x{hwnd:X} method=WindowMessageMonitor ok=True");
++        }
++        catch (Exception ex)
++        {
++            _monitor?.Dispose();
++            Log($"F5 hook installed hwnd=0x{hwnd:X} method=WindowMessageMonitor ok=False error={ex.GetType().Name}");
++            throw; // Do not silently run a partial real source after hook failure.
++        }
++        _window.Activated += OnActivated;
++        if (OperatingSystem.IsWindowsVersionAtLeast(10, 0, 19041)) Subscribe();
++    }
++
++    private void Log(string line)
++    {
++        _log.Line(line);
++        _log.Flush();
++    }
++
++    private void OnMessage(object? sender, WindowMessageEventArgs args)
++    {
++        if (_disposed || (uint)args.Message.MessageId != 0x001A) return;
++        _wmCount++;
++        // Keep lParam as an address: it is optional and is not safe to dereference for injected diagnostics.
++        Log($"F5 WM_SETTINGCHANGE wParam=0x{args.Message.WParam:X} lParam=0x{args.Message.LParam:X} thread={Environment.CurrentManagedThreadId}");
++        _debounce.Stop();
++        _debounce.Start();
++    }
++
++    private void OnDebounce(DispatcherQueueTimer sender, object args) => QueueReread("wm");
++
++    private void OnActivated(object sender, WindowActivatedEventArgs args)
++    {
++        if (args.WindowActivationState == WindowActivationState.Deactivated) return;
++        _activatedCount++;
++        QueueReread("activated");
++    }
++
++    [SupportedOSPlatform("windows10.0.19041.0")]
++    private void Subscribe() => _settings.AnimationsEnabledChanged += OnAnimationsChanged;
++
++    [SupportedOSPlatform("windows10.0.19041.0")]
++    private void Unsubscribe() => _settings.AnimationsEnabledChanged -= OnAnimationsChanged;
++
++    private void OnAnimationsChanged(UISettings sender, UISettingsAnimationsEnabledChangedEventArgs args)
++    {
++        // Reread on the UI queue, rather than capture a possibly stale background-thread value.
++        bool queued = _dispatcher.TryEnqueue(() =>
++        {
++            if (_disposed) return;
++            _eventCount++;
++            Reread("event");
++        });
++        if (!queued) Log("F5 event enqueue ok=False");
++    }
++
++    private void QueueReread(string source)
++    {
++        bool queued = _dispatcher.TryEnqueue(() => { if (!_disposed) Reread(source); });
++        if (!queued) Log($"F5 {source} enqueue ok=False");
++    }
++
++    private void Reread(string source)
++    {
++        bool enabled = _settings.AnimationsEnabled;
++        if (enabled == State.AnimationsEnabled)
++            Log($"F5 reread unchanged animationsEnabled={enabled} source={source}");
++        State.Reread(enabled, source);
++    }
++
++    private void OnStateChanged(bool enabled, string source)
++    {
++        if (source == "fake") _fakeCount++;
++        Log($"F5 source changed animationsEnabled={enabled} source={source} thread={Environment.CurrentManagedThreadId}");
++    }
++
++    public void Dispose()
++    {
++        if (_disposed) return;
++        _disposed = true;
++        _debounce.Stop();
++        _debounce.Tick -= OnDebounce;
++        _fakeSource?.Dispose();
++        _window.Activated -= OnActivated;
++        if (!_fake && OperatingSystem.IsWindowsVersionAtLeast(10, 0, 19041)) Unsubscribe();
++        if (_monitor is not null)
++        {
++            _monitor.WindowMessageReceived -= OnMessage;
++            _monitor.Dispose();
++        }
++        State.Dispose();
++        Log($"F5 source disposed hookRemoved={_monitor is not null} wm={_wmCount} event={_eventCount} activated={_activatedCount} fake={_fakeCount}");
++    }
++}
+diff --git a/src/FluentHub/Views/RootRebuildState.cs b/src/FluentHub/Views/RootRebuildState.cs
+new file mode 100644
+index 00000000..35817667
+--- /dev/null
++++ b/src/FluentHub/Views/RootRebuildState.cs
+@@ -0,0 +1,62 @@
++// F2 local pilot: one pending rebuild, no creation until confirmed old disposal.
++namespace FluentHub.Views;
++
++internal sealed class RootRebuildState
++{
++	private readonly Func<Action, bool> _enqueue;
++	private readonly Action<string> _trace;
++	private int _generation;
++	private bool _pending;
++	private bool _closed;
++	private bool _scheduling;
++
++	internal RootRebuildState(Func<Action, bool> enqueue, Action<string> trace)
++	{
++		_enqueue = enqueue;
++		_trace = trace;
++	}
++	internal int Begin()
++	{
++		if (_closed || _pending) { _trace("F2 rebuild rejected closed/pending"); return 0; }
++		_pending = true;
++		return ++_generation;
++	}
++	internal bool OldDisposed(int generation, Action create)
++	{
++		if (_closed || !_pending || generation != _generation) return false;
++		_scheduling = true;
++		bool accepted;
++		try
++		{
++			accepted = _enqueue(() =>
++			{
++				if (_scheduling) { Fail(generation, "inline queue callback"); return; }
++				if (_closed || !_pending || generation != _generation) return;
++				try { create(); }
++				catch (Exception ex) { Fail(generation, "creation threw " + ex.GetType().Name); }
++				finally { if (generation == _generation) _pending = false; }
++			});
++		}
++		catch (Exception ex)
++		{
++			Fail(generation, "enqueue threw " + ex.GetType().Name);
++			return false;
++		}
++		finally { _scheduling = false; }
++		if (!accepted) Fail(generation, "DispatcherQueue rejected creation");
++		return accepted && !_closed && generation == _generation;
++	}
++	internal void Fail(int generation, string reason)
++	{
++		if (generation != _generation) return;
++		_pending = false;
++		_generation++;
++		_trace("F2 STOP " + reason);
++	}
++	internal void Close()
++	{
++		_closed = true;
++		_pending = false;
++		_generation++;
++	}
++}
+diff --git a/src/FluentHub/Views/PilotEventCounts.cs b/src/FluentHub/Views/PilotEventCounts.cs
+new file mode 100644
+index 00000000..5a1b3a4c
+--- /dev/null
++++ b/src/FluentHub/Views/PilotEventCounts.cs
+@@ -0,0 +1,39 @@
++using System;
++using System.Collections.Generic;
++using System.Linq;
++
++namespace FluentHub.Views;
++
++internal sealed class PilotEventCounts
++{
++	private readonly Dictionary<string, int> _names = new();
++	private readonly Dictionary<string, int> _states = new();
++	internal string Observe(int id, string? eventName, Func<IReadOnlyList<object?>?> payloadGetter)
++	{
++		string name = id == 103 || id == 3 ? "FrameTick" : id == 4 ? "PresentStats" : eventName ?? "Event" + id;
++		_names[name] = _names.GetValueOrDefault(name) + 1;
++		if (name is "FrameTick" or "FrameTickAccept" or "PresentStats") return "";
++		if (name == "AnimationLifecycle")
++		{
++			var payload = payloadGetter();
++			if (payload is { Count: > 4 })
++			{
++				string state = payload[4]?.ToString() ?? "";
++				_states[state] = _states.GetValueOrDefault(state) + 1;
++				return "state=" + state;
++			}
++		}
++		else if (name == "IdleTransition")
++		{
++			var payload = payloadGetter();
++			if (payload is { Count: > 2 }) return $"activeCount={payload[1]} pumpOn={payload[2]}";
++		}
++		return "";
++	}
++	internal string Summary()
++	{
++		string names = string.Join(", ", _names.OrderBy(k => k.Key, StringComparer.Ordinal).Select(k => $"{k.Key}={k.Value}"));
++		string states = string.Join(", ", _states.OrderBy(k => k.Key, StringComparer.Ordinal).Select(k => $"{k.Key}={k.Value}"));
++		return $"ETW_SUMMARY distinctNames={_names.Count} names[{names}] lifecycle[{states}]";
++	}
++}

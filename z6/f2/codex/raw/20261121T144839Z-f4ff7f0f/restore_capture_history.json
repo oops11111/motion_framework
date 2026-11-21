@@ -1,0 +1,33 @@
+{
+  "first_two_exit": 1,
+  "first_two_scope": "sandbox execution; empty captures do not establish restore root cause",
+  "attempt3_exit": 1,
+  "attempt3_scope": "same exact command outside execution sandbox",
+  "captures": [
+    {
+      "original_name": "restore.original.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_name": "restore.attempt2.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_name": "restore.attempt2.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_name": "restore.attempt3.stdout.log",
+      "bytes": 1147,
+      "sha256": "f7d590cce9367cd458fd0d884d707edfc4ad950473369eed0e254e25d239e9ff"
+    },
+    {
+      "original_name": "restore.attempt3.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

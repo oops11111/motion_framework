@@ -1,0 +1,54 @@
+.NET SDK:
+ Version:           10.0.300
+ Commit:            caa81fa497
+ Workload version:  10.0.300-manifests.e0989437
+ MSBuild version:   18.6.3+caa81fa49
+
+运行时环境:
+ OS Name:     Windows
+ OS Version:  10.0.19045
+ OS Platform: Windows
+ RID:         win-x64
+ Base Path:   %ProgramFiles%\dotnet\sdk\10.0.300\
+
+已安装 .NET 工作负载:
+没有要显示的已安装工作负载。
+已配置为在安装新清单时使用 workload sets。
+未安装任何 workload sets。运行 “dotnet workload restore” 以安装工作负载集。
+
+Host:
+  Version:      10.0.8
+  Architecture: x64
+  Commit:       94ea82652c
+
+.NET SDKs installed:
+  8.0.428 [%ProgramFiles%\dotnet\sdk]
+  9.0.321 [%ProgramFiles%\dotnet\sdk]
+  10.0.300 [%ProgramFiles%\dotnet\sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.34 [%ProgramFiles%\dotnet\shared\Microsoft.AspNetCore.App]
+  Microsoft.AspNetCore.App 9.0.23 [%ProgramFiles%\dotnet\shared\Microsoft.AspNetCore.App]
+  Microsoft.AspNetCore.App 10.0.8 [%ProgramFiles%\dotnet\shared\Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.34 [%ProgramFiles%\dotnet\shared\Microsoft.NETCore.App]
+  Microsoft.NETCore.App 9.0.23 [%ProgramFiles%\dotnet\shared\Microsoft.NETCore.App]
+  Microsoft.NETCore.App 10.0.8 [%ProgramFiles%\dotnet\shared\Microsoft.NETCore.App]
+  Microsoft.WindowsDesktop.App 8.0.34 [%ProgramFiles%\dotnet\shared\Microsoft.WindowsDesktop.App]
+  Microsoft.WindowsDesktop.App 9.0.23 [%ProgramFiles%\dotnet\shared\Microsoft.WindowsDesktop.App]
+  Microsoft.WindowsDesktop.App 10.0.8 [%ProgramFiles%\dotnet\shared\Microsoft.WindowsDesktop.App]
+
+Other architectures found:
+  x86   [%ProgramFiles% (x86)\dotnet]
+    registered at [HKLM\SOFTWARE\dotnet\Setup\InstalledVersions\x86\InstallLocation]
+
+Environment variables:
+  Not set
+
+global.json file:
+  %WORKSPACE%\m0\out\f2-repair-20261121T144839Z-f4ff7f0f\source\global.json
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download

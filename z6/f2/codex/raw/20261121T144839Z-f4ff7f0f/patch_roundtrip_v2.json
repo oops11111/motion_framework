@@ -1,0 +1,79 @@
+{
+  "all_equal": true,
+  "patch_v2_sha256": "e6ab408b62e88fd388c17e2fe6945ebe9d605ecfdef5b5e36d8f943fd6a388b1",
+  "v1_v2_patch_bytes_equal": true,
+  "apply_exit": 0,
+  "note": "v1 patch applied before formatting-only source normalization; identical v2 patch, same resulting tree now byte-equal to all ten normative CRLF sources",
+  "files": [
+    {
+      "path": "src/FluentHub/App.xaml.cs",
+      "sha256": "533a4b3133cfa45dad9729054bda269c160dbeb8545658390c30d729eb0056fb",
+      "bytes": 2204,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/FluentHub.csproj",
+      "sha256": "3d20c00ded8bf06200032f8fe10b5972230e4c4286f848a7e68dd175f38e1890",
+      "bytes": 8382,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/MainWindow.cs",
+      "sha256": "1a2e06d2809f380005e86505d48c9cac0f7b364138a81c5c3e269a522f98670d",
+      "bytes": 2844,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/RootView.xaml.cs",
+      "sha256": "6ef7c79cb381c8635b32f31756691f0a0c3a5acd6325f36fffcf2eac19f11f02",
+      "bytes": 11372,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/NavMotionPilot.cs",
+      "sha256": "2cf3bebc184fd05a26da3689fdf7ea8116216847f569a8481d5b9081d702b5ce",
+      "bytes": 19296,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/ReducedMotionState.cs",
+      "sha256": "c660d87c15ac756056c891cd6d1c3b15f0d02ac064ed8e4b574b8aef7a5e69ef",
+      "bytes": 867,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/FakeReducedMotionSource.cs",
+      "sha256": "a2d2fcd5487aba6ce3373acd93963482885614bced9a2377e0c3fe5cab8e6873",
+      "bytes": 1078,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/WindowReducedMotionSource.cs",
+      "sha256": "4155456016e6f862a58670f5882add877d3e67aa09a98fd5c69e31a3f51485ac",
+      "bytes": 5547,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/RootRebuildState.cs",
+      "sha256": "f3b638372875462cf2f58818e3593bf756576ed11861f1cb24d060287369262b",
+      "bytes": 1754,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/PilotEventCounts.cs",
+      "sha256": "db2c29c33b5482742048628a474275fe27ec82951d23ef15b769219d81643ea7",
+      "bytes": 1444,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    }
+  ]
+}

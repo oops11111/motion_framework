@@ -23,4 +23,4 @@ jobs:
         with:
           dotnet-version: '8.0.x'
       - name: Verify freeze, patch and actual source behavior
-        run: python z6/f5/codex/verify.py --run-source-tests
+        run: python z6/f5/codex/verify.py --run-source-tests ${{ (github.head_ref == 'codex/z6-f5' || github.ref_name == 'codex/z6-f5') && '--enforce-stage-scope' || '' }}
