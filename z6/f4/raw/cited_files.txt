@@ -1,0 +1,22 @@
+head=7e2feb0e98f69cf45fff8da4e60220d2b24a5e1a
+pilot/fluenthub/T5_REPORT.md | tracked=True | blob=5c69ba966977c96eead91bd92f0cd7b0695a5056
+pilot/fluenthub/BASELINE.md | tracked=True | blob=ab45b726753a17dbc020868803d6e50c315be5ff
+pilot/fluenthub/z5_t5_motion_run1_etw_off.log | tracked=True | blob=048bed0d9378ea757e0b90726ecee0dd27cfb635
+pilot/fluenthub/z5_t5_motion_run2.log | tracked=True | blob=9bd75ca0313744804a40c70ba5114c4561cbc639
+pilot/fluenthub/fluenthub_t5_side_fork.patch | tracked=True | blob=faa95893a17772e04e3721bda838f99b70551f9d
+docs/z5_closed.md | tracked=True | blob=52ec802bcfb76d589f63f8dbc62e1332a70cdead
+pilot/fluenthub/surface_l1pack.txt | tracked=True | blob=feccd11df481744d2047ed0be4cd8b9ffae5f27d
+# supporting lines (file:line: text)
+pilot/fluenthub/z5_t5_motion_run1_etw_off.log:11: 00011 ETW_SUMMARY distinctNames=0 names[] lifecycle[]
+pilot/fluenthub/z5_t5_motion_run2.log:65: 00065 ETW_SUMMARY distinctNames=5 names[AnimationLifecycle=28, FrameTick=85, IdleTransition=8, Retarget=8, TokenLoad=1] lifecycle[Cancelled=7, Created=7, Played=7, Released=7]
+pilot/fluenthub/fluenthub_t5_side_fork.patch:13: +		<EventSourceSupport>true</EventSourceSupport>
+docs/z5_closed.md:104: - **侧叉**：FluentHub 本地侧叉 @ `eb08f0db`，不推 fork，不提上游。补丁 `pilot/fluenthub/fluenthub_t5_side_fork.patch`，sha256 `79b00ba22f8d45a0999a0a48e59be8b490608f29cbfdf041359e7c670b92e6ab`。改动是 csproj（HintPath 引用 pack DLL、`EventSourceSupport=true`）、`RootView.xaml.cs` +5 行、新增 `Views/NavMotionPilot.cs`。
+docs/z5_closed.md:131: | D6 | T5 | FluentHub 的 `PublishAot=true` 让 runtimeconfig 关掉了 EventSource，run1 的 ETW 为 0 | 侧叉 csproj 加 `EventSourceSupport=true`，仅本地；run1 日志 `z5_t5_motion_run1_etw_off.log` 已入库 |
+docs/z5_closed.md:231: - **K-AOT-ETW · AOT 宿主默认关闭 EventSource**
+docs/z5_closed.md:232: - 宿主工程设了 `PublishAot=true` 时，.NET SDK 会在 runtimeconfig 里写入 `System.Diagnostics.Tracing.EventSource.IsSupported=false`，Debug build 也一样。
+docs/z5_closed.md:233: - 后果：L1 的 E1 ETW 事件（provider `FluidMotion-Motion`，GUID `8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d`）**在这类宿主里不发出**，除非宿主显式设 `<EventSourceSupport>true</EventSourceSupport>`。
+docs/z5_closed.md:253: - 已知限制 K-AOT-ETW 已登记（第 9 节）；K93 清理按 06:03 许可完成（第 10 节，据 workbuddy 报告）。
+pilot/fluenthub/T5_REPORT.md:46: - ETW 0 事件：FluentHub 工程 `PublishAot=true`，SDK 因此在 runtimeconfig 写入 `System.Diagnostics.Tracing.EventSource.IsSupported=false`（Debug build 也写），整个 EventSource 被关闭。处理：在本地侧叉 csproj 的 pilot-only 块加 `<EventSourceSupport>true</EventSourceSupport>`，重建后 runtimeconfig 为 `true`。仅影响本地试点的运行时特性开关；未做 publish/AOT；L1 / E1 未改。
+pilot/fluenthub/T5_REPORT.md:50: - 同一命令，BUILD_EXIT=0，0 警告 0 错误；runtimeconfig `EventSource.IsSupported=true`；重新 `Add-AppxPackage -Register`（同一用户级包，原地更新）。
+pilot/fluenthub/BASELINE.md:18: | 目标框架 | `net10.0-windows10.0.26100.0`，TargetPlatformMinVersion 10.0.17763.0；`PublishAot=true`、`SelfContained=true`、`TreatWarningsAsErrors=true`（Directory.Build.props） |
+pilot/fluenthub/BASELINE.md:53: 分析（不下修复）：`PublishAot=true` 使 restore 引入 `Microsoft.DotNet.ILCompiler` 10.0.8；NuGet 漏洞审计把它报为 NU1903 警告，`TreatWarningsAsErrors=true` 把它升级为错误，restore 失败。FluentHub、Core、Octokit、Octokit.Generators 其余三个工程 restore 成功。FluentHub 源码 `git status` 干净（仅 `obj/` 被忽略产物）。

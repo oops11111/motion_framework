@@ -48,3 +48,5 @@ PR #11 merged as 4e128e735edf788da0b9fa9e11f0d5e2511e5585; tested head 7f13ef46e
 Original source verdicts retained. Canonical docs and reports/raw imported exact; source ledger snapshots under z6/integration/docs/source_ledgers. F8 remains DRAFT; no approval, lock, probe, or closure issued.
 
 - F12: ordinary source merge 876b73ac752338fab09b225e227cfde77c1c0c63; exact ledger snapshot preserved.
+
+- F4: ordinary source merge 5fa5f856bc54632becbc365bb2453a71af4b0c29; exact ledger snapshot preserved.
