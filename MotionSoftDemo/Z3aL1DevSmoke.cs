@@ -45,7 +45,7 @@ public static class Z3aL1DevSmoke
 
             var seen = new HashSet<string>(StringComparer.Ordinal);
             var idleLines = new List<string>();
-            using var mirror = new MotionEtwMirror(line =>
+            using var mirror = new CountOnlyEtwListener(line =>
             {
                 log.WriteLine(line);
                 if (line.StartsWith("ETW_EVENT name=IdleTransition ", StringComparison.Ordinal)) idleLines.Add(line);
@@ -340,6 +340,52 @@ public static class Z3aL1DevSmoke
     }
 
     static string Fmt(double? v) => v.HasValue ? v.Value.ToString("G9", CultureInfo.InvariantCulture) : "null";
+
+    // Test fixture only. The frozen production mirror formats every payload;
+    // integration smoke must never read FrameTick/PresentStats field values.
+    sealed class CountOnlyEtwListener : EventListener
+    {
+        readonly Action<string>? _sink;
+        readonly Dictionary<string, int> _counts = new(StringComparer.Ordinal);
+
+        public CountOnlyEtwListener(Action<string> sink, bool enableVerbose)
+        {
+            _sink = sink;
+            var provider = MotionEtw.Log;
+            var level = enableVerbose ? EventLevel.Verbose : EventLevel.Informational;
+            EnableEvents(provider, level, EventKeywords.All);
+            sink($"ETW_LISTENER enabled provider={provider.Name} guid={provider.Guid} level={level} count_only=1");
+        }
+
+        protected override void OnEventWritten(EventWrittenEventArgs e)
+        {
+            if (_sink == null || e.EventSource?.Name != "FluidMotion-Motion") return;
+            string name = e.EventName ?? ("Event" + e.EventId);
+            if (e.EventId == 103 || string.Equals(name, "FrameTickAccept", StringComparison.Ordinal))
+                name = "FrameTick";
+            int count;
+            lock (_counts)
+            {
+                _counts.TryGetValue(name, out count);
+                _counts[name] = ++count;
+            }
+
+            // These early returns precede every Payload getter/enumeration.
+            if (name == "FrameTick" || name == "PresentStats")
+            {
+                _sink($"ETW_EVENT name={name} id={e.EventId} count={count}");
+                return;
+            }
+            if (name == "IdleTransition")
+            {
+                // Preserve the existing Dispose assertion's non-timing fields.
+                string payload = e.Payload == null ? "" : string.Join(",", e.Payload.Select(p => p?.ToString() ?? ""));
+                _sink($"ETW_EVENT name={name} id={e.EventId} level={e.Level} count={count} payload={payload}");
+                return;
+            }
+            _sink($"ETW_EVENT name={name} id={e.EventId} count={count}");
+        }
+    }
 
     static int Finish(TextWriter log, int fails)
     {

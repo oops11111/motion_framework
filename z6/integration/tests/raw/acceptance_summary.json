@@ -1,0 +1,40 @@
+{
+  "Debug": {
+    "status": "PASS (dev-only)",
+    "all_command_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "native_summary": "45 checks, 0 failures",
+    "managed_verdict": "Z3A_DEV_ONLY verdict=PASS fails=0 not_z4=1 perf_ci=HOLD",
+    "ok_lines": 68,
+    "f1b_ok_lines": 7,
+    "restricted_events_have_no_payload": true,
+    "surface_sha256_lf": "243c2e009252fa1d7d74b11c0c173a425a1804e1581157946882f852c8c23a34",
+    "native_dll_sha256": "aa0cf7e3255531147e746e80cfc0adbf5436659b65a720a5dfb3cf8720dda87b",
+    "managed_assembly_sha256": "642230aac38e61e6a34a0ea23d3c1cc49208bf4c5c384e1f963b41887ddad5e4"
+  },
+  "Release": {
+    "status": "PASS (dev-only)",
+    "all_command_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "native_summary": "45 checks, 0 failures",
+    "managed_verdict": "Z3A_DEV_ONLY verdict=PASS fails=0 not_z4=1 perf_ci=HOLD",
+    "ok_lines": 68,
+    "f1b_ok_lines": 7,
+    "restricted_events_have_no_payload": true,
+    "surface_sha256_lf": "243c2e009252fa1d7d74b11c0c173a425a1804e1581157946882f852c8c23a34",
+    "native_dll_sha256": "ae44cd9a3eb05a48574794052e85c63e39f861c8cc659a97b3094ad9181b9b9f",
+    "managed_assembly_sha256": "42869acee773794c0a7726258b883529adb08c429459e981934a3219ff3a39cc"
+  }
+}

@@ -1,0 +1,57 @@
+name: Z6 deterministic integration regression
+
+on:
+  push:
+    branches: [codex/z6-integration-tests, main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  policy-and-evidence:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate frozen source and immutable evidence
+        run: python z6/integration/tests/verify.py
+      - name: Enforce this stage's integration scope
+        if: github.head_ref == 'codex/z6-integration-tests' || github.ref == 'refs/heads/codex/z6-integration-tests'
+        run: python z6/integration/tests/verify.py --enforce-stage-scope
+
+  native-and-managed:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Release]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+      - name: Run complete native and managed configuration with surface comparison
+        run: python z6/integration/tests/run_tests.py --configuration ${{ matrix.configuration }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: integration-${{ matrix.configuration }}
+          path: |
+            m0/out/z6-integration-tests-*/result.json
+            m0/out/z6-integration-tests-*/*.log
+            m0/out/z6-integration-tests-*/surface_*.txt
+            m0/out/z6-integration-tests-*/surface_*.checksurface.txt
+            m0/out/z6-integration-tests-*/SHA256SUMS

@@ -35,3 +35,5 @@
 - Prior F5 acceptance reference only: PR10 merged to codex/z6-integration at 15d4108fd56eb661c1a46c6552ffe74a0318ff28. That F2/F5 ancestry is not part of this stage or main.
 
 - 2026-11-21 15:13 AWST: imported pinned F1 5ec13f459a7926012407b10cf263127e5a74ab73; incoming exact ledger is archived at integration/tests/source_ledgers/f1-5ec13f459a7926012407b10cf263127e5a74ab73.md. Native F1/F3 blocks merged without test conflict; historical GUI C evidence imported only, not newly judged.
+
+- 2026-11-21 15:24:53 +0800: Stage 2A fresh local integration PASS(dev-only): native 45/0 Debug+Release; complete net8 devsmoke PASS both; both full surfaces equal original baseline. No GUI rerun, timing, production/schema change or new build override. Evidence: integration/tests/REPORT.md; primary review and exact-head CI required before main merge.

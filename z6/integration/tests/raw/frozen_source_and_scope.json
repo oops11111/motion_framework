@@ -1,0 +1,58 @@
+{
+  "base": "7e2feb0e98f69cf45fff8da4e60220d2b24a5e1a",
+  "source_merge_commits": {
+    "f0": "9916a2d",
+    "f3": "2ad406e",
+    "f1": "aab9041"
+  },
+  "production_freeze": [
+    {
+      "path": "code/composition.h",
+      "base_blob": "fd0603c17136c067e89c71e56aef310f2f7e63f4",
+      "working_blob": "fd0603c17136c067e89c71e56aef310f2f7e63f4",
+      "unchanged": true
+    },
+    {
+      "path": "code/capi/fm_capi.h",
+      "base_blob": "e247ffaf2e533f15e3b0b99372ecc68375f23f62",
+      "working_blob": "e247ffaf2e533f15e3b0b99372ecc68375f23f62",
+      "unchanged": true
+    },
+    {
+      "path": "code/capi/fm_capi.cpp",
+      "base_blob": "b47f959d7a96229b8f6bdccf9157f81c4506a426",
+      "working_blob": "b47f959d7a96229b8f6bdccf9157f81c4506a426",
+      "unchanged": true
+    },
+    {
+      "path": "MotionSoftDemo/MotionSystem.cs",
+      "base_blob": "fe72b08f9445723f926a2928345e23311503efec",
+      "working_blob": "fe72b08f9445723f926a2928345e23311503efec",
+      "unchanged": true
+    },
+    {
+      "path": "MotionSoftDemo/MotionEtw.cs",
+      "base_blob": "0404498ab4cb7e96168405a7ffb63591686797ca",
+      "working_blob": "0404498ab4cb7e96168405a7ffb63591686797ca",
+      "unchanged": true
+    },
+    {
+      "path": "docs/api_v0_frozen.md",
+      "base_blob": "8582ad9d98634d0d9aa6d5bf74bfa1fb19bea354",
+      "working_blob": "8582ad9d98634d0d9aa6d5bf74bfa1fb19bea354",
+      "unchanged": true
+    },
+    {
+      "path": "pilot/l1pack/FluidMotion.L1.csproj",
+      "base_blob": "ace009e5c8e2c5c635f6a19a665c261881a5517a",
+      "working_blob": "ace009e5c8e2c5c635f6a19a665c261881a5517a",
+      "unchanged": true
+    }
+  ],
+  "composition_sha256_lf": "a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418",
+  "new_gui_run": false,
+  "f2_f5_ancestry_included": false,
+  "original_ticket_verdicts_re_adjudicated": false,
+  "fresh_acceptance": "native and standalone managed regression Debug and Release only",
+  "review": "primary reviewed plan and private fixture; latest-head CI and final diff review pending"
+}
