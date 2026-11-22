@@ -1,0 +1,59 @@
+{
+  "source_repository": "oops11111/motion_framework",
+  "source_commit": "44401d3f002b427d828500331a3e9b4ada5881cd",
+  "package_id": "FluidMotion.L1",
+  "version": "0.1.0",
+  "exact_version_range": "[0.1.0]",
+  "candidate": true,
+  "package_relative": "artifacts/fluidmotion/feed/FluidMotion.L1.0.1.0.nupkg",
+  "package_sha256": "b2e47d89488e51ef32d16b4775298d6171dddfc992eb187d4d7f253243354062",
+  "package_members": [
+    {
+      "path": "_rels/.rels",
+      "bytes": 481,
+      "sha256": "dc2fce02d357fe97487bcd68d2279fae832ff49da76120022fa0ea0b7518d39e"
+    },
+    {
+      "path": "FluidMotion.L1.nuspec",
+      "bytes": 748,
+      "sha256": "d0a468e7d145914dfec74378225a055d0015bd397e514ccaa8b54a101137a222"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1947,
+      "sha256": "2e54c704279f70488ccd6344a05fb612518e437062a30db1f30457385c293f97"
+    },
+    {
+      "path": "contentFiles/any/net8.0/demo_motion.json",
+      "bytes": 1228,
+      "sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e"
+    },
+    {
+      "path": "lib/net8.0/FluidMotion.L1.dll",
+      "bytes": 22528,
+      "sha256": "ab2b4430157c5df7a7fb62a4bf6f50fcbce549ff48dfea4dc209efd0cf774182"
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 3821,
+      "sha256": "ff6fd5bdd88dbd11484b1cfaef0ae3554feae76df2df28d10e0cad2128645a3d"
+    },
+    {
+      "path": "runtimes/win-x64/native/fluidmotion.dll",
+      "bytes": 451072,
+      "sha256": "c62e98ee1f3c978d1041e7ea2feb9d72317aa6f90d0cd063ba8f529adf22dffb"
+    },
+    {
+      "path": "[Content_Types].xml",
+      "bytes": 591,
+      "sha256": "6e5f60b1fcf865227f371695daf866552a4d4e58a67e8ad79a20aca0ffa4b728"
+    },
+    {
+      "path": "package/services/metadata/core-properties/nuget.psmdcp",
+      "bytes": 666,
+      "sha256": "900990ef6fd98c8941d67ea4bf3b6bab7bd123877d433871ca2784582cb1a367"
+    }
+  ],
+  "framework_manifest_relative": "artifacts/fluidmotion/build-f447a2f56fb54245a9a524a85a1c7c71/result.json",
+  "framework_manifest_sha256": "60c958f02b6453439e7580d5988c493ca9d442729f003d497059fc80180a4685"
+}

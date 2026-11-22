@@ -1,0 +1,98 @@
+{
+  "status": "PASS primary postmerge installer/source/visual acceptance; P4 document merge and final delivery seal pending",
+  "application_commit": "191f4d65b15e6fecf0118e0b120c7760ef3d8d53",
+  "component_source_commit": "44401d3f002b427d828500331a3e9b4ada5881cd",
+  "run": 45011904252,
+  "checks": [
+    {
+      "job_id": 137175853404,
+      "name": "build",
+      "conclusion": "success"
+    },
+    {
+      "job_id": 137177159825,
+      "name": "installer-smoke",
+      "conclusion": "success"
+    }
+  ],
+  "input_artifact": 14750132089,
+  "input_archive_sha256": "c0b83279f1628271660092fab184a647a5adf346e8e744084b413bd3b23c552d",
+  "smoke_artifact": 14750575568,
+  "smoke_archive_sha256": "511e1d2a8363cb4a426326330412923b080cac92d27e99628e9a721926e940c3",
+  "input_files_verified": 27,
+  "package_members_verified": 9,
+  "installer_sha256": "e2f5ef48949d7af817de6d56b25eadbaca4bc6bf2331eaec68212f82d4a2a286",
+  "package_sha256": "b2e47d89488e51ef32d16b4775298d6171dddfc992eb187d4d7f253243354062",
+  "actual_signature": "NotSigned",
+  "loaded_modules": [
+    {
+      "path": "C:\\Program Files\\EveryStage\\Terminal\\FluidMotion.L1.dll",
+      "sha256": "ab2b4430157c5df7a7fb62a4bf6f50fcbce549ff48dfea4dc209efd0cf774182",
+      "name": "FluidMotion.L1.dll"
+    },
+    {
+      "path": "C:\\Program Files\\EveryStage\\Terminal\\fluidmotion.dll",
+      "sha256": "c62e98ee1f3c978d1041e7ea2feb9d72317aa6f90d0cd063ba8f529adf22dffb",
+      "name": "fluidmotion.dll"
+    }
+  ],
+  "normal_exit": {
+    "start_utc": "2026-11-22T10:26:00.2150362Z",
+    "normal_tray_exit": true,
+    "exit": 0,
+    "retained_handle": true,
+    "pid": 7748
+  },
+  "installer_calls_zero": 9,
+  "component_cases": [
+    {
+      "caster": false,
+      "terminal": true,
+      "selection": "Terminal"
+    },
+    {
+      "caster": true,
+      "terminal": false,
+      "selection": "Caster"
+    },
+    {
+      "caster": true,
+      "terminal": true,
+      "selection": "Both"
+    }
+  ],
+  "visual_review": "Primary personally viewed all six original postmerge PNGs. Main window is unobstructed; final drawer open, resized-open and Escape-closed states are correct. The opening sample is visually still closed, and reversed sample closed; these frames do not prove exact timing or in-flight reversal. P2 actual-control continuity evidence remains separate.",
+  "images": [
+    {
+      "file": "installed-closed.png",
+      "sha256": "a38850c4264df2ab3ede17d29c6b53c93b599a4217962720f0338b53b9d748a2"
+    },
+    {
+      "file": "installed-escape.png",
+      "sha256": "03efd9b8f6fdbe1b37f4e674ecceda4a3aa5118b9fc47e434b486ba08a9cd5db"
+    },
+    {
+      "file": "installed-open.png",
+      "sha256": "96428ea33c9ea20e7e51141b78f2afc64e96bcad34ca59f26b9f013a189b39a2"
+    },
+    {
+      "file": "installed-opening.png",
+      "sha256": "37367809c548f76b79c3b43a3d90c837a6faffdc17869a1bdf3fa646c82ae45a"
+    },
+    {
+      "file": "installed-resized.png",
+      "sha256": "1f2c6ca0ae37ecc14ec214ec732d71af58ed2d61fff121ac3b205fdfd10a5270"
+    },
+    {
+      "file": "installed-reversed.png",
+      "sha256": "63e46d4bc60a8030299a4c433f74301f4d98dde7fa688add90c0c9c495fc2ce6"
+    }
+  ],
+  "reviewed_utc": "2026-11-22T10:29:54.922708+00:00",
+  "limitations": [
+    "Hosted Windows runner ordinary installed app, not user-PC/standard-user or physical device validation",
+    "Internal unsigned installer; no public package release",
+    "No Office/media/performance certification",
+    "Actual cloud baseline retention three days; independently verified offline original available"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "started_utc": "2026-11-22T10:26:00.2032099Z",
+  "pid": 7748,
+  "retained_handle": true,
+  "verified_path": "C:\\Program Files\\EveryStage\\Terminal\\EveryStage.Terminal.exe",
+  "shortcut": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\EveryStage\\EveryStage 终端机.lnk",
+  "shortcut_sha256": "e18afebad045c603e260454fa5d4a3258764e2aa15477c92f8edb458902a6ac4",
+  "native_target": "C:\\Program Files\\EveryStage\\Terminal\\EveryStage.Terminal.exe",
+  "process_started_utc": "2026-11-22T10:26:00.2150362Z"
+}

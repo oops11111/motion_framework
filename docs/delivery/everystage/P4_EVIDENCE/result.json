@@ -1,0 +1,21 @@
+{
+  "cases": [
+    {
+      "caster": false,
+      "terminal": true,
+      "selection": "Terminal"
+    },
+    {
+      "caster": true,
+      "terminal": false,
+      "selection": "Caster"
+    },
+    {
+      "caster": true,
+      "terminal": true,
+      "selection": "Both"
+    }
+  ],
+  "ordinary_app": "PASS ordinary installed Terminal drawer",
+  "status": "PASS pipeline installer acceptance; primary acceptance pending"
+}
