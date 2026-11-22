@@ -1,0 +1,147 @@
+{
+  "recorded_utc": "2026-11-22T06:49:49.832083+00:00",
+  "scope": "P0 read-only source discovery and plan documentation; no builds/tests/install/artifact download",
+  "MF_base": "350f81ecb605886d968b95c55ea9a9ade4ff43d8",
+  "EveryStage_source": "7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+  "EveryStage_target": "drop-prewarm",
+  "EveryStage_default": "claude/new-project-qrnmf8",
+  "default_tip": "78475afbfe77a8c02b91201986b3eae26ba651f6",
+  "default_is_ancestor": true,
+  "default_drop_left_right": [
+    0,
+    23
+  ],
+  "clone_relative": "m0/out/everystage-p0-532e677a80344dafb178229f14c38adf",
+  "clone_clean": true,
+  "AGENTS": "None found in checked MF/EveryStage tracked trees and applicable workspace/parent paths",
+  "artifact_metadata_source": "Primary authenticated connector read-only verification; not downloaded by implementation agent",
+  "artifact": {
+    "run_id": 44977550323,
+    "artifact_id": 14736098352,
+    "name": "EveryStage-Setup-win-x64-7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+    "approximate_size": "62MB",
+    "expired": false,
+    "digest": "76614f31aa34372c15f0de26d69f818f89c3b5814967b24a0aa980b4c7eaad94",
+    "digest_scope": "GitHub artifact archive, not inner EXE",
+    "signing_observation": "Source build explicitly sets UNSIGNED=1; artifact executable not downloaded or independently signature-tested",
+    "size_in_bytes": 62309585,
+    "expires_at": "2026-11-25T02:45:33Z"
+  },
+  "sources": [
+    {
+      "repository": "EveryStage",
+      "ref": "7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+      "path": "Directory.Build.props",
+      "git_blob": "9df39ba3a01a369eb0018a816ba3e0d5ccc9bd3f",
+      "canonical_sha256": "b6806c8fca0992bbb868be99fb2c76162241b9c4a83e4eedc751edbc92e312f6",
+      "source_url": "https://github.com/oops11111/EveryStage/blob/7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf/Directory.Build.props"
+    },
+    {
+      "repository": "EveryStage",
+      "ref": "7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+      "path": "src/Caster/EveryStage.Caster/EveryStage.Caster.csproj",
+      "git_blob": "99e65eb1661d036e93b01bd2fac22150cf8307c2",
+      "canonical_sha256": "42d21e0234a8d23bdf71003a8ca15adcce871da7a714a53ba7fbec161deca71e",
+      "source_url": "https://github.com/oops11111/EveryStage/blob/7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf/src/Caster/EveryStage.Caster/EveryStage.Caster.csproj"
+    },
+    {
+      "repository": "EveryStage",
+      "ref": "7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+      "path": "src/Terminal/EveryStage.Terminal/EveryStage.Terminal.csproj",
+      "git_blob": "bebd473e40acaa09d4447930bf61e23ac3fee1db",
+      "canonical_sha256": "e6944ee4c684156185201704386c8253a94b961cbcb5af33ced7a752e36f7f71",
+      "source_url": "https://github.com/oops11111/EveryStage/blob/7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf/src/Terminal/EveryStage.Terminal/EveryStage.Terminal.csproj"
+    },
+    {
+      "repository": "EveryStage",
+      "ref": "7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+      "path": "src/Shared/EveryStage.SharedUi/EveryStage.SharedUi.csproj",
+      "git_blob": "445002112c7927f2e788e207777284ae84b6df08",
+      "canonical_sha256": "d2f3f0ebac7a700774781982274a2b3a7740483cd612e9e7de8c048bc78d3966",
+      "source_url": "https://github.com/oops11111/EveryStage/blob/7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf/src/Shared/EveryStage.SharedUi/EveryStage.SharedUi.csproj"
+    },
+    {
+      "repository": "EveryStage",
+      "ref": "7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+      "path": ".github/workflows/ci.yml",
+      "git_blob": "0876017a4109b79bbfb0b721c1e2e67d5968fc93",
+      "canonical_sha256": "897bc139489bfa0ddbbcb20b53fb4cac0201e47b7734c7b241e161c236d4c858",
+      "source_url": "https://github.com/oops11111/EveryStage/blob/7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf/.github/workflows/ci.yml"
+    },
+    {
+      "repository": "EveryStage",
+      "ref": "7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+      "path": "scripts/Build-ReleasePackages.ps1",
+      "git_blob": "266b63659073f1851a4407432b615aac2ab91485",
+      "canonical_sha256": "7b76295aaf10e8b1f4d7860a283a22fdfc1c1af5f2155bdfc25f3e983250b9a7",
+      "source_url": "https://github.com/oops11111/EveryStage/blob/7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf/scripts/Build-ReleasePackages.ps1"
+    },
+    {
+      "repository": "EveryStage",
+      "ref": "7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+      "path": "scripts/Build-Installer.ps1",
+      "git_blob": "5eb020cb4b47bc17014aefcd09980bf142437d7e",
+      "canonical_sha256": "0aa3e6dd74ec34112f2e7a87b7e6550930729da5e9eb60bc85d73541c2220895",
+      "source_url": "https://github.com/oops11111/EveryStage/blob/7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf/scripts/Build-Installer.ps1"
+    },
+    {
+      "repository": "EveryStage",
+      "ref": "7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+      "path": "deployment/installer/EveryStage.nsi",
+      "git_blob": "dc92679b92de39dc0e3d85bbf0f36ba1fcda33a7",
+      "canonical_sha256": "945c36c2003091019283038e888538a28d81cc925f4a46b30e42993c078e8a7d",
+      "source_url": "https://github.com/oops11111/EveryStage/blob/7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf/deployment/installer/EveryStage.nsi"
+    },
+    {
+      "repository": "EveryStage",
+      "ref": "7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
+      "path": "src/Terminal/EveryStage.Terminal/UI/MusicDrawer.cs",
+      "git_blob": "2fadf8f683fbf1c645262c335faeb8ee12fe0d06",
+      "canonical_sha256": "5e67d857047a71794926dbe117ceab6abef4d6748b10f128aac477221f2f3ae6",
+      "source_url": "https://github.com/oops11111/EveryStage/blob/7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf/src/Terminal/EveryStage.Terminal/UI/MusicDrawer.cs"
+    },
+    {
+      "repository": "motion_framework",
+      "ref": "350f81ecb605886d968b95c55ea9a9ade4ff43d8",
+      "path": "pilot/l1pack/FluidMotion.L1.csproj",
+      "git_blob": "ace009e5c8e2c5c635f6a19a665c261881a5517a",
+      "canonical_sha256": "f644eb45fd0d6db71b593ef8066e851e0f3ee038d3ce7557fb424be9f73d0b4c",
+      "source_url": "https://github.com/oops11111/motion_framework/blob/350f81ecb605886d968b95c55ea9a9ade4ff43d8/pilot/l1pack/FluidMotion.L1.csproj"
+    },
+    {
+      "repository": "motion_framework",
+      "ref": "350f81ecb605886d968b95c55ea9a9ade4ff43d8",
+      "path": "MotionSoftDemo/MotionSystem.cs",
+      "git_blob": "fe72b08f9445723f926a2928345e23311503efec",
+      "canonical_sha256": "fdd414d42c74007e7cb27c78de56734678adf7e68cb9acd4ddda4630ddff5c86",
+      "source_url": "https://github.com/oops11111/motion_framework/blob/350f81ecb605886d968b95c55ea9a9ade4ff43d8/MotionSoftDemo/MotionSystem.cs"
+    },
+    {
+      "repository": "motion_framework",
+      "ref": "350f81ecb605886d968b95c55ea9a9ade4ff43d8",
+      "path": ".github/workflows/z6-integration-tests.yml",
+      "git_blob": "a7ebbfc449db92ded13ccc9f2908ed7b64c8e0e4",
+      "canonical_sha256": "c2a0897b46cfdfcbbce5c577cb39df4b3d6c3f509f9dafbe1f91f88573e24e80",
+      "source_url": "https://github.com/oops11111/motion_framework/blob/350f81ecb605886d968b95c55ea9a9ade4ff43d8/.github/workflows/z6-integration-tests.yml"
+    },
+    {
+      "repository": "motion_framework",
+      "ref": "350f81ecb605886d968b95c55ea9a9ade4ff43d8",
+      "path": "z6/integration/tests/run_tests.py",
+      "git_blob": "72df6eee8e5983797de5dab59805bab3db550370",
+      "canonical_sha256": "11a647dd025e2f9e08cc61f3e7928ac5beb914771539136a37bf6ae92c705a5e",
+      "source_url": "https://github.com/oops11111/motion_framework/blob/350f81ecb605886d968b95c55ea9a9ade4ff43d8/z6/integration/tests/run_tests.py"
+    }
+  ],
+  "P0_document_validation": {
+    "UTF8": true,
+    "scope": "only docs/delivery/everystage/**",
+    "markdown_links_checked": 18,
+    "pinned_source_receipts": 13,
+    "document_sha256": {
+      "PLAN.md": "3fd0fe093995c3b0d7dc4e748fd0552a16ecaba5575f6893741d898b505ca591",
+      "DISCOVERY.md": "e6c7541f918349d3a416a37ce386fb58eee3a601037d2973f61464a7f38957a4"
+    },
+    "behavior_build_install_or_artifact_execution": false
+  }
+}
