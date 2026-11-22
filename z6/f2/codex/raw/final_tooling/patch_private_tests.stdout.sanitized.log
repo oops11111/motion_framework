@@ -1,0 +1,19 @@
+PASS one pending
+PASS queued after disposal
+PASS no inline creation
+PASS pending during creation
+PASS deferred create
+PASS closed rejects stale callback
+PASS reject STOP
+PASS reject clears pending
+PASS enqueue_throw STOP
+PASS enqueue_throw clears pending
+PASS create_throw STOP
+PASS create_throw clears pending
+PASS inline STOP
+PASS inline clears pending
+PASS restricted and count-only payload lazy
+PASS lifecycle state only
+PASS idle fields
+PASS actual summary
+PASS 18 checks

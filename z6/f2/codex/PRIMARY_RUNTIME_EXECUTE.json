@@ -1,0 +1,10 @@
+{
+  "instruction_kind": "Primary F2 runtime execute",
+  "root_verbatim": "现释放一次已审运行：绑定RUNTIME_BINDING SHA168ae7bf73d784d04a4f988868f9dc7d95b28c7b95764ae1265a10afaaad8f46/driver6a4f3413313636d7a8638d97ea3f57b796a0dffdb84ece51d5d1769ff0f47f9f/source10v2/layout284SHA d5c6885a1f8099066e5902ba2d978f9be9fb53e659578de57861415e996df3da/manifestfe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4/host428fe0ba...不变。",
+  "authority_sha256": "78fd2e714d841812a8498ab78c4b62ee230298607c4c75b78710ad9ca974fc6e",
+  "binding_sha256": "168ae7bf73d784d04a4f988868f9dc7d95b28c7b95764ae1265a10afaaad8f46",
+  "layout_sha256": "d5c6885a1f8099066e5902ba2d978f9be9fb53e659578de57861415e996df3da",
+  "manifest_sha256": "fe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4",
+  "recorded_utc": "2026-11-22T02:42:29Z",
+  "record_time_is_not_send_time": true
+}

@@ -1,0 +1,31 @@
+name: Z6 F2 repair evidence and private behavior
+on:
+  push:
+    branches: [codex/z6-f2-repair]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'z6/f2/**'
+      - 'z6/f5/codex/**'
+      - '.github/workflows/z6-f2-repair.yml'
+      - '.github/workflows/z6-f5.yml'
+permissions:
+  contents: read
+jobs:
+  repair-evidence-and-private-behavior:
+    if: github.head_ref == 'codex/z6-f2-repair' || github.ref == 'refs/heads/codex/z6-f2-repair'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Verify import provenance, freeze and recorded runtime evidence
+        run: python z6/f2/codex/verify_runtime.py --enforce-stage-scope
+      - name: Test actual patch-extracted private logic
+        run: python z6/f2/codex/run_private_tests.py

@@ -1,0 +1,23 @@
+[
+  {
+    "original_name": "Fake-pilot.original.log",
+    "original_bytes": 8434,
+    "original_sha256": "b7a4c6d5cd249d479179f59635db5daee56f31d3e799c7650bfe9e26fdc4c69d",
+    "original_preserved": "ignored immutable runtime attempt",
+    "not_published_as_original": true
+  },
+  {
+    "original_name": "Real-pilot.original.log",
+    "original_bytes": 9598,
+    "original_sha256": "875a90b8a40e7c053e5c2acb229c69f1c4cf0cf722a0f2b61dd94ed53f05a653",
+    "original_preserved": "ignored immutable runtime attempt",
+    "not_published_as_original": true
+  },
+  {
+    "original_name": "Real-prior-package-app-log.txt",
+    "original_bytes": 8434,
+    "original_sha256": "b7a4c6d5cd249d479179f59635db5daee56f31d3e799c7650bfe9e26fdc4c69d",
+    "original_preserved": "ignored immutable runtime attempt",
+    "not_published_as_original": true
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "patch_extracted_private_tests_exit": 0,
+  "checks": 18,
+  "warning_free": true,
+  "source_extraction": "two exact SHA-matched CRLF new-file bodies from delivered v2 patch",
+  "original_stdout_sha256": "6a068121adc1b23e3e843d4397ae933c713ddd4117ac199caecd8f36909cf361",
+  "original_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "earlier_fixture_attempt": "18 checks PASS with duplicate inclusion CS2002; project moved below separate directory; original output retained ignored",
+  "earlier_verifier_preparation": "scope initially omitted exact legacy F5 imports; corrected to IMPORT_PROVENANCE path set, then explicit UTF8 added; runtime code binding unchanged",
+  "runtime_repeated": false,
+  "host_rebuilt": false
+}
