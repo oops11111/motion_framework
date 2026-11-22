@@ -1,0 +1,8 @@
+{
+  "base": "eb09e63f3068a98fb011709132365e81d825c23c",
+  "canonical_file_hashes": {
+    "docs/z6_closed.md": "00a75e83da8243a772fce5ec61382a37570d4ea86dd6c9a7aaa5af889e6d57df",
+    ".github/workflows/z6-closure.yml": "810abdc8b9e8aa9e439c3118e81b6433df61c9520c457ad761805838fe96e8f5",
+    "z6/LEDGER_snapshot.md": "71a778d4cbd59223d62b177498ec8b71e812e296df225588481eb802695ee257"
+  }
+}

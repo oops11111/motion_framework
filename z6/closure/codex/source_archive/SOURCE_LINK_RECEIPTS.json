@@ -1,0 +1,90 @@
+{
+  "recorded_utc": "2026-11-22T03:02:05.134951+00:00",
+  "main": "eb09e63f3068a98fb011709132365e81d825c23c",
+  "all_matrix_report_targets_exist": true,
+  "reports": [
+    {
+      "path": "z6/f0/REPORT.md",
+      "canonical_sha256": "8d2f75a3ddf17fe2f91e39358b19b18ce1f9c2a1f74d8a5e7d19016cb44e9e64"
+    },
+    {
+      "path": "z6/f1/REPORT.md",
+      "canonical_sha256": "253e728f18ed5620be0624f545debdd67492cea680d07014410826aee1a9de05"
+    },
+    {
+      "path": "z6/f11/REPORT.md",
+      "canonical_sha256": "fe65f09e6908a42fcdb09291d72442381e403a444f37e3c9a51ed445dc8d05d9"
+    },
+    {
+      "path": "z6/f12/REPORT.md",
+      "canonical_sha256": "a94db3d5637c3e61bb80e5d177787f85d1a14647717235cccb2b692512393ca2"
+    },
+    {
+      "path": "z6/f2/REPORT.md",
+      "canonical_sha256": "b19df2a361c2cd26d4ae163de9ab1113f6a3d1779f06d26adb0da393b6fc8758"
+    },
+    {
+      "path": "z6/f2/codex/REPORT.md",
+      "canonical_sha256": "490560c443efd4230f02e3e53298366aa9544ab2ec27133eb3f884965720a128"
+    },
+    {
+      "path": "z6/f3/REPORT.md",
+      "canonical_sha256": "85c5ef7743506503396adeca1d3c19220853c35960feb21fdb5fa45c7369b477"
+    },
+    {
+      "path": "z6/f4/REPORT.md",
+      "canonical_sha256": "d3cba2ab8383c3e06f22917276076579a23eb5e2105c59a4f5af17d22b6f75e3"
+    },
+    {
+      "path": "z6/f5/REPORT.md",
+      "canonical_sha256": "c9601427765b912104aaf41eb054a7303ccda0ebe75cecf1b622584c69e7a21d"
+    },
+    {
+      "path": "z6/f6/REPORT.md",
+      "canonical_sha256": "04264baeeee31ce5fef9b57096c9d18f1bc913bca3c660b15ffbcd5e52bd0d2b"
+    },
+    {
+      "path": "z6/f7/REPORT.md",
+      "canonical_sha256": "35082e80963b716bf9385734cc359853caa580ee5cd0fc2d4d8f50b3aec904be"
+    },
+    {
+      "path": "z6/f8a/REPORT.md",
+      "canonical_sha256": "680c8afdf38001c7edb3705187f8e99aae11911ab696057749da56e71f4936c7"
+    },
+    {
+      "path": "z6/f8b/REPORT.md",
+      "canonical_sha256": "6319f47ff2212be66c957336fed1c454d5ba695e480b0fc61f75388041371faa"
+    },
+    {
+      "path": "z6/f9a/REPORT.md",
+      "canonical_sha256": "11b7c7b14540db9e5f843154d29dab7b5ba8d89e48caece6e85007ca761264a1"
+    },
+    {
+      "path": "z6/f9a/devlayout-codex/REPORT_M_CONTINUATION.md",
+      "canonical_sha256": "99c9792dbd0e8b3df0975d75dd60ed270bee3332ed616cce40579fbb2151d825"
+    },
+    {
+      "path": "z6/f9b/codex/REPORT.md",
+      "canonical_sha256": "b3a09c9ad91729c51b68d6549316e59f0fde860e6dad8ad4897bc75f9d7f339c"
+    },
+    {
+      "path": "z6/integration/docs/REPORT.md",
+      "canonical_sha256": "b5dbd52cf4746a893b0e36cd6abd6b84fcef78894929e5a36582bc34d7162837"
+    },
+    {
+      "path": "z6/integration/pack/REPORT.md",
+      "canonical_sha256": "8a67d510938606428ce77bbb2244b57502f677cd34b2d08d18222a8a74758e92"
+    },
+    {
+      "path": "z6/integration/tests/REPORT.md",
+      "canonical_sha256": "217e6df98aa8cb0a3807f1c6ff1338d70f2fa4756ad0995ce736a8da595a0c56"
+    }
+  ],
+  "primary_receipts": {
+    "API_PROVENANCE.json": "b74a513a30e12d5dff21cb5605ab8a5cca66886433e1a1c43edb9060314ab413",
+    "F6_VISUAL_REVIEW.json": "b795bd5f0fc16dc4c60f38b8548777797792fd11a016d0014d53e79ce8bf55cc",
+    "REMOTE_HISTORY_LIMIT.json": "556f34eebf7220a9c61398adea6f7760159b815fc3a747f21779c1b87bda5d1c"
+  },
+  "no_new_tests_gui_or_system_actions": true,
+  "not_an_adjudication": true
+}

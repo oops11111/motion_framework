@@ -1,0 +1,74 @@
+{
+  "base": "eb09e63f3068a98fb011709132365e81d825c23c",
+  "coord": "9c28dcc6a97bda7d552ddf2a6cc6f12347063751",
+  "accepted_draft_sha256": "0a0ef2ce22248e797aa40eb9793f3c3efefe6435b28baf5d28c632e5493e6cab",
+  "snapshot_semantics": "Exact archived pre-decision materials. Statements ignored/pending authorization/not yet closed describe that earlier snapshot. Current AUTHORIZATION.json replaces only the authorization/status decision; it does not turn these materials into Notion output or rewrite their contents.",
+  "sources": [
+    {
+      "path": "source_archive/TECHNICAL_REVIEW_DRAFT.md",
+      "bytes": 19854,
+      "sha256": "0a0ef2ce22248e797aa40eb9793f3c3efefe6435b28baf5d28c632e5493e6cab",
+      "source": "ignored technical review snapshot before canonical closure"
+    },
+    {
+      "path": "source_archive/TICKET_MATRIX.json",
+      "bytes": 8849,
+      "sha256": "15bdb31cf13ff289d321d3f36fd4601fc528058ef7880d6ddea9d33583f8dcef",
+      "source": "ignored technical review snapshot before canonical closure"
+    },
+    {
+      "path": "source_archive/DRAFT_STATUS.json",
+      "bytes": 1388,
+      "sha256": "cd3705a36d06489e042a9c571fa83dab315b68904c82900930119955b0bafc14",
+      "source": "ignored technical review snapshot before canonical closure"
+    },
+    {
+      "path": "source_archive/SOURCE_LINK_RECEIPTS.json",
+      "bytes": 3305,
+      "sha256": "35b8c5653afc5ae926f88a58c6c5ea7a341d48956729b82304a99820c5c4fde5",
+      "source": "ignored technical review snapshot before canonical closure"
+    },
+    {
+      "path": "source_archive/F1_AB_SUMMARY.json",
+      "bytes": 2101,
+      "sha256": "94e92836712d8c79510a1e038b281ddc8d01155ee1e9b2ea721ba37ce5ab6fca",
+      "source": "ignored technical review snapshot before canonical closure"
+    },
+    {
+      "path": "source_archive/API_PROVENANCE.json",
+      "bytes": 5646,
+      "sha256": "b74a513a30e12d5dff21cb5605ab8a5cca66886433e1a1c43edb9060314ab413",
+      "source": "ignored technical review snapshot before canonical closure"
+    },
+    {
+      "path": "source_archive/HEAD_CHECKS_PROVENANCE.json",
+      "bytes": 20158,
+      "sha256": "c4816554480b9ff69083db6b2c6be4b1924655dc9c89210323899b0c09a99e9c",
+      "source": "ignored technical review snapshot before canonical closure"
+    },
+    {
+      "path": "source_archive/F6_VISUAL_REVIEW.json",
+      "bytes": 1705,
+      "sha256": "b795bd5f0fc16dc4c60f38b8548777797792fd11a016d0014d53e79ce8bf55cc",
+      "source": "ignored technical review snapshot before canonical closure"
+    },
+    {
+      "path": "source_archive/REMOTE_HISTORY_LIMIT.json",
+      "bytes": 622,
+      "sha256": "556f34eebf7220a9c61398adea6f7760159b815fc3a747f21779c1b87bda5d1c",
+      "source": "ignored technical review snapshot before canonical closure"
+    },
+    {
+      "path": "source_archive/READONLY_RECEIPTS.json",
+      "bytes": 1031,
+      "sha256": "917639cbed2ca923b82316ee6e1570fd086b2494200a1a1dd9f73112abd4f4ad",
+      "source": "ignored technical review snapshot before canonical closure"
+    },
+    {
+      "path": "source_archive/main-eb09e63f3068a98fb011709132365e81d825c23c-ledger.md",
+      "bytes": 19378,
+      "sha256": "e1254266cf8f2925d800dcd8514b9c50fbe03d05b8659307fbd234bc73f75d69",
+      "source": "git eb09e63f3068a98fb011709132365e81d825c23c:z6/LEDGER_snapshot.md"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "recorded_utc": "2026-11-22 02:59:26 UTC",
+  "kind": "Primary qualitative inspection of existing committed F6 artifacts; not a new GUI run or adjudication",
+  "source_main": "eb09e63f3068a98fb011709132365e81d825c23c",
+  "files": [
+    "z6/f6/evidence/window/enter_start.png",
+    "z6/f6/evidence/window/enter_mid.png",
+    "z6/f6/evidence/window/enter_settled.png",
+    "z6/f6/evidence/window/enter_window.gif"
+  ],
+  "gif_sha256": "2d9066379cd97c5b3f6305d4a6f724a285f72b8d67ea8e930a109777dec93efc",
+  "gif_dimensions": [
+    1424,
+    748
+  ],
+  "decoded_frames_viewed": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "observations": [
+    "Start PNG is a blank application window; mid PNG has navigation labels clipped at the left edge; settled PNG shows complete labels/icons.",
+    "All eight existing GIF frames were decoded and personally viewed: blank window, left-clipped navigation, followed by several visibly distinct near-settled navigation positions and complete labels.",
+    "Visible content is limited to the application window in the committed images; no unrelated desktop window appears in the viewed artifacts."
+  ],
+  "limits": [
+    "This does not change the recorded whole-desktop-capture-then-crop method into native window-only capture.",
+    "There is only one separately named explicit intermediate PNG; the GIF is a separate sequence, not evidence that two dedicated intermediate PNGs were delivered.",
+    "No original permission card, force-push history or historical verdict is adjudicated by viewing these artifacts.",
+    "No duration, frame-rate, timing payload or performance conclusion was read or inferred. Original files were not modified."
+  ]
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "path": "z6/f1/raw/fm_capi_test_debug_output.txt",
+    "selected_lines": [
+      "33 checks, 0 failures",
+      "  F1A_HOLDER1 enter=1 target=11 property=offsetX in_flight value=-57.123109 vel=672.792543 opacity=0.826891887",
+      "  F1A_RETARGET_FROM hover=2 target=11 property=offsetX from=-57.123109 vel=672.792543 to=40",
+      "  F1A_OVERLAP frames=6 enter_opacity_advancing_and_hover_offsetX_moving=6",
+      "  F1A_FINAL offsetX=40 opacity=1 expected_offsetX=40 (later writer target)"
+    ]
+  },
+  {
+    "path": "z6/f1/raw/fm_capi_test_release_output.txt",
+    "selected_lines": [
+      "33 checks, 0 failures",
+      "  F1A_HOLDER1 enter=1 target=11 property=offsetX in_flight value=-57.123109 vel=672.792543 opacity=0.826891887",
+      "  F1A_RETARGET_FROM hover=2 target=11 property=offsetX from=-57.123109 vel=672.792543 to=40",
+      "  F1A_OVERLAP frames=6 enter_opacity_advancing_and_hover_offsetX_moving=6",
+      "  F1A_FINAL offsetX=40 opacity=1 expected_offsetX=40 (later writer target)"
+    ]
+  },
+  {
+    "path": "z6/f1/raw/devsmoke_console_Debug.txt",
+    "selected_lines": [
+      "F1B_HOLDER1 enter=1 target=11 property=offsetX in_flight value=-57.123109 vel=672.792543 opacity=0.826891887",
+      "F1B_RETARGET_FROM hover=2 target=11 property=offsetX from=-57.123109 vel=672.792543 to=40",
+      "F1B_OVERLAP frames=6 enter_opacity_advancing_and_hover_offsetX_moving=6",
+      "F1B_FINAL offsetX=40 opacity=1 expected_offsetX=40 (later writer target)",
+      "Z3A_DEV_ONLY verdict=PASS fails=0 not_z4=1 perf_ci=HOLD"
+    ]
+  },
+  {
+    "path": "z6/f1/raw/devsmoke_console_Release.txt",
+    "selected_lines": [
+      "F1B_HOLDER1 enter=1 target=11 property=offsetX in_flight value=-57.123109 vel=672.792543 opacity=0.826891887",
+      "F1B_RETARGET_FROM hover=2 target=11 property=offsetX from=-57.123109 vel=672.792543 to=40",
+      "F1B_OVERLAP frames=6 enter_opacity_advancing_and_hover_offsetX_moving=6",
+      "F1B_FINAL offsetX=40 opacity=1 expected_offsetX=40 (later writer target)",
+      "Z3A_DEV_ONLY verdict=PASS fails=0 not_z4=1 perf_ci=HOLD"
+    ]
+  }
+]

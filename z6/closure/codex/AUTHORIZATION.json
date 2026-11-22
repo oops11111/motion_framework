@@ -1,0 +1,13 @@
+{
+  "user_verbatim": "采用技术草稿与主代理复核，继续正式结题",
+  "source": "direct user answer to current root question",
+  "question_item_id": "[\"request_user_input_async\",\"call_285b8127443245208d35b373a5ff2baf\",0]",
+  "message_id": "unavailable",
+  "recorded_utc": "2026-11-22T03:06:38Z",
+  "recorded_awst": "2026-11-22 11:06:38 AWST",
+  "record_time_is_not_send_time": true,
+  "question_context_scope": "Adopt technical draft and primary review with disclosed historical limitations as the conclusion basis, replacing the two missing Notion materials; no claim of Notion review; F8 DRAFT, PERF-CI HOLD, Success!=adopt remain. Continue canonical closure through existing ordinary PR/review/all-green CI/main-post workflow.",
+  "accepted_technical_draft_sha256": "0a0ef2ce22248e797aa40eb9793f3c3efefe6435b28baf5d28c632e5493e6cab",
+  "main_base": "eb09e63f3068a98fb011709132365e81d825c23c",
+  "coord_pin": "9c28dcc6a97bda7d552ddf2a6cc6f12347063751"
+}

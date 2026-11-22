@@ -1,0 +1,25 @@
+name: Z6 closure source and documentation integrity
+on:
+  push:
+    branches: [codex/z6-closure]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/z6_closed.md'
+      - 'z6/closure/codex/**'
+      - '.github/workflows/z6-closure.yml'
+permissions:
+  contents: read
+jobs:
+  closure-documentation-integrity:
+    if: github.head_ref == 'codex/z6-closure' || github.ref == 'refs/heads/codex/z6-closure'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify exact review archives, references and documentation scope
+        run: python z6/closure/codex/verify_closure.py --enforce-stage-scope

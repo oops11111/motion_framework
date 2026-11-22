@@ -1,0 +1,176 @@
+{
+  "recorded_utc": "2026-11-22 02:57:44 UTC",
+  "source": "Authenticated GitHub REST connector, read-only",
+  "pulls": [
+    {
+      "pr": 22,
+      "title": "fix(z6): repair strict F2 lifecycle and integrate F5 evidence",
+      "merge": "eb09e63f3068a98fb011709132365e81d825c23c",
+      "head": "51076afefe4ca5848fc80a4d97f9ec48708b00f1",
+      "merged": true
+    },
+    {
+      "pr": 21,
+      "title": "test(f9b): verify local Files L1-pack motion pilot",
+      "merge": "d2aac2dc355d0412aa5fc3ede212b79faf4459b9",
+      "head": "eef9be49e3491ad794edad7148cf089e410f75d9",
+      "merged": true
+    },
+    {
+      "pr": 20,
+      "title": "test(f9a): verify manual development layout main-page lifecycle",
+      "merge": "05830996127cd40d32f3718a2ae253583d092f36",
+      "head": "a04cfbc5d4c231fc11070ed59f428787b8ee662a",
+      "merged": true
+    },
+    {
+      "pr": 19,
+      "title": "test(f9a): record selected-project deployment stop evidence",
+      "merge": "0fc838c9624b4a23c99bbc57f3d5d1c9bf8c2510",
+      "head": "579154af5b2b34bdd444742b6d336cb4b282598f",
+      "merged": true
+    },
+    {
+      "pr": 18,
+      "title": "test(z6): record authorized non-original packages.config build",
+      "merge": "92c498fbcf8ea7216d54104886a722d34d5099fb",
+      "head": "32bf48a5cc7f65557e62c9769c3a3646befcd74b",
+      "merged": true
+    },
+    {
+      "pr": 17,
+      "title": "test(z6): preserve original full-solution package restore failure",
+      "merge": "81543c86fc67801aa2de00f44d8b267c2ac09ee9",
+      "head": "1074cbea2295cae9eadd9bc4617b9e57433d7e40",
+      "merged": true
+    },
+    {
+      "pr": 16,
+      "title": "docs(z6): record read-only Files deployment preflight",
+      "merge": "8e68cf81ef10bd0623651949e6a98ddef4f175ca",
+      "head": "0eb69f17282a6d75a49550fe42dea394de3a099b",
+      "merged": true
+    },
+    {
+      "pr": 15,
+      "title": "test(z6): record isolated original Files baseline build success",
+      "merge": "425165e112c271dc76706e5ff2d5354b1dfc9120",
+      "head": "cecc685923824a106f2faf537fddd53dcf2795d9",
+      "merged": true
+    },
+    {
+      "pr": 14,
+      "title": "docs(z6): record authorized F9a C++ environment completion",
+      "merge": "3078ae0e9f8792a03f45e09dd4fce5c6fda1ca7e",
+      "head": "fba233e688e396e7d26e8e9bcbcfd091ba00b376",
+      "merged": true
+    },
+    {
+      "pr": 13,
+      "title": "docs(z6): integrate pilot pack metadata and historical provenance",
+      "merge": "122f7b4edc7698e742658532e3e1a83010f39f17",
+      "head": "db208be6da7442b9105efbd767a6a5ccf8c6d710",
+      "merged": true
+    },
+    {
+      "pr": 12,
+      "title": "docs(z6): integrate independent historical and draft documentation",
+      "merge": "8c5cc6f31ca2be796986afd901fc1bb1098712ca",
+      "head": "6191d9db816d56c3d8d34cbb76f4791341c4e4c9",
+      "merged": true
+    },
+    {
+      "pr": 11,
+      "title": "test(z6): integrate deterministic F1 and F3 coverage",
+      "merge": "4e128e735edf788da0b9fa9e11f0d5e2511e5585",
+      "head": "7f13ef46e31f51b59908f4457590c33aebb068bb",
+      "merged": true
+    }
+  ],
+  "main_post_runs": [
+    {
+      "id": 44978158079,
+      "head": "eb09e63f3068a98fb011709132365e81d825c23c",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44911508536,
+      "head": "d2aac2dc355d0412aa5fc3ede212b79faf4459b9",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44903228845,
+      "head": "05830996127cd40d32f3718a2ae253583d092f36",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44900488544,
+      "head": "0fc838c9624b4a23c99bbc57f3d5d1c9bf8c2510",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44895678100,
+      "head": "92c498fbcf8ea7216d54104886a722d34d5099fb",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44891508566,
+      "head": "81543c86fc67801aa2de00f44d8b267c2ac09ee9",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44890658744,
+      "head": "8e68cf81ef10bd0623651949e6a98ddef4f175ca",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44889148641,
+      "head": "425165e112c271dc76706e5ff2d5354b1dfc9120",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44887910560,
+      "head": "3078ae0e9f8792a03f45e09dd4fce5c6fda1ca7e",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44883079762,
+      "head": "122f7b4edc7698e742658532e3e1a83010f39f17",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44881810494,
+      "head": "8c5cc6f31ca2be796986afd901fc1bb1098712ca",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    },
+    {
+      "id": 44880677014,
+      "head": "4e128e735edf788da0b9fa9e11f0d5e2511e5585",
+      "status": "completed",
+      "conclusion": "success",
+      "name": "Z6 deterministic integration regression"
+    }
+  ]
+}
