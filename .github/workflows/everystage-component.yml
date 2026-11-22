@@ -1,0 +1,63 @@
+name: Formal internal component candidate
+on:
+  push:
+    branches: [codex/everystage-component, main]
+    paths:
+      - 'src/FluidMotion.L1/**'
+      - 'code/**'
+      - 'MotionSoftDemo/MotionSystem.cs'
+      - 'MotionSoftDemo/MotionEtw.cs'
+      - 'pilot/fluenthub/surface_l1pack.txt'
+      - 'z5/t3_results_dev/K93N3P8/SurfaceDump_Program.cs'
+      - 'z5/t3_results_dev/K93N3P8/SurfaceDump.csproj.txt'
+      - 'tools/delivery/**'
+      - 'tests/delivery/**'
+      - 'docs/delivery/everystage/P1*'
+      - 'docs/delivery/everystage/P1*/**'
+      - '.github/workflows/everystage-component.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/FluidMotion.L1/**'
+      - 'code/**'
+      - 'MotionSoftDemo/MotionSystem.cs'
+      - 'MotionSoftDemo/MotionEtw.cs'
+      - 'pilot/fluenthub/surface_l1pack.txt'
+      - 'z5/t3_results_dev/K93N3P8/SurfaceDump_Program.cs'
+      - 'z5/t3_results_dev/K93N3P8/SurfaceDump.csproj.txt'
+      - 'tools/delivery/**'
+      - 'tests/delivery/**'
+      - 'docs/delivery/everystage/P1*'
+      - 'docs/delivery/everystage/P1*/**'
+      - '.github/workflows/everystage-component.yml'
+permissions:
+  contents: read
+jobs:
+  package-and-independent-consumer:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Build candidate and exercise independent package-only consumer
+        run: python tools/delivery/build_component.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: FluidMotion.L1-internal-candidate-${{ github.event.pull_request.head.sha || github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            m0/out/component-*/feed/*.nupkg
+            m0/out/component-*/result.json
+            m0/out/component-*/provenance.json
+            m0/out/component-*/*.log
+            m0/out/component-*/native_*.txt
+            m0/out/component-*/surface_component*.txt

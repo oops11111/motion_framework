@@ -1,0 +1,16 @@
+PASS native asset copied from package
+PASS sample tokens copied from package
+PASS actual token loading
+PASS native animation created
+PASS public retarget accepted
+PASS frame pump reaches idle (watchdog only)
+PASS actual native target reached
+PASS sink received final target
+PASS from-null rest retarget
+PASS frame pump reaches idle (watchdog only)
+PASS actual native rest reached
+PASS released handle rejects reuse
+PASS actual release/dispose and pump teardown
+PASS loaded module is isolated consumer native output
+PASS managed assembly loaded from isolated package consumer
+{"checks":15,"native_sha256":"5868f372eeaa46cf737e4116f67395f19fdfbb060fc82e4a858e02aec4327a8e","managed_sha256":"d53f27d3bdc0ca8bf54f0bc64130c28735d25a9f9aaaa8a7b3155d16617f1e1d","token_sha256":"8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e","package_only":true,"performance_claim":false,"event_payloads_read":false}

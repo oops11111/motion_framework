@@ -1,0 +1,10 @@
+  Determining projects to restore...
+  Restored %WORKSPACE%\src\FluidMotion.L1\FluidMotion.L1.csproj (in 282 ms).
+  Traceback (most recent call last):
+    File "%WORKSPACE%\src\FluidMotion.L1/../../tools/delivery/validate_native.py", line 38, in <module>
+      print(json.dumps(inspect_native(args.file, args.rid)))
+                       ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+    File "%WORKSPACE%\src\FluidMotion.L1/../../tools/delivery/validate_native.py", line 23, in inspect_native
+      raise ValueError("Expected an AMD64 DLL")
+  ValueError: Expected an AMD64 DLL
+%WORKSPACE%\src\FluidMotion.L1\FluidMotion.L1.csproj(32,5): error MSB3073: The command "python "%WORKSPACE%\src\FluidMotion.L1/../../tools/delivery/validate_native.py" "%WORKSPACE%\m0\out\component-20261122T070504Z-0fec0dba\wrong-machine.dll" --rid "win-x64"" exited with code 1.

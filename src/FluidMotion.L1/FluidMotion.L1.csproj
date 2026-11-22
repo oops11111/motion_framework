@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>FluidMotion.L1</AssemblyName>
+    <RootNamespace>MotionSoftDemo</RootNamespace>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <PackageId>FluidMotion.L1</PackageId>
+    <Version>0.1.0</Version>
+    <Description>Internal Windows x64 motion component; not a public release.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/oops11111/motion_framework</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryCommit>$(SourceRevisionId)</RepositoryCommit>
+    <ComponentRuntimeIdentifier Condition="'$(ComponentRuntimeIdentifier)' == ''">win-x64</ComponentRuntimeIdentifier>
+    <PackageOutputPath>$(MSBuildProjectDirectory)/../../m0/out/component-pack</PackageOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../MotionSoftDemo/MotionSystem.cs" Link="MotionSystem.cs" />
+    <Compile Include="../../MotionSoftDemo/MotionEtw.cs" Link="MotionEtw.cs" />
+    <None Include="README.md" Pack="true" PackagePath="/" />
+    <None Condition="'$(FluidMotionNativePath)' != ''" Include="$(FluidMotionNativePath)" Pack="true" PackagePath="runtimes/win-x64/native/fluidmotion.dll" />
+    <None Condition="'$(FluidMotionProvenancePath)' != ''" Include="$(FluidMotionProvenancePath)" Pack="true" PackagePath="provenance.json" />
+    <None Include="../../code/capi/demo_motion.json" Pack="true" PackagePath="contentFiles/any/net8.0/demo_motion.json" PackageCopyToOutput="true" PackageFlatten="true" />
+  </ItemGroup>
+  <Target Name="ValidateComponentNative" BeforeTargets="PrepareForBuild;GenerateNuspec">
+    <Error Condition="'$(ComponentRuntimeIdentifier)' != 'win-x64'" Text="Only win-x64 native assets are supported." />
+    <Error Condition="'$(RuntimeIdentifier)' != '' and '$(RuntimeIdentifier)' != 'win-x64'" Text="Unsupported runtime identifier." />
+    <Error Condition="!Exists('$(FluidMotionNativePath)')" Text="FluidMotionNativePath must identify the newly built native DLL; missing native assets are not optional." />
+    <Exec Command="python &quot;$(MSBuildProjectDirectory)/../../tools/delivery/validate_native.py&quot; &quot;$(FluidMotionNativePath)&quot; --rid &quot;$(ComponentRuntimeIdentifier)&quot;" />
+  </Target>
+  <Target Name="ValidateComponentProvenance" BeforeTargets="GenerateNuspec">
+    <Error Condition="!Exists('$(FluidMotionProvenancePath)')" Text="Packing requires the build provenance JSON." />
+    <Error Condition="'$(SourceRevisionId)' == ''" Text="Packing requires the source commit." />
+  </Target>
+</Project>
