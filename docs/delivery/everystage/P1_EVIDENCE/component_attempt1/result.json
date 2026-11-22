@@ -1,0 +1,339 @@
+{
+  "status": "PASS internal candidate, not sealed or published",
+  "candidate": true,
+  "sealed_release": false,
+  "published": false,
+  "version": "0.1.0",
+  "rid": "win-x64",
+  "source_commit": "11b3378fb20498675165f0b52275aa8d23ec2ccd",
+  "source_dirty": true,
+  "output": "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5",
+  "commands": [
+    {
+      "label": "dotnet_info",
+      "argv": [
+        "dotnet",
+        "--info"
+      ],
+      "pid": 62856,
+      "exit": 0,
+      "log": "dotnet_info.log",
+      "sha256": "7665ab2a30e0df3b9271614943cd4e35a2d1f931d84aae6d863a89266a6e744e"
+    },
+    {
+      "label": "native_build",
+      "argv": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\native_build.cmd"
+      ],
+      "pid": 87140,
+      "exit": 0,
+      "log": "native_build.log",
+      "sha256": "a2f9308ff0ab2082a87b070fdf3a057f953db066f109018e3976a9b8dfb78f6c"
+    },
+    {
+      "label": "pack",
+      "argv": [
+        "dotnet",
+        "pack",
+        "C:\\Users\\admin\\mf_codex\\src\\FluidMotion.L1\\FluidMotion.L1.csproj",
+        "-c",
+        "Release",
+        "-o",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\feed",
+        "-p:FluidMotionNativePath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\native\\fluidmotion.dll",
+        "-p:FluidMotionProvenancePath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\provenance.json",
+        "-p:SourceRevisionId=11b3378fb20498675165f0b52275aa8d23ec2ccd",
+        "-p:BaseIntermediateOutputPath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\obj\\",
+        "-p:OutputPath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\managed\\"
+      ],
+      "pid": 89040,
+      "exit": 0,
+      "log": "pack.log",
+      "sha256": "ceb24a25d5de062871a1839f936d7d7933e0d807491dc74062e321efa5b3120c"
+    },
+    {
+      "label": "negative_missing_native",
+      "argv": [
+        "dotnet",
+        "pack",
+        "C:\\Users\\admin\\mf_codex\\src\\FluidMotion.L1\\FluidMotion.L1.csproj",
+        "-c",
+        "Release",
+        "-o",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\negative_missing_native\\feed",
+        "-p:FluidMotionProvenancePath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\provenance.json",
+        "-p:SourceRevisionId=11b3378fb20498675165f0b52275aa8d23ec2ccd",
+        "-p:FluidMotionNativePath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\missing.dll",
+        "-p:ComponentRuntimeIdentifier=win-x64",
+        "-p:BaseIntermediateOutputPath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\negative_missing_native\\obj\\",
+        "-p:OutputPath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\negative_missing_native\\bin\\"
+      ],
+      "pid": 52196,
+      "exit": 1,
+      "log": "negative_missing_native.log",
+      "sha256": "f275663b0ad39d87f9262b79d71dc30bfd15aa6065cb1b9a99c115b49490c76e"
+    },
+    {
+      "label": "negative_wrong_rid",
+      "argv": [
+        "dotnet",
+        "pack",
+        "C:\\Users\\admin\\mf_codex\\src\\FluidMotion.L1\\FluidMotion.L1.csproj",
+        "-c",
+        "Release",
+        "-o",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\negative_wrong_rid\\feed",
+        "-p:FluidMotionProvenancePath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\provenance.json",
+        "-p:SourceRevisionId=11b3378fb20498675165f0b52275aa8d23ec2ccd",
+        "-p:FluidMotionNativePath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\native\\fluidmotion.dll",
+        "-p:ComponentRuntimeIdentifier=win-arm64",
+        "-p:BaseIntermediateOutputPath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\negative_wrong_rid\\obj\\",
+        "-p:OutputPath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\negative_wrong_rid\\bin\\"
+      ],
+      "pid": 62420,
+      "exit": 1,
+      "log": "negative_wrong_rid.log",
+      "sha256": "74d7c5364a17bf62bf1bf2c0f57fbf6f0152dcdaf90b1fa15535dea09b3f1a09"
+    },
+    {
+      "label": "negative_wrong_machine",
+      "argv": [
+        "dotnet",
+        "pack",
+        "C:\\Users\\admin\\mf_codex\\src\\FluidMotion.L1\\FluidMotion.L1.csproj",
+        "-c",
+        "Release",
+        "-o",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\negative_wrong_machine\\feed",
+        "-p:FluidMotionProvenancePath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\provenance.json",
+        "-p:SourceRevisionId=11b3378fb20498675165f0b52275aa8d23ec2ccd",
+        "-p:FluidMotionNativePath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\wrong-machine.dll",
+        "-p:ComponentRuntimeIdentifier=win-x64",
+        "-p:BaseIntermediateOutputPath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\negative_wrong_machine\\obj\\",
+        "-p:OutputPath=C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\negative_wrong_machine\\bin\\"
+      ],
+      "pid": 88764,
+      "exit": 1,
+      "log": "negative_wrong_machine.log",
+      "sha256": "9d761b7253a7b6aa1089d494553a5b4629bd9fa921f2a5d885a1f0eee7982e4f"
+    },
+    {
+      "label": "consumer_restore",
+      "argv": [
+        "dotnet",
+        "restore",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\independent-consumer\\Consumer.csproj",
+        "--configfile",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\independent-consumer\\NuGet.config"
+      ],
+      "pid": 60420,
+      "exit": 0,
+      "log": "consumer_restore.log",
+      "sha256": "9f46c1830ec1d6cb98c46de1b4ded412b7fdc2997042465d905d316d2b923434"
+    },
+    {
+      "label": "consumer_build",
+      "argv": [
+        "dotnet",
+        "build",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\independent-consumer\\Consumer.csproj",
+        "-c",
+        "Release",
+        "--no-restore",
+        "-o",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\consumer-bin"
+      ],
+      "pid": 72280,
+      "exit": 0,
+      "log": "consumer_build.log",
+      "sha256": "480d033208aa54be8f1fdc214e0df3e2b864f48b365156cf87bce53ff94b0cfe"
+    },
+    {
+      "label": "consumer_run",
+      "argv": [
+        "dotnet",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\consumer-bin\\Consumer.dll"
+      ],
+      "pid": 12500,
+      "exit": 0,
+      "log": "consumer_run.log",
+      "sha256": "23bcbedb6b3de379592926e6f26a5ebbca49e13b5af6592220478f94ce2223cf"
+    },
+    {
+      "label": "surface_tool_build",
+      "argv": [
+        "dotnet",
+        "build",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\surface-tool\\SurfaceDump.csproj",
+        "-c",
+        "Release"
+      ],
+      "pid": 59404,
+      "exit": 0,
+      "log": "surface_tool_build.log",
+      "sha256": "fa6d43a7dba6936ca00fe899fa94bbc8548b5842554ccc308912e72e18aa1dba"
+    },
+    {
+      "label": "surface_check",
+      "argv": [
+        "dotnet",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\surface-tool\\bin\\Release\\net8.0\\SurfaceDump.dll",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\consumer-bin\\FluidMotion.L1.dll",
+        "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\surface_component.txt"
+      ],
+      "pid": 85824,
+      "exit": 0,
+      "log": "surface_check.log",
+      "sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35"
+    }
+  ],
+  "input_hashes": {
+    "MotionSoftDemo/MotionEtw.cs": "9119e437f6e7f00a03705a8196a1599cfae96399e16b80fb6e61eaead24383b5",
+    "MotionSoftDemo/MotionSystem.cs": "ff9d75902d1e427cd3245389789805ffc263b5258fd5025992a81a7798db3e53",
+    "code/bezier.h": "f2081cb0b6323beb30720fddeb3ce839e73ee3ab639a1f48b8ed12c3db74ad6d",
+    "code/capi/csharp_pinvoke_sketch.cs": "9ec00f311f7333f0039efa04007c0cb1760a03cda1982e3917f4106a3d1bf9fd",
+    "code/capi/demo_motion.json": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+    "code/capi/fm_capi.cpp": "0fdaa3fe86cbe11796d7d634fcc7b72d846efd4b4fa5fa5b0df74610d58bbf64",
+    "code/capi/fm_capi.h": "70262df446be5daba3e80c61dab6320e4d7d38be6c1c814c2cc1091aaa9ea37d",
+    "code/capi/fm_capi_test.cpp": "9d4874a6d76ea9b055bd36d2eb66d42c4a61e6f37c32b750b6e98107df6bc993",
+    "code/composition.h": "33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97",
+    "code/composition_tests": "69349557a65b5167790c8289b35b379b68f7a4735480b6798400130c7abc853e",
+    "code/composition_tests.cpp": "d36d513ef6d71c59ffd7ca9ff7de0f3b8b1cda25a471556b964ea4c7ba92d69d",
+    "code/controller.h": "fb97b80db1a832f95651b9238d913ff64005f964559c28da66d9f8afee884a21",
+    "code/controller_tests.cpp": "92fb8c7be6855e86b6b703101f812f5a06529eafead44a6de3751d5a50ae5bfa",
+    "code/explore/software_demo_test.cpp": "98c1170fb69c6e9476ee4a0326f1df020738bc8347c7f0dbebcc948916e11873",
+    "code/explore/software_dispatcher.h": "adac421addc9eb2b055b801e28db0e1a1f38fa046e8445ad13b065ec5e3d03b8",
+    "code/motion.json": "4763f11c9dbbac5e14599f6e425c0ded560602c9cc0c1717dee2891fee7a0d81",
+    "code/spring.h": "f084258d5d3bf2664e8ae3ae531b1dbc177f8236319982263971c4e28fcbb915",
+    "code/timeline.h": "12ed7b924b16dcb3893ad64f90abd09bfd687afd13921892e0c7920cfa3af8ad",
+    "code/timeline_tests": "22a810cc95b5cada2958ea767d0f08380a71677a112de5a1575c4310dbffb48e",
+    "code/timeline_tests.cpp": "8427e8fd202f06800b47ee968f29dd8e7c686b8c026b4605d47fac03b9b870cb",
+    "code/timeline_tests_san": "4f18bdf0bc4e0d6c2ac05722efd4669c4375cb64ef2c2494e2e3333fba2c325f",
+    "code/tokens.h": "a353bf949d53b770a0214779c966d281bd49671ae2714b4069eb2ed0972fcdc3",
+    "code/tokens_tests.cpp": "f7031e6bb874d0ca25c8084bd9022e7b387f7a33d977e5e3bb76c3bd0f68b36c",
+    "src/FluidMotion.L1/FluidMotion.L1.csproj": "9fa0a9498bfd456cac124ac76e2ed6ac81ed4d45b4ac5efba34f7d18e8493f2f",
+    "src/FluidMotion.L1/README.md": "74dbe40157054da23a466cd6154f667079c8aedca10762c68218240b711a22f2",
+    "tests/delivery/Consumer/Consumer.csproj": "6c99aa24b54fe21955f6a8e6a9493957db334677900c1a654d1be89b93b28fe1",
+    "tests/delivery/Consumer/Program.cs": "8347e93862283c8211f65ac95341951e52a61a818b2a64fbb781431138506fa4",
+    "tools/delivery/build_component.py": "97220fc82d11c80b92f93be02613d37ab70a505fe561003e8dbc1a0966fcb496",
+    "tools/delivery/validate_native.py": "2ed2e20cd90c765563b211c45585b8a1d29f5a29b7a4c026ae4831bac4acb2c8"
+  },
+  "package_members": [
+    {
+      "path": "_rels/.rels",
+      "bytes": 508,
+      "sha256": "e991fece44b1cca8d8d9d23de5cdddb6936a8d52d7a4424780b6eb0b1a38f0fe"
+    },
+    {
+      "path": "FluidMotion.L1.nuspec",
+      "bytes": 748,
+      "sha256": "f05714a8e3f58455dbd69d3591fd4f9d2d09ede46808f1b9b9fc30a794443ecc"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1934,
+      "sha256": "74dbe40157054da23a466cd6154f667079c8aedca10762c68218240b711a22f2"
+    },
+    {
+      "path": "contentFiles/any/net8.0/demo_motion.json",
+      "bytes": 1228,
+      "sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e"
+    },
+    {
+      "path": "lib/net8.0/FluidMotion.L1.dll",
+      "bytes": 22528,
+      "sha256": "3c3ba1d7af4ae2b1c7ca1cba88d20f80099d651300d48f4e7f160e30317e7bff"
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 3720,
+      "sha256": "badace8db609503e6437f1c5e7f03e754a8170ab77ac48cbb64a1b531ccd6444"
+    },
+    {
+      "path": "runtimes/win-x64/native/fluidmotion.dll",
+      "bytes": 448512,
+      "sha256": "b7e8e1c35229569a3e8ac05a07282bf8255b58cf3a440e99ee44b4346b850733"
+    },
+    {
+      "path": "[Content_Types].xml",
+      "bytes": 591,
+      "sha256": "6e5f60b1fcf865227f371695daf866552a4d4e58a67e8ad79a20aca0ffa4b728"
+    },
+    {
+      "path": "package/services/metadata/core-properties/4fb31fa17ee34aa098923a8d35b65d61.psmdcp",
+      "bytes": 665,
+      "sha256": "a61d05f834ab6c528d4efe9f7e50fa5cd8b6fed4623249496126f86dbc385fda"
+    }
+  ],
+  "package": {
+    "path": "C:\\Users\\admin\\mf_codex\\m0\\out\\component-20261122T070220Z-1953ecb5\\feed\\FluidMotion.L1.0.1.0.nupkg",
+    "sha256": "172415cf35b0b3df1e64faeee0878c205d3bfd39d1aff31bca0f3ca10473d51f",
+    "candidate": true
+  },
+  "consumer": {
+    "checks": 14,
+    "native_sha256": "b7e8e1c35229569a3e8ac05a07282bf8255b58cf3a440e99ee44b4346b850733",
+    "package_only": true,
+    "performance_claim": false,
+    "event_payloads_read": false
+  },
+  "surface_sha256": "7b67b77bce6b36dc58cc870a17fe1b5588df3c6e526b39ca5a3e36d5280bc5cc",
+  "native": {
+    "candidate": true,
+    "sealed_release": false,
+    "source_commit": "11b3378fb20498675165f0b52275aa8d23ec2ccd",
+    "source_dirty": true,
+    "input_hashes": {
+      "MotionSoftDemo/MotionEtw.cs": "9119e437f6e7f00a03705a8196a1599cfae96399e16b80fb6e61eaead24383b5",
+      "MotionSoftDemo/MotionSystem.cs": "ff9d75902d1e427cd3245389789805ffc263b5258fd5025992a81a7798db3e53",
+      "code/bezier.h": "f2081cb0b6323beb30720fddeb3ce839e73ee3ab639a1f48b8ed12c3db74ad6d",
+      "code/capi/csharp_pinvoke_sketch.cs": "9ec00f311f7333f0039efa04007c0cb1760a03cda1982e3917f4106a3d1bf9fd",
+      "code/capi/demo_motion.json": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e",
+      "code/capi/fm_capi.cpp": "0fdaa3fe86cbe11796d7d634fcc7b72d846efd4b4fa5fa5b0df74610d58bbf64",
+      "code/capi/fm_capi.h": "70262df446be5daba3e80c61dab6320e4d7d38be6c1c814c2cc1091aaa9ea37d",
+      "code/capi/fm_capi_test.cpp": "9d4874a6d76ea9b055bd36d2eb66d42c4a61e6f37c32b750b6e98107df6bc993",
+      "code/composition.h": "33d826c77d99c3feb545b79f16a5a3fc9f5ac200716f24759dfcbf8e60196e97",
+      "code/composition_tests": "69349557a65b5167790c8289b35b379b68f7a4735480b6798400130c7abc853e",
+      "code/composition_tests.cpp": "d36d513ef6d71c59ffd7ca9ff7de0f3b8b1cda25a471556b964ea4c7ba92d69d",
+      "code/controller.h": "fb97b80db1a832f95651b9238d913ff64005f964559c28da66d9f8afee884a21",
+      "code/controller_tests.cpp": "92fb8c7be6855e86b6b703101f812f5a06529eafead44a6de3751d5a50ae5bfa",
+      "code/explore/software_demo_test.cpp": "98c1170fb69c6e9476ee4a0326f1df020738bc8347c7f0dbebcc948916e11873",
+      "code/explore/software_dispatcher.h": "adac421addc9eb2b055b801e28db0e1a1f38fa046e8445ad13b065ec5e3d03b8",
+      "code/motion.json": "4763f11c9dbbac5e14599f6e425c0ded560602c9cc0c1717dee2891fee7a0d81",
+      "code/spring.h": "f084258d5d3bf2664e8ae3ae531b1dbc177f8236319982263971c4e28fcbb915",
+      "code/timeline.h": "12ed7b924b16dcb3893ad64f90abd09bfd687afd13921892e0c7920cfa3af8ad",
+      "code/timeline_tests": "22a810cc95b5cada2958ea767d0f08380a71677a112de5a1575c4310dbffb48e",
+      "code/timeline_tests.cpp": "8427e8fd202f06800b47ee968f29dd8e7c686b8c026b4605d47fac03b9b870cb",
+      "code/timeline_tests_san": "4f18bdf0bc4e0d6c2ac05722efd4669c4375cb64ef2c2494e2e3333fba2c325f",
+      "code/tokens.h": "a353bf949d53b770a0214779c966d281bd49671ae2714b4069eb2ed0972fcdc3",
+      "code/tokens_tests.cpp": "f7031e6bb874d0ca25c8084bd9022e7b387f7a33d977e5e3bb76c3bd0f68b36c",
+      "src/FluidMotion.L1/FluidMotion.L1.csproj": "9fa0a9498bfd456cac124ac76e2ed6ac81ed4d45b4ac5efba34f7d18e8493f2f",
+      "src/FluidMotion.L1/README.md": "74dbe40157054da23a466cd6154f667079c8aedca10762c68218240b711a22f2",
+      "tests/delivery/Consumer/Consumer.csproj": "6c99aa24b54fe21955f6a8e6a9493957db334677900c1a654d1be89b93b28fe1",
+      "tests/delivery/Consumer/Program.cs": "8347e93862283c8211f65ac95341951e52a61a818b2a64fbb781431138506fa4",
+      "tools/delivery/build_component.py": "97220fc82d11c80b92f93be02613d37ab70a505fe561003e8dbc1a0966fcb496",
+      "tools/delivery/validate_native.py": "2ed2e20cd90c765563b211c45585b8a1d29f5a29b7a4c026ae4831bac4acb2c8"
+    },
+    "package_id": "FluidMotion.L1",
+    "version": "0.1.0",
+    "tfm": "net8.0",
+    "rid": "win-x64",
+    "native": {
+      "name": "fluidmotion.dll",
+      "rid": "win-x64",
+      "machine": "0x8664",
+      "bytes": 448512,
+      "sha256": "b7e8e1c35229569a3e8ac05a07282bf8255b58cf3a440e99ee44b4346b850733"
+    },
+    "native_crt": "MSVC static /MT, Release /O2 /DNDEBUG",
+    "native_dependencies": [
+      "KERNEL32.dll"
+    ],
+    "compiler_version_log_sha256": "571d2ab7c04ae8e2d22433cafe81a024c40027c2ab692c4bb9b4f30dc7e75150",
+    "dotnet_info_sha256": "7665ab2a30e0df3b9271614943cd4e35a2d1f931d84aae6d863a89266a6e744e",
+    "public_license_invented": false
+  }
+}

@@ -1,0 +1,7 @@
+  Determining projects to restore...
+  Restored %WORKSPACE%\src\FluidMotion.L1\FluidMotion.L1.csproj (in 283 ms).
+  {"name": "fluidmotion.dll", "rid": "win-x64", "machine": "0x8664", "bytes": 448512, "sha256": "5868f372eeaa46cf737e4116f67395f19fdfbb060fc82e4a858e02aec4327a8e"}
+  FluidMotion.L1 -> %WORKSPACE%\m0\out\component-20261122T070504Z-0fec0dba\managed\FluidMotion.L1.dll
+  {"name": "fluidmotion.dll", "rid": "win-x64", "machine": "0x8664", "bytes": 448512, "sha256": "5868f372eeaa46cf737e4116f67395f19fdfbb060fc82e4a858e02aec4327a8e"}
+  {"name": "fluidmotion.dll", "rid": "win-x64", "machine": "0x8664", "bytes": 448512, "sha256": "5868f372eeaa46cf737e4116f67395f19fdfbb060fc82e4a858e02aec4327a8e"}
+  Successfully created package '%WORKSPACE%\m0\out\component-20261122T070504Z-0fec0dba\feed\FluidMotion.L1.0.1.0.nupkg'.

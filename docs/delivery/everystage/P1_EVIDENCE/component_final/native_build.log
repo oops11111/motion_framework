@@ -1,0 +1,17 @@
+**********************************************************************
+** Visual Studio 2026 Developer Command Prompt v18.6.2
+** Copyright (c) 2026 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+编译器扫描遍数:
+ %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\cl.exe:        版本 19.51.36246.0
+ %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\c1.dll:        版本 19.51.36246.0
+ %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\c1xx.dll:      版本 19.51.36246.0
+ %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\c2.dll:        版本 19.51.36246.0
+ %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\c1xx.dll:      版本 19.51.36246.0
+ %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe:      版本 14.51.36246.0
+ %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\mspdb140.dll:  版本 14.51.36246.0
+ %ProgramFiles%\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\2052\clui.dll: 版本 19.51.36246.0
+
+fm_capi.cpp
+  正在创建库 %WORKSPACE%\m0\out\component-20261122T070504Z-0fec0dba\native\fluidmotion.lib 和对象 %WORKSPACE%\m0\out\component-20261122T070504Z-0fec0dba\native\fluidmotion.exp

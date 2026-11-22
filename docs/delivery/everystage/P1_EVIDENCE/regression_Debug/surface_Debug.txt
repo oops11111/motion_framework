@@ -1,0 +1,49 @@
+# public surface of z3a_l1_devsmoke.dll
+TYPE sealed class MotionSoftDemo.AnimationHandle : System.Object
+  System.Boolean Retarget(System.String property, System.Double target, MotionSoftDemo.SpringParams spring, System.Nullable`1[System.Double] from = null)
+  System.Void Cancel()
+  System.Void Play()
+  System.Void Release()
+  prop System.UInt64 Id get
+TYPE sealed class MotionSoftDemo.MotionEtw : System.Diagnostics.Tracing.EventSource
+  System.Void AnimationLifecycle(System.UInt64 sessionId, System.UInt64 animId, System.UInt64 target, System.String transition, System.String state)
+  System.Void FrameTick(System.UInt64 sessionId, System.UInt32 deltaUs, System.UInt32 engineTickUs, System.UInt32 activeCount)
+  System.Void FrameTickAccept(System.UInt64 sessionId, System.UInt32 deltaUs, System.UInt32 engineTickUs, System.UInt32 activeCount)
+  System.Void IdleTransition(System.UInt64 sessionId, System.UInt32 activeCount, System.Byte pumpOn)
+  System.Void PresentStats(System.UInt64 sessionId, System.UInt32 dropped, System.Double intervalMs)
+  System.Void Retarget(System.UInt64 sessionId, System.UInt64 animId, System.String property, System.Double from, System.Double to, System.Double response, System.Double damping, System.Byte hasFrom, System.Double velocityAtHandoff)
+  System.Void TokenLoad(System.UInt64 sessionId, System.String name, System.UInt32 problemCount, System.UInt32 parseUs)
+  const System.Int32 IdAnimationLifecycle = 1
+  const System.Int32 IdFrameTick = 3
+  const System.Int32 IdIdleTransition = 5
+  const System.Int32 IdPresentStats = 4
+  const System.Int32 IdRetarget = 2
+  const System.Int32 IdTokenLoad = 6
+  static MotionSoftDemo.MotionEtw Log
+  static System.Guid ProviderGuid
+TYPE sealed class MotionSoftDemo.MotionEtwMirror : System.Diagnostics.Tracing.EventListener
+  ctor(System.Action`1[System.String] sink, System.Boolean enableVerbose = True)
+TYPE struct MotionSoftDemo.MotionSample : System.ValueType
+  ctor(System.Double value, System.Double velocity)
+  prop System.Double Value get
+  prop System.Double Velocity get
+TYPE sealed class MotionSoftDemo.MotionSystem : System.Object
+  MotionSoftDemo.AnimationHandle CreateAnimation(System.UInt64 target, System.String transition = null)
+  System.Nullable`1[MotionSoftDemo.MotionSample] Current(System.UInt64 target, System.String property)
+  System.String LoadTokens(System.String json)
+  System.Void Dispose()
+  System.Void OnFrame()
+  System.Void SetReducedMotion(System.Boolean on)
+  event System.Action`1[System.Boolean] FramePumpChanged
+  event System.Action`3[System.UInt64,System.String,System.Double] ValueChanged
+  prop System.Boolean IsRunning get
+  static MotionSoftDemo.MotionSystem Create()
+TYPE sealed class MotionSoftDemo.MotionTokens : System.Object
+  System.String Load(System.String json)
+  ctor(MotionSoftDemo.MotionSystem system)
+TYPE struct MotionSoftDemo.SpringParams : System.ValueType
+  ctor(System.Double response, System.Double damping)
+  prop System.Double Damping get
+  prop System.Double Response get
+TYPE static class MotionSoftDemo.Z3aL1DevSmoke : System.Object
+  static System.Int32 Run(System.IO.TextWriter log, System.String tokenJsonPath)

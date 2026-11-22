@@ -1,0 +1,444 @@
+Z3A_DEV_ONLY=1
+Z4=NO
+PERF_CI=HOLD
+provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d
+note=dev smoke only; does not fill Z4 APPROVED and is not a Z4 session
+ok no public-or-otherwise type MotionEngine
+ok no public-or-otherwise type MotionAnimation
+ok no public-or-otherwise type RiveView
+ok no public-or-otherwise type PointerFollow
+ok MotionSystem.Create()
+ok MotionSystem.Dispose()
+ok MotionSystem.LoadTokens(json)
+ok MotionSystem.SetReducedMotion(on)
+ok MotionSystem.IsRunning
+ok MotionSystem.OnFrame()
+ok MotionSystem.Current(target, property)
+ok MotionSystem.CreateAnimation(target, transition?)
+ok AnimationHandle.Play()
+ok AnimationHandle.Cancel()
+ok AnimationHandle.Release()
+ok AnimationHandle.Retarget
+ok Retarget(property, target, spring, from?)
+ok MotionTokens.Load(json)
+ok no 0.3 default on L1 methods
+ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose count_only=1
+ok provider name
+ok provider guid
+ok event ids 1-6
+ETW_EVENT name=TokenLoad id=6 count=1
+ok public Create + bad token diagnostic: /bogus: unknown key 'bogus' (allowed: $schema, $comment, version, durations, easing, springs, transitions)
+
+ETW_EVENT name=TokenLoad id=6 count=2
+ok MotionTokens.Load on fm_create system: ok
+ok manual system idle before play
+ETW_EVENT name=TokenLoad id=6 count=3
+ok MotionTokens.Load error has JSON-Pointer: /bogus: unknown key 'bogus' (allowed: $schema, $comment, version, durations, easing, springs, transitions)|
+ETW_EVENT name=TokenLoad id=6 count=4
+ok MotionSystem.LoadTokens demo_motion.json: ok
+ETW_EVENT name=TokenLoad id=6 count=5
+ok bad load does not claim success
+ETW_EVENT name=AnimationLifecycle id=1 count=1
+ok tokens remain after a rejected load
+ok unknown transition returns an empty handle
+ETW_EVENT name=IdleTransition id=5 level=Informational count=1 payload=178293225332614,1,1
+ETW_EVENT name=AnimationLifecycle id=1 count=2
+ETW_EVENT name=FrameTick id=3 count=1
+ETW_EVENT name=FrameTick id=103 count=2
+ETW_EVENT name=FrameTick id=3 count=3
+ETW_EVENT name=FrameTick id=3 count=4
+ETW_EVENT name=FrameTick id=3 count=5
+ETW_EVENT name=FrameTick id=3 count=6
+ETW_EVENT name=FrameTick id=3 count=7
+ETW_EVENT name=FrameTick id=3 count=8
+ETW_EVENT name=FrameTick id=3 count=9
+ETW_EVENT name=FrameTick id=3 count=10
+ETW_EVENT name=FrameTick id=103 count=11
+ETW_EVENT name=FrameTick id=3 count=12
+ETW_EVENT name=FrameTick id=3 count=13
+ETW_EVENT name=FrameTick id=3 count=14
+ETW_EVENT name=FrameTick id=3 count=15
+ETW_EVENT name=FrameTick id=3 count=16
+ETW_EVENT name=FrameTick id=3 count=17
+ETW_EVENT name=FrameTick id=3 count=18
+ETW_EVENT name=FrameTick id=3 count=19
+ETW_EVENT name=FrameTick id=103 count=20
+ETW_EVENT name=FrameTick id=3 count=21
+ETW_EVENT name=FrameTick id=3 count=22
+ETW_EVENT name=FrameTick id=3 count=23
+ETW_EVENT name=FrameTick id=3 count=24
+ETW_EVENT name=FrameTick id=3 count=25
+ETW_EVENT name=FrameTick id=3 count=26
+ETW_EVENT name=FrameTick id=3 count=27
+ETW_EVENT name=FrameTick id=3 count=28
+ETW_EVENT name=FrameTick id=103 count=29
+ETW_EVENT name=FrameTick id=3 count=30
+ETW_EVENT name=FrameTick id=3 count=31
+ETW_EVENT name=FrameTick id=3 count=32
+ETW_EVENT name=FrameTick id=3 count=33
+ETW_EVENT name=FrameTick id=3 count=34
+ETW_EVENT name=FrameTick id=3 count=35
+ETW_EVENT name=FrameTick id=3 count=36
+ETW_EVENT name=FrameTick id=3 count=37
+ETW_EVENT name=FrameTick id=103 count=38
+ETW_EVENT name=FrameTick id=3 count=39
+ETW_EVENT name=FrameTick id=3 count=40
+ETW_EVENT name=FrameTick id=3 count=41
+ETW_EVENT name=FrameTick id=3 count=42
+ETW_EVENT name=FrameTick id=3 count=43
+ETW_EVENT name=FrameTick id=3 count=44
+ETW_EVENT name=FrameTick id=3 count=45
+ETW_EVENT name=FrameTick id=3 count=46
+ETW_EVENT name=FrameTick id=103 count=47
+ETW_EVENT name=FrameTick id=3 count=48
+ETW_EVENT name=FrameTick id=3 count=49
+ETW_EVENT name=FrameTick id=3 count=50
+ETW_EVENT name=FrameTick id=3 count=51
+ETW_EVENT name=FrameTick id=3 count=52
+ETW_EVENT name=FrameTick id=3 count=53
+ETW_EVENT name=FrameTick id=3 count=54
+ETW_EVENT name=FrameTick id=3 count=55
+ETW_EVENT name=FrameTick id=103 count=56
+ETW_EVENT name=FrameTick id=3 count=57
+ETW_EVENT name=FrameTick id=3 count=58
+ETW_EVENT name=FrameTick id=3 count=59
+ETW_EVENT name=FrameTick id=3 count=60
+ETW_EVENT name=FrameTick id=3 count=61
+ETW_EVENT name=FrameTick id=3 count=62
+ETW_EVENT name=FrameTick id=3 count=63
+ETW_EVENT name=FrameTick id=3 count=64
+ETW_EVENT name=FrameTick id=103 count=65
+ETW_EVENT name=FrameTick id=3 count=66
+ETW_EVENT name=FrameTick id=3 count=67
+ETW_EVENT name=FrameTick id=3 count=68
+ETW_EVENT name=FrameTick id=3 count=69
+ETW_EVENT name=FrameTick id=3 count=70
+ETW_EVENT name=FrameTick id=3 count=71
+ETW_EVENT name=FrameTick id=3 count=72
+ETW_EVENT name=FrameTick id=3 count=73
+ETW_EVENT name=FrameTick id=103 count=74
+ETW_EVENT name=FrameTick id=3 count=75
+ETW_EVENT name=FrameTick id=3 count=76
+ETW_EVENT name=FrameTick id=3 count=77
+ETW_EVENT name=IdleTransition id=5 level=Informational count=2 payload=178293225332614,0,0
+ETW_EVENT name=FrameTick id=3 count=78
+ok demo.enter ran then idled frames=69
+ok demo.enter ends at offsetX=0 opacity=1
+ETW_EVENT name=AnimationLifecycle id=1 count=3
+ok CreateAnimation empty (retarget-only)
+ETW_EVENT name=IdleTransition id=5 level=Informational count=3 payload=178293225332614,1,1
+ETW_EVENT name=AnimationLifecycle id=1 count=4
+ETW_EVENT name=Retarget id=2 count=1
+ok start retarget 240
+ETW_EVENT name=FrameTick id=3 count=79
+ETW_EVENT name=FrameTick id=3 count=80
+ETW_EVENT name=FrameTick id=3 count=81
+ETW_EVENT name=FrameTick id=3 count=82
+ETW_EVENT name=FrameTick id=103 count=83
+ETW_EVENT name=FrameTick id=3 count=84
+ETW_EVENT name=FrameTick id=3 count=85
+ETW_EVENT name=FrameTick id=3 count=86
+ETW_EVENT name=FrameTick id=3 count=87
+ETW_EVENT name=FrameTick id=3 count=88
+ETW_EVENT name=FrameTick id=3 count=89
+ETW_EVENT name=FrameTick id=3 count=90
+ETW_EVENT name=FrameTick id=3 count=91
+ETW_EVENT name=FrameTick id=103 count=92
+ok mid-play sample value=161.664134 vel=1533.78411
+ETW_EVENT name=Retarget id=2 count=2
+ok mid-play interrupt retarget 40
+ok interrupt keeps value and velocity (no shadow IV)
+ETW_EVENT name=Retarget id=2 count=3
+ok same-property retarget 200
+ETW_EVENT name=FrameTick id=3 count=93
+ETW_EVENT name=FrameTick id=3 count=94
+ETW_EVENT name=FrameTick id=3 count=95
+ETW_EVENT name=FrameTick id=3 count=96
+ETW_EVENT name=FrameTick id=3 count=97
+ETW_EVENT name=FrameTick id=3 count=98
+ETW_EVENT name=FrameTick id=3 count=99
+ETW_EVENT name=FrameTick id=3 count=100
+ETW_EVENT name=FrameTick id=103 count=101
+ETW_EVENT name=Retarget id=2 count=4
+ok same-property retarget 80
+ETW_EVENT name=FrameTick id=3 count=102
+ETW_EVENT name=FrameTick id=3 count=103
+ETW_EVENT name=FrameTick id=3 count=104
+ETW_EVENT name=FrameTick id=3 count=105
+ETW_EVENT name=FrameTick id=3 count=106
+ETW_EVENT name=FrameTick id=3 count=107
+ETW_EVENT name=FrameTick id=3 count=108
+ETW_EVENT name=FrameTick id=3 count=109
+ETW_EVENT name=FrameTick id=103 count=110
+ETW_EVENT name=AnimationLifecycle id=1 count=5
+ETW_EVENT name=AnimationLifecycle id=1 count=6
+ETW_EVENT name=AnimationLifecycle id=1 count=7
+ETW_EVENT name=Retarget id=2 count=5
+ok cross-animation retarget 220
+ok cross-animation handoff has no jump
+ETW_EVENT name=FrameTick id=3 count=111
+ETW_EVENT name=FrameTick id=3 count=112
+ETW_EVENT name=FrameTick id=3 count=113
+ETW_EVENT name=FrameTick id=3 count=114
+ETW_EVENT name=FrameTick id=3 count=115
+ETW_EVENT name=FrameTick id=3 count=116
+ETW_EVENT name=FrameTick id=3 count=117
+ETW_EVENT name=FrameTick id=3 count=118
+ETW_EVENT name=FrameTick id=103 count=119
+ETW_EVENT name=Retarget id=2 count=6
+ok second mid-play interrupt
+ETW_EVENT name=FrameTick id=3 count=120
+ETW_EVENT name=FrameTick id=3 count=121
+ETW_EVENT name=FrameTick id=3 count=122
+ETW_EVENT name=FrameTick id=3 count=123
+ETW_EVENT name=FrameTick id=3 count=124
+ETW_EVENT name=FrameTick id=3 count=125
+ETW_EVENT name=Retarget id=2 count=7
+ok sixth retarget
+ETW_EVENT name=AnimationLifecycle id=1 count=8
+ok Retarget after Release fails
+ETW_EVENT name=FrameTick id=3 count=126
+ETW_EVENT name=FrameTick id=3 count=127
+ETW_EVENT name=FrameTick id=103 count=128
+ETW_EVENT name=FrameTick id=3 count=129
+ETW_EVENT name=FrameTick id=3 count=130
+ETW_EVENT name=FrameTick id=3 count=131
+ETW_EVENT name=FrameTick id=3 count=132
+ETW_EVENT name=FrameTick id=3 count=133
+ETW_EVENT name=FrameTick id=3 count=134
+ETW_EVENT name=FrameTick id=3 count=135
+ETW_EVENT name=FrameTick id=3 count=136
+ETW_EVENT name=FrameTick id=103 count=137
+ok Release drops the handle and motion continues value 151.697296 -> 131.470447
+ETW_EVENT name=FrameTick id=3 count=138
+ETW_EVENT name=FrameTick id=3 count=139
+ETW_EVENT name=FrameTick id=3 count=140
+ETW_EVENT name=FrameTick id=3 count=141
+ETW_EVENT name=FrameTick id=3 count=142
+ETW_EVENT name=FrameTick id=3 count=143
+ETW_EVENT name=FrameTick id=3 count=144
+ETW_EVENT name=FrameTick id=3 count=145
+ETW_EVENT name=FrameTick id=103 count=146
+ETW_EVENT name=FrameTick id=3 count=147
+ETW_EVENT name=FrameTick id=3 count=148
+ETW_EVENT name=FrameTick id=3 count=149
+ETW_EVENT name=FrameTick id=3 count=150
+ETW_EVENT name=FrameTick id=3 count=151
+ETW_EVENT name=FrameTick id=3 count=152
+ETW_EVENT name=FrameTick id=3 count=153
+ETW_EVENT name=FrameTick id=3 count=154
+ETW_EVENT name=FrameTick id=103 count=155
+ETW_EVENT name=FrameTick id=3 count=156
+ETW_EVENT name=FrameTick id=3 count=157
+ETW_EVENT name=FrameTick id=3 count=158
+ETW_EVENT name=FrameTick id=3 count=159
+ETW_EVENT name=FrameTick id=3 count=160
+ETW_EVENT name=FrameTick id=3 count=161
+ETW_EVENT name=FrameTick id=3 count=162
+ETW_EVENT name=FrameTick id=3 count=163
+ETW_EVENT name=FrameTick id=103 count=164
+ETW_EVENT name=FrameTick id=3 count=165
+ETW_EVENT name=FrameTick id=3 count=166
+ETW_EVENT name=FrameTick id=3 count=167
+ETW_EVENT name=FrameTick id=3 count=168
+ETW_EVENT name=FrameTick id=3 count=169
+ETW_EVENT name=FrameTick id=3 count=170
+ETW_EVENT name=FrameTick id=3 count=171
+ETW_EVENT name=FrameTick id=3 count=172
+ETW_EVENT name=FrameTick id=103 count=173
+ETW_EVENT name=FrameTick id=3 count=174
+ETW_EVENT name=FrameTick id=3 count=175
+ETW_EVENT name=FrameTick id=3 count=176
+ETW_EVENT name=FrameTick id=3 count=177
+ETW_EVENT name=FrameTick id=3 count=178
+ETW_EVENT name=FrameTick id=3 count=179
+ETW_EVENT name=FrameTick id=3 count=180
+ETW_EVENT name=FrameTick id=3 count=181
+ETW_EVENT name=FrameTick id=103 count=182
+ETW_EVENT name=FrameTick id=3 count=183
+ETW_EVENT name=FrameTick id=3 count=184
+ETW_EVENT name=FrameTick id=3 count=185
+ETW_EVENT name=FrameTick id=3 count=186
+ETW_EVENT name=FrameTick id=3 count=187
+ETW_EVENT name=FrameTick id=3 count=188
+ETW_EVENT name=FrameTick id=3 count=189
+ETW_EVENT name=FrameTick id=3 count=190
+ETW_EVENT name=FrameTick id=103 count=191
+ETW_EVENT name=FrameTick id=3 count=192
+ETW_EVENT name=FrameTick id=3 count=193
+ETW_EVENT name=FrameTick id=3 count=194
+ETW_EVENT name=FrameTick id=3 count=195
+ETW_EVENT name=FrameTick id=3 count=196
+ETW_EVENT name=FrameTick id=3 count=197
+ETW_EVENT name=FrameTick id=3 count=198
+ETW_EVENT name=FrameTick id=3 count=199
+ETW_EVENT name=FrameTick id=103 count=200
+ETW_EVENT name=FrameTick id=3 count=201
+ETW_EVENT name=FrameTick id=3 count=202
+ETW_EVENT name=FrameTick id=3 count=203
+ETW_EVENT name=FrameTick id=3 count=204
+ETW_EVENT name=FrameTick id=3 count=205
+ETW_EVENT name=FrameTick id=3 count=206
+ETW_EVENT name=FrameTick id=3 count=207
+ETW_EVENT name=FrameTick id=3 count=208
+ETW_EVENT name=FrameTick id=103 count=209
+ETW_EVENT name=FrameTick id=3 count=210
+ETW_EVENT name=FrameTick id=3 count=211
+ETW_EVENT name=FrameTick id=3 count=212
+ETW_EVENT name=FrameTick id=3 count=213
+ETW_EVENT name=FrameTick id=3 count=214
+ETW_EVENT name=FrameTick id=3 count=215
+ETW_EVENT name=FrameTick id=3 count=216
+ETW_EVENT name=FrameTick id=3 count=217
+ETW_EVENT name=FrameTick id=103 count=218
+ETW_EVENT name=FrameTick id=3 count=219
+ETW_EVENT name=FrameTick id=3 count=220
+ETW_EVENT name=FrameTick id=3 count=221
+ETW_EVENT name=IdleTransition id=5 level=Informational count=4 payload=178293225332614,0,0
+ETW_EVENT name=FrameTick id=3 count=222
+ok idle after released motion finishes
+ETW_EVENT name=AnimationLifecycle id=1 count=9
+ETW_EVENT name=IdleTransition id=5 level=Informational count=5 payload=178293225332614,1,1
+ETW_EVENT name=AnimationLifecycle id=1 count=10
+ETW_EVENT name=FrameTick id=3 count=223
+ETW_EVENT name=FrameTick id=3 count=224
+ETW_EVENT name=FrameTick id=3 count=225
+ETW_EVENT name=FrameTick id=3 count=226
+ETW_EVENT name=FrameTick id=103 count=227
+ETW_EVENT name=FrameTick id=3 count=228
+ETW_EVENT name=FrameTick id=3 count=229
+ok reduced-motion setup is still in flight opacity=0.826891887
+ETW_EVENT name=IdleTransition id=5 level=Informational count=6 payload=178293225332614,0,0
+ETW_EVENT name=FrameTick id=3 count=230
+ok SetReducedMotion snaps to end frames=1 opacity=1 offsetX=0
+ETW_EVENT name=AnimationLifecycle id=1 count=11
+ETW_EVENT name=IdleTransition id=5 level=Informational count=7 payload=178293225332614,1,1
+ETW_EVENT name=AnimationLifecycle id=1 count=12
+ETW_EVENT name=Retarget id=2 count=8
+ok retarget while reduced motion is on
+ETW_EVENT name=IdleTransition id=5 level=Informational count=8 payload=178293225332614,0,0
+ETW_EVENT name=FrameTick id=3 count=231
+ETW_EVENT name=IdleTransition id=5 level=Informational count=9 payload=178293225332614,0,0
+ETW_EVENT name=FrameTick id=3 count=232
+ok reduced-motion Retarget lands on target with velocity 0 got 50 vel=0
+ETW_EVENT name=AnimationLifecycle id=1 count=13
+ETW_EVENT name=IdleTransition id=5 level=Informational count=10 payload=178293225332614,1,1
+ETW_EVENT name=TokenLoad id=6 count=6
+ok Z5-T3 dispose-with-pump-on: tokens ok
+ETW_EVENT name=AnimationLifecycle id=1 count=14
+ETW_EVENT name=IdleTransition id=5 level=Informational count=11 payload=178293225332630,1,1
+ETW_EVENT name=AnimationLifecycle id=1 count=15
+ETW_EVENT name=Retarget id=2 count=9
+ok Z5-T3 dispose-with-pump-on: retarget 0 -> 120
+ETW_EVENT name=FrameTick id=3 count=233
+ETW_EVENT name=FrameTick id=3 count=234
+ETW_EVENT name=FrameTick id=3 count=235
+ok Z5-T3 dispose-with-pump-on: pump is on before Dispose
+ETW_EVENT name=IdleTransition id=5 level=Informational count=12 payload=178293225332630,0,0
+Z5T3_DISPOSE_IDLE emitted=1 pumpOffCallbacks=1
+ok Z5-T3 Dispose with pump on emits exactly one IdleTransition(activeCount=0, pumpOn=0): ETW_EVENT name=IdleTransition id=5 level=Informational count=12 payload=178293225332630,0,0
+ok Z5-T3 Dispose with pump on raises FramePumpChanged(false) once
+ETW_EVENT name=TokenLoad id=6 count=7
+ok F1B tokens ok
+ETW_EVENT name=AnimationLifecycle id=1 count=16
+ETW_EVENT name=AnimationLifecycle id=1 count=17
+ok F1B two holders on target=11 enter=1 hover=2
+ETW_EVENT name=IdleTransition id=5 level=Informational count=13 payload=178293225332630,1,1
+ETW_EVENT name=AnimationLifecycle id=1 count=18
+ETW_EVENT name=FrameTick id=3 count=236
+ETW_EVENT name=FrameTick id=3 count=237
+ETW_EVENT name=FrameTick id=3 count=238
+ETW_EVENT name=FrameTick id=3 count=239
+ETW_EVENT name=FrameTick id=3 count=240
+ETW_EVENT name=FrameTick id=3 count=241
+F1B_HOLDER1 enter=1 target=11 property=offsetX in_flight value=-57.123109 vel=672.792543 opacity=0.826891887
+ok F1B enter is mid-flight before the second holder writes
+ETW_EVENT name=AnimationLifecycle id=1 count=19
+ETW_EVENT name=Retarget id=2 count=10
+ok F1B hover Retarget offsetX -> 40 (later writer, from=null)
+F1B_RETARGET_FROM hover=2 target=11 property=offsetX from=-57.123109 vel=672.792543 to=40
+ok F1B Retarget starts at the live value and velocity (no jump)
+ETW_EVENT name=FrameTick id=3 count=242
+ETW_EVENT name=FrameTick id=3 count=243
+ETW_EVENT name=FrameTick id=3 count=244
+ETW_EVENT name=FrameTick id=3 count=245
+ETW_EVENT name=FrameTick id=3 count=246
+ETW_EVENT name=FrameTick id=3 count=247
+F1B_OVERLAP frames=6 enter_opacity_advancing_and_hover_offsetX_moving=6
+ok F1B both holders active in the same frames
+ETW_EVENT name=FrameTick id=3 count=248
+ETW_EVENT name=FrameTick id=3 count=249
+ETW_EVENT name=FrameTick id=3 count=250
+ETW_EVENT name=FrameTick id=3 count=251
+ETW_EVENT name=FrameTick id=3 count=252
+ETW_EVENT name=FrameTick id=3 count=253
+ETW_EVENT name=FrameTick id=3 count=254
+ETW_EVENT name=FrameTick id=3 count=255
+ETW_EVENT name=FrameTick id=3 count=256
+ETW_EVENT name=FrameTick id=3 count=257
+ETW_EVENT name=FrameTick id=3 count=258
+ETW_EVENT name=FrameTick id=3 count=259
+ETW_EVENT name=FrameTick id=3 count=260
+ETW_EVENT name=FrameTick id=3 count=261
+ETW_EVENT name=FrameTick id=3 count=262
+ETW_EVENT name=FrameTick id=3 count=263
+ETW_EVENT name=FrameTick id=3 count=264
+ETW_EVENT name=FrameTick id=3 count=265
+ETW_EVENT name=FrameTick id=3 count=266
+ETW_EVENT name=FrameTick id=3 count=267
+ETW_EVENT name=FrameTick id=3 count=268
+ETW_EVENT name=FrameTick id=3 count=269
+ETW_EVENT name=FrameTick id=3 count=270
+ETW_EVENT name=FrameTick id=3 count=271
+ETW_EVENT name=FrameTick id=3 count=272
+ETW_EVENT name=FrameTick id=3 count=273
+ETW_EVENT name=FrameTick id=3 count=274
+ETW_EVENT name=FrameTick id=3 count=275
+ETW_EVENT name=FrameTick id=3 count=276
+ETW_EVENT name=FrameTick id=3 count=277
+ETW_EVENT name=FrameTick id=3 count=278
+ETW_EVENT name=FrameTick id=3 count=279
+ETW_EVENT name=FrameTick id=3 count=280
+ETW_EVENT name=FrameTick id=3 count=281
+ETW_EVENT name=FrameTick id=3 count=282
+ETW_EVENT name=FrameTick id=3 count=283
+ETW_EVENT name=FrameTick id=3 count=284
+ETW_EVENT name=FrameTick id=3 count=285
+ETW_EVENT name=FrameTick id=3 count=286
+ETW_EVENT name=FrameTick id=3 count=287
+ETW_EVENT name=FrameTick id=3 count=288
+ETW_EVENT name=FrameTick id=3 count=289
+ETW_EVENT name=FrameTick id=3 count=290
+ETW_EVENT name=FrameTick id=3 count=291
+ETW_EVENT name=FrameTick id=3 count=292
+ETW_EVENT name=FrameTick id=3 count=293
+ETW_EVENT name=FrameTick id=3 count=294
+ETW_EVENT name=FrameTick id=3 count=295
+ETW_EVENT name=FrameTick id=3 count=296
+ETW_EVENT name=FrameTick id=3 count=297
+ETW_EVENT name=FrameTick id=3 count=298
+ETW_EVENT name=FrameTick id=3 count=299
+ETW_EVENT name=FrameTick id=3 count=300
+ETW_EVENT name=FrameTick id=3 count=301
+ETW_EVENT name=FrameTick id=3 count=302
+ETW_EVENT name=FrameTick id=3 count=303
+ETW_EVENT name=FrameTick id=3 count=304
+ETW_EVENT name=FrameTick id=3 count=305
+ETW_EVENT name=FrameTick id=3 count=306
+ETW_EVENT name=FrameTick id=3 count=307
+ETW_EVENT name=IdleTransition id=5 level=Informational count=14 payload=178293225332630,0,0
+ETW_EVENT name=FrameTick id=3 count=308
+F1B_FINAL offsetX=40 opacity=1 expected_offsetX=40 (later writer target)
+ok F1B later writer wins: final offsetX == 40, enter still finishes opacity == 1
+ETW_EVENT name=AnimationLifecycle id=1 count=20
+ETW_EVENT name=AnimationLifecycle id=1 count=21
+ETW_EVENT name=PresentStats id=4 count=1
+ok E1 event AnimationLifecycle
+ok E1 event Retarget
+ok E1 event FrameTick
+ok E1 event PresentStats
+ok E1 event IdleTransition
+ok E1 event TokenLoad
+ETW_SEEN [AnimationLifecycle,FrameTick,IdleTransition,PresentStats,Retarget,TokenLoad]
+ETW_EVENT name=IdleTransition id=5 level=Informational count=15 payload=178293225332614,0,0
+Z3A_DEV_ONLY verdict=PASS fails=0 not_z4=1 perf_ci=HOLD

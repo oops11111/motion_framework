@@ -1,0 +1,3 @@
+  Determining projects to restore...
+  Restored %WORKSPACE%\src\FluidMotion.L1\FluidMotion.L1.csproj (in 288 ms).
+%WORKSPACE%\src\FluidMotion.L1\FluidMotion.L1.csproj(29,5): error : Only win-x64 native assets are supported.
