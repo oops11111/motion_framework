@@ -18,12 +18,14 @@
   "artifact": {
     "run_id": 44977550323,
     "artifact_id": 14736098352,
-    "name": "EveryStage-Setup-win-x64",
+    "name": "EveryStage-Setup-win-x64-7a40a8d38d6d1d91786e17d5265037b0d4bd7ddf",
     "approximate_size": "62MB",
     "expired": false,
     "digest": "76614f31aa34372c15f0de26d69f818f89c3b5814967b24a0aa980b4c7eaad94",
     "digest_scope": "GitHub artifact archive, not inner EXE",
-    "signing_observation": "Source build explicitly sets UNSIGNED=1; artifact executable not downloaded or independently signature-tested"
+    "signing_observation": "Source build explicitly sets UNSIGNED=1; artifact executable not downloaded or independently signature-tested",
+    "size_in_bytes": 62309585,
+    "expires_at": "2026-11-25T02:45:33Z"
   },
   "sources": [
     {
