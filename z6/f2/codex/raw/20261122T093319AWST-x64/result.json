@@ -1,0 +1,314 @@
+{
+  "status": "PASS host build/API/freeze only; runtime NOT_EXECUTED",
+  "route": "NON-ORIGINAL: WarningsNotAsErrors=NU1903 and Platform=x64",
+  "commands": [
+    {
+      "label": "restore",
+      "argv": [
+        "dotnet",
+        "restore",
+        "FluentHub.slnx",
+        "-p:WarningsNotAsErrors=NU1903",
+        "-p:Platform=x64"
+      ],
+      "pid": 22156,
+      "started_utc": "2026-11-22T01:33:19.720038+00:00",
+      "route": "NON-ORIGINAL",
+      "child_arch_before": null,
+      "child_arch_after": "AMD64",
+      "PATH_changed": false,
+      "DOTNET_ROOT_changed": false,
+      "exit": 0,
+      "ended_utc": "2026-11-22T01:33:22.333680+00:00"
+    },
+    {
+      "label": "build",
+      "argv": [
+        "dotnet",
+        "build",
+        "FluentHub.slnx",
+        "-c",
+        "Debug",
+        "-p:WarningsNotAsErrors=NU1903",
+        "-p:Platform=x64"
+      ],
+      "pid": 60936,
+      "started_utc": "2026-11-22T01:33:22.347651+00:00",
+      "route": "NON-ORIGINAL",
+      "child_arch_before": null,
+      "child_arch_after": "AMD64",
+      "PATH_changed": false,
+      "DOTNET_ROOT_changed": false,
+      "exit": 0,
+      "ended_utc": "2026-11-22T01:34:44.238338+00:00"
+    }
+  ],
+  "captures": [
+    {
+      "name": "restore.stdout.log",
+      "original_bytes": 430,
+      "original_sha256": "e217efd0861ba6141474dfc41b8b6fc9cc28eb93d50637d7755a75af4be77575",
+      "replacement_characters": 0
+    },
+    {
+      "name": "restore.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "replacement_characters": 0
+    },
+    {
+      "name": "build.stdout.log",
+      "original_bytes": 2460,
+      "original_sha256": "4f3b9ede798a6c00fc2510421d3123141790d426d981f3e8ae2c3d05e1284327",
+      "replacement_characters": 0
+    },
+    {
+      "name": "build.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "replacement_characters": 0
+    },
+    {
+      "name": "surface.stdout.log",
+      "original_bytes": 700,
+      "original_sha256": "80f00f101e16066cab86090fe2c5efd9a228621dc2f61d210f0a46a8b0668e35",
+      "replacement_characters": 0
+    },
+    {
+      "name": "surface.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "replacement_characters": 0
+    }
+  ],
+  "configuration": "Debug",
+  "platform": "x64",
+  "rid": "win-x64",
+  "tfm": "net10.0-windows10.0.26100.0",
+  "identity": {
+    "Name": "49462fluenthub-uwp.FluentHub",
+    "Publisher": "CN=4E3C0825-4D00-4ECC-89F8-528E9200B125",
+    "Version": "0.11.0.0",
+    "ProcessorArchitecture": "x64"
+  },
+  "applications": [
+    {
+      "Id": "App",
+      "Executable": "FluentHub.exe",
+      "EntryPoint": "Windows.FullTrustApplication"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "FluentHub.dll",
+      "bytes": 3269632,
+      "sha256": "428fe0ba893c45df426da289685cc687caf2e5e216d9a2e4506e38d7eeab4981"
+    },
+    {
+      "name": "FluentHub.exe",
+      "bytes": 582144,
+      "sha256": "7b0688b0e9504779d4af26390ce776339eda3ff850f9fa35dddeffa14ca55a4c"
+    },
+    {
+      "name": "AppxManifest.xml",
+      "bytes": 14036,
+      "sha256": "fe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4"
+    },
+    {
+      "name": "FluentHub.runtimeconfig.json",
+      "bytes": 2486,
+      "sha256": "50df474d05a24d16c8192c60f7cca3e1efffa3cc96dfd32b200ce8540e9ea5a2"
+    },
+    {
+      "name": "FluidMotion.L1.dll",
+      "bytes": 20992,
+      "sha256": "94d6489d9bec289732ea3e4a8540b052e576a7182bae3f3367a3e72f04e10dc2"
+    },
+    {
+      "name": "fluidmotion.dll",
+      "bytes": 448000,
+      "sha256": "add4857dead413f8211941381c6aa8f73c546f3ecae1774aced79c464719577d"
+    },
+    {
+      "name": "demo_motion.json",
+      "bytes": 1228,
+      "sha256": "8d5db5775acad5db0c04cbc3c2a214bb7309670c304b71ff40860757973c410e"
+    }
+  ],
+  "runtimeconfig": {
+    "runtimeOptions": {
+      "tfm": "net10.0",
+      "includedFrameworks": [
+        {
+          "name": "Microsoft.NETCore.App",
+          "version": "10.0.8"
+        }
+      ],
+      "configProperties": {
+        "CSWINRT_ENABLE_DYNAMIC_OBJECTS_SUPPORT": true,
+        "CSWINRT_USE_EXCEPTION_RESOURCE_KEYS": false,
+        "CSWINRT_ENABLE_DEFAULT_CUSTOM_TYPE_MAPPINGS": true,
+        "CSWINRT_ENABLE_ICUSTOMPROPERTYPROVIDER_SUPPORT": true,
+        "CSWINRT_ENABLE_IREFERENCE_SUPPORT": true,
+        "CSWINRT_ENABLE_IDYNAMICINTERFACECASTABLE": true,
+        "MVVMTOOLKIT_ENABLE_INOTIFYPROPERTYCHANGING_SUPPORT": true,
+        "Microsoft.Extensions.DependencyInjection.VerifyOpenGenericServiceTrimmability": true,
+        "System.ComponentModel.DefaultValueAttribute.IsSupported": false,
+        "System.ComponentModel.Design.IDesignerHost.IsSupported": false,
+        "System.ComponentModel.TypeConverter.EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization": false,
+        "System.ComponentModel.TypeDescriptor.IsComObjectDescriptorSupported": false,
+        "System.Data.DataSet.XmlSerializationIsSupported": false,
+        "System.Diagnostics.Tracing.EventSource.IsSupported": true,
+        "System.Linq.Enumerable.IsSizeOptimized": true,
+        "System.Net.SocketsHttpHandler.Http3Support": false,
+        "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,
+        "System.Resources.ResourceManager.AllowCustomResourceTypes": false,
+        "System.Resources.UseSystemResourceKeys": false,
+        "System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported": false,
+        "System.Runtime.InteropServices.BuiltInComInterop.IsSupported": false,
+        "System.Runtime.InteropServices.EnableConsumingManagedCodeFromNativeHosting": false,
+        "System.Runtime.InteropServices.EnableCppCLIHostActivation": false,
+        "System.Runtime.InteropServices.Marshalling.EnableGeneratedComInterfaceComImportInterop": false,
+        "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false,
+        "System.StartupHookProvider.IsSupported": false,
+        "System.Text.Encoding.EnableUnsafeUTF7Encoding": false,
+        "System.Text.Json.JsonSerializer.IsReflectionEnabledByDefault": false,
+        "System.Threading.Thread.EnableAutoreleasePool": false,
+        "System.Threading.ThreadPool.UseWindowsThreadPool": true,
+        "System.Linq.Expressions.CanEmitObjectArrayDelegate": false,
+        "CSWINRT_USE_WINDOWS_UI_XAML_PROJECTIONS": false
+      }
+    }
+  },
+  "source_POST": [
+    {
+      "path": "src/FluentHub/App.xaml.cs",
+      "sha256": "533a4b3133cfa45dad9729054bda269c160dbeb8545658390c30d729eb0056fb",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/FluentHub.csproj",
+      "sha256": "3d20c00ded8bf06200032f8fe10b5972230e4c4286f848a7e68dd175f38e1890",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/MainWindow.cs",
+      "sha256": "1a2e06d2809f380005e86505d48c9cac0f7b364138a81c5c3e269a522f98670d",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/RootView.xaml.cs",
+      "sha256": "6ef7c79cb381c8635b32f31756691f0a0c3a5acd6325f36fffcf2eac19f11f02",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/NavMotionPilot.cs",
+      "sha256": "2cf3bebc184fd05a26da3689fdf7ea8116216847f569a8481d5b9081d702b5ce",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/ReducedMotionState.cs",
+      "sha256": "c660d87c15ac756056c891cd6d1c3b15f0d02ac064ed8e4b574b8aef7a5e69ef",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/FakeReducedMotionSource.cs",
+      "sha256": "a2d2fcd5487aba6ce3373acd93963482885614bced9a2377e0c3fe5cab8e6873",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/WindowReducedMotionSource.cs",
+      "sha256": "4155456016e6f862a58670f5882add877d3e67aa09a98fd5c69e31a3f51485ac",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/RootRebuildState.cs",
+      "sha256": "f3b638372875462cf2f58818e3593bf756576ed11861f1cb24d060287369262b",
+      "matches_v2": true
+    },
+    {
+      "path": "src/FluentHub/Views/PilotEventCounts.cs",
+      "sha256": "db2c29c33b5482742048628a474275fe27ec82951d23ef15b769219d81643ea7",
+      "matches_v2": true
+    }
+  ],
+  "freeze": [
+    {
+      "path": "code/composition.h",
+      "git_blob": "fd0603c17136c067e89c71e56aef310f2f7e63f4",
+      "matches_base": true,
+      "working_normalized_sha256": "a55d4952789f5b805b9830fb725f17e3b37da2675cafc2eb80c316c95178e418"
+    },
+    {
+      "path": "code/capi/fm_capi.h",
+      "git_blob": "e247ffaf2e533f15e3b0b99372ecc68375f23f62",
+      "matches_base": true,
+      "working_normalized_sha256": "31a25930fa00374fd0cfdd3d11c38f67a6eef5ff941b392da7c69d021491e7a0"
+    },
+    {
+      "path": "code/capi/fm_capi.cpp",
+      "git_blob": "b47f959d7a96229b8f6bdccf9157f81c4506a426",
+      "matches_base": true,
+      "working_normalized_sha256": "cf9c4180faccbecb5cfd1332554cd5c7a8140b6f8f3fdf34e2206135860eaf62"
+    },
+    {
+      "path": "MotionSoftDemo/MotionSystem.cs",
+      "git_blob": "fe72b08f9445723f926a2928345e23311503efec",
+      "matches_base": true,
+      "working_normalized_sha256": "fdd414d42c74007e7cb27c78de56734678adf7e68cb9acd4ddda4630ddff5c86"
+    },
+    {
+      "path": "MotionSoftDemo/MotionEtw.cs",
+      "git_blob": "0404498ab4cb7e96168405a7ffb63591686797ca",
+      "matches_base": true,
+      "working_normalized_sha256": "ba9add3f9e099a4cf3d4e744004b4f76265eae3788e5568d55b9ab811aafe161"
+    },
+    {
+      "path": "pilot/l1pack/FluidMotion.L1.csproj",
+      "git_blob": "ace009e5c8e2c5c635f6a19a665c261881a5517a",
+      "matches_base": true,
+      "working_normalized_sha256": "f644eb45fd0d6db71b593ef8066e851e0f3ee038d3ce7557fb424be9f73d0b4c"
+    },
+    {
+      "path": "pilot/l1pack/SHA256SUMS",
+      "git_blob": "438f933fa27691a4569428f48856e89168f3b1fd",
+      "matches_base": true,
+      "working_normalized_sha256": "b37fab6059d2e95fd8e9116a666234e290626a4859e1a5b36d4109519abc604a"
+    },
+    {
+      "path": "pilot/l1pack/README.md",
+      "git_blob": "5f56d54b8c56ad1a807d9474b4c2ada9948df804",
+      "matches_base": true,
+      "working_normalized_sha256": "23db604009cb673ef416002ac46925b488125e6cb75843eb0fad93d46a2c723c"
+    },
+    {
+      "path": "docs/api_surface_m2_alpha_contract_LOCKED.md",
+      "git_blob": "b9d58f7f7185aa39b3f3759a5f0ddb28becd9129",
+      "matches_base": true,
+      "working_normalized_sha256": "c76f4f51f6df1a85acc25e8a1bc11952bce90cac9532370ccf5330026121c689"
+    },
+    {
+      "path": "docs/z4_etw_l1_smoke_gate_r1_LOCKED.md",
+      "git_blob": "afb7513ea1bc274e6f58266e0fc90cfc0782bba3",
+      "matches_base": true,
+      "working_normalized_sha256": "cd246e5303f51fe5bf74b21cd22b51d56954b705488c5d6310a893ee9bb8e0a9"
+    },
+    {
+      "path": "docs/api.md",
+      "git_blob": "45edbcebe1b878ebcc4fa8cb428c3ef2d06c9f35",
+      "matches_base": true,
+      "working_normalized_sha256": "eebdf2ba50ad585a3fe024dea0c891fbb80fc1a38f0eaf3882027f4eda69cb35"
+    },
+    {
+      "path": "docs/api_changelog.md",
+      "git_blob": "ac7d17785bfe372ca3c87b612b06ca56c14770fe",
+      "matches_base": true,
+      "working_normalized_sha256": "0b8b800d0a942bb12bf183df2679ceccd111deb49877a4aed09f4a0835bb73d8"
+    }
+  ],
+  "surface_full_equal": true,
+  "surface_sha256": "7b67b77bce6b36dc58cc870a17fe1b5588df3c6e526b39ca5a3e36d5280bc5cc",
+  "checksurface": "fails=0",
+  "runtime": "NOT_EXECUTED",
+  "registration": "NOT_EXECUTED"
+}
