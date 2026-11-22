@@ -1,0 +1,29 @@
+{
+  "recorded_utc": "2026-11-22T02:57:44.462965+00:00",
+  "main": "eb09e63f3068a98fb011709132365e81d825c23c",
+  "coord": "9c28dcc6a97bda7d552ddf2a6cc6f12347063751",
+  "branch": "codex/z6-result-review",
+  "sources": [
+    {
+      "path": "docs/z6_coord/codex_handover.md",
+      "sha256": "d41874a10788996a43e1b923b1a53c82b855e44e37566f956c3b46d164f79e1c"
+    },
+    {
+      "path": "docs/z6_coord/z6_workbuddy_handover_FINAL_r2.md",
+      "sha256": "82ab4e29db68e943ab04b034d9e3e360c4a84f2a05451ae904772e10761dd2b1"
+    },
+    {
+      "path": "docs/z6_coord/z6_result_review_geminicli.md",
+      "sha256": "b514718aa1c1da27cdb5e60721dc49dfa350162eb81b3aca499884a150dd87c7"
+    },
+    {
+      "path": "docs/z6_coord/z6_handover_adjudication_notion.md",
+      "sha256": "b7c5c607bf4e9de448956f2ac54d53a95c752c217d752b93810866f02d8e2406"
+    }
+  ],
+  "missing": [
+    "docs/z6_coord/z6_result_review_notion.md",
+    "docs/z6_coord/z6_closed_DRAFT_notion.md"
+  ],
+  "primary_provided_main_post_CI": "44978158079 three jobs success"
+}

@@ -1,0 +1,646 @@
+{
+  "source": "Authenticated GitHub REST latest check-run records; no tests rerun",
+  "scope": "Observed records only, not an exhaustive remote push audit",
+  "pull_requests": [
+    {
+      "pr": 22,
+      "head": "51076afefe4ca5848fc80a4d97f9ec48708b00f1",
+      "merge": "eb09e63f3068a98fb011709132365e81d825c23c",
+      "merged_at": "2026-11-22T02:53:46Z",
+      "checks": [
+        {
+          "id": 137072167016,
+          "name": "repair-evidence-and-private-behavior",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-22T02:52:35Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 137072166922,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-22T02:53:04Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 137072166824,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-22T02:53:06Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 137072166602,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-22T02:52:12Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 137072166556,
+          "name": "frozen-surface-and-source-behavior",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-22T02:52:42Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 137072101112,
+          "name": "repair-evidence-and-private-behavior",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-22T02:52:20Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 21,
+      "head": "eef9be49e3491ad794edad7148cf089e410f75d9",
+      "merge": "d2aac2dc355d0412aa5fc3ede212b79faf4459b9",
+      "merged_at": "2026-11-21T13:58:30Z",
+      "checks": [
+        {
+          "id": 136867736607,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T13:58:09Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136867736573,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T13:58:03Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136867736334,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T13:57:06Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136867736149,
+          "name": "pilot-evidence-and-logic",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T13:57:24Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136867608325,
+          "name": "pilot-evidence-and-logic",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T13:57:05Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 20,
+      "head": "a04cfbc5d4c231fc11070ed59f428787b8ee662a",
+      "merge": "05830996127cd40d32f3718a2ae253583d092f36",
+      "merged_at": "2026-11-21T12:18:17Z",
+      "checks": [
+        {
+          "id": 136842485350,
+          "name": "environment-evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "completed_at": "2026-11-21T12:14:58Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136842484214,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T12:15:14Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136842484156,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T12:16:16Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136842483973,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T12:16:14Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136842483436,
+          "name": "manual-layout-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T12:15:12Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136842391741,
+          "name": "manual-layout-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T12:14:50Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 19,
+      "head": "579154af5b2b34bdd444742b6d336cb4b282598f",
+      "merge": "0fc838c9624b4a23c99bbc57f3d5d1c9bf8c2510",
+      "merged_at": "2026-11-21T11:43:51Z",
+      "checks": [
+        {
+          "id": 136834397448,
+          "name": "environment-evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "completed_at": "2026-11-21T11:40:38Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136834396390,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T11:40:53Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136834396164,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T11:41:44Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136834395971,
+          "name": "deployment-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T11:40:57Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136834395939,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T11:41:49Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136834313215,
+          "name": "deployment-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T11:40:35Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 18,
+      "head": "32bf48a5cc7f65557e62c9769c3a3646befcd74b",
+      "merge": "92c498fbcf8ea7216d54104886a722d34d5099fb",
+      "merged_at": "2026-11-21T10:43:16Z",
+      "checks": [
+        {
+          "id": 136820008434,
+          "name": "environment-evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "completed_at": "2026-11-21T10:40:27Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136820007598,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T10:40:46Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136820007492,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T10:41:53Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136820007343,
+          "name": "authorized-restore-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T10:40:44Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136820007180,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T10:41:31Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136819964351,
+          "name": "authorized-restore-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T10:40:32Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 17,
+      "head": "1074cbea2295cae9eadd9bc4617b9e57433d7e40",
+      "merge": "81543c86fc67801aa2de00f44d8b267c2ac09ee9",
+      "merged_at": "2026-11-21T09:50:54Z",
+      "checks": [
+        {
+          "id": 136807701273,
+          "name": "environment-evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "completed_at": "2026-11-21T09:49:16Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136807700912,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:50:04Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136807700820,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:50:19Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136807700645,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:49:34Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136807700358,
+          "name": "full-solution-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:49:33Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136807592651,
+          "name": "full-solution-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:49:10Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 16,
+      "head": "0eb69f17282a6d75a49550fe42dea394de3a099b",
+      "merge": "8e68cf81ef10bd0623651949e6a98ddef4f175ca",
+      "merged_at": "2026-11-21T09:40:05Z",
+      "checks": [
+        {
+          "id": 136805140657,
+          "name": "environment-evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "completed_at": "2026-11-21T09:38:14Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136805106420,
+          "name": "deployment-preflight-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:38:33Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136805106332,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:38:28Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136805106303,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:39:31Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136805106023,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:39:14Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136805080802,
+          "name": "deployment-preflight-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:38:23Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 15,
+      "head": "cecc685923824a106f2faf537fddd53dcf2795d9",
+      "merge": "425165e112c271dc76706e5ff2d5354b1dfc9120",
+      "merged_at": "2026-11-21T09:20:49Z",
+      "checks": [
+        {
+          "id": 136800233161,
+          "name": "environment-evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "completed_at": "2026-11-21T09:17:58Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136800192309,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:19:14Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136800192165,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:19:19Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136800192131,
+          "name": "original-baseline-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:18:16Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136800192064,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:18:18Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136800097354,
+          "name": "original-baseline-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:17:51Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 14,
+      "head": "fba233e688e396e7d26e8e9bcbcfd091ba00b376",
+      "merge": "3078ae0e9f8792a03f45e09dd4fce5c6fda1ca7e",
+      "merged_at": "2026-11-21T09:05:28Z",
+      "checks": [
+        {
+          "id": 136796678826,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:03:56Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136796678790,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:05:11Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136796678699,
+          "name": "environment-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:04:07Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136796678598,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:04:46Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136796666120,
+          "name": "environment-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T09:03:59Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 13,
+      "head": "db208be6da7442b9105efbd767a6a5ccf8c6d710",
+      "merge": "122f7b4edc7698e742658532e3e1a83010f39f17",
+      "merged_at": "2026-11-21T08:03:34Z",
+      "checks": [
+        {
+          "id": 136780433652,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:55:26Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136780433639,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:56:25Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136780433577,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:56:26Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136780433529,
+          "name": "metadata-provenance",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:55:33Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136780364498,
+          "name": "metadata-provenance",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:55:20Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 12,
+      "head": "6191d9db816d56c3d8d34cbb76f4791341c4e4c9",
+      "merge": "8c5cc6f31ca2be796986afd901fc1bb1098712ca",
+      "merged_at": "2026-11-21T07:46:41Z",
+      "checks": [
+        {
+          "id": 136777832044,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:44:59Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136777832019,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:44:04Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136777831847,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:44:43Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136777831773,
+          "name": "documentation-import",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:44:13Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136777770934,
+          "name": "documentation-import",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:43:58Z",
+          "completed_before_merge": true
+        }
+      ]
+    },
+    {
+      "pr": 11,
+      "head": "7f13ef46e31f51b59908f4457590c33aebb068bb",
+      "merge": "4e128e735edf788da0b9fa9e11f0d5e2511e5585",
+      "merged_at": "2026-11-21T07:31:53Z",
+      "checks": [
+        {
+          "id": 136774434130,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:29:34Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136774434066,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:30:31Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136774433856,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:30:30Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136774294528,
+          "name": "policy-and-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:28:55Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136774294458,
+          "name": "native-and-managed (Release)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:29:37Z",
+          "completed_before_merge": true
+        },
+        {
+          "id": 136774294338,
+          "name": "native-and-managed (Debug)",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-11-21T07:29:32Z",
+          "completed_before_merge": true
+        }
+      ]
+    }
+  ]
+}

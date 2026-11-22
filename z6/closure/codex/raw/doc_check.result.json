@@ -1,0 +1,18 @@
+{
+  "recorded_utc": "2026-11-22T03:13:31.154129+00:00",
+  "argv": [
+    "python",
+    "z6/closure/codex/verify_closure.py",
+    "--enforce-stage-scope"
+  ],
+  "exit": 0,
+  "manifest_entries_at_check": 18,
+  "exact_archives": 11,
+  "source_report_refs": 19,
+  "checked_markdown_links": 111,
+  "original_stdout_sha256": "383171849103906b568de7ec8951374b8ce4e096df96f36bdfe43d1671066de9",
+  "original_stderr_sha256": "0e7588610a15fe168b430052b067daf161680c287ce1b7b4d2a112419ab50461",
+  "check_record_added_after_this_snapshot": true,
+  "final_sealed_manifest_will_be_reverified_without_further_mutation": true,
+  "behavior_tests_or_GUI_executed": false
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "Read-only historical force-push evidence limitation, not a verdict",
+  "attempted_endpoint": "https://api.github.com/repos/oops11111/motion_framework/events?per_page=100",
+  "provider": "GitHub connector fetch",
+  "result": "HTTP 400: GitHub Fetch URL is not an allowed public GitHub repository or search endpoint",
+  "event_data_obtained": false,
+  "conclusion": "Current Git ancestry and observed ordinary commits/pushes do not prove that no historical remote force-push ever occurred. Preserve this uncertainty; do not infer misconduct from missing data.",
+  "no_new_credentials_or_account_action": true
+}

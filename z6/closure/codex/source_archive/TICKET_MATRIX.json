@@ -1,0 +1,157 @@
+[
+  {
+    "ticket": "F0",
+    "dependency": "原main7e2合入后的冒烟；冻结源/API",
+    "historical_claim": "原票最终PASS(dev-only)，含GUI Debug/Release补跑",
+    "current_evidence": "PR11导入原证据；集成native45 checks、完整net8 devsmoke、公开面Debug/Release新验收通过",
+    "strength": "原raw+集成新测试强；GUI是历史证据",
+    "limitation": "未对latest main重新跑F0 GUI，不把CI视作新GUI",
+    "old_report": "z6/f0/REPORT.md",
+    "new_report": "z6/integration/tests/REPORT.md",
+    "PRs": "11"
+  },
+  {
+    "ticket": "F1",
+    "dependency": "A/B directly based on main7e2, independent branch without F6/F11 ancestry; C host step scheduled after F6",
+    "historical_claim": "A/B PASS(dev-only)；C非原样续跑PASS",
+    "current_evidence": "本次只读核原A/B四份raw：D/R native33/0；A/B在途值-57.123109、起点同值、overlap6/6、FINAL40/opacity1；PR11新合并矩阵45/0",
+    "strength": "A/B原数值及fresh integration强；C为原日志/补丁证据",
+    "limitation": "C旧措辞/视觉中途未截图保留；新F2保留F1C代码，不宣称重做全部F1C视觉验收",
+    "old_report": "z6/f1/REPORT.md",
+    "new_report": "z6/integration/tests/REPORT.md",
+    "PRs": "11"
+  },
+  {
+    "ticket": "F2",
+    "dependency": "F11/F7；与F6是兄弟，不是后代；F5继承F2",
+    "historical_claim": "原票称PASS但自己披露Create早于Dispose",
+    "current_evidence": "PR22独立新修复：seq44 Unloaded→61 DisposeEND→63 listener0→64 ACK→66 Create→67 Loaded→69 listener1；Fake每cycle5=5/4=4，Real5=5/5=5；finalIdle0/0，正常退出及精确清理",
+    "strength": "新严格合同证据强：实际原日志+source/patch+root独立复核",
+    "limitation": "不追认或改写旧PASS；新build仅F2已批准WNAE+Platform=x64，NON-ORIGINAL；无系统动画切换",
+    "old_report": "z6/f2/REPORT.md",
+    "new_report": "z6/f2/codex/REPORT.md",
+    "PRs": "22"
+  },
+  {
+    "ticket": "F3",
+    "dependency": "原native基线；白名单仅testsource",
+    "historical_claim": "正文dev-only，35 checks/0fail，标题格式争议",
+    "current_evidence": "PR11合并F1/F3后D/R native45/0、C#完整devsmoke/API均通过；真实生产面无改",
+    "strength": "原raw及新D/R CI强",
+    "limitation": "措辞问题与技术通过分开；不重命名旧报告",
+    "old_report": "z6/f3/REPORT.md",
+    "new_report": "z6/integration/tests/REPORT.md",
+    "PRs": "11"
+  },
+  {
+    "ticket": "F4",
+    "dependency": "冻结AOT/ETW已知限制；无可选代码请求",
+    "historical_claim": "PASS(dev-only)，只文档；Files属性自检未实测",
+    "current_evidence": "PR12 exact导入AOT指引与link检查；后续Files实际runtimeconfig/EventSource证据独立在F9a/b",
+    "strength": "文档来源/链接强；泛化教程未逐宿主执行",
+    "limitation": "不把后续Files特例当原F4全部命令验证；未做DEBUG可选代码",
+    "old_report": "z6/f4/REPORT.md",
+    "new_report": "z6/integration/docs/REPORT.md",
+    "PRs": "12"
+  },
+  {
+    "ticket": "F5",
+    "dependency": "原F2侧叉；窗口级source；冻结pack",
+    "historical_claim": "原FAIL(source=event0)，首失败build.log删除后补转录",
+    "current_evidence": "PR10先入integration；PR22入main并新回归Fake翻转恢复/UI线程2、Real一次hook跨RootView/WM0x6D unchanged不重复Set/hook移除/清理",
+    "strength": "新A/B/C/E证据强；旧删除日志链仍缺",
+    "limitation": "原FAIL/补转录保留，不能用新run重造旧原件；可选D系统动画切换未做，也非必做",
+    "old_report": "z6/f5/REPORT.md",
+    "new_report": "z6/f2/codex/REPORT.md",
+    "PRs": "22"
+  },
+  {
+    "ticket": "F6",
+    "dependency": "F7→F11；仅宿主patch/历史窗口证据",
+    "historical_claim": "原非原样WNAE PASS，firstframe后Play、窗口PNG/GIF",
+    "current_evidence": "PR13 exact导入；primary F6_VISUAL_REVIEW亲看3PNG与全部8GIF帧：空白/左缘clip/若干就位位置/完整文字图标",
+    "strength": "历史产物来源及现有定性视觉内容已直接核",
+    "limitation": "原全桌面后裁切非原生窗口capture；独立midPNG仅1张，GIF是单独序列；需结题依据接受或保留该偏差",
+    "old_report": "z6/f6/REPORT.md",
+    "new_report": "z6/integration/pack/REPORT.md",
+    "PRs": "13"
+  },
+  {
+    "ticket": "F7",
+    "dependency": "固定main源码及公开面基线；仅README/SUMS更新",
+    "historical_claim": "原PASS(dev-only)，参考三产物SHA与CheckSurface0",
+    "current_evidence": "PR13 exact metadata+96证据imports；原cache三SHA/复制后SHA和完整surface逐字节复核；F9b及F2实际输出再匹配",
+    "strength": "参考hash/API链强",
+    "limitation": "非latest main重建pack；原native二进制未因审计重执行；禁止为凑hash改SUMS",
+    "old_report": "z6/f7/REPORT.md",
+    "new_report": "z6/integration/pack/REPORT.md",
+    "PRs": "13"
+  },
+  {
+    "ticket": "F8a",
+    "dependency": "用户未来LOCK/APPROVED决定；禁止probe",
+    "historical_claim": "只交DRAFT",
+    "current_evidence": "PR12 exact导入gate草稿、空审批、NoLOCK/NoProbe范围验证",
+    "strength": "DRAFT交付/冻结边界强",
+    "limitation": "不是性能闸门已开；PERF-CI HOLD，不补probe或LOCK",
+    "old_report": "z6/f8a/REPORT.md",
+    "new_report": "z6/integration/docs/REPORT.md",
+    "PRs": "12"
+  },
+  {
+    "ticket": "F8b",
+    "dependency": "同F8a；两个草稿独立",
+    "historical_claim": "只交DRAFT",
+    "current_evidence": "PR12 exact导入、来源/链接/无审批验证",
+    "strength": "同F8a",
+    "limitation": "不是APPROVED；不把DRAFT措辞视为PASS性能结果",
+    "old_report": "z6/f8b/REPORT.md",
+    "new_report": "z6/integration/docs/REPORT.md",
+    "PRs": "12"
+  },
+  {
+    "ticket": "F9a",
+    "dependency": "Files cbfb4ba5固定；VS2026 NativeDesktop；同票系统/flags许可",
+    "historical_claim": "原样FAIL、安装5007，原未开F9b",
+    "current_evidence": "PR14环境补齐；15原appbuildPASS；16只读preflight；17原fullsolution失败缺WIL；18批准RestorePackagesConfig原版本NON-ORIGINAL fullbuildPASS；19 VS Deploy0但未注册STOP；20手工development layout普通主页SettingsButton/normalclose/exactcleanupPASS",
+    "strength": "各失败/成功分轨，日志/权限/包清理链强",
+    "limitation": "仍非原样fullsolution/VS部署成功；安装exit0含NGEN与DCAT同步warning/error；无repair/上游bug结论",
+    "old_report": "z6/f9a/REPORT.md",
+    "new_report": "z6/f9a/devlayout-codex/REPORT_M_CONTINUATION.md",
+    "PRs": "14–20"
+  },
+  {
+    "ticket": "F11",
+    "dependency": "F7 reference pack；默认引用与SUMS先验",
+    "historical_claim": "原WNAE PASS：原位/搬迁/副本corruption mismatch/复原",
+    "current_evidence": "PR13 exact导入历史patch/raw；当前三SHA、source/API链复核；后续宿主build实际packguard通过",
+    "strength": "原搬迁/破坏记录可核；新hash/API强",
+    "limitation": "未重跑原搬迁/corruption GUI；不能把nativeCI替代这类历史验收",
+    "old_report": "z6/f11/REPORT.md",
+    "new_report": "z6/integration/pack/REPORT.md",
+    "PRs": "13"
+  },
+  {
+    "ticket": "F12",
+    "dependency": "PR9已合main7e2的历史事实/用户先合许可",
+    "historical_claim": "补记完成；标题扩写、r1hash及旧未推送措辞争议",
+    "current_evidence": "PR12 exact导入+11行/-0；PR9 merge/tree/parents可核；原记录r1引用保留，本次不声称独立取得r1授权原文；后续PR/main链可核",
+    "strength": "历史合入事实与bytes强；措辞裁决未作",
+    "limitation": "§11 r1为历史授权来源，r2为后续规范；仅建议是否补澄清，不升级功能失败或悄改旧文",
+    "old_report": "z6/f12/REPORT.md",
+    "new_report": "z6/integration/docs/REPORT.md",
+    "PRs": "12"
+  },
+  {
+    "ticket": "F9b",
+    "dependency": "F9a手工layout基线+用户直接开票及专属flags/runtime范围；冻结L1pack",
+    "historical_claim": "原交接未开；随后用户明确开票",
+    "current_evidence": "PR21四文件patch/17私测、pack3SHA+完整API、实际模块metadata与TokenLoad；普通主页；root看图接受opacity入场+8DIPhover/rest；5类safeevents，Created=Released3，finalIdle0/0，normalclose/exactcleanup",
+    "strength": "实际构建/图像/模块/生命周期/清理证据强",
+    "limitation": "NON-ORIGINAL+manual layout；entry_position_changed=false，不声称token offsetX=-80DIP位移；无perf/adopt/原样VS成功",
+    "old_report": "z6/f9a/REPORT.md",
+    "new_report": "z6/f9b/codex/REPORT.md",
+    "PRs": "21",
+    "old_report_label": "F9a前置原报告（原F9b尚未开工，无原F9b分支/REPORT）"
+  }
+]

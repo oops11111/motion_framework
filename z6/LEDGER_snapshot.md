@@ -148,3 +148,8 @@ Preserved full main d2aac2dc355d0412aa5fc3ede212b79faf4459b9 ledger prefix. Ordi
 ## Codex F2 strict repair continuation (2026-11-22)
 
 New local acceptance: strict Dispose/listener-release-before-new-Create satisfied in ordinary Fake and Real. F5 mandatory B/C/E regression and exact cleanup accepted by primary. Full solution x64 build is NON-ORIGINAL using only the two F2-specific approved properties; original NU1903 and ARM64 failures remain preserved. Historical F2/F5 verdicts/logs are not rewritten. See z6/f2/codex/REPORT.md and PRIMARY_RUNTIME_ACCEPTANCE.json. PR/CI/main merge remain separate primary gates; no closure/LOCKED/adoption status is changed.
+
+
+## Z6 formal closure basis selected (2026-11-22)
+
+Direct user decision: adopt the technical draft and primary review, retaining disclosed historical limitations, instead of the two missing Notion result/closure materials. See docs/z6_closed.md and z6/closure/codex/AUTHORIZATION.json. This does not manufacture Notion review, rewrite old verdicts/raw, change F8 DRAFT or release PERF-CI/adoption/LOCK/APPROVED. Original main ledger prefix is preserved exactly in canonical form and archived. This documentation PR still requires primary diff review, all applicable head checks green, ordinary main merge and main post-CI acceptance.

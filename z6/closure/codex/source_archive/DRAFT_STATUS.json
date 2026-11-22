@@ -1,0 +1,21 @@
+{
+  "recorded_utc": "2026-11-22T03:02:34.995345+00:00",
+  "tickets_covered": 14,
+  "original_review_gaps_covered": 9,
+  "F6_visual_review": "completed by primary, qualitative content verified; capture/delivery-form limitations retained",
+  "F1_AB_summaries": "directly read selected four original raw summaries; no restricted timing/present payload fields read",
+  "only_remaining_decision": "User chooses authentic Notion result/closure materials OR explicitly accepts technical draft plus primary review as alternative conclusion basis with the stated historical limitations; then separately plan canonical closure",
+  "no_canonical_closure_written": true,
+  "no_historical_verdict_changed": true,
+  "files": {
+    "TECHNICAL_REVIEW_DRAFT.md": "0a0ef2ce22248e797aa40eb9793f3c3efefe6435b28baf5d28c632e5493e6cab",
+    "TICKET_MATRIX.json": "15bdb31cf13ff289d321d3f36fd4601fc528058ef7880d6ddea9d33583f8dcef",
+    "SOURCE_LINK_RECEIPTS.json": "35b8c5653afc5ae926f88a58c6c5ea7a341d48956729b82304a99820c5c4fde5",
+    "F1_AB_SUMMARY.json": "94e92836712d8c79510a1e038b281ddc8d01155ee1e9b2ea721ba37ce5ab6fca"
+  },
+  "additional_readonly_CI_receipt": {
+    "path": "HEAD_CHECKS_PROVENANCE.json",
+    "sha256": "c4816554480b9ff69083db6b2c6be4b1924655dc9c89210323899b0c09a99e9c",
+    "scope": "Observed head checks and main post CI only; not remote force-push history or result adjudication"
+  }
+}
