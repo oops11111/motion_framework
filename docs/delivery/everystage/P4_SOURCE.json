@@ -1,0 +1,55 @@
+{
+  "application": {
+    "repository": "oops11111/EveryStage",
+    "branch": "drop-prewarm",
+    "commit": "191f4d65b15e6fecf0118e0b120c7760ef3d8d53",
+    "pr": 8,
+    "post_run": 45011904252,
+    "jobs": [
+      {
+        "job_id": 137175853404,
+        "name": "build",
+        "conclusion": "success"
+      },
+      {
+        "job_id": 137177159825,
+        "name": "installer-smoke",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "component": {
+    "repository": "oops11111/motion_framework",
+    "source_commit": "44401d3f002b427d828500331a3e9b4ada5881cd",
+    "id": "FluidMotion.L1",
+    "version": "0.1.0",
+    "embedded_candidate_is_build_time_state": true
+  },
+  "input_artifact": {
+    "id": 14750132089,
+    "archive_sha256": "c0b83279f1628271660092fab184a647a5adf346e8e744084b413bd3b23c552d"
+  },
+  "smoke_artifact": {
+    "id": 14750575568,
+    "archive_sha256": "511e1d2a8363cb4a426326330412923b080cac92d27e99628e9a721926e940c3"
+  },
+  "installer_sha256": "e2f5ef48949d7af817de6d56b25eadbaca4bc6bf2331eaec68212f82d4a2a286",
+  "package_sha256": "b2e47d89488e51ef32d16b4775298d6171dddfc992eb187d4d7f253243354062",
+  "source_evidence_sha256": {
+    ".gitattributes": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+    "baseline-source.json": "5f2a81f4c3d53e375eddce60337da59a360cdaf3a37a7e0bca56f3d3c5be52b7",
+    "build-input.json": "aa6c9a22441737211248559fdd2fffdcc29556a7de9d2ea2eecec3890e2d8f1d",
+    "component-state.json": "ff7da132f1d8e8ab23379071d0d2f23356f98d9afb9f353a4c316fc403385ed1",
+    "installer-calls.jsonl": "b3be6795471a0e648b71157fae2709dd5af144f63c64ef70a43874f41b48e39d",
+    "loaded-modules.json": "ae59a39bd68e26d0b7f1e01847bd7a230b859768b3f87f55ad8f6dae3cc6a1ce",
+    "normal-exit.json": "875441944eae4340a852a724fdb6df5e4f4d6d9c185a96547713b15e17f3cd9a",
+    "pipeline-tested-manifest.json": "10c127ed9d0cb88035151e64573c3f1357a85916bb4fa3c40900b21bfa9c143f",
+    "POST_PRIMARY_ACCEPTANCE.json": "2059ad20a2c7712e371f40feb7d9508d692450d88125aed3779de347205e4074",
+    "result.json": "2995632881e5d9eceea33ed280bf3fadf3b670d88f6d3968062e65ea85b7795e",
+    "shortcut-launch.json": "bf00b21f68f02f48236d9be6a5dad598b02260dc2d6da8e022003b959cc4f20b"
+  },
+  "final_external_acceptance": "Created locally by primary only after MF documentation merge/post CI. No preliminary local manifest/checksum hash is frozen here. Product bytes remain fixed above.",
+  "actual_actions_retention_days": 3,
+  "post_baseline_mirror_expires_at": "2026-11-25T10:19:55Z",
+  "offline_baseline_sha256": "76614f31aa34372c15f0de26d69f818f89c3b5814967b24a0aa980b4c7eaad94"
+}

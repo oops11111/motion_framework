@@ -1,0 +1,12 @@
+﻿[
+    {
+        "path":  "C:\\Program Files\\EveryStage\\Terminal\\FluidMotion.L1.dll",
+        "sha256":  "ab2b4430157c5df7a7fb62a4bf6f50fcbce549ff48dfea4dc209efd0cf774182",
+        "name":  "FluidMotion.L1.dll"
+    },
+    {
+        "path":  "C:\\Program Files\\EveryStage\\Terminal\\fluidmotion.dll",
+        "sha256":  "c62e98ee1f3c978d1041e7ea2feb9d72317aa6f90d0cd063ba8f529adf22dffb",
+        "name":  "fluidmotion.dll"
+    }
+]
