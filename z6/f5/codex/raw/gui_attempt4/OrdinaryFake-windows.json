@@ -1,0 +1,20 @@
+[
+  {
+    "hwnd": "0x790a54",
+    "title": "FluentHub",
+    "class": "WinUIDesktopWin32WindowClass",
+    "visible": true
+  },
+  {
+    "hwnd": "0x6a50654",
+    "title": "MSCTFIME UI",
+    "class": "MSCTFIME UI",
+    "visible": false
+  },
+  {
+    "hwnd": "0xe512aa",
+    "title": "Default IME",
+    "class": "IME",
+    "visible": false
+  }
+]

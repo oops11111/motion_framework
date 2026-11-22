@@ -1,0 +1,43 @@
+{
+  "source": "primary direct review in current conversation",
+  "recorded_utc": "2026-11-22T02:45:51.669460+00:00",
+  "record_time_is_not_primary_send_or_test_time": true,
+  "decision": "Accepted strict F2 lifecycle and mandatory F5 B/C/E local runtime",
+  "order": "both: 44 Unloaded;61 old Dispose END;63 listener0;64 ACK;66 Create;67 Loaded;69 listener1",
+  "Fake_cycle_Created_Released": [
+    [
+      5,
+      5
+    ],
+    [
+      4,
+      4
+    ]
+  ],
+  "Real_cycle_Created_Released": [
+    [
+      5,
+      5
+    ],
+    [
+      5,
+      5
+    ]
+  ],
+  "final_idle": [
+    0,
+    0
+  ],
+  "independent_POST": "package[],data[],FluentHub process[],TEMP log false; four settings equal PRE",
+  "original_log_sha256": {
+    "Fake": "b7a4c6d5cd249d479179f59635db5daee56f31d3e799c7650bfe9e26fdc4c69d",
+    "Real": "875a90b8a40e7c053e5c2acb229c69f1c4cf0cf722a0f2b61dd94ed53f05a653"
+  },
+  "additional_primary_POST_review": {
+    "recorded_utc": "2026-11-22T02:48:34.160540+00:00",
+    "record_time_is_not_primary_send_or_test_time": true,
+    "all284_output_file_set_and_hashes": "PASS independently",
+    "all10_host_source_hashes": "PASS independently",
+    "runtime_cleanup_modified_source_or_output": false
+  }
+}

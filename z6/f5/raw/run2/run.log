@@ -1,0 +1,28 @@
+2026-11-18T13:26:27.515424+08:00 PRE spi ok=1 value=1 MinAnimate=1 UPM=9E 3E 07 80 12 00 00 00
+2026-11-18T13:26:31.146128+08:00 register exit=0
+2026-11-18T13:26:31.147527+08:00 cursor saved=(1479,0) moved=(8,8)
+2026-11-18T13:26:31.196763+08:00 schtasks create exit=0
+2026-11-18T13:26:31.277861+08:00 schtasks run exit=0
+2026-11-18T13:26:33.480704+08:00 window hwnd=198082
+2026-11-18T13:26:33.640852+08:00 shot win_00_appear.png hwnd=198082 size=6095
+2026-11-18T13:26:33.687117+08:00 shot win_01_tick.png hwnd=198082 size=6396
+2026-11-18T13:26:34.299499+08:00 startup sub_lines=2 play=True win=True
+2026-11-18T13:26:37.342173+08:00 shot win_02_settled.png hwnd=198082 size=16950
+2026-11-18T13:26:37.343318+08:00 baseline log lines=127 bytes=10559
+2026-11-18T13:26:37.344005+08:00 TOGGLE OFF request t=2026-11-18T13:26:37.343994+08:00
+2026-11-18T13:26:38.749644+08:00 TOGGLE OFF done t=2026-11-18T13:26:38.749427+08:00 mode=byval spi_set_ret=1 spi_read_ok=1 spi_read=0 MinAnimate=1 UPM=9E 3E 07 80 10 00 00 00
+2026-11-18T13:26:50.840822+08:00 TOGGLE OFF event_seen=False waited=12.09s new_lines=0
+2026-11-18T13:26:50.893356+08:00 shot win_03_anim_off.png hwnd=198082 size=16950
+2026-11-18T13:26:50.893968+08:00 TOGGLE ON request t=2026-11-18T13:26:50.893957+08:00
+2026-11-18T13:26:51.833232+08:00 TOGGLE ON done t=2026-11-18T13:26:51.833005+08:00 mode=byval spi_set_ret=1 spi_read_ok=1 spi_read=1 MinAnimate=1 UPM=9E 3E 07 80 12 00 00 00
+2026-11-18T13:27:03.925392+08:00 TOGGLE ON event_seen=False waited=12.09s new_lines=0
+2026-11-18T13:27:03.977902+08:00 shot win_04_anim_on.png hwnd=198082 size=16950
+2026-11-18T13:27:03.978521+08:00 RESTORE request t=2026-11-18T13:27:03.978509+08:00 original=1
+2026-11-18T13:27:06.007910+08:00 RESTORE done t=2026-11-18T13:27:06.007857+08:00 spi_read_ok=1 spi_read=1 MinAnimate=1 UPM=9E 3E 07 80 12 00 00 00 matches_original=True
+2026-11-18T13:27:06.985972+08:00 log: Dispose end seen after close
+2026-11-18T13:27:07.021196+08:00 schtasks delete exit=0
+2026-11-18T13:27:07.054729+08:00 schtasks query after exit=1 (1 = not found)
+2026-11-18T13:27:07.055342+08:00 cursor restored
+2026-11-18T13:27:07.060135+08:00 copied motion log bytes=13940
+2026-11-18T13:27:08.745350+08:00 unregister exit=0
+2026-11-18T13:27:08.745996+08:00 done

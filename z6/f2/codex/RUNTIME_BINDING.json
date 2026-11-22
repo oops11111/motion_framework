@@ -1,0 +1,95 @@
+{
+  "identity": {
+    "Name": "49462fluenthub-uwp.FluentHub",
+    "Publisher": "CN=4E3C0825-4D00-4ECC-89F8-528E9200B125",
+    "Version": "0.11.0.0",
+    "ProcessorArchitecture": "x64"
+  },
+  "host_dll_sha256": "428fe0ba893c45df426da289685cc687caf2e5e216d9a2e4506e38d7eeab4981",
+  "manifest_sha256": "fe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4",
+  "layout_sha256": "d5c6885a1f8099066e5902ba2d978f9be9fb53e659578de57861415e996df3da",
+  "source_relative": "m0/out/f2-repair-20261121T144839Z-f4ff7f0f/source",
+  "source_pin": "eb08f0dbcbb43880ab34038b0cb6742f0c0deca5",
+  "source_files": [
+    {
+      "path": "src/FluentHub/App.xaml.cs",
+      "sha256": "533a4b3133cfa45dad9729054bda269c160dbeb8545658390c30d729eb0056fb",
+      "bytes": 2204,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/FluentHub.csproj",
+      "sha256": "3d20c00ded8bf06200032f8fe10b5972230e4c4286f848a7e68dd175f38e1890",
+      "bytes": 8382,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/MainWindow.cs",
+      "sha256": "1a2e06d2809f380005e86505d48c9cac0f7b364138a81c5c3e269a522f98670d",
+      "bytes": 2844,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/RootView.xaml.cs",
+      "sha256": "6ef7c79cb381c8635b32f31756691f0a0c3a5acd6325f36fffcf2eac19f11f02",
+      "bytes": 11372,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/NavMotionPilot.cs",
+      "sha256": "2cf3bebc184fd05a26da3689fdf7ea8116216847f569a8481d5b9081d702b5ce",
+      "bytes": 19296,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/ReducedMotionState.cs",
+      "sha256": "c660d87c15ac756056c891cd6d1c3b15f0d02ac064ed8e4b574b8aef7a5e69ef",
+      "bytes": 867,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/FakeReducedMotionSource.cs",
+      "sha256": "a2d2fcd5487aba6ce3373acd93963482885614bced9a2377e0c3fe5cab8e6873",
+      "bytes": 1078,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/WindowReducedMotionSource.cs",
+      "sha256": "4155456016e6f862a58670f5882add877d3e67aa09a98fd5c69e31a3f51485ac",
+      "bytes": 5547,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/RootRebuildState.cs",
+      "sha256": "f3b638372875462cf2f58818e3593bf756576ed11861f1cb24d060287369262b",
+      "bytes": 1754,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    },
+    {
+      "path": "src/FluentHub/Views/PilotEventCounts.cs",
+      "sha256": "db2c29c33b5482742048628a474275fe27ec82951d23ef15b769219d81643ea7",
+      "bytes": 1444,
+      "roundtrip_equal": true,
+      "bare_lf": 0
+    }
+  ],
+  "patch_sha256": "e6ab408b62e88fd388c17e2fe6945ebe9d605ecfdef5b5e36d8f943fd6a388b1",
+  "code_hashes": {
+    "z6/f2/codex/run_runtime.py": "6a4f3413313636d7a8638d97ea3f57b796a0dffdb84ece51d5d1769ff0f47f9f",
+    "z6/f2/codex/run_host.py": "fbf3d896fa093deb9256baaf69c42779fd05f681ba8aab7e78471b48508f6056",
+    "z6/f2/codex/runtime_support.py": "22390bf07e725ad07052c29517911c343d1ee0cca6870719b8a491c47fed5741",
+    "z6/f2/codex/native_lifecycle.py": "bf180af888422e18f91008094bde141297dea36e406f1d552432d86ce16a9a9a",
+    "z6/f2/codex/ActivateNormally.ps1": "2120585443256c81cce9825cddc3e0c46c854ba43852520185518e2f0f77ae2c",
+    "z6/f2/codex/RuntimeGuard.ps1": "15b8324616456e3a3f70459ee09c0b8b604fbb4cec8d88b8fbcc27bd3639dd07",
+    "z6/f2/codex/ReadAnimationSettings.ps1": "931317530b87713d88dcd12fadb25e69c9bc4357f6e3ef804d417137e8b76175"
+  }
+}

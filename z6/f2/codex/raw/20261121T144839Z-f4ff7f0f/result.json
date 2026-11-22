@@ -1,0 +1,115 @@
+{
+  "status": "PASS isolated F5 v3 baseline/source-only",
+  "source_pin": "eb08f0dbcbb43880ab34038b0cb6742f0c0deca5",
+  "source_relative": "m0/out/f2-repair-20261121T144839Z-f4ff7f0f/source",
+  "app_build_runtime": false,
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "%USERPROFILE%\\pilot\\FluentHub",
+        "%WORKSPACE%\\m0\\out\\f2-repair-20261121T144839Z-f4ff7f0f\\source"
+      ],
+      "exit": 0,
+      "original_sha256": "289ded7d3e55f904d45a217709d205aa060cccfab0b74e63bfa3067940d4aa80"
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "-C",
+        "%WORKSPACE%\\m0\\out\\f2-repair-20261121T144839Z-f4ff7f0f\\source",
+        "checkout",
+        "--detach",
+        "eb08f0dbcbb43880ab34038b0cb6742f0c0deca5"
+      ],
+      "exit": 0,
+      "original_sha256": "5a3d0909ec78d3b251edb3d63db350004c0c79813b7ce7efa5b359f229116166"
+    },
+    {
+      "label": "default_dotnet_info_child_amd64",
+      "argv": [
+        "dotnet",
+        "--info"
+      ],
+      "exit": 0,
+      "original_sha256": "ae363563a13f737dfe3d0c42653c1ee74fbd8f3fd8cc53345c6017b32d1adc6f"
+    }
+  ],
+  "baseline_source_files": [
+    {
+      "path": "src/FluentHub/App.xaml.cs",
+      "reference_sha256": "6f5e619662c42916c7a355a589a8ca09e8c8f227e1d9d66d4c9f016252f19671",
+      "copied_sha256": "6f5e619662c42916c7a355a589a8ca09e8c8f227e1d9d66d4c9f016252f19671",
+      "sha256_lf": "6f5e619662c42916c7a355a589a8ca09e8c8f227e1d9d66d4c9f016252f19671",
+      "F5_v3_roundtrip_match": true,
+      "provenance": "F5 v3 accepted source"
+    },
+    {
+      "path": "src/FluentHub/FluentHub.csproj",
+      "reference_sha256": "3d20c00ded8bf06200032f8fe10b5972230e4c4286f848a7e68dd175f38e1890",
+      "copied_sha256": "3d20c00ded8bf06200032f8fe10b5972230e4c4286f848a7e68dd175f38e1890",
+      "sha256_lf": "5fb239dd1d8bf471e5897b92d808c9ae4a88aa80cdd560781b46fdabf465e774",
+      "F5_v3_roundtrip_match": false,
+      "provenance": "F11 configurable/default pack csproj in accepted F5 reference; copied unchanged, no path override"
+    },
+    {
+      "path": "src/FluentHub/Views/MainWindow.cs",
+      "reference_sha256": "dfeb8af1fedcd17d7b0c09deda8accc80c90eaad71fc64f9bf4f46448157d7c4",
+      "copied_sha256": "dfeb8af1fedcd17d7b0c09deda8accc80c90eaad71fc64f9bf4f46448157d7c4",
+      "sha256_lf": "dfeb8af1fedcd17d7b0c09deda8accc80c90eaad71fc64f9bf4f46448157d7c4",
+      "F5_v3_roundtrip_match": true,
+      "provenance": "F5 v3 accepted source"
+    },
+    {
+      "path": "src/FluentHub/Views/RootView.xaml.cs",
+      "reference_sha256": "364e9d65a6d6508c3417a34fe98b6a16cae7314d74ccd1f28b94ebf6ab144184",
+      "copied_sha256": "364e9d65a6d6508c3417a34fe98b6a16cae7314d74ccd1f28b94ebf6ab144184",
+      "sha256_lf": "364e9d65a6d6508c3417a34fe98b6a16cae7314d74ccd1f28b94ebf6ab144184",
+      "F5_v3_roundtrip_match": false,
+      "provenance": "F2 original RootView post hash"
+    },
+    {
+      "path": "src/FluentHub/Views/NavMotionPilot.cs",
+      "reference_sha256": "8198189b42299f1843759f0c4f21610826228c681d656a7b715d56446d473ceb",
+      "copied_sha256": "8198189b42299f1843759f0c4f21610826228c681d656a7b715d56446d473ceb",
+      "sha256_lf": "8198189b42299f1843759f0c4f21610826228c681d656a7b715d56446d473ceb",
+      "F5_v3_roundtrip_match": true,
+      "provenance": "F5 v3 accepted source"
+    },
+    {
+      "path": "src/FluentHub/Views/ReducedMotionState.cs",
+      "reference_sha256": "5a413863134c2dd6395c611ca8372cffb68253abc06de1f2d3c60da58a673c99",
+      "copied_sha256": "5a413863134c2dd6395c611ca8372cffb68253abc06de1f2d3c60da58a673c99",
+      "sha256_lf": "5a413863134c2dd6395c611ca8372cffb68253abc06de1f2d3c60da58a673c99",
+      "F5_v3_roundtrip_match": true,
+      "provenance": "F5 v3 accepted source"
+    },
+    {
+      "path": "src/FluentHub/Views/FakeReducedMotionSource.cs",
+      "reference_sha256": "2a56557b74253bab52cd7babf6f43cf6d26cac61dadd66ecde54af58a8f63563",
+      "copied_sha256": "2a56557b74253bab52cd7babf6f43cf6d26cac61dadd66ecde54af58a8f63563",
+      "sha256_lf": "2a56557b74253bab52cd7babf6f43cf6d26cac61dadd66ecde54af58a8f63563",
+      "F5_v3_roundtrip_match": true,
+      "provenance": "F5 v3 accepted source"
+    },
+    {
+      "path": "src/FluentHub/Views/WindowReducedMotionSource.cs",
+      "reference_sha256": "1fcce0c0070fffa6a873aaba3bcfb9e5b76d9a9c86b34c548995be9cd4a233e8",
+      "copied_sha256": "1fcce0c0070fffa6a873aaba3bcfb9e5b76d9a9c86b34c548995be9cd4a233e8",
+      "sha256_lf": "1fcce0c0070fffa6a873aaba3bcfb9e5b76d9a9c86b34c548995be9cd4a233e8",
+      "F5_v3_roundtrip_match": true,
+      "provenance": "F5 v3 accepted source"
+    }
+  ],
+  "source_status": " M src/FluentHub/App.xaml.cs\n M src/FluentHub/FluentHub.csproj\n M src/FluentHub/Views/MainWindow.cs\n M src/FluentHub/Views/RootView.xaml.cs\n?? src/FluentHub/Views/FakeReducedMotionSource.cs\n?? src/FluentHub/Views/NavMotionPilot.cs\n?? src/FluentHub/Views/ReducedMotionState.cs\n?? src/FluentHub/Views/WindowReducedMotionSource.cs\n",
+  "upstream_head": "eb08f0dbcbb43880ab34038b0cb6742f0c0deca5",
+  "architecture_before": null,
+  "child_only_architecture": "AMD64",
+  "PATH_unchanged": true,
+  "DOTNET_ROOT_unchanged": true
+}

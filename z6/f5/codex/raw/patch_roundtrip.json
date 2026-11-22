@@ -1,0 +1,27 @@
+[
+  {
+    "file": "MainWindow.cs",
+    "sha256_lf": "dfeb8af1fedcd17d7b0c09deda8accc80c90eaad71fc64f9bf4f46448157d7c4",
+    "patch_roundtrip": true
+  },
+  {
+    "file": "NavMotionPilot.cs",
+    "sha256_lf": "8198189b42299f1843759f0c4f21610826228c681d656a7b715d56446d473ceb",
+    "patch_roundtrip": true
+  },
+  {
+    "file": "ReducedMotionState.cs",
+    "sha256_lf": "5a413863134c2dd6395c611ca8372cffb68253abc06de1f2d3c60da58a673c99",
+    "patch_roundtrip": true
+  },
+  {
+    "file": "FakeReducedMotionSource.cs",
+    "sha256_lf": "2a56557b74253bab52cd7babf6f43cf6d26cac61dadd66ecde54af58a8f63563",
+    "patch_roundtrip": true
+  },
+  {
+    "file": "WindowReducedMotionSource.cs",
+    "sha256_lf": "1fcce0c0070fffa6a873aaba3bcfb9e5b76d9a9c86b34c548995be9cd4a233e8",
+    "patch_roundtrip": true
+  }
+]

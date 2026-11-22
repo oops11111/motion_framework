@@ -1,0 +1,8 @@
+Command: dotnet build src/FluentHub/FluentHub.csproj -c Debug -p:Platform=x64
+Exit: 1
+Source: tool console transcript (not redirected original file)
+  正在确定要还原的项目…
+生成失败。
+    0 个警告
+    0 个错误
+已用时间 00:00:03.25

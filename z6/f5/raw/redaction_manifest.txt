@@ -1,0 +1,31 @@
+redaction: %USERPROFILE% and USERPROFILE -> %USERPROFILE%; Program Files -> %ProgramFiles%
+binary screenshots copied unchanged (window-only PrintWindow)
+%WORKTREE%\z6\f5\raw\build_wnae\build.log redacted=True src_sha=407fceb8fe816351f585127f75369f305aa311825fe85041575d68a15cce39ac
+%WORKTREE%\z6\f5\raw\build_wnae\cmd.txt redacted=False src_sha=56ddf0a17d86803b710483a8e48461d97eba9ac86ae0200e57d5b39c3c03f3a3
+%WORKTREE%\z6\f5\raw\build_wnae\env.txt redacted=True src_sha=0719afc1c34ee6d909559dfb924bd75cd063049af33a246771c2d0dc06cb441f
+%WORKTREE%\z6\f5\raw\build_wnae\times.txt redacted=False src_sha=c133aac016371b721cd14c2004112c4eba2ddd2b8f3527524eacb46b345273ba
+%WORKTREE%\z6\f5\raw\attempt2_console_gbk\build.log redacted=True src_sha=0f8229ab2299aaa028e00f25690237cc2210813bc3c98eb4fcabc9396c3e6497
+%WORKTREE%\z6\f5\raw\attempt2_console_gbk\cmd.txt redacted=False src_sha=56ddf0a17d86803b710483a8e48461d97eba9ac86ae0200e57d5b39c3c03f3a3
+%WORKTREE%\z6\f5\raw\attempt2_console_gbk\env.txt redacted=True src_sha=0719afc1c34ee6d909559dfb924bd75cd063049af33a246771c2d0dc06cb441f
+%WORKTREE%\z6\f5\raw\attempt2_console_gbk\times.txt redacted=False src_sha=649798c642980b5371f0e3e51a5a549b31e401cc51d12d1a0a3f4113c21ea33f
+%WORKTREE%\z6\f5\raw\run\close.out.txt redacted=False src_sha=ca4a016eae14ab0c7ebb935a6e24ae8b512958f25c788f11eb99566d066b7957
+%WORKTREE%\z6\f5\raw\run\preexisting_package.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run\register.out.txt redacted=True src_sha=2b754a610a71c5176610c3235d5e62d86d5ab2b445cd98477ab3183af52acce6
+%WORKTREE%\z6\f5\raw\run\run.log redacted=False src_sha=9f1b1ee329a667170c0dc1af6c88d09e3efcb57139df536dcde33624c07920be
+%WORKTREE%\z6\f5\raw\run\schtasks_create.txt redacted=False src_sha=8efcf8b9f85c0af28468bd29208375bb324608c19caf5d7f0c7f12298e427c98
+%WORKTREE%\z6\f5\raw\run\schtasks_delete_stale.txt redacted=False src_sha=029a179f69974a26bd032d6f37c06c239e42adb5d9a15b61db99bac22814e6e0
+%WORKTREE%\z6\f5\raw\run\schtasks_delete.txt redacted=False src_sha=cc4e79b1562cb468411aaa46941a591f624d704d5238ef72a1f834e7a4cc58b7
+%WORKTREE%\z6\f5\raw\run\schtasks_query_after.txt redacted=False src_sha=029a179f69974a26bd032d6f37c06c239e42adb5d9a15b61db99bac22814e6e0
+%WORKTREE%\z6\f5\raw\run\schtasks_run.txt redacted=False src_sha=0a1a603d496bb5e77e446bc5aa3abc6881c163dcd48dea8093fef39c5ec2e3ad
+%WORKTREE%\z6\f5\raw\run\unregister.out.txt redacted=False src_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+%WORKTREE%\z6\f5\raw\run\z6_f5_motion_preclose.log redacted=True src_sha=7fe1fd3d43ec7fb2da6cb4e4e4ddac75fdd5cdcc921f2439e2cab4b80a7f961a
+%WORKTREE%\z6\f5\raw\run\z6_f5_motion.log redacted=True src_sha=520b869ac053629da4b59567c2ccd194001e9ac3c1afb066e0e4c8056e5ed0ee
+%WORKTREE%\z6\f5\raw\run\frames\win_00_appear.png redacted=False binary src_sha=1ad7901de48d8386377b7cb4db0ed723d62f0e3284c6413107cf1d5536edfb01
+%WORKTREE%\z6\f5\raw\run\frames\win_01_tick.png redacted=False binary src_sha=1ad7901de48d8386377b7cb4db0ed723d62f0e3284c6413107cf1d5536edfb01
+%WORKTREE%\z6\f5\raw\run\frames\win_02_selftest.png redacted=False binary src_sha=0b2cf36499dd42315cb42f12ca62b69a12b7ef9d9553e9ecc3acf5b2435e4919
+%WORKTREE%\z6\f5\raw\run\frames\win_03_tick.png redacted=False binary src_sha=6708461938c2be3500b3641de2441424e1cb3b0ddfdec426ff44380300e9172a
+%WORKTREE%\z6\f5\raw\run\frames\win_04_tick.png redacted=False binary src_sha=014a901dd3ebec1b1b54112b8ecb6e1d111e46e7dd3d05551fcc0b17d076c079
+%WORKTREE%\z6\f5\raw\run\frames\win_05_tick.png redacted=False binary src_sha=014a901dd3ebec1b1b54112b8ecb6e1d111e46e7dd3d05551fcc0b17d076c079
+%WORKTREE%\z6\f5\raw\run\frames\win_06_tick.png redacted=False binary src_sha=014a901dd3ebec1b1b54112b8ecb6e1d111e46e7dd3d05551fcc0b17d076c079
+%WORKTREE%\z6\f5\raw\run\frames\win_07_tick.png redacted=False binary src_sha=014a901dd3ebec1b1b54112b8ecb6e1d111e46e7dd3d05551fcc0b17d076c079
+%WORKTREE%\z6\f5\raw\run\frames\win_08_settled.png redacted=False binary src_sha=014a901dd3ebec1b1b54112b8ecb6e1d111e46e7dd3d05551fcc0b17d076c079

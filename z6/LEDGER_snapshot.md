@@ -138,3 +138,13 @@ Finalv4 patchonly4hostfiles, upstreamCRLF/tabs/BOM, strict4fileapplyroundtrip by
 ## F9b phase3 local runtime accepted;phase4 PR pending (append-only)
 
 Firstattempt20261121T134355Z-00e0d1ee remainsSTOP entryposition gate, safeclose/logcapture/exactcleanup complete. Explicit root-reviewed v2 tool only records actual entrypositionfalse and requests image review, no host/pack/build/layout changes. Secondattempt20261121T134947Z-1a56d73b: Register0/ordinaryMainPage/actualmappedmanagednativehashes; root personally accepted opacityentry+8DIPhover/rest crops, no negativeentrydisplacement claim. Frame64/Retarget3/Idle10/Token1/Lifecycle12, Created=Played=Cancelled=Released3/finalIdle0pump0. Normalclose0/fulloriginalLogSHA2aea1242933febfac63cf3a485ae25a70fb65845bfa813762bd4880dd4e30735 BEFORE exactRemove/cleanuptrue/POSTpackagesdataabsent, pointerrestored/pkgdeltaempty/UserChoiceunchanged/source4/layout1334unchanged. ManualNON-ORIGINAL devonly/Success!=adopt/PERF-CIHOLD; F2/closure/LOCKED untouched. Final CI/PR/primarymerge pending, no more runtime.
+
+
+## F2 repair integration source import (append-only)
+
+Preserved full main d2aac2dc355d0412aa5fc3ede212b79faf4459b9 ledger prefix. Ordinary integration merge15d4108fd56eb661c1a46c6552ffe74a0318ff28 retains original F2/F5 history and accepted F5 continuation; complete source ledgers archived under z6/f2/codex/source_ledgers, exact blobs/SHA in ledger_source_receipts.json. No historical PASS/FAIL rejudgment or unique evidence deletion. User requested F2 repair to original Dispose-before-Create contract; repair/build/runtime acceptance remains pending, no current runtime permission.
+
+
+## Codex F2 strict repair continuation (2026-11-22)
+
+New local acceptance: strict Dispose/listener-release-before-new-Create satisfied in ordinary Fake and Real. F5 mandatory B/C/E regression and exact cleanup accepted by primary. Full solution x64 build is NON-ORIGINAL using only the two F2-specific approved properties; original NU1903 and ARM64 failures remain preserved. Historical F2/F5 verdicts/logs are not rewritten. See z6/f2/codex/REPORT.md and PRIMARY_RUNTIME_ACCEPTANCE.json. PR/CI/main merge remain separate primary gates; no closure/LOCKED/adoption status is changed.

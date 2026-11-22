@@ -1,0 +1,14 @@
+Source: cached WinUIEx 2.9.2 XML documentation
+sha256=a7759504cef5c458ff76642417fd4710fe8b47bf86c1d321faf1d5d4906b283d
+<member name="P:WinUIEx.Messaging.Message.Hwnd">
+<member name="P:WinUIEx.Messaging.Message.MessageId">
+<member name="P:WinUIEx.Messaging.Message.WParam">
+<member name="P:WinUIEx.Messaging.Message.LParam">
+<member name="M:WinUIEx.Messaging.Message.ToString">
+<member name="P:WinUIEx.Messaging.WindowMessageEventArgs.Message">
+<member name="T:WinUIEx.Messaging.WindowMessageMonitor">
+<member name="M:WinUIEx.Messaging.WindowMessageMonitor.#ctor(Microsoft.UI.Xaml.Window)">
+<member name="M:WinUIEx.Messaging.WindowMessageMonitor.#ctor(System.IntPtr)">
+<member name="M:WinUIEx.Messaging.WindowMessageMonitor.Finalize">
+<member name="M:WinUIEx.Messaging.WindowMessageMonitor.Dispose">
+<member name="E:WinUIEx.Messaging.WindowMessageMonitor.WindowMessageReceived">

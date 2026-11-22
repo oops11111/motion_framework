@@ -1,0 +1,3 @@
+a936192a8e7bf5c8b57dd3abd706891635ba11b3711a803d9d5ec0491dfa5661 *fluenthub_f5_NavMotionPilot.patch
+d0b111f56e2a809dedd566186e559cd1f1f2a8895e4a51667ee2344f67fec065 *post_f5_NavMotionPilot.cs  (side fork after F5; not committed)
+80a50698d07cd4c42afd5823c916ef5d6321bf1e83414a59e51288668dc73e21 *pre_f5_NavMotionPilot.cs   (side fork before F5; equals the F2 post sha)

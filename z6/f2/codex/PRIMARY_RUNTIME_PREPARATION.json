@@ -1,0 +1,9 @@
+{
+  "instruction_kind": "Primary F2 runtime preparation only",
+  "root_verbatim": "Stage3保持最小：旧F5 ordinaryFake COM args --fm-pilot-f5=1（App既有）/Real空args，不需新hostswitch。",
+  "authority_sha256": "ca07c49838ad4f50f7f371705391fe1e02feec453d7ecdcea5ea42cfb9fd0ae4",
+  "binding_sha256": "168ae7bf73d784d04a4f988868f9dc7d95b28c7b95764ae1265a10afaaad8f46",
+  "layout_sha256": "d5c6885a1f8099066e5902ba2d978f9be9fb53e659578de57861415e996df3da",
+  "manifest_sha256": "fe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4",
+  "runtime_execute_released": false
+}

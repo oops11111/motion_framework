@@ -1,0 +1,20 @@
+{
+  "path": "%ProgramFiles(x86)%/Windows Kits/10/bin/10.0.26100.0/x64/MrmSupport.dll",
+  "exists": true,
+  "PE_machine": "0x8664",
+  "architecture": "x64",
+  "bytes": 919920,
+  "sha256": "2214725ce93a539d4e4f983108bdeafcc66d36005f6f45599ec52fe91cdff61c",
+  "sdk_registry_read": [
+    {
+      "view": "32",
+      "KitsRoot10": "%ProgramFiles(x86)%\\Windows Kits\\10\\"
+    },
+    {
+      "view": "64",
+      "KitsRoot10": "%ProgramFiles(x86)%\\Windows Kits\\10\\"
+    }
+  ],
+  "task_consumes_property": "Microsoft.Windows.SDK.BuildTools.MSIX.Packaging.targets:4597 MrmSupportLibraryPath=\"$(MrmSupportLibraryPath)\"",
+  "candidate": "Explicit same-architecture existing SDK DLL path binding; unverified, not executed without user approval"
+}

@@ -1,0 +1,162 @@
+00001 F2 RootView Loaded -> Create NavMotionPilot
+00002 PILOT start (Z6-F2, RootView rebuild cycle=1; Unloaded Dispose then Loaded Create; F6 enter wait unchanged)
+00003 ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose
+00004 ETW_EVENT name=TokenLoad id=6 name=motion.json problemCount=0
+00005 MotionTokens.Load demo_motion.json: ok
+00006 F5 subscribed UISettings.AnimationsEnabledChanged=True; initial AnimationsEnabled=True -> SetReducedMotion(False)
+00007 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00008 F5 initial SetReducedMotion(False) applied on UI thread thread=2
+00009 F5 selftest enqueue ok=True (same value, no state change)
+00010 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Created
+00011 F6 enter created (Play deferred) target=1 anim=1
+00012 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Created
+00013 F6 enter created (Play deferred) target=2 anim=2
+00014 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Created
+00015 F6 enter created (Play deferred) target=3 anim=3
+00016 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Created
+00017 F6 enter created (Play deferred) target=4 anim=4
+00018 F6 waiting for first CompositionTarget.Rendering before Play
+00019 F1C will enqueue hover from sink mid-flight via DispatcherQueue; no fm_* in sink/render; pointer hover ignored
+00020 F6 FIRST_FRAME callback (CompositionTarget.Rendering) before Play
+00021 F6 FIRST_FRAME enqueue Play ok=True
+00022 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00023 F5 SetReducedMotion(False) source=selftest animationsEnabled=True previous=True thread=2
+00024 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00025 F5 SetReducedMotion(False) applied; last_animationsEnabled=True
+00026 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Played
+00027 F6 PLAY after first frame target=1 anim=1
+00028 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Played
+00029 F6 PLAY after first frame target=2 anim=2
+00030 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Played
+00031 F6 PLAY after first frame target=3 anim=3
+00032 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Played
+00033 F6 PLAY after first frame target=4 anim=4
+00034 F2 enqueue RootView rebuild ok=True (DispatcherQueue, not sink/render)
+00035 F2 REBUILD begin: MainWindow.InitializeApplication(forceReload=true)
+00036 F2 RootView Loaded -> Create NavMotionPilot
+00037 PILOT start (Z6-F2, RootView rebuild cycle=2; Unloaded Dispose then Loaded Create; F6 enter wait unchanged)
+00038 ETW_LISTENER enabled provider=FluidMotion-Motion guid=8f3a2c1d-6b4e-4a91-9c7d-2e5f8a1b3c4d level=Verbose
+00039 ETW_EVENT name=TokenLoad id=6 name=motion.json problemCount=0
+00040 ETW_EVENT name=TokenLoad id=6 name=motion.json problemCount=0
+00041 MotionTokens.Load demo_motion.json: ok
+00042 F5 subscribed UISettings.AnimationsEnabledChanged=True; initial AnimationsEnabled=True -> SetReducedMotion(False)
+00043 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00044 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00045 F5 initial SetReducedMotion(False) applied on UI thread thread=2
+00046 F5 selftest enqueue ok=True (same value, no state change)
+00047 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Created
+00048 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Created
+00049 F6 enter created (Play deferred) target=1 anim=1
+00050 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Created
+00051 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Created
+00052 F6 enter created (Play deferred) target=2 anim=2
+00053 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Created
+00054 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Created
+00055 F6 enter created (Play deferred) target=3 anim=3
+00056 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Created
+00057 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Created
+00058 F6 enter created (Play deferred) target=4 anim=4
+00059 F6 waiting for first CompositionTarget.Rendering before Play
+00060 F1C will enqueue hover from sink mid-flight via DispatcherQueue; no fm_* in sink/render; pointer hover ignored
+00061 F1C SINK mid-flight target=1 property=offsetX value=-26.855151709551237 (enqueue hover; no fm_* in this callback)
+00062 F1C SINK enqueue hover ok=True
+00063 F6 FIRST_FRAME callback (CompositionTarget.Rendering) before Play
+00064 F6 FIRST_FRAME enqueue Play ok=True
+00065 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00066 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00067 F5 SetReducedMotion(False) source=selftest animationsEnabled=True previous=True thread=2
+00068 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00069 ETW_EVENT name=IdleTransition id=5 activeCount=1 pumpOn=1
+00070 F5 SetReducedMotion(False) applied; last_animationsEnabled=True
+00071 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Created
+00072 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Created
+00073 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Played
+00074 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Played
+00075 ETW_EVENT name=Retarget id=2 anim=5 prop=offsetX from=-26.855151709551237 to=8 hasFrom=0 vel=519.3001753574476
+00076 ETW_EVENT name=Retarget id=2 anim=5 prop=offsetX from=-26.855151709551237 to=8 hasFrom=0 vel=519.3001753574476
+00077 F1C PLAY hover after mid-flight enqueue (not in sink/render) target=1 anim=5 retarget(offsetX=8) ok=True mid_observed=-26.855151709551237
+00078 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Played
+00079 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Played
+00080 F6 PLAY after first frame target=1 anim=1
+00081 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Played
+00082 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Played
+00083 F6 PLAY after first frame target=2 anim=2
+00084 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Played
+00085 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Played
+00086 F6 PLAY after first frame target=3 anim=3
+00087 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Played
+00088 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Played
+00089 F6 PLAY after first frame target=4 anim=4
+00090 F2 RootView Unloaded -> Dispose NavMotionPilot then null
+00091 F1C_FINAL offsetX=-26.855151709551237 opacity=0.9535106388826858 overlapSinkNotes=0 enqueued=True hoverPlayed=True mid_observed=-26.855151709551237 expected_offsetX=8 (later writer target)
+00092 F2 Dispose begin cycle=1
+00093 Dispose begin
+00094 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Cancelled
+00095 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Cancelled
+00096 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Released
+00097 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Released
+00098 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Cancelled
+00099 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Cancelled
+00100 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Released
+00101 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Released
+00102 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Cancelled
+00103 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Cancelled
+00104 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Released
+00105 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Released
+00106 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Cancelled
+00107 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Cancelled
+00108 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Released
+00109 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Released
+00110 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Cancelled
+00111 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Cancelled
+00112 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Released
+00113 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Released
+00114 F5 unsubscribed AnimationsEnabledChanged events=0
+00115 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00116 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00117 Dispose end handles=5 (enter=4, hover=1) sinkCalls=8 cycle=1
+00118 F2 Dispose end cycle=1
+00119 ETW_SUMMARY distinctNames=5 names[AnimationLifecycle=28, FrameTick=3, IdleTransition=7, Retarget=1, TokenLoad=2] lifecycle[Cancelled=5, Created=9, Played=9, Released=5]
+00120 F6 ENTER_SHOT n=0 fail=ArgumentException: Value does not fall within the expected range.
+00121 F1C SINK mid-flight target=1 property=offsetX value=-64.49364919962278 (enqueue hover; no fm_* in this callback)
+00122 F1C SINK enqueue hover ok=True
+00123 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Created
+00124 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Played
+00125 ETW_EVENT name=Retarget id=2 anim=5 prop=offsetX from=-64.49364919962278 to=8 hasFrom=0 vel=635.8097765288234
+00126 F1C PLAY hover after mid-flight enqueue (not in sink/render) target=1 anim=5 retarget(offsetX=8) ok=True mid_observed=-64.49364919962278
+00127 F1C_OVERLAP n=1 target=1 offsetX=-58.96741448422145 opacity=0.7601216721226388
+00128 F1C_OVERLAP n=2 target=1 offsetX=-58.96741448422145 opacity=0.8127326727242585
+00129 F1C_OVERLAP n=3 target=1 offsetX=-45.38852428031404 opacity=0.8127326727242585
+00130 F1C_OVERLAP n=4 target=1 offsetX=-45.38852428031404 opacity=0.8902081065601275
+00131 F1C_OVERLAP n=5 target=1 offsetX=-21.812954131405267 opacity=0.8902081065601275
+00132 F1C_OVERLAP n=6 target=1 offsetX=-21.812954131405267 opacity=0.9587814672472643
+00133 F1C_OVERLAP n=7 target=1 offsetX=-9.296621245592352 opacity=0.9587814672472643
+00134 F1C_OVERLAP n=8 target=1 offsetX=-9.296621245592352 opacity=0.9806472983922752
+00135 F1C_OVERLAP n=9 target=1 offsetX=1.0024066616784877 opacity=0.9806472983922752
+00136 F1C_OVERLAP n=10 target=1 offsetX=1.0024066616784877 opacity=0.9939075048800674
+00137 F1C_OVERLAP n=11 target=1 offsetX=8.157767655234485 opacity=0.9939075048800674
+00138 F1C_OVERLAP n=12 target=1 offsetX=8.157767655234485 opacity=0.9998837968209789
+00139 F6 ENTER_SHOT n=0 1422x687 path=%USERPROFILE%\AppData\Local\Packages\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\LocalState\z6_f6_enter_00.png
+00140 F6 ENTER_SHOT n=1 1422x687 path=%USERPROFILE%\AppData\Local\Packages\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\LocalState\z6_f6_enter_01.png
+00141 F6 ENTER_SHOT n=2 1422x687 path=%USERPROFILE%\AppData\Local\Packages\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\LocalState\z6_f6_enter_02.png
+00142 ETW_EVENT name=IdleTransition id=5 activeCount=0 pumpOn=0
+00143 F6 ENTER_SHOT n=3 1422x687 path=%USERPROFILE%\AppData\Local\Packages\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\LocalState\z6_f6_enter_03.png
+00144 MainWindow.Closed -> Dispose
+00145 F1C_FINAL offsetX=8 opacity=1 overlapSinkNotes=15 enqueued=True hoverPlayed=True mid_observed=-64.49364919962278 expected_offsetX=8 (later writer target)
+00146 F2 Dispose begin cycle=2
+00147 Dispose begin
+00148 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Cancelled
+00149 ETW_EVENT name=AnimationLifecycle id=1 anim=1 target=1 transition=demo.enter state=Released
+00150 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Cancelled
+00151 ETW_EVENT name=AnimationLifecycle id=1 anim=2 target=2 transition=demo.enter state=Released
+00152 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Cancelled
+00153 ETW_EVENT name=AnimationLifecycle id=1 anim=3 target=3 transition=demo.enter state=Released
+00154 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Cancelled
+00155 ETW_EVENT name=AnimationLifecycle id=1 anim=4 target=4 transition=demo.enter state=Released
+00156 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Cancelled
+00157 ETW_EVENT name=AnimationLifecycle id=1 anim=5 target=1 transition= state=Released
+00158 F5 unsubscribed AnimationsEnabledChanged events=0
+00159 Dispose end handles=5 (enter=4, hover=1) sinkCalls=161 cycle=2
+00160 F2 Dispose end cycle=2
+00161 ETW_SUMMARY distinctNames=5 names[AnimationLifecycle=32, FrameTick=23, IdleTransition=5, Retarget=2, TokenLoad=1] lifecycle[Cancelled=10, Created=6, Played=6, Released=10]
+# path=%USERPROFILE%\AppData\Local\Packages\49462fluenthub-uwp.FluentHub_tq8wa33sfftnm\LocalState\z6_f2_motion.log lines=161 dropped=0 capacity=4096

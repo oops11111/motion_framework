@@ -1,0 +1,11 @@
+{
+  "user_verbatim": "批准 F2 仅本票使用 -p:WarningsNotAsErrors=NU1903，标记非原样。",
+  "source": "direct user response in current root conversation; relayed by primary execution instruction",
+  "message_id": "unavailable",
+  "recorded_utc": "2026-11-21T23:30:25Z",
+  "recorded_awst": "2026-11-22 07:30:25 AWST",
+  "record_time_is_not_send_time": true,
+  "scope": "F2 only; solution restore/build with sole WarningsNotAsErrors=NU1903 addition; NON-ORIGINAL; no package registration or application launch",
+  "source_files_verified": 10,
+  "patch_v2_sha256": "e6ab408b62e88fd388c17e2fe6945ebe9d605ecfdef5b5e36d8f943fd6a388b1"
+}

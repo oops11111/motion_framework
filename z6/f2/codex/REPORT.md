@@ -1,0 +1,23 @@
+# F2 strict lifecycle repair
+
+New repair acceptance: PASS dev-only, subject to PR/CI/primary integration review. This is a new run satisfying the original Dispose-before-Create contract. The historical F2 report/PASS and every old unique log remain unchanged; the new evidence does not rewrite their interpretation. Original restore and default ARM64 failures are preserved separately.
+
+The isolated FluentHub upstream pin is eb08f0dbcbb43880ab34038b0cb6742f0c0deca5, with recorded accepted F5 source baseline retained. Delivery remains patch-only: no third-party source or binaries are added to this repository. The main + accepted F5 integration merge preserves both exact source ledgers and the entire main ledger prefix.
+
+MainWindow detaches Content, waits for the old RootView synchronous pilot/listener disposal ACK, then queues new RootView creation. The private state rejects closed/pending/stale/inline callbacks and records queue/create failure. Async screenshot/rebuild callbacks reject disposed generations. Restricted ETW IDs/names return before a lazy payload getter; other events only count names except lifecycle state and Idle active/pump fields. Native callbacks do not reenter motion APIs. Frozen L1/fm/E1/composition/pack/API sources remain unchanged.
+
+Build: actual full solution restore and Debug x64 build PASS on default machine SDK 10.0.300. This is NON-ORIGINAL, with only the separately approved WarningsNotAsErrors=NU1903 and Platform=x64 properties. No dependency/toolset/TFM upgrade or package workaround occurred. FluentHub.dll SHA428fe0ba893c45df426da289685cc687caf2e5e216d9a2e4506e38d7eeab4981, manifest SHAfe5dc89b96997208936d7ad3263254a047ef604c696d1ce8be40b5a4bdd243f4, identity 0.11.0.0 x64. Pack three hashes match; CheckSurface fails=0 and the full output surface equals the canonical baseline. Source10 and freeze12 checks pass. EventSource is supported; JSON reflection and dynamic-code runtime switches are false, without any NativeAOT publish/performance claim.
+
+Targeted behavior: 18 actual private helper checks PASS. The unchanged 20 actual F5 source/named-event tests PASS. The final patch strictly roundtrips all ten source files byte-for-byte with required CRLF; the earlier inherited-LF mismatch receipt is retained.
+
+Actual single registered attempt: f2-runtime-20261122T104327-7178a075. Ordinary Fake PID43024 (--fm-pilot-f5=1) and ordinary Real PID72900 (empty arguments) both visibly rendered the owned WinUI top-level window and normally exited 0. No screenshot, UIA, pointer, account or user-file interaction was used.
+
+Both modes prove actual order: seq44 old Unloaded; seq61 old Dispose END; seq63 old listener active0; seq64 Dispose ACK; seq66 new Create; seq67 new Loaded; seq69 new listener active1. Listener ownership is 1→0→1→0. Per-cycle Created==Released is Fake5/5 then4/4, Real5/5 then5/5. Final Idle is active0/pump0. This is sequential ownership evidence, not merely a combined handle total.
+
+Mandatory F5 regression: Fake two named-event signals flip and restore reduced motion on UI thread2 without OS reread overriding state. Real uses one window-owned hook across both RootViews; WM_SETTINGCHANGE0x1A/wParam0x6D/null is received and debounced, unchanged reread produces no new SetReducedMotion, and the hook is removed on close. No system animation setting was changed; optional setting-switch scenario D was not run.
+
+Each mode's FULL original log was saved after normal exit before the next activation or removal. Original SHA256: Fake b7a4c6d5cd249d479179f59635db5daee56f31d3e799c7650bfe9e26fdc4c69d; Real875a90b8a40e7c053e5c2acb229c69f1c4cf0cf722a0f2b61dd94ed53f05a653. Original bytes remain immutable in ignored storage. Published redacted copies have separate recorded hashes; they are not described as original bytes. PRE full package snapshot stays ignored, with published count/hash/settings/framework evidence.
+
+Cleanup: Register exit0; only the new exact package fullname was added, no foreign removals. Normal close completed; no live/unknown cleanup candidates. Exact owned package removal completed, package/data POST empty, TEMP log absent, final package delta empty, four read-only animation settings equal PRE. Primary independently confirmed cleanup and all284 output files/full set plus source10 POST hashes. No force kill, tasks, debug settings, installation, certificates or credentials were used.
+
+CI verifies recorded runtime integrity, provenance, frozen surface and patch-extracted private behavior; it does not rerun the GUI. Existing F5 twenty-test job and native/C# Debug/Release regression remain applicable. Primary owns review, all-green CI, merge to main and post-merge checks. No performance/adoption, closure, LOCKED or APPROVED claim is made.

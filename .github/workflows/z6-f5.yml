@@ -1,0 +1,26 @@
+name: Z6 F5 host source verification
+
+on:
+  pull_request:
+    branches: [codex/z6-integration, main]
+  push:
+    branches: [codex/z6-f5]
+
+permissions:
+  contents: read
+
+jobs:
+  frozen-surface-and-source-behavior:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Verify freeze, patch and actual source behavior
+        run: python z6/f5/codex/verify.py --run-source-tests ${{ (github.head_ref == 'codex/z6-f5' || github.ref_name == 'codex/z6-f5') && '--enforce-stage-scope' || '' }}

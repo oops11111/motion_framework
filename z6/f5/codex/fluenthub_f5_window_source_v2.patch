@@ -1,0 +1,354 @@
+--- a/src/FluentHub/Views/MainWindow.cs
++++ b/src/FluentHub/Views/MainWindow.cs
+@@ -13,6 +13,7 @@
+ 	{
+ 		private static MainWindow? _Instance;
+ 		private RootView _rootView;
++		internal WindowReducedMotionSource ReducedMotion { get; }
+ 
+ 		public static MainWindow Instance => _Instance ??= new();
+ 
+@@ -29,6 +30,9 @@
+ 			AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+ 			MinHeight = 516;
+ 			MinWidth = 516;
++
++			ReducedMotion = new WindowReducedMotionSource(this);
++			Closed += (_, _) => ReducedMotion.Dispose();
+ 
+ 			_rootView = new RootView();
+ 			Content = _rootView;
+--- a/src/FluentHub/Views/NavMotionPilot.cs
++++ b/src/FluentHub/Views/NavMotionPilot.cs
+@@ -3,7 +3,6 @@
+ // No timing judgement anywhere (PresentStats is a placeholder, N/A). PERF-CI HOLD. Success != adopt.
+ 
+ using System.Diagnostics.Tracing;
+-using System.Runtime.Versioning;
+ using Microsoft.UI.Dispatching;
+ using Microsoft.UI.Xaml;
+ using Microsoft.UI.Xaml.Controls;
+@@ -16,14 +15,13 @@
+ using System.Runtime.InteropServices.WindowsRuntime;
+ using System.Threading.Tasks;
+ using MotionSoftDemo;
+-using Windows.UI.ViewManagement;
+ 
+ namespace FluentHub.Views
+ {
+ 	/// <summary>
+ 	/// Left NavigationView menu items: Loaded, wait for first frame, then Play "demo.enter" (tokens).
+ 	/// F1C hover enqueue unchanged. F2: after first enter Play, DispatcherQueue.TryEnqueue RootView forceReload (Unloaded Dispose, then Loaded Create).
+-	/// F5: subscribe UISettings.AnimationsEnabledChanged and call MotionSystem.SetReducedMotion(!AnimationsEnabled) on the UI thread.
++	/// F5: consume the window-owned reduced-motion source on the UI thread.
+ 	/// </summary>
+ 	internal sealed class NavMotionPilot : IDisposable
+ 	{
+@@ -62,8 +60,7 @@
+ 		private double? _f1cLastOpacity;
+ 		private double? _f1cMidObserved;
+ 		private const ulong F1cTarget = 1;
+-		private readonly UISettings _uiSettings;
+-		private int _f5EventCount;
++		private readonly ReducedMotionState _reducedMotion;
+ 		private bool _f5AppliedAnimationsEnabled;
+ 		private static int s_f2Cycle;
+ 		private static bool s_f2RebuildQueued;
+@@ -87,26 +84,10 @@
+ 			_dispatcher = navigationView.DispatcherQueue;
+ 			_nav = navigationView;
+ 
+-			// Z6-F5: follow the system setting while running. Startup value is read once, but the subscription keeps
+-			// SetReducedMotion in sync afterwards (was: a single read at startup only).
+-			_uiSettings = new UISettings();
+-			// AnimationsEnabledChanged needs Windows 10 19041; the project declares 17763 as its minimum, so guard the
+-			// subscription explicitly (CA1416) instead of raising the app minimum.
+-			bool f5CanSubscribe = OperatingSystem.IsWindowsVersionAtLeast(10, 0, 19041);
+-			if (OperatingSystem.IsWindowsVersionAtLeast(10, 0, 19041))
+-			{
+-				SubscribeAnimationsChanged();
+-			}
+-			bool animationsEnabled = _uiSettings.AnimationsEnabled;
+-			_f5AppliedAnimationsEnabled = animationsEnabled;
+-			_log.Line($"F5 subscribed UISettings.AnimationsEnabledChanged={f5CanSubscribe}; initial AnimationsEnabled={animationsEnabled} -> SetReducedMotion({!animationsEnabled})");
+-			_system.SetReducedMotion(!animationsEnabled);
+-			_log.Line($"F5 initial SetReducedMotion({!animationsEnabled}) applied on UI thread thread={Environment.CurrentManagedThreadId}");
+-
+-			// Dev-only selftest: run the same enqueued path once with the current value. No state change, and not
+-			// evidence of a system-setting switch; it only proves the DispatcherQueue hand-off works.
+-			bool f5SelfQueued = _dispatcher.TryEnqueue(() => ApplyReducedMotion(animationsEnabled, "selftest"));
+-			_log.Line($"F5 selftest enqueue ok={f5SelfQueued} (same value, no state change)");
++			_reducedMotion = MainWindow.Instance.ReducedMotion.State;
++			_reducedMotion.Changed += OnReducedMotionChanged;
++			ApplyReducedMotion(_reducedMotion.AnimationsEnabled, "initial");
++			_log.Line($"F5 subscriber attached cycle={_f2Cycle}; initial applied before Play");
+ 			_enteredHandler = OnItemPointerEntered;
+ 			_leftHandler = OnItemPointerLeft;
+ 
+@@ -359,22 +340,10 @@
+ 			MainWindow.Instance.InitializeApplication(null, forceReload: true);
+ 		}
+ 
+-		[SupportedOSPlatform("windows10.0.19041.0")]
+-		private void SubscribeAnimationsChanged() => _uiSettings.AnimationsEnabledChanged += OnAnimationsEnabledChanged;
+-
+-		[SupportedOSPlatform("windows10.0.19041.0")]
+-		private void UnsubscribeAnimationsChanged() => _uiSettings.AnimationsEnabledChanged -= OnAnimationsEnabledChanged;
+-
+-		private void OnAnimationsEnabledChanged(UISettings sender, UISettingsAnimationsEnabledChangedEventArgs args)
+-		{
+-			// WinRT raises this on a thread-pool thread. MotionSystem is thread-affine (contract Table 2), so only
+-			// read the new value here and marshal the API call to the UI thread that created the system.
+-			bool animationsEnabled = sender.AnimationsEnabled;
+-			_f5EventCount++;
+-			_log.Line($"F5 AnimationsEnabledChanged n={_f5EventCount} enabled={animationsEnabled} thread={Environment.CurrentManagedThreadId} -> TryEnqueue SetReducedMotion({!animationsEnabled})");
+-			bool queued = _dispatcher.TryEnqueue(() => ApplyReducedMotion(animationsEnabled, "event"));
+-			_log.Line($"F5 AnimationsEnabledChanged n={_f5EventCount} enqueue ok={queued}");
+-			_log.Flush();
++		private void OnReducedMotionChanged(bool animationsEnabled, string source)
++		{
++			bool queued = _dispatcher.TryEnqueue(() => ApplyReducedMotion(animationsEnabled, source));
++			_log.Line($"F5 subscriber enqueue source={source} ok={queued} cycle={_f2Cycle}");
+ 		}
+ 
+ 		private void ApplyReducedMotion(bool animationsEnabled, string source)
+@@ -432,11 +401,8 @@
+ 				handle.Release();
+ 			}
+ 
+-			if (OperatingSystem.IsWindowsVersionAtLeast(10, 0, 19041))
+-			{
+-				UnsubscribeAnimationsChanged();
+-			}
+-			_log.Line($"F5 unsubscribed AnimationsEnabledChanged events={_f5EventCount}");
++			_reducedMotion.Changed -= OnReducedMotionChanged;
++			_log.Line($"F5 subscriber detached cycle={_f2Cycle}");
+ 			_system.Dispose();
+ 
+ 			if (_renderingHooked)
+--- a/src/FluentHub/App.xaml.cs
++++ b/src/FluentHub/App.xaml.cs
+@@ -42,6 +42,12 @@
+ 
+ 	protected override async void OnLaunched(LaunchActivatedEventArgs args)
+ 	{
++		// F5 pilot: opt in only this process before the window-owned source is constructed.
++		if (string.Equals(args.Arguments, "--fm-pilot-f5=1", StringComparison.Ordinal))
++		{
++			Environment.SetEnvironmentVariable("FM_PILOT_F5", "1", EnvironmentVariableTarget.Process);
++		}
++
+ 		try
+ 		{
+ 			await Settings.LoadAsync();
+--- /dev/null
++++ b/src/FluentHub/Views/ReducedMotionState.cs
+@@ -0,0 +1,29 @@
++namespace FluentHub.Views;
++
++// Host-only state. Every operation is called on the window's UI dispatcher.
++internal sealed class ReducedMotionState(bool animationsEnabled, bool fake) : IDisposable
++{
++    private bool _disposed;
++    public bool AnimationsEnabled { get; private set; } = animationsEnabled;
++    public event Action<bool, string>? Changed;
++
++    public void Reread(bool enabled, string source)
++    {
++        if (_disposed || fake || enabled == AnimationsEnabled) return;
++        AnimationsEnabled = enabled;
++        Changed?.Invoke(enabled, source);
++    }
++
++    public void ToggleFake()
++    {
++        if (_disposed || !fake) return;
++        AnimationsEnabled = !AnimationsEnabled;
++        Changed?.Invoke(AnimationsEnabled, "fake");
++    }
++
++    public void Dispose()
++    {
++        _disposed = true;
++        Changed = null;
++    }
++}
+--- /dev/null
++++ b/src/FluentHub/Views/FakeReducedMotionSource.cs
+@@ -0,0 +1,31 @@
++using System.Threading;
++
++namespace FluentHub.Views;
++
++// Opt-in host diagnostics only. The wait thread never calls MotionSystem.
++internal sealed class FakeReducedMotionSource : IDisposable
++{
++    private readonly EventWaitHandle _toggle = new(false, EventResetMode.AutoReset, @"Local\FM_PILOT_F5_TOGGLE");
++    private readonly RegisteredWaitHandle _wait;
++    private int _disposed;
++
++    public FakeReducedMotionSource(Func<Action, bool> enqueue, ReducedMotionState state, Action<string> log)
++    {
++        _wait = ThreadPool.RegisterWaitForSingleObject(_toggle, (_, _) =>
++        {
++            if (Volatile.Read(ref _disposed) != 0) return;
++            bool queued = enqueue(() =>
++            {
++                if (Volatile.Read(ref _disposed) == 0) state.ToggleFake();
++            });
++            log($"F5 fake enqueue ok={queued}");
++        }, null, Timeout.Infinite, false);
++    }
++
++    public void Dispose()
++    {
++        if (Interlocked.Exchange(ref _disposed, 1) != 0) return;
++        _wait.Unregister(null);
++        _toggle.Dispose();
++    }
++}
+--- /dev/null
++++ b/src/FluentHub/Views/WindowReducedMotionSource.cs
+@@ -0,0 +1,142 @@
++using System.Runtime.Versioning;
++using Microsoft.UI.Dispatching;
++using Microsoft.UI.Xaml;
++using Windows.UI.ViewManagement;
++using WinUIEx.Messaging;
++
++namespace FluentHub.Views;
++
++// Owned once by MainWindow; RootView recreation only replaces subscribers.
++internal sealed class WindowReducedMotionSource : IDisposable
++{
++    private readonly Window _window;
++    private readonly DispatcherQueue _dispatcher;
++    private readonly UISettings _settings = new();
++    private readonly PilotLog _log = new();
++    private readonly DispatcherQueueTimer _debounce;
++    private readonly WindowMessageMonitor? _monitor;
++    private readonly FakeReducedMotionSource? _fakeSource;
++    private readonly bool _fake;
++    private bool _disposed;
++    private int _wmCount, _eventCount, _activatedCount, _fakeCount;
++
++    public ReducedMotionState State { get; }
++
++    public WindowReducedMotionSource(Window window)
++    {
++        _window = window;
++        _dispatcher = window.DispatcherQueue;
++        _fake = Environment.GetEnvironmentVariable("FM_PILOT_F5") == "1";
++        State = new ReducedMotionState(_settings.AnimationsEnabled, _fake);
++        State.Changed += OnStateChanged;
++        _debounce = _dispatcher.CreateTimer();
++        _debounce.Interval = TimeSpan.FromMilliseconds(100);
++        _debounce.IsRepeating = false;
++        _debounce.Tick += OnDebounce;
++
++        if (_fake)
++        {
++            _fakeSource = new FakeReducedMotionSource(action => _dispatcher.TryEnqueue(() => action()), State, Log);
++            Log("F5 fake source enabled event=Local\\FM_PILOT_F5_TOGGLE");
++            return;
++        }
++
++        nint hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
++        try
++        {
++            if (hwnd == 0) throw new InvalidOperationException("Top-level HWND is zero");
++            _monitor = new WindowMessageMonitor(hwnd);
++            _monitor.WindowMessageReceived += OnMessage;
++            Log($"F5 hook installed hwnd=0x{hwnd:X} method=WindowMessageMonitor ok=True");
++        }
++        catch (Exception ex)
++        {
++            _monitor?.Dispose();
++            Log($"F5 hook installed hwnd=0x{hwnd:X} method=WindowMessageMonitor ok=False error={ex.GetType().Name}");
++            throw; // Do not silently run a partial real source after hook failure.
++        }
++        _window.Activated += OnActivated;
++        if (OperatingSystem.IsWindowsVersionAtLeast(10, 0, 19041)) Subscribe();
++    }
++
++    private void Log(string line)
++    {
++        _log.Line(line);
++        _log.Flush();
++    }
++
++    private void OnMessage(object? sender, WindowMessageEventArgs args)
++    {
++        if (_disposed || (uint)args.Message.MessageId != 0x001A) return;
++        _wmCount++;
++        // Keep lParam as an address: it is optional and is not safe to dereference for injected diagnostics.
++        Log($"F5 WM_SETTINGCHANGE wParam=0x{args.Message.WParam:X} lParam=0x{args.Message.LParam:X} thread={Environment.CurrentManagedThreadId}");
++        _debounce.Stop();
++        _debounce.Start();
++    }
++
++    private void OnDebounce(DispatcherQueueTimer sender, object args) => QueueReread("wm");
++
++    private void OnActivated(object sender, WindowActivatedEventArgs args)
++    {
++        if (args.WindowActivationState == WindowActivationState.Deactivated) return;
++        _activatedCount++;
++        QueueReread("activated");
++    }
++
++    [SupportedOSPlatform("windows10.0.19041.0")]
++    private void Subscribe() => _settings.AnimationsEnabledChanged += OnAnimationsChanged;
++
++    [SupportedOSPlatform("windows10.0.19041.0")]
++    private void Unsubscribe() => _settings.AnimationsEnabledChanged -= OnAnimationsChanged;
++
++    private void OnAnimationsChanged(UISettings sender, UISettingsAnimationsEnabledChangedEventArgs args)
++    {
++        // Reread on the UI queue, rather than capture a possibly stale background-thread value.
++        bool queued = _dispatcher.TryEnqueue(() =>
++        {
++            if (_disposed) return;
++            _eventCount++;
++            Reread("event");
++        });
++        if (!queued) Log("F5 event enqueue ok=False");
++    }
++
++    private void QueueReread(string source)
++    {
++        bool queued = _dispatcher.TryEnqueue(() => { if (!_disposed) Reread(source); });
++        if (!queued) Log($"F5 {source} enqueue ok=False");
++    }
++
++    private void Reread(string source)
++    {
++        bool enabled = _settings.AnimationsEnabled;
++        if (enabled == State.AnimationsEnabled)
++            Log($"F5 reread unchanged animationsEnabled={enabled} source={source}");
++        State.Reread(enabled, source);
++    }
++
++    private void OnStateChanged(bool enabled, string source)
++    {
++        if (source == "fake") _fakeCount++;
++        Log($"F5 source changed animationsEnabled={enabled} source={source} thread={Environment.CurrentManagedThreadId}");
++    }
++
++    public void Dispose()
++    {
++        if (_disposed) return;
++        _disposed = true;
++        _debounce.Stop();
++        _debounce.Tick -= OnDebounce;
++        _fakeSource?.Dispose();
++        _window.Activated -= OnActivated;
++        if (!_fake && OperatingSystem.IsWindowsVersionAtLeast(10, 0, 19041)) Unsubscribe();
++        if (_monitor is not null)
++        {
++            _monitor.WindowMessageReceived -= OnMessage;
++            _monitor.Dispose();
++        }
++        State.Dispose();
++        Log($"F5 source disposed hookRemoved={_monitor is not null} wm={_wmCount} event={_eventCount} activated={_activatedCount} fake={_fakeCount}");
++    }
++}

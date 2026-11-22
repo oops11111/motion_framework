@@ -1,0 +1,54 @@
+.NET SDK:
+ Version:           10.0.300
+ Commit:            caa81fa497
+
+Host:
+  Version:      10.0.8
+  Architecture: x64
+  Commit:       94ea82652c
+  RID:          win-x64
+
+.NET SDKs installed:
+  8.0.428 [%ProgramFiles%\dotnet\sdk]
+  9.0.321 [%ProgramFiles%\dotnet\sdk]
+  10.0.300 [%ProgramFiles%\dotnet\sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.34 [%ProgramFiles%\dotnet\shared\Microsoft.AspNetCore.App]
+  Microsoft.AspNetCore.App 9.0.23 [%ProgramFiles%\dotnet\shared\Microsoft.AspNetCore.App]
+  Microsoft.AspNetCore.App 10.0.8 [%ProgramFiles%\dotnet\shared\Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.34 [%ProgramFiles%\dotnet\shared\Microsoft.NETCore.App]
+  Microsoft.NETCore.App 9.0.23 [%ProgramFiles%\dotnet\shared\Microsoft.NETCore.App]
+  Microsoft.NETCore.App 10.0.8 [%ProgramFiles%\dotnet\shared\Microsoft.NETCore.App]
+  Microsoft.WindowsDesktop.App 8.0.34 [%ProgramFiles%\dotnet\shared\Microsoft.WindowsDesktop.App]
+  Microsoft.WindowsDesktop.App 9.0.23 [%ProgramFiles%\dotnet\shared\Microsoft.WindowsDesktop.App]
+  Microsoft.WindowsDesktop.App 10.0.8 [%ProgramFiles%\dotnet\shared\Microsoft.WindowsDesktop.App]
+
+Other architectures found:
+  x86   [%ProgramFiles% (x86)\dotnet]
+    registered at [HKLM\SOFTWARE\dotnet\Setup\InstalledVersions\x86\InstallLocation]
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+System.TypeInitializationException: The type initializer for 'Microsoft.DotNet.Cli.Installer.Windows.InstallerBase' threw an exception.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.DotNet.Cli.Installer.Windows.InstallerBase..cctor()
+   --- End of inner exception stack trace ---
+   at Microsoft.DotNet.Cli.Commands.Workload.Install.MsiInstallerBase..ctor(InstallElevationContextBase elevationContext, ISetupLogger logger, Boolean verifySignatures, IReporter reporter)
+   at Microsoft.DotNet.Cli.Commands.Workload.Install.NetSdkMsiInstallerClient..ctor(InstallElevationContextBase elevationContext, ISetupLogger logger, Boolean verifySignatures, IWorkloadResolver workloadResolver, SdkFeatureBand sdkFeatureBand, INuGetPackageDownloader nugetPackageDownloader, VerbosityOptions verbosity, PackageSourceLocation packageSourceLocation, IReporter reporter)
+   at Microsoft.DotNet.Cli.Commands.Workload.Install.NetSdkMsiInstallerClient.Create(Boolean verifySignatures, SdkFeatureBand sdkFeatureBand, IWorkloadResolver workloadResolver, INuGetPackageDownloader nugetPackageDownloader, VerbosityOptions verbosity, PackageSourceLocation packageSourceLocation, IReporter reporter, String tempDirPath, RestoreActionConfig restoreActionConfig, Boolean shouldLog)
+   at Microsoft.DotNet.Cli.Commands.Workload.Install.WorkloadInstallerFactory.GetWorkloadInstaller(IReporter reporter, SdkFeatureBand sdkFeatureBand, IWorkloadResolver workloadResolver, VerbosityOptions verbosity, String userProfileDir, Boolean verifySignatures, INuGetPackageDownloader nugetPackageDownloader, String dotnetDir, String tempDirPath, PackageSourceLocation packageSourceLocation, RestoreActionConfig restoreActionConfig, Boolean elevationRequired, Boolean shouldLog)
+   at Microsoft.DotNet.Cli.Commands.Workload.WorkloadInfoHelper..ctor(Boolean isInteractive, VerbosityOptions verbosity, String targetSdkVersion, Nullable`1 verifySignatures, IReporter reporter, IWorkloadInstallationRecordRepository workloadRecordRepo, String currentSdkVersion, String dotnetDir, String userProfileDir, IWorkloadResolver workloadResolver)
+   at Microsoft.DotNet.Cli.Commands.Workload.WorkloadInfoHelper.GetWorkloadsVersion(WorkloadInfoHelper workloadInfoHelper)
+   at Microsoft.DotNet.Cli.CommandLineInfo.PrintInfo()
+   at Microsoft.DotNet.Cli.Program.ProcessArgs(String[] args, TimeSpan startupTime)
+   at Microsoft.DotNet.Cli.Program.Main(String[] args)

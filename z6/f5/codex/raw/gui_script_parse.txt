@@ -1,0 +1,6 @@
+Source: tool console transcript; no launch/registration code executed.
+PASS Python parse: gui_acceptance.py
+PASS WinPS5 parser: ReadAnimationSettings.ps1
+PASS WinPS5 parser: LaunchHostInPackage.ps1
+PASS WinPS5 parser: ActivateHostNormally.ps1
+Exit: 0

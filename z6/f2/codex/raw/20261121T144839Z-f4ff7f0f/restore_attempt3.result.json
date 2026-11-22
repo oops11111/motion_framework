@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "dotnet",
+    "restore",
+    "FluentHub.slnx"
+  ],
+  "exit": 1,
+  "stdout_bytes": 1147,
+  "stderr_bytes": 0,
+  "original_stdout_sha256": "f7d590cce9367cd458fd0d884d707edfc4ad950473369eed0e254e25d239e9ff",
+  "original_encoding": "utf-8",
+  "child_env_added": {
+    "PROCESSOR_ARCHITECTURE": "AMD64"
+  },
+  "sdk": "10.0.300",
+  "build_executed": false,
+  "stop": "NU1903 Microsoft.DotNet.ILCompiler 10.0.8 GHSA-p3jp-9v83-76w9",
+  "encoding_limitation": "Captured UTF-8 bytes already contain U+FFFD; Chinese diagnostics cannot be reconstructed. ASCII error/package/advisory are intact. Original capture bytes preserved."
+}

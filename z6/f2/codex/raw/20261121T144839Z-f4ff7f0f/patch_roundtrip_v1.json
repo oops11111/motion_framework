@@ -1,0 +1,96 @@
+{
+  "apply_exit": 0,
+  "files": [
+    {
+      "path": "src/FluentHub/App.xaml.cs",
+      "bytes": 2115,
+      "sha256": "6f5e619662c42916c7a355a589a8ca09e8c8f227e1d9d66d4c9f016252f19671",
+      "roundtrip_equal": false,
+      "crlf": 0,
+      "bare_lf": 89,
+      "bom": false
+    },
+    {
+      "path": "src/FluentHub/FluentHub.csproj",
+      "bytes": 8382,
+      "sha256": "3d20c00ded8bf06200032f8fe10b5972230e4c4286f848a7e68dd175f38e1890",
+      "roundtrip_equal": true,
+      "crlf": 115,
+      "bare_lf": 0,
+      "bom": true
+    },
+    {
+      "path": "src/FluentHub/Views/MainWindow.cs",
+      "bytes": 2844,
+      "sha256": "1a2e06d2809f380005e86505d48c9cac0f7b364138a81c5c3e269a522f98670d",
+      "roundtrip_equal": true,
+      "crlf": 87,
+      "bare_lf": 0,
+      "bom": false
+    },
+    {
+      "path": "src/FluentHub/Views/RootView.xaml.cs",
+      "bytes": 11372,
+      "sha256": "6ef7c79cb381c8635b32f31756691f0a0c3a5acd6325f36fffcf2eac19f11f02",
+      "roundtrip_equal": true,
+      "crlf": 395,
+      "bare_lf": 0,
+      "bom": false
+    },
+    {
+      "path": "src/FluentHub/Views/NavMotionPilot.cs",
+      "bytes": 19296,
+      "sha256": "2cf3bebc184fd05a26da3689fdf7ea8116216847f569a8481d5b9081d702b5ce",
+      "roundtrip_equal": true,
+      "crlf": 608,
+      "bare_lf": 0,
+      "bom": false
+    },
+    {
+      "path": "src/FluentHub/Views/ReducedMotionState.cs",
+      "bytes": 838,
+      "sha256": "5a413863134c2dd6395c611ca8372cffb68253abc06de1f2d3c60da58a673c99",
+      "roundtrip_equal": false,
+      "crlf": 0,
+      "bare_lf": 29,
+      "bom": false
+    },
+    {
+      "path": "src/FluentHub/Views/FakeReducedMotionSource.cs",
+      "bytes": 1047,
+      "sha256": "2a56557b74253bab52cd7babf6f43cf6d26cac61dadd66ecde54af58a8f63563",
+      "roundtrip_equal": false,
+      "crlf": 0,
+      "bare_lf": 31,
+      "bom": false
+    },
+    {
+      "path": "src/FluentHub/Views/WindowReducedMotionSource.cs",
+      "bytes": 5405,
+      "sha256": "1fcce0c0070fffa6a873aaba3bcfb9e5b76d9a9c86b34c548995be9cd4a233e8",
+      "roundtrip_equal": false,
+      "crlf": 0,
+      "bare_lf": 142,
+      "bom": false
+    },
+    {
+      "path": "src/FluentHub/Views/RootRebuildState.cs",
+      "bytes": 1754,
+      "sha256": "f3b638372875462cf2f58818e3593bf756576ed11861f1cb24d060287369262b",
+      "roundtrip_equal": true,
+      "crlf": 62,
+      "bare_lf": 0,
+      "bom": false
+    },
+    {
+      "path": "src/FluentHub/Views/PilotEventCounts.cs",
+      "bytes": 1444,
+      "sha256": "db2c29c33b5482742048628a474275fe27ec82951d23ef15b769219d81643ea7",
+      "roundtrip_equal": true,
+      "crlf": 39,
+      "bare_lf": 0,
+      "bom": false
+    }
+  ],
+  "all_equal": false
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python",
+    "z6/f5/codex/verify.py",
+    "--run-source-tests"
+  ],
+  "exit": 0,
+  "checks": 20,
+  "evidence_manifest_entries": 130,
+  "gui_acceptance": false,
+  "child_env_added": {
+    "PROCESSOR_ARCHITECTURE": "AMD64"
+  }
+}

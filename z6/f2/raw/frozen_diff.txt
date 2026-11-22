@@ -1,0 +1,5 @@
+git diff --name-only HEAD -- <frozen>
+exit=0
+
+git diff --name-only c3fb8d92 -- <frozen>
+exit=0

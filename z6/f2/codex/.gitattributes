@@ -1,0 +1,4 @@
+* text eol=lf
+source_ledgers/*.md -text
+*.png -text
+raw/**/pilot.original.log -text

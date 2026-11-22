@@ -1,0 +1,36 @@
+{
+  "settings": {
+    "AnimationsEnabled": true,
+    "SPI_GETCLIENTAREAANIMATION": true,
+    "MinAnimate": "1",
+    "UserPreferencesMask": "9E3E078012000000"
+  },
+  "frameworks": [
+    {
+      "Version": "2.5.1.0",
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Architecture": 9,
+      "Status": 0
+    },
+    {
+      "Version": "2.6.5.0",
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Architecture": 9,
+      "Status": 0
+    },
+    {
+      "Version": "2.7.0.0",
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Architecture": 0,
+      "Status": 0
+    },
+    {
+      "Version": "2.7.0.0",
+      "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "Architecture": 9,
+      "Status": 0
+    }
+  ],
+  "all_package_fullnames_count": 127,
+  "original_PRE_sha256": "ff3d7d2d018b27dcfc1c19c146c3cddbf5e774878620ef9550a1018423a738c2"
+}

@@ -1,0 +1,17 @@
+lines=162
+F5 lines=12
+L6: 00006 F5 subscribed UISettings.AnimationsEnabledChanged=True; initial AnimationsEnabled=True -> SetReducedMotion(False)
+L8: 00008 F5 initial SetReducedMotion(False) applied on UI thread thread=2
+L9: 00009 F5 selftest enqueue ok=True (same value, no state change)
+L23: 00023 F5 SetReducedMotion(False) source=selftest animationsEnabled=True previous=True thread=2
+L25: 00025 F5 SetReducedMotion(False) applied; last_animationsEnabled=True
+L42: 00042 F5 subscribed UISettings.AnimationsEnabledChanged=True; initial AnimationsEnabled=True -> SetReducedMotion(False)
+L45: 00045 F5 initial SetReducedMotion(False) applied on UI thread thread=2
+L46: 00046 F5 selftest enqueue ok=True (same value, no state change)
+L67: 00067 F5 SetReducedMotion(False) source=selftest animationsEnabled=True previous=True thread=2
+L70: 00070 F5 SetReducedMotion(False) applied; last_animationsEnabled=True
+L114: 00114 F5 unsubscribed AnimationsEnabledChanged events=0
+L158: 00158 F5 unsubscribed AnimationsEnabledChanged events=0
+F5 source=event lines=0 (0 = system setting never switched in this run)
+FrameTick deltaUs payload lines=0 (FrameTick appears only as a count inside ETW_SUMMARY)
+package still registered after run=0

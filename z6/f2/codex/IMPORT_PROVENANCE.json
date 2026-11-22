@@ -1,0 +1,1222 @@
+[
+  {
+    "path": "z6/f2/REPORT.md",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c20d848155e1eef988dd0d37078471ba5313e1b1"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_00_appear.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "300df1cffc2b708880c586c6e590fa8deacbbcc3"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_01_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "300df1cffc2b708880c586c6e590fa8deacbbcc3"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_02_rebuild.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0370087e640a448955ea3c1e5211be824343afc3"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_03_after_dispose1.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0370087e640a448955ea3c1e5211be824343afc3"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_04_cycle2_start.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c152a9e7a87a6c5d13ad70fa130832f93450777d"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_05_cycle2_play.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "94e891a29264067da425c8ecbed6eb3877ea2ccd"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_06_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "727aed023d11f92912085d456623f2c408ec6585"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_07_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "8619445684b38fee45700836d8133ae94dfa3960"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_08_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e3cbc5c79a57d4e9979cfabd6be14b7c6615195c"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_09_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e3cbc5c79a57d4e9979cfabd6be14b7c6615195c"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_10_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e3cbc5c79a57d4e9979cfabd6be14b7c6615195c"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_11_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e3cbc5c79a57d4e9979cfabd6be14b7c6615195c"
+  },
+  {
+    "path": "z6/f2/evidence/window/win_12_cycle2_settled.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e3cbc5c79a57d4e9979cfabd6be14b7c6615195c"
+  },
+  {
+    "path": "z6/f2/f2_composition.ps1",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "63bb4ad0d84223b8167eb00fb479a3e27c67fb8f"
+  },
+  {
+    "path": "z6/f2/f2_patch.py",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "cdd8b6191edf89b9830eb6c5310e1424de5a16d0"
+  },
+  {
+    "path": "z6/f2/f2_run.py",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "ba9bcfb2224aa2ee455bf399d18ae2fdf37f83a3"
+  },
+  {
+    "path": "z6/f2/fluenthub_f2_NavMotionPilot.patch",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "44332b5724f09ea80983b212d7950e4e223081df"
+  },
+  {
+    "path": "z6/f2/fluenthub_f2_RootView.patch",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "5128e2af91cc7e11852c7e20185077004508c646"
+  },
+  {
+    "path": "z6/f2/patches_f2.sha256",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "d5fdb2d8d69dc82b10f0d523462bd2103dba8298"
+  },
+  {
+    "path": "z6/f2/raw/analysis.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "f12d55136c038d6bd6bade10ec2202c004071be6"
+  },
+  {
+    "path": "z6/f2/raw/build_wnae/build.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "1b884cb2829580d0781e3d20eddae57967c983b8"
+  },
+  {
+    "path": "z6/f2/raw/build_wnae/cmd.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e7556dec1b0390bcb7b950acbf3263aac91a4785"
+  },
+  {
+    "path": "z6/f2/raw/build_wnae/env.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "cd06205dadae768a5cfcedda20903b66db628165"
+  },
+  {
+    "path": "z6/f2/raw/build_wnae/times.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "6322e393c1dc9b042226f5a35f357a50b4c90be1"
+  },
+  {
+    "path": "z6/f2/raw/composition_post.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "ac871772920df386bab691b5ec68f95becc5cbab"
+  },
+  {
+    "path": "z6/f2/raw/composition_pre.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "d2887cf224961abdcd226eefaa96abc19f0abd46"
+  },
+  {
+    "path": "z6/f2/raw/frozen_diff.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "cf60ae3560334ba63c879468334d18471d3f7888"
+  },
+  {
+    "path": "z6/f2/raw/redaction_manifest.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "06cbb6b76d13e9860fb5ba9ab5e5b1e5b02690e6"
+  },
+  {
+    "path": "z6/f2/raw/run/register.out.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "7606c90a1e9d06cb3d5aa93733f6326d0025b2d3"
+  },
+  {
+    "path": "z6/f2/raw/run/run.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "d613f0f07549de464916b2d94e21644ca2f0baca"
+  },
+  {
+    "path": "z6/f2/raw/run/schtasks_create.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "1399037998c70aefc7e6efbd39e4ce060908a47c"
+  },
+  {
+    "path": "z6/f2/raw/run/schtasks_delete.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "d7d5172dc82f1a0f40fbcf2b0ef220c45e301359"
+  },
+  {
+    "path": "z6/f2/raw/run/schtasks_query_after.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "f0e00426e7cab9a0ce20bc66d4352d852c72a3cd"
+  },
+  {
+    "path": "z6/f2/raw/run/schtasks_run.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "b10712355c9d71633199bfb65aac45f0fb92ea6f"
+  },
+  {
+    "path": "z6/f2/raw/run/unregister.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "a4483345b149b21e90dba0a9c0623ac4d0483077"
+  },
+  {
+    "path": "z6/f2/raw/run/z6_f2_motion.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "ebea6766fad08620fd5fd8bc5ece59a7228b8f1a"
+  },
+  {
+    "path": "z6/f2/raw/run/z6_f2_motion_preclose.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "614dbedd5b407cd14b82de7c79bd6a0f0eb49b55"
+  },
+  {
+    "path": "z6/f5/REPORT.md",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "15bd3828f9b6ba6ef6ab373c7645bbdd18fe1877"
+  },
+  {
+    "path": "z6/f5/codex/.gitattributes",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f"
+  },
+  {
+    "path": "z6/f5/codex/ActivateHostNormally.ps1",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "16e98006a9c0ab103004d8e037079eb05ad95e77"
+  },
+  {
+    "path": "z6/f5/codex/CONTINUATION.md",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4e899ca27a6d3433bdd78fbcfb9876fdd4d23fd9"
+  },
+  {
+    "path": "z6/f5/codex/GUI_ACCEPTANCE.md",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "01e8030c325c5b9aa637cc82733bc6a766ecc624"
+  },
+  {
+    "path": "z6/f5/codex/GUI_RESULTS.md",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "a8fa89a46be051889f543c488b302556ef706f1e"
+  },
+  {
+    "path": "z6/f5/codex/LaunchHostInPackage.ps1",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "11f4fe4301348c3f442bb2bfa17968e7cce4b37f"
+  },
+  {
+    "path": "z6/f5/codex/PLAN.md",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "08e22a5b83c0b1c53b9fe443b89f1458e4eeb7ad"
+  },
+  {
+    "path": "z6/f5/codex/REPORT.md",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c1ca2197167aff64c7b87e444237d7bc24d36f6f"
+  },
+  {
+    "path": "z6/f5/codex/ROOT_CAUSE.md",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c36944c90ee71c01dc2f3ff11ceb4e97ceb4832b"
+  },
+  {
+    "path": "z6/f5/codex/ReadAnimationSettings.ps1",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "618cd91a66f6ba7009952ecd77aadc615791837d"
+  },
+  {
+    "path": "z6/f5/codex/SHA256SUMS",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "59fca6356f0e9579b31f9a9c29adc54197f65ae4"
+  },
+  {
+    "path": "z6/f5/codex/SourceTests.cs",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "069529116dbdda1fb04166e265bb6bc3c347e7ac"
+  },
+  {
+    "path": "z6/f5/codex/diagnostics/ReadTaskIl.cs",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "96031416ffedaa6b0f357a6386c6af0432f2ffe8"
+  },
+  {
+    "path": "z6/f5/codex/fluenthub_f5_window_source.patch",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "1d21ac3fcaa7640f69f8197b7757fce08121efa6"
+  },
+  {
+    "path": "z6/f5/codex/fluenthub_f5_window_source_v2.patch",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "b13693ad53a6c161d51b245df6555eddc5d88514"
+  },
+  {
+    "path": "z6/f5/codex/fluenthub_f5_window_source_v3.patch",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "9221cc31542abd6fb8e022a7ec7e3467469e4145"
+  },
+  {
+    "path": "z6/f5/codex/gui_acceptance.py",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "fef67bd8809e706c16539fbd0e52c957b8913da3"
+  },
+  {
+    "path": "z6/f5/codex/raw/app_activation_fake_v2.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "16b98c6305bd1c4ac974c7db25788985dffd48d5"
+  },
+  {
+    "path": "z6/f5/codex/raw/app_activation_fake_v3.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "accc6abd41ddea84be8081fdbf08bc1c3f8a2407"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt1_console.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "659d25233c7fe395fe383302c29372f8d0038002"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt2_diagnostic.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "55ec3d15cd761de11f1a393714f5b9fbef2baabf"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt3_original.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "b1d8f7f44e16b5c0e2cc4583cbe4cc1f48d93fd3"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt4_nonoriginal.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "181eaf99a83bb6c455a24e9c2478365fca570bd8"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt5_vcvars_nonoriginal.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "8b08dba8adf28433d99b6366659ac53d9fe8e217"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt6_command.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "64c2ce62511d79dfa2600adb491fd01caae00447"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt6_env_nonoriginal.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "6a3534d27c033e7702a0d2590b1136e26f00059f"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt7_command.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "35a08738f5a02acea9a232b8d3536994809a4816"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt7_nonoriginal.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "00c1167698e4c750aec9279127d026a1a7614788"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt8_command.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "a00d4b128fa339b8b39c6f716d4a3496bb280a4a"
+  },
+  {
+    "path": "z6/f5/codex/raw/build_attempt8_nonoriginal.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "a1ccafc94ed7095b7c1bc0e528c0c29044d3976b"
+  },
+  {
+    "path": "z6/f5/codex/raw/direct_exe_attempt1.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "fed50973037c97e266136be121906e9b2e34f129"
+  },
+  {
+    "path": "z6/f5/codex/raw/direct_exe_attempt1_stderr.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "fbabeb3b94c273f46f696b2e63291fe8ffc50457"
+  },
+  {
+    "path": "z6/f5/codex/raw/direct_exe_attempt2.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "08541ca7e00850351dac5401b8355d8c375f6afa"
+  },
+  {
+    "path": "z6/f5/codex/raw/direct_exe_attempt2_stderr.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "fbabeb3b94c273f46f696b2e63291fe8ffc50457"
+  },
+  {
+    "path": "z6/f5/codex/raw/environment_after_attempt6.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "24475680c7deec5614821f48ed0ba2fe06c3cda4"
+  },
+  {
+    "path": "z6/f5/codex/raw/environment_probe_before_attempt6.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c1001d727f19f050e3346a235e53723c6f69053b"
+  },
+  {
+    "path": "z6/f5/codex/raw/environment_probe_vcvars_before_attempt6.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "47375202f27cac5b56a399a35a991465148a08f1"
+  },
+  {
+    "path": "z6/f5/codex/raw/frozen_surface.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "04e9c7622a50a960cb701b9f11c53e6d3691ff67"
+  },
+  {
+    "path": "z6/f5/codex/raw/frozen_surface_v3.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "f9282cf18a4bbcda35e4d82a2fed85f827cc73a3"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/Fake-close-error.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e5345bf723eaad399cedf6b7d12df735c27fc6af"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/Fake-launch-request.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "86825b5d15a61df4993643474c7b4785235541ef"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/Fake-state.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "1a795b150deb5d2922bc6cfc5d373bf9fc93257e"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/Fake-stderr.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/Fake-stdout.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/authorization.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4d05c88626cf170d877167db2d0f5010f6fb985e"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/driver_console.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "38d2c7a6b408947d0da9d76e28a29d6f7e5f5283"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/evidence_provenance.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "ea0affc24d4b98f204c4adfd9b56a3d9f4f5af5d"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/exact_package_cleanup.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "afe8fbd0e964e4663cec09690e5a525bf3c5d8e1"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/known_log_locations_after_cleanup.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "6d434d4261a4db86cc7aae580a11a303fd359874"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/owned_host_before_termination.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "fd8c831a2ed9534c1e3e36bab869dc5fc350b3c7"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/owned_host_cleanup.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e6c3436258b0094e175b6465a5589d52ed3f2c72"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/plan.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "f4421db994b5aabb8bf153015ab4e35bd64177ba"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/registered-package.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "91434e3e6232e88e69f0a48db207adc8731c0daa"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/result.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4dfcfc3eb055347d8aa2f1ba1a84bc3afbab7089"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/settings_after_cleanup.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "bec7ac50d2bda6085a58ad32ecbe11b33060c37a"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt1/source_SHA256SUMS_before_sanitizing.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "fe031b340c86a107b4fa711b99b0debdfa8a3173"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/Ordinary-launch-request.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "494dfc51eaccbe32efc539f0a362a628973acd27"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/Ordinary-package-app-log.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "23e0066f1f7fcb00c67d991418f8f90436c9bacb"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/Ordinary-state.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "98678d81d461f4c68e2628393b8732836c6ac314"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/Ordinary-windows.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "ac7b72c21a3b711eee736fd72f8b7cd17cd7df71"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/authorization.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4d05c88626cf170d877167db2d0f5010f6fb985e"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/driver_console.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "b2b63e62f4d411c9db5782d5839e5341c9bdbbe2"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/evidence_provenance.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c48566ba72ff4d799bf744d8bd38234050f241ca"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/plan.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "f12cee2c28585f926a84cacc73f86eab3d65a51d"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/registered-package.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "91434e3e6232e88e69f0a48db207adc8731c0daa"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/result.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "528f71e670bc9da9a1b8dcd1af7b86355c0d1a7a"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt2/source_SHA256SUMS_before_sanitizing.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "95e27f20236747dcaeba9f6186519ec50c252d2e"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/Ordinary-app-log.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e30c137c5bde83a36bd54c6aee6331220d436156"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/Ordinary-launch-request.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "494dfc51eaccbe32efc539f0a362a628973acd27"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/Ordinary-message-injection.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "f3b8b934793824a22365a5a82f6d4562f8b1310e"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/Ordinary-package-app-log.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e30c137c5bde83a36bd54c6aee6331220d436156"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/Ordinary-settings.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0d56c01ad90cc452566fd0d488dd93d553037b43"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/Ordinary-state.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4cbb6dfe1f3c8005878d641a1cec4fbcfdbf9568"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/Ordinary-windows.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "9acf4b0a591fccf7c025453e0552368375c1fb5d"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/authorization.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4d05c88626cf170d877167db2d0f5010f6fb985e"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/driver_console.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "96f6709dcead05bf039450c5d42ea9d7529fc897"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/evidence_provenance.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "b051e5c76e0ca452a93ee0a5f1af8e12b671ddd5"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/plan.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "f12cee2c28585f926a84cacc73f86eab3d65a51d"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/registered-package.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "91434e3e6232e88e69f0a48db207adc8731c0daa"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/result.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "2ce31ee73c8d63fdc3b42b0c707c5fc398ae3574"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt3/source_SHA256SUMS_before_sanitizing.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e0a966c7eb2b35f25953e5a50581e35a71ec49c7"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/OrdinaryFake-launch-request.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "125fa0fa45f5ac3b93013aefd16b90bca1f9ec2a"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/OrdinaryFake-package-app-log.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "8a51c8e5447137d1673bba4e80b18af0ac02e5a5"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/OrdinaryFake-state.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "95c02e97cc0c2012e1b3c30c31e4e6173666cacc"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/OrdinaryFake-windows.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "d92153dd5559dfb42cca447020da4aef4f6f1198"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/authorization.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4d05c88626cf170d877167db2d0f5010f6fb985e"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/driver_console.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c30a199aa2e40cf87606ca724bb29efe11898bb7"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/evidence_provenance.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "b156c84bce4b64baa9428d7c6766136f87c38433"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/plan.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4c9fdb056927086fcff3cac6ff9a61bb0bf9645e"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/registered-package.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "91434e3e6232e88e69f0a48db207adc8731c0daa"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/result.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "519e57c6a861d720c6689dee6fc6900354b80352"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt4/source_SHA256SUMS_before_sanitizing.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0592f084810625e5228c78589ee7e6543c32beeb"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/Ordinary-app-log.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "f692ed98ea6bda8a2c643d00be79f0aefe231d73"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/Ordinary-launch-request.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "494dfc51eaccbe32efc539f0a362a628973acd27"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/Ordinary-message-injection.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e901e3579099d472b34206316aad7599f3bfafcf"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/Ordinary-package-app-log.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "f692ed98ea6bda8a2c643d00be79f0aefe231d73"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/Ordinary-prior-package-app-log.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "61b1d5e8747d421cb338e8b07312263fdacf9e40"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/Ordinary-settings.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0d56c01ad90cc452566fd0d488dd93d553037b43"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/Ordinary-state.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "b7b6304ae255ded1f8c98cb6b8c04967ecb87a4c"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/Ordinary-windows.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "9091228485ae69a65299c3f58d06b51844d67d52"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/OrdinaryFake-app-log.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "61b1d5e8747d421cb338e8b07312263fdacf9e40"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/OrdinaryFake-launch-request.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "125fa0fa45f5ac3b93013aefd16b90bca1f9ec2a"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/OrdinaryFake-package-app-log.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "61b1d5e8747d421cb338e8b07312263fdacf9e40"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/OrdinaryFake-settings.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0d56c01ad90cc452566fd0d488dd93d553037b43"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/OrdinaryFake-state.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "811080fe3c92ef5aeb104fe516efcf8b6745d514"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/OrdinaryFake-windows.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "9575f42b93b4ee3509a753a526e9f099b94f504c"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/authorization.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4d05c88626cf170d877167db2d0f5010f6fb985e"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/driver_console.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "40b491404445a246fd9c4cb771b3440838431056"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/evidence_provenance.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "814de259fc037cc1af93e8e16b38cc8cd5374005"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/plan.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "da760ebc30c2fef34ad3b849edd697b03e9379c3"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/registered-package.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "91434e3e6232e88e69f0a48db207adc8731c0daa"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/result.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "73cf7b1f13489a22ee135126b3bc42cf6b2c4525"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_attempt5/source_SHA256SUMS_before_sanitizing.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "f2b97d9d8377436731c5799820fc012199fc5fe1"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_final_acceptance_summary.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "b44fb9090d9630a493cf3ea55c3db8d98b43bc0a"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_preflight_dryrun.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "5118b1f130f2bc23fac388347cda28679e343ae5"
+  },
+  {
+    "path": "z6/f5/codex/raw/gui_script_parse.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "8711ab36d72d9db4230545a649da32196e0d5b7a"
+  },
+  {
+    "path": "z6/f5/codex/raw/host_artifact_attempt4.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "249685cafb32d4dbb5d4f7715758b612da83a333"
+  },
+  {
+    "path": "z6/f5/codex/raw/host_artifact_attempt7_v2.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "53732baa5d1c017b77161c5ef27991b91e690b5a"
+  },
+  {
+    "path": "z6/f5/codex/raw/host_artifact_attempt8_v3.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4be0c2c58b87349cb56d6ae71f50e2f45f8e5182"
+  },
+  {
+    "path": "z6/f5/codex/raw/mrm_support_existing_sdk.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e27c353ad6dbeb2b9905e0aad32e0231f53462a2"
+  },
+  {
+    "path": "z6/f5/codex/raw/msix_getlocation_net472_il.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "3de21183533ad018d13107c76d57e9fb3ec8afa6"
+  },
+  {
+    "path": "z6/f5/codex/raw/msix_getlocation_net6_il.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "154904c7fb37aba3297e45a837260212531b480b"
+  },
+  {
+    "path": "z6/f5/codex/raw/patch_roundtrip.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "3943b62700eec9bbc88ec0c33ab59b84d22e0878"
+  },
+  {
+    "path": "z6/f5/codex/raw/patch_roundtrip_v2.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "a89d40d9ed2f0fe46fdb95a195d3e5704c230d13"
+  },
+  {
+    "path": "z6/f5/codex/raw/patch_roundtrip_v3.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "a538eac292969eadc2399d3f3a0430427ccfa6b5"
+  },
+  {
+    "path": "z6/f5/codex/raw/runtime_packages.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "ea952b8fa02bcb88e621c36485ff5481f0eef686"
+  },
+  {
+    "path": "z6/f5/codex/raw/sidefork_pre.json",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c4ff74fc95cd8050b05feea36d8553d526e64c37"
+  },
+  {
+    "path": "z6/f5/codex/raw/source_tests_attempt3_failure.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0d8a400a9152329e317ef7c86ca0c5d0d6eacd6d"
+  },
+  {
+    "path": "z6/f5/codex/raw/source_tests_attempt4.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "eb57d94b82ff10a4bd5b88e82b008978f97427d4"
+  },
+  {
+    "path": "z6/f5/codex/raw/winuiex_2_9_2_api.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "622f7ab97b484f25eb7a8e7405eb09b49bd5d161"
+  },
+  {
+    "path": "z6/f5/codex/verify.py",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "dc54a31d00ee884bcd5b5d641b224e0d557acbd6"
+  },
+  {
+    "path": "z6/f5/f5_build.ps1",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "daaf2942a193e7836acd275bc7d0b707f351d20e"
+  },
+  {
+    "path": "z6/f5/f5_collect.ps1",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "311a9c90eb9295d2d3bb61a6e2240b573fc31117"
+  },
+  {
+    "path": "z6/f5/f5_composition.ps1",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e3399634a31e0669b6478e70932aa4f8af5f2b2c"
+  },
+  {
+    "path": "z6/f5/f5_patch.py",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "af0a0fc63ebd0b466e41a6003b79f857d17d400a"
+  },
+  {
+    "path": "z6/f5/f5_run.py",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "b764c1a7e4dfc10e080005d05a899e498c3567dc"
+  },
+  {
+    "path": "z6/f5/f5b_collect.ps1",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "ff9c00dfcc0c3ddabf0c4430510dec6be53727d9"
+  },
+  {
+    "path": "z6/f5/f5b_run.py",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "79306446ab3eeeade271e6df224539e8b3312d56"
+  },
+  {
+    "path": "z6/f5/fluenthub_f5_NavMotionPilot.patch",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "24e3376a41e31e443e4b812f6e88cf702e225d00"
+  },
+  {
+    "path": "z6/f5/patches.sha256",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "01b52da6ff5a8a28fca655f68ce0f69efb9b9adf"
+  },
+  {
+    "path": "z6/f5/raw/analysis.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "1d3e5fd5aaa59b6087f47393a4566a5a3417c027"
+  },
+  {
+    "path": "z6/f5/raw/attempt1/console_capture.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c1d33b95ff195f398d320fb03afac0b4738c786d"
+  },
+  {
+    "path": "z6/f5/raw/attempt2_console_gbk/build.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "46d6d926d04635aa52fb881f4e7fb569b56399ad"
+  },
+  {
+    "path": "z6/f5/raw/attempt2_console_gbk/cmd.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e7556dec1b0390bcb7b950acbf3263aac91a4785"
+  },
+  {
+    "path": "z6/f5/raw/attempt2_console_gbk/env.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "382a5ef5b503c55939cc454614ed4072aec7a634"
+  },
+  {
+    "path": "z6/f5/raw/attempt2_console_gbk/times.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "4a041248703f576a789bf5c0b5f062ac9698764d"
+  },
+  {
+    "path": "z6/f5/raw/build_wnae/build.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "5a285ffdac09d250321c2669607106643e7de2d4"
+  },
+  {
+    "path": "z6/f5/raw/build_wnae/cmd.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e7556dec1b0390bcb7b950acbf3263aac91a4785"
+  },
+  {
+    "path": "z6/f5/raw/build_wnae/env.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "382a5ef5b503c55939cc454614ed4072aec7a634"
+  },
+  {
+    "path": "z6/f5/raw/build_wnae/times.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "601b89cd420ddd8286a49b2cd38c6463f4a9defe"
+  },
+  {
+    "path": "z6/f5/raw/composition_post.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e4e9f4c8cea77c4932bd88a44b7e6d3ba258e8d7"
+  },
+  {
+    "path": "z6/f5/raw/composition_pre.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "a1294f77d6709bacc7d50ed1913b97e58b63bd15"
+  },
+  {
+    "path": "z6/f5/raw/frozen_diff.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c0738dbf714d2aa261146ff6fa1fb5316b3eb074"
+  },
+  {
+    "path": "z6/f5/raw/redaction_manifest.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "d1ee91ff822957a870c982f54f011abe9e63ed09"
+  },
+  {
+    "path": "z6/f5/raw/run/close.out.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0ca95142bb715442d0c2c82a7c573a08c4593845"
+  },
+  {
+    "path": "z6/f5/raw/run/frames/win_00_appear.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "300df1cffc2b708880c586c6e590fa8deacbbcc3"
+  },
+  {
+    "path": "z6/f5/raw/run/frames/win_01_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "300df1cffc2b708880c586c6e590fa8deacbbcc3"
+  },
+  {
+    "path": "z6/f5/raw/run/frames/win_02_selftest.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0370087e640a448955ea3c1e5211be824343afc3"
+  },
+  {
+    "path": "z6/f5/raw/run/frames/win_03_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0fd703d9392f9fffe86c1def017f64b7a6d24ba5"
+  },
+  {
+    "path": "z6/f5/raw/run/frames/win_04_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "9aa07de1d5e868ecf64fdfaeaf86e1182758868d"
+  },
+  {
+    "path": "z6/f5/raw/run/frames/win_05_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "9aa07de1d5e868ecf64fdfaeaf86e1182758868d"
+  },
+  {
+    "path": "z6/f5/raw/run/frames/win_06_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "9aa07de1d5e868ecf64fdfaeaf86e1182758868d"
+  },
+  {
+    "path": "z6/f5/raw/run/frames/win_07_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "9aa07de1d5e868ecf64fdfaeaf86e1182758868d"
+  },
+  {
+    "path": "z6/f5/raw/run/frames/win_08_settled.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "9aa07de1d5e868ecf64fdfaeaf86e1182758868d"
+  },
+  {
+    "path": "z6/f5/raw/run/preexisting_package.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run/register.out.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "7606c90a1e9d06cb3d5aa93733f6326d0025b2d3"
+  },
+  {
+    "path": "z6/f5/raw/run/run.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "5e7870fa559e8ed0d6113d57334488aaa7322b85"
+  },
+  {
+    "path": "z6/f5/raw/run/schtasks_create.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "867c189977a5a6dbd9bd6c3f2ee24c9f72e7a1ca"
+  },
+  {
+    "path": "z6/f5/raw/run/schtasks_delete.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e8d010699bb6384e373ce24355c3db62afc3cc66"
+  },
+  {
+    "path": "z6/f5/raw/run/schtasks_delete_stale.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "2cc964b68f13ef2f30b3afaa8c4e4d826f2761b2"
+  },
+  {
+    "path": "z6/f5/raw/run/schtasks_query_after.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "2cc964b68f13ef2f30b3afaa8c4e4d826f2761b2"
+  },
+  {
+    "path": "z6/f5/raw/run/schtasks_run.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "167686eb2723e025670f9c570f1a23601dbdca34"
+  },
+  {
+    "path": "z6/f5/raw/run/unregister.out.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run/z6_f5_motion.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e1604d551fcc8b7f5366eb57bfa392cfab6fe971"
+  },
+  {
+    "path": "z6/f5/raw/run/z6_f5_motion_preclose.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "693091aaaaf3c227412f364bc6e723e1ecf3fb86"
+  },
+  {
+    "path": "z6/f5/raw/run2/analysis.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "3ac551a0870cae09b4174ada4c80cdd136b3707e"
+  },
+  {
+    "path": "z6/f5/raw/run2/close.out.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0ca95142bb715442d0c2c82a7c573a08c4593845"
+  },
+  {
+    "path": "z6/f5/raw/run2/composition_post.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "88f445381fa07feed885df4d6b3a51cc819a3a55"
+  },
+  {
+    "path": "z6/f5/raw/run2/composition_pre.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "ec9d2525275613633a06a48838a43651fca664c0"
+  },
+  {
+    "path": "z6/f5/raw/run2/diag/diagnostic.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "6de8ad258c893392914b837a4fa1bd726f463cee"
+  },
+  {
+    "path": "z6/f5/raw/run2/diag/listener.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "bb6dc1f28cff947d819b2586b5c32f7ba41da343"
+  },
+  {
+    "path": "z6/f5/raw/run2/diag/uisettings_listen.ps1",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "0057c4d8ae731433b469ca8243339111d8f4a504"
+  },
+  {
+    "path": "z6/f5/raw/run2/frames/win_00_appear.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "c659c980b47e5b94b8590f2e1f94ae2723a48f0c"
+  },
+  {
+    "path": "z6/f5/raw/run2/frames/win_01_tick.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "300df1cffc2b708880c586c6e590fa8deacbbcc3"
+  },
+  {
+    "path": "z6/f5/raw/run2/frames/win_02_settled.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "2753d0364e6661faf055c39f879fdc9e3b4f7a7c"
+  },
+  {
+    "path": "z6/f5/raw/run2/frames/win_03_anim_off.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "2753d0364e6661faf055c39f879fdc9e3b4f7a7c"
+  },
+  {
+    "path": "z6/f5/raw/run2/frames/win_04_anim_on.png",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "2753d0364e6661faf055c39f879fdc9e3b4f7a7c"
+  },
+  {
+    "path": "z6/f5/raw/run2/frozen_diff.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "28be014583c1ea499a3927bcaf59585849eadd42"
+  },
+  {
+    "path": "z6/f5/raw/run2/log_after_off.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run2/log_after_on.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run2/pre_git.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "5e26ba4dc42f26abf982813328136a7aea71ad5f"
+  },
+  {
+    "path": "z6/f5/raw/run2/preexisting_package.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run2/redaction_manifest.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "6cec76dce21c4d9675660c30b377b0c6ae20457c"
+  },
+  {
+    "path": "z6/f5/raw/run2/register.out.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "7606c90a1e9d06cb3d5aa93733f6326d0025b2d3"
+  },
+  {
+    "path": "z6/f5/raw/run2/run.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "dcba0c3cfae4a1fe0510bfa0d9137944c0e7974c"
+  },
+  {
+    "path": "z6/f5/raw/run2/schtasks_create.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run2/schtasks_delete.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run2/schtasks_delete_stale.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run2/schtasks_query_after.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run2/schtasks_run.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run2/settings_post_script.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "94ea038272171698bc126815cdb5a1f5a2d5fdcf"
+  },
+  {
+    "path": "z6/f5/raw/run2/settings_pre.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "8df9e8be83891c468f7ffcb3c50088d119387e6c"
+  },
+  {
+    "path": "z6/f5/raw/run2/settings_pre_script.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "eaa92ba2cd650562484ff1d0f16b146e047f025f"
+  },
+  {
+    "path": "z6/f5/raw/run2/unregister.out.txt",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "z6/f5/raw/run2/z6_f5b_motion.log",
+    "source_ref": "15d4108fd56eb661c1a46c6552ffe74a0318ff28",
+    "source_blob": "1238e2b0996c1370885b38cbc98f20989b5446c1"
+  }
+]
