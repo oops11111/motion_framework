@@ -1,0 +1,8 @@
+{
+  "grant_status": "pending",
+  "grant_kind": "F2 temporary package runtime",
+  "source": "preparation only; no F2 package-operation user grant received",
+  "user_verbatim": null,
+  "scope_proposed": "exact FluentHub 0.11.0.0 x64 temporary register, ordinary Fake/Real lifecycle and mandatory F5 B/C/E, normal close, exact cleanup",
+  "does_not_inherit": "F5 or Files package grants"
+}

@@ -1,0 +1,8 @@
+{
+  "source": "primary messages in current conversation",
+  "recorded_utc": "2026-11-22T01:43:59.552181+00:00",
+  "record_time_is_not_primary_send_or_test_time": true,
+  "primary_layout_check": "284 file hashes and complete file set PASS",
+  "primary_final_ValidateOnly": "exit0 full guard and COM compilation PASS; package query/registration/activation NOT_EXECUTED",
+  "package_grant_status": "pending"
+}

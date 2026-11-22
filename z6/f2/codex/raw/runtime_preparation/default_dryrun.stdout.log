@@ -1,0 +1,16 @@
+{
+  "mode": "dryrun",
+  "identity": {
+    "Name": "49462fluenthub-uwp.FluentHub",
+    "Publisher": "CN=4E3C0825-4D00-4ECC-89F8-528E9200B125",
+    "Version": "0.11.0.0",
+    "ProcessorArchitecture": "x64"
+  },
+  "layout_sha256": "d5c6885a1f8099066e5902ba2d978f9be9fb53e659578de57861415e996df3da",
+  "host_dll_sha256": "428fe0ba893c45df426da289685cc687caf2e5e216d9a2e4506e38d7eeab4981",
+  "registration": "NOT_EXECUTED until direct F2 grant and bound primary instruction",
+  "modes": [
+    "Fake (--fm-pilot-f5=1)",
+    "Real (empty arguments)"
+  ]
+}
