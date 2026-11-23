@@ -10,3 +10,18 @@ m0/out/
 # Z4 r1 collection output. Tooling stays in git; session results do not.
 z4/results_etw_l1_smoke_r1/
 MotionSoftDemo/Z4Dev.pfx
+
+# MF-05: compiled test binaries and session evidence must not be committed.
+# These patterns do not untrack files already in git; removing the
+# already-committed copies (test binaries, .nettrace/.wer traces, result CSVs,
+# evidence bundles) needs a history rewrite, which is a separate decision.
+# Evidence produced after this change belongs in the evidence store / LFS,
+# not in this repository.
+code/*_tests
+code/*_tests_san
+artifacts/
+*.nettrace
+*.wer
+m0/results_*/
+m3/results_*/
+z4/results_*/
