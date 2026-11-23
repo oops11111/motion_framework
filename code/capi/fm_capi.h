@@ -40,6 +40,7 @@ FM_API int  fm_animation_retarget(fm_system*, uint64_t anim, const char* propert
 
 FM_API void fm_on_frame(fm_system*);                               /* call from your frame callback */
 FM_API int  fm_is_running(fm_system*);
+FM_API int  fm_active_count(fm_system*);                           /* live controllers (MotionSystem::ActiveCount); 0 when idle or null */
 FM_API int  fm_current(fm_system*, uint64_t target, const char* property, double* value, double* velocity);
 
 #ifdef __cplusplus

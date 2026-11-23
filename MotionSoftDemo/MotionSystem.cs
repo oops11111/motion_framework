@@ -1,12 +1,15 @@
 // Z3A-CABI-L1 public surface: MotionSystem / AnimationHandle / MotionTokens.
-// Software path only, over the existing 14 fm_* exports (code/capi/fm_capi.h).
-// No new native exports. No WinRT Composition backend. No RiveView / PointerFollow.
+// Software path only, over the 15 fm_* exports (code/capi/fm_capi.h), including
+// fm_active_count (MF-06: real active-controller count for FrameTick).
+// No WinRT Composition backend. No RiveView / PointerFollow.
 // Spring arguments are caller-supplied. Nothing here defaults to PACING r4 0.3·T.
 // P/Invoke stays internal. Thread rule (contract Table 2): one UI thread; no fm_* from sink/render.
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 
 namespace MotionSoftDemo;
 
@@ -60,6 +63,9 @@ public sealed class MotionSystem : IDisposable
     /// <summary>ETW session correlation. Not a Table 1 motion operation.</summary>
     internal ulong SessionId => _sessionId;
 
+    /// <summary>True once <see cref="Dispose"/> has destroyed the native system.</summary>
+    internal bool IsDisposed => _disposed;
+
     /// <summary>Table 2 probe counter. Incremented when an API call arrives off the creating thread.</summary>
     internal int CrossThreadHits => _crossThreadHits;
 
@@ -74,6 +80,12 @@ public sealed class MotionSystem : IDisposable
     /// false: idle, unsubscribe. Do not call back into the API from this handler (Table 2).
     /// </summary>
     public event Action<bool>? FramePumpChanged;
+
+    // MF-12: Debug-only DLL-path override state. Set in the static ctor; read in
+    // the instance ctor so a failed resolver install never silently loads a
+    // different fluidmotion.dll when FM_FLUIDMOTION_PATH names an existing file.
+    static string? s_dllPathOverride;
+    static bool s_dllPathOverrideFailed;
 
     static MotionSystem()
     {
@@ -92,7 +104,13 @@ public sealed class MotionSystem : IDisposable
         }
         catch (InvalidOperationException)
         {
-            // Another resolver already owns this assembly; default probing still applies.
+            // MF-12: another resolver already owns this assembly, so the override
+            // did NOT install. Record it instead of silently falling back to
+            // default probing; the instance ctor refuses an existing override
+            // path in this state (below).
+            s_dllPathOverride = path;
+            s_dllPathOverrideFailed = true;
+            Debug.WriteLine("FM_FLUIDMOTION_PATH override not installed: a DllImport resolver already owns this assembly.");
         }
 #endif
     }
@@ -102,6 +120,13 @@ public sealed class MotionSystem : IDisposable
         _ownerThread = Environment.CurrentManagedThreadId;
         _sessionId = NewSessionId();
         _lastFrameTs = Stopwatch.GetTimestamp();
+#if DEBUG
+        // MF-12: the override path names an existing file but the resolver install
+        // failed (see static ctor). Loading by default probing could silently bind
+        // a different fluidmotion.dll, so fail here instead.
+        if (s_dllPathOverrideFailed && s_dllPathOverride != null && File.Exists(s_dllPathOverride))
+            throw new InvalidOperationException("FM_FLUIDMOTION_PATH names '" + s_dllPathOverride + "' but no DllImport resolver could be installed for this assembly; refusing to load a different fluidmotion.dll silently.");
+#endif
         _sink = OnSink;
         _render = OnRender;
         _sys = manual
@@ -116,11 +141,23 @@ public sealed class MotionSystem : IDisposable
     /// <summary>Dev/test clock (<c>fm_create_manual</c>). Not part of the public L1 surface.</summary>
     internal static MotionSystem CreateManual() => new(manual: true);
 
+    static int s_sessionSeq;
+
     internal static ulong NewSessionId()
     {
+        // MF-12: the old (pid << 32) | (uint)TickCount64 form repeated identically
+        // every ~49.7 days (the low 32 tick bits wrap) and collided for systems
+        // created in the same millisecond. Mix all 64 tick bits, the pid, and a
+        // per-process sequence through a SplitMix64 finalizer so ids stay distinct
+        // across wraps and same-tick creations. SessionId is only an ETW
+        // correlation key; nothing decodes pid/tick out of it.
+        ulong tick = (ulong)Environment.TickCount64;
         ulong pid = (uint)Environment.ProcessId;
-        ulong tick = (uint)Environment.TickCount64;
-        return (pid << 32) | tick;
+        ulong seq = (uint)Interlocked.Increment(ref s_sessionSeq);
+        ulong z = tick + 0x9E3779B97F4A7C15UL + (pid << 32) + seq * 0xBF58476D1CE4E5B9UL;
+        z = (z ^ (z >> 30)) * 0xBF58476D1CE4E5B9UL;
+        z = (z ^ (z >> 27)) * 0x94D049BB133111EBUL;
+        return z ^ (z >> 31);
     }
 
     /// <summary>Table 1 <c>MotionSystem.LoadTokens</c> → <c>fm_load_tokens</c>. Null = success; otherwise JSON-Pointer diagnostics.</summary>
@@ -129,6 +166,7 @@ public sealed class MotionSystem : IDisposable
     internal string? LoadTokens(string json, string name)
     {
         Affinity();
+        ThrowIfDisposed();
         if (json == null) throw new ArgumentNullException(nameof(json));
         if (string.IsNullOrEmpty(name)) name = "motion.json";
         var err = new byte[4096];
@@ -156,6 +194,7 @@ public sealed class MotionSystem : IDisposable
         get
         {
             Affinity();
+            ThrowIfDisposed();
             return Call(s => FmAbi.fm_is_running(s), 0) != 0;
         }
     }
@@ -178,7 +217,11 @@ public sealed class MotionSystem : IDisposable
         _lastFrameTs = now;
         double costMs = (now - t0) * 1000.0 / Stopwatch.Frequency;
         uint engineUs = (uint)Math.Max(0, costMs * 1000.0);
-        uint active = IsRunning ? 1u : 0u;
+        // MF-06/MF-12: real active-controller count via fm_active_count: one native
+        // call, no Affinity re-check, no fm_is_running round-trip. _disposed was
+        // checked above and DestroyCore clears _sys together with _disposed, so
+        // _sys is live here; fm_active_count(null) is 0 regardless.
+        uint active = (uint)FmAbi.fm_active_count(_sys);
         MotionEtw.Log.FrameTick(_sessionId, deltaUs, engineUs, active);
         if (EmitFrameTickAccept && (_frameTicks % 8 == 1))
             MotionEtw.Log.FrameTickAccept(_sessionId, deltaUs, engineUs, active);
@@ -196,6 +239,7 @@ public sealed class MotionSystem : IDisposable
     public MotionSample? Current(ulong target, string property)
     {
         Affinity();
+        ThrowIfDisposed();
         if (property == null) throw new ArgumentNullException(nameof(property));
         double value = 0, velocity = 0;
         bool ok = Call(s => FmAbi.fm_current(s, target, property, out value, out velocity), 0) != 0;
@@ -224,21 +268,21 @@ public sealed class MotionSystem : IDisposable
 
     internal bool PlayRaw(ulong anim)
     {
-        if (anim == 0) return false;
+        if (anim == 0 || _disposed) return false;
         Call(s => FmAbi.fm_animation_play(s, anim));
         return true;
     }
 
     internal bool CancelRaw(ulong anim)
     {
-        if (anim == 0) return false;
+        if (anim == 0 || _disposed) return false;
         Call(s => FmAbi.fm_animation_cancel(s, anim));
         return true;
     }
 
     internal bool ReleaseRaw(ulong anim)
     {
-        if (anim == 0) return false;
+        if (anim == 0 || _disposed) return false;
         Call(s => FmAbi.fm_animation_release(s, anim));
         return true;
     }
@@ -286,6 +330,14 @@ public sealed class MotionSystem : IDisposable
         }
     }
 
+    void ThrowIfDisposed()
+    {
+        if (_disposed) throw new ObjectDisposedException(nameof(MotionSystem));
+    }
+
+    // MF-12: Call's disposed fallback stays for the silent fire-and-forget paths
+    // (Play/Cancel/Release/Retarget return false there); queries throw first via
+    // ThrowIfDisposed at their entry points, so their fallbacks never mislead.
     T Call<T>(Func<IntPtr, T> f, T fallback)
     {
         Affinity();
@@ -388,6 +440,9 @@ public sealed class MotionSystem : IDisposable
         internal static extern int fm_is_running(IntPtr sys);
 
         [DllImport(Dll, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int fm_active_count(IntPtr sys);
+
+        [DllImport(Dll, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int fm_current(IntPtr sys, ulong target, [MarshalAs(UnmanagedType.LPUTF8Str)] string property, out double value, out double velocity);
     }
 }
@@ -442,7 +497,7 @@ public sealed class AnimationHandle
     public bool Retarget(string property, double target, SpringParams spring, double? from = null)
     {
         if (property == null) throw new ArgumentNullException(nameof(property));
-        if (_released || Id == 0) return false;
+        if (_released || Id == 0 || _system.IsDisposed) return false;
         MotionSample? sample = _system.Current(Target, property);
         int hasFrom;
         double fromValue;
@@ -457,10 +512,11 @@ public sealed class AnimationHandle
             fromValue = 0;
         }
         bool ok = _system.RetargetRaw(Id, property, target, spring, hasFrom, fromValue);
+        if (!ok) return false; // MF-12: a failed Retarget must not log an ETW Retarget event.
         double reportedFrom = from ?? sample?.Value ?? double.NaN;
         double velocity = sample?.Velocity ?? double.NaN;
         MotionEtw.Log.Retarget(_system.SessionId, Id, property, reportedFrom, target, spring.Response, spring.Damping, (byte)hasFrom, velocity);
-        return ok;
+        return true;
     }
 }
 

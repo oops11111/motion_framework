@@ -25,6 +25,7 @@ int main(int argc, char** argv) {
     { std::ifstream in(argc > 1 ? argv[1] : "demo_motion.json"); std::stringstream b; b << in.rdbuf(); json = b.str(); }
     Ctx c; fm_system* s = fm_create_manual(Sink, Render, &c);
     CHECK(s != nullptr);
+    CHECK(fm_active_count(nullptr) == 0);   // MF-06: null system reports no active controllers
     char err[512];
 
     // tokens: good and bad
@@ -38,8 +39,10 @@ int main(int argc, char** argv) {
     CHECK(a != 0 && !fm_is_running(s));
     fm_animation_play(s, a);
     CHECK(fm_is_running(s) && c.running && c.renderOn == 1);
+    CHECK(fm_active_count(s) > 0);   // MF-06: one live controller while the transition runs
     const int frames = RunFrames(s, 1000);
     CHECK(!fm_is_running(s) && !c.running && c.renderOff == 1 && frames > 20 && frames < 200);
+    CHECK(fm_active_count(s) == 0);   // MF-06: drained animations leave no active controllers
     CHECK(c.last.at("opacity") == 1.0 && c.last.at("offsetX") == 0.0);
     std::printf("  demo.enter: %d frames (%.0f ms), %d sink calls\n", frames, frames * 1000.0 / 120.0, c.sinkCalls);
     const int calls = c.sinkCalls; fm_on_frame(s); fm_on_frame(s); CHECK(c.sinkCalls == calls);   // idle writes nothing
@@ -126,6 +129,7 @@ int main(int argc, char** argv) {
         CHECK(!fm_is_running(s2));                                   // a rejected Retarget does not wake the pump
         CHECK(fm_animation_retarget(s2, z, "offsetX", 120.0, 0.32, 0.78, 1, 0.0) == 1);   // from: 0 -> 120
         CHECK(fm_is_running(s2) && c2.running);
+        CHECK(fm_active_count(s2) > 0);   // MF-06: retargeted handle counts as active
         double v0 = -1, vel0 = -1; CHECK(fm_current(s2, 6, "offsetX", &v0, &vel0) == 1 && v0 == 0.0);
         const int f2 = RunFrames(s2, 1000);
         CHECK(!fm_is_running(s2) && !c2.running && f2 > 0 && f2 < 1000);

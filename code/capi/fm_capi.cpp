@@ -109,6 +109,7 @@ int fm_animation_retarget(fm_system* s, uint64_t id, const char* prop, double ta
 
 void fm_on_frame(fm_system* s) { if (s) { try { s->pump.OnFrame(); } catch (...) {} } }
 int fm_is_running(fm_system* s) { return s && s->pump.Running() ? 1 : 0; }
+int fm_active_count(fm_system* s) { return s ? static_cast<int>(s->sys.ActiveCount()) : 0; }
 int fm_current(fm_system* s, uint64_t target, const char* prop, double* v, double* vel) {
     if (!s || !prop) return 0;
     auto c = s->sys.Current(target, prop);

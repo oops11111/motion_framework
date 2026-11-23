@@ -701,7 +701,7 @@ public:
 ## 7. C-ABI：`code/capi/fm_capi.h`（供 C# P/Invoke）
 
 > **状态**：已实现，**仅软件路径**（`MotionSystem` + `SoftwareDispatcher` + `FramePump`，见 `code/explore/software_dispatcher.h`）；**不经过** `composition.h`，无合成器 lowering。  
-> 验证：`fm_capi_test.cpp` 23 项（Linux g++，ASan/UBSan 干净；Windows MSVC 19.44 x64 亦 23/0）。Windows DLL 构建、14 个导出（dumpbin）与 MotionSoftDemo 接入见 [`workbuddy_soft_demo.md`](./workbuddy_soft_demo.md)「派题 #4」§3。  
+> 验证：`fm_capi_test.cpp` 49 项（Linux g++，ASan/UBSan 干净，2026-11-23 实测；Windows MSVC 复测待补，旧 23/0 结论绑定旧版测试）。Windows DLL 构建、15 个导出（Windows dumpbin 复测待补）与 MotionSoftDemo 接入见 [`workbuddy_soft_demo.md`](./workbuddy_soft_demo.md)「派题 #4」§3。  
 > 注：头文件/实现文件首行注释写的是 `mvp/fm_capi.h`，实际位置为 `code/capi/`。
 
 ### 7.1 规则（头文件注释）
@@ -721,7 +721,7 @@ typedef void (*fm_sink_fn)(uint64_t target, const char* property, double value, 
 typedef void (*fm_render_fn)(int on, void* user);
 ```
 
-### 7.3 14 个函数
+### 7.3 15 个函数
 
 | # | 签名 | 语义（依据 `fm_capi.h` / `fm_capi.cpp`） |
 |---|------|------|
@@ -739,6 +739,7 @@ typedef void (*fm_render_fn)(int on, void* user);
 | 12 | `void fm_on_frame(fm_system*)` | 在帧回调中调用：`MotionSystem::Tick()` → sink 回调；`ActiveCount()==0` 时调用 `render(0)` 停泵 |
 | 13 | `int fm_is_running(fm_system*)` | 帧泵是否在运行（`1`/`0`） |
 | 14 | `int fm_current(fm_system*, uint64_t target, const char* property, double* value, double* velocity)` | `MotionSystem::Current`：所有者的值（上次 Tick 的采样）或 rest 值；有值返回 `1`，否则 `0`；`value`/`velocity` 可为 `NULL` |
+| 15 | `int fm_active_count(fm_system*)` | 活动控制器数（`MotionSystem::ActiveCount()`）；空系统返回 `0`；供 L1 `FrameTick.activeCount`（MF-06 真修，2026-11-23 新增） |
 
 **唤醒约定**：`MotionSystem` 没有唤醒钩子；shim 在 `fm_animation_play`、`fm_animation_retarget`（成功时）、`fm_set_reduced_motion` 内部调用 `FramePump::Wake()`，首次唤醒时回调 `render(1)`。
 

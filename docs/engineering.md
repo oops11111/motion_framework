@@ -29,7 +29,7 @@
   未在参考机上标定。
 * **设计开发一体化**：Figma 产出 motion token JSON，`TokenSet::Parse` 严格校验后
   编译为 `Timeline`。Figma 插件、热重载预览宿主尚未实现。
-* **开发友好**：C++17 头文件核心 + C-ABI（`fm_capi.h`，14 个导出函数）+ C#
+* **开发友好**：C++17 头文件核心 + C-ABI（`fm_capi.h`，15 个导出函数）+ C#
   P/Invoke（`MotionSoftDemo/MotionSystem.cs`）。WinMD 投影尚未实现。
 
 ### 1.3 明确非目标
