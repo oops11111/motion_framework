@@ -65,7 +65,13 @@ public sealed partial class MainPage
             CompReset(0, "s1-period start"); await Task.Delay(300);
             hwnd = Process.GetCurrentProcess().MainWindowHandle;
             Both($"WGC start hr=0x{MfProbe.mf_cap_start(hwnd):X8}");
-            // px/dip calibration, same as MAPTEST/S1V2: 0 -> 37 dips.
+            // Settle AFTER capture start so pre-calibration captures exist:
+            // MAPTEST takes calQ0 only after a 400 ms rest with capture
+            // running; taking it immediately after mf_cap_start leaves no
+            // capture with QpcArrive < calQ0, cx0 comes out NaN, and the
+            // probe reports INVALID (first Windows round, REPORT-f242ce47).
+            CompReset(0, "s1-period cal settle"); await Task.Delay(400);
+            // px/dip calibration, same as MAPTEST: 0 -> 37 dips.
             var calQ0 = Qpc; CompReset(37, "s1-period cal"); await Task.Delay(400); var calQ1 = Qpc;
             CompReset(0, "s1-period cal end"); await Task.Delay(500);
             var cc = ReadCaptures().Where(c => c.N > 50).ToList();
