@@ -20,6 +20,15 @@
 // as the S2 probe (patch 0026). If the API throws on 0 or clamps the
 // readback, that is the finding: the trial FAILs with the reason
 // logged, and no oscillation data is claimed for it.
+// 0028 revision: the first Windows round (REPORT-cc9f10dd) FAILed 0/3
+// on a measurement artifact — the per-trial rest baseline. An undamped
+// predecessor never settles, so the pre-start captures of trials 1-2
+// were mid-flight (rest ~419px) while their absolute oscillation
+// extremes matched trial 0 exactly. The baseline is now the
+// calibration rest for all trials (trial 0's rest equalled cx0), and
+// the RAW line also logs the raw max sample so a peak shortfall can be
+// told apart from estimator bias. Gates unchanged.
+//
 // Flag: --s2-zero-damping-probe / MF_S2_ZERO_DAMPING_PROBE=1.
 // Log: m53_s2_zero_damping_ui.txt.
 // Artifact: win_s2_zero_damping_raw.txt in the same art dir as the log.
@@ -89,11 +98,16 @@ public sealed partial class MainPage
                 {
                     total++;
                     CompReset(0, $"s2-zero t={trial} rest"); await Task.Delay(250);
-                    // Per-trial rest baseline (patch 0026): median of the
-                    // last few captures before the start.
-                    var preTrial = ReadCaptures().Where(c => c.N > 50).Select(c => c.Cx).ToList();
-                    double rest = preTrial.Count > 0
-                        ? MedianS1(preTrial.Skip(Math.Max(0, preTrial.Count - 5)).ToList()) : cx0;
+                    // Baseline is the CALIBRATION rest (cx0), NOT a
+                    // per-trial pre-start baseline: the previous trial's
+                    // undamped spring never settles, so pre-start captures
+                    // are mid-flight, not rest. First round proved it:
+                    // trials 1-2 read rest ~419px (mid-flight) while the
+                    // absolute oscillation extremes matched trial 0
+                    // exactly; trial 0's own rest (127.68) equalled cx0
+                    // (127.700). The 0026 per-trial lesson does not
+                    // transfer to a spring that never rests.
+                    double rest = cx0;
                     long q0 = Qpc;
                     string assignNote;
                     float readback = float.NaN;
@@ -125,6 +139,7 @@ public sealed partial class MainPage
                         .Select(c => (t: SecSince(q0, c.QpcArrive), x: (c.Cx - rest) / pxPerDip))
                         .OrderBy(p => p.t).ToList();
                     var peaks = S2ZeroPeaks(samples);
+                    double rawPeak = samples.Count > 0 ? samples.Max(p => p.x) : double.NaN;
                     double min = samples.Count > 0 ? samples.Min(p => p.x) : double.NaN;
                     var intervals = new List<double>();
                     for (int i = 1; i < peaks.Count; i++) intervals.Add(peaks[i].t - peaks[i - 1].t);
@@ -132,7 +147,7 @@ public sealed partial class MainPage
                     string rawLine = samples.Count > 0
                         ? string.Join(" ", samples.Select(p => $"{F(p.t * 1000, 0)}:{F(p.x, 2)}"))
                         : "(no samples)";
-                    Both($"RAW trial={trial} n={samples.Count} rest={F(rest, 2)} peaks={peaks.Count} firstPeak={(peaks.Count > 0 ? F(peaks[0].x, 2) : "NaN")} lastPeak={(peaks.Count > 0 ? F(peaks[^1].x, 2) : "NaN")} medianInterval={F(medianInterval, 4)} min={F(min, 2)} {rawLine}");
+                    Both($"RAW trial={trial} n={samples.Count} rest={F(rest, 2)} peaks={peaks.Count} rawPeak={F(rawPeak, 2)} firstPeak={(peaks.Count > 0 ? F(peaks[0].x, 2) : "NaN")} lastPeak={(peaks.Count > 0 ? F(peaks[^1].x, 2) : "NaN")} medianInterval={F(medianInterval, 4)} min={F(min, 2)} {rawLine}");
                     bool ok = peaks.Count >= 3
                         && !double.IsNaN(medianInterval) && Math.Abs(medianInterval - 0.5) <= 0.025
                         && Math.Abs(peaks[0].x - 480.0) <= 2.0
