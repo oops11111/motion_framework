@@ -332,7 +332,13 @@ public sealed partial class MainPage
             reduceAnim.Cancel();
             reduceJump.Cancel();
 
-            // PresentStats at session end (placeholder 0 ok; event name must appear). 16.666 ms is a frame interval, not 0.3·T.
+            // MF-06: PresentStats placeholder emission. The frozen E1 contract requires the
+            // event NAME to appear (see the required-names check below), but no real present
+            // measurement exists: dropped=0 and intervalMs=16.666 are placeholders, not
+            // measurements, and no consumer may read these field values. Do not delete this
+            // emission without updating the name-presence check. Real present statistics need
+            // a separate ticket (PresentMon) plus a BASE rotation: MotionEtw.cs is frozen by
+            // tools/delivery/build_component.py.
             MotionEtw.Log.PresentStats(sessionId, 0, 16.666);
             await Task.Delay(50);
 
@@ -348,7 +354,9 @@ public sealed partial class MainPage
             Both($"CSHARP_VERDICT={(csharpPass ? "PASS" : "FAIL")}");
 
             // ---------- G1-2 ETW ----------
-            // Ensure FrameTick appeared (accept force path)
+            // Ensure FrameTick appeared (accept force path). MF-06: activeCount=0 here is a
+            // placeholder; MotionSystem supplies a 0/1 running flag because fm_capi has no
+            // active-count export, and no consumer may read this field as a count.
             if (!seenEvents.Contains("FrameTick"))
             {
                 MotionEtw.Log.FrameTickAccept(sessionId, 16666, 100, 0);

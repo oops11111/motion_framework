@@ -437,6 +437,11 @@ public sealed partial class MainPage
                     + " callbacksIn5s=" + callbacksIn5s.ToString(CultureInfo.InvariantCulture)
                     + " idleEvents=" + idleEvents.ToString(CultureInfo.InvariantCulture));
 
+                // MF-06: PresentStats placeholder emission, kept only so the frozen E1 event NAME
+                // appears in the mirror names. dropped=0 and intervalMs=16.666 are not
+                // measurements; no consumer may read these field values. Real present statistics
+                // need a separate ticket (PresentMon) plus a BASE rotation: MotionEtw.cs is frozen
+                // by tools/delivery/build_component.py.
                 MotionEtw.Log.PresentStats(system.SessionId, 0, 16.666);
                 Write("MIRROR_NAMES " + string.Join(",", seen.OrderBy(n => n, StringComparer.Ordinal)) + " (not G2-6; G2-6 reads the nettrace)");
                 crossHits = system.CrossThreadHits + resumeMismatches;

@@ -396,6 +396,10 @@ parallel / stagger / delay / marker，嵌套深度上限 32；每个 transition 
 3. **HWND 宿主**：正式 API 推迟到 V1.5；当前无可用的参考宿主实现。
 4. **遥测占位**：`PresentStats` 当前 emitter 传占位值（dropped=0、intervalMs=16.666），
    不是实测，不得读取其字段作时间/FPS 结论（见 `MotionEtw.cs` 注释）；`FrameTick`
-   的 activeCount 在 L1 面传的是运行布尔值，不是计数。待 MF-06 处理。
+   的 activeCount 在 L1 面传的是运行布尔值，不是计数。真修须另开 ticket：接
+   PresentMon 实测、在 `fm_capi` 补 active-count 导出，并轮换
+   `tools/delivery/build_component.py` 的 BASE 基线（`MotionSystem.cs` /
+   `MotionEtw.cs` 现被冻结，改它们会触发 Frozen source 检查失败）；本批只在三个
+   发射点加注，不删发射、不改冻结文件。
 5. **性能与无障碍**：§8 的全部预算、矩阵与检查均未在参考机上跑过；`docs/z6_closed.md`
    的 PASS 均为 dev-only，不代表性能合格或产品采用。
