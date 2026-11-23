@@ -23,6 +23,10 @@
     for logman (a denial is recorded as denied.txt and the run aborts);
     the demo exe built from MotionSoftDemo.csproj.
 
+    EXIT CODES: 0 artefacts complete; 1 demo timeout (demo stopped,
+    artefacts still collected); 2 capture setup failure; 3 parameter
+    error; 4 required artefact missing. -DryRun exits 0.
+
 .PARAMETER DemoExe
     Full path to the demo exe (e.g. MotionSoftDemo.exe).
 
@@ -55,8 +59,9 @@
     is 1 with timedOut=true in run.json.
 
 .PARAMETER DemoLogDir
-    Directory holding the demo UI log. Defaults to the demo exe directory.
-    The newest *.txt written after demo start is taken as the log.
+    Directory holding the demo UI log. Defaults to the same resolution the
+    demo itself uses (DevLog.Directory): $env:MF_M0_ARTDIR if set, else
+    $env:TEMP\z3a_cabi_l1_dev, else the demo exe directory.
 
 .PARAMETER DemoLogFile
     Explicit demo log path. Overrides -DemoLogDir discovery.
@@ -96,6 +101,12 @@ function Say([string]$msg) {
     Write-Host ("[{0:HH:mm:ss}] {1}" -f (Get-Date), $msg)
 }
 
+# WinPS 5.1 Set-Content -Encoding UTF8 writes a BOM, which breaks the
+# grader's manifest read. All harness outputs are written BOM-less.
+function Write-Utf8NoBom([string]$path, [string]$text) {
+    [System.IO.File]::WriteAllText($path, $text, (New-Object System.Text.UTF8Encoding($false)))
+}
+
 function Fail([string]$msg, [int]$code) {
     Say "ERROR: $msg"
     exit $code
@@ -126,7 +137,12 @@ $deniedPath = Join-Path $OutDir "denied.txt"
 $exeName = [System.IO.Path]::GetFileName($demoExeResolved)
 $demoDir = [System.IO.Path]::GetDirectoryName((Resolve-Path $demoExeResolved -ErrorAction SilentlyContinue).Path)
 if ([string]::IsNullOrWhiteSpace($demoDir)) { $demoDir = [System.IO.Path]::GetDirectoryName($demoExeResolved) }
-if ([string]::IsNullOrWhiteSpace($DemoLogDir)) { $DemoLogDir = $demoDir }
+if ([string]::IsNullOrWhiteSpace($DemoLogDir)) {
+    # Mirror the demo's own DevLog.Directory resolution order exactly.
+    if (-not [string]::IsNullOrWhiteSpace($env:MF_M0_ARTDIR)) { $DemoLogDir = $env:MF_M0_ARTDIR }
+    elseif (-not [string]::IsNullOrWhiteSpace($env:TEMP)) { $DemoLogDir = Join-Path $env:TEMP "z3a_cabi_l1_dev" }
+    else { $DemoLogDir = $demoDir }
+}
 
 Say "demo=$demoExeResolved args='$DemoArgs' scenario=$Scenario round=$Round refreshHz=$RefreshHz gpuTier=$GpuTier timeout=${TimeoutSec}s"
 Say "presentmon=$presentMonResolved outdir=$OutDir"
@@ -155,6 +171,10 @@ try {
     Say "WARN: SMBIOS UUID unreadable ($($_.Exception.Message)); machineId left empty (grader will judge INVALID)"
 }
 $hostname = $env:COMPUTERNAME
+if ([string]::IsNullOrWhiteSpace($hostname)) {
+    try { $hostname = (hostname) } catch { $hostname = "" }
+    if ([string]::IsNullOrWhiteSpace($hostname)) { Say "WARN: hostname unreadable; machineId/hostname left empty (grader will judge INVALID)" }
+}
 
 $pm = $null
 $traceStarted = $false
@@ -176,7 +196,7 @@ try {
     }
     if ($LASTEXITCODE -ne 0) {
         $evidence = "logman create trace failed (exit $LASTEXITCODE). Command: logman create trace $TraceName -p {$ProviderGuid} -o $etlPath -ets`r`nOutput:`r`n$($logmanOut | Out-String)"
-        Set-Content -Path $deniedPath -Value $evidence -Encoding UTF8
+        Write-Utf8NoBom $deniedPath $evidence
         Say "logman denied/failed; evidence written to $deniedPath. EventPipe fallback (dotnet-trace + denial evidence) is a manual step per the gate review; this script does not take it silently."
         $logmanFailed = $true
     } else {
@@ -245,6 +265,14 @@ else { Say "WARN: no ETW_EVENT name=PresentStats line in the demo log" }
 
 Say "artefacts: presentmon.csv rows=$csvRows, trace.etl bytes=$etlBytes, demolog present=$([bool](Test-Path $demoLogCopy))"
 
+# A run that collected nothing must not report success. A header-only CSV
+# (0 rows) is not missing: the idle scenario legitimately presents nothing.
+$missingArtifacts = @()
+if (-not (Test-Path $csvPath)) { $missingArtifacts += "presentmonCsv" }
+if (-not (Test-Path $etlPath) -or $etlBytes -eq 0) { $missingArtifacts += "trace" }
+if (-not (Test-Path $demoLogCopy) -or [string]::IsNullOrWhiteSpace($presentStatsLine)) { $missingArtifacts += "presentStats" }
+if ($missingArtifacts) { Say "WARN: required artefacts missing: $($missingArtifacts -join ', ') (grader: INVALID)" }
+
 $runMeta = [ordered]@{
     capturedAt    = (Get-Date).ToString("o")
     scenario      = $Scenario
@@ -261,8 +289,10 @@ $runMeta = [ordered]@{
     presentStats  = "demolog.txt"
     presentStatsLine = $presentStatsLine
     demoLogSource = $demoLogFound
+    demoLogDir = $DemoLogDir
+    missingArtifacts = $missingArtifacts
 }
-$runMeta | ConvertTo-Json -Depth 3 | Set-Content -Path $runJsonPath -Encoding UTF8
+Write-Utf8NoBom $runJsonPath ($runMeta | ConvertTo-Json -Depth 3)
 
 $repoRoot = Resolve-Path (Join-Path $PSScriptRoot "..\..") -ErrorAction SilentlyContinue
 $gatePath = ""
@@ -297,10 +327,11 @@ $fragment = [ordered]@{
         }
     )
 }
-$fragment | ConvertTo-Json -Depth 5 | Set-Content -Path $fragmentPath -Encoding UTF8
+Write-Utf8NoBom $fragmentPath ($fragment | ConvertTo-Json -Depth 5)
 Say "wrote $runJsonPath and $fragmentPath"
 Say "NOTE: stageP95Ms is null (WPA stage split not defined yet, Q6 open) and reconcileNote is empty: the grader will judge this fragment INVALID until those are filled and an APPROVED file exists. That is the intended gate behaviour, not a harness failure."
 
 if ($logmanFailed) { exit 2 }
+if ($missingArtifacts) { exit 4 }
 if ($timedOut) { exit 1 }
 exit 0

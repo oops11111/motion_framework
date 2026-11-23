@@ -77,6 +77,9 @@ powershell -ExecutionPolicy Bypass -File tools\perf_ci\capture_run.ps1 `
 - `-RefreshHz` 必填、无默认值：判分预算 T = 1000/Hz 由它算出，必须实报。
 - logman 用 provider GUID `8f3a2c1d-…`（免 manifest 注册）；需要提权或 Performance Log Users 成员身份。logman 被拒时写 `denied.txt` 留证并以 exit 2 退出，不静默改走 EventPipe——EventPipe 降级路径（dotnet-trace + 拒证）按闸门评审是手动步骤。
 - machineId 取 SMBIOS UUID（Q8 裁决）；`stageP95Ms` 留空、`reconcileNote` 留空：WPA 阶段导出口径（Q6）未定，判分脚本会据此判 INVALID，这是闸门的有意行为，不是 harness 故障。基线轮（Q7）与 r2 闸门仍待定。
-- 退出码：0 产物齐全；1 demo 超时（已停 demo、产物照常收集）；2 采集建立失败；3 参数错误。`-DryRun` 只打印计划命令，不建任何东西。
+- 退出码：0 产物齐全；1 demo 超时（已停 demo、产物照常收集）；2 采集建立失败；3 参数错误；4 必需产物缺失（CSV 文件不存在、ETL 不存在或 0 字节、demo 日志缺失或无 PresentStats 行；CSV 0 行不算缺，idle 场景合法）。`-DryRun` 只打印计划命令，不建任何东西。
+- 产物文件一律写 UTF-8 无 BOM：WinPS 5.1 的 `Set-Content -Encoding UTF8` 带 BOM，判分脚本读 manifest 会直接失败。
+- demo 日志目录默认与 demo 自身的 `DevLog.Directory` 解析顺序一致：`MF_M0_ARTDIR` → `%TEMP%\z3a_cabi_l1_dev` → exe 目录；显式 `-DemoLogFile` 优先。
+- 判分脚本要在 LF 检出（或 Linux）上跑：闸门哈希按原始字节计算，Windows CRLF 检出的闸门正文哈希与脚本常量不一致，这是判分脚本侧的既有局限，改动它属于 r2 闸门工作，不在本票。
 
 先用 `-DryRun` 核对命令，再在实验室机器上实跑；实跑验证提示词见审计目录的 `windows-test-prompts-perfci-capture.md`（如有）。
