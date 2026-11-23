@@ -193,8 +193,13 @@ public sealed class MotionSystem : IDisposable
     {
         get
         {
+            // MF-12: a state predicate, not a payload query. False after Dispose
+            // is the true value (the system is not running), and the delivery
+            // consumer asserts it after double-Dispose, so answer here instead
+            // of throwing. Payload queries (LoadTokens/Current) still throw
+            // via ThrowIfDisposed.
+            if (_disposed) return false;
             Affinity();
-            ThrowIfDisposed();
             return Call(s => FmAbi.fm_is_running(s), 0) != 0;
         }
     }
@@ -336,8 +341,10 @@ public sealed class MotionSystem : IDisposable
     }
 
     // MF-12: Call's disposed fallback stays for the silent fire-and-forget paths
-    // (Play/Cancel/Release/Retarget return false there); queries throw first via
-    // ThrowIfDisposed at their entry points, so their fallbacks never mislead.
+    // (Play/Cancel/Release/Retarget return false there); payload queries throw
+    // first via ThrowIfDisposed at their entry points, so their fallbacks never
+    // mislead. IsRunning is the exception: it answers false when disposed (see
+    // its getter) instead of throwing.
     T Call<T>(Func<IntPtr, T> f, T fallback)
     {
         Affinity();

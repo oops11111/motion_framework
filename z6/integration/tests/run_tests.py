@@ -68,7 +68,8 @@ def main():
         batch.write_text('@echo off\ncall "' + str(vcvars) + '"\nif errorlevel 1 exit /b %errorlevel%\n' + subprocess.list2cmdline(compile_test) + '\nif errorlevel 1 exit /b %errorlevel%\n' + subprocess.list2cmdline(compile_dll) + '\nexit /b %errorlevel%\n', encoding='utf-8')
         run('native_build', ['cmd.exe', '/d', '/c', str(batch)])
         native_log = run('native_test', [str(capi / 'fm_capi_test.exe'), str(ROOT / 'code/capi/demo_motion.json')])
-        assert re.search(rb'\b45 checks, 0 failures\b', native_log.read_bytes()), 'Integrated native count must be 45/0'
+        # MF-12/0008: 45 baseline checks + 4 fm_active_count checks = 49.
+        assert re.search(rb'\b49 checks, 0 failures\b', native_log.read_bytes()), 'Integrated native count must be 49/0'
 
         managed = out / 'devsmoke'
         run('managed_build', ['dotnet', 'build', str(ROOT / 'MotionSoftDemo/z3a_l1_devsmoke/Z3aL1DevSmoke.csproj'), '-c', cfg, '--no-incremental', '-o', str(managed)])
