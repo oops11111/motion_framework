@@ -30,6 +30,15 @@
 //   weakly or Cancel() when done. Handles that outlive the MotionSystem become
 //   inert (State() == Cancelled, calls are no-ops).
 //
+// CALLBACKS
+//   End and marker callbacks fire synchronously, inside Tick()/Advance() and
+//   inside ownership changes (Claim/OnLost). There is no reentrancy guard:
+//   a callback must not call MotionSystem, Player, or AnimationHandle
+//   methods on the same system (Play/Seek/Retarget/Tick/Current included).
+//   Defer any such work until after Tick() returns. FireEnd copies the
+//   callback before invoking it, so replacing or clearing it from inside
+//   the callback itself is safe; reentering the engine is not.
+//
 // REDUCED MOTION (MotionSystem::SetReducedMotion)
 //   Play/Reverse/Seek use the reduced timeline (from TokenSet, or an instant one
 //   derived from the full timeline: every animated property jumps to its end value).
@@ -334,6 +343,9 @@ public:
     }
     std::size_t ActiveCount() const { return active_.size(); }
 
+private:
+    friend class detail::Controller;  // only detail::Controller uses the accessors below
+
     // ---- used by detail::Controller; not part of the app-facing API ----
     const IClock& Clock() const { return *clock_; }
     bool Reduced() const { return reduced_; }
@@ -367,7 +379,6 @@ public:
         return it->second;
     }
 
-private:
     using Key = std::pair<TargetId, std::string>;
     const IClock* clock_;
     NullDispatcher null_;

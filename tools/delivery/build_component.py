@@ -22,6 +22,12 @@ from validate_native import inspect_native
 ROOT = Path(__file__).resolve().parents[2]
 PROJECT = ROOT / "src/FluidMotion.L1/FluidMotion.L1.csproj"
 VERSION = "0.1.0"
+# BASE is the frozen-source baseline: the protected files below must be
+# byte-identical to this commit. Rotate BASE only to a reviewed head, in its
+# own change, after reading the full protected diff against the old BASE and
+# confirming every difference is intended. Never rotate BASE to bless an
+# unreviewed change, and never make it configurable at build time (an
+# environment override would silently disable the freeze check).
 BASE = "11b3378fb20498675165f0b52275aa8d23ec2ccd"
 
 

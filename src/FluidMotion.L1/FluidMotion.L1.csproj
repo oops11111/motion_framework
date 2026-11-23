@@ -3,6 +3,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>FluidMotion.L1</AssemblyName>
     <RootNamespace>MotionSoftDemo</RootNamespace>
+    <!-- AnyCPU is intentional: the managed assembly is architecture-neutral.
+         The native asset is win-x64 only, enforced by ValidateComponentNative
+         below; do not "fix" this to x64 without also changing the pack. -->
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>

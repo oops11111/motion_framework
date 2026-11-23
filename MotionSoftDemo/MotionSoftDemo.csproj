@@ -81,7 +81,14 @@
     <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
   </PropertyGroup>
 
-  <Target Name="WriteZ4BuildInfo" BeforeTargets="BeforeCompile">
+  <!-- Only win-x64 native assets are built (see build_component.py and the
+       FluidMotion.L1 pack validation). Fail at build time instead of loading
+       a wrong-architecture fluidmotion.dll at run time. -->
+  <Target Name="RequireWinX64Native" BeforeTargets="BeforeCompile">
+    <Error Condition="'$(RuntimeIdentifier)' != 'win-x64'" Text="Only win-x64 native assets are supported; build fluidmotion.dll for the target RID first." />
+  </Target>
+
+  <Target Name="WriteZ4BuildInfo" BeforeTargets="BeforeCompile" Condition="'$(Z4StampBuildInfo)' != 'false'">
     <Exec Command="git rev-parse HEAD" WorkingDirectory="$(MSBuildThisFileDirectory)" ConsoleToMSBuild="true" IgnoreExitCode="true" StandardOutputImportance="low">
       <Output TaskParameter="ConsoleOutput" PropertyName="Z4GitTip" />
     </Exec>

@@ -424,7 +424,9 @@ public:
     // CubicBezier::Slope, springs via their analytic state, overrides via their
     // own state). The override holds `target` until released.
     // If the property is neither animated nor overridden, `from` seeds the value
-    // (velocity 0); without `from` the call returns false.
+    // (velocity 0); without `from` the call returns false. Application code
+    // should use AnimationHandle::Retarget (controller.h); this is the
+    // low-level primitive the controller and tests build on.
     bool Retarget(const std::string& property, double target, SpringParams params,
                   std::optional<double> from = std::nullopt) {
         Update();

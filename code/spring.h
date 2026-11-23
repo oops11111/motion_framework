@@ -54,7 +54,11 @@ public:
     }
 
     // Continue from the current state toward a new target. `t` = time since
-    // the last (re)start. Prefer the timeline/player, which tracks this for you.
+    // the last (re)start, measured from the same origin before and after the
+    // call: Retarget re-bases the state sampled at `t` but does not move the
+    // origin, so keep passing `t` from the original (re)start. Application
+    // code should use AnimationHandle::Retarget (controller.h), which tracks
+    // the clock for you; this is the low-level primitive.
     void Retarget(double t, double newTarget) {
         SpringState s = At(t);
         target_ = newTarget;
