@@ -437,12 +437,20 @@ public sealed partial class MainPage
                     + " callbacksIn5s=" + callbacksIn5s.ToString(CultureInfo.InvariantCulture)
                     + " idleEvents=" + idleEvents.ToString(CultureInfo.InvariantCulture));
 
-                // MF-06: PresentStats placeholder emission, kept only so the frozen E1 event NAME
-                // appears in the mirror names. dropped=0 and intervalMs=16.666 are not
-                // measurements; no consumer may read these field values. Real present statistics
-                // need a separate ticket (PresentMon) plus a BASE rotation: MotionEtw.cs is frozen
-                // by tools/delivery/build_component.py.
-                MotionEtw.Log.PresentStats(system.SessionId, 0, 16.666);
+                // MF-06 (true fix): session-summary present statistics from the frame
+                // intervals this session already observed: intervalMs is the mean of
+                // sessionDtMs; dropped counts gaps over 2x the session median gap (an
+                // in-process missed-cadence proxy, not a PresentMon dropped count).
+                // PresentMon remains the authority; perf-CI reconciles offline.
+                double presentIntervalMs = sessionDtMs.Count == 0 ? 0 : sessionDtMs.Average();
+                uint presentDropped = 0;
+                if (sessionDtMs.Count > 0)
+                {
+                    double median = Percentile(sessionDtMs.OrderBy(v => v).ToList(), 0.50);
+                    foreach (double dt in sessionDtMs)
+                        if (dt > 2 * median) presentDropped++;
+                }
+                MotionEtw.Log.PresentStats(system.SessionId, presentDropped, presentIntervalMs);
                 Write("MIRROR_NAMES " + string.Join(",", seen.OrderBy(n => n, StringComparer.Ordinal)) + " (not G2-6; G2-6 reads the nettrace)");
                 crossHits = system.CrossThreadHits + resumeMismatches;
                 g5 = crossHits == 0;

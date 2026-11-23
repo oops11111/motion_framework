@@ -247,12 +247,12 @@ public static class Z3aL1DevSmoke
                 hover.Release();
             }
 
-            // MF-06: PresentStats placeholder emission, kept only so the frozen E1 event NAME
-            // appears in the E1 name check below. dropped=0 and intervalMs=16.666 are not
-            // measurements; no consumer may read these field values. Real present statistics
-            // need a separate ticket (PresentMon) plus a BASE rotation: MotionEtw.cs is frozen
-            // by tools/delivery/build_component.py.
-            MotionEtw.Log.PresentStats(sys.SessionId, 0, 16.666);
+            // MF-06: the devsmoke has no present stream (manual clock), so no real
+            // present statistics exist here. This emission exists only so the frozen
+            // E1 event NAME appears in the name check below; its field values are
+            // not measurements (0/0, not a 60 Hz cadence) and no consumer may read
+            // them. Real session summaries come from the M202/Z4 probes.
+            MotionEtw.Log.PresentStats(sys.SessionId, 0, 0);
             string[] required = { "AnimationLifecycle", "Retarget", "FrameTick", "PresentStats", "IdleTransition", "TokenLoad" };
             foreach (string name in required)
                 Ok(seen.Contains(name), "E1 event " + name);

@@ -101,8 +101,10 @@ public sealed partial class MainPage
             sessionId = system.SessionId;
             boundSystem = system;
             Both($"# l1 sessionId=0x{sessionId:X16} type=MotionSystem");
+            var renderTs = new List<long>(); // MF-06: Rendering callback timestamps for session-summary PresentStats.
             onRendering = (_, __) =>
             {
+                renderTs.Add(Stopwatch.GetTimestamp());
                 try { boundSystem?.OnFrame(); } catch (Exception ex) { Both("ONFRAME " + ex.Message); }
             };
             system.FramePumpChanged += on =>
@@ -332,14 +334,32 @@ public sealed partial class MainPage
             reduceAnim.Cancel();
             reduceJump.Cancel();
 
-            // MF-06: PresentStats placeholder emission. The frozen E1 contract requires the
-            // event NAME to appear (see the required-names check below), but no real present
-            // measurement exists: dropped=0 and intervalMs=16.666 are placeholders, not
-            // measurements, and no consumer may read these field values. Do not delete this
-            // emission without updating the name-presence check. Real present statistics need
-            // a separate ticket (PresentMon) plus a BASE rotation: MotionEtw.cs is frozen by
-            // tools/delivery/build_component.py.
-            MotionEtw.Log.PresentStats(sessionId, 0, 16.666);
+            // MF-06 (true fix): session-summary present statistics from this probe's own
+            // Rendering timestamps: intervalMs is the mean observed callback interval;
+            // dropped counts gaps over 2x the session median gap (an in-process
+            // missed-cadence proxy, not a PresentMon dropped count). PresentMon
+            // remains the authority; perf-CI reconciles offline.
+            double presentIntervalMs = 0;
+            uint presentDropped = 0;
+            if (renderTs.Count > 1)
+            {
+                var dts = new List<double>(renderTs.Count - 1);
+                for (int i = 1; i < renderTs.Count; i++)
+                {
+                    double dt = (renderTs[i] - renderTs[i - 1]) * 1000.0 / Stopwatch.Frequency;
+                    if (dt > 0) dts.Add(dt);
+                }
+                if (dts.Count > 0)
+                {
+                    var ordered = dts.OrderBy(v => v).ToList();
+                    double median = ordered[ordered.Count / 2];
+                    presentIntervalMs = dts.Average();
+                    foreach (double dt in dts)
+                        if (dt > 2 * median) presentDropped++;
+                }
+            }
+            MotionEtw.Log.PresentStats(sessionId, presentDropped, presentIntervalMs);
+            Both($"PRESENT_STATS intervalMs={F(presentIntervalMs, 3)} dropped={presentDropped} renderCallbacks={renderTs.Count}");
             await Task.Delay(50);
 
             bool coverMid = true; // R1/R5
@@ -354,9 +374,9 @@ public sealed partial class MainPage
             Both($"CSHARP_VERDICT={(csharpPass ? "PASS" : "FAIL")}");
 
             // ---------- G1-2 ETW ----------
-            // Ensure FrameTick appeared (accept force path). MF-06: activeCount=0 here is a
-            // placeholder; MotionSystem supplies a 0/1 running flag because fm_capi has no
-            // active-count export, and no consumer may read this field as a count.
+            // Ensure FrameTick appeared (accept force path). This fallback emission is
+            // name-presence only: its values must not be read. Real FrameTick events
+            // now carry the fm_active_count value from MotionSystem.OnFrame.
             if (!seenEvents.Contains("FrameTick"))
             {
                 MotionEtw.Log.FrameTickAccept(sessionId, 16666, 100, 0);

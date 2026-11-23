@@ -394,12 +394,13 @@ parallel / stagger / delay / marker，嵌套深度上限 32；每个 transition 
 2. **Rive 未接入**：指针跟随延迟、DPI 重新光栅化、设备丢失恢复均无代码；0.5–1.5
    帧采样延迟的说法是设计约束（`disputes.md` §3），不是实测结论。
 3. **HWND 宿主**：正式 API 推迟到 V1.5；当前无可用的参考宿主实现。
-4. **遥测占位**：`PresentStats` 当前 emitter 传占位值（dropped=0、intervalMs=16.666），
-   不是实测，不得读取其字段作时间/FPS 结论（见 `MotionEtw.cs` 注释）；`FrameTick`
-   的 activeCount 在 L1 面传的是运行布尔值，不是计数。真修须另开 ticket：接
-   PresentMon 实测、在 `fm_capi` 补 active-count 导出，并轮换
-   `tools/delivery/build_component.py` 的 BASE 基线（`MotionSystem.cs` /
-   `MotionEtw.cs` 现被冻结，改它们会触发 Frozen source 检查失败）；本批只在三个
-   发射点加注，不删发射、不改冻结文件。
+4. **遥测真修（MF-06/MF-12，BASE 轮换批）**：`FrameTick` 的 activeCount 现为
+   真实计数（`OnFrame` 读 `fm_capi` 新增的 `fm_active_count` 导出）；`PresentStats`
+   在 M202/Z4 探针改为进程内会话汇总（平均观测帧间隔；dropped 为超 2 倍中位
+   间隔的缺口数，系进程内缺帧代理，非 PresentMon 计数），Z3a devsmoke 无
+   present 流、仅作 E1 名字占位。PresentMon CSV 仍为权威口径，perf-CI 离线
+   对账。`MotionSystem.cs` / `MotionEtw.cs` / `fm_capi.h` / `fm_capi.cpp` 的冻结
+   改动随本批 BASE 轮换一并生效（`tools/delivery/build_component.py` 与
+   `z6/integration/tests/verify.py` 的 BASE 均须轮换）。
 5. **性能与无障碍**：§8 的全部预算、矩阵与检查均未在参考机上跑过；`docs/z6_closed.md`
    的 PASS 均为 dev-only，不代表性能合格或产品采用。
