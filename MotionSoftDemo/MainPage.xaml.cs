@@ -76,8 +76,16 @@ public sealed partial class MainPage : Page
     private const double SpringResponse = 0.32, SpringDamping = 0.78;          // demo_motion.json springs.snappy
     private static readonly Vector2 EnterC1 = new(0.1f, 0.9f), EnterC2 = new(0.2f, 1.0f);   // easing.enter
 
-    private MotionBridge? _fm;
-    private ulong _enter, _drag;
+    private MotionSystem? _fm;
+    private AnimationHandle? _enter, _drag;
+    // MF-04: MainPage owns the frame pump for the L1 system (same bind as M202/Z4).
+    // FramePumpChanged subscribes/unsubscribes CompositionTarget.Rendering; the counts
+    // below replace MotionBridge.SubscribeCount/UnsubscribeCount in the SHUTDOWN report.
+    private EventHandler<object>? _fmRendering;
+    private int _fmSubs, _fmUnsubs;
+    private bool _fmPumpOn;
+    // MF-04: sink-only fault injection, MainPage-owned (MotionSystem has no injection).
+    private int _sinkCalls, _sinkFaults;
     private readonly Stopwatch _sw = new();
     private StreamWriter? _log;
     private readonly StringBuilder _buf = new();
@@ -266,20 +274,29 @@ public sealed partial class MainPage : Page
         try
         {
             _inject = Environment.GetEnvironmentVariable("MF_INJECT_FAULTS") == "1" || Environment.GetCommandLineArgs().Any(a => a.Equals("--inject-faults", StringComparison.OrdinalIgnoreCase));
-            _fm = new MotionBridge(OnValue, _inject);
-            if (_inject) Log("INJECT faults ON (one throw each in _render, _sink, _onRendering)");
-            _fm.Diagnostic += d => Log("BRIDGE " + d);
-            _fm.Frame += (_, __) =>   // after fm_on_frame returned: Fm.* allowed here (not in the sink)
+            _fm = MotionSystem.Create();
+            _fm.ValueChanged += OnValue;
+            _fmRendering = (_, __) =>
             {
-                if (_swTracing && _fm != null && _fm.Current(BoxId, "offsetX", out var cv, out var cvel)) _swTrace.Add((Now, cv, cvel));
-                if (_inject && _injectFrameLogs < 40 && _fm != null && _fm.Current(BoxId, "offsetX", out var iv, out var ivel))
-                { _injectFrameLogs++; Log($"INJECT frame {_injectFrameLogs}: offsetX={F(iv, 3)} vel={F(ivel, 2)} callbackErrors={_fm.CallbackErrors}"); }
+                try { _fm?.OnFrame(); } catch (Exception ex) { Log("ONFRAME " + ex.Message); }
+                // Post-frame work (was MotionBridge.Frame): MotionSystem calls are legal here, not in the sink.
+                if (_swTracing && _fm != null) { var s = _fm.Current(BoxId, "offsetX"); if (s.HasValue) _swTrace.Add((Now, s.Value.Value, s.Value.Velocity)); }
+                if (_inject && _injectFrameLogs < 40 && _fm != null) { var s = _fm.Current(BoxId, "offsetX"); if (s.HasValue) { _injectFrameLogs++; Log($"INJECT frame {_injectFrameLogs}: offsetX={F(s.Value.Value, 3)} vel={F(s.Value.Velocity, 2)} sinkFaults={_sinkFaults}"); } }
             };
+            _fm.FramePumpChanged += on =>
+            {
+                if (_fmRendering is null) return;
+                if (on == _fmPumpOn) return;   // idempotent: the native side may repeat the current state
+                if (on) { CompositionTarget.Rendering += _fmRendering; _fmSubs++; _fmPumpOn = true; }
+                else { CompositionTarget.Rendering -= _fmRendering; _fmUnsubs++; _fmPumpOn = false; }
+            };
+            if (_inject) Log("INJECT faults ON (sink-only: one throw from the ValueChanged handler, swallowed by MotionSystem.OnSink)");
             var err = _fm.LoadTokens(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "demo_motion.json")));
             Log($"load_tokens {(err is null ? "ok" : "ERR " + err)}");
-            _enter = _fm.Create(BoxId, "demo.enter");
-            _drag = _fm.Create(BoxId);
-            _fm.Play(_enter);
+            var enter = _fm.CreateAnimation(BoxId, "demo.enter");
+            var drag = _fm.CreateAnimation(BoxId);
+            _enter = enter; _drag = drag;
+            enter.Play();
 
             _visual = ElementCompositionPreview.GetElementVisual(AnimBox);
             _comp = _visual.Compositor;
@@ -301,9 +318,9 @@ public sealed partial class MainPage : Page
             else if (_lifecycle)
             {
                 // long spring (response 3 s) so the window is closed while Rendering is still subscribed
-                bool ok = _fm.Retarget(_drag, "offsetX", 240, 3.0, 1.0);
-                Log($"LIFECYCLE retarget(response=3.0) ok={ok} subscribed={_fm.Subscribed} subs={_fm.SubscribeCount}");
-                After(800, () => { Log($"LIFECYCLE ready (animating, subscribed={_fm?.Subscribed})"); FlushLog(); });
+                bool ok = _drag?.Retarget("offsetX", 240, new SpringParams(3.0, 1.0)) ?? false;
+                Log($"LIFECYCLE retarget(response=3.0) ok={ok} pumpOn={_fmPumpOn} subs={_fmSubs}");
+                After(800, () => { Log($"LIFECYCLE ready (animating, pumpOn={_fmPumpOn})"); FlushLog(); });
             }
             else if (_align)
             {
@@ -696,37 +713,57 @@ public sealed partial class MainPage : Page
     // ---------------------------------------------------------------- software path
     private readonly List<(double tMs, double v, double vel)> _swTrace = new();
     private bool _swTracing;
-    private void OnValue(ulong target, FmProp prop, double v)   // runs inside fm_on_frame: no Fm.* calls here
+    private sealed class InjectedSinkFaultException(string where) : Exception($"injected fault in {where}");
+
+    private void OnValue(ulong target, string prop, double v)   // runs inside fm_on_frame: no MotionSystem calls here
     {
-        if (target != BoxId) return;
-        if (prop == FmProp.OffsetX) { if (!_compMode) BoxTranslate.X = v; }
-        else if (prop == FmProp.Opacity) AnimBox.Opacity = v;
+        if (_inject) _sinkCalls++;
+        if (target == BoxId)
+        {
+            if (prop == "offsetX") { if (!_compMode) BoxTranslate.X = v; }
+            else if (prop == "opacity") AnimBox.Opacity = v;
+        }
+        // MF-04: sink-only injection (was MotionBridge._sink). The throw lands in
+        // MotionSystem.OnSink's catch-all, so motion continues; _sinkFaults proves it fired.
+        if (_inject && _sinkFaults == 0 && _sinkCalls == 5) { _sinkFaults++; Log("INJECT sink fault thrown (call 5); MotionSystem.OnSink must swallow it"); throw new InjectedSinkFaultException("OnValue (call 5)"); }
     }
 
     // 派题 #8 item 3: Dispose requested from inside the sink (i.e. inside fm_on_frame) must be deferred.
-    private MotionBridge? _probeBridge;
+    private MotionSystem? _probeBridge;
+    private int _probeSubs, _probeUnsubs;
+    private bool _probePumpOn;
     private void DeferredDisposeSelfTest()
     {
         int sinkCalls = 0;
-        MotionBridge? b = null;
-        b = new MotionBridge((t, p, v) => { sinkCalls++; if (sinkCalls == 1) { bool inNative = b!.InNative; b.Dispose(); Log($"SELFTEST deferred-dispose: Dispose() called from sink, InNative={inNative}, IsDisposed right after={b.IsDisposed}, Subscribed={b.Subscribed}"); } });
+        _probeSubs = 0; _probeUnsubs = 0; _probePumpOn = false;
+        MotionSystem? b = null;
+        EventHandler<object>? rendering = null;
+        rendering = (_, __) => { try { b?.OnFrame(); } catch (Exception ex) { Log("SELFTEST onframe: " + ex.Message); } };
+        b = MotionSystem.Create();
+        b.ValueChanged += (t, p, v) => { sinkCalls++; if (sinkCalls == 1) { b!.Dispose(); Log("SELFTEST deferred-dispose: Dispose() called from sink"); } };
+        b.FramePumpChanged += on =>
+        {
+            if (rendering is null) return;
+            if (on == _probePumpOn) return;   // idempotent: same guard as the main system
+            if (on) { CompositionTarget.Rendering += rendering; _probeSubs++; _probePumpOn = true; }
+            else { CompositionTarget.Rendering -= rendering; _probeUnsubs++; _probePumpOn = false; }
+        };
         _probeBridge = b;
-        b.Diagnostic += d => Log("SELFTEST bridge: " + d);
         var terr = b.LoadTokens(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "demo_motion.json")));
-        var a = b.Create(BoxId);
-        bool ok = b.RetargetFrom(a, "offsetX", 0, 100);   // fresh system: no current value yet, so give an explicit from
-        Log($"SELFTEST deferred-dispose: started probe bridge tokens={(terr is null ? "ok" : terr)} retarget ok={ok} subscribed={b.Subscribed}");
-        After(1000, () => { if (_probeBridge is null) return; Log($"SELFTEST deferred-dispose result: sinkCalls={sinkCalls} DeferredDisposes={b.DeferredDisposes} IsDisposed={b.IsDisposed} subs={b.SubscribeCount} unsubs={b.UnsubscribeCount} callbackErrors={b.CallbackErrors} -> {(b.IsDisposed && b.DeferredDisposes == 1 && b.SubscribeCount == b.UnsubscribeCount && b.CallbackErrors == 0 ? "PASS" : "FAIL")}"); FlushLog(); });
+        var a = b.CreateAnimation(BoxId);
+        bool ok = a.Retarget("offsetX", 100, new SpringParams(SpringResponse, SpringDamping), from: 0);   // fresh system: no current value yet, so give an explicit from
+        Log($"SELFTEST deferred-dispose: started probe system tokens={(terr is null ? "ok" : terr)} retarget ok={ok}");
+        After(1000, () => { if (_probeBridge is null) return; bool running = true; try { running = b!.IsRunning; } catch (Exception ex) { Log("SELFTEST IsRunning threw: " + ex.Message); } Log($"SELFTEST deferred-dispose result: sinkCalls={sinkCalls} IsRunning={running} subs={_probeSubs} unsubs={_probeUnsubs} -> {(sinkCalls >= 1 && !running && _probeSubs > 0 && _probeSubs == _probeUnsubs ? "PASS" : "FAIL")}"); FlushLog(); });
     }
 
     private void SwRetarget(double target, string why)
     {
-        if (_fm is null) return;
+        if (_fm is null || _drag is null) return;
         if (_compMode) { Log($"{why}: skipped (compositor mode)"); return; }
-        _fm.Current(BoxId, "offsetX", out var v0, out var vel0);
-        bool ok = _fm.Retarget(_drag, "offsetX", target, SpringResponse, SpringDamping);
-        _fm.Current(BoxId, "offsetX", out var v1, out var vel1);
-        Log($"SW retarget[{why}] -> {F(target)} ok={ok} before(value={F(v0)} vel={F(vel0)}) after(value={F(v1)} vel={F(vel1)}) |dv|={Math.Abs(v1 - v0):E3}");
+        var s0 = _fm?.Current(BoxId, "offsetX");
+        bool ok = _drag?.Retarget("offsetX", target, new SpringParams(SpringResponse, SpringDamping)) ?? false;
+        var s1 = _fm?.Current(BoxId, "offsetX");
+        Log($"SW retarget[{why}] -> {F(target)} ok={ok} before(value={F(s0?.Value ?? 0)} vel={F(s0?.Velocity ?? 0)}) after(value={F(s1?.Value ?? 0)} vel={F(s1?.Velocity ?? 0)}) |dv|={Math.Abs((s1?.Value ?? 0) - (s0?.Value ?? 0)):E3}");
     }
 
     // ---------------------------------------------------------------- compositor path
@@ -809,7 +846,8 @@ public sealed partial class MainPage : Page
         {
             if (comp)
             {
-                _fm.Current(BoxId, "offsetX", out var v, out var vel);
+                var s = _fm.Current(BoxId, "offsetX");
+                double v = s?.Value ?? 0, vel = s?.Velocity ?? 0;
                 _compMode = true;
                 BoxTranslate.X = 0;
                 _visual.Properties.InsertVector3("Translation", new Vector3((float)v, 0, 0));
@@ -824,8 +862,9 @@ public sealed partial class MainPage : Page
                 _visual.Properties.InsertVector3("Translation", Vector3.Zero);
                 _compMode = false;
                 BoxTranslate.X = sv;
-                bool ok = _fm.RetargetFrom(_drag, "offsetX", sv, _shActive ? _shTarget : sv, SpringResponse, SpringDamping);
-                _fm.Current(BoxId, "offsetX", out var nv, out var nvel);
+                bool ok = _drag?.Retarget("offsetX", _shActive ? _shTarget : sv, new SpringParams(SpringResponse, SpringDamping), from: sv) ?? false;
+                var ns = _fm?.Current(BoxId, "offsetX");
+                double nv = ns?.Value ?? 0, nvel = ns?.Velocity ?? 0;
                 _shActive = false;
                 Log($"MODE -> 软件路径 ({why}): handoff from SHADOW value={F(sv)} vel={F(svel)} (readback after StopAnimation={F(prop)}, |shadow-readback|={F(Math.Abs(sv - prop))}) ok={ok} sw value={F(nv)} vel={F(nvel)} handoff|dv|={F(Math.Abs(nv - sv))}");
             }
@@ -6703,7 +6742,7 @@ public sealed partial class MainPage : Page
             $"REPORT 6 帧间隔(CompositionTarget.Rendering) {INV}n={_renderIntervals.Count} p50={F(Pct(_renderIntervals, .5), 2)} ms p95={F(Pct(_renderIntervals, .95), 2)} ms mean={F(_renderIntervals.Average(), 2)} ms (阈值 p50<=18, p95<=25; 熄屏下无效)");
 
         // 7) stability
-        Log($"REPORT 7 稳定性: exceptions={_exceptions}; suite Rendering subs={_renderSubs} unsubs={_renderUnsubs}; mode switches {switchesOk}/{switches} ok; SW Rendering subscribed now={_fm?.Subscribed}");
+        Log($"REPORT 7 稳定性: exceptions={_exceptions}; suite Rendering subs={_renderSubs} unsubs={_renderUnsubs}; mode switches {switchesOk}/{switches} ok; SW Rendering pumpOn now={_fmPumpOn}");
 
         // 8) display asleep
         Log($"REPORT 8 熄屏: {(valid ? "display awake (gate passed)" : "INVALID (not FAIL); app did not hang; evidence above")}");
@@ -6742,7 +6781,7 @@ public sealed partial class MainPage : Page
     private void OnUnloaded(object sender, RoutedEventArgs e) => Shutdown("Page.Unloaded");
 
     /// <summary>派题 #8 item 2: idempotent, re-entrant teardown called from Page.Unloaded and MainWindow.Closed.
-    /// Guarantees CompositionTarget.Rendering is unsubscribed (bridge + suite handler) and fm_destroy runs.</summary>
+    /// Guarantees CompositionTarget.Rendering is unsubscribed (system + suite handler) and fm_destroy runs.</summary>
     public void Shutdown(string reason)
     {
         if (_shutdownDone)
@@ -6755,13 +6794,13 @@ public sealed partial class MainPage : Page
         try { MfProbe.mf_cap_stop(); } catch { }
         if (_suiteRunning) { CompositionTarget.Rendering -= OnSuiteRendering; _renderUnsubs++; _suiteRunning = false; }
         try { _visual?.StopAnimation("Translation.X"); } catch { }
-        bool wasSub = _fm?.Subscribed ?? false;
-        int subs = 0, unsubs = 0, cbErr = 0;
-        if (_fm != null) { _fm.Dispose(); subs = _fm.SubscribeCount; unsubs = _fm.UnsubscribeCount; cbErr = _fm.CallbackErrors; }
+        bool wasSub = _fmPumpOn;
+        int subs = 0, unsubs = 0;
+        if (_fm != null) { _fm.Dispose(); subs = _fmSubs; unsubs = _fmUnsubs; }
         int psubs = 0, punsubs = 0;
-        if (_probeBridge != null) { _probeBridge.Dispose(); psubs = _probeBridge.SubscribeCount; punsubs = _probeBridge.UnsubscribeCount; }
+        if (_probeBridge != null) { _probeBridge.Dispose(); psubs = _probeSubs; punsubs = _probeUnsubs; }
         App.Unhandled -= OnAppUnhandled;
-        Log($"SHUTDOWN reason={reason}: bridge wasSubscribed={wasSub} subs={subs} unsubs={unsubs} paired={subs == unsubs} disposed={_fm?.IsDisposed} callbackErrors={cbErr} faultsInjected=[{_fm?.FaultsInjected}]; probe bridge subs={psubs} unsubs={punsubs}; suite Rendering subs={_renderSubs} unsubs={_renderUnsubs}; App.Unhandled subscribers after={App.UnhandledSubscribers}; exceptions={_exceptions}; log auto-flushes={_logAutoFlushes} dropped={_logDroppedChars}");
+        Log($"SHUTDOWN reason={reason}: system pumpOn={wasSub} subs={subs} unsubs={unsubs} paired={subs == unsubs} disposed={_fm?.IsDisposed} sinkFaults={_sinkFaults} sinkCalls={_sinkCalls} faultsInjected=[{(_inject ? "sink-only" : "off")}]; probe system subs={psubs} unsubs={punsubs}; suite Rendering subs={_renderSubs} unsubs={_renderUnsubs}; App.Unhandled subscribers after={App.UnhandledSubscribers}; exceptions={_exceptions}; log auto-flushes={_logAutoFlushes} dropped={_logDroppedChars}");
         _fm = null; _probeBridge = null;
         FlushLog(); _log?.Dispose(); _log = null;
     }

@@ -756,7 +756,7 @@ cl /nologo /std:c++17 /EHsc /O2 /W3 /LD /I code\capi /I code /I code\explore cod
 
 ### 7.5 C# P/Invoke 接入
 
-参考：`code/capi/csharp_pinvoke_sketch.cs`（未编译草图）；实际接入版本为 `artifacts/win_softdemo_src/FmBridge.cs`、`MainPage.xaml.cs`，过程见 [`workbuddy_soft_demo.md`](./workbuddy_soft_demo.md)「派题 #4」§3。
+参考：`code/capi/csharp_pinvoke_sketch.cs`（未编译草图）；实际接入版本为 `MotionSoftDemo/MotionSystem.cs`（L1 正式面）与 `MotionSoftDemo/MainPage.xaml.cs`（演示宿主）；`FmBridge.cs` 为已冻结的旧桥、无仓内调用者，`artifacts/win_softdemo_src/` 仅为历史快照，过程见 [`workbuddy_soft_demo.md`](./workbuddy_soft_demo.md)「派题 #4」§3。
 
 ```csharp
 internal static class Fm {

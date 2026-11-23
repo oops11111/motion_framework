@@ -2,9 +2,10 @@
 // code/capi/csharp_pinvoke_sketch.cs. Frame source = CompositionTarget.Rendering (vsync-paced).
 //
 // LEGACY (MF-04): this bridge is demo-only and frozen. The canonical L1 surface is
-// MotionSystem.cs (FluidMotion.L1); new code must use MotionSystem. MotionBridge stays
-// only because MainPage.xaml.cs and M202Probe.cs still run on it, and migrating the demo
-// needs a Windows build to verify. Do not add features here; parity fixes only.
+// MotionSystem.cs (FluidMotion.L1); new code must use MotionSystem. Since the MF-04
+// migration (2026-11-23) no in-repo code calls MotionBridge: MainPage.xaml.cs and
+// M202Probe.cs run on MotionSystem. MotionBridge stays only as a frozen legacy surface
+// for out-of-tree demo copies. Do not add features here; parity fixes only.
 // 派题 #8 hardening (review docs/claude_m1b_reply.md items 1,3,6,7,8,9):
 //  - every callback (_sink, _render, _onRendering) catches all exceptions: nothing crosses P/Invoke
 //  - _inNative counter around every fm_* call; Dispose() inside a native call is deferred via

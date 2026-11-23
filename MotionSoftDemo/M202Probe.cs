@@ -95,7 +95,7 @@ public sealed partial class MainPage
                 }
             }, enableVerbose: true);
 
-            if (_fm == null) throw new InvalidOperationException("MotionBridge not ready");
+            if (_fm == null) throw new InvalidOperationException("MotionSystem not ready");
             system = MotionSystem.Create();
             system.EmitFrameTickAccept = true;
             sessionId = system.SessionId;
