@@ -463,7 +463,7 @@ public sealed partial class MainPage
         {
             // Drive Canvas.Left via existing OnValue path: cancel then retarget from known value.
             if (_fm == null) return;
-            _fm.Cancel(_drag);
+            _drag?.Cancel();
             // Snap via RetargetFrom with high damping / short response for near-instant settle is avoided;
             // instead set Canvas directly for start pose (software visual).
             Canvas.SetLeft(AnimBox, BoxLeft + x);
