@@ -562,7 +562,7 @@ public:
 struct Capabilities {
     bool springNaturalMotion = true;   // 系统有 NaturalMotion 弹簧动画
     bool cubicBezier = true;           // 可用 CubicBezierEasingFunction
-    bool bezierOvershoot = false;      // y 控制点超出 [0,1] 是否被支持（K2，未验证，默认否）
+    bool bezierOvershoot = true;       // y 控制点超出 [0,1] 是否被支持（K2，composition.h 称已验证，见派题 #20）
     std::size_t maxKeyframes = 512;
 };
 
@@ -616,7 +616,7 @@ struct KeyframeAnimation {
     std::optional<double> presetValue;   // delay > 0 时立即设置
 };
 struct SpringAnimation {             // 已换算为合成器口径
-    double period = 0.35, dampingRatio = 0.8;
+    double period = 0.35 / kTwoPi, dampingRatio = 0.8;  // Period = 1/omega0（秒），见 composition.h
     double from = 0, fromVelocity = 0, target = 0;   // 速度单位：每真实秒
     double delay = 0;
     std::optional<double> presetValue;
