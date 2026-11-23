@@ -239,8 +239,7 @@ public sealed partial class MainPage : Page
         _r2P8Probe = args0.Any(a => a.Equals("--r2-p8-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R2_P8_PROBE") == "1";
         _s1v2Probe = args0.Any(a => a.Equals("--s1v2-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_S1V2_PROBE") == "1";
         _s1PeriodProbe = args0.Any(a => a.Equals("--s1-period-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_S1_PERIOD_PROBE") == "1";
-            _s2DampingProbe = args0.Any(a => a.Equals("--s2-damping-probe", StringComparison.OrdinalIgnoreCase)) || 
-Environment.GetEnvironmentVariable("MF_S2_DAMPING_PROBE") == "1";
+            _s2DampingProbe = args0.Any(a => a.Equals("--s2-damping-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_S2_DAMPING_PROBE") == "1";
         _r2P7Probe = args0.Any(a => a.Equals("--r2-p7-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R2_P7_PROBE") == "1";
         _r2P6Probe = args0.Any(a => a.Equals("--r2-p6-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R2_P6_PROBE") == "1";
         _r2P3Probe = args0.Any(a => a.Equals("--r2-p3-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R2_P3_PROBE") == "1";

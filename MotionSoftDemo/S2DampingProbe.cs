@@ -45,6 +45,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 
+namespace MotionSoftDemo;
+
 public sealed partial class MainPage
 {
     private async Task RunS2DampingProbe()
