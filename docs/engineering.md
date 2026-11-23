@@ -298,7 +298,10 @@ system.Dispose();
 C# 侧的 P/Invoke、委托保活与“回调内不得调 `fm_*`”规则见 `MotionSystem.cs`
 文件头注释与 `docs/api.md` §7。演示工程 `MotionSoftDemo/MainPage.xaml.cs`
 目前走的是另一套旧桥 `MotionBridge`（`FmBridge.cs`），与 L1 面的线程与销毁
-语义不一致，待 MF-04 收敛，勿把演示写法当作 L1 接入范式。
+语义不一致，勿把演示写法当作 L1 接入范式。MF-04 的第一步已做：
+`MotionBridge` 已标记 `[Obsolete]` 并冻结（只保留与 `MotionSystem` 的对齐修正：
+全构建线程检查、`fm_animation_release`、4096 字节诊断缓冲、具名重定向默认值、
+扩展的 `FmProp` 分类）；把演示迁到 L1 面仍待办，须在 Windows 构建上验证后才做。
 
 ---
 
