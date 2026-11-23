@@ -873,6 +873,13 @@ public sealed partial class MainPage : Page
                 BoxTranslate.X = 0;
                 _visual.Properties.InsertVector3("Translation", new Vector3((float)v, 0, 0));
                 _shActive = false; _compStatic = v;
+                // Freeze the software animation at the switch value: Cancel writes
+                // the live value as the rest value and releases ownership, so the
+                // switch-back Retarget seeds from it (Retarget's `from` only seeds
+                // a property with no owner and no rest value). Mint a fresh idle
+                // handle: a cancelled handle cannot Retarget again.
+                _drag?.Cancel();
+                _drag = _fm.CreateAnimation(BoxId);
                 Log($"MODE -> 合成器路径 ({why}): software value={F(v)} vel={F(vel)} -> Translation.X={F(v)}, BoxTranslate.X=0");
             }
             else
