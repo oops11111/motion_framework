@@ -61,3 +61,22 @@ python3 -m unittest discover -s tools/perf_ci -v      # 合成数据单测
 | 矩阵 | ≥2 台机器；machineId 非空且互异；≥2 个 GPU 档；`physical=true`；只允许三个 LOCK 场景；每台机器每个场景 ≥2 轮，且 pid 互异 |
 
 判分口径中的开放问题见 `docs/m2_perf_ci_tooling_gate_DRAFT.md`，LOCK 前须确认。
+
+## 采集（capture_run.ps1，tooling-only）
+
+`capture_run.ps1` 在 Windows 上跑一轮 demo，同时采 PresentMon CSV、logman ETL 和 demo 日志（内含 `ETW_EVENT name=PresentStats` 行，判分脚本直接读它作 PresentStats 汇总），产出判分脚本要的产物 + `manifest.fragment.json`。只做采集工具，不判分、不解除 PERF-CI HOLD、不改 LOCKED 闸门与冻结文件。
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\perf_ci\capture_run.ps1 `
+    -DemoExe C:\build\MotionSoftDemo.exe -DemoArgs "--m2-02" `
+    -PresentMon C:\tools\PresentMon.exe -OutDir C:\perf\steady_play_r1 `
+    -RefreshHz 120 -Scenario steady_play -Round 1 -GpuTier igpu
+```
+
+- PresentMon 2.x exe 由操作者提供路径，仓里不带二进制；缺 exe 即硬错（无 CSV 的轮次按闸门必为 INVALID）。
+- `-RefreshHz` 必填、无默认值：判分预算 T = 1000/Hz 由它算出，必须实报。
+- logman 用 provider GUID `8f3a2c1d-…`（免 manifest 注册）；需要提权或 Performance Log Users 成员身份。logman 被拒时写 `denied.txt` 留证并以 exit 2 退出，不静默改走 EventPipe——EventPipe 降级路径（dotnet-trace + 拒证）按闸门评审是手动步骤。
+- machineId 取 SMBIOS UUID（Q8 裁决）；`stageP95Ms` 留空、`reconcileNote` 留空：WPA 阶段导出口径（Q6）未定，判分脚本会据此判 INVALID，这是闸门的有意行为，不是 harness 故障。基线轮（Q7）与 r2 闸门仍待定。
+- 退出码：0 产物齐全；1 demo 超时（已停 demo、产物照常收集）；2 采集建立失败；3 参数错误。`-DryRun` 只打印计划命令，不建任何东西。
+
+先用 `-DryRun` 核对命令，再在实验室机器上实跑；实跑验证提示词见审计目录的 `windows-test-prompts-perfci-capture.md`（如有）。
