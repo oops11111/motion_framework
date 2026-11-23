@@ -32,6 +32,16 @@
 // from the same procedure the S1 probe verified (pxPerDip = 1.2478 in
 // its passing round). The raw peak sample is logged next to the
 // interpolated value so the verdict stays auditable.
+// 0026 revision: the first Windows round (REPORT-4839adf2) showed a
+// uniform ~2.3-dip shortfall on every trial, including the zeta = 1
+// monotone traces settling near 238 instead of 240 — the signature of
+// a rest-level offset between the calibration rest and the trials, not
+// of a damping error. The calibration rest and the 37-dip level are now
+// medians of the last few captures in each window, and each trial
+// re-baselines from the median of its own pre-start captures (falling
+// back to the calibration rest). The +/-2-dip gate is unchanged: this
+// is a measurement fix, not a tolerance change.
+//
 // Flag: --s2-damping-probe / MF_S2_DAMPING_PROBE=1. Log: m52_s2_damping_ui.txt.
 // Artifact: win_s2_damping_raw.txt in the same art dir as the log.
 
@@ -81,11 +91,14 @@ public sealed partial class MainPage
             var calQ0 = Qpc; CompReset(37, "s2-damping cal"); await Task.Delay(400); var calQ1 = Qpc;
             CompReset(0, "s2-damping cal end"); await Task.Delay(500);
             var cc = ReadCaptures().Where(c => c.N > 50).ToList();
-            double cx0 = cc.Where(c => c.QpcArrive < calQ0).LastOrDefault()?.Cx ?? double.NaN;
-            double cx37 = cc.Where(c => c.QpcArrive >= calQ0 && c.QpcArrive < calQ1).LastOrDefault()?.Cx ?? double.NaN;
+            // Medians of the last few captures in each window: a single
+            // capture is one sample of the rest/37-dip level.
+            var preCal = cc.Where(c => c.QpcArrive < calQ0).Select(c => c.Cx).ToList();
+            var midCal = cc.Where(c => c.QpcArrive >= calQ0 && c.QpcArrive < calQ1).Select(c => c.Cx).ToList();
+            double cx0 = preCal.Count > 0 ? MedianS1(preCal.Skip(Math.Max(0, preCal.Count - 5)).ToList()) : double.NaN;
+            double cx37 = midCal.Count > 0 ? MedianS1(midCal.Skip(Math.Max(0, midCal.Count - 5)).ToList()) : double.NaN;
             double pxPerDip = (double.IsNaN(cx0) || double.IsNaN(cx37)) ? double.NaN : (cx37 - cx0) / 37.0;
-            Both($"cal cx0={F(cx0,3)} cx37={F(cx37,3)} pxPerDip={F(pxPerDip,4)}");
-            Both($"WGC start hr=0x00000000");
+            Both($"cal cx0={F(cx0,3)} cx37={F(cx37,3)} pxPerDip={F(pxPerDip,4)} nPre={preCal.Count} nMid={midCal.Count}");
 
             string[] cells = { "0.6", "0.78", "1.0" };
             double[] predicted = { 262.75, 244.79, 240.0 };
@@ -103,6 +116,13 @@ public sealed partial class MainPage
                     {
                         total++;
                         CompReset(0, $"s2-damping z={cells[ci]} t={trial} rest"); await Task.Delay(250);
+                        // Per-trial rest baseline: median of the last few
+                        // captures before the start, so a rest-level shift
+                        // between calibration and trial does not move the
+                        // peak. Falls back to the calibration cx0.
+                        var preTrial = ReadCaptures().Where(c => c.N > 50).Select(c => c.Cx).ToList();
+                        double rest = preTrial.Count > 0
+                            ? MedianS1(preTrial.Skip(Math.Max(0, preTrial.Count - 5)).ToList()) : cx0;
                         long q0 = Qpc;
                         var a = _comp!.CreateSpringScalarAnimation();
                         a.Period = TimeSpan.FromSeconds(0.5 / (2 * Math.PI));
@@ -114,14 +134,14 @@ public sealed partial class MainPage
                         await Task.Delay(1600);
                         CompReset(0, $"s2-damping z={cells[ci]} t={trial} end");
                         var samples = ReadCaptures().Where(c => c.N > 50 && c.QpcArrive >= q0)
-                            .Select(c => (t: SecSince(q0, c.QpcArrive), x: (c.Cx - cx0) / pxPerDip))
+                            .Select(c => (t: SecSince(q0, c.QpcArrive), x: (c.Cx - rest) / pxPerDip))
                             .OrderBy(p => p.t).ToList();
                         double rawPeak = samples.Count > 0 ? samples.Max(p => p.x) : double.NaN;
                         double peak = S2PeakValue(samples);
                         string rawLine = samples.Count > 0
                             ? string.Join(" ", samples.Select(p => $"{F(p.t * 1000, 0)}:{F(p.x, 2)}"))
                             : "(no samples)";
-                        Both($"RAW zeta={cells[ci]} trial={trial} n={samples.Count} rawPeak={F(rawPeak, 2)} peak={F(peak, 2)} predicted={F(predicted[ci], 2)} {rawLine}");
+                        Both($"RAW zeta={cells[ci]} trial={trial} n={samples.Count} rest={F(rest, 2)} rawPeak={F(rawPeak, 2)} peak={F(peak, 2)} predicted={F(predicted[ci], 2)} {rawLine}");
                         bool ok;
                         if (zeta >= 1.0)
                             ok = !double.IsNaN(peak) && rawPeak > 200 && peak <= 242.0;
