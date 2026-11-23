@@ -149,6 +149,31 @@ public sealed partial class MainPage : Page
         }
     }
 
+    // MF-15: probe flag files live under <repo root>/artifacts. Resolve the
+    // repo root by walking up from the output directory (it is the first
+    // ancestor containing an artifacts/ dir or a .git dir); keep the
+    // author's absolute path as a last fallback so existing machines behave
+    // identically.
+    private static string? RepoRoot()
+    {
+        var dir = new System.IO.DirectoryInfo(AppContext.BaseDirectory);
+        while (dir != null)
+        {
+            if (System.IO.Directory.Exists(System.IO.Path.Combine(dir.FullName, "artifacts"))
+                || System.IO.Directory.Exists(System.IO.Path.Combine(dir.FullName, ".git")))
+                return dir.FullName;
+            dir = dir.Parent;
+        }
+        return null;
+    }
+
+    private static bool ArtifactFlagExists(string fileName)
+    {
+        if (RepoRoot() is string root && System.IO.File.Exists(System.IO.Path.Combine(root, "artifacts", fileName)))
+            return true;
+        return System.IO.File.Exists(System.IO.Path.Combine(@"C:\Users\admin\motion_framework\artifacts", fileName));
+    }
+
     private static bool AutorunRequested(out string why)
     {
         var args = Environment.GetCommandLineArgs();
@@ -198,8 +223,8 @@ public sealed partial class MainPage : Page
         _r2P11Probe = args0.Any(a => a.Equals("--r2-p11-probe", StringComparison.OrdinalIgnoreCase));
         _r3E3Probe = args0.Any(a => a.Equals("--r3-e3-probe", StringComparison.OrdinalIgnoreCase));
         _r3P12Probe = args0.Any(a => a.Equals("--r3-p12-probe", StringComparison.OrdinalIgnoreCase));
-        _r350Full = args0.Any(a => a.Equals("--r3-50-full", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R350_FULL") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\r350_full.flag");
-        _r350Probe = args0.Any(a => a.Equals("--r3-50-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R350_PROBE") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\r350_probe.flag");
+        _r350Full = args0.Any(a => a.Equals("--r3-50-full", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R350_FULL") == "1" || ArtifactFlagExists("r350_full.flag");
+        _r350Probe = args0.Any(a => a.Equals("--r3-50-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R350_PROBE") == "1" || ArtifactFlagExists("r350_probe.flag");
         _r2P10Probe = args0.Any(a => a.Equals("--r2-p10-probe", StringComparison.OrdinalIgnoreCase));
         _r2P9Probe = args0.Any(a => a.Equals("--r2-p9-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R2_P9_PROBE") == "1";
         _r2P8Probe = args0.Any(a => a.Equals("--r2-p8-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R2_P8_PROBE") == "1";
@@ -212,19 +237,19 @@ public sealed partial class MainPage : Page
         _r2PostProbe = args0.Any(a => a.Equals("--r2-post-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_R2_POST_PROBE") == "1";
         _pointerPsProbe = args0.Any(a => a.Equals("--pointer-ps-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_POINTER_PS_PROBE") == "1";
         _harnessNoiseProbe = args0.Any(a => a.Equals("--harness-noise-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_HARNESS_NOISE_PROBE") == "1";
-        _m201NoiseProbe = args0.Any(a => a.Equals("--m2-01-noise-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M201_NOISE") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_01_noise.flag");
-        _m2H5SeedProbe = args0.Any(a => a.Equals("--m2-h5-seed", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_H5_SEED") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_h5_seed.flag");
-        _m202Probe = args0.Any(a => a.Equals("--m2-02", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_02") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_02.flag");
+        _m201NoiseProbe = args0.Any(a => a.Equals("--m2-01-noise-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M201_NOISE") == "1" || ArtifactFlagExists("m2_01_noise.flag");
+        _m2H5SeedProbe = args0.Any(a => a.Equals("--m2-h5-seed", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_H5_SEED") == "1" || ArtifactFlagExists("m2_h5_seed.flag");
+        _m202Probe = args0.Any(a => a.Equals("--m2-02", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_02") == "1" || ArtifactFlagExists("m2_02.flag");
         _z3aL1Dev = args0.Any(a => a.Equals("--z3a-l1-dev", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_Z3A_L1_DEV") == "1";
         _z4OutDir = Z4SessionCore.OutDirFromArgs(args0);
-        _m2DeltaVProbe = args0.Any(a => a.Equals("--m2-delta-v", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_DELTA_V") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_delta_v.flag");
-        _m2DeltaVPrimeProbe = args0.Any(a => a.Equals("--m2-delta-v-prime", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_DELTA_V_PRIME") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_delta_v_prime.flag");
-        _m2WgcSeedAbsProbe = args0.Any(a => a.Equals("--m2-wgc-seed-abs", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_ABS") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_wgc_seed_abs.flag");
-        _m2WgcSeedCalibProbe = args0.Any(a => a.Equals("--m2-wgc-seed-calib", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_CALIB") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_wgc_seed_calib.flag");
-        _m2WgcSeedPathBPrimeProbe = args0.Any(a => a.Equals("--m2-wgc-seed-path-b-prime", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_PATH_B_PRIME") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_wgc_seed_path_b_prime.flag");
-        _m2WgcSeedPathAPrimeProbe = args0.Any(a => a.Equals("--m2-wgc-seed-path-a-prime", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_PATH_A_PRIME") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_wgc_seed_path_a_prime.flag");
-        _m2H5DenomVerifyProbe = args0.Any(a => a.Equals("--m2-h5-denom-verify", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_H5_DENOM_VERIFY") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m2_h5_denom_verify.flag");
-        _m0Probe = args0.Any(a => a.Equals("--m0-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M0_PROBE") == "1" || System.IO.File.Exists(@"C:\Users\admin\motion_framework\artifacts\m0.flag");
+        _m2DeltaVProbe = args0.Any(a => a.Equals("--m2-delta-v", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_DELTA_V") == "1" || ArtifactFlagExists("m2_delta_v.flag");
+        _m2DeltaVPrimeProbe = args0.Any(a => a.Equals("--m2-delta-v-prime", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_DELTA_V_PRIME") == "1" || ArtifactFlagExists("m2_delta_v_prime.flag");
+        _m2WgcSeedAbsProbe = args0.Any(a => a.Equals("--m2-wgc-seed-abs", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_ABS") == "1" || ArtifactFlagExists("m2_wgc_seed_abs.flag");
+        _m2WgcSeedCalibProbe = args0.Any(a => a.Equals("--m2-wgc-seed-calib", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_CALIB") == "1" || ArtifactFlagExists("m2_wgc_seed_calib.flag");
+        _m2WgcSeedPathBPrimeProbe = args0.Any(a => a.Equals("--m2-wgc-seed-path-b-prime", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_PATH_B_PRIME") == "1" || ArtifactFlagExists("m2_wgc_seed_path_b_prime.flag");
+        _m2WgcSeedPathAPrimeProbe = args0.Any(a => a.Equals("--m2-wgc-seed-path-a-prime", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_WGC_SEED_PATH_A_PRIME") == "1" || ArtifactFlagExists("m2_wgc_seed_path_a_prime.flag");
+        _m2H5DenomVerifyProbe = args0.Any(a => a.Equals("--m2-h5-denom-verify", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M2_H5_DENOM_VERIFY") == "1" || ArtifactFlagExists("m2_h5_denom_verify.flag");
+        _m0Probe = args0.Any(a => a.Equals("--m0-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M0_PROBE") == "1" || ArtifactFlagExists("m0.flag");
         _m3DpiProbe = args0.Any(a => a.Equals("--m3-dpi-probe", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_DPI_PROBE") == "1";
         _m3LostSim = args0.Any(a => a.Equals("--m3-lost-sim", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_LOST_SIM") == "1";
         _m3XamlWithRive = args0.Any(a => a.Equals("--m3-xaml-with-rive", StringComparison.OrdinalIgnoreCase)) || Environment.GetEnvironmentVariable("MF_M3_XAML_WITH_RIVE") == "1";
