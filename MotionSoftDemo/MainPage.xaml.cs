@@ -867,19 +867,26 @@ public sealed partial class MainPage : Page
         {
             if (comp)
             {
+                // Capture the live velocity before freezing: after Cancel, Current
+                // reads the rest value, whose velocity is 0.
+                double vel = _fm.Current(BoxId, "offsetX")?.Velocity ?? 0;
+                // Freeze the software animation at the switch value: Cancel advances
+                // to the clock and writes the freshest value as the rest value, then
+                // releases ownership, so the switch-back Retarget seeds from it
+                // (Retarget's `from` only seeds a property with no owner and no rest
+                // value). Mint a fresh idle handle: a cancelled handle cannot
+                // Retarget again.
+                _drag?.Cancel();
+                _drag = _fm.CreateAnimation(BoxId);
+                // Read back the frozen rest value, so the compositor visual, the
+                // shadow, and the switch-back seed are the same stored number and
+                // the handoff closes exactly.
                 var s = _fm.Current(BoxId, "offsetX");
-                double v = s?.Value ?? 0, vel = s?.Velocity ?? 0;
+                double v = s?.Value ?? 0;
                 _compMode = true;
                 BoxTranslate.X = 0;
                 _visual.Properties.InsertVector3("Translation", new Vector3((float)v, 0, 0));
                 _shActive = false; _compStatic = v;
-                // Freeze the software animation at the switch value: Cancel writes
-                // the live value as the rest value and releases ownership, so the
-                // switch-back Retarget seeds from it (Retarget's `from` only seeds
-                // a property with no owner and no rest value). Mint a fresh idle
-                // handle: a cancelled handle cannot Retarget again.
-                _drag?.Cancel();
-                _drag = _fm.CreateAnimation(BoxId);
                 Log($"MODE -> 合成器路径 ({why}): software value={F(v)} vel={F(vel)} -> Translation.X={F(v)}, BoxTranslate.X=0");
             }
             else
