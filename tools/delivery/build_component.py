@@ -28,7 +28,7 @@ VERSION = "0.1.0"
 # confirming every difference is intended. Never rotate BASE to bless an
 # unreviewed change, and never make it configurable at build time (an
 # environment override would silently disable the freeze check).
-BASE = "2510fb86f0d55b968924850ebd83d309dec200a1"
+BASE = "065436575c6113110230c38607bd6b196c79fa3e"
 
 
 def sha(path):
