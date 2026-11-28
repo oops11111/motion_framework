@@ -27,10 +27,13 @@
 // median onset latency is the baseline the delay cells are judged
 // against. Two claims, both gated:
 //   HOLD: pre-onset samples stay within 0.5 dips of the trial's own
-//     preset baseline (S2 noise ~0.2 dips; the per-trial baseline,
-//     taken after CompReset(preset), is immune to the S5 open
-//     calibration-rest question; preset placement itself is gated
-//     separately: |baseline - 50| <= 2 dips on the calibrated scale).
+//     preset baseline (S2 noise ~0.2 dips), over samples ending
+//     0.034s before onset so the ramp tail is excluded (0035).
+//     PLACEMENT (0036): the trial baseline is differenced against a
+//     fresh zero measured in the same trial (CompReset(0), polled
+//     till stable), so any cx0 calibration bias cancels; the gate is
+//     |baseline - zero - 50| <= 2 dips. Absolute baseline/zero pixel
+//     values are logged for the open zero-bias question.
 //   ONSET: delay-cell onset minus control-median latency minus delay
 //     within +-50ms (3 frames: latency jitter measured 32-47ms in the
 //     S3 second round, plus 1-frame onset granularity).
@@ -59,6 +62,20 @@
 // actually seen at preset (up to 3s); a timeout FAILs as
 // preset-not-reached with the observed value, which distinguishes
 // the two causes on the next run.
+// 0036 (third round FAILed 0/6, REPORT-0bb833d7): the 0035 poll
+// failed every trial at baseline 47.07, 2.93 dips below 50. Cross-
+// round arithmetic on the quoted calibrations suggests the cx0
+// calibration zero itself is biased high: the implied zero for an
+// exactly-placed value clusters at 125.3-125.5 px (S2 per-trial
+// rest 125.43, S5 frozen 238.28, S4 presets 48.25/47.07) while cx0
+// reads 127.5-129.0, varying run to run. That is a hypothesis from
+// rounded numbers, NOT established. The placement gate therefore
+// no longer uses the absolute cx0 scale: each trial measures its
+// OWN fresh zero (CompReset(0), polled till stable) immediately
+// before the preset, and placement = baseline - zero, so any cx0
+// bias cancels. Polls are filtered to captures after the reset and
+// require the newest capture to advance, so a stalled stream cannot
+// fake stability; waitedMs is real elapsed time.
 // Flag: --s4-delay-probe / MF_S4_DELAY_PROBE=1. Log: m56_s4_delay_ui.txt.
 // Artifact: win_s4_delay_raw.txt in the same art dir as the log.
 
@@ -89,8 +106,8 @@ public sealed partial class MainPage
         Both("# win_s4_delay_raw.txt — MF-02 S4 DelayTime preset-hold probe");
         Both("# wall=" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "; OS=" + Environment.OSVersion.Version);
         Both("# CELL r=0.5000 Period=0.0795775 (S1 mapping) zeta=0.78 preset=InitialValue=50 InitialVelocity=0 target=240 DelayBehavior=AfterDelay delay={0,0.5}s trials=3 observe=1.5s");
-        Both("# PREDICT hold: pre-onset samples within 0.5 dips of trial preset baseline; onset: delay-cell onset - control-median latency - delay within +-50ms; onset=first sample >1.0 dip from trial baseline");
-        Both("# VERDICT rule: readbacks match, preset confirmed within 2 dips of 50 by capture polling (else preset-not-reached), holdMaxDev<=0.5 dips over samples ending 2 frames before onset (>=3 for delay cells, >=1 for controls), onset found, delay-cell |dOnset|<=50ms; no-calibration => INVALID");
+        Both("# PREDICT placement: trial baseline minus fresh trial zero within 2 dips of 50; hold: pre-onset samples within 0.5 dips of trial preset baseline; onset: delay-cell onset - control-median latency - delay within +-50ms; onset=first sample >1.0 dip from trial baseline");
+        Both("# VERDICT rule: readbacks match, zero and preset both stable by capture polling, |placement-50|<=2 dips (placement=baseline-freshZero, cx0 bias cancels), holdMaxDev<=0.5 dips over samples ending 0.034s (nominal 2 frames at 60Hz) before onset (>=3 for delay cells, >=1 for controls), onset found, delay-cell |dOnset|<=50ms; no-calibration => INVALID");
         try
         {
             var hwnd = Process.GetCurrentProcess().MainWindowHandle;
@@ -124,6 +141,34 @@ public sealed partial class MainPage
             }
             else
             {
+                // Poll-until-stable helper (0036): median of the last
+                // 5 captures after the reset, requiring 3 consecutive
+                // FRESH medians (newest capture advancing) spanning
+                // <= 0.5 dips. A stalled stream cannot fake stability.
+                async Task<(double medDip, double medPx, int waitedMs, bool stable)> PollStable(long qAfterReset)
+                {
+                    long t0 = Stopwatch.GetTimestamp();
+                    var recent = new List<double>();
+                    long lastNewest = -1;
+                    double lastMedDip = double.NaN, lastMedPx = double.NaN;
+                    while (true)
+                    {
+                        await Task.Delay(50);
+                        var caps = ReadCaptures().Where(c => c.N > 50 && c.QpcArrive >= qAfterReset).OrderBy(c => c.QpcArrive).TakeLast(5).ToList();
+                        if (caps.Count == 5 && caps[caps.Count - 1].QpcArrive > lastNewest)
+                        {
+                            lastNewest = caps[caps.Count - 1].QpcArrive;
+                            lastMedDip = MedianS1(caps.Select(c => (c.Cx - cx0) / pxPerDip).ToList());
+                            lastMedPx = MedianS1(caps.Select(c => c.Cx).ToList());
+                            recent.Add(lastMedDip);
+                            if (recent.Count > 3) recent.RemoveAt(0);
+                            if (recent.Count == 3 && recent.Max() - recent.Min() <= 0.5)
+                                return (lastMedDip, lastMedPx, (int)((Stopwatch.GetTimestamp() - t0) * 1000 / Stopwatch.Frequency), true);
+                        }
+                        if ((Stopwatch.GetTimestamp() - t0) * 1000 / Stopwatch.Frequency >= 3000)
+                            return (lastMedDip, lastMedPx, (int)((Stopwatch.GetTimestamp() - t0) * 1000 / Stopwatch.Frequency), false);
+                    }
+                }
                 double[] delays = { 0, 0.5 };
                 foreach (double delaySec in delays)
                 {
@@ -132,33 +177,24 @@ public sealed partial class MainPage
                     for (int trial = 0; trial < 3; trial++)
                     {
                         total++;
+                        // Fresh zero first (0036), then the preset:
+                        // placement is differenced, so any cx0 bias
+                        // cancels. Both polls require fresh, stable
+                        // captures (see PollStable).
+                        CompReset(0, $"s4-delay D={delaySec} t={trial} zero");
+                        long qZero = Qpc;
+                        var (zeroDip, zeroPx, zeroWait, zeroStable) = await PollStable(qZero);
                         CompReset(50, $"s4-delay D={delaySec} t={trial} preset");
-                        // Confirm the preset is actually visible in
-                        // fresh captures before starting (0035): poll
-                        // until the median of the last 5 captures is
-                        // within 2 dips of 50, up to 3s. A fixed settle
-                        // + blind median was defeated in the second
-                        // round (baselines stuck at 238.28).
-                        double trialBaseline = double.NaN;
-                        int waitedMs = 0;
-                        while (waitedMs < 3000)
-                        {
-                            await Task.Delay(50);
-                            waitedMs += 50;
-                            var latest = ReadCaptures().Where(c => c.N > 50).OrderBy(c => c.QpcArrive).TakeLast(5)
-                                .Select(c => (c.Cx - cx0) / pxPerDip).ToList();
-                            if (latest.Count == 5)
-                            {
-                                double med = MedianS1(latest);
-                                if (Math.Abs(med - 50) <= 2.0) { trialBaseline = med; break; }
-                                trialBaseline = med;
-                            }
-                        }
+                        long qPreset = Qpc;
+                        var (trialBaseline, basePx, baseWait, baseStable) = await PollStable(qPreset);
                         long q0 = Qpc;
-                        Both($"PRESET delay={delaySec} trial={trial} waitedMs={waitedMs} baseline={F(trialBaseline, 2)}");
-                        if (double.IsNaN(trialBaseline) || Math.Abs(trialBaseline - 50) > 2.0)
+                        double placement = trialBaseline - zeroDip;
+                        Both($"ZERO delay={delaySec} trial={trial} waitedMs={zeroWait} zero={F(zeroDip, 2)} zeroPx={F(zeroPx, 2)} stable={zeroStable}");
+                        Both($"PRESET delay={delaySec} trial={trial} waitedMs={baseWait} baseline={F(trialBaseline, 2)} basePx={F(basePx, 2)} placement={F(placement, 2)} stable={baseStable}");
+                        if (!zeroStable || !baseStable || double.IsNaN(zeroDip) || double.IsNaN(trialBaseline) || Math.Abs(placement - 50) > 2.0)
                         {
-                            Both($"TRIAL delay={delaySec} trial={trial} baseline={F(trialBaseline, 2)} FAIL reason=preset-not-reached");
+                            string reason = !zeroStable ? "zero-not-stable" : !baseStable ? "preset-not-stable" : "preset-placement";
+                            Both($"TRIAL delay={delaySec} trial={trial} zero={F(zeroDip, 2)} baseline={F(trialBaseline, 2)} placement={F(placement, 2)} FAIL reason={reason}");
                             continue;
                         }
                         string assignNote;
@@ -209,7 +245,7 @@ public sealed partial class MainPage
                             continue;
                         }
                         double tOnset = samples[onsetIdx].t;
-                        // Hold set ends 2 frames before onset (0035):
+                        // Hold set ends 0.034s (nominal 2 frames at 60Hz) before onset (0035):
                         // the ramp tail within 2 frames of onset may
                         // deviate up to the onset threshold itself.
                         var holdSet = samples.Where(p => p.t < tOnset - 0.034).ToList();
