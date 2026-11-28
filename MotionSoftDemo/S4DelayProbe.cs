@@ -39,6 +39,11 @@
 // above noise). InitialValue is not read back: its nullability is
 // not established from repo code (only writes exist); its value is
 // confirmed by the hold measurement itself.
+// 0034 fixes (first round was build-blocked, REPORT-0c003de5):
+// AnimationDelayBehavior lives in Microsoft.UI.Composition, which
+// this file did not import (CS0246); and a control trial now
+// contributes its onset to the latency baseline only if it passed
+// the hold gate, so a hold-failing control cannot pollute medianL0.
 // Flag: --s4-delay-probe / MF_S4_DELAY_PROBE=1. Log: m56_s4_delay_ui.txt.
 // Artifact: win_s4_delay_raw.txt in the same art dir as the log.
 
@@ -50,6 +55,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.UI.Composition;
 using Microsoft.UI.Xaml;
 
 namespace MotionSoftDemo;
@@ -67,7 +73,7 @@ public sealed partial class MainPage
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         Both("# win_s4_delay_raw.txt — MF-02 S4 DelayTime preset-hold probe");
         Both("# wall=" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "; OS=" + Environment.OSVersion.Version);
-        Both("# CELL r=0.5000 Period=0.0795775 (S1 mapping) zeta=0.78 preset=IV=50 target=240 DelayBehavior=AfterDelay delay={0,0.5}s trials=3 observe=1.5s");
+        Both("# CELL r=0.5000 Period=0.0795775 (S1 mapping) zeta=0.78 preset=InitialValue=50 InitialVelocity=0 target=240 DelayBehavior=AfterDelay delay={0,0.5}s trials=3 observe=1.5s");
         Both("# PREDICT hold: pre-onset samples within 0.5 dips of trial preset baseline; onset: delay-cell onset - control-median latency - delay within +-50ms; onset=first sample >1.0 dip from trial baseline");
         Both("# VERDICT rule: readbacks match, |trialBaseline-50|<=2 dips, holdMaxDev<=0.5 dips (>=3 pre-onset samples for delay cells, >=1 for controls), onset found, delay-cell |dOnset|<=50ms; no-calibration => INVALID");
         try
@@ -190,8 +196,10 @@ public sealed partial class MainPage
                             dOnset = tOnset - medianL0.Value - delaySec;
                             onsetOk = Math.Abs(dOnset.Value) <= 0.05;
                         }
-                        else
+                        else if (holdOk)
                         {
+                            // Only a control trial that held its preset
+                            // may contribute its onset to the baseline.
                             controlOnsets.Add(tOnset);
                         }
                         bool ok = holdOk && onsetOk;
