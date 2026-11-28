@@ -76,6 +76,18 @@
 // bias cancels. Polls are filtered to captures after the reset and
 // require the newest capture to advance, so a stalled stream cannot
 // fake stability; waitedMs is real elapsed time.
+// 0037 (fourth round FAILed 5/6, REPORT-5cd45646): the single
+// failure was a harness race, not a product finding. Delay trial 1's
+// zero poll saw the visual STABLY stuck at the previous trial's
+// frozen value (425.06px) although CompReset(0) had run: the 1500ms
+// observation ends exactly when the delayed spring settles
+// (0.56s onset + 0.94s settle), so the stop+set raced the
+// animation's final frames. Stability is not correctness -- the
+// placement gate caught it, as designed. The observation is now
+// 2000ms (about 500ms margin past settle) plus a 300ms settle after
+// the end reset, so the stop has presented before the next trial's
+// zero poll. The five passing trials (holdMaxDev 0.00, dOnset
+// -14/-9ms) already answered S4's two claims.
 // Flag: --s4-delay-probe / MF_S4_DELAY_PROBE=1. Log: m56_s4_delay_ui.txt.
 // Artifact: win_s4_delay_raw.txt in the same art dir as the log.
 
@@ -105,7 +117,7 @@ public sealed partial class MainPage
         void Both(string s) { Log(s); art.WriteLine(s); art.Flush(); }
         Both("# win_s4_delay_raw.txt — MF-02 S4 DelayTime preset-hold probe");
         Both("# wall=" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "; OS=" + Environment.OSVersion.Version);
-        Both("# CELL r=0.5000 Period=0.0795775 (S1 mapping) zeta=0.78 preset=InitialValue=50 InitialVelocity=0 target=240 DelayBehavior=AfterDelay delay={0,0.5}s trials=3 observe=1.5s");
+        Both("# CELL r=0.5000 Period=0.0795775 (S1 mapping) zeta=0.78 preset=InitialValue=50 InitialVelocity=0 target=240 DelayBehavior=AfterDelay delay={0,0.5}s trials=3 observe=2.0s");
         Both("# PREDICT placement: trial baseline minus fresh trial zero within 2 dips of 50; hold: pre-onset samples within 0.5 dips of trial preset baseline; onset: delay-cell onset - control-median latency - delay within +-50ms; onset=first sample >1.0 dip from trial baseline");
         Both("# VERDICT rule: readbacks match, zero and preset both stable by capture polling, |placement-50|<=2 dips (placement=baseline-freshZero, cx0 bias cancels), holdMaxDev<=0.5 dips over samples ending 0.034s (nominal 2 frames at 60Hz) before onset (>=3 for delay cells, >=1 for controls), onset found, delay-cell |dOnset|<=50ms; no-calibration => INVALID");
         try
@@ -222,9 +234,15 @@ public sealed partial class MainPage
                         {
                             assignNote = $"assign THROW {ex.GetType().Name}: {ex.Message}";
                         }
-                        await Task.Delay(1500);
+                        // 2000ms (0037): delay 0.5s + settle 0.94s
+                        // ends at 1.50s, exactly where the 1500ms
+                        // window raced the animation's final frames.
+                        await Task.Delay(2000);
                         long qEnd = Qpc;
                         CompReset(0, $"s4-delay D={delaySec} t={trial} end");
+                        // Let the stop present before the next
+                        // trial's zero poll (0037).
+                        await Task.Delay(300);
                         if (float.IsNaN(readZeta) || readZeta != 0.78f || !readFinal.HasValue || readFinal.Value != 240f
                             || readDelay != TimeSpan.FromSeconds(delaySec) || readBehavior != AnimationDelayBehavior.SetInitialValueAfterDelay)
                         {
