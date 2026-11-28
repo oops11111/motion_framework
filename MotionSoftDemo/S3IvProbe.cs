@@ -16,7 +16,7 @@
 // -600} dips/s, 3 trials each, and compares the first 200 ms of WGC
 // samples against the native spring.h model via mf_spring_at (the same
 // code the plan cites). Start latency is handled the way the K2 probe
-// does it: a tau search over +-33 ms in 1 ms steps minimizing the RMS
+// does it: a tau search over +-100 ms in 1 ms steps minimizing the RMS
 // deviation from the true-IV model; the verdict then requires the
 // true-IV RMS <= 3 dips AND, for nonzero cells, the rival IV=0 model
 // (same tau, same samples) to miss by >= 10 dips, so the data must
@@ -55,8 +55,8 @@ public sealed partial class MainPage
         Both("# win_s3_iv_raw.txt — MF-02 S3 InitialVelocity units probe");
         Both("# wall=" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "; OS=" + Environment.OSVersion.Version);
         Both("# CELL r=0.5000 zeta=0.78 Period=0.0795775 (S1 mapping) travel 0->240 IV={0,+600,-600} dips/s trials=3 window=0.20s");
-        Both("# PREDICT model=mf_spring_at(r,zeta,0,240,IV,t); tau search +-33ms/1ms; tol rmsTrue<=3.0 dips; nonzero cells rival(IV=0)>=10 dips");
-        Both("# VERDICT rule: readback=IV, >=5 window samples, rmsTrue<=3 dips, rival>=10 dips (nonzero cells); no-calibration => INVALID");
+        Both("# PREDICT model=mf_spring_at(r,zeta,0,240,IV,t); tau search +-100ms/1ms; tol rmsTrue<=3.0 dips; nonzero cells rival(IV=0)>=10 dips");
+        Both("# VERDICT rule: readback=IV, >=5 window samples, rmsTrue<=3 dips, rival>=10 dips (nonzero cells); no-calibration => INVALID; TAU-BOUNDARY-HIT logged when bestTau hits +-100ms (observation only)");
         try
         {
             var hwnd = Process.GetCurrentProcess().MainWindowHandle;
@@ -127,18 +127,25 @@ public sealed partial class MainPage
                             .OrderBy(p => p.t).ToList();
                         // Tau search: minimize RMS vs the true-IV model over
                         // the first 200 ms; samples before the true start
-                        // (t - tau < 0) are excluded.
+                        // (t - tau < 0) are excluded. Range widened by 0030
+                        // (+-33ms to +-100ms): the first round clipped at
+                        // +33ms in 7/9 trials, so the window could not absorb
+                        // the start latency. Gate and tolerance unchanged; a
+                        // boundary hit is logged, not judged.
                         double bestTau = 0, bestRms = double.NaN;
+                        int bestMs = 0;
                         List<(double t, double x)> bestSet = new();
-                        for (int ms = -33; ms <= 33; ms++)
+                        for (int ms = -100; ms <= 100; ms++)
                         {
                             double tau = ms / 1000.0;
                             var set = samples.Where(p => p.t - tau >= 0.001 && p.t - tau <= 0.20).ToList();
                             if (set.Count < 5) continue;
                             double rms = S3IvRms(set, tau, iv);
                             if (double.IsNaN(rms)) continue;
-                            if (double.IsNaN(bestRms) || rms < bestRms) { bestRms = rms; bestTau = tau; bestSet = set; }
+                            if (double.IsNaN(bestRms) || rms < bestRms) { bestRms = rms; bestTau = tau; bestMs = ms; bestSet = set; }
                         }
+                        if (Math.Abs(bestMs) >= 100)
+                            Both($"TAU-BOUNDARY-HIT IV={iv} trial={trial} tau={F(bestTau * 1000, 0)}ms rmsTrue={F(bestRms, 2)}");
                         double rmsRival = double.NaN;
                         if (iv != 0 && bestSet.Count >= 5) rmsRival = S3IvRms(bestSet, bestTau, 0);
                         string rawLine = samples.Count > 0
