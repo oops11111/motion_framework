@@ -38,6 +38,11 @@
 // Start latency is handled with the S3 lesson: times are anchored on
 // motion onset (first sample >= 1 dip), not on q0 (start latency
 // measured 32-47ms in the S3 second round).
+// 0032 fixes (first round was build-blocked, REPORT-4c8407d2):
+// FinalValue is float?, not float (CS0266 at the readback); the
+// observation window is cut at qEnd so post-reset samples cannot fake
+// a freeze; the freeze scan starts at the onset index, so tFreeze
+// lies in [0, 6s) by construction.
 // Cells: zeta in {0.78, 0.25}, response 0.5s, Period = r/(2*pi) (the
 // S1-verified mapping), 0 -> 240, IV = 0, 3 trials each.
 // Flag: --s5-rest-probe / MF_S5_REST_PROBE=1. Log: m55_s5_rest_ui.txt.
@@ -114,7 +119,7 @@ public sealed partial class MainPage
                         CompReset(0, $"s5-rest zeta={zeta} t={trial} rest"); await Task.Delay(250);
                         long q0 = Qpc;
                         string assignNote;
-                        float readZeta = float.NaN, readFinal = float.NaN;
+                        float readZeta = float.NaN; float? readFinal = null;
                         try
                         {
                             var a = _comp!.CreateSpringScalarAnimation();
@@ -125,7 +130,7 @@ public sealed partial class MainPage
                             a.InitialVelocity = 0f;
                             readZeta = a.DampingRatio;
                             readFinal = a.FinalValue;
-                            assignNote = $"assign ok readback zeta={readZeta.ToString("G9", CultureInfo.InvariantCulture)} final={readFinal.ToString("G9", CultureInfo.InvariantCulture)}";
+                            assignNote = $"assign ok readback zeta={readZeta.ToString("G9", CultureInfo.InvariantCulture)} final={readFinal?.ToString("G9", CultureInfo.InvariantCulture)}";
                             _visual!.StartAnimation("Translation.X", a);
                         }
                         catch (Exception ex)
@@ -133,8 +138,9 @@ public sealed partial class MainPage
                             assignNote = $"assign THROW {ex.GetType().Name}: {ex.Message}";
                         }
                         await Task.Delay(6000);
+                        long qEnd = Qpc;
                         CompReset(0, $"s5-rest zeta={zeta} t={trial} end");
-                        if (float.IsNaN(readZeta) || readZeta != (float)zeta || float.IsNaN(readFinal) || readFinal != 240f)
+                        if (float.IsNaN(readZeta) || readZeta != (float)zeta || !readFinal.HasValue || readFinal.Value != 240f)
                         {
                             Both($"TRIAL zeta={zeta} trial={trial} {assignNote} FAIL reason={(assignNote.Contains("THROW") ? "assign-throw" : "readback-mismatch")}");
                             continue;
@@ -144,20 +150,22 @@ public sealed partial class MainPage
                             Both($"TRIAL zeta={zeta} trial={trial} {assignNote} FAIL reason=bad-settle-model");
                             continue;
                         }
-                        var samples = ReadCaptures().Where(c => c.N > 50 && c.QpcArrive >= q0)
+                        var samples = ReadCaptures().Where(c => c.N > 50 && c.QpcArrive >= q0 && c.QpcArrive <= qEnd)
                             .Select(c => (qpc: c.QpcArrive, x: (c.Cx - cx0) / pxPerDip))
                             .OrderBy(p => p.qpc).ToList();
                         // Motion onset anchor: first sample >= 1 dip.
-                        var onset = samples.FirstOrDefault(p => p.x >= 1.0);
-                        if (onset.qpc == 0)
+                        int onsetIdx = samples.FindIndex(p => p.x >= 1.0);
+                        if (onsetIdx < 0)
                         {
                             Both($"TRIAL zeta={zeta} trial={trial} {assignNote} n={samples.Count} FAIL reason=no-onset");
                             continue;
                         }
+                        var onset = samples[onsetIdx];
                         // Freeze: first run of 15 consecutive captures
-                        // spanning <= 0.1 dips (no observable motion).
+                        // spanning <= 0.1 dips (no observable motion),
+                        // searched from the onset index on.
                         int freezeEnd = -1;
-                        for (int i = 14; i < samples.Count; i++)
+                        for (int i = onsetIdx + 14; i < samples.Count; i++)
                         {
                             var win = samples.Skip(i - 14).Take(15).Select(p => p.x).ToList();
                             if (win.Max() - win.Min() <= 0.1) { freezeEnd = i; break; }
