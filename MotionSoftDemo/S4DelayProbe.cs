@@ -44,6 +44,21 @@
 // this file did not import (CS0246); and a control trial now
 // contributes its onset to the latency baseline only if it passed
 // the hold gate, so a hold-failing control cannot pollute medianL0.
+// 0035 fixes (second round FAILed 0/6, REPORT-130c8cb4):
+// (a) The hold gate contradicted the onset definition: pre-onset
+// samples may deviate up to the 1.0-dip onset threshold BY
+// CONSTRUCTION, so a 0.5-dip gate over the same set could only fail
+// on the motion ramp's own tail (all three controls showed exactly
+// 0.82). The hold set now ends 2 frames before onset.
+// (b) The fixed 300ms CompReset settle + blind median baseline was
+// defeated in delay trials 1-2, whose baselines read 238.28 (the
+// previous trial's frozen value) although CompReset stops the
+// animation and sets the value. Cause undetermined from TRIAL lines
+// alone (stuck visual vs slow/stale capture delivery). The preset
+// is now confirmed by polling fresh captures until the visual is
+// actually seen at preset (up to 3s); a timeout FAILs as
+// preset-not-reached with the observed value, which distinguishes
+// the two causes on the next run.
 // Flag: --s4-delay-probe / MF_S4_DELAY_PROBE=1. Log: m56_s4_delay_ui.txt.
 // Artifact: win_s4_delay_raw.txt in the same art dir as the log.
 
@@ -75,7 +90,7 @@ public sealed partial class MainPage
         Both("# wall=" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "; OS=" + Environment.OSVersion.Version);
         Both("# CELL r=0.5000 Period=0.0795775 (S1 mapping) zeta=0.78 preset=InitialValue=50 InitialVelocity=0 target=240 DelayBehavior=AfterDelay delay={0,0.5}s trials=3 observe=1.5s");
         Both("# PREDICT hold: pre-onset samples within 0.5 dips of trial preset baseline; onset: delay-cell onset - control-median latency - delay within +-50ms; onset=first sample >1.0 dip from trial baseline");
-        Both("# VERDICT rule: readbacks match, |trialBaseline-50|<=2 dips, holdMaxDev<=0.5 dips (>=3 pre-onset samples for delay cells, >=1 for controls), onset found, delay-cell |dOnset|<=50ms; no-calibration => INVALID");
+        Both("# VERDICT rule: readbacks match, preset confirmed within 2 dips of 50 by capture polling (else preset-not-reached), holdMaxDev<=0.5 dips over samples ending 2 frames before onset (>=3 for delay cells, >=1 for controls), onset found, delay-cell |dOnset|<=50ms; no-calibration => INVALID");
         try
         {
             var hwnd = Process.GetCurrentProcess().MainWindowHandle;
@@ -118,9 +133,34 @@ public sealed partial class MainPage
                     {
                         total++;
                         CompReset(50, $"s4-delay D={delaySec} t={trial} preset");
-                        long qPre = Qpc;
-                        await Task.Delay(300);
+                        // Confirm the preset is actually visible in
+                        // fresh captures before starting (0035): poll
+                        // until the median of the last 5 captures is
+                        // within 2 dips of 50, up to 3s. A fixed settle
+                        // + blind median was defeated in the second
+                        // round (baselines stuck at 238.28).
+                        double trialBaseline = double.NaN;
+                        int waitedMs = 0;
+                        while (waitedMs < 3000)
+                        {
+                            await Task.Delay(50);
+                            waitedMs += 50;
+                            var latest = ReadCaptures().Where(c => c.N > 50).OrderBy(c => c.QpcArrive).TakeLast(5)
+                                .Select(c => (c.Cx - cx0) / pxPerDip).ToList();
+                            if (latest.Count == 5)
+                            {
+                                double med = MedianS1(latest);
+                                if (Math.Abs(med - 50) <= 2.0) { trialBaseline = med; break; }
+                                trialBaseline = med;
+                            }
+                        }
                         long q0 = Qpc;
+                        Both($"PRESET delay={delaySec} trial={trial} waitedMs={waitedMs} baseline={F(trialBaseline, 2)}");
+                        if (double.IsNaN(trialBaseline) || Math.Abs(trialBaseline - 50) > 2.0)
+                        {
+                            Both($"TRIAL delay={delaySec} trial={trial} baseline={F(trialBaseline, 2)} FAIL reason=preset-not-reached");
+                            continue;
+                        }
                         string assignNote;
                         float readZeta = float.NaN; float? readFinal = null;
                         TimeSpan readDelay = TimeSpan.MinValue;
@@ -155,12 +195,6 @@ public sealed partial class MainPage
                             Both($"TRIAL delay={delaySec} trial={trial} {assignNote} FAIL reason={(assignNote.Contains("THROW") ? "assign-throw" : "readback-mismatch")}");
                             continue;
                         }
-                        // Trial preset baseline: last 5 captures after
-                        // CompReset(preset), before StartAnimation.
-                        var preCaps = ReadCaptures().Where(c => c.N > 50 && c.QpcArrive >= qPre && c.QpcArrive < q0)
-                            .Select(c => (c.Cx - cx0) / pxPerDip).ToList();
-                        double trialBaseline = preCaps.Count > 0
-                            ? MedianS1(preCaps.Skip(Math.Max(0, preCaps.Count - 5)).ToList()) : double.NaN;
                         var samples = ReadCaptures().Where(c => c.N > 50 && c.QpcArrive >= q0 && c.QpcArrive <= qEnd)
                             .Select(c => (t: SecSince(q0, c.QpcArrive), x: (c.Cx - cx0) / pxPerDip))
                             .OrderBy(p => p.t).ToList();
@@ -168,11 +202,6 @@ public sealed partial class MainPage
                             ? string.Join(" ", samples.Select(p => $"{F(p.t * 1000, 0)}:{F(p.x, 2)}"))
                             : "(no samples)";
                         Both($"RAW delay={delaySec} trial={trial} n={samples.Count} baseline={F(trialBaseline, 2)} {rawLine}");
-                        if (double.IsNaN(trialBaseline) || Math.Abs(trialBaseline - 50) > 2.0)
-                        {
-                            Both($"TRIAL delay={delaySec} trial={trial} {assignNote} baseline={F(trialBaseline, 2)} FAIL reason=preset-placement");
-                            continue;
-                        }
                         int onsetIdx = samples.FindIndex(p => Math.Abs(p.x - trialBaseline) > 1.0);
                         if (onsetIdx < 0)
                         {
@@ -180,7 +209,10 @@ public sealed partial class MainPage
                             continue;
                         }
                         double tOnset = samples[onsetIdx].t;
-                        var holdSet = samples.Take(onsetIdx).ToList();
+                        // Hold set ends 2 frames before onset (0035):
+                        // the ramp tail within 2 frames of onset may
+                        // deviate up to the onset threshold itself.
+                        var holdSet = samples.Where(p => p.t < tOnset - 0.034).ToList();
                         double holdMaxDev = holdSet.Count > 0 ? holdSet.Max(p => Math.Abs(p.x - trialBaseline)) : double.NaN;
                         int needHold = delaySec > 0 ? 3 : 1;
                         bool holdOk = holdSet.Count >= needHold && !double.IsNaN(holdMaxDev) && holdMaxDev <= 0.5;
